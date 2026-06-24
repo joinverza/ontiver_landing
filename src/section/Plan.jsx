@@ -48,7 +48,7 @@ const loading = [
 
 export default function Plan() {
   return (
-    <div className="px-56 bg-bg-light">
+    <div className="px-56 py-24 bg-bg-light">
       <Text btext="Find Your Ideal Plan" heading="Plan Recommendation Tool" />
       <div className="flex gap-4">
         <div className="w-[536px] py-6 px-8 bg-white rounded-3xl">

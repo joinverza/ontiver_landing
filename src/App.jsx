@@ -6,6 +6,10 @@ import Solution from "./section/Solution";
 import Price from "./section/Price";
 import Plan from "./section/Plan";
 import Calculator from "./section/Calculator";
+import Trust from "./section/Trust";
+import FAQs from "./section/FAQs";
+import Join from "./section/Join";
+import Footer from "./section/Footer";
 
 export default function App() {
   return (
@@ -17,6 +21,10 @@ export default function App() {
       <Price />
       <Plan />
       <Calculator />
+      <Trust />
+      <FAQs />
+      <Join />
+      <Footer />
     </div>
   );
 }

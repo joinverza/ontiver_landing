@@ -80,7 +80,7 @@ const pricing = [
 
 export default function Price() {
   return (
-    <div className="px-29 bg-bg-light">
+    <div className="px-29 py-24 bg-bg-light">
       <Text
         btext="Identity Infrastructure That Pays for Itself"
         heading="Pay for Trust. Not Repeated Verification."
