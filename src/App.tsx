@@ -17,7 +17,7 @@ export default function App() {
   useLenis();
 
   return (
-    <div className="relative bg-bg-light">
+    <div className="relative bg-bg-light overflow-clip">
       <Navbar />
       <Hero />
       <Problem />
