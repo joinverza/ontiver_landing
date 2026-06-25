@@ -10,6 +10,8 @@ import Trust from "./section/Trust";
 import FAQs from "./section/FAQs";
 import Join from "./section/Join";
 import Footer from "./section/Footer";
+import Modules from "./section/Modules";
+import UseCase from "./section/UseCase";
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
       <Hero />
       <Problem />
       <Solution />
+      <Modules />
+      <UseCase />
       <Price />
       <Plan />
       <Calculator />

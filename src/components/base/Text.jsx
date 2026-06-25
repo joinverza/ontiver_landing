@@ -3,7 +3,9 @@ import React from "react";
 export default function Text({ btext, heading, className }) {
   return (
     <div className="flex flex-col gap-2 pb-15">
-      <h4 className="rounded-3xl py-2 px-6 border-1 border-border w-fit mx-auto">
+      <h4
+        className={`${className} rounded-3xl py-2 px-6 border-1 border-border w-fit mx-auto`}
+      >
         {btext}
       </h4>
       <h2
