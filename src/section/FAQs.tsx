@@ -1,4 +1,3 @@
-import React from "react";
 import Text from "../components/base/Text";
 
 const faqs = [

@@ -12,7 +12,8 @@
   --breakpoint-xss: 450px;
   --breakpoint-xs: 550px;
   --breakpoint-sm: 640px;
-  --breakpoint-md: 768px --breakpoint-lg: 1000px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1000px;
   --breakpoint-lgg: 1250px;
   --breakpoint-xl: 1280px;
 }
@@ -34,4 +35,24 @@
   border-radius: 999px;
   background-color: #163c1d;
   cursor: pointer;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }

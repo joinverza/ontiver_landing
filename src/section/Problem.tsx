@@ -1,4 +1,3 @@
-import React from "react";
 import Text from "../components/base/Text";
 
 const problems = [
@@ -24,19 +23,19 @@ const problems = [
 
 export default function Problem() {
   return (
-    <div className="mx-auto py-10 bg-bg-light">
+    <div className="w-full max-w-7xl mx-auto py-20 px-6 md:px-10 lg:px-20 bg-bg-light">
       <Text
         btext="The Problem"
         heading="Why building digital products still feels harder than it should."
       />
-      <div className="flex gap-6 px-33">
-        {problems.map((prob) => {
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        {problems.map((prob, idx) => {
           return (
-            <div className="p-5 rounded-3xl bg-white">
-              <img src={prob.image} alt={prob.alt} />
-              <div className="pt-3">
-                <h6 className="text-green font-semibold">{prob.title}</h6>
-                <p className="text-sm text-black/80">{prob.para}</p>
+            <div key={idx} className="p-6 md:p-8 rounded-3xl bg-white shadow-sm border border-black/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <img src={prob.image} alt={prob.alt} className="w-full rounded-2xl mb-6 object-cover aspect-video bg-black/5" />
+              <div>
+                <h6 className="text-green font-semibold text-lg mb-2">{prob.title}</h6>
+                <p className="text-sm text-black/60 leading-relaxed">{prob.para}</p>
               </div>
             </div>
           );
@@ -45,3 +44,4 @@ export default function Problem() {
     </div>
   );
 }
+

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function Input({ name, placeholder, className }) {
+type InputProps = {
+  name: string;
+  placeholder: string;
+  className?: string;
+};
+
+export default function Input({ name, placeholder, className = "" }: InputProps) {
   const [calc, setCalc] = useState("");
 
-  //   function handleCalc(e) {
-  //     setCalc(e.target.value);
-  //     console.log(calc);
-  //   }
   return (
     <div className={`flex flex-col gap-2 ${className}`}>
       <label className="text-black/80">{name}</label>

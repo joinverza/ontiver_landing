@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../components/base/Button";
 
 export default function Join() {

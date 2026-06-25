@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Text from "../components/base/Text";
 import Input from "../components/base/Input";
 import Button from "../components/base/Button";
@@ -56,7 +56,7 @@ export default function Calculator() {
                   className=" h-[50px] flex items-center justify-center text-sm font-medium"
                   style={{ left: `${value}%` }}
                 >
-                  <p className="bg-[url('./assets/range.svg')] w-[70px]  pl-5 bg-no-repeat bg-center pt-2 pb-4">
+                  <p className="bg-[url('/assets/range.svg')] w-[70px]  pl-5 bg-no-repeat bg-center pt-2 pb-4">
                     {value}%
                   </p>
                 </span>
@@ -72,7 +72,7 @@ export default function Calculator() {
               style={{
                 background: `linear-gradient(to right, #007D21 0%, #007D21 ${value}%, #e5e5e5 ${value}%, #e5e5e5 100%)`,
               }}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => setValue(Number(e.target.value))}
             />
           </div>
           <div>
