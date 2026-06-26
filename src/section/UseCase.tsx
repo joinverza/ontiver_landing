@@ -2,7 +2,7 @@ import Text from "../components/base/Text";
 
 export default function UseCase() {
   return (
-    <div className="w-full max-w-7xl mx-auto py-20 px-6 md:px-10 lg:px-20 text-white">
+    <div className="w-full mx-auto py-20 px-6 md:px-10 bg-[#06160F] lg:px-20 text-white">
       <Text
         className="border-white"
         btext="Use Cases Routing"
@@ -78,4 +78,3 @@ export default function UseCase() {
     </div>
   );
 }
-
