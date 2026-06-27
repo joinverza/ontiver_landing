@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import Button from "../base/Button";
+import MagneticFillButton from "../ui/MagneticFillButton";
 
 const Navlinks = [
-  { name: "Home", ref: "" },
+  { name: "Home", ref: "/" },
   { name: "Use Cases", ref: "#cases" },
   { name: "Pricing", ref: "#pricing" },
-  { name: "Resources/Blogs", ref: "#blog" },
-  { name: "Contact", ref: "" },
+  { name: "Resources/Blogs", ref: "/blog" },
+  { name: "Contact", ref: "/contact" },
 ];
 
 export default function Navbar() {
@@ -95,10 +95,12 @@ export default function Navbar() {
               flexShrink: 0,
             }}
           >
-            <Button
-              className="bg-[#005e19] hover:bg-[#004a14] text-white py-2.5 px-6 rounded-full font-medium text-sm transition-colors shadow-md"
-              text="Join Waitlist"
-            />
+            <MagneticFillButton
+              variant="green"
+              className="py-2.5 px-6 rounded-full font-medium text-sm shadow-md"
+            >
+              Join Waitlist
+            </MagneticFillButton>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../components/base/Button";
+import MagneticFillButton from "../components/ui/MagneticFillButton";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 // import SquigglyText from "../components/ui/SquigglyText";
 
 const marqueeItems = (
@@ -34,6 +36,103 @@ export default function Hero() {
   const badge1Ref = useRef<HTMLDivElement>(null);
   const badge2Ref = useRef<HTMLDivElement>(null);
   const badge3Ref = useRef<HTMLDivElement>(null);
+  const heroBadgeRef = useRef<HTMLDivElement>(null);
+  const heroHeadingRef = useRef<HTMLHeadingElement>(null);
+  const heroParagraphRef = useRef<HTMLParagraphElement>(null);
+  const heroButtonsRef = useRef<HTMLDivElement>(null);
+  const heroImageRef = useRef<HTMLDivElement>(null);
+
+  // Hero entrance animations
+  useGSAP(() => {
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    // Badge — scale out from left
+    tl.fromTo(
+      heroBadgeRef.current,
+      { x: -40, opacity: 0, scale: 0.85 },
+      { x: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }
+    );
+
+    // Heading — split into words, each scales out from left staggered
+    if (heroHeadingRef.current) {
+      const headingEl = heroHeadingRef.current;
+      // Wrap each text node word in a span while preserving child elements
+      const walker = document.createTreeWalker(headingEl, NodeFilter.SHOW_TEXT);
+      const textNodes: Text[] = [];
+      let node: Text | null;
+      while ((node = walker.nextNode() as Text | null)) {
+        if (node.textContent && node.textContent.trim()) textNodes.push(node);
+      }
+      textNodes.forEach((tn) => {
+        const words = tn.textContent!.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        words.forEach((w) => {
+          if (w.trim() === "") {
+            frag.appendChild(document.createTextNode(w));
+          } else {
+            const wrapper = document.createElement("span");
+            wrapper.className = "inline-block";
+            const inner = document.createElement("span");
+            inner.className = "hero-word inline-block";
+            inner.style.transform = "translateX(-30px) scale(0.8)";
+            inner.style.opacity = "0";
+            inner.textContent = w;
+            wrapper.appendChild(inner);
+            frag.appendChild(wrapper);
+          }
+        });
+        tn.parentNode!.replaceChild(frag, tn);
+      });
+
+      const wordEls = headingEl.querySelectorAll(".hero-word");
+      tl.to(
+        wordEls,
+        {
+          x: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power3.out",
+          stagger: 0.06,
+        },
+        "-=0.3"
+      );
+    }
+
+    // Paragraph — scale out from left
+    tl.fromTo(
+      heroParagraphRef.current,
+      { x: -30, opacity: 0, scale: 0.9 },
+      { x: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" },
+      "-=0.2"
+    );
+
+    // Buttons — staggered scale out from left
+    if (heroButtonsRef.current) {
+      const buttons = heroButtonsRef.current.children;
+      tl.fromTo(
+        buttons,
+        { x: -25, opacity: 0, scale: 0.85 },
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.45,
+          ease: "power3.out",
+          stagger: 0.1,
+        },
+        "-=0.2"
+      );
+    }
+
+    // Hero image — fade and scale in
+    tl.fromTo(
+      heroImageRef.current,
+      { x: 60, opacity: 0, scale: 0.92 },
+      { x: 0, opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" },
+      "-=0.5"
+    );
+  }, { scope: containerRef });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,10 +168,12 @@ export default function Hero() {
       {/* Initial Minimal Header (Only visible at top) */}
       <div className={`absolute top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-6 z-[100] transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <img src="./assets/logo.svg" alt="logo" className="h-6 md:h-8" />
-        <Button
-          className="bg-gradient-to-r from-[#002D0E] to-[#009311] hover:opacity-90 text-white py-3.5 px-8 rounded-xl font-medium text-md transition-colors shadow-md"
-          text="Join Waitlist"
-        />
+        <MagneticFillButton
+          variant="green"
+          className="py-3.5 px-8 rounded-xl font-medium text-md shadow-md"
+        >
+          Join Waitlist
+        </MagneticFillButton>
       </div>
 
       {/* Animated Background Grid Pattern */}
@@ -115,13 +216,13 @@ export default function Hero() {
         
         {/* Left Content */}
         <div className="w-full lg:w-[50%] flex flex-col items-start max-lg:pt-8 lg:pb-10">
-          <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-[#395D54] mb-8">
+          <div ref={heroBadgeRef} className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-[#395D54] mb-8" style={{ opacity: 0 }}>
             <span className="text-black text-[15px]">♦</span>
             <span className="text-black/80 font-medium text-sm">Digital Identity Infrastructure for Africa</span>
             <span className="text-black text-[15px]">♦</span>
           </div>
 
-          <h1 className="text-[clamp(3rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-black mb-6">
+          <h1 ref={heroHeadingRef} className="text-[clamp(3rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-black mb-6">
             Verify Once.<br />
             Reuse{" "}
             <span className="text-[#007D21]">
@@ -137,25 +238,25 @@ export default function Hero() {
             {/* </SquigglyText> */}
           </h1>
 
-          <p className="text-lg text-black font-normal max-w-[500px] leading-relaxed mb-10">
+          <p ref={heroParagraphRef} className="text-lg text-black font-normal max-w-[500px] leading-relaxed mb-10" style={{ opacity: 0 }}>
             Ontiver helps businesses verify identity, manage consent, run AML checks, and let users reuse trusted credentials across supported workflows.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto h-10">
-            <button className="bg-gradient-to-r from-[#002D0E] to-[#009311] hover:opacity-90 text-white px-16 rounded-xl font-medium transition-colors shadow-sm">
+          <div ref={heroButtonsRef} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto h-12">
+            <MagneticFillButton variant="green" className="px-14 rounded-xl text-[17px]">
               Join Waitlist
-            </button>
-            <button className="bg-white border border-[#009311] hover:bg-[#009311]/5 text-[#009311] px-8 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
+            </MagneticFillButton>
+            <MagneticFillButton variant="light" className="px-6 rounded-xl">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
               Watch Overview
-            </button>
+            </MagneticFillButton>
           </div>
         </div>
 
         {/* Right Image */}
-        <div className="w-full lg:w-[50%] relative mt-20 lg:mt-0 flex justify-center lg:justify-end">
+        <div ref={heroImageRef} className="w-full lg:w-[50%] relative mt-20 lg:mt-0 flex justify-center lg:justify-end" style={{ opacity: 0 }}>
           <div className="relative w-full max-w-[700px] aspect-square lg:aspect-auto lg:h-[750px] flex items-center justify-center">
             <img 
               src="./assets/hero-phone.png" 
