@@ -107,3 +107,163 @@ html.lenis, html.lenis body {
 .animate-grid-move {
   animation: animate-grid 4s linear infinite;
 }
+
+/* Problem Section Custom Properties */
+.problem-card-shell,
+.problem-card {
+  --anim-speed: 1;
+}
+
+.problem-card-shell {
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+  will-change: transform;
+}
+
+.problem-card-shell:hover {
+  --anim-speed: 1.5;
+  transform: translateY(-6px);
+  border-color: #009311;
+  box-shadow: 0 18px 50px rgba(0, 147, 17, 0.12);
+  transition-duration: 200ms;
+}
+
+.problem-card-shell:hover .problem-card {
+  --anim-speed: 1.5;
+}
+
+.problem-heading .heading-char {
+  animation: problem-char-shimmer 8s ease-in-out infinite;
+  animation-delay: calc(3s + (var(--char-index) * 35ms));
+  color: #111;
+  will-change: color, text-shadow;
+}
+
+@keyframes problem-char-shimmer {
+  0%, 4%, 12%, 100% {
+    color: #111;
+    text-shadow: none;
+  }
+  7% {
+    color: #009311;
+    text-shadow: 0 0 12px rgba(0, 147, 17, 0.22);
+  }
+}
+
+/* Repeat Illustration Animations */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--radius)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg); }
+}
+
+.animate-orbit {
+  animation: orbit calc(var(--duration, 10s) / var(--anim-speed)) linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.3); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow calc(var(--duration, 3s) / var(--anim-speed)) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-bob {
+  animation: bob calc(2s / var(--anim-speed)) ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+.animate-flicker {
+  animation: flicker calc(4s / var(--anim-speed)) ease-in-out infinite;
+}
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-radar-sweep {
+  animation: radar-sweep calc(2s / var(--anim-speed)) linear infinite;
+}
+
+@keyframes travel-beam {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+.animate-travel-beam {
+  animation: travel-beam calc(2.5s / var(--anim-speed)) ease-in-out infinite;
+}
+
+@keyframes spin-normal {
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+.animate-spin-normal {
+  animation: spin-normal calc(var(--duration, 10s) / var(--anim-speed)) linear infinite;
+}
+.animate-spin-reverse {
+  animation: spin-reverse calc(var(--duration, 10s) / var(--anim-speed)) linear infinite;
+}
+
+@keyframes checkmark-trace {
+  0% { stroke-dashoffset: 70; opacity: 1; }
+  40% { stroke-dashoffset: 0; opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  90% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 70; opacity: 0; }
+}
+.animate-checkmark-trace {
+  animation: checkmark-trace calc(4s / var(--anim-speed, 1)) ease-in-out infinite;
+}
+
+@keyframes grid-drift {
+  from { background-position-y: 0; }
+  to { background-position-y: -40px; }
+}
+.animate-grid-drift {
+  animation: grid-drift 8s linear infinite;
+}
+
+@keyframes aurora-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.animate-aurora-spin {
+  animation: aurora-spin 2.5s linear infinite;
+}
+
+.animate-aurora-spin-fast {
+  animation: aurora-spin 1.5s linear infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

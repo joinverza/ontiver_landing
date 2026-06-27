@@ -3,9 +3,10 @@ import MagneticFillButton from "../ui/MagneticFillButton";
 
 const Navlinks = [
   { name: "Home", ref: "/" },
-  { name: "Use Cases", ref: "#cases" },
-  { name: "Pricing", ref: "#pricing" },
-  { name: "Resources/Blogs", ref: "/blog" },
+  { name: "Use Cases", ref: "/#cases" },
+  { name: "Pricing", ref: "/#pricing" },
+  { name: "Calculator", ref: "/calculator" },
+  { name: "Blogs", ref: "/blogs" },
   { name: "Contact", ref: "/contact" },
 ];
 

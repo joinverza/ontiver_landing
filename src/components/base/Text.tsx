@@ -2,6 +2,7 @@ import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AuroraBadge from "../ui/AuroraBadge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,20 +54,22 @@ export default function Text({ btext, heading, className = "" }: TextProps) {
 
   return (
     <div ref={containerRef} className="flex flex-col gap-2 pb-15 w-full">
-      <h4
-        ref={badgeRef}
-        className={`${className} rounded-3xl py-2 px-6 border-1 border-border w-fit mx-auto`}
+      <div
+        ref={badgeRef as React.RefObject<HTMLDivElement>}
+        className="mx-auto w-fit"
         style={{ opacity: 0 }}
       >
-        {btext}
-      </h4>
+        <AuroraBadge className={className}>
+          {btext}
+        </AuroraBadge>
+      </div>
       <h2
-        className={`${className} w-full max-w-[500px] text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
+        className={`${className} w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
       >
         {words.map((word, i) => {
           if (word.trim() === "") return <span key={i}>{word}</span>;
           return (
-            <span key={i} className="inline-block overflow-hidden">
+            <span key={i} className="inline-block">
               <span
                 className="heading-word inline-block"
                 style={{ transform: "translateY(100%)", opacity: 0 }}
