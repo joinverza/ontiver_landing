@@ -22,17 +22,17 @@ export default function Navbar() {
 
   return (
     <div
-      className="fixed top-6 left-0 w-full z-[100] flex justify-center"
+      className="fixed top-10 left-0 w-full z-[100] flex justify-center"
       style={{ pointerEvents: "none" }}
     >
       {/* Morphing bar */}
       <div
         style={{
           width: isScrolled ? "min(1000px, calc(100vw - 48px))" : "48px",
-          height: "52px",
+          height: "62px",
           opacity: isScrolled ? 1 : 0,
           transform: isScrolled ? "scale(1)" : "scale(0.5)",
-          borderRadius: "9999px",
+          borderRadius: "25px",
           backgroundColor: "white",
           boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
           border: "1px solid rgba(0,0,0,0.05)",
@@ -51,7 +51,7 @@ export default function Navbar() {
               ].join(", "),
         }}
       >
-        <div className="h-full px-6 flex justify-between items-center">
+        <div className="h-full px-8 flex justify-between items-center">
           {/* Logo — fades in first at 300ms */}
           <div
             style={{

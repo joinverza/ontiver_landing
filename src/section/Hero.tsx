@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../components/base/Button";
-import SquigglyText from "../components/ui/SquigglyText";
+// import SquigglyText from "../components/ui/SquigglyText";
 
 const marqueeItems = (
   <>
@@ -65,12 +65,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-[95vh] bg-[#f1f4ef] overflow-hidden flex items-center pt-9 pb-10">
+    <div ref={containerRef} className="relative w-full bg-[#f1f4ef] overflow-hidden flex items-center pt-9 pb-16">
       {/* Initial Minimal Header (Only visible at top) */}
       <div className={`absolute top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-6 z-[100] transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <img src="./assets/logo.svg" alt="logo" className="h-6 md:h-8" />
         <Button
-          className="bg-[#005e19] hover:bg-[#004a14] text-white py-3.5 px-8 rounded-xl font-medium text-md transition-colors shadow-md"
+          className="bg-gradient-to-r from-[#002D0E] to-[#009311] hover:opacity-90 text-white py-3.5 px-8 rounded-xl font-medium text-md transition-colors shadow-md"
           text="Join Waitlist"
         />
       </div>
@@ -85,10 +85,10 @@ export default function Hero() {
       ></div>
 
       {/* Diagonal Marquee Strips (Background) */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex flex-col justify-end pb-20">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex flex-col justify-end pb-16">
         <div className="relative w-full h-[600px] flex items-center justify-center">
           {/* Top Strip (Rotated Down) */}
-          <div className="absolute w-[150%] h-[40px] bg-[#EBEBEB] border-y border-[#cce4d6] rotate-3 top-[45%] md:top-[75%] flex items-center shadow-sm z-10">
+          <div className="absolute w-[150%] h-[40px] bg-[#EBEBEB] border-y border-[#cce4d6] rotate-4 top-[45%] md:top-[88%] flex items-center shadow-sm z-10">
             <div ref={topStripRef} className="flex gap-8 whitespace-nowrap text-xs font-medium text-black uppercase tracking-wider animate-marquee-left">
               {Array(10).fill(0).map((_, i) => (
                 <div key={`top-${i}`} className="flex gap-8">
@@ -99,7 +99,7 @@ export default function Hero() {
           </div>
           
           {/* Bottom Strip (Rotated Up) */}
-          <div className="absolute w-[150%] h-[40px] bg-[#0F8A5F66] border-y border-[#6bb585] -rotate-3 top-[55%] md:top-[86%] flex items-center shadow-sm">
+          <div className="absolute w-[150%] h-[40px] bg-[#0F8A5F66] border-y border-[#6bb585] -rotate-4 top-[55%] md:top-[95%] flex items-center shadow-sm">
             <div ref={botStripRef} className="flex gap-8 whitespace-nowrap text-xs font-medium text-black uppercase tracking-wider animate-marquee-right">
               {Array(10).fill(0).map((_, i) => (
                 <div key={`bot-${i}`} className="flex gap-8">
@@ -115,34 +115,38 @@ export default function Hero() {
         
         {/* Left Content */}
         <div className="w-full lg:w-[50%] flex flex-col items-start max-lg:pt-8 lg:pb-10">
-          <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-black/10 bg-white mb-8 shadow-sm">
-            <span className="text-black text-[10px]">♦</span>
+          <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-[#395D54] mb-8">
+            <span className="text-black text-[15px]">♦</span>
             <span className="text-black/80 font-medium text-sm">Digital Identity Infrastructure for Africa</span>
-            <span className="text-black text-[10px]">♦</span>
+            <span className="text-black text-[15px]">♦</span>
           </div>
 
           <h1 className="text-[clamp(3rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-black mb-6">
             Verify Once.<br />
             Reuse{" "}
-            <SquigglyText className="text-[#007D21]" scale={[4, 6]}>
-              Trust
-            </SquigglyText>
-            <br />
-            <SquigglyText className="text-[#007D21]" scale={[4, 6]}>
+            <span className="text-[#007D21]">
+              Trust 
+              <br />
               Everywhere.
-            </SquigglyText>
+            </span>
+            {/* <SquigglyText className="text-[#007D21]" scale={[4, 6]}> */}
+            {/* </SquigglyText> */}
+            {/* <br /> */}
+            {/* <SquigglyText className="text-[#007D21]" scale={[4, 6]}> */}
+              
+            {/* </SquigglyText> */}
           </h1>
 
           <p className="text-lg text-black font-normal max-w-[500px] leading-relaxed mb-10">
             Ontiver helps businesses verify identity, manage consent, run AML checks, and let users reuse trusted credentials across supported workflows.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <button className="bg-[#005e19] hover:bg-[#004a14] text-white px-8 py-4 rounded-xl font-medium transition-colors shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto h-10">
+            <button className="bg-gradient-to-r from-[#002D0E] to-[#009311] hover:opacity-90 text-white px-16 rounded-xl font-medium transition-colors shadow-sm">
               Join Waitlist
             </button>
-            <button className="bg-white border border-[#009311]/30 hover:border-[#009311] text-[#009311] px-8 py-4 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <button className="bg-white border border-[#009311] hover:bg-[#009311]/5 text-[#009311] px-8 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 shadow-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
               Watch Overview
@@ -156,11 +160,11 @@ export default function Hero() {
             <img 
               src="./assets/hero-phone.png" 
               alt="Ontiver Identity App on Phone over Glowing Rock" 
-              className="w-full h-full object-contain object-center lg:object-right drop-shadow-2xl z-10 scale-[1.15] lg:scale-[1.25] origin-center lg:origin-right translate-x-12 lg:translate-x-44"
+              className="w-full h-full object-contain object-center lg:object-right drop-shadow-2xl z-10 scale-[1.15] lg:scale-[1.32] origin-center lg:origin-right translate-x-12 lg:translate-x-44 mt-44"
             />
 
             {/* Floating Badges */}
-            <div ref={badge1Ref} className="absolute top-[20%] left-[-10%] hidden md:flex items-center gap-3 bg-white/90 backdrop-blur-md border border-[#009311]/30 px-6 py-3.5 rounded-3xl z-20 cursor-default will-change-transform">
+            <div ref={badge1Ref} className="absolute top-[20%] left-[-10%] hidden md:flex items-center gap-3 backdrop-blur-md border border-[#009311]/30 px-6 py-3.5 rounded-3xl z-20 cursor-default will-change-transform">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                 <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -175,7 +179,7 @@ export default function Hero() {
               </svg>
             </div>
 
-            <div ref={badge2Ref} className="absolute top-[40%] left-[12%] hidden md:flex items-center gap-3 bg-white/90 backdrop-blur-md border border-[#009311]/30 px-6 py-3.5 rounded-3xl z-20 cursor-default will-change-transform">
+            <div ref={badge2Ref} className="absolute top-[40%] left-[12%] hidden md:flex items-center gap-3 backdrop-blur-md border border-[#009311]/30 px-6 py-3.5 rounded-3xl z-20 cursor-default will-change-transform">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <rect x="4" y="10" width="4" height="10"/>
                 <rect x="10" y="10" width="4" height="10"/>
@@ -192,7 +196,7 @@ export default function Hero() {
               </svg>
             </div>
 
-            <div ref={badge3Ref} className="absolute bottom-[28%] left-[-8%] hidden md:flex items-center gap-3 bg-white/90 backdrop-blur-md border border-[#009311]/30 px-6 py-3.5 rounded-3xl z-20 cursor-default will-change-transform">
+            <div ref={badge3Ref} className="absolute bottom-[28%] left-[-8%] hidden md:flex items-center gap-3 backdrop-blur-md border border-[#009311]/30 px-6 py-3.5 rounded-3xl z-20 cursor-default will-change-transform">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <rect x="4" y="10" width="4" height="10"/>
                 <rect x="10" y="10" width="4" height="10"/>
