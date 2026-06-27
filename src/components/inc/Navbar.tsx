@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import Button from "../base/Button";
 
 const Navlinks = [
-  { name: "Home" },
-  { name: "Use Cases" },
-  { name: "Pricing" },
-  { name: "Resources/Blogs" },
-  { name: "Contact" },
+  { name: "Home", ref: "" },
+  { name: "Use Cases", ref: "#cases" },
+  { name: "Pricing", ref: "#pricing" },
+  { name: "Resources/Blogs", ref: "#blog" },
+  { name: "Contact", ref: "" },
 ];
 
 export default function Navbar() {
@@ -70,7 +70,7 @@ export default function Navbar() {
             {Navlinks.map((link, idx) => (
               <a
                 key={idx}
-                href="#"
+                href={link.ref}
                 className="text-black/80 hover:text-[#009311] font-medium text-sm whitespace-nowrap"
                 style={{
                   opacity: isScrolled ? 1 : 0,
