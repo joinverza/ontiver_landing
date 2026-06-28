@@ -64,7 +64,7 @@ export default function Calculator() {
             </div>
 
             <input
-              className="w-full slider"
+              className="w-full h-2 appearance-none rounded-full bg-[#e5e5e5] [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#163c1d] [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-[#163c1d]"
               type="range"
               min="0"
               max="100"

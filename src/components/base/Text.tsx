@@ -10,21 +10,31 @@ type TextProps = {
   btext: ReactNode;
   heading: string;
   className?: string;
+  badgeClassName?: string;
+  badgeTextClassName?: string;
+  headingClassName?: string;
   containerClassName?: string;
   color?: string;
+  animate?: boolean;
 };
 
 export default function Text({
   btext,
   heading,
   className = "",
+  badgeClassName = "",
+  badgeTextClassName = "",
+  headingClassName = "",
   containerClassName = "",
   color,
+  animate = true,
 }: TextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(() => {
+    if (!animate) return;
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -71,12 +81,15 @@ export default function Text({
         className="mx-auto w-fit"
         style={{ opacity: 0 }}
       >
-        <AuroraBadge className={className}>
+        <AuroraBadge
+          className={`${className} ${badgeClassName}`}
+          spanClassName={badgeTextClassName}
+        >
           {btext}
         </AuroraBadge>
       </div>
       <h2
-        className={`shimmer-heading ${className} w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
+        className={`shimmer-heading ${className} ${headingClassName} w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
         style={color ? ({ "--heading-color": color } as CSSProperties) : undefined}
       >
         {words.map((word, wordIndex) => {
@@ -101,7 +114,7 @@ export default function Text({
                   return (
                     <span
                       key={`${wordIndex}-${charIndex}`}
-                      className="heading-char inline-block"
+                      className="heading-char inline-block text-[var(--heading-color,#111)] will-change-[color,text-shadow] animate-[problem-char-shimmer_8s_ease-in-out_infinite] [animation-delay:calc(3s_+_(var(--char-index)*35ms))]"
                       style={charStyle}
                     >
                       {char}

@@ -48,18 +48,29 @@ const orbitalStarts = [
   { x: 64, y: -56, rotation: 22 },
 ];
 
+const solutionCellClasses = [
+  "col-[1/3] row-[1/2]",
+  "col-[3/5] row-[1/2]",
+  "col-[5/7] row-[1/2]",
+  "col-[1/4] row-[2/3]",
+  "col-[4/7] row-[2/3]",
+];
+
 function PipelineTrack() {
   return (
-    <div className="solution-progress" aria-hidden="true">
-      <div className="solution-progress-track">
-        <div className="solution-progress-fill" />
-        <div className="solution-progress-dot" />
+    <div
+      className="solution-progress pointer-events-none fixed top-0 right-[clamp(18px,3vw,44px)] z-[80] h-screen w-7 translate-x-2.5 opacity-0 transition-[opacity,transform] duration-300 ease-in-out [.solution-is-pinned_&]:translate-x-0 [.solution-is-pinned_&]:opacity-100"
+      aria-hidden="true"
+    >
+      <div className="solution-progress-track absolute top-0 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-dark-primary/15">
+        <div className="solution-progress-fill absolute right-0 bottom-0 left-0 bg-[linear-gradient(180deg,#20d236,#009311),radial-gradient(circle_at_50%_0,rgba(0,147,17,0.5),transparent_44%)] [height:var(--solution-progress-y)]" />
+        <div className="solution-progress-dot absolute left-1/2 bottom-[var(--solution-progress-y)] size-2.5 -translate-x-1/2 translate-y-1/2 animate-[solution-progress-dot-pulse_1.6s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,#70ff8a_0_20%,#009311_42%,rgba(0,147,17,0.16)_44%_74%,transparent_76%)] [.solution-completing_&]:animate-none" />
       </div>
 
       {solutionSteps.map((step, index) => (
         <span
           key={step.title}
-          className="solution-progress-tick"
+          className="solution-progress-tick absolute left-1/2 h-0.5 w-3 -translate-x-1/2 translate-y-1/2 rounded-full bg-dark-primary/20 transition-[background-color,opacity,width] duration-180 ease-in-out [&.is-active]:w-[18px] [&.is-active]:bg-light-primary [&.is-active]:opacity-100"
           data-step={index}
           style={{ bottom: `${((index + 1) / solutionSteps.length) * 100}%` }}
         />
@@ -70,11 +81,14 @@ function PipelineTrack() {
 
 function BentoGridLines() {
   return (
-    <div className="solution-grid-lines" aria-hidden="true">
-      <span className="solution-grid-line solution-grid-line-horizontal" />
-      <span className="solution-grid-line solution-grid-line-top-left" />
-      <span className="solution-grid-line solution-grid-line-top-right" />
-      <span className="solution-grid-line solution-grid-line-bottom" />
+    <div
+      className="solution-grid-lines pointer-events-none absolute inset-0 z-[2] opacity-0 max-md:hidden"
+      aria-hidden="true"
+    >
+      <span className="solution-grid-line solution-grid-line-horizontal absolute top-1/2 right-0 left-0 block h-px -translate-y-0.5 bg-light-primary/20" />
+      <span className="solution-grid-line solution-grid-line-top-left absolute top-0 bottom-1/2 left-[33.333%] block w-px -translate-x-0.5 bg-light-primary/20" />
+      <span className="solution-grid-line solution-grid-line-top-right absolute top-0 bottom-1/2 left-[66.666%] block w-px -translate-x-0.5 bg-light-primary/20" />
+      <span className="solution-grid-line solution-grid-line-bottom absolute top-1/2 bottom-0 left-1/2 block w-px -translate-x-0.5 bg-light-primary/20" />
     </div>
   );
 }
@@ -88,31 +102,37 @@ function SolutionItem({
 }) {
   return (
     <div
-      className={`solution-item solution-bento-cell solution-cell-${stepIndex} relative cursor-default`}
+      className={`solution-item solution-bento-cell solution-cell-${stepIndex} group/solutionitem relative min-h-[190px] cursor-default overflow-hidden rounded-none p-[clamp(22px,3.1vw,38px)] [transform:translateZ(0)] pointer-events-none [&.is-revealed.is-grid-ready]:pointer-events-auto max-md:min-h-[170px] max-md:border-t-[1.5px] max-md:border-light-primary/60 max-md:last:border-b-[1.5px] ${solutionCellClasses[stepIndex] ?? ""}`}
       data-step={stepIndex}
     >
-      <div className="solution-cell-fill" />
-      <div className="solution-cell-border" />
+      <div className="solution-cell-fill pointer-events-none absolute inset-0 bg-light-primary/[0.04] opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100 group-[.is-revealed.is-grid-ready]/solutionitem:hover:duration-0" />
+      <div className="solution-cell-border pointer-events-none absolute inset-0 z-[3] border border-light-primary opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100 group-[.is-revealed.is-grid-ready]/solutionitem:hover:duration-150" />
 
       <div className="solution-item-content relative z-10 flex h-full w-full flex-col items-center justify-center text-center">
-        <div className="icon-box relative mb-5 flex h-16 w-16 items-center justify-center rounded-lg border border-white/15 bg-white">
-          <span className="solution-icon-screen-glow" aria-hidden="true" />
-          <span className="solution-icon-sheen" aria-hidden="true" />
-          <div className="icon-settle-pulse" />
+        <div className="icon-box relative mb-5 flex h-16 w-16 origin-center items-center justify-center rounded-lg border border-white/15 bg-white transition-transform duration-150 ease-out group-[.is-revealed.is-grid-ready]/solutionitem:hover:scale-105!">
+          <span
+            className="solution-icon-screen-glow pointer-events-none absolute inset-[13px] rounded-md bg-light-primary/15 opacity-0"
+            aria-hidden="true"
+          />
+          <span
+            className="solution-icon-sheen pointer-events-none absolute inset-[13px] overflow-hidden rounded-md opacity-0 before:absolute before:top-[-18%] before:bottom-[-18%] before:left-[-42%] before:w-[34%] before:bg-[linear-gradient(110deg,transparent,rgba(0,147,17,0.34),transparent)] before:[transform:translateX(-160%)_skewX(-18deg)] before:content-[''] [.is-revealed[data-step='2']_&]:opacity-100"
+            aria-hidden="true"
+          />
+          <div className="icon-settle-pulse pointer-events-none absolute inset-0 scale-50 rounded-[inherit] border border-light-primary opacity-0" />
           <img
             src={item.icon}
             alt={`${item.title} icon`}
-            className="solution-asset-icon relative z-10 h-9 w-9"
+            className="solution-asset-icon relative z-10 h-9 w-9 [clip-path:inset(0_100%_0_0)]"
           />
         </div>
 
         <div className="w-full max-w-[300px]">
-          <h6 className="item-title relative inline-block pb-2 text-xl font-semibold text-black">
+          <h6 className="item-title relative inline-block pb-2 text-xl font-semibold text-black transition-colors duration-150 [clip-path:inset(0_100%_0_0)] group-[.is-revealed.is-grid-ready]/solutionitem:hover:text-light-primary">
             {item.title}
           </h6>
 
           <div className="item-desc text-base text-black/90 text-justify leading-relaxed">
-            <span className="desc-line block text-center">
+            <span className="desc-line block text-center transition-colors duration-150 group-[.is-revealed.is-grid-ready]/solutionitem:hover:text-black/75">
               {item.para}
             </span>
           </div>
@@ -474,11 +494,11 @@ export default function Solution() {
   return (
     <section
       ref={sectionRef}
-      className="solution-section relative min-h-screen w-full overflow-hidden"
+      className="solution-section relative isolate min-h-screen w-full overflow-hidden bg-cover bg-center antialiased [--solution-progress:0] [--solution-progress-y:0%] [background-attachment:fixed] [background-image:linear-gradient(180deg,rgba(247,247,247,0.82),rgba(247,247,247,0.2)_20%,rgba(247,247,247,0.28)_78%,rgba(247,247,247,0.86)),url('/assets/solution-building-bg.svg')]"
     >
       <PipelineTrack />
 
-      <div className="solution-content-panel relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-6 py-14 md:px-10 lg:px-20">
+      <div className="solution-content-panel relative z-10 mx-auto flex min-h-screen w-full max-w-none flex-col justify-center bg-white/[0.72] px-6 py-14 backdrop-blur-[2px] md:px-10 lg:px-20">
         <div className="relative z-20 flex w-full flex-col items-center gap-2 pb-12">
           <div ref={badgeRef}>
             <AuroraBadge>The Solution</AuroraBadge>
@@ -513,7 +533,10 @@ export default function Solution() {
           </h2>
         </div>
 
-        <div ref={contentRef} className="solution-bento relative mx-auto w-full max-w-5xl">
+        <div
+          ref={contentRef}
+          className="solution-bento relative mx-auto grid min-h-[clamp(400px,54vh,520px)] w-full max-w-5xl grid-cols-6 grid-rows-[repeat(2,minmax(190px,1fr))] max-md:flex max-md:min-h-0 max-md:flex-col"
+        >
           <BentoGridLines />
           {solutionSteps.map((solu, index) => (
             <SolutionItem key={solu.title} item={solu} stepIndex={index} />

@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import Text from "../components/base/Text";
 import DirectionAwareHover from "../components/ui/DirectionAwareHover";
+import SignalFlowBackground from "../components/ui/SignalFlowBackground";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("moduleLand", "0.2,0,0,1");
@@ -15,6 +16,9 @@ type ModuleCard = {
   description: string;
   imageUrl: string;
   className: string;
+  copyClassName?: string;
+  titleClassName?: string;
+  lineClassName: string;
   depth: "top" | "bottom";
   entrance: { x: number; y: number };
   visual?: "check" | "share" | "radar" | "dashboard" | "code";
@@ -27,7 +31,9 @@ const moduleCards: ModuleCard[] = [
     description:
       "Supports document, biometric, and MFA verification with audit logs.",
     imageUrl: "./assets/fingerprint.png",
-    className: "module-card-identity",
+    className:
+      "module-card-identity col-[1/2] row-[1/3] max-[900px]:col-span-full max-[900px]:row-auto max-[900px]:min-h-[300px] max-[640px]:col-span-full max-[640px]:min-h-[260px]",
+    lineClassName: "top-2.5 -right-2 bottom-2.5 w-px",
     depth: "top",
     entrance: { x: -60, y: 0 },
   },
@@ -37,7 +43,11 @@ const moduleCards: ModuleCard[] = [
     description:
       "Verified identity is stored as portable proof for returning users.",
     imageUrl: "./assets/portal.png",
-    className: "module-card-credentials",
+    className:
+      "module-card-credentials col-[2/5] row-[1/2] max-[900px]:col-span-full max-[900px]:row-auto max-[900px]:min-h-[300px] max-[640px]:col-span-full max-[640px]:min-h-[260px]",
+    copyClassName: "top-[100px] bottom-auto left-7 max-w-[284px]",
+    titleClassName: "max-w-[16ch]",
+    lineClassName: "right-2.5 -bottom-2 left-2.5 h-px",
     depth: "top",
     entrance: { x: 40, y: -40 },
     visual: "check",
@@ -48,7 +58,10 @@ const moduleCards: ModuleCard[] = [
     description:
       "All identity sharing requires user consent with full control and history.",
     imageUrl: "./assets/quadrant.png",
-    className: "module-card-consent",
+    className:
+      "module-card-consent col-[2/3] row-[2/3] max-[900px]:col-auto max-[900px]:row-auto max-[900px]:min-h-[240px] max-[640px]:col-span-full max-[640px]:min-h-[260px]",
+    copyClassName: "top-[22px] bottom-auto left-7 max-w-[178px]",
+    lineClassName: "top-2.5 -right-2 bottom-2.5 w-px",
     depth: "top",
     entrance: { x: 0, y: 60 },
     visual: "share",
@@ -58,7 +71,10 @@ const moduleCards: ModuleCard[] = [
     title: "AML & Risk Checks",
     description: "Built-in AML, PEP, sanctions, and watchlist screening.",
     imageUrl: "./assets/matrix.png",
-    className: "module-card-aml",
+    className:
+      "module-card-aml col-[3/5] row-[2/3] max-[900px]:col-auto max-[900px]:row-auto max-[900px]:min-h-[240px] max-[640px]:col-span-full max-[640px]:min-h-[260px]",
+    copyClassName: "bottom-[42px] left-6 max-w-[194px]",
+    lineClassName: "-top-2 right-2.5 left-2.5 h-px",
     depth: "top",
     entrance: { x: 60, y: 0 },
     visual: "radar",
@@ -69,7 +85,11 @@ const moduleCards: ModuleCard[] = [
     description:
       "Central dashboard for verification logs, consent, and compliance reports.",
     imageUrl: "./assets/chips.png",
-    className: "module-card-dashboard",
+    className:
+      "module-card-dashboard col-[1/4] row-[3/4] max-[900px]:col-span-full max-[900px]:row-auto max-[900px]:min-h-[300px] max-[640px]:col-span-full max-[640px]:min-h-[260px]",
+    copyClassName: "bottom-7 left-7 max-w-[254px]",
+    titleClassName: "max-w-[16ch]",
+    lineClassName: "right-2.5 -bottom-2 left-2.5 h-px",
     depth: "bottom",
     entrance: { x: -40, y: 40 },
     visual: "dashboard",
@@ -79,7 +99,10 @@ const moduleCards: ModuleCard[] = [
     title: "Developer API",
     description: "Sandbox, API, and webhooks for easy integration and testing.",
     imageUrl: "./assets/systems.png",
-    className: "module-card-api",
+    className:
+      "module-card-api col-[4/5] row-[3/4] max-[900px]:col-auto max-[900px]:row-auto max-[900px]:min-h-[240px] max-[640px]:col-span-full max-[640px]:min-h-[260px]",
+    copyClassName: "top-[18px] bottom-auto left-[25px] max-w-[245px]",
+    lineClassName: "right-2.5 -bottom-2 left-2.5 h-px",
     depth: "bottom",
     entrance: { x: 40, y: 40 },
     visual: "code",
@@ -90,7 +113,7 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "check") {
     return (
       <img
-        className="module-visual module-visual-check"
+        className="module-visual module-visual-check pointer-events-none absolute top-1 right-[18px] z-[3] w-[190px] origin-[50%_82%] opacity-[0.95]"
         src="./assets/check.png"
         alt=""
         aria-hidden="true"
@@ -100,36 +123,50 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
 
   if (type === "share") {
     return (
-      <div className="module-visual module-visual-share" aria-hidden="true">
-        <img src="./assets/share.png" alt="" />
-        <span className="share-dot share-dot-one" />
-        <span className="share-dot share-dot-two" />
-        <span className="share-dot share-dot-three" />
+      <div
+        className="module-visual module-visual-share pointer-events-none absolute top-[18px] right-3.5 z-[3] h-[190px] w-[190px]"
+        aria-hidden="true"
+      >
+        <img className="h-full w-full object-contain opacity-[0.74]" src="./assets/share.png" alt="" />
+        <span className="share-dot absolute top-[24%] left-[22%] size-[7px] rounded-full bg-[#70ff8a]" />
+        <span className="share-dot absolute top-[48%] right-[19%] size-[7px] rounded-full bg-[#70ff8a] [animation-delay:0.32s]" />
+        <span className="share-dot absolute right-[34%] bottom-[18%] size-[7px] rounded-full bg-[#70ff8a] [animation-delay:0.64s]" />
       </div>
     );
   }
 
   if (type === "radar") {
     return (
-      <div className="module-visual module-visual-radar" aria-hidden="true">
-        <img src="./assets/radar.png" alt="" />
-        <span className="radar-sweep-line" />
-        <span className="radar-ring radar-ring-one" />
-        <span className="radar-ring radar-ring-two" />
-        <span className="radar-ring radar-ring-three" />
+      <div
+        className="module-visual module-visual-radar pointer-events-none absolute top-[21px] -right-[5px] z-[3] h-[199px] w-[199px]"
+        aria-hidden="true"
+      >
+        <img className="h-full w-full object-contain opacity-[0.68]" src="./assets/radar.png" alt="" />
+        <span className="radar-sweep-line absolute inset-[50%_50%_auto_auto] h-px w-[46%] origin-left bg-gradient-to-r from-[#70ff8a]/90 to-transparent" />
+        <span className="radar-ring absolute inset-[19%] rounded-full border border-[#70ff8a]/20" />
+        <span className="radar-ring absolute inset-[30%] rounded-full border border-[#70ff8a]/20 [animation-delay:0.5s]" />
+        <span className="radar-ring absolute inset-[41%] rounded-full border border-[#70ff8a]/20 [animation-delay:1s]" />
       </div>
     );
   }
 
   if (type === "dashboard") {
-    return <span className="module-visual module-visual-scan" aria-hidden="true" />;
+    return (
+      <span
+        className="module-visual module-visual-scan pointer-events-none absolute top-0 right-0 left-0 z-[3] h-0.5 bg-[linear-gradient(90deg,transparent,rgba(112,255,138,0.84),transparent)]"
+        aria-hidden="true"
+      />
+    );
   }
 
   if (type === "code") {
     return (
-      <div className="module-visual module-visual-code" aria-hidden="true">
-        <span>&lt;</span>
-        <span>/&gt;</span>
+      <div
+        className="module-visual module-visual-code pointer-events-none absolute right-[26px] bottom-[23px] z-[3] flex h-[50px] w-[78px] items-center justify-center rounded-br-[18px] bg-[#0bc43a] font-mono text-[26px] font-extrabold text-[#05150e]"
+        aria-hidden="true"
+      >
+        <span className="inline-block">&lt;</span>
+        <span className="inline-block">/&gt;</span>
       </div>
     );
   }
@@ -140,26 +177,41 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
 function ModuleCardItem({ card }: { card: ModuleCard }) {
   return (
     <div
-      className={`module-card-shell ${card.className}`}
+      className={`module-card-shell group relative min-h-0 min-w-0 isolate opacity-0 [--module-idle-speed:1] hover:z-[5] hover:[--module-idle-speed:1.5] ${card.className}`}
       data-module={card.id}
       data-depth={card.depth}
       data-x={card.entrance.x}
       data-y={card.entrance.y}
     >
-      <div className={`module-depth module-depth-${card.depth}`} data-depth={card.depth}>
+      <div
+        className={`module-depth module-depth-${card.depth} h-full w-full`}
+        data-depth={card.depth}
+      >
         <DirectionAwareHover
           imageUrl={card.imageUrl}
-          className="module-card"
+          className="module-card h-full w-full rounded-[18px] group-hover:scale-[1.015] group-hover:border-light-primary/40"
           imageClassName={`module-card-image-${card.id}`}
+          overlayClassName="bg-[linear-gradient(135deg,rgba(0,147,17,0.24),rgba(0,0,0,0.25)),rgba(0,0,0,0.25)]"
         >
           <ModuleVisual type={card.visual} />
-          <div className="module-card-copy">
-            <h3 className="module-card-title">{card.title}</h3>
-            <p className="module-card-description">{card.description}</p>
+          <span
+            className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.26)_48%,rgba(0,0,0,0.78)_100%),radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.18),transparent_30%)]"
+            aria-hidden="true"
+          />
+          <div className={`module-card-copy absolute right-[22px] bottom-16 left-7 z-[4] transition-transform duration-[260ms] ${card.copyClassName ?? ""}`}>
+            <h3 className={`module-card-title max-w-full font-sans text-[22px] leading-[1.08] font-medium tracking-[0] text-white max-[640px]:text-lg ${card.titleClassName ?? ""}`}>
+              {card.title}
+            </h3>
+            <p className="module-card-description mt-2 max-w-[238px] font-body text-[13px] leading-[1.15] text-white/80">
+              {card.description}
+            </p>
           </div>
         </DirectionAwareHover>
       </div>
-      <span className="module-connection-line" aria-hidden="true" />
+      <span
+        className={`module-connection-line pointer-events-none absolute z-[6] block bg-[#009311]/10 opacity-0 transition-opacity duration-180 group-hover:opacity-100 max-[640px]:hidden ${card.lineClassName}`}
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -240,16 +292,24 @@ export default function Modules() {
   );
 
   return (
-    <section ref={sectionRef} className="modules-section">
-      <div className="modules-section-inner">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-bg-light px-6 py-[150px] max-[900px]:px-[18px] max-[900px]:pt-14 max-[900px]:pb-[68px] max-[640px]:py-14"
+    >
+      <div className="absolute inset-0 z-0 opacity-40">
+        <SignalFlowBackground />
+      </div>
+      <div className="mx-auto w-[min(100%,1197px)]">
         <Text
           btext="Product Modules"
           heading="Everything your identity workflow needs."
-          containerClassName="modules-text"
-          className="modules-text-heading"
+          containerClassName="modules-text gap-2 pb-[34px] max-[640px]:pb-[30px]"
+          badgeClassName="modules-text-heading"
+          badgeTextClassName="border border-black bg-bg-light! px-[18px]! py-[3px]! text-sm! font-normal! leading-[1.2]! tracking-[0]! text-[#1f1f1f]!"
+          headingClassName="max-w-[720px]! text-xl! font-medium! leading-[120%]! tracking-[0]! text-black!"
         />
 
-        <div className="modules-bento-grid">
+        <div className="modules-bento-grid grid grid-cols-[minmax(0,349fr)_minmax(0,408fr)_minmax(0,43fr)_minmax(0,349fr)] grid-rows-[clamp(176px,19.4vw,243px)_clamp(184px,20.2vw,253px)_clamp(176px,19.4vw,243px)] gap-[clamp(2px,0.6vw,8px)] text-white max-[900px]:grid-cols-2 max-[900px]:grid-rows-none max-[900px]:auto-rows-[minmax(220px,auto)] max-[900px]:gap-2 max-[640px]:grid-cols-1 max-[640px]:auto-rows-auto max-[640px]:gap-3.5">
           {moduleCards.map((card) => (
             <ModuleCardItem key={card.id} card={card} />
           ))}

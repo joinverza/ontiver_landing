@@ -177,7 +177,7 @@ export default function Problem() {
       className="relative w-full bg-bg-light overflow-hidden"
     >
       <div className="absolute inset-0 z-0 opacity-40">
-        <SignalFlowBackground />
+        <SignalFlowBackground />  
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto py-20 pb-32 px-6 md:px-10 lg:px-20">

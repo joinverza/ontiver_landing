@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MagneticFillButton from "../ui/MagneticFillButton";
 
 const Navlinks = [
-  { name: "Home", ref: "/" },
-  { name: "Use Cases", ref: "/#cases" },
-  { name: "Pricing", ref: "/#pricing" },
-  { name: "Calculator", ref: "/calculator" },
-  { name: "Blogs", ref: "/blogs" },
-  { name: "Contact", ref: "/contact" },
+  { name: "Home", to: "/" },
+  { name: "Use Cases", to: "/#cases" },
+  { name: "Pricing", to: "/#pricing" },
+  { name: "Calculator", to: "/calculator" },
+  { name: "Blogs", to: "/blogs" },
+  { name: "Contact", to: "/contact" },
 ];
 
 export default function Navbar() {
@@ -88,9 +89,9 @@ export default function Navbar() {
           {/* Nav Links — staggered fade-in, each 60ms apart starting at 400ms */}
           <div className="hidden md:flex gap-8 shrink-0">
             {Navlinks.map((link, idx) => (
-              <a
+              <Link
                 key={idx}
-                href={link.ref}
+                to={link.to}
                 className="text-black/80 hover:text-[#009311] font-medium text-sm whitespace-nowrap"
                 style={{
                   opacity: isOpen ? 1 : 0,
@@ -101,7 +102,7 @@ export default function Navbar() {
                 }}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 

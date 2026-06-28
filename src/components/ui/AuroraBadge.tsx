@@ -3,9 +3,14 @@ import { ReactNode } from "react";
 interface AuroraBadgeProps {
   children: ReactNode;
   className?: string;
+  spanClassName?: string;
 }
 
-export default function AuroraBadge({ children, className = "" }: AuroraBadgeProps) {
+export default function AuroraBadge({
+  children,
+  className = "",
+  spanClassName = "",
+}: AuroraBadgeProps) {
   return (
     <div
       className={`relative inline-flex items-center justify-center p-[1.5px] rounded-full overflow-hidden group ${className}`}
@@ -31,7 +36,7 @@ export default function AuroraBadge({ children, className = "" }: AuroraBadgePro
         />
 
         {/* The Text */}
-        <span className="relative z-20 text-[#005e19] rounded-full bg-[#f1f4ef] px-5 py-1.5 text-sm font-semibold tracking-wide">
+        <span className={`relative z-20 text-[#005e19] rounded-full bg-[#f1f4ef] px-5 py-1.5 text-sm font-semibold tracking-wide ${spanClassName}`}>
           {children}
         </span>
       </div>
