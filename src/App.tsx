@@ -7,6 +7,7 @@ import {
   ContactPage,
   HomePage,
   PageLayout,
+  PricingPage,
 } from "./pages";
 
 function ScrollToHash() {
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/calculator" element={<CalculatorPage />} />
+        <Route path="/pricing" element={<PricingPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </PageLayout>

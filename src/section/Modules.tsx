@@ -18,6 +18,10 @@ type ModuleCard = {
   className: string;
   copyClassName?: string;
   titleClassName?: string;
+  descriptionClassName?: string;
+  imageClassName?: string;
+  overlayClassName?: string;
+  shadeClassName?: string;
   lineClassName: string;
   depth: "top" | "bottom";
   entrance: { x: number; y: number };
@@ -138,10 +142,11 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "radar") {
     return (
       <div
-        className="pointer-events-none absolute top-[21px] -right-[5px] z-[3] h-[199px] w-[199px]"
+        className="pointer-events-none absolute top-[-22px] right-[-56px] z-[3] h-[315px] w-[315px] max-[900px]:right-[-56px] max-[900px]:h-[300px] max-[900px]:w-[300px]"
         aria-hidden="true"
       >
-        <img className="h-full w-full object-contain opacity-[0.68]" src="./assets/radar.png" alt="" />
+        <img className="h-64 w-64 object-contain opacity-[0.58] brightness-[0.72] contrast-[1.22] saturate-[0.95]" src="./assets/radar.png" alt="" />
+        {/* <span className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,#05150E_0%,#05150E00_64%)]" /> */}
         <span className="radar-sweep-line absolute inset-[50%_50%_auto_auto] h-px w-[46%] origin-left bg-gradient-to-r from-[#70ff8a]/90 to-transparent" />
         <span className="radar-ring absolute inset-[19%] rounded-full border border-[#70ff8a]/20" />
         <span className="radar-ring absolute inset-[30%] rounded-full border border-[#70ff8a]/20 [animation-delay:0.5s]" />
@@ -186,19 +191,19 @@ function ModuleCardItem({ card }: { card: ModuleCard }) {
         <DirectionAwareHover
           imageUrl={card.imageUrl}
           className="h-full w-full rounded-[18px] group-hover:scale-[1.015] group-hover:border-light-primary/40"
-          imageClassName={card.id === "identity" ? "module-card-image-identity" : ""}
-          overlayClassName="bg-[linear-gradient(135deg,rgba(0,147,17,0.24),rgba(0,0,0,0.25)),rgba(0,0,0,0.25)]"
+          imageClassName={`${card.id === "identity" ? "module-card-image-identity" : ""} ${card.imageClassName ?? ""}`}
+          overlayClassName={card.overlayClassName ?? "bg-[linear-gradient(135deg,rgba(0,147,17,0.24),rgba(0,0,0,0.25)),rgba(0,0,0,0.25)]"}
         >
           <ModuleVisual type={card.visual} />
           <span
-            className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.26)_48%,rgba(0,0,0,0.78)_100%),radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.18),transparent_30%)]"
+            className={`pointer-events-none absolute inset-0 z-[1] ${card.shadeClassName ?? "bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.26)_48%,rgba(0,0,0,0.78)_100%),radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.18),transparent_30%)]"}`}
             aria-hidden="true"
           />
           <div className={`absolute right-[22px] bottom-16 left-7 z-[4] transition-transform duration-[260ms] ${card.copyClassName ?? ""}`}>
             <h3 className={`max-w-full font-sans lg:text-[26px] leading-[1.08] font-medium tracking-[0] text-white text-[20px] ${card.titleClassName ?? ""}`}>
               {card.title}
             </h3>
-            <p className="mt-2 max-w-[238px] font-body lg:text-[13px] text-sm leading-[1.15] text-white/80">
+            <p className={`mt-2 max-w-[238px] font-body lg:text-[13px] text-sm leading-[1.15] text-white/80 ${card.descriptionClassName ?? ""}`}>
               {card.description}
             </p>
           </div>

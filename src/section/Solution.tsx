@@ -64,7 +64,11 @@ function PipelineTrack() {
     >
       <div className="absolute top-0 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-dark-primary/15">
         <div className="absolute right-0 bottom-0 left-0 bg-[linear-gradient(180deg,#20d236,#009311),radial-gradient(circle_at_50%_0,rgba(0,147,17,0.5),transparent_44%)] [height:var(--solution-progress-y)]" />
-        <div className="solution-progress-dot absolute left-1/2 bottom-[var(--solution-progress-y)] size-2.5 -translate-x-1/2 translate-y-1/2 animate-[solution-progress-dot-pulse_1.6s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,#70ff8a_0_20%,#009311_42%,rgba(0,147,17,0.16)_44%_74%,transparent_76%)] [.solution-completing_&]:animate-none" />
+        <div className="solution-progress-dot absolute left-1/2 bottom-[var(--solution-progress-y)] size-3 -translate-x-1/2 translate-y-1/2 rounded-full [transform-origin:center]">
+          <div className="solution-progress-dot-core absolute inset-0 rounded-full bg-[#009311] [transform-origin:center] animate-[solution-progress-dot-pulse_1.6s_ease-in-out_infinite] [.solution-completing_&]:animate-none">
+            <div className="absolute inset-[2px] rounded-full bg-[#70ff8a]" />
+          </div>
+        </div>
       </div>
 
       {solutionSteps.map((step, index) => (
@@ -102,23 +106,21 @@ function SolutionItem({
 }) {
   return (
     <div
-      className={`solution-item group/solutionitem relative min-h-[190px] cursor-default overflow-hidden rounded-none p-[clamp(22px,3.1vw,38px)] [transform:translateZ(0)] pointer-events-none [&.is-revealed.is-grid-ready]:pointer-events-auto max-md:min-h-[170px] max-md:border-t-[1.5px] max-md:border-light-primary/60 max-md:last:border-b-[1.5px] ${solutionCellClasses[stepIndex] ?? ""}`}
+      className={`solution-item group/solutionitem relative min-h-[190px] cursor-default overflow-hidden rounded-none p-[clamp(22px,3.1vw,38px)] transition-[background-color,transform] duration-300 ease-out [transform:translateZ(0)] pointer-events-none [&.is-revealed.is-grid-ready]:pointer-events-auto [&.is-revealed.is-grid-ready:hover]:[transform:translateY(-4px)_translateZ(0)] [&.is-revealed.is-grid-ready:hover]:bg-[#009311]/[0.055] max-md:min-h-[170px] max-md:border-t-[1.5px] max-md:border-light-primary/60 max-md:last:border-b-[1.5px] ${solutionCellClasses[stepIndex] ?? ""}`}
       data-step={stepIndex}
     >
-      <div className="pointer-events-none absolute inset-0 bg-light-primary/[0.04] opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100 group-[.is-revealed.is-grid-ready]/solutionitem:hover:duration-0" />
-      <div className="pointer-events-none absolute inset-0 z-[3] border border-light-primary opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100 group-[.is-revealed.is-grid-ready]/solutionitem:hover:duration-150" />
+      <div className="pointer-events-none absolute inset-0 z-[3] border border-[#009311]/55 opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100 group-[.is-revealed.is-grid-ready]/solutionitem:hover:duration-150" />
+      {/* Corner accent top-left */}
+      <span className="pointer-events-none absolute top-0 left-0 z-[4] h-3 w-3 border-t-2 border-l-2 border-[#009311] opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100" />
+      {/* Corner accent bottom-right */}
+      <span className="pointer-events-none absolute right-0 bottom-0 z-[4] h-3 w-3 border-b-2 border-r-2 border-[#009311] opacity-0 transition-opacity duration-200 group-[.is-revealed.is-grid-ready]/solutionitem:hover:opacity-100" />
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center text-center">
-        <div className="icon-box relative mb-5 flex h-16 w-16 origin-center items-center justify-center rounded-lg border border-white/15 bg-white transition-transform duration-150 ease-out group-[.is-revealed.is-grid-ready]/solutionitem:hover:scale-105!">
-          <span
-            className="solution-icon-screen-glow pointer-events-none absolute inset-[13px] rounded-md bg-light-primary/15 opacity-0"
-            aria-hidden="true"
-          />
+        <div className="icon-box relative mb-5 flex h-16 w-16 origin-center items-center justify-center rounded-lg border border-black/5 bg-white transition-all duration-200 ease-out group-[.is-revealed.is-grid-ready]/solutionitem:hover:border-[#009311]/30">
           <span
             className="solution-icon-sheen pointer-events-none absolute inset-[13px] overflow-hidden rounded-md opacity-0 before:absolute before:top-[-18%] before:bottom-[-18%] before:left-[-42%] before:w-[34%] before:bg-[linear-gradient(110deg,transparent,rgba(0,147,17,0.34),transparent)] before:[transform:translateX(-160%)_skewX(-18deg)] before:content-[''] [.is-revealed[data-step='2']_&]:opacity-100"
             aria-hidden="true"
           />
-          <div className="icon-settle-pulse pointer-events-none absolute inset-0 scale-50 rounded-[inherit] border border-light-primary opacity-0" />
           <img
             src={item.icon}
             alt={`${item.title} icon`}
@@ -127,7 +129,7 @@ function SolutionItem({
         </div>
 
         <div className="w-full max-w-[300px]">
-          <h6 className="item-title relative inline-block pb-2 text-xl font-semibold text-black transition-colors duration-150 [clip-path:inset(0_100%_0_0)] group-[.is-revealed.is-grid-ready]/solutionitem:hover:text-light-primary">
+          <h6 className="item-title relative inline-block pb-2 text-xl font-semibold text-black transition-colors duration-150 [clip-path:inset(0_100%_0_0)] group-[.is-revealed.is-grid-ready]/solutionitem:hover:text-[#009311]">
             {item.title}
           </h6>
 
@@ -217,7 +219,6 @@ export default function Solution() {
           item.querySelectorAll<HTMLElement>(".desc-line")
         );
         const assetIcon = item.querySelector<HTMLElement>(".solution-asset-icon");
-        const pulse = item.querySelector<HTMLElement>(".icon-settle-pulse");
         const start = orbitalStarts[index] || orbitalStarts[1];
 
         gsap.set(item, { autoAlpha: 0 });
@@ -249,9 +250,6 @@ export default function Solution() {
             clipPath: "inset(0 100% 0 0)",
             autoAlpha: 1,
           });
-        }
-        if (pulse) {
-          gsap.set(pulse, { scale: 0.45, autoAlpha: 0 });
         }
       });
 
@@ -314,8 +312,11 @@ export default function Solution() {
         items.forEach((item, index) => {
           const cellReadyPoint = (index + 0.78) / items.length;
           const revealPoint = (index + 0.96) / items.length;
-          const isGridReady = isActive && progress >= cellReadyPoint;
-          const isRevealed = isActive && progress >= revealPoint;
+          // Preserve classes if already set (don't remove when scrolling past forward)
+          const alreadyGridReady = item.classList.contains("is-grid-ready");
+          const alreadyRevealed = item.classList.contains("is-revealed");
+          const isGridReady = (isActive && progress >= cellReadyPoint) || alreadyGridReady;
+          const isRevealed = (isActive && progress >= revealPoint) || alreadyRevealed;
 
           item.classList.toggle("is-grid-ready", isGridReady);
           item.classList.toggle("is-revealed", isRevealed);
@@ -394,7 +395,6 @@ export default function Solution() {
           item.querySelectorAll<HTMLElement>(".desc-line")
         );
         const assetIcon = item.querySelector<HTMLElement>(".solution-asset-icon");
-        const pulse = item.querySelector<HTMLElement>(".icon-settle-pulse");
         const start = index + 2.22;
 
         tl.set(item, { autoAlpha: 1 }, start);
@@ -461,19 +461,6 @@ export default function Solution() {
           );
         }
 
-        if (pulse) {
-          tl.fromTo(
-            pulse,
-            { scale: 0.5, autoAlpha: 0.58 },
-            {
-              scale: 1.5,
-              autoAlpha: 0,
-              duration: 0.2,
-              ease: "power1.out",
-            },
-            start + 0.8
-          );
-        }
       });
 
       // Pause at the end so the user can read all items before scrolling past

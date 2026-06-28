@@ -3,11 +3,9 @@ import Problem from "../section/Problem";
 import Solution from "../section/Solution";
 import Modules from "../section/Modules";
 import UseCase from "../section/UseCase";
-import Price from "../section/Price";
 import Plan from "../section/Plan";
-import Calculator from "../section/Calculator";
 import Trust from "../section/Trust";
-import FAQs from "../section/FAQs";
+import PricingFAQ from "../components/faq";
 import Join from "../section/Join";
 import Footer from "../section/Footer";
 
@@ -19,11 +17,11 @@ export default function HomePage() {
       <Solution />
       <Modules />
       <UseCase />
-      <Price />
+      {/* <Price /> */}
       <Plan />
-      <Calculator />
+      {/* <Calculator /> */}
       <Trust />
-      <FAQs />
+      <PricingFAQ variant="home" />
       <Join />
       <Footer />
     </>

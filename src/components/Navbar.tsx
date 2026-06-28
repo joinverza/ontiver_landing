@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MagneticFillButton from "./ui/MagneticFillButton";
 
 const Navlinks = [
   { name: "Home", to: "/" },
   // { name: "Use Cases", to: "/#cases" },
-  { name: "Pricing", to: "/#pricing" },
+  { name: "Pricing", to: "/pricing" },
   { name: "Calculator", to: "/calculator" },
   { name: "Blogs", to: "/blogs" },
   { name: "Contact", to: "/contact" },
 ];
 
 export default function Navbar() {
+  const { pathname } = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSolutionPinned, setIsSolutionPinned] = useState(false);
+  const isPricingPage = pathname === "/pricing";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,14 +36,15 @@ export default function Navbar() {
       window.removeEventListener("solution-pin-change", handleSolutionPinChange);
   }, []);
 
-  const isOpen = isScrolled && !isSolutionPinned;
+  const shouldHideForSolution = isSolutionPinned && !isPricingPage;
+  const isOpen = isPricingPage || (isScrolled && !isSolutionPinned);
   return (
     <div
       className="fixed top-10 left-0 w-full z-[100] flex justify-center pointer-events-none"
       style={{
-        opacity: isSolutionPinned ? 0 : 1,
-        transform: isSolutionPinned ? "translateY(-140px)" : "translateY(0)",
-        transition: isSolutionPinned
+        opacity: shouldHideForSolution ? 0 : 1,
+        transform: shouldHideForSolution ? "translateY(-140px)" : "translateY(0)",
+        transition: shouldHideForSolution
           ? "opacity 300ms ease-in, transform 300ms ease-in"
           : "opacity 300ms ease-out, transform 300ms ease-out",
       }}
@@ -55,7 +58,7 @@ export default function Navbar() {
           transform: isOpen ? "scale(1)" : "scale(0.5)",
           borderRadius: "25px",
           backgroundColor: "white",
-          boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+          boxShadow: isPricingPage ? "none" : "0 8px 30px rgba(0,0,0,0.08)",
           border: "1px solid rgba(0,0,0,0.05)",
           overflow: "hidden",
           pointerEvents: isOpen ? "auto" : "none",
