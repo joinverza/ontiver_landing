@@ -10,6 +10,7 @@ export function useLenis() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    let frameId = 0;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -25,10 +26,10 @@ export function useLenis() {
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    frameId = requestAnimationFrame(raf);
 
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target;
@@ -54,6 +55,8 @@ export function useLenis() {
     window.addEventListener('click', handleAnchorClick);
 
     return () => {
+      cancelAnimationFrame(frameId);
+      lenis.off('scroll', ScrollTrigger.update);
       lenis.destroy();
       window.removeEventListener('click', handleAnchorClick);
       lenisRef.current = null;

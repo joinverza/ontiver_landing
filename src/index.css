@@ -590,3 +590,69 @@ html.lenis body {
     transform: translateX(3rem) translateY(-6px) rotate(-2deg) scale(1.04);
   }
 }
+
+@keyframes contact-live-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes contact-field-sweep {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes contact-bg-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 84px 84px, 84px 84px;
+  }
+}
+
+@keyframes contact-panel-grid {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 52px 52px, 52px 52px;
+  }
+}
+
+@keyframes contact-beam-x {
+  0%, 18% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  35%, 70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(460%);
+    opacity: 0;
+  }
+}
+
+@keyframes contact-beam-y {
+  0%, 16% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  36%, 68% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(330%);
+    opacity: 0;
+  }
+}

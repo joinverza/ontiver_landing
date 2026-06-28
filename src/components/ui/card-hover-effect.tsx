@@ -49,7 +49,7 @@ export default function HoverEffect({ items, isInView = true }: HoverEffectProps
             ) : null}
 
             <div className="relative z-20 h-full w-full overflow-hidden rounded-2xl border border-gray-100 bg-white transition-colors duration-200 group-hover:border-[#009311]/70">
-              <div className="relative h-[220px] w-full overflow-hidden">
+              <div className="relative h-[170px] w-full overflow-hidden sm:h-[220px]">
                 <img
                   src={item.image}
                   alt={item.title}

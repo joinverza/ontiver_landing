@@ -1,5 +1,5 @@
-import Calculator from "../section/Calculator";
-import Footer from "../section/Footer";
+import Calculator from "../components/sections/Calculator/Calculator";
+import Footer from "../components/sections/Footer/Footer";
 
 export default function CalculatorPage() {
   return (

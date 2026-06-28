@@ -48,7 +48,7 @@ export default function ProblemCard({
       <div className="absolute inset-0 z-[1] opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-[0_0_30px_rgba(0,147,17,0.2)] rounded-[inherit]" />
 
       <div className="relative z-10 flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white">
-        <div className="relative z-[1] w-full aspect-square overflow-hidden bg-[#08110c] [transform:translateZ(24px)]">
+        <div className="relative z-[1] aspect-[16/11] w-full overflow-hidden bg-[#08110c] [transform:translateZ(24px)] md:aspect-square">
           <div className="h-full w-full scale-100 saturate-100 transition-[filter,transform] duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[filter:saturate(1.18)_contrast(1.08)_brightness(1.04)] group-hover:[transform:scale(1.075)_translate3d(var(--tx),var(--ty),0)]">{illustration}</div>
           <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 bg-[radial-gradient(circle_at_var(--mx)_var(--my),transparent_0_38px,rgba(0,147,17,0.42)_39px_40px,transparent_41px),linear-gradient(90deg,transparent_calc(var(--mx)_-_0.5px),rgba(0,147,17,0.45)_var(--mx),transparent_calc(var(--mx)_+_0.5px)),linear-gradient(0deg,transparent_calc(var(--my)_-_0.5px),rgba(0,147,17,0.45)_var(--my),transparent_calc(var(--my)_+_0.5px))] group-hover:animate-[problem-target-pulse_1.4s_ease-in-out_infinite] group-hover:opacity-100" />
           <div className="pointer-events-none absolute top-[24%] left-[18px] h-0.5 w-[42px] rounded-full bg-[linear-gradient(90deg,#009311,transparent)] opacity-0 group-hover:animate-[problem-data-travel_1.05s_ease-in-out_infinite]" />
@@ -56,8 +56,8 @@ export default function ProblemCard({
           <div className="pointer-events-none absolute top-[76%] left-[18px] h-0.5 w-[34px] rounded-full bg-[linear-gradient(90deg,#009311,transparent)] opacity-0 group-hover:animate-[problem-data-travel_1.05s_ease-in-out_infinite] group-hover:[animation-delay:0.36s]" />
         </div>
 
-        <div className="relative px-3 pt-4 min-h-44 bg-white">
-          <h6 className="text-green font-semibold text-xl mb-2 transition-[color,text-shadow] duration-[220ms] group-hover:text-dark-primary group-hover:[text-shadow:0_0_16px_rgba(0,147,17,0.18)]">
+        <div className="relative min-h-36 bg-white px-3 pt-4 sm:min-h-44">
+          <h6 className="mb-2 text-lg font-semibold text-green transition-[color,text-shadow] duration-[220ms] group-hover:text-dark-primary group-hover:[text-shadow:0_0_16px_rgba(0,147,17,0.18)] sm:text-xl">
             {title}
           </h6>
           <p className="text-sm text-black/90 leading-relaxed">{description}</p>

@@ -1,12 +1,12 @@
-import Hero from "../section/Hero";
-import Problem from "../section/Problem";
-import Solution from "../section/Solution";
-import Modules from "../section/Modules";
-import UseCase from "../section/UseCase";
-import Trust from "../section/Trust";
+import Hero from "../components/sections/Hero/Hero";
+import Problem from "../components/sections/Problem/Problem";
+import Solution from "../components/sections/Solution/Solution";
+import Modules from "../components/sections/Modules/Modules";
+import UseCase from "../components/sections/UseCase/UseCase";
+import Trust from "../components/sections/Trust/Trust";
 import PricingFAQ from "../components/faq";
-import Join from "../section/Join";
-import Footer from "../section/Footer";
+import Join from "../components/sections/Join/Join";
+import Footer from "../components/sections/Footer/Footer";
 
 export default function HomePage() {
   return (
