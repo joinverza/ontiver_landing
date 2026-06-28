@@ -7,8 +7,9 @@ import Text from "../components/base/Text";
 import PricingFAQ from "../components/faq";
 import AuroraBadge from "../components/ui/AuroraBadge";
 import MagneticFillButton from "../components/ui/MagneticFillButton";
+import Calculator from "../section/Calculator";
 import Footer from "../section/Footer";
-import Join from "../section/Join";
+import PlanSection from "../section/Plan";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -115,11 +116,10 @@ function PricingCard({
 
   return (
     <article
-      className={`pricing-card relative flex min-h-[600px] min-w-[min(86vw,360px)] snap-center flex-col rounded-lg border-[0.5px] border-[#00291b]/15 p-5 opacity-0 lg:min-w-0 ${
-        isDark
-          ? "pricing-card-growth border-light-primary/40 bg-[#F8FFF8] pt-8 text-[#00291B] lg:-mt-3 lg:min-h-[632px]"
+      className={`pricing-card relative flex h-full min-w-0 snap-start flex-col rounded-2xl border border-[#00291b]/15 px-7 py-8 opacity-0 lg:px-8 lg:py-9 ${isDark
+          ? "pricing-card-growth border-light-primary/40 bg-[#F8FFF8] pt-10 text-[#00291B] lg:mt-3 lg:pt-12"
           : `${pricingCardTones[index]} text-black`
-      }`}
+        }`}
       data-card-index={index}
       data-highlighted={isDark ? "true" : "false"}
     >
@@ -130,17 +130,22 @@ function PricingCard({
         />
       ) : null}
 
-      <div className="flex min-h-[210px] flex-col">
+      <div>
         <h2
-          className={`text-lg font-medium tracking-[0] ${
-            isDark ? "text-[#00291B]" : index === 1 ? "bg-gradient-to-r from-dark-primary to-light-primary bg-clip-text text-transparent" : "text-black"
-          }`}
+          className={`text-xl font-bold leading-tight tracking-[0] ${isDark ? "text-[#00291B]" : index === 1 ? "bg-gradient-to-r from-dark-primary to-light-primary bg-clip-text text-transparent" : "text-black"
+            }`}
         >
           {plan.name}
         </h2>
-        <div className="mt-6 flex items-end gap-1">
+        <p className="mt-1.5 text-sm leading-snug text-black/55">
+          {plan.description}
+        </p>
+      </div>
+
+      <div className="mt-6">
+        <div className="flex items-baseline gap-1.5">
           <span
-            className="pricing-price text-[42px] font-medium leading-none tracking-[0] text-black"
+            className="pricing-price text-[44px] font-bold leading-none tracking-[0] text-black"
             data-monthly={plan.monthly ?? ""}
             data-annual={plan.annual ?? ""}
             data-custom={plan.monthly === null ? "true" : "false"}
@@ -148,47 +153,42 @@ function PricingCard({
             {formatPrice(price)}
           </span>
           {plan.monthly !== null ? (
-            <span className="pb-1 text-base text-black/60">
+            <span className="text-sm font-medium text-black/55">
               /mo
             </span>
           ) : null}
         </div>
-        <p className="mt-2 text-sm text-black/55">
+        <p className="mt-2 text-sm font-medium text-black/45">
           {plan.period}
-        </p>
-        <p className="mt-5 text-sm leading-relaxed text-black/70">
-          {plan.description}
         </p>
       </div>
 
-      <MagneticFillButton
-        variant={isDark ? "green" : "light"}
-        className="pricing-cta mt-7 h-12 rounded-lg px-5 text-sm font-medium"
-      >
-        <span className="pricing-cta-text">{plan.cta}</span>
-      </MagneticFillButton>
-
-      <div className="my-7 h-px w-full bg-black/35" />
-
-      <div className="space-y-3">
+      <div className="mb-5 space-y-2">
         {plan.metric ? (
-          <div className="pricing-feature flex translate-y-full items-start gap-3 opacity-0">
+          <div className="pricing-feature flex min-h-7 translate-y-full items-start gap-3 opacity-0">
             <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-sm">
+            <span className="text-xs leading-6 text-black/75">
               <span className="feature-count" data-value={plan.metric.value}>0</span>
               {plan.metric.suffix}
             </span>
           </div>
         ) : null}
         {plan.features.map((feature) => (
-          <div key={feature} className="pricing-feature flex translate-y-full items-start gap-3 opacity-0">
+          <div key={feature} className="pricing-feature flex min-h-7 translate-y-full items-start gap-3 opacity-0">
             <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-sm leading-snug text-black/72">
+            <span className="text-xs leading-6 text-black/72">
               {feature}
             </span>
           </div>
         ))}
       </div>
+
+      <MagneticFillButton
+        variant={isDark ? "green" : "light"}
+        className="pricing-cta mt-7 h-12 w-full rounded-lg px-5 text-sm font-semibold"
+      >
+        <span className="pricing-cta-text">{plan.cta}</span>
+      </MagneticFillButton>
     </article>
   );
 }
@@ -349,7 +349,7 @@ export default function PricingPage() {
         const onLeave = () => {
           gsap.to(card, {
             y: 0,
-            borderColor: "rgba(0,41,27,0.15)",
+            borderColor: isGrowth ? "rgba(0,147,17,0.4)" : "rgba(0,41,27,0.15)",
             boxShadow: "none",
             duration: 0.3,
             ease: "power2.out",
@@ -416,6 +416,14 @@ export default function PricingPage() {
     <div ref={pageRef} className="bg-bg-light text-black">
       <main>
         <section className="relative overflow-hidden bg-[#f1f4ef] px-6 pt-[150px] pb-16 text-center">
+          {/* Animated Background Grid Pattern */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.03] animate-grid-move"
+            style={{
+              backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+              backgroundSize: '100px 100px'
+            }}
+          ></div>
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.03] animate-grid-move"
             style={{
@@ -426,56 +434,77 @@ export default function PricingPage() {
             aria-hidden="true"
           />
           <div className="relative z-10">
-          <AuroraBadge spanClassName="text-[13px]!">
-            Identity Infrastructure That Pays for Itself
-          </AuroraBadge>
-          <h1 className="mx-auto mt-8 max-w-[980px] text-balance text-[clamp(3rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight text-black">
-            Pay for <span className="text-[#007D21]">Trust.</span> Not Repeated Verification.
-          </h1>
-          <p className="mx-auto mt-6 max-w-[680px] text-lg leading-relaxed text-black">
-            Simple, transparent pricing that scales with your verification volume. No hidden fees. No re-verification costs.
-          </p>
+            <AuroraBadge spanClassName="text-[13px]!">
+              Identity Infrastructure That Pays for Itself
+            </AuroraBadge>
+            <h1 className="mx-auto mt-8 max-w-[980px] text-balance text-[clamp(3rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight text-black">
+              Pay for <span className="text-[#007D21]">Trust.</span> Not Repeated Verification.
+            </h1>
+            <p className="mx-auto mt-6 max-w-[680px] text-lg leading-relaxed text-black">
+              Simple, transparent pricing that scales with your verification volume. No hidden fees. No re-verification costs.
+            </p>
 
-          <div className="mt-8 inline-flex items-center gap-3">
-            <div className="relative grid h-12 w-[244px] grid-cols-2 rounded-xl border border-[#009311]/30 bg-white p-1">
-              <span
-                className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-lg bg-gradient-to-r from-dark-primary to-light-primary transition-transform duration-300 ease-out ${
-                  billingCycle === "annual" ? "translate-x-full" : "translate-x-0"
-                }`}
-              />
-              <button
-                className={`relative z-10 rounded-full text-sm font-semibold transition-colors ${
-                  billingCycle === "monthly" ? "text-white" : "text-black/65"
-                }`}
-                type="button"
-                onClick={() => setBilling("monthly")}
-              >
-                Monthly
-              </button>
-              <button
-                className={`relative z-10 rounded-full text-sm font-semibold transition-colors ${
-                  billingCycle === "annual" ? "text-white" : "text-black/65"
-                }`}
-                type="button"
-                onClick={() => setBilling("annual")}
-              >
-                Annual
-              </button>
+            <div className="mt-9 flex justify-center">
+              <div className="relative inline-grid h-12 grid-cols-2 items-center rounded-full bg-white p-1 [box-shadow:0_0_0_1px_rgba(0,147,17,0.16)]">
+                <span
+                  className={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-gradient-to-r from-dark-primary to-light-primary transition-transform duration-300 ease-out ${billingCycle === "annual" ? "translate-x-full" : "translate-x-0"
+                    }`}
+                />
+                <button
+                  className={`relative z-10 h-10 rounded-full px-7 text-base font-semibold transition-colors duration-200 ${billingCycle === "monthly" ? "text-white" : "text-black hover:text-[#009311]"
+                    }`}
+                  type="button"
+                  onClick={() => setBilling("monthly")}
+                >
+                  Monthly
+                </button>
+                <button
+                  className={`relative z-10 h-10 rounded-full px-7 text-base font-semibold transition-colors duration-200 ${billingCycle === "annual" ? "text-white" : "text-black hover:text-[#009311]"
+                    }`}
+                  type="button"
+                  onClick={() => setBilling("annual")}
+                >
+                  Annual
+                </button>
+                <div
+                  className="pointer-events-none absolute left-full top-3 hidden translate-x-6 sm:block"
+                  aria-hidden="true"
+                >
+                  <svg
+                    className="h-10 w-16 text-[#009311]"
+                    viewBox="0 0 68 42"
+                    fill="none"
+                  >
+                    <path
+                      d="M52 34C47 16 29 6 9 10"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeDasharray="4 4"
+                    />
+                    <path
+                      d="M14 5L8 10.5L15 15"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <span
+                  ref={saveBadgeRef}
+                  className={`absolute left-full top-[58px] hidden translate-x-12 rotate-[-4deg] animate-[pricing-save-float_2.8s_ease-in-out_infinite] rounded-md bg-gradient-to-r from-dark-primary to-light-primary px-2.5 py-1 text-center text-xs font-semibold leading-tight text-white transition-opacity duration-200 sm:inline-flex ${billingCycle === "annual" ? "opacity-100" : "opacity-75"
+                    }`}
+                >
+                  Save<br />$$$
+                </span>
+              </div>
             </div>
-            <span
-              ref={saveBadgeRef}
-              className={`rounded-full bg-[#009311] px-3 py-1 text-xs font-bold text-white transition-opacity duration-200 ${
-                billingCycle === "annual" ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              Save 20%
-            </span>
-          </div>
           </div>
         </section>
 
         <section ref={cardsRef} className="px-6 py-24">
-          <div className="mx-auto flex max-w-[1440px] snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:overflow-visible">
+          <div className="mx-auto grid max-w-[1440px] snap-x grid-flow-col auto-cols-[minmax(min(86vw,360px),1fr)] gap-4 overflow-x-auto pb-4 [scrollbar-width:none] md:auto-cols-[calc((100%-32px)/3)] lg:grid-flow-row lg:grid-cols-5 lg:overflow-visible lg:pb-0 xl:gap-5">
             {plans.map((plan, index) => (
               <PricingCard
                 key={plan.name}
@@ -487,14 +516,17 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section ref={tableRef} className="px-6 pb-24 opacity-0">
+        <PlanSection />
+
+        <section ref={tableRef} className="px-6 py-24 opacity-0">
           <div className="mx-auto max-w-[1180px]">
             <Text
               btext="Plan Comparison"
               heading="Compare every plan."
               animate={false}
               containerClassName="pb-8"
-              badgeTextClassName="border border-black"
+              headingClassName="[--heading-color:#06160f]"
+              badgeTextClassName="border border-[#009311]/40! bg-[#f1f4ef]! text-[#005e19]!"
             />
             <div className="overflow-x-auto rounded-3xl border border-[#00291b]/15 bg-white">
               <table className="w-full min-w-[900px] border-collapse text-sm">
@@ -533,8 +565,9 @@ export default function PricingPage() {
           </div>
         </section>
 
+        <Calculator />
         <PricingFAQ />
-        <Join />
+        {/* <Join /> */}
       </main>
       <Footer />
     </div>

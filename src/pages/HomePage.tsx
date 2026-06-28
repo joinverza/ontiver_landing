@@ -3,7 +3,6 @@ import Problem from "../section/Problem";
 import Solution from "../section/Solution";
 import Modules from "../section/Modules";
 import UseCase from "../section/UseCase";
-import Plan from "../section/Plan";
 import Trust from "../section/Trust";
 import PricingFAQ from "../components/faq";
 import Join from "../section/Join";
@@ -18,7 +17,6 @@ export default function HomePage() {
       <Modules />
       <UseCase />
       {/* <Price /> */}
-      <Plan />
       {/* <Calculator /> */}
       <Trust />
       <PricingFAQ variant="home" />

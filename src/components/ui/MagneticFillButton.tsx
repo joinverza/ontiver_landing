@@ -43,6 +43,7 @@ export default function MagneticFillButton({
 }: MagneticFillButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [fillOrigin, setFillOrigin] = useState({ x: 0, y: 0 });
+  const [fillSize, setFillSize] = useState(500);
   const [isHovered, setIsHovered] = useState(false);
 
   const styles = VARIANT_STYLES[variant];
@@ -62,6 +63,12 @@ export default function MagneticFillButton({
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       const coords = getRelativeCoords(e);
+      const rect = buttonRef.current?.getBoundingClientRect();
+      if (rect) {
+        const farthestX = Math.max(coords.x, rect.width - coords.x);
+        const farthestY = Math.max(coords.y, rect.height - coords.y);
+        setFillSize(Math.ceil(Math.hypot(farthestX, farthestY) * 2 + 24));
+      }
       setFillOrigin(coords);
       setIsHovered(true);
     },
@@ -98,8 +105,8 @@ export default function MagneticFillButton({
       <span
         className="absolute pointer-events-none rounded-full"
         style={{
-          width: 500,
-          height: 500,
+          width: fillSize,
+          height: fillSize,
           left: fillOrigin.x,
           top: fillOrigin.y,
           transform: `translate(-50%, -50%) scale(${isHovered ? 1 : 0})`,

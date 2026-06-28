@@ -6,7 +6,6 @@ const Navlinks = [
   { name: "Home", to: "/" },
   // { name: "Use Cases", to: "/#cases" },
   { name: "Pricing", to: "/pricing" },
-  { name: "Calculator", to: "/calculator" },
   { name: "Blogs", to: "/blogs" },
   { name: "Contact", to: "/contact" },
 ];

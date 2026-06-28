@@ -140,6 +140,38 @@ html.lenis body {
   animation-delay: 0.36s;
 }
 
+@keyframes plan-orbit-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes plan-orbit-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes plan-dot-wave {
+  0%, 100% {
+    opacity: 0.28;
+    transform: translateY(0) scale(0.85);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1);
+  }
+}
+
+@keyframes plan-label-breathe {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
 @keyframes modules-fingerprint-pulse {
   0%, 100% {
     filter: brightness(0.86) saturate(0.9);
@@ -538,5 +570,23 @@ html.lenis body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes kyc-slider-shimmer {
+  0%, 78% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes pricing-save-float {
+  0%, 100% {
+    transform: translateX(3rem) translateY(0) rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: translateX(3rem) translateY(-6px) rotate(-2deg) scale(1.04);
   }
 }

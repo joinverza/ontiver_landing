@@ -79,7 +79,7 @@ export default function Text({
       <div
         ref={badgeRef as React.RefObject<HTMLDivElement>}
         className="mx-auto w-fit"
-        style={{ opacity: 0 }}
+        style={{ opacity: animate ? 0 : 1 }}
       >
         <AuroraBadge
           className={`${className} ${badgeClassName}`}
@@ -104,7 +104,10 @@ export default function Text({
             >
               <span
                 className="heading-word inline-block"
-                style={{ transform: "translateY(100%)", opacity: 0 }}
+                style={{
+                  transform: animate ? "translateY(100%)" : "translateY(0)",
+                  opacity: animate ? 0 : 1,
+                }}
               >
                 {chars.map((char, charIndex) => {
                   const charStyle = {

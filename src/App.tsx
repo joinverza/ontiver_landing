@@ -3,7 +3,6 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useLenis } from "./hooks/useLenis";
 import {
   BlogPage,
-  CalculatorPage,
   ContactPage,
   HomePage,
   PageLayout,
@@ -37,7 +36,6 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/calculator" element={<CalculatorPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
