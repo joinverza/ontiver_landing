@@ -252,7 +252,7 @@ export default function Solution() {
         }
       });
 
-      const setPinnedActive = (isActive: boolean, fromEnd = false) => {
+      const setPinnedActive = (isActive: boolean, _fromEnd = false, resetClasses = false) => {
         section.classList.toggle("solution-is-pinned", isActive);
         section.classList.toggle("solution-completing", false);
         window.dispatchEvent(
@@ -263,25 +263,34 @@ export default function Solution() {
 
         if (isActive) {
           gsap.set(content, { opacity: 1 });
-          if (gridLines && fromEnd) {
-            gsap.set(gridLines, { autoAlpha: 1 });
+          // Animate grid lines in first — independent of scrub
+          if (gridLines) {
+            gsap.fromTo(
+              gridLines,
+              { autoAlpha: 0, y: 8 },
+              { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out", overwrite: true }
+            );
           }
           shimmerTl.play();
           return;
         }
 
+        // Hide grid lines whenever leaving (they animate back in on re-entry)
         if (gridLines) {
           gsap.to(gridLines, {
             autoAlpha: 0,
-            duration: 0.3,
+            duration: 0.25,
             ease: "power1.out",
             overwrite: true,
           });
         }
         shimmerTl.pause(0);
-        items.forEach((item) => {
-          item.classList.remove("is-revealed", "is-grid-ready");
-        });
+        // Only reset item classes when scrolling back up (not when leaving forward)
+        if (resetClasses) {
+          items.forEach((item) => {
+            item.classList.remove("is-revealed", "is-grid-ready");
+          });
+        }
       };
 
       const updateProgress = (progress: number, _isActive: boolean) => {
@@ -345,11 +354,11 @@ export default function Solution() {
           onEnterBack: () => setPinnedActive(true, true),
           onLeave: () => {
             playCompletionPulse();
-            setPinnedActive(false);
+            setPinnedActive(false, false, false); // keep is-revealed classes when scrolling forward
           },
           onLeaveBack: () => {
             updateProgress(0, false);
-            setPinnedActive(false);
+            setPinnedActive(false, false, true); // reset classes when scrolling back up
           },
           onUpdate: (self) => updateRevealedItems(self.progress, self.isActive),
         },
@@ -357,29 +366,23 @@ export default function Solution() {
 
       tl.to(content, { y: -8, duration: 5 }, 0);
 
+
       tl.to(
         badge,
         { scale: 1, autoAlpha: 1, duration: 0.3, ease: "power2.out" },
-        0
+        0.4
       );
       tl.to(
         [headingLeft, headingRight],
         { x: 0, autoAlpha: 1, duration: 0.45, ease: "power2.out" },
-        0.2
+        0.6
       );
       tl.to(
         underline,
         { scaleX: 1, duration: 0.3, ease: "power2.inOut" },
-        0.68
+        1.1
       );
-      tl.to(underline, { autoAlpha: 0, duration: 0.25 }, 1.68);
-      if (gridLines) {
-        tl.to(
-          gridLines,
-          { autoAlpha: 1, duration: 0.4, ease: "power1.in" },
-          1.75
-        );
-      }
+      tl.to(underline, { autoAlpha: 0, duration: 0.25 }, 2.1);
 
       items.forEach((item, index) => {
         const iconBox = item.querySelector<HTMLElement>(".icon-box");
@@ -471,7 +474,7 @@ export default function Solution() {
       });
 
       // Pause at the end so the user can read all items before scrolling past
-      tl.to({}, { duration: 3 });
+      tl.to({}, { duration: 2 });
 
       return () => {
         window.dispatchEvent(
@@ -492,7 +495,7 @@ export default function Solution() {
     >
       <PipelineTrack />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-6 py-14 md:px-10 lg:px-20">
+      <div className="solution-content-panel relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-6 py-14 md:px-10 lg:px-20">
         <div className="relative z-20 flex w-full flex-col items-center gap-2 pb-12">
           <div ref={badgeRef}>
             <AuroraBadge>The Solution</AuroraBadge>

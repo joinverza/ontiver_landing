@@ -118,8 +118,20 @@ html.lenis, html.lenis body {
 .solution-section {
   --solution-progress: 0;
   --solution-progress-y: 0%;
-  background: #f7f7f7;
+  background:
+    linear-gradient(180deg, rgba(247, 247, 247, 0.82), rgba(247, 247, 247, 0.2) 20%, rgba(247, 247, 247, 0.28) 78%, rgba(247, 247, 247, 0.86)),
+    url("/assets/solution-building-bg.svg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   isolation: isolate;
+}
+
+.solution-content-panel {
+  max-width: none;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(2px);
 }
 
 .solution-progress {
@@ -421,31 +433,31 @@ html.lenis, html.lenis body {
   transition-duration: 150ms;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready:hover .icon-box {
+.solution-item.is-revealed.is-grid-ready:hover .icon-box {
   transform: scale(1.05) !important;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready:hover .solution-asset-icon {
+.solution-item.is-revealed.is-grid-ready:hover .solution-asset-icon {
   animation-duration: 1s;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready[data-step="2"]:hover .solution-asset-icon {
+.solution-item.is-revealed.is-grid-ready[data-step="2"]:hover .solution-asset-icon {
   animation-duration: inherit;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready[data-step="3"]:hover .solution-asset-icon {
+.solution-item.is-revealed.is-grid-ready[data-step="3"]:hover .solution-asset-icon {
   animation-duration: 1.25s;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready[data-step="4"]:hover .solution-asset-icon {
+.solution-item.is-revealed.is-grid-ready[data-step="4"]:hover .solution-asset-icon {
   animation-duration: 1.5s;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready:hover .item-title {
+.solution-item.is-revealed.is-grid-ready:hover .item-title {
   color: #009311;
 }
 
-.solution-is-pinned .solution-item.is-revealed.is-grid-ready:hover .desc-line {
+.solution-item.is-revealed.is-grid-ready:hover .desc-line {
   color: rgba(0, 0, 0, 0.74);
 }
 
