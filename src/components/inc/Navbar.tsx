@@ -12,6 +12,7 @@ const Navlinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSolutionPinned, setIsSolutionPinned] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,25 +22,43 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleSolutionPinChange = (event: Event) => {
+      const { isPinned } = (event as CustomEvent<{ isPinned: boolean }>).detail;
+      setIsSolutionPinned(isPinned);
+    };
+
+    window.addEventListener("solution-pin-change", handleSolutionPinChange);
+    return () =>
+      window.removeEventListener("solution-pin-change", handleSolutionPinChange);
+  }, []);
+
+  const isOpen = isScrolled && !isSolutionPinned;
   return (
     <div
-      className="fixed top-10 left-0 w-full z-[100] flex justify-center"
-      style={{ pointerEvents: "none" }}
+      className="fixed top-10 left-0 w-full z-[100] flex justify-center pointer-events-none"
+      style={{
+        opacity: isSolutionPinned ? 0 : 1,
+        transform: isSolutionPinned ? "translateY(-140px)" : "translateY(0)",
+        transition: isSolutionPinned
+          ? "opacity 300ms ease-in, transform 300ms ease-in"
+          : "opacity 300ms ease-out, transform 300ms ease-out",
+      }}
     >
       {/* Morphing bar */}
       <div
         style={{
-          width: isScrolled ? "min(1000px, calc(100vw - 48px))" : "48px",
+          width: isOpen ? "min(1000px, calc(100vw - 48px))" : "48px",
           height: "62px",
-          opacity: isScrolled ? 1 : 0,
-          transform: isScrolled ? "scale(1)" : "scale(0.5)",
+          opacity: isOpen ? 1 : 0,
+          transform: isOpen ? "scale(1)" : "scale(0.5)",
           borderRadius: "25px",
           backgroundColor: "white",
           boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
           border: "1px solid rgba(0,0,0,0.05)",
           overflow: "hidden",
-          pointerEvents: isScrolled ? "auto" : "none",
-          transition: isScrolled
+          pointerEvents: isOpen ? "auto" : "none",
+          transition: isOpen
             ? [
                 "opacity 200ms ease-in",
                 "transform 200ms ease-in",
@@ -56,10 +75,10 @@ export default function Navbar() {
           {/* Logo — fades in first at 300ms */}
           <div
             style={{
-              opacity: isScrolled ? 1 : 0,
-              transform: isScrolled ? "translateY(0)" : "translateY(6px)",
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? "translateY(0)" : "translateY(6px)",
               transition: "opacity 200ms ease, transform 200ms ease",
-              transitionDelay: isScrolled ? "300ms" : "0ms",
+              transitionDelay: isOpen ? "300ms" : "0ms",
               flexShrink: 0,
             }}
           >
@@ -74,11 +93,11 @@ export default function Navbar() {
                 href={link.ref}
                 className="text-black/80 hover:text-[#009311] font-medium text-sm whitespace-nowrap"
                 style={{
-                  opacity: isScrolled ? 1 : 0,
-                  transform: isScrolled ? "translateY(0)" : "translateY(6px)",
+                  opacity: isOpen ? 1 : 0,
+                  transform: isOpen ? "translateY(0)" : "translateY(6px)",
                   transition:
                     "opacity 200ms ease, transform 200ms ease, color 200ms ease",
-                  transitionDelay: isScrolled ? `${400 + idx * 60}ms` : "0ms",
+                  transitionDelay: isOpen ? `${400 + idx * 60}ms` : "0ms",
                 }}
               >
                 {link.name}
@@ -89,10 +108,10 @@ export default function Navbar() {
           {/* CTA Button — fades in last */}
           <div
             style={{
-              opacity: isScrolled ? 1 : 0,
-              transform: isScrolled ? "translateY(0)" : "translateY(6px)",
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? "translateY(0)" : "translateY(6px)",
               transition: "opacity 200ms ease, transform 200ms ease",
-              transitionDelay: isScrolled ? "600ms" : "0ms",
+              transitionDelay: isOpen ? "600ms" : "0ms",
               flexShrink: 0,
             }}
           >

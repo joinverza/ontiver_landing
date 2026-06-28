@@ -8,6 +8,7 @@ export default function UseCase() {
     >
       <Text
         className="border-white"
+        color="white"
         btext="Use Cases Routing"
         heading="Built for the teams that need verified trust most."
       />

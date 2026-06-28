@@ -86,8 +86,8 @@ export default function MagneticFillButton({
         background: styles.bg,
         color: isHovered ? styles.textHover : styles.textDefault,
         transition: isHovered
-          ? "color 350ms cubic-bezier(0.4, 0, 0.2, 1)"
-          : "color 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+          ? "all 350ms cubic-bezier(0.4, 0, 0.2, 1)"
+          : "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -105,8 +105,8 @@ export default function MagneticFillButton({
           transform: `translate(-50%, -50%) scale(${isHovered ? 1 : 0})`,
           background: styles.fill,
           transition: isHovered
-            ? "transform 350ms cubic-bezier(0.4, 0, 0.2, 1)"
-            : "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+            ? "transform 900ms cubic-bezier(0.4, 0, 0.2, 1)"
+            : "transform 700ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       />
 

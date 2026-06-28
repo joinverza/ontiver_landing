@@ -3,140 +3,132 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AuroraBadge from "../components/ui/AuroraBadge";
-import {
-  VerifyIcon,
-  ScreenIcon,
-  StoreProofIcon,
-  ConsentShareIcon,
-  ReuseIcon,
-} from "../components/ui/SolutionIcons";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const firstsolu = [
+interface SolutionStep {
+  icon: string;
+  title: string;
+  para: string[];
+}
+
+const solutionSteps: SolutionStep[] = [
   {
-    icon: VerifyIcon,
+    icon: "./assets/verify.svg",
     title: "Verify",
-    para: ["User submits identity documents through", "a business's Ontiver-powered flow."],
+    para: [
+      "User submits identity documents through",
+      "a business's Ontiver-powered flow.",
+    ],
   },
   {
-    icon: ScreenIcon,
+    icon: "./assets/screen.svg",
     title: "Screen",
-    para: ["Ontiver runs AML checks, sanctions", "screening, and risk assessment automatically."],
+    para: [
+      "Ontiver runs AML checks, sanctions",
+      "screening, and risk assessment automatically.",
+    ],
   },
   {
-    icon: StoreProofIcon,
+    icon: "./assets/proof.svg",
     title: "Store Proof",
-    para: ["A verified identity proof is created and", "stored securely — tied to the user, not just the business."],
+    para: [
+      "A verified identity proof is created and",
+      "stored securely - tied to the user, not just the business.",
+    ],
   },
-];
-
-const secondsolu = [
   {
-    icon: ConsentShareIcon,
+    icon: "./assets/consent.svg",
     title: "Consent Share",
-    para: ["When another business needs to verify the same user,", "the user approves with a single consent action."],
+    para: [
+      "When another business needs to verify the same user,",
+      "the user approves with a single consent action.",
+    ],
   },
   {
-    icon: ReuseIcon,
+    icon: "./assets/reuse.svg",
     title: "Reuse",
-    para: ["The new business gets trusted verification proof instantly.", "No repeat document uploads. No delay."],
+    para: [
+      "The new business gets trusted verification proof instantly.",
+      "No repeat document uploads. No delay.",
+    ],
   },
 ];
 
+const orbitalStarts = [
+  { x: -74, y: -58, rotation: -25 },
+  { x: 0, y: -68, rotation: 15 },
+  { x: 74, y: -58, rotation: 25 },
+  { x: -64, y: -56, rotation: -22 },
+  { x: 64, y: -56, rotation: 22 },
+];
 
+function PipelineTrack() {
+  return (
+    <div className="solution-progress" aria-hidden="true">
+      <div className="solution-progress-track">
+        <div className="solution-progress-fill" />
+        <div className="solution-progress-dot" />
+      </div>
 
-const SolutionItem = ({ item }: { item: any }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const Icon = item.icon;
-  const idleTweenRef = useRef<gsap.core.Tween | null>(null);
-
-  useGSAP(
-    () => {
-      const el = containerRef.current;
-      if (!el) return;
-
-      // Setup SVG paths for drawing
-      const paths = el.querySelectorAll(".icon-stroke");
-      gsap.set(paths, { strokeDasharray: 100, strokeDashoffset: 100 });
-
-      // Identify idle target and setup specific infinite animation
-      const title = item.title;
-      let idleTarget: any = null;
-      let idleVars: any = {};
-
-      if (title === "Verify") {
-        idleTarget = el.querySelector(".icon-checkmark");
-        idleVars = { opacity: 0.3, duration: 1, yoyo: true, repeat: -1, ease: "sine.inOut" };
-      } else if (title === "Screen") {
-        idleTarget = el.querySelector(".icon-spinner");
-        idleVars = { rotationZ: 360, duration: 3, repeat: -1, ease: "none" };
-      } else if (title === "Store Proof") {
-        idleTarget = el.querySelector(".icon-shimmer");
-        idleVars = { x: 20, opacity: 1, duration: 4, repeat: -1, ease: "power1.inOut" };
-      } else if (title === "Consent Share") {
-        idleTarget = el.querySelector(".icon-plane");
-        idleVars = { y: -3, duration: 1.25, yoyo: true, repeat: -1, ease: "sine.inOut" };
-      } else if (title === "Reuse") {
-        idleTarget = el.querySelector(".icon-arrows");
-        idleVars = { rotationZ: 360, duration: 4, repeat: -1, ease: "none" };
-      }
-
-      if (idleTarget) {
-        idleTweenRef.current = gsap.to(idleTarget, { ...idleVars, paused: true });
-      }
-    },
-    { scope: containerRef }
+      {solutionSteps.map((step, index) => (
+        <span
+          key={step.title}
+          className="solution-progress-tick"
+          data-step={index}
+          style={{ bottom: `${((index + 1) / solutionSteps.length) * 100}%` }}
+        />
+      ))}
+    </div>
   );
+}
 
-  const handleMouseEnter = () => {
-    if (!containerRef.current) return;
-    const iconBox = containerRef.current.querySelector(".icon-box");
-    gsap.to(iconBox, { scale: 1.08, duration: 0.15, ease: "power2.out" });
-    if (idleTweenRef.current) {
-      gsap.to(idleTweenRef.current, { timeScale: 2, duration: 0.2 });
-    }
-  };
+function BentoGridLines() {
+  return (
+    <div className="solution-grid-lines" aria-hidden="true">
+      <span className="solution-grid-line solution-grid-line-horizontal" />
+      <span className="solution-grid-line solution-grid-line-top-left" />
+      <span className="solution-grid-line solution-grid-line-top-right" />
+      <span className="solution-grid-line solution-grid-line-bottom" />
+    </div>
+  );
+}
 
-  const handleMouseLeave = () => {
-    if (!containerRef.current) return;
-    const iconBox = containerRef.current.querySelector(".icon-box");
-    gsap.to(iconBox, { scale: 1, duration: 0.25, ease: "power2.out" });
-    if (idleTweenRef.current) {
-      gsap.to(idleTweenRef.current, { timeScale: 1, duration: 0.25 });
-    }
-  };
-
+function SolutionItem({
+  item,
+  stepIndex,
+}: {
+  item: SolutionStep;
+  stepIndex: number;
+}) {
   return (
     <div
-      ref={containerRef}
-      className={`solution-item flex flex-col md:flex-row items-center md:items-start text-center md:text-left flex-1 relative group cursor-default`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className={`solution-item solution-bento-cell solution-cell-${stepIndex} relative cursor-default`}
+      data-step={stepIndex}
     >
-      <div className="flex flex-col items-center md:items-start w-full relative z-10">
-        <div
-          className="icon-box relative w-16 h-16 flex items-center justify-center bg-white border-2 border-black/5 shadow-sm rounded-2xl mb-4 md:mb-6 mx-auto md:mx-0"
-          style={{ transform: "translateY(-20px)", opacity: 0 }}
-        >
-          <div className="absolute inset-0 rounded-2xl bg-[#009311]/20 blur-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-          <Icon className="w-8 h-8 relative z-10 text-[#009311]" />
+      <div className="solution-cell-fill" />
+      <div className="solution-cell-border" />
+
+      <div className="solution-item-content relative z-10 flex h-full w-full flex-col items-start justify-center">
+        <div className="icon-box relative mb-5 flex h-16 w-16 items-center justify-center rounded-lg border border-white/15 bg-white">
+          <span className="solution-icon-screen-glow" aria-hidden="true" />
+          <span className="solution-icon-sheen" aria-hidden="true" />
+          <div className="icon-settle-pulse" />
+          <img
+            src={item.icon}
+            alt={`${item.title} icon`}
+            className="solution-asset-icon relative z-10 h-9 w-9"
+          />
         </div>
-        <div className="w-full max-w-[270px] mx-auto md:mx-0 text-container">
-          <h6
-            className="font-semibold text-lg pb-2 transition-colors duration-150 group-hover:text-[#009311] relative inline-block item-title"
-            style={{ transform: "translateY(10px)", opacity: 0 }}
-          >
+
+        <div className="w-full max-w-[300px]">
+          <h6 className="item-title relative inline-block pb-2 text-lg font-semibold text-black">
             {item.title}
-            <span className="absolute bottom-1.5 left-0 w-0 h-[1.5px] bg-[#009311] transition-all duration-200 group-hover:w-full" />
           </h6>
-          <div className="text-black/60 text-sm leading-relaxed item-desc">
-            {item.para.map((line: string, i: number) => (
-              <span
-                key={i}
-                className="desc-line block"
-                style={{ transform: "translateY(10px)", opacity: 0 }}
-              >
+
+          <div className="item-desc text-sm leading-relaxed text-black/58">
+            {item.para.map((line) => (
+              <span key={line} className="desc-line block">
                 {line}
               </span>
             ))}
@@ -145,212 +137,370 @@ const SolutionItem = ({ item }: { item: any }) => {
       </div>
     </div>
   );
-};
+}
 
 export default function Solution() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const headingLeftRef = useRef<HTMLSpanElement>(null);
   const headingRightRef = useRef<HTMLSpanElement>(null);
   const underlineRef = useRef<HTMLSpanElement>(null);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      // Depth Scroll Parallax
-      gsap.to(bgRef.current, {
-        y: "-12%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      const section = sectionRef.current;
+      const content = contentRef.current;
+      const badge = badgeRef.current;
+      const heading = headingRef.current;
+      const headingLeft = headingLeftRef.current;
+      const headingRight = headingRightRef.current;
+      const underline = underlineRef.current;
 
-      gsap.to(row1Ref.current, {
-        y: "-8%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (
+        !section ||
+        !content ||
+        !badge ||
+        !heading ||
+        !headingLeft ||
+        !headingRight ||
+        !underline
+      ) {
+        return;
+      }
 
-      gsap.to(row2Ref.current, {
-        y: "-4%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-
-      // Master Entrance Timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%", // 15% visible
-          once: true,
-        },
-      });
-
-      // 1. Badge & Heading
-      tl.to(badgeRef.current, { scale: 1, opacity: 1, duration: 0.3, ease: "power2.out" });
-      tl.to(
-        headingLeftRef.current,
-        { x: 0, opacity: 1, duration: 0.45, ease: "power2.out" },
-        "+=0.2"
+      const items = Array.from(
+        section.querySelectorAll<HTMLElement>(".solution-item")
       );
-      tl.to(
-        headingRightRef.current,
-        { x: 0, opacity: 1, duration: 0.45, ease: "power2.out" },
-        "<"
+      const gridLines = section.querySelector<HTMLElement>(".solution-grid-lines");
+      const progressTicks = Array.from(
+        section.querySelectorAll<HTMLElement>(".solution-progress-tick")
       );
-      tl.to(
-        underlineRef.current,
-        { width: "100%", duration: 0.3, ease: "power2.inOut" },
-        "+=0.0"
-      );
-      tl.to(
-        underlineRef.current,
-        { opacity: 0, duration: 0.3, ease: "power2.inOut" },
-        "+=1" // fade out after 1 sec
+      const progressDot = section.querySelector<HTMLElement>(
+        ".solution-progress-dot"
       );
 
-      // 2. Chain Reaction Items
-      const items = sectionRef.current?.querySelectorAll(".solution-item");
-      if (items) {
-        items.forEach((item, index) => {
-          // Calculate start time based on row stagger
-          let startTime = "+=0";
-          if (index === 0) startTime = "+=0";
-          else if (index === 1 || index === 2) startTime = "+=0.22";
-          else if (index === 3) startTime = "+=0.3"; // Row break pause
-          else if (index === 4) startTime = "+=0.22";
+      section.style.setProperty("--solution-progress", "0");
+      section.style.setProperty("--solution-progress-y", "0%");
 
-          const iconBox = item.querySelector(".icon-box");
-          const strokes = item.querySelectorAll(".icon-stroke");
-          const title = item.querySelector(".item-title");
-          const descLines = item.querySelectorAll(".desc-line");
+      const shimmerTl = gsap.timeline({ paused: true, repeat: -1 });
+      shimmerTl
+        .to({}, { duration: 10 })
+        .fromTo(
+          heading,
+          { backgroundPosition: "-200% 0" },
+          { backgroundPosition: "200% 0", duration: 0.6, ease: "none" }
+        );
 
-          const itemTl = gsap.timeline();
-          
-          // Layer 1: Icon box drop
-          itemTl.to(iconBox, {
-            y: 0,
+      gsap.set(badge, { scale: 0.85, autoAlpha: 0 });
+      gsap.set(headingLeft, { x: -30, autoAlpha: 0 });
+      gsap.set(headingRight, { x: 30, autoAlpha: 0 });
+      gsap.set(underline, {
+        scaleX: 0,
+        autoAlpha: 1,
+        transformOrigin: "left center",
+      });
+      gsap.set(content, { opacity: 1 });
+      gsap.set(content, { y: 0 });
+      if (gridLines) {
+        gsap.set(gridLines, { autoAlpha: 0 });
+      }
+
+      items.forEach((item, index) => {
+        const iconBox = item.querySelector<HTMLElement>(".icon-box");
+        const title = item.querySelector<HTMLElement>(".item-title");
+        const descLines = Array.from(
+          item.querySelectorAll<HTMLElement>(".desc-line")
+        );
+        const assetIcon = item.querySelector<HTMLElement>(".solution-asset-icon");
+        const pulse = item.querySelector<HTMLElement>(".icon-settle-pulse");
+        const start = orbitalStarts[index] || orbitalStarts[1];
+
+        gsap.set(item, { autoAlpha: 0 });
+        if (iconBox) {
+          gsap.set(iconBox, {
+            x: start.x,
+            y: start.y,
+            rotation: start.rotation,
+            autoAlpha: 0,
+            scale: 0.82,
+            transformOrigin: "center center",
+          });
+        }
+        if (assetIcon) {
+          gsap.set(assetIcon, {
+            clipPath: "inset(0 100% 0 0)",
             opacity: 1,
+            filter: "brightness(1.4) saturate(1.4)",
+          });
+        }
+        if (title) {
+          gsap.set(title, {
+            clipPath: "inset(0 100% 0 0)",
+            autoAlpha: 1,
+          });
+        }
+        if (descLines.length) {
+          gsap.set(descLines, {
+            clipPath: "inset(0 100% 0 0)",
+            autoAlpha: 1,
+          });
+        }
+        if (pulse) {
+          gsap.set(pulse, { scale: 0.45, autoAlpha: 0 });
+        }
+      });
+
+      const setPinnedActive = (isActive: boolean, fromEnd = false) => {
+        section.classList.toggle("solution-is-pinned", isActive);
+        section.classList.toggle("solution-completing", false);
+        window.dispatchEvent(
+          new CustomEvent("solution-pin-change", {
+            detail: { isPinned: isActive },
+          })
+        );
+
+        if (isActive) {
+          gsap.set(content, { opacity: 1 });
+          if (gridLines && fromEnd) {
+            gsap.set(gridLines, { autoAlpha: 1 });
+          }
+          shimmerTl.play();
+          return;
+        }
+
+        if (gridLines) {
+          gsap.to(gridLines, {
+            autoAlpha: 0,
             duration: 0.3,
-            ease: "back.out(1.56)", // cubic-bezier(0.34, 1.56, 0.64, 1) approx
+            ease: "power1.out",
+            overwrite: true,
           });
-
-          // Layer 2: Icon stroke draw
-          if (strokes.length > 0) {
-            // Draw path length
-            itemTl.to(
-              strokes,
-              { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" },
-              "+=0.1"
-            );
-            // Transition color from green to black
-            itemTl.to(
-              strokes,
-              { color: "#000000", duration: 0.2, ease: "power1.inOut" },
-              "-=0.1"
-            );
-          }
-
-          // Layer 3: Text cascade
-          itemTl.to(
-            title,
-            { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" },
-            "-=0.15"
-          );
-          if (descLines.length > 0) {
-            itemTl.to(
-              descLines,
-              { y: 0, opacity: 1, duration: 0.25, stagger: 0.04, ease: "power2.out" },
-              "+=0.08"
-            );
-          }
-
-          // Start idle loop after entrance finishes
-          itemTl.add(() => {
-            // This triggers the idle tween inside the child component implicitly, but since we scoped the child's idle tween independently, we can't easily start it from here without refs.
-            // The item component will handle its own idle tween
-          });
-
-          tl.add(itemTl, startTime);
+        }
+        shimmerTl.pause(0);
+        items.forEach((item) => {
+          item.classList.remove("is-revealed", "is-grid-ready");
         });
+      };
+
+      const updateProgress = (progress: number, _isActive: boolean) => {
+        section.style.setProperty("--solution-progress", `${progress}`);
+        section.style.setProperty(
+          "--solution-progress-y",
+          `${progress * 100}%`
+        );
+
+        progressTicks.forEach((tick, index) => {
+          const threshold = (index + 0.96) / progressTicks.length;
+          tick.classList.toggle("is-active", progress >= threshold);
+        });
+      };
+
+      const updateRevealedItems = (progress: number, isActive: boolean) => {
+        updateProgress(progress, isActive);
+        items.forEach((item, index) => {
+          const cellReadyPoint = (index + 0.78) / items.length;
+          const revealPoint = (index + 0.96) / items.length;
+          const isGridReady = isActive && progress >= cellReadyPoint;
+          const isRevealed = isActive && progress >= revealPoint;
+
+          item.classList.toggle("is-grid-ready", isGridReady);
+          item.classList.toggle("is-revealed", isRevealed);
+        });
+      };
+
+      const playCompletionPulse = () => {
+        if (!progressDot) return;
+
+        section.classList.add("solution-completing");
+        gsap.fromTo(
+          progressDot,
+          { scale: 1 },
+          {
+            scale: 1.8,
+            duration: 0.12,
+            repeat: 3,
+            yoyo: true,
+            ease: "power2.out",
+          }
+        );
+        gsap.to(content, { opacity: 0.85, duration: 0.25, ease: "power1.out" });
+        gsap.delayedCall(0.45, () => {
+          section.classList.remove("solution-completing");
+        });
+      };
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=4600",
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onEnter: () => setPinnedActive(true),
+          onEnterBack: () => setPinnedActive(true, true),
+          onLeave: () => {
+            playCompletionPulse();
+            setPinnedActive(false);
+          },
+          onLeaveBack: () => {
+            updateProgress(0, false);
+            setPinnedActive(false);
+          },
+          onUpdate: (self) => updateRevealedItems(self.progress, self.isActive),
+        },
+      });
+
+      tl.to(content, { y: -8, duration: 5 }, 0);
+
+      tl.to(
+        badge,
+        { scale: 1, autoAlpha: 1, duration: 0.3, ease: "power2.out" },
+        0
+      );
+      tl.to(
+        [headingLeft, headingRight],
+        { x: 0, autoAlpha: 1, duration: 0.45, ease: "power2.out" },
+        0.2
+      );
+      tl.to(
+        underline,
+        { scaleX: 1, duration: 0.3, ease: "power2.inOut" },
+        0.68
+      );
+      tl.to(underline, { autoAlpha: 0, duration: 0.25 }, 1.68);
+      if (gridLines) {
+        tl.to(
+          gridLines,
+          { autoAlpha: 1, duration: 0.4, ease: "power1.in" },
+          1.75
+        );
       }
 
-      // 3. Dividers
-      const v1 = sectionRef.current?.querySelector(".v-div-1");
-      const v2 = sectionRef.current?.querySelector(".v-div-2");
-      const v3 = sectionRef.current?.querySelector(".v-div-3");
-      const h1 = sectionRef.current?.querySelector(".h-div-1");
+      items.forEach((item, index) => {
+        const iconBox = item.querySelector<HTMLElement>(".icon-box");
+        const title = item.querySelector<HTMLElement>(".item-title");
+        const descLines = Array.from(
+          item.querySelectorAll<HTMLElement>(".desc-line")
+        );
+        const assetIcon = item.querySelector<HTMLElement>(".solution-asset-icon");
+        const pulse = item.querySelector<HTMLElement>(".icon-settle-pulse");
+        const start = index + 2.22;
 
-      if (v1 && v2 && v3 && h1) {
-        // Draw V1 when item 1 (index 1) starts
-        tl.to(v1, { scaleY: 1, duration: 0.4, ease: "power2.inOut", backgroundColor: "#009311" }, 1.2);
-        tl.to(v1, { backgroundColor: "rgba(0,0,0,0.05)", duration: 0.3 }, "+=0.1");
+        tl.set(item, { autoAlpha: 1 }, start);
 
-        // Draw V2 when item 2 (index 2) starts
-        tl.to(v2, { scaleY: 1, duration: 0.4, ease: "power2.inOut", backgroundColor: "#009311" }, 1.4);
-        tl.to(v2, { backgroundColor: "rgba(0,0,0,0.05)", duration: 0.3 }, "+=0.1");
-
-        // Draw H1 after row 1 finishes
-        tl.to(h1, { scaleX: 1, duration: 0.4, ease: "power2.inOut", backgroundColor: "#009311" }, 1.8);
-        tl.to(h1, { backgroundColor: "rgba(0,0,0,0.05)", duration: 0.3 }, "+=0.1");
-
-        // Draw V3 when item 4 (index 4) starts
-        tl.to(v3, { scaleY: 1, duration: 0.4, ease: "power2.inOut", backgroundColor: "#009311" }, 2.3);
-        tl.to(v3, { backgroundColor: "rgba(0,0,0,0.05)", duration: 0.3 }, "+=0.1");
-      }
-
-      // Shimmer effect
-      const shimmerContainer = sectionRef.current?.querySelector(".heading-split-container");
-      if (shimmerContainer) {
-        const shimmer = () => {
-          gsap.fromTo(
-            shimmerContainer,
-            { backgroundPosition: "-200% 0" },
+        if (iconBox) {
+          tl.to(
+            iconBox,
             {
-              backgroundPosition: "200% 0",
-              duration: 0.6,
-              ease: "none",
-              onComplete: () => {
-                gsap.delayedCall(10, shimmer);
-              },
-            }
+              x: 0,
+              y: 0,
+              rotation: 0,
+              scale: 1,
+              autoAlpha: 1,
+              duration: 0.3,
+              ease: "back.out(1.56)",
+            },
+            start
           );
-        };
-        gsap.delayedCall(5, shimmer);
-      }
+        }
+
+        if (assetIcon) {
+          tl.to(
+            assetIcon,
+            {
+              clipPath: "inset(0 0% 0 0)",
+              duration: 0.25,
+              ease: "power1.inOut",
+            },
+            start + 0.3
+          );
+          tl.to(
+            assetIcon,
+            {
+              filter: "brightness(1) saturate(1)",
+              duration: 0.18,
+              ease: "power1.out",
+            },
+            start + 0.5
+          );
+        }
+
+        if (title) {
+          tl.to(
+            title,
+            {
+              clipPath: "inset(0 0% 0 0)",
+              duration: 0.25,
+              ease: "power1.inOut",
+            },
+            start + 0.55
+          );
+        }
+
+        if (descLines.length) {
+          tl.to(
+            descLines,
+            {
+              clipPath: "inset(0 0% 0 0)",
+              duration: 0.2,
+              stagger: 0.04,
+              ease: "power1.inOut",
+            },
+            start + 0.63
+          );
+        }
+
+        if (pulse) {
+          tl.fromTo(
+            pulse,
+            { scale: 0.5, autoAlpha: 0.58 },
+            {
+              scale: 1.5,
+              autoAlpha: 0,
+              duration: 0.2,
+              ease: "power1.out",
+            },
+            start + 0.8
+          );
+        }
+      });
+
+      // Pause at the end so the user can read all items before scrolling past
+      tl.to({}, { duration: 3 });
+
+      return () => {
+        window.dispatchEvent(
+          new CustomEvent("solution-pin-change", {
+            detail: { isPinned: false },
+          })
+        );
+        shimmerTl.kill();
+      };
     },
     { scope: sectionRef }
   );
 
   return (
-    <div
+    <section
       ref={sectionRef}
-      className="relative w-full bg-bg-light overflow-hidden"
+      className="solution-section relative min-h-screen w-full overflow-hidden"
     >
-      <div className="relative z-10 w-full max-w-7xl mx-auto py-20 px-6 md:px-10 lg:px-20">
-        <div className="flex flex-col gap-2 pb-15 w-full relative z-20 items-center">
-          <div ref={badgeRef} style={{ scale: 0.85, opacity: 0 }}>
+      <PipelineTrack />
+
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-6 py-14 md:px-10 lg:px-20">
+        <div className="relative z-20 flex w-full flex-col items-center gap-2 pb-12">
+          <div ref={badgeRef}>
             <AuroraBadge>The Solution</AuroraBadge>
           </div>
 
           <h2
-            className="heading-split-container text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center flex flex-wrap justify-center gap-x-2"
+            ref={headingRef}
+            className="heading-split-container mx-auto flex flex-wrap justify-center gap-x-2 text-balance text-center text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight"
             style={{
               backgroundImage:
                 "linear-gradient(90deg, currentColor 0%, currentColor 45%, #009311 50%, currentColor 55%, currentColor 100%)",
@@ -361,71 +511,29 @@ export default function Solution() {
               backgroundPosition: "-200% 0",
             }}
           >
-            <span
-              ref={headingLeftRef}
-              className="inline-block"
-              style={{ transform: "translateX(-30px)", opacity: 0 }}
-            >
+            <span ref={headingLeftRef} className="inline-block">
               One verification.
             </span>
-            <span
-              ref={headingRightRef}
-              className="relative inline-block"
-              style={{ transform: "translateX(30px)", opacity: 0 }}
-            >
-              Trusted everywhere.
-              <span
-                ref={underlineRef}
-                className="absolute bottom-0 left-0 h-[3px] bg-[#009311] rounded-full"
-                style={{ width: "0%" }}
-              />
+            <span ref={headingRightRef} className="inline-block">
+              <span className="relative inline-block">
+                Trusted
+                <span
+                  ref={underlineRef}
+                  className="absolute bottom-0 left-0 h-[3px] w-full rounded-full bg-[#009311]"
+                />
+              </span>{" "}
+              everywhere.
             </span>
           </h2>
         </div>
 
-        <div className="mt-10 max-w-5xl mx-auto flex flex-col gap-16 md:gap-24 relative">
-          {/* Horizontal Divider */}
-          <div
-            className="h-div-1 hidden md:block absolute top-[50%] left-0 right-0 h-[1px] bg-black/5 origin-center z-0"
-            style={{ transform: "scaleX(0)" }}
-          />
-
-          {/* First Row */}
-          <div
-            ref={row1Ref}
-            className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 md:gap-4 relative z-10"
-          >
-            {/* Vertical dividers */}
-            <div
-              className="v-div-1 hidden md:block absolute top-[-10%] bottom-[-10%] left-[33.33%] w-[1px] bg-black/5 origin-center z-0"
-              style={{ transform: "scaleY(0)" }}
-            />
-            <div
-              className="v-div-2 hidden md:block absolute top-[-10%] bottom-[-10%] left-[66.66%] w-[1px] bg-black/5 origin-center z-0"
-              style={{ transform: "scaleY(0)" }}
-            />
-
-            {firstsolu.map((solu, idx) => (
-              <SolutionItem key={`first-${idx}`} item={solu} />
-            ))}
-          </div>
-
-          {/* Second Row */}
-          <div
-            ref={row2Ref}
-            className="flex flex-col md:flex-row justify-center items-start md:items-center gap-12 md:gap-32 relative z-10"
-          >
-            <div
-              className="v-div-3 hidden md:block absolute top-[-10%] bottom-[-10%] left-[50%] w-[1px] bg-black/5 origin-center z-0"
-              style={{ transform: "scaleY(0)" }}
-            />
-
-            {secondsolu.map((solu, idx) => (
-              <SolutionItem key={`second-${idx}`} item={solu} />
-            ))}
-          </div>
+        <div ref={contentRef} className="solution-bento relative mx-auto w-full max-w-5xl">
+          <BentoGridLines />
+          {solutionSteps.map((solu, index) => (
+            <SolutionItem key={solu.title} item={solu} stepIndex={index} />
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,11 +1,11 @@
-import { useRef, type CSSProperties } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
-import AuroraBadge from "../components/ui/AuroraBadge";
 import ProblemCard from "../components/ui/ProblemCard";
 import SignalFlowBackground from "../components/ui/SignalFlowBackground";
+import Text from "../components/base/Text";
 
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -31,14 +31,7 @@ const problems = [
 
 export default function Problem() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-
-  const heading =
-    "Why building digital products still feels harder than it should.";
-  const words = heading.split(/([\s]+)/);
-  let shimmerCharIndex = 0;
 
   useGSAP(
     () => {
@@ -52,26 +45,10 @@ export default function Problem() {
       });
 
       tl.fromTo(
-        badgeRef.current,
-        { y: 12, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" },
-        0
+        gridRef.current,
+        { opacity: 1 }, // Dummy animation so timeline isn't empty before mm.add
+        { opacity: 1, duration: 0.1 }
       );
-
-      const wordEls = headingRef.current?.querySelectorAll(".heading-word");
-      if (wordEls?.length) {
-        tl.to(
-          wordEls,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power3.out",
-            stagger: 0.06,
-          },
-          "+=0.15"
-        );
-      }
 
       mm.add("(min-width: 768px)", () => {
         const cards = Array.from(
@@ -204,52 +181,14 @@ export default function Problem() {
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto py-20 px-6 md:px-10 lg:px-20">
-        <div className="flex flex-col gap-2 pb-15 w-full relative z-20">
-          <div ref={badgeRef} className="mx-auto w-fit" style={{ opacity: 0 }}>
-            <AuroraBadge>The Problem</AuroraBadge>
-          </div>
-
-          <h2
-            ref={headingRef}
-            className="problem-heading w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center"
-          >
-            {words.map((word, wordIndex) => {
-              if (word.trim() === "") return <span key={wordIndex}>{word}</span>;
-
-              const chars = Array.from(word);
-
-              return (
-                <span
-                  key={wordIndex}
-                  className="inline-block overflow-hidden align-bottom"
-                >
-                  <span
-                    className="heading-word inline-block"
-                    style={{ transform: "translateY(20px)", opacity: 0 }}
-                  >
-                    {chars.map((char, charIndex) => {
-                      const charStyle = {
-                        "--char-index": shimmerCharIndex++,
-                      } as CSSProperties;
-
-                      return (
-                        <span
-                          key={`${wordIndex}-${charIndex}`}
-                          className="heading-char inline-block"
-                          style={charStyle}
-                        >
-                          {char}
-                        </span>
-                      );
-                    })}
-                  </span>
-                </span>
-              );
-            })}
-          </h2>
+        <div className="flex flex-col gap-2 w-full relative z-20">
+          <Text 
+            btext="The Problem" 
+            heading="Why building digital products still feels harder than it should." 
+          />
         </div>
 
-        <div className="relative z-10 mt-10">
+        <div className="relative z-10">
           <div
             ref={gridRef}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10"

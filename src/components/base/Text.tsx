@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from "react";
+import { useRef, type ReactNode, type CSSProperties } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,9 +10,10 @@ type TextProps = {
   btext: ReactNode;
   heading: string;
   className?: string;
+  color?: string;
 };
 
-export default function Text({ btext, heading, className = "" }: TextProps) {
+export default function Text({ btext, heading, className = "", color }: TextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLHeadingElement>(null);
 
@@ -42,7 +43,7 @@ export default function Text({ btext, heading, className = "" }: TextProps) {
           opacity: 1,
           duration: 0.5,
           ease: "power3.out",
-          stagger: 0.04,
+          stagger: 0.06,
         },
         "-=0.3"
       );
@@ -51,6 +52,7 @@ export default function Text({ btext, heading, className = "" }: TextProps) {
 
   // Split heading string into words at render time
   const words = heading.split(/(\s+)/);
+  let shimmerCharIndex = 0;
 
   return (
     <div ref={containerRef} className="flex flex-col gap-2 pb-15 w-full">
@@ -64,17 +66,38 @@ export default function Text({ btext, heading, className = "" }: TextProps) {
         </AuroraBadge>
       </div>
       <h2
-        className={`${className} w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
+        className={`shimmer-heading ${className} w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
+        style={color ? ({ "--heading-color": color } as CSSProperties) : undefined}
       >
-        {words.map((word, i) => {
-          if (word.trim() === "") return <span key={i}>{word}</span>;
+        {words.map((word, wordIndex) => {
+          if (word.trim() === "") return <span key={wordIndex}>{word}</span>;
+
+          const chars = Array.from(word);
+
           return (
-            <span key={i} className="inline-block">
+            <span
+              key={wordIndex}
+              className="inline-block align-bottom"
+            >
               <span
                 className="heading-word inline-block"
                 style={{ transform: "translateY(100%)", opacity: 0 }}
               >
-                {word}
+                {chars.map((char, charIndex) => {
+                  const charStyle = {
+                    "--char-index": shimmerCharIndex++,
+                  } as CSSProperties;
+
+                  return (
+                    <span
+                      key={`${wordIndex}-${charIndex}`}
+                      className="heading-char inline-block"
+                      style={charStyle}
+                    >
+                      {char}
+                    </span>
+                  );
+                })}
               </span>
             </span>
           );
