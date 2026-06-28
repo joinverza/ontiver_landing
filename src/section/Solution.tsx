@@ -9,49 +9,34 @@ gsap.registerPlugin(ScrollTrigger);
 interface SolutionStep {
   icon: string;
   title: string;
-  para: string[];
+  para: string;
 }
 
 const solutionSteps: SolutionStep[] = [
   {
     icon: "./assets/verify.svg",
     title: "Verify",
-    para: [
-      "User submits identity documents through",
-      "a business's Ontiver-powered flow.",
-    ],
+    para: "User submits identity documents through a business's Ontiver-powered flow.",
   },
   {
     icon: "./assets/screen.svg",
     title: "Screen",
-    para: [
-      "Ontiver runs AML checks, sanctions",
-      "screening, and risk assessment automatically.",
-    ],
+    para: "Ontiver runs AML checks, sanctions screening, and risk assessment automatically.",
   },
   {
     icon: "./assets/proof.svg",
     title: "Store Proof",
-    para: [
-      "A verified identity proof is created and",
-      "stored securely - tied to the user, not just the business.",
-    ],
+    para: "A verified identity proof is created and stored securely - tied to the user, not just the business.",
   },
   {
     icon: "./assets/consent.svg",
     title: "Consent Share",
-    para: [
-      "When another business needs to verify the same user,",
-      "the user approves with a single consent action.",
-    ],
+    para: "When another business needs to verify the same user, the user approves with a single consent action.",
   },
   {
     icon: "./assets/reuse.svg",
     title: "Reuse",
-    para: [
-      "The new business gets trusted verification proof instantly.",
-      "No repeat document uploads. No delay.",
-    ],
+    para: "The new business gets trusted verification proof instantly. No repeat document uploads. No delay.",
   },
 ];
 
@@ -109,7 +94,7 @@ function SolutionItem({
       <div className="solution-cell-fill" />
       <div className="solution-cell-border" />
 
-      <div className="solution-item-content relative z-10 flex h-full w-full flex-col items-start justify-center">
+      <div className="solution-item-content relative z-10 flex h-full w-full flex-col items-center justify-center text-center">
         <div className="icon-box relative mb-5 flex h-16 w-16 items-center justify-center rounded-lg border border-white/15 bg-white">
           <span className="solution-icon-screen-glow" aria-hidden="true" />
           <span className="solution-icon-sheen" aria-hidden="true" />
@@ -122,16 +107,14 @@ function SolutionItem({
         </div>
 
         <div className="w-full max-w-[300px]">
-          <h6 className="item-title relative inline-block pb-2 text-lg font-semibold text-black">
+          <h6 className="item-title relative inline-block pb-2 text-xl font-semibold text-black">
             {item.title}
           </h6>
 
-          <div className="item-desc text-sm leading-relaxed text-black/58">
-            {item.para.map((line) => (
-              <span key={line} className="desc-line block">
-                {line}
-              </span>
-            ))}
+          <div className="item-desc text-base text-black/90 text-justify leading-relaxed">
+            <span className="desc-line block text-center">
+              {item.para}
+            </span>
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default function ProblemCard({
 
   return (
     <div
-      className="problem-card-shell relative p-4 rounded-3xl bg-white border border-black/5 overflow-hidden"
+      className="problem-card-shell relative flex flex-col p-1 pb-8 gap-2 rounded-2xl bg-white border border-black/5 overflow-hidden shadow-xl"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
@@ -47,7 +47,7 @@ export default function ProblemCard({
       <div className="problem-card-border" />
       <div className="problem-card-noise" />
 
-      <div className="problem-card-visual relative w-full aspect-square rounded-2xl overflow-hidden mb-6">
+      <div className="problem-card-visual relative z-20 w-full aspect-square rounded-xl overflow-hidden shadow-sm">
         <div className="problem-card-illustration">{illustration}</div>
         {/* <div className="problem-card-scan" /> */}
         <div className="problem-card-target" />
@@ -60,11 +60,11 @@ export default function ProblemCard({
         <div className="problem-card-data problem-card-data-three" />
       </div>
 
-      <div className="problem-card-copy relative z-10">
-        <h6 className="problem-card-title text-green font-semibold text-lg mb-2">
+      <div className="problem-card-copy relative z-10 px-4 mt-2 h-32">
+        <h6 className="problem-card-title text-green font-semibold text-xl mb-2">
           {title}
         </h6>
-        <p className="text-sm text-black/60 leading-relaxed">{description}</p>
+        <p className="text-sm text-black/90 leading-relaxed">{description}</p>
       </div>
     </div>
   );

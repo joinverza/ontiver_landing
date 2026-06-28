@@ -180,7 +180,7 @@ export default function Problem() {
         <SignalFlowBackground />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto py-20 px-6 md:px-10 lg:px-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto py-20 pb-32 px-6 md:px-10 lg:px-20">
         <div className="flex flex-col gap-2 w-full relative z-20">
           <Text 
             btext="The Problem" 

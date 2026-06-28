@@ -10,10 +10,17 @@ type TextProps = {
   btext: ReactNode;
   heading: string;
   className?: string;
+  containerClassName?: string;
   color?: string;
 };
 
-export default function Text({ btext, heading, className = "", color }: TextProps) {
+export default function Text({
+  btext,
+  heading,
+  className = "",
+  containerClassName = "",
+  color,
+}: TextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLHeadingElement>(null);
 
@@ -55,7 +62,10 @@ export default function Text({ btext, heading, className = "", color }: TextProp
   let shimmerCharIndex = 0;
 
   return (
-    <div ref={containerRef} className="flex flex-col gap-2 pb-15 w-full">
+    <div
+      ref={containerRef}
+      className={`flex flex-col gap-2 pb-15 w-full ${containerClassName}`}
+    >
       <div
         ref={badgeRef as React.RefObject<HTMLDivElement>}
         className="mx-auto w-fit"
