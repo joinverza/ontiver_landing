@@ -2,7 +2,7 @@ import { Lock, Play, BookOpen, FileText } from 'lucide-react';
 
 export default function FrictionIllustration() {
   return (
-    <div className="w-full h-full relative flex flex-col items-center justify-between py-12 px-6 bg-[#0a0f0d] overflow-hidden rounded-2xl group problem-card">
+    <div className="w-full h-full relative flex flex-col items-center justify-between py-12 px-6 bg-[#0a0f0d] overflow-hidden rounded-2xl group">
       {/* Vertical connector line */}
       <div className="absolute top-12 bottom-20 w-[1px] bg-white/10 left-1/2 -translate-x-1/2 z-0 overflow-hidden">
         {/* Light beam */}

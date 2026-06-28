@@ -1,6 +1,6 @@
 export default function RepeatIllustration() {
   return (
-    <div className="w-full h-full relative flex items-center justify-center bg-[#0a0f0d] overflow-hidden rounded-2xl group problem-card">
+    <div className="w-full h-full relative flex items-center justify-center bg-[#0a0f0d] overflow-hidden rounded-2xl group">
       {/* Background soft glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-green-500/10 blur-[50px] rounded-full mix-blend-screen" />
 

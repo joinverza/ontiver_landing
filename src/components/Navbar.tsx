@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import MagneticFillButton from "../ui/MagneticFillButton";
+import MagneticFillButton from "./ui/MagneticFillButton";
 
 const Navlinks = [
   { name: "Home", to: "/" },
-  { name: "Use Cases", to: "/#cases" },
+  // { name: "Use Cases", to: "/#cases" },
   { name: "Pricing", to: "/#pricing" },
   { name: "Calculator", to: "/calculator" },
   { name: "Blogs", to: "/blogs" },

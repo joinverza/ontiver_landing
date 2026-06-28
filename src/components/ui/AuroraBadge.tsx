@@ -20,7 +20,7 @@ export default function AuroraBadge({
         className="absolute z-0 w-[400%] aspect-square top-1/2 left-1/2 origin-center animate-aurora-spin group-hover:animate-aurora-spin-fast"
         style={{
           background:
-            "conic-gradient(from 0deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 40%, #009311 60%, #002D0E 70%, #009311 80%, rgba(0,0,0,0.05) 100%)",
+            "conic-gradient(from 0deg, transparent 0%, transparent 75%, #009311 95%, transparent 100%)",
         }}
       />  
 

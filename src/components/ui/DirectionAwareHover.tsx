@@ -13,6 +13,7 @@ type DirectionAwareHoverProps = {
   className?: string;
   imageClassName?: string;
   overlayClassName?: string;
+  showOverlay?: boolean;
   onDirectionEnter?: (
     direction: Direction,
     event: MouseEvent<HTMLElement>
@@ -80,6 +81,7 @@ export default function DirectionAwareHover({
   className = "",
   imageClassName = "",
   overlayClassName = "",
+  showOverlay = true,
   onDirectionEnter,
   onDirectionLeave,
 }: DirectionAwareHoverProps) {
@@ -102,7 +104,7 @@ export default function DirectionAwareHover({
 
   return (
     <article
-      className={`direction-aware-hover group relative block h-full w-full overflow-hidden border border-white/10 bg-[#05150e] transition-[border-color,transform] duration-[260ms] ease-[cubic-bezier(0.2,0,0,1)] will-change-[transform,border-color] ${className}`}
+      className={`group relative block h-full w-full overflow-hidden border border-white/10 bg-[#05150e] transition-[border-color,transform] duration-[260ms] ease-[cubic-bezier(0.2,0,0,1)] will-change-[transform,border-color] ${className}`}
       data-hovered={isHovered ? "true" : "false"}
       data-direction={direction}
       style={directionVars[direction]}
@@ -113,10 +115,12 @@ export default function DirectionAwareHover({
         className={`direction-aware-hover__image absolute inset-0 z-0 scale-[1.04] bg-cover bg-center opacity-60 brightness-[0.65] transition-[filter,opacity,transform] duration-[320ms] ease-[cubic-bezier(0.2,0,0,1)] will-change-[transform,filter] group-data-[hovered=true]:opacity-100 group-data-[hovered=true]:[filter:brightness(1.4)_saturate(1.2)_contrast(1.1)] group-data-[hovered=true]:[transform:translate3d(var(--module-image-x),var(--module-image-y),0)_scale(1.07)] ${imageClassName}`}
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
-      <div
-        className={`direction-aware-hover__overlay pointer-events-none absolute inset-0 z-[1] opacity-0 transition-[opacity,transform] duration-[320ms] ease-[cubic-bezier(0.2,0,0,1)] [transform:translate3d(var(--module-overlay-x),var(--module-overlay-y),0)] group-data-[hovered=true]:opacity-40 group-data-[hovered=true]:[transform:translate3d(0,0,0)] ${overlayClassName}`}
-      />
-      <div className="direction-aware-hover__content absolute inset-0 z-[2] transition-transform duration-[320ms] ease-[cubic-bezier(0.2,0,0,1)] group-data-[hovered=true]:[transform:translate3d(var(--module-content-x),var(--module-content-y),0)]">
+      {showOverlay ? (
+        <div
+          className={`pointer-events-none absolute inset-0 z-[1] opacity-0 transition-[opacity,transform] duration-[320ms] ease-[cubic-bezier(0.2,0,0,1)] [transform:translate3d(var(--module-overlay-x),var(--module-overlay-y),0)] group-data-[hovered=true]:opacity-40 group-data-[hovered=true]:[transform:translate3d(0,0,0)] ${overlayClassName}`}
+        />
+      ) : null}
+      <div className="absolute inset-0 z-[2] transition-transform duration-[320ms] ease-[cubic-bezier(0.2,0,0,1)] group-data-[hovered=true]:[transform:translate3d(var(--module-content-x),var(--module-content-y),0)]">
         {children}
       </div>
     </article>

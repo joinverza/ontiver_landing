@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent } from "react";
+import { useRef, type MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -21,6 +21,11 @@ type UseCaseCard = {
   idle: "fintech" | "lenders" | "marketplaces" | "platforms" | "schools" | "teams";
 };
 
+type UseCaseAnimatedCard = HTMLElement & {
+  _useCaseIdleTween?: gsap.core.Tween | gsap.core.Timeline;
+  _useCaseBreathingTween?: gsap.core.Tween;
+};
+
 const directionOffsets: Record<Direction, { x: number; y: number }> = {
   top: { x: 0, y: -20 },
   right: { x: 20, y: 0 },
@@ -28,14 +33,22 @@ const directionOffsets: Record<Direction, { x: number; y: number }> = {
   left: { x: -20, y: 0 },
 };
 
+const breathingDepthConfigs = [
+  { rotateX: 2.2, rotateY: -1.4, duration: 5.5 },
+  { rotateX: -1.8, rotateY: 1.2, duration: 6.2 },
+  { rotateX: 1.5, rotateY: 2.0, duration: 4.8 },
+  { rotateX: -2.4, rotateY: -1.1, duration: 7.0 },
+  { rotateX: 1.9, rotateY: 1.6, duration: 5.2 },
+  { rotateX: -1.3, rotateY: -2.2, duration: 6.7 },
+];
+
 const useCaseCards: UseCaseCard[] = [
   {
     id: "fintechs",
     title: "Fintechs",
     description: "Reduce KYC friction during onboarding.",
     imageUrl: "./assets/fintech.png",
-    className:
-      "use-case-card-fintechs col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
+    className: "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
     idle: "fintech",
   },
@@ -44,8 +57,7 @@ const useCaseCards: UseCaseCard[] = [
     title: "Digital Lenders",
     description: "Verify borrowers before approval.",
     imageUrl: "./assets/lenders.png",
-    className:
-      "use-case-card-lenders col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
+    className: "col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
     idle: "lenders",
   },
@@ -55,7 +67,7 @@ const useCaseCards: UseCaseCard[] = [
     description: "Build trust across buyers, sellers, and vendors.",
     imageUrl: "./assets/marketplaces.png",
     className:
-      "use-case-card-marketplaces col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
+      "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
     cardClassName: "min-h-[568px] max-[640px]:min-h-[260px]",
     contentClassName: "top-12 bottom-auto max-[640px]:top-auto max-[640px]:bottom-[30px]",
     lineClassName: "right-4 -bottom-2 left-4 h-px",
@@ -66,8 +78,7 @@ const useCaseCards: UseCaseCard[] = [
     title: "HR Platforms",
     description: "Verify candidates before onboarding.",
     imageUrl: "./assets/platforms.png",
-    className:
-      "use-case-card-platforms col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
+    className: "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[260px]",
     contentClassName:
       "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -79,8 +90,7 @@ const useCaseCards: UseCaseCard[] = [
     title: "Schools",
     description: "Verify students, applicants, and credential holders.",
     imageUrl: "./assets/schools.png",
-    className:
-      "use-case-card-schools col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
+    className: "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[260px]",
     contentClassName:
       "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -92,8 +102,7 @@ const useCaseCards: UseCaseCard[] = [
     title: "Compliance Teams",
     description: "Build a defensible verification workflow.",
     imageUrl: "./assets/teams.png",
-    className:
-      "use-case-card-teams col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
+    className: "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[260px]",
     contentClassName:
       "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -106,7 +115,7 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
   if (type === "fintech") {
     return (
       <div
-        className="use-case-idle-layer use-case-fintech-layer pointer-events-none absolute inset-0 z-[3]"
+        className="pointer-events-none absolute inset-0 z-[3]"
         aria-hidden="true"
       >
         <span className="use-case-dollar absolute top-[22%] left-[18%] font-sans text-[22px] font-extrabold text-[#70ff8a]/70 opacity-45">
@@ -125,12 +134,12 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
   if (type === "lenders") {
     return (
       <div
-        className="use-case-idle-layer use-case-lender-layer pointer-events-none absolute top-[21%] right-[15%] z-[3] h-[150px] w-[150px]"
+        className="pointer-events-none absolute top-[21%] right-[15%] z-[3] h-[150px] w-[150px]"
         aria-hidden="true"
       >
-        <span className="use-case-ring use-case-ring-one absolute inset-0 rounded-full border border-[#70ff8a]/25" />
-        <span className="use-case-ring use-case-ring-two absolute inset-[19%] rounded-full border border-[#70ff8a]/25" />
-        <span className="use-case-ring use-case-ring-three absolute inset-[36%] rounded-full border border-[#70ff8a]/25" />
+        <span className="use-case-ring absolute inset-0 rounded-full border border-[#70ff8a]/25" />
+        <span className="use-case-ring absolute inset-[19%] rounded-full border border-[#70ff8a]/25" />
+        <span className="use-case-ring absolute inset-[36%] rounded-full border border-[#70ff8a]/25" />
       </div>
     );
   }
@@ -138,7 +147,7 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
   if (type === "marketplaces") {
     return (
       <span
-        className="use-case-idle-layer use-case-bag-anchor pointer-events-none absolute top-[18%] left-1/2 z-[3] size-px origin-top"
+        className="pointer-events-none absolute top-[18%] left-1/2 z-[3] size-px origin-top"
         aria-hidden="true"
       />
     );
@@ -147,7 +156,7 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
   if (type === "platforms") {
     return (
       <div
-        className="use-case-idle-layer use-case-network-layer pointer-events-none absolute inset-0 z-[3]"
+        className="pointer-events-none absolute inset-0 z-[3]"
         aria-hidden="true"
       >
         <span className="use-case-network-line absolute top-[39%] left-[30%] h-px w-[27%] origin-left rotate-[12deg] bg-[#70ff8a]/20 opacity-20" />
@@ -161,7 +170,7 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
   if (type === "schools") {
     return (
       <span
-        className="use-case-idle-layer use-case-scan-line pointer-events-none absolute top-0 right-0 left-0 z-[3] h-0.5 bg-[linear-gradient(90deg,transparent,rgba(112,255,138,0.8),transparent)]"
+        className="use-case-scan-line pointer-events-none absolute top-0 right-0 left-0 z-[3] h-0.5 bg-[linear-gradient(90deg,transparent,rgba(112,255,138,0.8),transparent)]"
         aria-hidden="true"
       />
     );
@@ -169,7 +178,7 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
 
   return (
     <span
-      className="use-case-idle-layer use-case-screen-flicker pointer-events-none absolute top-[20%] right-[8%] z-[3] h-[42%] w-[38%] bg-[#70ff8a]/15 opacity-15 mix-blend-screen"
+      className="use-case-screen-flicker pointer-events-none absolute top-[20%] right-[8%] z-[3] h-[42%] w-[38%] bg-[#70ff8a]/15 opacity-15 mix-blend-screen"
       aria-hidden="true"
     />
   );
@@ -178,7 +187,7 @@ function UseCaseIdleLayer({ type }: { type: UseCaseCard["idle"] }) {
 function UseCaseCardItem({ card }: { card: UseCaseCard }) {
   const handleEnter = (
     direction: Direction,
-    event: MouseEvent<HTMLElement>
+    event: ReactMouseEvent<HTMLElement>
   ) => {
     const offset = directionOffsets[direction];
     const cardEl = event.currentTarget;
@@ -188,22 +197,36 @@ function UseCaseCardItem({ card }: { card: UseCaseCard }) {
     );
     const contentEl = cardEl.querySelector<HTMLElement>(".use-case-card-content");
     const lineEl = shellEl?.querySelector<HTMLElement>(".use-case-connection-line");
-    const idleTween = (
-      shellEl as
-        | (HTMLElement & {
-            _useCaseIdleTween?: gsap.core.Tween | gsap.core.Timeline;
-          })
-        | null
-    )?._useCaseIdleTween;
+    const animatedShell = shellEl as UseCaseAnimatedCard | null;
+    const idleTween = animatedShell?._useCaseIdleTween;
+    const breathingTween = animatedShell?._useCaseBreathingTween;
 
-    gsap.to(cardEl, {
+    let counterRotateX = 0;
+    let counterRotateY = 0;
+    if (shellEl) {
+      shellEl.dataset.hovered = "true";
+      counterRotateX = -Number(gsap.getProperty(shellEl, "rotateX") || 0);
+      counterRotateY = -Number(gsap.getProperty(shellEl, "rotateY") || 0);
+    }
+    if (breathingTween) {
+      gsap.to(breathingTween, {
+        timeScale: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    }
+
+      gsap.to(cardEl, {
       y: -6,
       scale: 1.02,
+      rotateX: counterRotateX,
+      rotateY: counterRotateY,
       borderColor: "rgba(34, 197, 94, 0.45)",
-      duration: 0.3,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: "auto",
+        transformPerspective: 800,
+      });
     if (imageEl) {
       gsap.to(imageEl, {
         x: offset.x * -0.3,
@@ -227,10 +250,12 @@ function UseCaseCardItem({ card }: { card: UseCaseCard }) {
       gsap.to(lineEl, { opacity: 1, duration: 0.2, overwrite: "auto" });
     }
 
-    idleTween?.timeScale(2);
+    if (idleTween) {
+      gsap.to(idleTween, { timeScale: 2, duration: 0.35, ease: "power2.out" });
+    }
   };
 
-  const handleLeave = (_direction: Direction, event: MouseEvent<HTMLElement>) => {
+  const handleLeave = (_direction: Direction, event: ReactMouseEvent<HTMLElement>) => {
     const cardEl = event.currentTarget;
     const shellEl = cardEl.closest<HTMLElement>("[data-use-case-card]");
     const imageEl = cardEl.querySelector<HTMLElement>(
@@ -238,21 +263,24 @@ function UseCaseCardItem({ card }: { card: UseCaseCard }) {
     );
     const contentEl = cardEl.querySelector<HTMLElement>(".use-case-card-content");
     const lineEl = shellEl?.querySelector<HTMLElement>(".use-case-connection-line");
-    const idleTween = (
-      shellEl as
-        | (HTMLElement & {
-            _useCaseIdleTween?: gsap.core.Tween | gsap.core.Timeline;
-          })
-        | null
-    )?._useCaseIdleTween;
+    const animatedShell = shellEl as UseCaseAnimatedCard | null;
+    const idleTween = animatedShell?._useCaseIdleTween;
+    const breathingTween = animatedShell?._useCaseBreathingTween;
 
-    gsap.to(cardEl, {
-      y: 0,
-      scale: 1,
+    if (shellEl) {
+      shellEl.dataset.hovered = "false";
+    }
+
+      gsap.to(cardEl, {
+        y: 0,
+        scale: 1,
+        rotateX: 0,
+        rotateY: 0,
       borderColor: "rgba(255, 255, 255, 0.08)",
       duration: 0.4,
       ease: "power2.inOut",
       overwrite: "auto",
+      transformPerspective: 800,
     });
     if (imageEl) {
       gsap.to(imageEl, {
@@ -277,36 +305,41 @@ function UseCaseCardItem({ card }: { card: UseCaseCard }) {
       gsap.to(lineEl, { opacity: 0, duration: 0.3, overwrite: "auto" });
     }
 
-    if (idleTween) gsap.to(idleTween, { timeScale: 1, duration: 0.8 });
+    if (breathingTween) {
+      gsap.to(breathingTween, {
+        timeScale: 1,
+        duration: 1.2,
+        ease: "power2.inOut",
+      });
+    }
+    if (idleTween) {
+      gsap.to(idleTween, { timeScale: 1, duration: 0.8, ease: "power2.inOut" });
+    }
   };
 
   return (
     <div
-      className={`use-case-card-shell relative min-h-0 min-w-0 [transform-style:preserve-3d] will-change-[transform,opacity] ${card.className}`}
+      className={`relative min-h-0 min-w-0 [transform-style:preserve-3d] will-change-[transform,opacity] ${card.className}`}
       data-idle={card.idle}
       data-use-case-card
     >
       <DirectionAwareHover
         imageUrl={card.imageUrl}
-        className={`use-case-card h-full w-full min-h-[276px] origin-center rounded-3xl border-white/10 bg-[#06160f] ${card.cardClassName ?? ""}`}
-        imageClassName="use-case-card-image opacity-[0.86] brightness-[0.92] saturate-[1.05]"
-        overlayClassName="bg-[linear-gradient(135deg,rgba(34,197,94,0.18),rgba(0,0,0,0.25)),rgba(0,0,0,0.25)]"
+        className={`use-case-card-surface h-full w-full min-h-[276px] origin-center rounded-3xl border-white/10 bg-[#06160f] ${card.cardClassName ?? ""}`}
+        imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
+        showOverlay={false}
         onDirectionEnter={handleEnter}
         onDirectionLeave={handleLeave}
       >
         <UseCaseIdleLayer type={card.idle} />
-        <span
-          className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(6,22,15,0.04)_0%,rgba(6,22,15,0.42)_55%,rgba(1,11,7,0.88)_100%),rgba(22,58,42,0.3)]"
-          aria-hidden="true"
-        />
         <div
-          className={`use-case-card-content-clip absolute right-8 bottom-[42px] left-8 z-[4] overflow-hidden max-[640px]:right-6 max-[640px]:bottom-[30px] max-[640px]:left-6 ${card.contentClassName ?? ""}`}
+          className={`absolute right-8 bottom-[42px] left-8 z-[50] overflow-visible max-[640px]:right-6 max-[640px]:bottom-[30px] max-[640px]:left-6 ${card.contentClassName ?? ""}`}
         >
-          <div className="use-case-card-content max-w-[228px] will-change-transform">
-            <h3 className="use-case-card-title font-sans text-xl leading-[1.1] font-medium tracking-[0] text-white">
+          <div className="use-case-card-content relative z-[50] max-w-[228px] opacity-100 will-change-transform">
+            <h3 className="font-sans text-xl leading-[1.1] font-medium tracking-[0] text-white">
               {card.title}
             </h3>
-            <p className="use-case-card-description mt-2 font-body text-sm leading-[1.28] text-white/80">
+            <p className="mt-2 font-body text-sm leading-[1.28] text-white/80">
               {card.description}
             </p>
           </div>
@@ -425,6 +458,7 @@ export default function UseCase() {
       const connectionLines = gsap.utils.toArray<HTMLElement>(
         ".use-case-connection-line"
       );
+      const breathingTweens: gsap.core.Tween[] = [];
 
       gsap.set(cards, {
         opacity: 0,
@@ -434,7 +468,7 @@ export default function UseCase() {
         transformPerspective: 900,
         transformOrigin: "center bottom",
       });
-      gsap.set(visibleContents, { yPercent: 100 });
+      gsap.set(visibleContents, { y: 12, opacity: 1 });
       gsap.set(connectionLines, { opacity: 0 });
       gsap.set(badge, { opacity: 0, y: -16, scale: 0.88 });
       gsap.set(headingWords, { opacity: 0, y: 20 });
@@ -500,7 +534,8 @@ export default function UseCase() {
       entrance.to(
         visibleContents,
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 0.5,
           ease: "power2.out",
           stagger: {
@@ -516,22 +551,90 @@ export default function UseCase() {
         entrance.call(
           () => {
             const idleTween = createIdleTween(card);
+            const breathingConfig =
+              breathingDepthConfigs[index % breathingDepthConfigs.length];
+            const breathingTween = gsap.to(card, {
+              rotateX: breathingConfig.rotateX,
+              rotateY: breathingConfig.rotateY,
+              duration: breathingConfig.duration,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+              transformPerspective: 800,
+              transformOrigin: "center center",
+              overwrite: false,
+            });
             card.dataset.idleActive = "true";
-            (card as HTMLElement & {
-              _useCaseIdleTween?: gsap.core.Tween | gsap.core.Timeline;
-            })._useCaseIdleTween = idleTween;
+            card.dataset.hovered = "false";
+            (card as UseCaseAnimatedCard)._useCaseIdleTween = idleTween;
+            (card as UseCaseAnimatedCard)._useCaseBreathingTween = breathingTween;
+            breathingTweens.push(breathingTween);
           },
           undefined,
           1.85 + index * staggerStep
         );
       });
 
-      return () => {
-        gridDrift.kill();
+      const getDistanceFromCursor = (card: HTMLElement, event: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const cardX = rect.left + rect.width / 2;
+        const cardY = rect.top + rect.height / 2;
+
+        return Math.hypot(cardX - event.clientX, cardY - event.clientY);
+      };
+
+      const handleMouseMove = (event: MouseEvent) => {
+        const rect = section.getBoundingClientRect();
+        const cx = (event.clientX - rect.left - rect.width / 2) / rect.width;
+        const cy = (event.clientY - rect.top - rect.height / 2) / rect.height;
+
         cards.forEach((card) => {
-          (card as HTMLElement & {
-            _useCaseIdleTween?: gsap.core.Tween | gsap.core.Timeline;
-          })._useCaseIdleTween?.kill();
+          if (card.dataset.hovered === "true") return;
+
+          const surface = card.querySelector<HTMLElement>(".use-case-card-surface");
+          if (!surface) return;
+
+          const distance = getDistanceFromCursor(card, event);
+          const influence = Math.max(0, 1 - distance / 600);
+
+          gsap.to(surface, {
+            rotateY: cx * influence * 3,
+            rotateX: cy * influence * -2,
+            duration: 0.8,
+            ease: "power1.out",
+            overwrite: "auto",
+            transformPerspective: 800,
+          });
+        });
+      };
+
+      const handleMouseLeave = () => {
+        const nonHoveredSurfaces = cards
+          .filter((card) => card.dataset.hovered !== "true")
+          .map((card) => card.querySelector<HTMLElement>(".use-case-card-surface"))
+          .filter(Boolean) as HTMLElement[];
+
+        gsap.to(nonHoveredSurfaces, {
+          rotateX: 0,
+          rotateY: 0,
+          duration: 1,
+          ease: "power2.inOut",
+          overwrite: "auto",
+          transformPerspective: 800,
+        });
+      };
+
+      section.addEventListener("mousemove", handleMouseMove);
+      section.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        section.removeEventListener("mousemove", handleMouseMove);
+        section.removeEventListener("mouseleave", handleMouseLeave);
+        gridDrift.kill();
+        breathingTweens.forEach((tween) => tween.kill());
+        cards.forEach((card) => {
+          (card as UseCaseAnimatedCard)._useCaseIdleTween?.kill();
+          (card as UseCaseAnimatedCard)._useCaseBreathingTween?.kill();
         });
       };
     },
@@ -542,31 +645,29 @@ export default function UseCase() {
     <section
       ref={sectionRef}
       id="cases"
-      className="use-case-section relative isolate overflow-hidden bg-[#06160f] px-[clamp(18px,5vw,80px)] py-[clamp(76px,9vw,118px)] text-white [background-image:radial-gradient(circle_at_50%_42%,rgba(0,147,17,0.08),transparent_28%)] max-[640px]:px-[18px] max-[640px]:py-[68px]"
+      className="relative isolate overflow-hidden bg-[#06160f] px-[clamp(18px,5vw,80px)] py-[clamp(76px,9vw,118px)] text-white [background-image:radial-gradient(circle_at_50%_42%,rgba(0,147,17,0.08),transparent_28%)] max-[640px]:px-[18px] max-[640px]:py-[68px]"
     >
       <div
         ref={gridRef}
-        className="use-case-perspective-grid pointer-events-none absolute -top-[10%] -right-[10%] -bottom-[25%] -left-[10%] z-0 origin-center [--use-case-grid-drift:0px] [background-image:linear-gradient(rgba(34,197,94,0.065)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(34,197,94,0.055)_0.5px,transparent_0.5px)] [background-position:0_var(--use-case-grid-drift),0_var(--use-case-grid-drift)] [background-size:60px_60px] [transform:perspective(800px)_rotateX(55deg)] will-change-[transform,background-position]"
+        className="pointer-events-none absolute -top-[10%] -right-[10%] -bottom-[25%] -left-[10%] z-0 origin-center [--use-case-grid-drift:0px] [background-image:linear-gradient(rgba(34,197,94,0.065)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(34,197,94,0.055)_0.5px,transparent_0.5px)] [background-position:0_var(--use-case-grid-drift),0_var(--use-case-grid-drift)] [background-size:60px_60px] [transform:perspective(800px)_rotateX(55deg)] will-change-[transform,background-position]"
         aria-hidden="true"
       />
       <div
-        className="use-case-radial-mask pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_56%,rgba(1,11,7,0.9)_0%,rgba(1,11,7,0.56)_38%,transparent_78%)]"
+        className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_56%,rgba(1,11,7,0.9)_0%,rgba(1,11,7,0.56)_38%,transparent_78%)]"
         aria-hidden="true"
       />
 
       <div className="relative z-[2] mx-auto w-[min(100%,1180px)]">
         <Text
-          className="use-case-heading"
           containerClassName="use-case-text pb-[clamp(36px,5vw,54px)]"
-          badgeClassName="use-case-heading"
-          badgeTextClassName="border border-white/80 bg-[#06160f]/70 text-white"
+          badgeTextClassName="border border-light-primary/60! bg-[#06160f]/85! text-[#eaffef]!"
           color="white"
           btext="Use Cases"
           heading="Built for the teams that need verified trust most."
           animate={false}
         />
 
-        <div className="use-case-bento-grid relative grid grid-cols-6 auto-rows-[minmax(128px,auto)] gap-4 [perspective:900px] max-[1024px]:grid-cols-2 max-[1024px]:auto-rows-auto max-[640px]:grid-cols-1 max-[640px]:gap-3.5">
+        <div className="relative grid grid-cols-6 auto-rows-[minmax(128px,auto)] gap-4 [perspective:900px] max-[1024px]:grid-cols-2 max-[1024px]:auto-rows-auto max-[640px]:grid-cols-1 max-[640px]:gap-3.5">
           {useCaseCards.map((card) => (
             <UseCaseCardItem key={card.id} card={card} />
           ))}
