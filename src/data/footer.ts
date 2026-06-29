@@ -34,8 +34,8 @@ export const footerGroups: FooterGroup[] = [
 
 export const footerIcons: FooterIcon[] = [
   {
-    icon: "./assets/telegram.svg",
-    alt: "telegram-icon",
+    icon: "./assets/linkedin.svg",
+    alt: "linkedin-icon",
   },
   {
     icon: "./assets/instagram.svg",
