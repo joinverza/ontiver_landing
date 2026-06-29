@@ -269,18 +269,20 @@ export default function ContactPage() {
 
               <div className="mt-9 flex gap-3">
                 {contactSocialIcons.map((social) => (
-                  <button
+                  <a
                     key={social.label}
                     className="contact-social-icon grid h-9 w-9 place-items-center rounded-full bg-white/[0.06] transition-colors duration-150 hover:bg-white/[0.15]"
-                    type="button"
                     aria-label={social.label}
+                    href={social.href}
+                    rel="noreferrer"
+                    target="_blank"
                   >
                     <img
                       src={social.icon}
                       alt=""
                       className="h-4 w-4 brightness-0 invert transition-transform duration-150 hover:scale-[1.15]"
                     />
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>

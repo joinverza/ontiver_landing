@@ -196,6 +196,13 @@ export default function Calculator() {
     void navigator.clipboard?.writeText(message);
   };
 
+  const viewRecommendedPlan = () => {
+    document.getElementById("pricing-plans")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   useGSAP(
     () => {
       if (!sectionRef.current || !leftPanelRef.current || !rightPanelRef.current) return;
@@ -437,6 +444,7 @@ export default function Calculator() {
             processingLabel={processingLabel}
             showResultActions={showResultActions}
             onShare={shareResults}
+            onViewRecommendedPlan={viewRecommendedPlan}
           />
         </div>
       </div>

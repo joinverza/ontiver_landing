@@ -8,7 +8,11 @@ export default function PlanComparisonTable({
   tableRef: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
-    <section ref={tableRef} className="px-5 py-16 opacity-0 sm:px-6 sm:py-24">
+    <section
+      id="plan-comparison"
+      ref={tableRef}
+      className="px-5 py-16 opacity-0 sm:px-6 sm:py-24"
+    >
       <div className="mx-auto max-w-[1180px]">
         <Text
           btext="Plan Comparison"

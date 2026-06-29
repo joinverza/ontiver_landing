@@ -32,27 +32,52 @@ export default function ArticleSidebar({
         <h2 className="text-2xl font-bold text-[#05150E]">Follow Us</h2>
         <div className="mt-8 grid grid-cols-5 gap-3 sm:gap-4">
           <span className="article-follow-icon">
-            <PlatformIcon label="Facebook" count="10k" color="#1877F2">
+            <PlatformIcon
+              label="Facebook"
+              count="10k"
+              color="#1877F2"
+              href="https://www.facebook.com/"
+            >
               <img src="/assets/facebook-post.svg" alt="" className="h-5 w-5" />
             </PlatformIcon>
           </span>
           <span className="article-follow-icon">
-            <PlatformIcon label="Twitter" count="69k" color="#1DA1F2">
+            <PlatformIcon
+              label="Twitter"
+              count="69k"
+              color="#1DA1F2"
+              href="https://x.com/"
+            >
               <img src="/assets/twitter-post.svg" alt="" className="h-5 w-5" />
             </PlatformIcon>
           </span>
           <span className="article-follow-icon">
-            <PlatformIcon label="Instagram" count="45k" color="#E1306C">
+            <PlatformIcon
+              label="Instagram"
+              count="45k"
+              color="#E1306C"
+              href="https://www.instagram.com/"
+            >
               <img src="/assets/insta-post.svg" alt="" className="h-5 w-5" />
             </PlatformIcon>
           </span>
           <span className="article-follow-icon">
-            <PlatformIcon label="Pinterest" count="69k" color="#E60023">
+            <PlatformIcon
+              label="Pinterest"
+              count="69k"
+              color="#E60023"
+              href="https://www.pinterest.com/"
+            >
               <img src="/assets/pinterest.svg" alt="" className="h-5 w-5" />
             </PlatformIcon>
           </span>
           <span className="article-follow-icon">
-            <PlatformIcon label="YouTube" count="69k" color="#FF0000">
+            <PlatformIcon
+              label="YouTube"
+              count="69k"
+              color="#FF0000"
+              href="https://www.youtube.com/"
+            >
               <img src="/assets/tube-post.svg" alt="" className="h-5 w-5" />
             </PlatformIcon>
           </span>

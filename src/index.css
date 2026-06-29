@@ -128,10 +128,6 @@ html.lenis body {
   animation: modules-radar-ring calc(3s / var(--module-idle-speed)) ease-out infinite;
 }
 
-.module-visual-scan {
-  animation: modules-dashboard-scan calc(3.2s / var(--module-idle-speed)) ease-in-out infinite;
-}
-
 .module-visual-code span {
   animation: modules-code-breathe calc(2.8s / var(--module-idle-speed)) ease-in-out infinite;
 }
@@ -227,19 +223,6 @@ html.lenis body {
   50% {
     opacity: 0.56;
     transform: scale(1.08);
-  }
-}
-
-@keyframes modules-dashboard-scan {
-  0%, 100% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-  18%, 72% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(240px);
   }
 }
 

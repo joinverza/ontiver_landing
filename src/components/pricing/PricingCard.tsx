@@ -11,12 +11,14 @@ type PricingCardProps = {
   plan: Plan;
   index: number;
   billingCycle: BillingCycle;
+  onPlanAction: () => void;
 };
 
 export default function PricingCard({
   plan,
   index,
   billingCycle,
+  onPlanAction,
 }: PricingCardProps) {
   const price = billingCycle === "annual" ? plan.annual : plan.monthly;
   const isDark = plan.highlighted;
@@ -102,6 +104,7 @@ export default function PricingCard({
       <MagneticFillButton
         variant={isDark ? "green" : "light"}
         className="pricing-cta mt-7 h-12 w-full rounded-lg px-5 text-sm font-semibold"
+        onClick={onPlanAction}
       >
         <span className="pricing-cta-text">{plan.cta}</span>
       </MagneticFillButton>

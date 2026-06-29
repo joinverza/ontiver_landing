@@ -168,7 +168,7 @@ export const blogArticles: BlogArticle[] = [
     title: "A Developer Guide to Verification Webhooks",
     excerpt:
       "How to design webhook handlers that are idempotent, observable, resilient, and ready for compliance-critical verification events.",
-    image: "/assets/code.png",
+    image: "/assets/binary.png",
     date: "June 18, 2026",
     author: "Ife Martin",
     readTime: "8 min read",

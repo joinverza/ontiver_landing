@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Text from "../../base/Text";
 import { securityFeatures } from "../../../data/trust";
 import HoverEffect from "../../ui/card-hover-effect";
@@ -8,11 +9,16 @@ import SignalFlowBackground from "../../ui/SignalFlowBackground";
 
 const easeOut: [number, number, number, number] = [0.4, 0, 0.2, 1];
 export default function Trust() {
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section ref={sectionRef} className="relative isolate overflow-hidden bg-bg-light px-5 py-16 sm:px-6 sm:py-24">
+    <section
+      id="security"
+      ref={sectionRef}
+      className="relative isolate overflow-hidden bg-bg-light px-5 py-16 sm:px-6 sm:py-24"
+    >
       <div className="absolute inset-0 z-0 opacity-45">
         <SignalFlowBackground />
       </div>
@@ -41,12 +47,19 @@ export default function Trust() {
           <MagneticFillButton
             variant="green"
             className="h-12 w-full rounded-lg px-6 text-sm font-medium sm:w-auto sm:px-8 sm:text-base"
+            onClick={() =>
+              document.getElementById("security")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
           >
             Visit Security Page
           </MagneticFillButton>
           <MagneticFillButton
             variant="light"
             className="h-12 w-full rounded-lg px-5 text-sm font-medium sm:w-auto sm:px-6 sm:text-base"
+            onClick={() => navigate("/contact")}
           >
             Request Security Documentation
           </MagneticFillButton>

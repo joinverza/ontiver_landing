@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MagneticFillButton from "../ui/MagneticFillButton";
 
 const heading = "Insights on Identity, Compliance, and Trust Infrastructure";
@@ -27,6 +27,8 @@ function SplitHeading() {
 }
 
 export default function BlogHero({ onJoinClick }: { onJoinClick: () => void }) {
+  const navigate = useNavigate();
+
   return (
     <section className="relative overflow-hidden bg-[#f1f4ef] px-6 pb-14 pt-[120px] sm:pb-20 sm:pt-[150px]">
       <div
@@ -68,12 +70,19 @@ export default function BlogHero({ onJoinClick }: { onJoinClick: () => void }) {
             <MagneticFillButton
               variant="green"
               className="h-12 rounded-lg px-6 text-sm font-semibold"
+              onClick={() => {
+                document.getElementById("blog-library")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
             >
               Explore Resources
             </MagneticFillButton>
             <MagneticFillButton
               variant="light"
               className="h-12 rounded-lg px-6 text-sm font-semibold"
+              onClick={() => navigate("/blogs/developer-guide-to-verification-webhooks")}
             >
               Developer Docs
             </MagneticFillButton>

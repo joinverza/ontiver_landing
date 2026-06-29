@@ -12,6 +12,11 @@ export default function ArticleSocialRail({
   sharesRef,
   socialRef,
 }: ArticleSocialRailProps) {
+  const shareUrl =
+    typeof window === "undefined"
+      ? "https://ontiver.com"
+      : encodeURIComponent(window.location.href);
+
   return (
     <aside className="hidden lg:block">
       <div className="sticky top-[100px] space-y-10 text-center text-black/40">
@@ -30,13 +35,28 @@ export default function ArticleSocialRail({
           </p>
         </div>
         <div className="space-y-5">
-          <PlatformIcon label="Share on Facebook" count="125" color="#1877F2">
+          <PlatformIcon
+            label="Share on Facebook"
+            count="125"
+            color="#1877F2"
+            href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+          >
             <img src="/assets/facebook-post.svg" alt="" className="h-5 w-5" />
           </PlatformIcon>
-          <PlatformIcon label="Share on Twitter" count="86" color="#1DA1F2">
+          <PlatformIcon
+            label="Share on Twitter"
+            count="86"
+            color="#1DA1F2"
+            href={`https://x.com/intent/tweet?url=${shareUrl}`}
+          >
             <img src="/assets/twitter-post.svg" alt="" className="h-5 w-5" />
           </PlatformIcon>
-          <PlatformIcon label="Share on Pinterest" count="425" color="#E60023">
+          <PlatformIcon
+            label="Share on Pinterest"
+            count="425"
+            color="#E60023"
+            href={`https://www.pinterest.com/pin/create/button/?url=${shareUrl}`}
+          >
             <img src="/assets/pinterest.svg" alt="" className="h-5 w-5" />
           </PlatformIcon>
           <p ref={socialRef} className="sr-only">

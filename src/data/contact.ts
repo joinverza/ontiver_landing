@@ -56,7 +56,17 @@ export const contactRows = [
 ];
 
 export const contactSocialIcons = [
-  { icon: "/assets/X.svg", label: "X", color: "#1DA1F2" },
-  { icon: "/assets/insta.svg", label: "Instagram", color: "#E1306C" },
-  { icon: "/assets/discord.svg", label: "Discord", color: "#5865F2" },
+  { icon: "/assets/X.svg", label: "X", color: "#1DA1F2", href: "https://x.com/" },
+  {
+    icon: "/assets/insta.svg",
+    label: "Instagram",
+    color: "#E1306C",
+    href: "https://www.instagram.com/",
+  },
+  {
+    icon: "/assets/discord.svg",
+    label: "Discord",
+    color: "#5865F2",
+    href: "https://discord.com/",
+  },
 ];

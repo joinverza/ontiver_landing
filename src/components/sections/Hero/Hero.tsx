@@ -165,6 +165,13 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSolution = () => {
+    document.getElementById("solution")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden bg-[#f1f4ef] pb-12 pt-[112px] sm:pb-16 md:pt-9">
       {/* Initial Minimal Header (Only visible at top) */}
@@ -249,7 +256,11 @@ export default function Hero() {
             >
               Join Waitlist
             </MagneticFillButton>
-            <MagneticFillButton variant="light" className="h-12 rounded-xl px-6">
+            <MagneticFillButton
+              variant="light"
+              className="h-12 rounded-xl px-6"
+              onClick={scrollToSolution}
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>

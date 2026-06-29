@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,6 +9,7 @@ import PricingCard from "../components/pricing/PricingCard";
 import PricingHero from "../components/pricing/PricingHero";
 import Calculator from "../components/sections/Calculator/Calculator";
 import Footer from "../components/sections/Footer/Footer";
+import Join from "../components/sections/Join/Join";
 import PlanSection from "../components/sections/Plan/Plan";
 import { formatPrice } from "../lib/pricing";
 import { pricingPlans, type BillingCycle } from "../data/pricing";
@@ -15,6 +17,7 @@ import { pricingPlans, type BillingCycle } from "../data/pricing";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PricingPage() {
+  const navigate = useNavigate();
   const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
   const pageRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -55,6 +58,29 @@ export default function PricingPage() {
     }
 
     setBillingCycle(next);
+  };
+
+  const scrollToPricingPlans = () => {
+    document.getElementById("pricing-plans")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const scrollToPlanComparison = () => {
+    document.getElementById("plan-comparison")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handlePlanAction = (planName: string) => {
+    if (planName === "Enterprise") {
+      navigate("/contact");
+      return;
+    }
+
+    navigate({ pathname: "/pricing", hash: "#join" });
   };
 
   useGSAP(
@@ -230,7 +256,11 @@ export default function PricingPage() {
           onBillingChange={setBilling}
         />
 
-        <section ref={cardsRef} className="px-5 py-16 sm:px-6 sm:py-24">
+        <section
+          id="pricing-plans"
+          ref={cardsRef}
+          className="px-5 py-16 sm:px-6 sm:py-24"
+        >
           <div className="mx-auto grid max-w-[1440px] snap-x grid-flow-col auto-cols-[minmax(min(88vw,330px),1fr)] gap-4 overflow-x-auto pb-4 [scrollbar-width:none] md:auto-cols-[calc((100%-32px)/3)] lg:grid-flow-row lg:grid-cols-5 lg:overflow-visible lg:pb-0 xl:gap-5">
             {pricingPlans.map((plan, index) => (
               <PricingCard
@@ -238,17 +268,22 @@ export default function PricingPage() {
                 plan={plan}
                 index={index}
                 billingCycle={billingCycle}
+                onPlanAction={() => handlePlanAction(plan.name)}
               />
             ))}
           </div>
         </section>
 
-        <PlanSection />
+        <PlanSection
+          onViewPlan={scrollToPricingPlans}
+          onComparePlans={scrollToPlanComparison}
+        />
 
         <PlanComparisonTable tableRef={tableRef} />
 
         <Calculator />
         <PricingFAQ />
+        <Join />
       </main>
       <Footer />
     </div>

@@ -40,12 +40,12 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "radar") {
     return (
       <div
-        className="pointer-events-none absolute top-[-18px] right-[-46px] z-[3] h-[235px] w-[235px] sm:h-[315px] sm:w-[315px] max-[900px]:right-[-46px] max-[900px]:h-[245px] max-[900px]:w-[245px]"
+        className="pointer-events-none absolute top-1/2 right-[-42px] z-[3] h-[235px] w-[235px] -translate-y-1/2 sm:right-[-54px] sm:h-[315px] sm:w-[315px] max-[900px]:right-[-42px] max-[900px]:h-[245px] max-[900px]:w-[245px]"
         aria-hidden="true"
       >
-        <img className="h-52 w-52 object-contain opacity-[0.58] brightness-[0.72] contrast-[1.22] saturate-[0.95] sm:h-64 sm:w-64" src="./assets/radar.png" alt="" />
+        <img className="absolute top-1/2 left-[8.6rem] h-[82%] w-[82%] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.58] brightness-[0.72] contrast-[1.22] saturate-[0.95]" src="./assets/radar.png" alt="" />
         {/* <span className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,#05150E_0%,#05150E00_64%)]" /> */}
-        <span className="radar-sweep-line absolute inset-[50%_50%_auto_auto] h-px w-[46%] origin-left bg-gradient-to-r from-[#70ff8a]/90 to-transparent" />
+        <span className="radar-sweep-line absolute top-1/2 left-1/2 h-px w-[38%] origin-left bg-gradient-to-r from-[#70ff8a]/90 to-transparent" />
         <span className="radar-ring absolute inset-[19%] rounded-full border border-[#70ff8a]/20" />
         <span className="radar-ring absolute inset-[30%] rounded-full border border-[#70ff8a]/20 [animation-delay:0.5s]" />
         <span className="radar-ring absolute inset-[41%] rounded-full border border-[#70ff8a]/20 [animation-delay:1s]" />
@@ -54,12 +54,7 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   }
 
   if (type === "dashboard") {
-    return (
-      <span
-        className="module-visual-scan pointer-events-none absolute top-0 right-0 left-0 z-[3] h-0.5 bg-[linear-gradient(90deg,transparent,rgba(112,255,138,0.84),transparent)]"
-        aria-hidden="true"
-      />
-    );
+    return null;
   }
 
   if (type === "code") {

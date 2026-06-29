@@ -26,6 +26,8 @@ export default function PlanOrbitPanel({
   resultPlan,
   reason,
   calculationMessage,
+  onViewPlan,
+  onComparePlans,
 }: {
   progress: number;
   filledInputCount: number;
@@ -33,6 +35,8 @@ export default function PlanOrbitPanel({
   resultPlan: string;
   reason: string;
   calculationMessage: string;
+  onViewPlan: () => void;
+  onComparePlans: () => void;
 }) {
   const circleOpacity = [0.4, 0.55, 0.7, 0.85][filledInputCount] ?? 0.4;
   const circumference = 2 * Math.PI * 96;
@@ -191,12 +195,14 @@ export default function PlanOrbitPanel({
             <MagneticFillButton
               variant="green"
               className="h-10 rounded-lg px-5 text-sm font-medium"
+              onClick={onViewPlan}
             >
               View {resultPlan}
             </MagneticFillButton>
             <MagneticFillButton
               variant="light"
               className="h-10 rounded-lg px-5 text-sm font-medium"
+              onClick={onComparePlans}
             >
               Compare Plans
             </MagneticFillButton>

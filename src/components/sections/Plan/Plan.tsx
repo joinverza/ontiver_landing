@@ -31,7 +31,12 @@ function fieldProgress(field: PlanInputField, value: string) {
   return Math.min(100, (parseNumber(value) / field.threshold) * 100);
 }
 
-export default function Plan() {
+type PlanProps = {
+  onViewPlan?: () => void;
+  onComparePlans?: () => void;
+};
+
+export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const leftPanelRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
@@ -258,6 +263,22 @@ export default function Plan() {
               resultPlan={resultPlan}
               reason={recommended.reason}
               calculationMessage={calculationMessage}
+              onViewPlan={
+                onViewPlan ??
+                (() =>
+                  document.getElementById("pricing-plans")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  }))
+              }
+              onComparePlans={
+                onComparePlans ??
+                (() =>
+                  document.getElementById("plan-comparison")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  }))
+              }
             />
           </motion.div>
         </div>

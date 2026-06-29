@@ -45,6 +45,7 @@ type CalculatorResultsPanelProps = {
   processingLabel: string;
   showResultActions: boolean;
   onShare: () => void;
+  onViewRecommendedPlan: () => void;
 };
 
 export default function CalculatorResultsPanel({
@@ -64,6 +65,7 @@ export default function CalculatorResultsPanel({
   processingLabel,
   showResultActions,
   onShare,
+  onViewRecommendedPlan,
 }: CalculatorResultsPanelProps) {
   return (
     <div ref={panelRef} className="rounded-3xl bg-white px-6 py-6 md:px-10">
@@ -259,6 +261,7 @@ export default function CalculatorResultsPanel({
               <MagneticFillButton
                 variant="green"
                 className="h-11 rounded-lg px-4 text-sm font-medium"
+                onClick={onViewRecommendedPlan}
               >
                 View Recommended Plan
               </MagneticFillButton>
