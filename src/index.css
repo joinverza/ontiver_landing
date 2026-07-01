@@ -6,8 +6,8 @@
   --color-border: #05150e;
   --color-bg-light: #f7f7f7;
   --color-green: #007d21;
-  --font-sans: var(--font-satoshi);
-  --font-body: var(--font-dm-sans);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --breakpoint-xss: 450px;
   --breakpoint-xs: 550px;
@@ -16,6 +16,24 @@
   --breakpoint-lg: 1000px;
   --breakpoint-lgg: 1250px;
   --breakpoint-xl: 1280px;
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-feature-settings:
+    "cv02" 1,
+    "cv03" 1,
+    "cv04" 1,
+    "cv11" 1;
+  text-rendering: geometricPrecision;
 }
 
 @property --problem-border-angle {
