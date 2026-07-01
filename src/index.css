@@ -29,6 +29,52 @@ html.lenis body {
   height: auto;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  [data-page-shell].page-load-enter {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+
+  [data-page-shell].page-load-enter.page-load-ready {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition:
+      opacity 0.55s ease,
+      transform 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+      filter 0.55s ease;
+  }
+
+  .section-scroll-reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    clip-path: inset(0 0 8% 0 round 24px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.85s cubic-bezier(0.19, 1, 0.22, 1),
+      clip-path 0.85s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: opacity, transform, clip-path;
+  }
+
+  .section-scroll-reveal.section-scroll-reveal-in {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0 round 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-page-shell],
+  .section-scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }

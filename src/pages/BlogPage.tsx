@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlogHero from "../components/blog/BlogHero";
 import LoadingDots from "../components/blog/LoadingDots";
 import MagneticFillButton from "../components/ui/MagneticFillButton";
-import { useJoinNavigation } from "../hooks/useJoinNavigation";
 import Footer from "../components/sections/Footer/Footer";
 import Join from "../components/sections/Join/Join";
 import { blogArticles } from "../data/blog";
@@ -18,7 +17,6 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 export default function BlogPage() {
-  const goToJoin = useJoinNavigation();
   const rootRef = useRef<HTMLElement>(null);
   const [visibleCount, setVisibleCount] = useState(3);
   const [loading, setLoading] = useState(false);
@@ -140,7 +138,7 @@ export default function BlogPage() {
 
   return (
     <main ref={rootRef} id="blog" className="bg-bg-light text-black">
-      <BlogHero onJoinClick={goToJoin} />
+      <BlogHero />
 
       <section
         id="blog-library"

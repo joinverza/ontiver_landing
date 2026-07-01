@@ -230,7 +230,7 @@ export default function UseCase() {
     <section
       ref={sectionRef}
       id="cases"
-      className="relative isolate overflow-hidden bg-[#06160f] px-[clamp(18px,5vw,80px)] py-[clamp(76px,9vw,118px)] text-white [background-image:radial-gradient(circle_at_50%_42%,rgba(0,147,17,0.08),transparent_28%)] max-[640px]:px-[18px] max-[640px]:py-[68px]"
+      className="relative isolate overflow-hidden rounded-[28px] bg-[#06160f] px-[clamp(18px,5vw,80px)] py-[clamp(76px,9vw,118px)] text-white [background-image:radial-gradient(circle_at_50%_42%,rgba(0,147,17,0.08),transparent_28%)] sm:rounded-[36px] lg:rounded-[48px] max-[640px]:px-[18px] max-[640px]:py-[68px]"
     >
       <div
         ref={gridRef}

@@ -1,6 +1,12 @@
 export type FooterGroup = {
   category: string;
-  list: string[];
+  list: FooterLink[];
+};
+
+export type FooterLink = {
+  label: string;
+  href: string;
+  external?: boolean;
 };
 
 export type FooterIcon = {
@@ -11,25 +17,43 @@ export type FooterIcon = {
 export const footerGroups: FooterGroup[] = [
   {
     category: "Product",
-    list: ["Features", "Pricing", "Developers", "Trusted", "Use Cases"],
+    list: [
+      { label: "Features", href: "/#features" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Developers", href: "https://docs.ontiver.com/", external: true },
+      { label: "Trusted", href: "/#security" },
+      { label: "Use Cases", href: "/#cases" },
+    ],
   },
   {
     category: "Use Cases",
-    list: ["Fintechs", "Lenders", "Marketplaces", "HR Platforms", "Schools"],
+    list: [
+      { label: "Fintechs", href: "/#cases" },
+      { label: "Lenders", href: "/#cases" },
+      { label: "Marketplaces", href: "/#cases" },
+      { label: "HR Platforms", href: "/#cases" },
+      { label: "Schools", href: "/#cases" },
+    ],
   },
   {
     category: "Company",
-    list: ["About", "Resources", "Blog", "Contact", "Careers"],
-  },
-  {
-    category: "Legal",
     list: [
-      "Privacy Policy",
-      "Terms of Service",
-      "Data protection",
-      "Cookie Policy",
+      // { label: "About", href: "/about" },
+      { label: "Resources", href: "/blogs" },
+      { label: "Blog", href: "/blogs" },
+      { label: "Contact", href: "/contact" },
+      // { label: "Careers", href: "/careers" },
     ],
   },
+  // {
+  //   category: "Legal",
+  //   list: [
+  //     { label: "Privacy Policy", href: "/privacy" },
+  //     { label: "Terms of Service", href: "/terms" },
+  //     { label: "Data protection", href: "/data-protection" },
+  //     { label: "Cookie Policy", href: "/cookies" },
+  //   ],
+  // },
 ];
 
 export const footerIcons: FooterIcon[] = [

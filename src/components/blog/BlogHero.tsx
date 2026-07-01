@@ -1,87 +1,76 @@
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MagneticFillButton from "../ui/MagneticFillButton";
 
-const heading = "Insights on Identity, Compliance, and Trust Infrastructure";
-const heroEase: [number, number, number, number] = [0.4, 0, 0.2, 1];
+const heroEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
-function SplitHeading() {
-  const words = heading.split(" ");
-
-  return (
-    <h1 className="max-w-[620px] text-balance text-[clamp(2.35rem,8vw,3.5rem)] font-bold leading-[1.08] tracking-[0] text-[#05150E]">
-      {words.map((word, index) => (
-        <motion.span
-          key={`${word}-${index}`}
-          className="inline-block"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: index * 0.05, ease: heroEase }}
-        >
-          {word}
-          {index < words.length - 1 ? "\u00a0" : ""}
-        </motion.span>
-      ))}
-    </h1>
-  );
+function scrollToBlogLibrary() {
+  document.getElementById("blog-library")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }
 
-export default function BlogHero({ onJoinClick }: { onJoinClick: () => void }) {
+export default function BlogHero() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-[#f1f4ef] px-6 pb-14 pt-[120px] sm:pb-20 sm:pt-[150px]">
+    <section className="relative w-full overflow-hidden bg-[#f3f3f1] px-5 pb-12 pt-[112px] sm:px-8 sm:-16 md:pt-28 lg:px-10 lg:pb-18 lg:pt-[118px]">
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03] animate-grid-move [background-image:linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] [background-size:100px_100px]"
+        className="poinpbter-events-none absolute inset-0 opacity-[0.22] [background-image:linear-gradient(to_right,rgba(0,45,14,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,45,14,0.055)_1px,transparent_1px)] [background-size:92px_92px]"
         aria-hidden="true"
       />
-      <div className="absolute left-0 top-0 z-20 hidden w-full items-center justify-between px-6 py-6 md:flex md:px-12">
-        <Link to="/" aria-label="Ontiver home">
-          <img src="/assets/logo.svg" alt="Ontiver" className="h-6 md:h-8" />
-        </Link>
-        <MagneticFillButton
-          variant="green"
-          className="rounded-xl px-7 py-3 text-sm font-medium md:px-8 md:text-base"
-          onClick={onJoinClick}
-        >
-          Join Waitlist
-        </MagneticFillButton>
-      </div>
+      {/* Animated Background Grid Pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03] animate-grid-move"
+        style={{
+          backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+          backgroundSize: '100px 100px'
+        }}
+      ></div>
 
-      <div className="relative z-10 mx-auto grid max-w-[1180px] items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
-        <div>
-          <SplitHeading />
-          <motion.p
-            className="mt-6 max-w-[440px] text-[15px] leading-[1.7] text-[#6B7280]"
-            initial={{ opacity: 0, y: 14 }}
+      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-8 md:grid-cols-[0.96fr_1.04fr] md:gap-10 lg:gap-14">
+        <div className="max-w-[520px] md:pt-3">
+          <motion.h1
+            className="text-[clamp(2.45rem,7.1vw,4.1rem)] text-black sm:text-[clamp(3rem,7vw,4.35rem)] md:text-[clamp(3rem,4.8vw,4.2rem)] font-bold leading-[1.03] tracking-tight sm:mb-6"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.85, ease: heroEase }}
+            transition={{ duration: 0.65, ease: heroEase }}
+          >
+            Insights on Identity,
+            <br />
+            Compliance, and
+            <br />
+            Trust Infrastructure
+          </motion.h1>
+
+          <motion.p
+            className="mt-4 max-w-[435px] text-[0.95rem] leading-[1.25] text-black/55 sm:text-base md:mt-5 md:text-[1.02rem]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: heroEase }}
           >
             Explore practical guides, compliance insights, developer resources,
             and research on reusable identity, KYC optimization, AML, and
             digital trust systems.
           </motion.p>
+
           <motion.div
-            className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
-            initial={{ opacity: 0, y: 12 }}
+            className="mt-5 flex w-full max-w-[420px] flex-col gap-3 xss:flex-row md:mt-6"
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 1.1, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.18, ease: heroEase }}
           >
             <MagneticFillButton
               variant="green"
-              className="h-12 rounded-lg px-6 text-sm font-semibold"
-              onClick={() => {
-                document.getElementById("blog-library")?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
-              }}
+              className="h-10 flex-1 rounded-lg px-6 text-sm font-semibold sm:h-[42px]"
+              onClick={scrollToBlogLibrary}
             >
               Explore Resources
             </MagneticFillButton>
             <MagneticFillButton
               variant="light"
-              className="h-12 rounded-lg px-6 text-sm font-semibold"
+              className="h-10 flex-1 rounded-lg px-6 text-sm font-semibold sm:h-[42px]"
               onClick={() => navigate("/blogs/developer-guide-to-verification-webhooks")}
             >
               Developer Docs
@@ -90,17 +79,15 @@ export default function BlogHero({ onJoinClick }: { onJoinClick: () => void }) {
         </div>
 
         <motion.div
-          className="relative min-h-[250px] sm:min-h-[360px] lg:min-h-[500px]"
-          initial={{ opacity: 0, y: 24, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
+          className="relative flex justify-center md:justify-end"
+          initial={{ opacity: 0, x: 30, scale: 0.96 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.75, delay: 0.08, ease: heroEase }}
         >
-          <motion.img
+          <img
             src="/assets/hero-blog.png"
-            alt="Floating editorial resource cards"
-            className="absolute left-1/2 top-[-8px] w-[min(100%,520px)] -translate-x-1/2 object-contain sm:top-[-24px] lg:left-[56%] lg:w-[680px]"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            alt="Illustration of identity and developer resources"
+            className="w-full max-w-[430px] object-contain sm:max-w-[520px] md:max-w-[560px] lg:max-w-[620px]"
           />
         </motion.div>
       </div>

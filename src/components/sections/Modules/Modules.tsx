@@ -187,6 +187,7 @@ export default function Modules() {
 
   return (
     <section
+      id="features"
       ref={sectionRef}
       className="relative overflow-hidden bg-bg-light px-6 py-[150px] max-[900px]:px-[18px] max-[900px]:pt-14 max-[900px]:pb-[68px] max-[640px]:py-14"
     >

@@ -1,5 +1,33 @@
 import { Link } from "react-router-dom";
-import { footerGroups, footerIcons } from "../../../data/footer";
+import {
+  footerGroups,
+  footerIcons,
+  type FooterLink,
+} from "../../../data/footer";
+
+function FooterNavLink({ item }: { item: FooterLink }) {
+  const className =
+    "text-sm text-white/60 transition-colors duration-150 hover:text-white";
+
+  if (item.external) {
+    return (
+      <a
+        className={className}
+        href={item.href}
+        rel="noreferrer"
+        target="_blank"
+      >
+        {item.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link className={className} to={item.href}>
+      {item.label}
+    </Link>
+  );
+}
 
 export default function Footer() {
   return (
@@ -27,8 +55,8 @@ export default function Footer() {
                 </h5>
                 <ul className="space-y-3">
                   {group.list.map((item) => (
-                    <li key={item} className="text-sm text-white/60">
-                      {item}
+                    <li key={item.label}>
+                      <FooterNavLink item={item} />
                     </li>
                   ))}
                 </ul>

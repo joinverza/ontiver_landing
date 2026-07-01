@@ -546,6 +546,7 @@ export default function Solution() {
   return (
     <section
       id="solution"
+      data-section-reveal="off"
       ref={sectionRef}
       className="relative isolate w-full overflow-hidden bg-cover bg-center antialiased [--solution-progress:0] [--solution-progress-y:0%] [background-attachment:fixed] [background-image:linear-gradient(180deg,rgba(247,247,247,0.82),rgba(247,247,247,0.2)_20%,rgba(247,247,247,0.28)_78%,rgba(247,247,247,0.86)),url('/assets/solution-building-bg.svg')] md:min-h-screen max-md:[background-attachment:scroll]"
     >
