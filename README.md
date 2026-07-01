@@ -1,6 +1,27 @@
-# React + Vite
+# Ontiver Landing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The public Ontiver website, built with React, TypeScript, and Vite.
+
+## Local development
+
+```bash
+npm ci
+copy .env.example .env.local
+npm run dev
+```
+
+`VITE_ONTIVER_API_BASE_URL` selects the Ontiver API used by the contact,
+waitlist, and newsletter forms. It defaults to `https://api.ontiver.com`.
+
+## Production
+
+Render deploys the `startup` branch as a static site:
+
+- Build command: `npm ci && npm run build`
+- Publish directory: `dist`
+- SPA fallback: `/*` rewrites to `/index.html`
+
+Run `npm run lint` and `npm run build` before publishing.
 
 Currently, two official plugins are available:
 

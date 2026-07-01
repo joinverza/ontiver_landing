@@ -35,10 +35,6 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     const handleSolutionPinChange = (event: Event) => {
       const { isPinned } = (event as CustomEvent<{ isPinned: boolean }>).detail;
       setIsSolutionPinned(isPinned);
@@ -95,6 +91,7 @@ export default function Navbar() {
             <Link
               to="/"
               aria-label="Ontiver home"
+              onClick={() => setMobileMenuOpen(false)}
               style={{
                 opacity: isOpen ? 1 : 0,
                 transform: isOpen ? "translateY(0)" : "translateY(6px)",
@@ -111,6 +108,7 @@ export default function Navbar() {
                 <Link
                   key={link.to}
                   to={link.to}
+                  onClick={() => setMobileMenuOpen(false)}
                   className="whitespace-nowrap text-sm font-medium text-black/80 hover:text-[#009311]"
                   style={{
                     opacity: isOpen ? 1 : 0,

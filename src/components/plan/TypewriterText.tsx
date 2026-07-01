@@ -10,12 +10,14 @@ export default function TypewriterText({
   const [visibleText, setVisibleText] = useState("");
 
   useEffect(() => {
-    setVisibleText("");
-    const timers = Array.from(text).map((_, index) =>
+    const timers = [
+      window.setTimeout(() => setVisibleText(""), 0),
+      ...Array.from(text).map((_, index) =>
       window.setTimeout(() => {
         setVisibleText(text.slice(0, index + 1));
       }, index * 40)
-    );
+      ),
+    ];
 
     return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, [text]);

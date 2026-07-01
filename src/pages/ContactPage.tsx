@@ -11,6 +11,7 @@ import SplitHeading from "../components/contact/SplitHeading";
 import Footer from "../components/sections/Footer/Footer";
 import Join from "../components/sections/Join/Join";
 import MagneticFillButton from "../components/ui/MagneticFillButton";
+import { sendContactRequest } from "../lib/landingApi";
 import {
   contactFields,
   contactHeading,
@@ -22,7 +23,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-type SendState = "idle" | "sending" | "sent";
+type SendState = "idle" | "sending" | "sent" | "error";
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export default function ContactPage() {
   const [missingFields, setMissingFields] =
     useState<Set<ContactFormField>>(new Set());
   const [sendState, setSendState] = useState<SendState>("idle");
+  const [submitError, setSubmitError] = useState("");
 
   useGSAP(
     () => {
@@ -154,7 +156,7 @@ export default function ContactPage() {
     window.setTimeout(() => setSweepField(null), 320);
   };
 
-  const submitRequest = () => {
+  const submitRequest = async () => {
     if (sendState === "sending") return;
     const missing = contactFields
       .map((field) => field.key)
@@ -181,7 +183,23 @@ export default function ContactPage() {
     }
 
     setSendState("sending");
-    window.setTimeout(() => setSendState("sent"), 1500);
+    setSubmitError("");
+    try {
+      await sendContactRequest({
+        name: values.firstName,
+        email: values.email,
+        subject: `Website inquiry from ${values.companyName}`,
+        message: `${values.message}\n\nCompany: ${values.companyName}\nCompany size: ${values.companySize}`,
+      });
+      setSendState("sent");
+    } catch (error) {
+      setSendState("error");
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "We could not send your request. Please try again."
+      );
+    }
   };
 
   return (
@@ -328,7 +346,7 @@ export default function ContactPage() {
             transition={{ duration: 0.28, ease: "easeOut" }}
             onSubmit={(event) => {
               event.preventDefault();
-              submitRequest();
+              void submitRequest();
             }}
           >
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,147,17,0.5),transparent)]" />
@@ -370,6 +388,11 @@ export default function ContactPage() {
                 )}
               </MagneticFillButton>
             </motion.div>
+            {submitError ? (
+              <p className="mt-4 text-sm text-red-600" role="alert">
+                {submitError}
+              </p>
+            ) : null}
           </motion.form>
         </div>
       </section>

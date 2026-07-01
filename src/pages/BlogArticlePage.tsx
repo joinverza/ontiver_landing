@@ -9,8 +9,9 @@ import ArticleSocialRail from "../components/blog/ArticleSocialRail";
 import { ArticleGridCard } from "../components/blog/BlogCards";
 import Footer from "../components/sections/Footer/Footer";
 import { blogArticles, getBlogArticleBySlug } from "../data/blog";
+import { subscribeToNewsletter } from "../lib/landingApi";
 
-type SubscribeState = "idle" | "loading" | "done";
+type SubscribeState = "idle" | "loading" | "done" | "error";
 
 function formatCompact(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -147,7 +148,7 @@ export default function BlogArticlePage() {
     { scope: contentRef, dependencies: [article?.slug] }
   );
 
-  const subscribe = () => {
+  const subscribe = async () => {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!valid || !consent) {
       setEmailError(true);
@@ -163,10 +164,14 @@ export default function BlogArticlePage() {
     }
 
     setSubscribeState("loading");
-    window.setTimeout(() => {
+    try {
+      await subscribeToNewsletter(email);
       setSubscribeState("done");
       window.setTimeout(() => setSubscribeState("idle"), 2000);
-    }, 1500);
+    } catch {
+      setSubscribeState("error");
+      setEmailError(true);
+    }
   };
 
   return (

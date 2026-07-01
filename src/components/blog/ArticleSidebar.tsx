@@ -3,7 +3,7 @@ import { type RefObject } from "react";
 import MagneticFillButton from "../ui/MagneticFillButton";
 import PlatformIcon from "./PlatformIcon";
 
-type SubscribeState = "idle" | "loading" | "done";
+type SubscribeState = "idle" | "loading" | "done" | "error";
 
 type ArticleSidebarProps = {
   emailRef: RefObject<HTMLInputElement | null>;
@@ -99,6 +99,8 @@ export default function ArticleSidebar({
             }`}
             placeholder="Enter your email"
             value={email}
+            type="email"
+            autoComplete="email"
             onChange={(event) => onEmailChange(event.target.value)}
           />
           <MagneticFillButton
@@ -120,6 +122,11 @@ export default function ArticleSidebar({
               "Subscribe"
             )}
           </MagneticFillButton>
+          {subscribeState === "error" ? (
+            <p className="text-xs text-red-600" role="alert">
+              Subscription failed. Please try again.
+            </p>
+          ) : null}
           <label className="flex items-start gap-3 text-xs leading-relaxed text-black/50">
             <span
               className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded border transition-colors ${

@@ -1,5 +1,10 @@
 import { useRef, useEffect } from "react";
 
+type Point = {
+  x: number;
+  y: number;
+};
+
 export default function SignalFlowBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -24,7 +29,7 @@ export default function SignalFlowBackground() {
     // Create a network of nodes
     const cols = Math.max(5, Math.floor(w / 100)); // Dynamic columns
     const rows = Math.max(5, Math.floor(h / 100)); // Dynamic rows
-    const nodes: { x: number; y: number }[] = [];
+    const nodes: Point[] = [];
 
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
@@ -36,7 +41,7 @@ export default function SignalFlowBackground() {
     }
 
     // Connect nodes
-    const lines: { p1: any; p2: any }[] = [];
+    const lines: { p1: Point; p2: Point }[] = [];
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].x - nodes[j].x;
@@ -63,9 +68,9 @@ export default function SignalFlowBackground() {
 
     draw(); // Draw once initially
 
-    let resizeTimer: any;
+    let resizeTimer: number | undefined;
     const handleResize = () => {
-      clearTimeout(resizeTimer);
+      if (resizeTimer !== undefined) window.clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         updateSize();
         // We need to re-generate nodes and lines if we resize
@@ -78,6 +83,7 @@ export default function SignalFlowBackground() {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      if (resizeTimer !== undefined) window.clearTimeout(resizeTimer);
     };
   }, []);
 

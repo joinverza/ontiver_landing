@@ -4,8 +4,9 @@ import gsap from "gsap";
 import { Check } from "lucide-react";
 import AuroraBadge from "../../ui/AuroraBadge";
 import MagneticFillButton from "../../ui/MagneticFillButton";
+import { joinWaitlist } from "../../../lib/landingApi";
 
-type JoinState = "idle" | "joining" | "joined";
+type JoinState = "idle" | "joining" | "joined" | "error";
 
 function DotLoader() {
   return (
@@ -33,8 +34,9 @@ export default function Join() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<JoinState>("idle");
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const submit = () => {
+  const submit = async () => {
     if (state === "joining") return;
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -59,7 +61,18 @@ export default function Join() {
     }
 
     setState("joining");
-    window.setTimeout(() => setState("joined"), 1500);
+    setErrorMessage("");
+    try {
+      await joinWaitlist(email);
+      setState("joined");
+    } catch (submitError) {
+      setState("error");
+      setErrorMessage(
+        submitError instanceof Error
+          ? submitError.message
+          : "We could not join the waitlist. Please try again."
+      );
+    }
   };
 
   return (
@@ -142,7 +155,15 @@ export default function Join() {
                 className="h-14 min-w-0 flex-1 rounded-full bg-transparent px-5 text-base text-white outline-none placeholder:text-white/55 sm:h-16 sm:px-7 sm:text-lg"
                 placeholder="Enter your email address"
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                type="email"
+                autoComplete="email"
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  if (state === "error") setState("idle");
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") void submit();
+                }}
               />
             </div>
             <MagneticFillButton
@@ -165,6 +186,11 @@ export default function Join() {
               )}
             </MagneticFillButton>
           </motion.div>
+          {errorMessage ? (
+            <p className="mt-3 text-sm text-red-300" role="alert">
+              {errorMessage}
+            </p>
+          ) : null}
         </div>
       </motion.div>
     </section>
