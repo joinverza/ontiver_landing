@@ -165,7 +165,9 @@ export default function CalculatorResultsPanel({
                   className="space-y-1"
                 >
                   <p className="text-xs font-medium text-black/45">
-                    Monthly Savings
+                    {displayedResult.monthlyPlanCost === null
+                      ? "Monthly Value"
+                      : "Net Monthly Savings"}
                   </p>
                   <p className="text-xl font-bold text-[#009311]">
                     {formatCurrency(displayedResult.monthlySavings)}
@@ -203,6 +205,15 @@ export default function CalculatorResultsPanel({
             </motion.div>
           ) : null}
         </AnimatePresence>
+
+        {status === "result" ? (
+          <p className="mt-4 rounded-full bg-[#f1f4ef] px-4 py-2 text-xs font-semibold text-[#005e19]">
+            Recommended: {displayedResult.recommendedPlan} ·{" "}
+            {displayedResult.monthlyPlanCost === null
+              ? "Custom pricing"
+              : `${formatCurrency(displayedResult.monthlyPlanCost)}/month`}
+          </p>
+        ) : null}
 
         <div className="mt-5 min-h-8 text-center">
           <AnimatePresence mode="wait">

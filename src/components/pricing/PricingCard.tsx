@@ -32,6 +32,7 @@ export default function PricingCard({
       }`}
       data-card-index={index}
       data-highlighted={isDark ? "true" : "false"}
+      data-plan={plan.name.toLowerCase()}
     >
       {isDark ? (
         <span

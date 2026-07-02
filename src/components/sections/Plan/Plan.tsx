@@ -58,11 +58,10 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
     100;
 
   useEffect(() => {
-    if (filledInputCount === 0 || status === "calculating" || status === "result") return;
-    setStatus("analysing");
+    if (status !== "analysing") return;
     const timer = window.setTimeout(() => setStatus("idle"), 2000);
     return () => window.clearTimeout(timer);
-  }, [values, filledInputCount, status]);
+  }, [status]);
 
   const recommended = useMemo(() => {
     const verifications = parseNumber(values.verifications);
@@ -100,8 +99,14 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
   }, [toggles, values]);
 
   const updateValue = (key: PlanFieldKey, value: string) => {
-    setStatus((current) => (current === "result" ? "analysing" : current));
-    setValues((current) => ({ ...current, [key]: value.replace(/[^\d]/g, "") }));
+    const sanitizedValue = value.replace(/[^\d]/g, "");
+    const hasInput = planInputFields.some((field) =>
+      parseNumber(field.key === key ? sanitizedValue : values[field.key])
+    );
+    setStatus((current) =>
+      current === "calculating" ? current : hasInput ? "analysing" : "idle"
+    );
+    setValues((current) => ({ ...current, [key]: sanitizedValue }));
   };
 
   const clearForm = () => {
