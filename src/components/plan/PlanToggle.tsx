@@ -15,7 +15,7 @@ export default function PlanToggle({
     <button
       type="button"
       onClick={onChange}
-      className="plan-toggle-row group flex w-full items-center justify-between gap-4 rounded-xl px-3 py-3 text-left transition-colors duration-150 hover:bg-[rgba(34,197,94,0.03)]"
+      className="plan-toggle-row group flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl px-3 py-3 text-left transition-colors duration-150 hover:bg-[rgba(34,197,94,0.03)]"
     >
       <span className="text-sm font-medium text-black/78">{label}</span>
       <span

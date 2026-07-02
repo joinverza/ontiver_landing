@@ -8,8 +8,7 @@ import PlanComparisonTable from "../components/pricing/PlanComparisonTable";
 import PricingCard from "../components/pricing/PricingCard";
 import PricingHero from "../components/pricing/PricingHero";
 import Calculator from "../components/sections/Calculator/Calculator";
-import Footer from "../components/sections/Footer/Footer";
-import Join from "../components/sections/Join/Join";
+import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import PlanSection from "../components/sections/Plan/Plan";
 import { formatPrice } from "../lib/pricing";
 import { pricingPlans, type BillingCycle } from "../data/pricing";
@@ -283,9 +282,8 @@ export default function PricingPage() {
 
         <Calculator />
         <PricingFAQ />
-        <Join />
+        <CurtainFooter />
       </main>
-      <Footer />
     </div>
   );
 }

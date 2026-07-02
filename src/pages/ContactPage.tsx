@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ContactField from "../components/contact/ContactField";
 import DotLoader from "../components/contact/DotLoader";
 import SplitHeading from "../components/contact/SplitHeading";
-import Footer from "../components/sections/Footer/Footer";
-import Join from "../components/sections/Join/Join";
+import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import MagneticFillButton from "../components/ui/MagneticFillButton";
 import {
   contactFields,
@@ -196,7 +195,7 @@ export default function ContactPage() {
           }}
         ></div>
         <motion.button
-          className="absolute left-5 top-[92px] inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-semibold text-black/60 backdrop-blur-sm transition-colors duration-150 hover:text-black sm:left-6 sm:top-[118px] md:left-20"
+          className="absolute left-5 top-[92px] inline-flex cursor-pointer items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-semibold text-black/60 backdrop-blur-sm transition-colors duration-150 hover:text-black sm:left-6 sm:top-[118px] md:left-20"
           type="button"
           onClick={() => navigate(-1)}
           initial={{ opacity: 0, x: -12 }}
@@ -374,11 +373,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="relative z-10">
-        <Join />
-      </div>
-
-      <Footer />
+      <CurtainFooter />
     </main>
   );
 }

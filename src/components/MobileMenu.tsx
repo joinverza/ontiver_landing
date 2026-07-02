@@ -58,7 +58,7 @@ export default function MobileMenu({
               </Link>
               <button
                 type="button"
-                className="grid h-10 w-10 place-items-center rounded-full border border-[#00291b]/10 bg-[#f7fff7] text-[#05150E] shadow-sm transition-colors duration-200 hover:border-[#009311]/35 hover:text-[#009311]"
+                className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-[#00291b]/10 bg-[#f7fff7] text-[#05150E] shadow-sm transition-colors duration-200 hover:border-[#009311]/35 hover:text-[#009311]"
                 aria-label="Close menu"
                 onClick={() => setMobileMenuOpen(false)}
               >

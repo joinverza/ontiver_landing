@@ -12,6 +12,7 @@ type TextProps = {
   className?: string;
   badgeClassName?: string;
   badgeTextClassName?: string;
+  badgeWrapperClassName?: string;
   headingClassName?: string;
   containerClassName?: string;
   color?: string;
@@ -24,6 +25,7 @@ export default function Text({
   className = "",
   badgeClassName = "",
   badgeTextClassName = "",
+  badgeWrapperClassName = "",
   headingClassName = "",
   containerClassName = "",
   color,
@@ -78,7 +80,7 @@ export default function Text({
     >
       <div
         ref={badgeRef as React.RefObject<HTMLDivElement>}
-        className="mx-auto w-fit"
+        className={`mx-auto w-fit ${badgeWrapperClassName}`}
         style={{ opacity: animate ? 0 : 1 }}
       >
         <AuroraBadge
@@ -89,7 +91,7 @@ export default function Text({
         </AuroraBadge>
       </div>
       <h2
-        className={`${className} ${headingClassName} w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center`}
+        className={`w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center ${className} ${headingClassName}`}
         style={color ? ({ "--heading-color": color } as CSSProperties) : undefined}
       >
         {words.map((word, wordIndex) => {

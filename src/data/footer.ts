@@ -21,7 +21,7 @@ export const footerGroups: FooterGroup[] = [
       { label: "Features", href: "/#features" },
       { label: "Pricing", href: "/pricing" },
       { label: "Developers", href: "https://docs.ontiver.com/", external: true },
-      { label: "Trusted", href: "/#security" },
+      { label: "Security & Trust", href: "/#security" },
       { label: "Use Cases", href: "/#cases" },
     ],
   },

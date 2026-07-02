@@ -40,7 +40,7 @@ export default function PricingHero({
               }`}
             />
             <button
-              className={`relative z-10 h-10 rounded-full px-7 text-base font-semibold transition-colors duration-200 ${
+              className={`relative z-10 h-10 cursor-pointer rounded-full px-7 text-base font-semibold transition-colors duration-200 ${
                 billingCycle === "monthly"
                   ? "text-white"
                   : "text-black hover:text-[#009311]"
@@ -51,7 +51,7 @@ export default function PricingHero({
               Monthly
             </button>
             <button
-              className={`relative z-10 h-10 rounded-full px-7 text-base font-semibold transition-colors duration-200 ${
+              className={`relative z-10 h-10 cursor-pointer rounded-full px-7 text-base font-semibold transition-colors duration-200 ${
                 billingCycle === "annual"
                   ? "text-white"
                   : "text-black hover:text-[#009311]"

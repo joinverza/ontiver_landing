@@ -102,7 +102,7 @@ export default function CalculatorFormPanel({
 
       <div className="mt-8 grid gap-2 sm:grid-cols-[1fr_2fr]">
         <button
-          className="kyc-calculator-action inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-[#BFC8D2] bg-white px-4 text-sm font-medium text-[#0A0B0D] transition-colors duration-200 hover:border-red-400/50 hover:text-red-600"
+          className="kyc-calculator-action inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#BFC8D2] bg-white px-4 text-sm font-medium text-[#0A0B0D] transition-colors duration-200 hover:border-red-400/50 hover:text-red-600"
           type="button"
           onClick={onClear}
         >

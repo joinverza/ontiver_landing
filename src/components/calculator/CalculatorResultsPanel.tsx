@@ -266,7 +266,7 @@ export default function CalculatorResultsPanel({
                 View Recommended Plan
               </MagneticFillButton>
               <motion.button
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-[#009311]/35 bg-white px-4 text-sm font-medium text-[#005e19] transition-colors duration-200 hover:bg-[#F8FFF8]"
+                className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#009311]/35 bg-white px-4 text-sm font-medium text-[#005e19] transition-colors duration-200 hover:bg-[#F8FFF8]"
                 type="button"
                 onClick={onShare}
                 initial={{ opacity: 0, y: 12 }}

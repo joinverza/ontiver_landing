@@ -1,6 +1,15 @@
-import { useRef, useCallback, useState, type MouseEvent, type ReactNode } from "react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  type MouseEvent as ReactMouseEvent,
+  type MouseEventHandler,
+  type ReactNode,
+  type RefObject,
+} from "react";
 
 type MagneticFillVariant = "dark" | "light" | "green";
+type MagneticFillElement = HTMLButtonElement | HTMLAnchorElement;
 
 interface MagneticFillButtonProps {
   variant?: MagneticFillVariant;
@@ -8,6 +17,9 @@ interface MagneticFillButtonProps {
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const VARIANT_STYLES = {
@@ -40,8 +52,11 @@ export default function MagneticFillButton({
   className = "",
   onClick,
   type = "button",
+  href,
+  target,
+  rel,
 }: MagneticFillButtonProps) {
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<MagneticFillElement>(null);
   const [fillOrigin, setFillOrigin] = useState({ x: 0, y: 0 });
   const [fillSize, setFillSize] = useState(500);
   const [isHovered, setIsHovered] = useState(false);
@@ -49,7 +64,7 @@ export default function MagneticFillButton({
   const styles = VARIANT_STYLES[variant];
 
   const getRelativeCoords = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
+    (e: ReactMouseEvent<MagneticFillElement>) => {
       const rect = buttonRef.current?.getBoundingClientRect();
       if (!rect) return { x: 0, y: 0 };
       return {
@@ -57,11 +72,11 @@ export default function MagneticFillButton({
         y: e.clientY - rect.top,
       };
     },
-    []
+    [],
   );
 
   const handleMouseEnter = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
+    (e: ReactMouseEvent<MagneticFillElement>) => {
       const coords = getRelativeCoords(e);
       const rect = buttonRef.current?.getBoundingClientRect();
       if (rect) {
@@ -72,38 +87,37 @@ export default function MagneticFillButton({
       setFillOrigin(coords);
       setIsHovered(true);
     },
-    [getRelativeCoords]
+    [getRelativeCoords],
   );
 
   const handleMouseLeave = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
+    (e: ReactMouseEvent<MagneticFillElement>) => {
       const coords = getRelativeCoords(e);
       setFillOrigin(coords);
       setIsHovered(false);
     },
-    [getRelativeCoords]
+    [getRelativeCoords],
   );
 
-  return (
-    <button
-      ref={buttonRef}
-      className={`relative overflow-hidden cursor-pointer ${className}`}
-      style={{
-        border: styles.border,
-        background: styles.bg,
-        color: isHovered ? styles.textHover : styles.textDefault,
-        transition: isHovered
-          ? "all 350ms cubic-bezier(0.4, 0, 0.2, 1)"
-          : "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-      }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-      type={type}
-    >
-      {/* Radial fill circle */}
+  const sharedProps = {
+    className: `relative overflow-hidden cursor-pointer ${className}`,
+    style: {
+      border: styles.border,
+      background: styles.bg,
+      color: isHovered ? styles.textHover : styles.textDefault,
+      transition: isHovered
+        ? "all 350ms cubic-bezier(0.4, 0, 0.2, 1)"
+        : "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+    },
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    onClick,
+  };
+
+  const content = (
+    <>
       <span
-        className="absolute pointer-events-none rounded-full"
+        className="pointer-events-none absolute rounded-full"
         style={{
           width: fillSize,
           height: fillSize,
@@ -117,10 +131,37 @@ export default function MagneticFillButton({
         }}
       />
 
-      {/* Button content */}
       <span className="relative z-10 flex items-center justify-center gap-2">
         {children}
       </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        {...sharedProps}
+        ref={buttonRef as RefObject<HTMLAnchorElement>}
+        href={href}
+        target={target}
+        rel={rel}
+        onMouseEnter={handleMouseEnter as MouseEventHandler<HTMLAnchorElement>}
+        onMouseLeave={handleMouseLeave as MouseEventHandler<HTMLAnchorElement>}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      {...sharedProps}
+      ref={buttonRef as RefObject<HTMLButtonElement>}
+      type={type}
+      onMouseEnter={handleMouseEnter as MouseEventHandler<HTMLButtonElement>}
+      onMouseLeave={handleMouseLeave as MouseEventHandler<HTMLButtonElement>}
+    >
+      {content}
     </button>
   );
 }

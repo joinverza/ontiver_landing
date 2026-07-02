@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -8,6 +8,7 @@ import ArticleSidebar from "../components/blog/ArticleSidebar";
 import ArticleSocialRail from "../components/blog/ArticleSocialRail";
 import { ArticleGridCard } from "../components/blog/BlogCards";
 import Footer from "../components/sections/Footer/Footer";
+import LinkArrow from "../components/ui/LinkArrow";
 import { blogArticles, getBlogArticleBySlug } from "../data/blog";
 
 type SubscribeState = "idle" | "loading" | "done";
@@ -195,7 +196,7 @@ export default function BlogArticlePage() {
         />
 
         <motion.button
-          className="absolute left-5 top-[104px] inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/25 sm:left-6 sm:top-[120px] md:left-20"
+          className="absolute left-5 top-[104px] inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/25 sm:left-6 sm:top-[120px] md:left-20"
           type="button"
           onClick={() => navigate("/blogs")}
           initial={{ opacity: 0, x: -12 }}
@@ -297,9 +298,9 @@ export default function BlogArticlePage() {
       </section>
 
       <section className="px-6 pb-20 text-center">
-        <Link className="text-sm font-bold text-[#009311]" to="/blogs">
+        <LinkArrow href="/blogs" className="mx-auto [--link-arrow-min-width:230px]">
           Back to all resources
-        </Link>
+        </LinkArrow>
       </section>
 
       <Footer />

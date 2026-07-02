@@ -33,6 +33,7 @@ export default function Join() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<JoinState>("idle");
   const [error, setError] = useState(false);
+  const headingWords = "Join the reusable identity waitlist".split(" ");
 
   const submit = () => {
     if (state === "joining") return;
@@ -63,91 +64,173 @@ export default function Join() {
   };
 
   return (
-    <section id="join" className="scroll-mt-24 bg-bg-light px-5 py-8 sm:px-6 sm:py-10">
-      <motion.div
-        className="relative mx-auto flex min-h-[390px] max-w-[1200px] items-center justify-center overflow-hidden rounded-[24px] bg-[#06170f] px-5 py-12 text-center text-white sm:min-h-[465px] sm:rounded-[28px] sm:px-6 sm:py-16 md:px-12"
-        initial={{ opacity: 0, y: 32, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] }}
+    <section
+      id="join"
+      data-curtain-cta
+      className="scroll-mt-24 bg-bg-light px-5 py-8 sm:px-6 sm:py-10"
+    >
+      <div
+        data-curtain-cta-panel
+        className="relative mx-auto flex min-h-[560px] max-w-[1280px] items-stretch overflow-hidden rounded-[24px] bg-[#06170f] text-left text-white sm:rounded-[28px]"
       >
         <div
+          data-vault-cta-grid-bg
           className="pointer-events-none absolute inset-0 opacity-[0.075] [background-image:linear-gradient(rgba(255,255,255,0.26)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.22)_1px,transparent_1px)] [background-size:72px_72px]"
           aria-hidden="true"
         />
         <div
+          data-vault-cta-glow-left
           className="pointer-events-none absolute top-0 left-0 h-[52%] w-[36%] bg-[radial-gradient(circle_at_top_left,rgba(0,147,17,0.62),rgba(0,147,17,0.22)_42%,rgba(0,147,17,0)_72%)]"
           aria-hidden="true"
         />
         <div
+          data-vault-cta-glow-right
           className="pointer-events-none absolute right-0 bottom-0 h-[52%] w-[34%] bg-[radial-gradient(circle_at_bottom_right,rgba(0,147,17,0.56),rgba(0,147,17,0.2)_42%,rgba(0,147,17,0)_74%)]"
           aria-hidden="true"
         />
-        <motion.span
-          className="pointer-events-none absolute inset-x-0 bottom-[-72px] text-[clamp(7rem,18vw,16rem)] font-bold leading-none text-white"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.06 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+        <div
+          data-vault-door-left
+          className="pointer-events-none absolute inset-y-0 left-0 z-[20] hidden w-1/2 rounded-l-[24px] bg-[#06170f] sm:rounded-l-[28px] md:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 0% 0%, rgba(0,147,17,0.38), rgba(0,147,17,0.1) 38%, transparent 68%), linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
+            backgroundSize: "auto, 72px 72px, 72px 72px",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          data-vault-door-right
+          className="pointer-events-none absolute inset-y-0 right-0 z-[20] hidden w-1/2 rounded-r-[24px] bg-[#06170f] sm:rounded-r-[28px] md:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 100% 100%, rgba(0,147,17,0.34), rgba(0,147,17,0.1) 40%, transparent 70%), linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
+            backgroundSize: "auto, 72px 72px, 72px 72px",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          data-vault-crack-glow
+          className="pointer-events-none absolute left-1/2 top-0 z-[31] hidden h-full w-[22%] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,147,17,0.42),rgba(0,147,17,0.16)_38%,rgba(0,147,17,0)_72%)] opacity-0 md:block"
+          aria-hidden="true"
+        />
+        <div
+          data-vault-crack-line
+          className="pointer-events-none absolute bottom-0 left-1/2 top-0 z-[32] hidden w-px -translate-x-1/2 bg-[#11cd43] opacity-0 shadow-[0_0_18px_rgba(17,205,67,0.72)] md:block"
+          aria-hidden="true"
+        />
+        <div
+          data-vault-left-shadow
+          className="pointer-events-none absolute top-0 bottom-0 left-1/2 z-[24] hidden w-24 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.12))] opacity-0 md:block"
+          aria-hidden="true"
+        />
+        <div
+          data-vault-right-shadow
+          className="pointer-events-none absolute top-0 bottom-0 left-1/2 z-[24] hidden w-24 bg-[linear-gradient(90deg,rgba(0,0,0,0.12),transparent)] opacity-0 md:block"
+          aria-hidden="true"
+        />
+        <span
+          data-curtain-cta-watermark
+          className="pointer-events-none absolute -bottom-[0.18em] left-[-0.08em] z-[1] text-[clamp(8rem,21vw,20rem)] font-bold uppercase leading-none text-white/20"
         >
-          Ontiver
-        </motion.span>
+          Waitlist
+        </span>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[720px] flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            <AuroraBadge spanClassName="border border-white/70! bg-[#06170f]! px-8! py-2! text-base! font-medium! text-white/70!">
-              Early Access
-            </AuroraBadge>
-          </motion.div>
+        <div className="relative z-10 grid w-full gap-10 px-[clamp(1.25rem,5vw,5.25rem)] py-[clamp(3rem,6vw,5.5rem)] md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center">
+          <div className="flex min-h-full flex-col justify-between gap-10">
+            <div>
+              <div data-curtain-cta-badge>
+                <AuroraBadge spanClassName="border border-white/65! bg-[#06170f]/80! px-7! py-2! text-sm! font-medium! text-white/75!">
+                  Early Access
+                </AuroraBadge>
+              </div>
 
-          <motion.h2
-            className="mt-5 text-balance text-[clamp(1.75rem,4vw,2.35rem)] font-semibold leading-[1.15] tracking-[0] text-white"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
-          >
-            Be among the first to use reusable identity
-          </motion.h2>
+              <h2
+                data-curtain-cta-heading
+                className="mt-6 max-w-[8.5ch] text-balance text-[clamp(3rem,7vw,6.6rem)] font-semibold leading-[0.95] tracking-[0] text-white"
+              >
+                {headingWords.map((word, index) => (
+                  <span
+                    data-curtain-cta-heading-word
+                    className="inline-block"
+                    key={`${word}-${index}`}
+                  >
+                    {word}
+                    {index === headingWords.length - 1 ? "" : "\u00a0"}
+                  </span>
+                ))}
+              </h2>
 
-          <motion.p
-            className="mt-4 max-w-[640px] text-balance text-sm leading-relaxed text-white/60 sm:text-base"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.28, ease: "easeOut" }}
-          >
-            Join the waitlist for early access to Ontiver's personal identity wallet - verify once, control your data, and share with consent.
-          </motion.p>
-
-          <motion.div
-            className="mt-8 flex w-full max-w-[760px] flex-col items-stretch gap-3 sm:mt-11 sm:flex-row"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
-          >
-            <div
-              className={`flex min-w-0 flex-1 items-center rounded-full border bg-[#06170f]/75 transition-[border-color,background-color,box-shadow] focus-within:border-[#009311] focus-within:[box-shadow:0_0_0_3px_rgba(0,147,17,0.12)] ${
-                error ? "border-red-500/80" : "border-[#009311]/80"
-              }`}
-            >
-              <input
-                ref={inputRef}
-                className="h-14 min-w-0 flex-1 rounded-full bg-transparent px-5 text-base text-white outline-none placeholder:text-white/55 sm:h-16 sm:px-7 sm:text-lg"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-              />
+              <p
+                data-curtain-cta-subheading
+                className="mt-7 max-w-[520px] text-balance text-base leading-relaxed text-white/62 sm:text-lg"
+              >
+                Get first access to Ontiver's reusable identity layer, product updates, private beta invites, and launch support for consent-led verification workflows.
+              </p>
             </div>
+
+            <div className="grid gap-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-white/65 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
+              <span className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 bg-[#009311]" />
+                Beta access
+              </span>
+              <span className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 bg-[#009311]" />
+                API previews
+              </span>
+              <span className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 bg-[#009311]" />
+                Launch support
+              </span>
+            </div>
+          </div>
+
+          <div
+            data-curtain-cta-input-row
+            className="relative z-10 grid gap-7 rounded-[22px] border border-white/10 bg-[#04110b]/72 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.24)] backdrop-blur-sm sm:p-7 lg:p-9"
+          >
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#70ff8a]">
+                Waitlist request
+              </p>
+              <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                Tell us where to send your invite.
+              </h3>
+            </div>
+
+            <div className="grid gap-5">
+              <label className="grid gap-2 text-sm font-medium text-white/55">
+                Work email *
+                <input
+                  ref={inputRef}
+                  className={`h-14 border-b bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 ${
+                    error
+                      ? "border-red-500/80"
+                      : "border-white/20 focus:border-[#009311]"
+                  }`}
+                  placeholder="you@company.com"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </label>
+              <label className="grid gap-2 text-sm font-medium text-white/55">
+                Company
+                <input
+                  className="h-14 border-b border-white/20 bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#009311]"
+                  placeholder="Company name"
+                />
+              </label>
+              <label className="grid gap-2 text-sm font-medium text-white/55">
+                What are you building?
+                <input
+                  className="h-14 border-b border-white/20 bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#009311]"
+                  placeholder="Identity wallet, KYC, compliance, consent..."
+                />
+              </label>
+            </div>
+
             <MagneticFillButton
               variant="green"
-              className="h-14 shrink-0 rounded-full px-8 text-base font-semibold sm:h-16 sm:px-11 sm:text-lg"
+              className="mt-2 h-14 w-full rounded-lg px-8 text-sm font-semibold uppercase tracking-[0.22em] sm:h-16"
               onClick={submit}
             >
               {state === "joining" ? (
@@ -161,12 +244,12 @@ export default function Join() {
                   You're on the list!
                 </span>
               ) : (
-                "Join Waitlist"
+                "Request early access"
               )}
             </MagneticFillButton>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

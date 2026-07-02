@@ -55,7 +55,8 @@ export default function Navbar() {
   return (
     <>
       <div
-        className="pointer-events-none fixed left-0 top-5 z-[100] flex w-full justify-center md:top-10"
+        data-ontiver-navbar
+        className="pointer-events-none fixed left-0 top-5 z-[9999] flex w-full justify-center md:top-10"
         style={{
           opacity: shouldHideForSolution ? 0 : 1,
           transform: shouldHideForSolution ? "translateY(-140px)" : "translateY(0)",
@@ -146,7 +147,7 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="group relative grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-[#f7fff7] text-[#05150E] transition-colors duration-200 hover:border-[#009311]/35 md:hidden"
+              className="group relative grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-black/10 bg-[#f7fff7] text-[#05150E] transition-colors duration-200 hover:border-[#009311]/35 md:hidden"
               aria-label="Open menu"
               onClick={() => setMobileMenuOpen(true)}
               style={{

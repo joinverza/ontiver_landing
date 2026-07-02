@@ -5,8 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlogHero from "../components/blog/BlogHero";
 import LoadingDots from "../components/blog/LoadingDots";
 import MagneticFillButton from "../components/ui/MagneticFillButton";
-import Footer from "../components/sections/Footer/Footer";
-import Join from "../components/sections/Join/Join";
+import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import { blogArticles } from "../data/blog";
 import {
   ArticleGridCard,
@@ -211,8 +210,7 @@ export default function BlogPage() {
         </MagneticFillButton>
       </section>
 
-      <Join />
-      <Footer />
+      <CurtainFooter />
     </main>
   );
 }

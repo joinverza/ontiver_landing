@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import type { CSSProperties, MouseEvent } from "react";
 import type { BlogArticle } from "../../data/blog";
+import LinkArrow from "../ui/LinkArrow";
 
 function useArticleHref(slug: string) {
   const { pathname } = useLocation();
@@ -16,14 +17,16 @@ function updateReadingLight(event: MouseEvent<HTMLElement>) {
 
 function ReadMoreLink({ light = false }: { light?: boolean }) {
   return (
-    <span
-      className={`blog-read-more relative inline-flex items-center gap-1 text-sm font-bold ${
-        light ? "text-[#5ff57a]" : "text-[#009311]"
-      } after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-200 group-hover:after:scale-x-100`}
+    <LinkArrow
+      variant={light ? "dark" : "light"}
+      className={`blog-read-more [--link-arrow-min-width:140px] ${
+        light
+          ? "border-white/25 text-[#5ff57a]"
+          : "border-[#009311]/35 text-[#009311]"
+      }`}
     >
       Read more
-      <span aria-hidden="true">+</span>
-    </span>
+    </LinkArrow>
   );
 }
 

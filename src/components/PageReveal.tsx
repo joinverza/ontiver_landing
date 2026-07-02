@@ -5,6 +5,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const REVEAL_SELECTOR = "section, footer";
 const SKIP_SELECTOR = "[data-reveal='off'], [data-section-reveal='off']";
 
+function shouldSkipReveal(section: HTMLElement) {
+  return (
+    section.matches(SKIP_SELECTOR) ||
+    Boolean(section.closest("[data-curtain-wrapper]")) ||
+    Boolean(section.closest("[data-horizontal-transition]"))
+  );
+}
+
 export default function PageReveal() {
   const { pathname } = useLocation();
 
@@ -42,12 +50,10 @@ export default function PageReveal() {
     const allSections = Array.from(
       document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR),
     );
-    const sections = allSections.filter(
-      (section) => !section.matches(SKIP_SELECTOR),
-    );
+    const sections = allSections.filter((section) => !shouldSkipReveal(section));
 
     allSections
-      .filter((section) => section.matches(SKIP_SELECTOR))
+      .filter((section) => shouldSkipReveal(section))
       .forEach((section) => {
         section.classList.remove(
           "section-scroll-reveal",

@@ -3,10 +3,9 @@ import Problem from "../components/sections/Problem/Problem";
 import Solution from "../components/sections/Solution/Solution";
 import Modules from "../components/sections/Modules/Modules";
 import UseCase from "../components/sections/UseCase/UseCase";
-import Trust from "../components/sections/Trust/Trust";
 import PricingFAQ from "../components/faq";
-import Join from "../components/sections/Join/Join";
-import Footer from "../components/sections/Footer/Footer";
+import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
+import TrustHorizontalTransition from "../components/sections/TrustHorizontalTransition/TrustHorizontalTransition";
 
 export default function HomePage() {
   return (
@@ -18,10 +17,9 @@ export default function HomePage() {
       <UseCase />
       {/* <Price /> */}
       {/* <Calculator /> */}
-      <Trust />
+      <TrustHorizontalTransition />
       <PricingFAQ variant="home" />
-      <Join />
-      <Footer />
+      <CurtainFooter />
     </>
   );
 }

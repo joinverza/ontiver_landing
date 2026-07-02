@@ -233,7 +233,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
                 <button
                   type="button"
                   onClick={clearForm}
-                  className="h-11 w-full rounded-lg border border-[#BFC8D2] px-4 text-sm font-medium text-[#0A0B0D] transition-colors hover:bg-black/[0.03] sm:w-1/3"
+                  className="h-11 w-full cursor-pointer rounded-lg border border-[#BFC8D2] px-4 text-sm font-medium text-[#0A0B0D] transition-colors hover:bg-black/[0.03] sm:w-1/3"
                 >
                   Clear Form
                 </button>
