@@ -180,18 +180,6 @@ export default function Navbar() {
                   isOpen={isOpen}
                   index={idx}
                 />
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="whitespace-nowrap text-sm font-medium text-black/80 hover:text-[#009311]"
-                  style={{
-                    opacity: isOpen ? 1 : 0,
-                    transform: isOpen ? "translateY(0)" : "translateY(6px)",
-                    transition:
-                      "opacity 200ms ease, transform 200ms ease, color 200ms ease",
-                    transitionDelay: isOpen ? `${400 + idx * 60}ms` : "0ms",
-                  }}
-                >
-                  {link.name}
-                </Link>
               ))}
             </div>
 

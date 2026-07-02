@@ -147,7 +147,7 @@ export default function Join() {
           Ontiver
         </span>
 
-        <div className="relative z-10 grid w-full gap-8 px-[clamp(1.25rem,4.5vw,4.25rem)] py-[clamp(4.4rem,10vw,7.5rem)] md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] md:items-center">
+        <div className="relative z-10 grid w-full gap-7 px-[clamp(1.25rem,4.5vw,4.25rem)] py-[clamp(3rem,7vw,5.25rem)] md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] md:items-center">
           <div className="flex min-h-full flex-col justify-between gap-8">
             <div>
               <div
@@ -160,12 +160,12 @@ export default function Join() {
                   animate={false}
                   color="#fff"
                   containerClassName="items-start gap-0 pb-0"
-                  headingClassName="mx-0 max-w-[12ch] !text-left text-[clamp(3rem,3.8vw,2.8rem)] font-medium leading-[1.2]! tracking-wide"
+                  headingClassName="mx-0 max-w-[12ch] !text-left text-[clamp(2.45rem,3.7vw,3.65rem)] font-medium !leading-[1.04] tracking-[0.01em]"
                 />
               </div>
               <p
                 data-curtain-cta-subheading
-                className="mt-6 max-w-[500px] text-balance text-[clamp(0.56rem,1.18vw,1.02rem)] leading-[1.35] text-white"
+                className="mt-4 max-w-[500px] text-balance text-[clamp(0.82rem,1vw,0.98rem)] leading-[1.28] text-white"
               >
                 Get first access to reusable identity workflows, private beta
                 invites, product updates, and launch support for consent-led
@@ -207,14 +207,24 @@ export default function Join() {
                 Your email *
                 <input
                   ref={inputRef}
-                  className={`h-11 border-b bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 ${
-                    error
-                      ? "border-red-500/80"
-                      : "border-white/20 focus:border-[#22C55E]"
-                  }`}
+                  className={`h-11 border-b bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 ${error
+                    ? "border-red-500/80"
+                    : "border-white/20 focus:border-[#22C55E]"
+                    }`}
                   placeholder=""
+                  // value={email}
+                  // onChange={(event) => setEmail(event.target.value)}
+
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  type="email"
+                  autoComplete="email"
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                    if (state === "error") setState("idle");
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") void submit();
+                  }}
                 />
               </label>
               <label className="grid gap-1 text-[clamp(0.95rem,1.05vw,1.08rem)] font-normal text-white/60">
@@ -231,49 +241,28 @@ export default function Join() {
                   placeholder=""
                 />
               </label>
-            <div
-              className={`flex min-w-0 flex-1 items-center rounded-full border bg-[#06170f]/75 transition-[border-color,background-color,box-shadow] focus-within:border-[#009311] focus-within:[box-shadow:0_0_0_3px_rgba(0,147,17,0.12)] ${
-                error ? "border-red-500/80" : "border-[#009311]/80"
-              }`}
-            >
-              <input
-                ref={inputRef}
-                className="h-14 min-w-0 flex-1 rounded-full bg-transparent px-5 text-base text-white outline-none placeholder:text-white/55 sm:h-16 sm:px-7 sm:text-lg"
-                placeholder="Enter your email address"
-                value={email}
-                type="email"
-                autoComplete="email"
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                  if (state === "error") setState("idle");
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") void submit();
-                }}
-              />
-            </div>
 
-            <MagneticFillButton
-              variant="green"
-              className="mt-2 h-13 w-full px-7 text-xs font-semibold uppercase tracking-[0.28em] rounded-2xl"
-              onClick={submit}
-            >
-              {state === "joining" ? (
-                <span className="inline-flex items-center">
-                  Joining
-                  <DotLoader />
-                </span>
-              ) : state === "joined" ? (
-                <span className="inline-flex items-center gap-2">
-                  <Check size={18} />
-                  You're on the list!
-                </span>
-              ) : (
-                "Request early access"
-              )}
-            </MagneticFillButton>
+              <MagneticFillButton
+                variant="green"
+                className="mt-2 h-13 w-full px-7 text-xs font-semibold uppercase tracking-[0.28em] rounded-2xl"
+                onClick={submit}
+              >
+                {state === "joining" ? (
+                  <span className="inline-flex items-center">
+                    Joining
+                    <DotLoader />
+                  </span>
+                ) : state === "joined" ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Check size={18} />
+                    You're on the list!
+                  </span>
+                ) : (
+                  "Request early access"
+                )}
+              </MagneticFillButton>
+            </div>
           </div>
-          </motion.div>
           {errorMessage ? (
             <p className="mt-3 text-sm text-red-300" role="alert">
               {errorMessage}

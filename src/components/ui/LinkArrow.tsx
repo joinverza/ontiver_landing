@@ -111,20 +111,20 @@ export default function LinkArrow({
       }, 0.36)
       .to(arrowRight, {
         opacity: 0,
-        x: 8,
-        duration: 0.22,
-        ease: "power2.in",
-      }, 0)
+        x: 10,
+        duration: 0.42,
+        ease: "power2.inOut",
+      }, 0.18)
       .fromTo(
         arrowLeft,
-        { opacity: 0, x: -8 },
+        { opacity: 0, x: -14 },
         {
           opacity: 1,
           x: 0,
-          duration: 0.3,
-          ease: "power2.out",
+          duration: 0.52,
+          ease: "power3.out",
         },
-        0.14,
+        0.42,
       );
 
     if (chars.length) {
@@ -229,20 +229,20 @@ export default function LinkArrow({
     }
     timeline.to(arrowLeft, {
       opacity: 0,
-      x: -8,
-      duration: 0.22,
-      ease: "power2.in",
-    }, 0);
+      x: -14,
+      duration: 0.38,
+      ease: "power2.inOut",
+    }, 0.12);
     timeline.fromTo(
       arrowRight,
-      { opacity: 0, x: 8 },
+      { opacity: 0, x: 10 },
       {
         opacity: 1,
         x: 0,
-        duration: 0.3,
-        ease: "power2.out",
+        duration: 0.46,
+        ease: "power3.out",
       },
-      0.14,
+      0.34,
     );
   }, [stopActiveTimeline]);
 
