@@ -12,6 +12,7 @@ import {
   type SavingsResult,
 } from "../../../data/calculator";
 import { formatCurrency, mixColor, parseAmount } from "../../../lib/calculator";
+import { getRecommendedPricingPlan } from "../../../lib/pricing";
 import Text from "../../base/Text";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,6 +52,8 @@ export default function Calculator() {
     monthlySavings: 0,
     annualSavings: 0,
     recoveryRate: 0,
+    recommendedPlan: "Sandbox",
+    monthlyPlanCost: 0,
   });
 
   const filledCount = useMemo(() => {
@@ -69,16 +72,23 @@ export default function Calculator() {
     const costPerVerification = parseAmount(values.costPerVerification);
     const averageRevenue = parseAmount(values.averageRevenue);
     const manualReviewLoss = parseAmount(values.manualReviewLoss);
+    const recommendedPlan = getRecommendedPricingPlan(monthlyVerifications);
     const recoveredUsers = monthlyVerifications * (dropOffRate / 100) * 0.22;
     const verificationSavings = monthlyVerifications * costPerVerification * 0.28;
     const revenueRecovery = recoveredUsers * averageRevenue;
     const lossRecovery = manualReviewLoss * 0.45;
-    const monthlySavings = verificationSavings + revenueRecovery + lossRecovery;
+    const grossMonthlySavings = verificationSavings + revenueRecovery + lossRecovery;
+    const monthlySavings = Math.max(
+      0,
+      grossMonthlySavings - (recommendedPlan.monthly ?? 0)
+    );
 
     return {
       monthlySavings,
       annualSavings: monthlySavings * 12,
       recoveryRate: Math.min(94, Math.round(18 + dropOffRate * 0.52 + filledCount * 4)),
+      recommendedPlan: recommendedPlan.name,
+      monthlyPlanCost: recommendedPlan.monthly,
     };
   }, [dropOffRate, filledCount, values]);
 
@@ -136,7 +146,13 @@ export default function Calculator() {
     setArcPulse(false);
     setVisibleMetrics(0);
     setShowResultActions(false);
-    setDisplayedResult({ monthlySavings: 0, annualSavings: 0, recoveryRate: 0 });
+    setDisplayedResult({
+      monthlySavings: 0,
+      annualSavings: 0,
+      recoveryRate: 0,
+      recommendedPlan: "Sandbox",
+      monthlyPlanCost: 0,
+    });
     rotationsRef.current.forEach((rotation) => {
       gsap.to(rotation, { timeScale: 1, duration: 0.4, ease: "power3.out" });
     });
@@ -151,7 +167,13 @@ export default function Calculator() {
     setArcPulse(false);
     setVisibleMetrics(0);
     setShowResultActions(false);
-    setDisplayedResult({ monthlySavings: 0, annualSavings: 0, recoveryRate: 0 });
+    setDisplayedResult({
+      monthlySavings: 0,
+      annualSavings: 0,
+      recoveryRate: 0,
+      recommendedPlan: result.recommendedPlan,
+      monthlyPlanCost: result.monthlyPlanCost,
+    });
 
     rotationsRef.current.forEach((rotation) => {
       gsap.to(rotation, { timeScale: 3, duration: 0.4, ease: "power2.out" });
@@ -184,7 +206,9 @@ export default function Calculator() {
   };
 
   const shareResults = () => {
-    const message = `Ontiver KYC savings estimate: ${formatCurrency(
+    const message = `Ontiver KYC savings estimate on the ${
+      result.recommendedPlan
+    } plan: ${formatCurrency(
       result.monthlySavings
     )}/month, ${formatCurrency(result.annualSavings)}/year.`;
 
@@ -197,7 +221,11 @@ export default function Calculator() {
   };
 
   const viewRecommendedPlan = () => {
-    document.getElementById("pricing-plans")?.scrollIntoView({
+    document
+      .querySelector<HTMLElement>(
+        `[data-plan="${result.recommendedPlan.toLowerCase()}"]`
+      )
+      ?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -356,6 +384,10 @@ export default function Calculator() {
       annualSavings: 0,
       recoveryRate: 0,
     };
+    const planResult = {
+      recommendedPlan: result.recommendedPlan,
+      monthlyPlanCost: result.monthlyPlanCost,
+    };
 
     const timeline = gsap.timeline({
       onComplete: () => setShowResultActions(true),
@@ -367,7 +399,7 @@ export default function Calculator() {
         monthlySavings: result.monthlySavings,
         duration: 0.8,
         ease: "power2.out",
-        onUpdate: () => setDisplayedResult({ ...counters }),
+        onUpdate: () => setDisplayedResult({ ...planResult, ...counters }),
       })
       .to({}, { duration: 0.2 })
       .call(() => setVisibleMetrics(2))
@@ -375,7 +407,7 @@ export default function Calculator() {
         annualSavings: result.annualSavings,
         duration: 0.8,
         ease: "power2.out",
-        onUpdate: () => setDisplayedResult({ ...counters }),
+        onUpdate: () => setDisplayedResult({ ...planResult, ...counters }),
       })
       .to({}, { duration: 0.2 })
       .call(() => setVisibleMetrics(3))
@@ -383,7 +415,7 @@ export default function Calculator() {
         recoveryRate: result.recoveryRate,
         duration: 0.65,
         ease: "power2.out",
-        onUpdate: () => setDisplayedResult({ ...counters }),
+        onUpdate: () => setDisplayedResult({ ...planResult, ...counters }),
       });
 
     return () => {

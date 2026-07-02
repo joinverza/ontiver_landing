@@ -17,6 +17,8 @@ export type SavingsResult = {
   monthlySavings: number;
   annualSavings: number;
   recoveryRate: number;
+  recommendedPlan: string;
+  monthlyPlanCost: number | null;
 };
 
 export const calculatorFields: CalculatorField[] = [
@@ -27,8 +29,8 @@ export const calculatorFields: CalculatorField[] = [
   },
   {
     key: "costPerVerification",
-    label: "Cost Per Verification",
-    placeholder: "150",
+    label: "Current Cost Per Verification",
+    placeholder: "0.50",
     prefix: "$",
   },
   {
