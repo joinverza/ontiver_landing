@@ -20,7 +20,7 @@ type LinkArrowProps = {
 
 const variantClasses = {
   light: "border-black/25 text-[#444] hover:border-[#009311] hover:text-[#009311]",
-  dark: "border-white/30 text-white/75 hover:border-white/70 hover:text-white",
+  dark: "border-white/30 text-white/75 hover:border-[#22C55E] hover:text-[#22C55E]",
 };
 
 function isExternalHref(href: string) {

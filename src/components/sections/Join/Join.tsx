@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { Check } from "lucide-react";
-import AuroraBadge from "../../ui/AuroraBadge";
+import Text from "../../base/Text";
 import MagneticFillButton from "../../ui/MagneticFillButton";
 
 type JoinState = "idle" | "joining" | "joined";
@@ -33,7 +33,6 @@ export default function Join() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<JoinState>("idle");
   const [error, setError] = useState(false);
-  const headingWords = "Join the reusable identity waitlist".split(" ");
 
   const submit = () => {
     if (state === "joining") return;
@@ -67,25 +66,25 @@ export default function Join() {
     <section
       id="join"
       data-curtain-cta
-      className="scroll-mt-24 bg-bg-light px-5 py-8 sm:px-6 sm:py-10"
+      className="scroll-mt-24 px-0 py-0"
     >
       <div
         data-curtain-cta-panel
-        className="relative mx-auto flex min-h-[560px] max-w-[1280px] items-stretch overflow-hidden rounded-[24px] bg-[#06170f] text-left text-white sm:rounded-[28px]"
+        className="relative mx-auto flex min-h-[560px] max-w-[1280px] items-stretch overflow-hidden rounded-[24px] bg-[#000a03] text-left text-[#06160f] sm:rounded-[28px]"
       >
         <div
           data-vault-cta-grid-bg
-          className="pointer-events-none absolute inset-0 opacity-[0.075] [background-image:linear-gradient(rgba(255,255,255,0.26)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.22)_1px,transparent_1px)] [background-size:72px_72px]"
+          className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.22)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:72px_72px]"
           aria-hidden="true"
         />
         <div
           data-vault-cta-glow-left
-          className="pointer-events-none absolute top-0 left-0 h-[52%] w-[36%] bg-[radial-gradient(circle_at_top_left,rgba(0,147,17,0.62),rgba(0,147,17,0.22)_42%,rgba(0,147,17,0)_72%)]"
+          className="pointer-events-none absolute top-0 left-0 h-[52%] w-[22%]"
           aria-hidden="true"
         />
         <div
           data-vault-cta-glow-right
-          className="pointer-events-none absolute right-0 bottom-0 h-[52%] w-[34%] bg-[radial-gradient(circle_at_bottom_right,rgba(0,147,17,0.56),rgba(0,147,17,0.2)_42%,rgba(0,147,17,0)_74%)]"
+          className="pointer-events-none absolute right-0 bottom-0 h-[52%] w-[28%]"
           aria-hidden="true"
         />
         <div
@@ -130,55 +129,48 @@ export default function Join() {
         />
         <span
           data-curtain-cta-watermark
-          className="pointer-events-none absolute -bottom-[0.18em] left-[-0.08em] z-[1] text-[clamp(8rem,21vw,20rem)] font-bold uppercase leading-none text-white/20"
+          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.25]"
         >
-          Waitlist
+          Ontiver
         </span>
 
-        <div className="relative z-10 grid w-full gap-10 px-[clamp(1.25rem,5vw,5.25rem)] py-[clamp(3rem,6vw,5.5rem)] md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center">
-          <div className="flex min-h-full flex-col justify-between gap-10">
+        <div className="relative z-10 grid w-full gap-8 px-[clamp(1.25rem,4.5vw,4.25rem)] py-[clamp(4.4rem,10vw,7.5rem)] md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] md:items-center">
+          <div className="flex min-h-full flex-col justify-between gap-8">
             <div>
-              <div data-curtain-cta-badge>
-                <AuroraBadge spanClassName="border border-white/65! bg-[#06170f]/80! px-7! py-2! text-sm! font-medium! text-white/75!">
-                  Early Access
-                </AuroraBadge>
-              </div>
-
-              <h2
+              <div
                 data-curtain-cta-heading
-                className="mt-6 max-w-[8.5ch] text-balance text-[clamp(3rem,7vw,6.6rem)] font-semibold leading-[0.95] tracking-[0] text-white"
+                className="max-w-[560px]"
               >
-                {headingWords.map((word, index) => (
-                  <span
-                    data-curtain-cta-heading-word
-                    className="inline-block"
-                    key={`${word}-${index}`}
-                  >
-                    {word}
-                    {index === headingWords.length - 1 ? "" : "\u00a0"}
-                  </span>
-                ))}
-              </h2>
-
+                <Text
+                  btext=""
+                  heading="Join the Ontiver waitlist"
+                  animate={false}
+                  color="#fff"
+                  containerClassName="items-start gap-0 pb-0"
+                  headingClassName="mx-0 max-w-[12ch] !text-left text-[clamp(3rem,3.8vw,2.8rem)] font-medium leading-[1.2]! tracking-wide"
+                />
+              </div>
               <p
                 data-curtain-cta-subheading
-                className="mt-7 max-w-[520px] text-balance text-base leading-relaxed text-white/62 sm:text-lg"
+                className="mt-6 max-w-[500px] text-balance text-[clamp(0.56rem,1.18vw,1.02rem)] leading-[1.35] text-white"
               >
-                Get first access to Ontiver's reusable identity layer, product updates, private beta invites, and launch support for consent-led verification workflows.
+                Get first access to reusable identity workflows, private beta
+                invites, product updates, and launch support for consent-led
+                verification.
               </p>
             </div>
 
-            <div className="grid gap-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-white/65 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
+            <div className="grid gap-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/58 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
               <span className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-[#009311]" />
-                Beta access
+                <span className="h-1.5 w-1.5 bg-[#009311] rounded-full" />
+                Early beta
               </span>
               <span className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-[#009311]" />
+                <span className="h-1.5 w-1.5 bg-[#009311] rounded-full" />
                 API previews
               </span>
               <span className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-[#009311]" />
+                <span className="h-1.5 w-1.5 bg-[#009311] rounded-full" />
                 Launch support
               </span>
             </div>
@@ -186,51 +178,51 @@ export default function Join() {
 
           <div
             data-curtain-cta-input-row
-            className="relative z-10 grid gap-7 rounded-[22px] border border-white/10 bg-[#04110b]/72 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.24)] backdrop-blur-sm sm:p-7 lg:p-9"
+            className="relative z-10 grid gap-6 p-0"
           >
             <div>
-              <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#70ff8a]">
-                Waitlist request
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#22C55E]">
+                Access request
               </p>
-              <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+              <h3 className="mt-3 max-w-[24ch] text-[clamp(1.2rem,1.65vw,1.65rem)] font-medium leading-tight text-white">
                 Tell us where to send your invite.
               </h3>
             </div>
 
             <div className="grid gap-5">
-              <label className="grid gap-2 text-sm font-medium text-white/55">
-                Work email *
+              <label className="grid gap-1 text-[clamp(0.95rem,1.05vw,1.08rem)] font-normal text-white/60">
+                Your email *
                 <input
                   ref={inputRef}
-                  className={`h-14 border-b bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 ${
+                  className={`h-11 border-b bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 ${
                     error
                       ? "border-red-500/80"
-                      : "border-white/20 focus:border-[#009311]"
+                      : "border-white/20 focus:border-[#22C55E]"
                   }`}
-                  placeholder="you@company.com"
+                  placeholder=""
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </label>
-              <label className="grid gap-2 text-sm font-medium text-white/55">
+              <label className="grid gap-1 text-[clamp(0.95rem,1.05vw,1.08rem)] font-normal text-white/60">
                 Company
                 <input
-                  className="h-14 border-b border-white/20 bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#009311]"
-                  placeholder="Company name"
+                  className="h-11 border-b border-white/20 bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#22C55E]"
+                  placeholder=""
                 />
               </label>
-              <label className="grid gap-2 text-sm font-medium text-white/55">
-                What are you building?
+              <label className="grid gap-1 text-[clamp(0.95rem,1.05vw,1.08rem)] font-normal text-white/60">
+                What identity workflow do you need?
                 <input
-                  className="h-14 border-b border-white/20 bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#009311]"
-                  placeholder="Identity wallet, KYC, compliance, consent..."
+                  className="h-11 border-b border-white/20 bg-transparent text-base text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#22C55E]"
+                  placeholder=""
                 />
               </label>
             </div>
 
             <MagneticFillButton
               variant="green"
-              className="mt-2 h-14 w-full rounded-lg px-8 text-sm font-semibold uppercase tracking-[0.22em] sm:h-16"
+              className="mt-2 h-13 w-full px-7 text-xs font-semibold uppercase tracking-[0.28em] rounded-2xl"
               onClick={submit}
             >
               {state === "joining" ? (

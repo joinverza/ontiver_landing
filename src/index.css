@@ -6,8 +6,8 @@
   --color-border: #05150e;
   --color-bg-light: #f7f7f7;
   --color-green: #007d21;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
   --breakpoint-xss: 450px;
   --breakpoint-xs: 550px;
@@ -24,7 +24,7 @@ button,
 input,
 textarea,
 select {
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 body {

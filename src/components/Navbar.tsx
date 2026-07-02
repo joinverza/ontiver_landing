@@ -6,6 +6,72 @@ import { useJoinNavigation } from "../hooks/useJoinNavigation";
 import MobileMenu from "./MobileMenu";
 import MagneticFillButton from "./ui/MagneticFillButton";
 
+function isNavLinkActive(pathname: string, to: string) {
+  if (to === "/") return pathname === "/";
+  if (to === "/blogs") {
+    return (
+      pathname === "/blogs" ||
+      pathname.startsWith("/blogs/") ||
+      pathname === "/blog" ||
+      pathname.startsWith("/blog/") ||
+      pathname.startsWith("/resources")
+    );
+  }
+
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
+
+function DesktopNavLink({
+  to,
+  name,
+  active,
+  isOpen,
+  index,
+}: {
+  to: string;
+  name: string;
+  active: boolean;
+  isOpen: boolean;
+  index: number;
+}) {
+  return (
+    <Link
+      to={to}
+      aria-current={active ? "page" : undefined}
+      className={`group/navlink relative inline-flex h-8 cursor-pointer items-center overflow-hidden whitespace-nowrap px-1 text-[0.9rem] font-medium transition-colors duration-300 ${
+        active ? "text-[#00710dfe] uppercase tracking-wider" : "text-black hover:text-[#003106]"
+      }`}
+      style={{
+        opacity: isOpen ? 1 : 0,
+        transform: isOpen ? "translateY(0)" : "translateY(6px)",
+        transition:
+          "opacity 200ms ease, transform 200ms ease, color 240ms ease",
+        transitionDelay: isOpen ? `${400 + index * 60}ms` : "0ms",
+      }}
+    >
+      <span className="relative block overflow-hidden leading-none">
+        <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:-translate-y-full">
+          {name}
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute left-0 top-full block text-[#009311] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:-translate-y-full"
+        >
+          {name}
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        className={`absolute bottom-0 left-1/2 h-px -translate-x-1/2 bg-[#009311] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          active
+            ? "w-[calc(100%-0.5rem)] opacity-100"
+            : "w-0 opacity-0 group-hover/navlink:w-[calc(100%-0.5rem)] group-hover/navlink:opacity-100"
+        }`}
+      />
+    </Link>
+  );
+}
+
 export default function Navbar() {
   const { pathname } = useLocation();
   const goToJoin = useJoinNavigation();
@@ -56,7 +122,7 @@ export default function Navbar() {
     <>
       <div
         data-ontiver-navbar
-        className="pointer-events-none fixed left-0 top-5 z-[9999] flex w-full justify-center md:top-10"
+        className="pointer-events-none fixed left-0 top-5 z-[9999] flex w-full justify-center md:top-6"
         style={{
           opacity: shouldHideForSolution ? 0 : 1,
           transform: shouldHideForSolution ? "translateY(-140px)" : "translateY(0)",
@@ -68,7 +134,7 @@ export default function Navbar() {
         <div
           style={{
             width: isOpen ? "min(1000px, calc(100vw - 32px))" : "48px",
-            height: isMobile ? "58px" : "62px",
+            height: isMobile ? "58px" : "76px",
             opacity: isOpen ? 1 : 0,
             transform: isOpen ? "scale(1)" : "scale(0.5)",
             borderRadius: isMobile ? "20px" : "25px",
@@ -104,25 +170,19 @@ export default function Navbar() {
                 flexShrink: 0,
               }}
             >
-              <img src="/assets/logo.svg" alt="Ontiver" className="h-6" />
+              <img src="/assets/logo.svg" alt="Ontiver" className="h-7" />
             </Link>
 
             <div className="hidden shrink-0 gap-8 md:flex">
               {navLinks.map((link, idx) => (
-                <Link
+                <DesktopNavLink
                   key={link.to}
                   to={link.to}
-                  className="whitespace-nowrap text-sm font-medium text-black/80 hover:text-[#009311]"
-                  style={{
-                    opacity: isOpen ? 1 : 0,
-                    transform: isOpen ? "translateY(0)" : "translateY(6px)",
-                    transition:
-                      "opacity 200ms ease, transform 200ms ease, color 200ms ease",
-                    transitionDelay: isOpen ? `${400 + idx * 60}ms` : "0ms",
-                  }}
-                >
-                  {link.name}
-                </Link>
+                  name={link.name}
+                  active={isNavLinkActive(pathname, link.to)}
+                  isOpen={isOpen}
+                  index={idx}
+                />
               ))}
             </div>
 
@@ -138,7 +198,7 @@ export default function Navbar() {
             >
               <MagneticFillButton
                 variant="green"
-                className="rounded-full px-6 py-2.5 text-sm font-medium shadow-md"
+                className="rounded-2xl px-6 py-2.5 text-[1rem] font-medium shadow-md"
                 onClick={goToJoin}
               >
                 Join Waitlist

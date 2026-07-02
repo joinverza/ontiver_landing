@@ -13,9 +13,10 @@ export function useLenis() {
     let frameId = 0;
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.45,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      wheelMultiplier: 0.85,
     });
 
     lenisRef.current = lenis;

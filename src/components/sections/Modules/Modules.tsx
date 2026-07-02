@@ -189,6 +189,7 @@ export default function Modules() {
     <section
       id="features"
       ref={sectionRef}
+      data-section-reveal="off"
       className="relative overflow-hidden bg-bg-light px-6 py-[150px] max-[900px]:px-[18px] max-[900px]:pt-14 max-[900px]:pb-[68px] max-[640px]:py-14"
     >
       <div className="absolute inset-0 z-0 opacity-40">

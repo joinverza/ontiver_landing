@@ -33,6 +33,7 @@ export default function Text({
 }: TextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLHeadingElement>(null);
+  const hasBadge = btext !== null && btext !== undefined && btext !== "";
 
   useGSAP(() => {
     if (!animate) return;
@@ -46,11 +47,13 @@ export default function Text({
     });
 
     // Badge slides up and fades in
-    tl.fromTo(
-      badgeRef.current,
-      { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }
-    );
+    if (badgeRef.current) {
+      tl.fromTo(
+        badgeRef.current,
+        { y: 30, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }
+      );
+    }
 
     // Animate heading words
     const wordEls = containerRef.current?.querySelectorAll(".heading-word");
@@ -64,7 +67,7 @@ export default function Text({
           ease: "power3.out",
           stagger: 0.06,
         },
-        "-=0.3"
+        badgeRef.current ? "-=0.3" : 0
       );
     }
   }, { scope: containerRef });
@@ -78,18 +81,20 @@ export default function Text({
       ref={containerRef}
       className={`flex flex-col gap-2 pb-15 w-full ${containerClassName}`}
     >
-      <div
-        ref={badgeRef as React.RefObject<HTMLDivElement>}
-        className={`mx-auto w-fit ${badgeWrapperClassName}`}
-        style={{ opacity: animate ? 0 : 1 }}
-      >
-        <AuroraBadge
-          className={`${className} ${badgeClassName}`}
-          spanClassName={badgeTextClassName}
+      {hasBadge ? (
+        <div
+          ref={badgeRef as React.RefObject<HTMLDivElement>}
+          className={`mx-auto w-fit ${badgeWrapperClassName}`}
+          style={{ opacity: animate ? 0 : 1 }}
         >
-          {btext}
-        </AuroraBadge>
-      </div>
+          <AuroraBadge
+            className={`${className} ${badgeClassName}`}
+            spanClassName={badgeTextClassName}
+          >
+            {btext}
+          </AuroraBadge>
+        </div>
+      ) : null}
       <h2
         className={`w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center ${className} ${headingClassName}`}
         style={color ? ({ "--heading-color": color } as CSSProperties) : undefined}

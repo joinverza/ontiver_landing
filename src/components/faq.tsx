@@ -440,25 +440,6 @@ export default function PricingFAQ({ variant = "pricing" }: PricingFAQProps) {
             />
           </div>
         </div>
-
-              {/* <div className="relative z-2 flex h-fit w-full lg:sticky lg:top-[35vh] lg:-translate-y-1/2 lg:self-start pt-0 lg:pt-64">
-                <Text
-                  btext="Security & Trust"
-                  heading="Designed for sensitive identity data."
-                  animate={false}
-                  containerClassName="items-start gap-5 pb-0"
-                  badgeWrapperClassName="!mx-0 self-start text-start"
-                  badgeTextClassName="border border-black/25 bg-white/70 text-[#009311]"
-                  headingClassName="!mx-0 max-w-[9ch] !text-left text-[clamp(3rem,3.8vw,4.8rem)] font-medium leading-[1.2]! tracking-wide"
-                />
-                <LinkArrow
-                  href="/contact"
-                  className="mt-12 w-fit"
-                >
-                  Request documentation
-                </LinkArrow>
-              </div> */}
-
         <div
           ref={accordionRef}
           data-faq-accordion

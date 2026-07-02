@@ -40,7 +40,9 @@ export default function CurtainFooter() {
       media.add("(min-width: 768px)", () => {
         const cta = getEl<HTMLElement>(wrapper, "[data-curtain-cta]");
         const panel = getEl<HTMLElement>(wrapper, "[data-curtain-cta-panel]");
-        const badge = getEl<HTMLElement>(wrapper, "[data-curtain-cta-badge]");
+        const badge =
+          getEl<HTMLElement>(wrapper, "[data-curtain-cta-badge]") ||
+          getEl<HTMLElement>(wrapper, ".curtain-cta-badge");
         const heading = getEl<HTMLElement>(
           wrapper,
           "[data-curtain-cta-heading]",
@@ -76,13 +78,14 @@ export default function CurtainFooter() {
           "[data-vault-right-shadow]",
         );
         const headingWords = gsap.utils.toArray<HTMLElement>(
-          wrapper.querySelectorAll("[data-curtain-cta-heading-word]"),
+          wrapper.querySelectorAll(
+            "[data-curtain-cta-heading-word], [data-curtain-cta-heading] .heading-word",
+          ),
         );
 
         if (
           !cta ||
           !panel ||
-          !badge ||
           !heading ||
           !subheading ||
           !inputRow ||
@@ -101,15 +104,14 @@ export default function CurtainFooter() {
           alignItems: "center",
           paddingLeft: "2vw",
           paddingRight: "2vw",
-          paddingTop: "2vw",
-          paddingBottom: "2vw",
+          paddingTop: 0,
+          paddingBottom: 0,
         });
         gsap.set(panel, {
           width: "min(96vw, 1280px)",
           maxWidth: "1280px",
-          minHeight: "min(84vh, 760px)",
+          minHeight: "100vh",
           borderRadius: 28,
-          backgroundColor: "#030A06",
           transformOrigin: "center center",
         });
         gsap.set([leftDoor, rightDoor], {
@@ -150,7 +152,10 @@ export default function CurtainFooter() {
           transformOrigin: "center center",
         });
         gsap.set([leftGlow, rightGlow], { opacity: 0, display: "block" });
-        gsap.set([badge, subheading, inputRow], { opacity: 0, y: 16 });
+        gsap.set([subheading, inputRow], { opacity: 0, y: 16 });
+        if (badge) {
+          gsap.set(badge, { opacity: 0, y: 16 });
+        }
         gsap.set(headingWords, { opacity: 0, y: 20 });
         gsap.set(heading, { opacity: 1, y: 0 });
         gsap.set(watermark, { opacity: 0, scale: 1 });
@@ -171,6 +176,8 @@ export default function CurtainFooter() {
             {
               paddingLeft: 0,
               paddingRight: 0,
+              paddingTop: 0,
+              paddingBottom: 0,
               ease: "none",
             },
             0,
@@ -263,8 +270,10 @@ export default function CurtainFooter() {
               duration: 0.15,
             },
             0.35,
-          )
-          .to(
+          );
+
+        if (badge) {
+          timeline.to(
             badge,
             {
               opacity: 1,
@@ -273,7 +282,10 @@ export default function CurtainFooter() {
               duration: 0.14,
             },
             0.28,
-          )
+          );
+        }
+
+        timeline
           .to(
             headingWords,
             {
@@ -334,6 +346,7 @@ export default function CurtainFooter() {
               leftGlow,
               rightGlow,
               ...headingWords,
+              ...(badge ? [badge] : []),
             ],
             { clearProps: "all" },
           );
@@ -700,14 +713,14 @@ export default function CurtainFooter() {
       <div
         ref={ctaWrapperRef}
         data-section-reveal="off"
-        className="relative isolate bg-bg-light"
+        className="relative bg-[#f7f8f5]"
       >
         <Join />
       </div>
       <div
         ref={footerWrapperRef}
         data-section-reveal="off"
-        className="relative bg-[#06160f]"
+        className="relative bg-[#000000]"
       >
         <Footer />
       </div>

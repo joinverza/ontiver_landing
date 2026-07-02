@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer
       data-curtain-footer
-      className="bg-[#06160f] px-5 py-12 text-white sm:px-6 md:px-10 lg:px-20 lg:py-16"
+      className="bg-[#000a03]! px-5 py-12 text-white sm:px-6 md:px-10 lg:px-20 lg:py-16"
     >
       <div className="mx-auto max-w-[1320px]">
         <div className="grid gap-10 lg:grid-cols-[minmax(220px,0.65fr)_minmax(0,2.7fr)] lg:gap-20">
@@ -31,7 +31,7 @@ export default function Footer() {
               <img
                 src="/assets/green-logo.svg"
                 alt="Ontiver"
-                className="curtain-footer-logo-image h-8 w-auto"
+                className="curtain-footer-logo-image h-14 w-auto"
                 data-curtain-footer-logo-mark
               />
             </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-x-10 gap-y-9 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid grid-cols-1 lg:gap-x-96 gap-x-20 lg:gap-y-9 gap-y-28 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {footerGroups.map((group) => (
               <div
                 data-curtain-footer-column

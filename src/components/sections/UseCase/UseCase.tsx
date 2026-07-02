@@ -43,7 +43,10 @@ export default function UseCase() {
 
       gsap.set(frame, {
         width: "calc(100vw - clamp(2rem, 8vw, 10rem))",
-        borderRadius: 48,
+        borderTopLeftRadius: 48,
+        borderTopRightRadius: 48,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
         transformOrigin: "center center",
       });
 
