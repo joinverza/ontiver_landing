@@ -39,7 +39,7 @@ export default function ProblemCard({
 
   return (
     <div
-      className="group relative isolate flex flex-col gap-2 overflow-hidden rounded-[20px] border border-black/5 bg-white p-0.5 transition-[transform,border-color,box-shadow,background-color] duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform [--anim-speed:1] [--mx:50%] [--my:50%] [--rx:0deg] [--ry:0deg] [--tx:0px] [--ty:0px] [transform:perspective(900px)_rotateX(var(--rx))_rotateY(var(--ry))_translateY(0)_scale(1)] hover:border-light-primary hover:bg-[#fbfffb] hover:[--anim-speed:1.85] hover:[transform:perspective(900px)_rotateX(var(--rx))_rotateY(var(--ry))_translateY(-10px)_scale(1.018)]"
+      className="group relative isolate mx-auto flex w-full flex-col gap-2 overflow-hidden rounded-[20px] border border-black/5 bg-white p-0.5 transition-[transform,border-color,box-shadow,background-color] duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform [--anim-speed:1] [--mx:50%] [--my:50%] [--rx:0deg] [--ry:0deg] [--tx:0px] [--ty:0px] [transform:perspective(900px)_rotateX(var(--rx))_rotateY(var(--ry))_translateY(0)_scale(1)] hover:border-light-primary hover:bg-[#fbfffb] hover:[--anim-speed:1.85] hover:[transform:perspective(900px)_rotateX(var(--rx))_rotateY(var(--ry))_translateY(-10px)_scale(1.018)] max-[640px]:w-[min(82vw,300px)]"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >

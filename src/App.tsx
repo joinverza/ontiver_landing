@@ -8,6 +8,7 @@ import {
   HomePage,
   PageLayout,
   PricingPage,
+  UseCasePage,
 } from "./pages";
 
 function ScrollToHash({ lenisRef }: { lenisRef: ReturnType<typeof useLenis> }) {
@@ -55,6 +56,7 @@ export default function App() {
         <Route path="/resources" element={<BlogPage />} />
         <Route path="/resources/blogs" element={<BlogPage />} />
         <Route path="/resources/blogs/:slug" element={<BlogArticlePage />} />
+        <Route path="/use-cases/:id" element={<UseCasePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

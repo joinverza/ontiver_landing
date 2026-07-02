@@ -1,5 +1,6 @@
 import type { MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 import { directionOffsets, type UseCaseCard } from "../../data/useCases";
 import DirectionAwareHover, { type Direction } from "../ui/DirectionAwareHover";
 import UseCaseIdleLayer from "./UseCaseIdleLayer";
@@ -159,32 +160,38 @@ export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
 
   return (
     <div
-      className={`relative min-h-0 min-w-0 [transform-style:preserve-3d] will-change-[transform,opacity] ${card.className}`}
+      className={`relative min-h-0 min-w-0 [transform-style:preserve-3d] will-change-[transform,opacity] max-[640px]:mx-auto max-[640px]:w-full max-[640px]:max-w-[410px] ${card.className}`}
       data-idle={card.idle}
       data-use-case-card
     >
-      <DirectionAwareHover
-        imageUrl={card.imageUrl}
-        className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-white/10 bg-[#06160f] sm:min-h-[250px] md:rounded-3xl md:min-h-[276px] ${card.cardClassName ?? ""}`}
-        imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
-        showOverlay={false}
-        onDirectionEnter={handleEnter}
-        onDirectionLeave={handleLeave}
+      <Link
+        to={`/use-cases/${card.id}`}
+        className="block h-full cursor-pointer no-underline"
+        aria-label={`Open ${card.title} use case`}
       >
-        <UseCaseIdleLayer type={card.idle} />
-        <div
-          className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
+        <DirectionAwareHover
+          imageUrl={card.imageUrl}
+          className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-white/10 bg-[#06160f] sm:min-h-[250px] md:rounded-3xl md:min-h-[276px] ${card.cardClassName ?? ""}`}
+          imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
+          showOverlay={false}
+          onDirectionEnter={handleEnter}
+          onDirectionLeave={handleLeave}
         >
-          <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
-            <h3 className="font-sans text-lg font-medium leading-[1.08] tracking-[0] text-white md:text-xl">
-              {card.title}
-            </h3>
-            <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-sm md:leading-[1.28]">
-              {card.description}
-            </p>
+          <UseCaseIdleLayer type={card.idle} />
+          <div
+            className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
+          >
+            <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
+              <h3 className="font-sans text-lg font-medium leading-[1.08] tracking-[0] text-white md:text-xl">
+                {card.title}
+              </h3>
+              <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-sm md:leading-[1.28]">
+                {card.description}
+              </p>
+            </div>
           </div>
-        </div>
-      </DirectionAwareHover>
+        </DirectionAwareHover>
+      </Link>
       <span
         className={`use-case-connection-line pointer-events-none absolute z-[8] block bg-[#22c55e]/10 opacity-0 max-[640px]:hidden ${card.lineClassName}`}
         aria-hidden="true"

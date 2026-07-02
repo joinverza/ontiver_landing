@@ -75,7 +75,7 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
 function ModuleCardItem({ card }: { card: ModuleCard }) {
   return (
     <div
-      className={`module-card-shell group relative min-h-0 min-w-0 isolate opacity-0 [--module-idle-speed:1] hover:z-[5] hover:[--module-idle-speed:1.5] ${card.className}`}
+      className={`module-card-shell group relative min-h-0 min-w-0 isolate [--module-idle-speed:1] hover:z-[5] hover:[--module-idle-speed:1.5] max-[640px]:mx-auto max-[640px]:w-full max-[640px]:max-w-[430px] ${card.className}`}
       data-module={card.id}
       data-x={card.entrance.x}
       data-y={card.entrance.y}
@@ -119,45 +119,11 @@ export default function Modules() {
 
       if (!section) return;
 
-      const cardShells = Array.from(
-        section.querySelectorAll<HTMLElement>(".module-card-shell")
-      );
       const topDepthCards = Array.from(
         section.querySelectorAll<HTMLElement>('[data-depth="top"]')
       );
       const bottomDepthCards = Array.from(
         section.querySelectorAll<HTMLElement>('[data-depth="bottom"]')
-      );
-
-      cardShells.forEach((card) => {
-        gsap.set(card, {
-          x: Number(card.dataset.x || 0),
-          y: Number(card.dataset.y || 0),
-          scale: 0.97,
-          autoAlpha: 0,
-          transformOrigin: "center center",
-        });
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 85%",
-          once: true,
-        },
-      });
-
-      tl.to(
-        cardShells,
-        {
-          x: 0,
-          y: 0,
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.5,
-          ease: "moduleLand",
-        },
-        1.15
       );
 
       gsap.to(topDepthCards, {

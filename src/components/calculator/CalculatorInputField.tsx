@@ -25,9 +25,9 @@ export default function CalculatorInputField({
   onBlur,
 }: CalculatorInputFieldProps) {
   return (
-    <div className="kyc-calculator-field flex flex-col gap-2">
+    <div className="kyc-calculator-field flex min-w-0 flex-col gap-1.5 sm:gap-2">
       <label
-        className={`text-sm font-medium transition-colors duration-150 ${
+        className={`text-xs font-medium leading-tight transition-colors duration-150 sm:text-sm ${
           focused || hasValue ? "text-[#009311]" : "text-black/55"
         }`}
       >
@@ -45,7 +45,7 @@ export default function CalculatorInputField({
         ) : null}
         <motion.input
           inputMode="numeric"
-          className={`h-12 w-full rounded-lg border bg-white px-4 text-sm text-black outline-none transition-[background-color,border-color,box-shadow] duration-200 placeholder:text-black/30 ${
+          className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-black outline-none transition-[background-color,border-color,box-shadow] duration-200 placeholder:text-black/30 sm:h-12 sm:px-4 ${
             field.prefix ? "pl-8" : ""
           } ${
             focused

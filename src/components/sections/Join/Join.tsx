@@ -142,12 +142,12 @@ export default function Join() {
         />
         <span
           data-curtain-cta-watermark
-          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.25]"
+          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.45]"
         >
           Ontiver
         </span>
 
-        <div className="relative z-10 grid w-full gap-7 px-[clamp(1.25rem,4.5vw,4.25rem)] py-[clamp(3rem,7vw,5.25rem)] md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] md:items-center">
+        <div className="relative z-10 grid w-full gap-7 px-[clamp(1.25rem,4.5vw,4.25rem)] py-[clamp(11rem,7vw,10.25rem)] md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] md:items-center">
           <div className="flex min-h-full flex-col justify-between gap-8">
             <div>
               <div
@@ -160,12 +160,12 @@ export default function Join() {
                   animate={false}
                   color="#fff"
                   containerClassName="items-start gap-0 pb-0"
-                  headingClassName="mx-0 max-w-[12ch] !text-left text-[clamp(2.45rem,3.7vw,3.65rem)] font-medium !leading-[1.04] tracking-[0.01em]"
+                  headingClassName="mx-0 max-w-[12ch] !text-left text-[clamp(2.45rem,3.7vw,6.65rem)] font-medium !leading-[1.04] tracking-[0.01em]"
                 />
               </div>
               <p
                 data-curtain-cta-subheading
-                className="mt-4 max-w-[500px] text-balance text-[clamp(0.82rem,1vw,0.98rem)] leading-[1.28] text-white"
+                className="max-w-[500px] text-balance text-[clamp(0.82rem,1vw,0.98rem)] leading-[1.28] text-white"
               >
                 Get first access to reusable identity workflows, private beta
                 invites, product updates, and launch support for consent-led

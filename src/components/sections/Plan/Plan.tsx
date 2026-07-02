@@ -135,24 +135,24 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
   };
 
   return (
-    <section ref={sectionRef} className="bg-[#f1f4ef] px-5 py-16 sm:px-6 sm:py-24">
+    <section ref={sectionRef} className="bg-[#f1f4ef] px-4 py-10 sm:px-6 sm:py-24">
       <div className="mx-auto w-[min(100%,1050px)]">
         <Text
           btext="Find Your Ideal Plan"
           heading="Plan Recommendation Tool"
-          containerClassName="pb-12"
+          containerClassName="pb-7 sm:pb-12"
           badgeTextClassName="border border-black"
         />
 
         <div className="grid gap-4 lg:grid-cols-[minmax(0,536px)_minmax(0,1fr)]">
           <motion.div
             ref={leftPanelRef}
-            className="rounded-3xl bg-white px-6 py-6 md:px-8"
+            className="rounded-3xl bg-white px-4 py-5 sm:px-6 sm:py-6 md:px-8"
             initial={{ opacity: 0, x: -32, scale: 0.97 }}
             animate={isInView ? { opacity: 1, x: 0, scale: 1 } : undefined}
             transition={{ duration: 0.5, ease: panelEase }}
           >
-            <div className="overflow-hidden pb-10">
+            <div className="overflow-hidden pb-5 sm:pb-10">
               <motion.h2
                 className="text-lg font-semibold text-black"
                 initial={{ clipPath: "inset(0 100% 0 0)" }}
@@ -163,7 +163,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
               </motion.h2>
             </div>
 
-            <div className="space-y-5">
+            <div className="grid grid-cols-2 gap-3 sm:block sm:space-y-5">
               {planInputFields.map((field, index) => {
                 const focused = focusedField === field.key;
                 const value = values[field.key];
@@ -175,10 +175,10 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={isInView ? { opacity: 1, y: 0 } : undefined}
                     transition={{ duration: 0.25, ease: "easeOut", delay: 0.6 + index * 0.06 }}
-                    className="flex flex-col gap-2"
+                    className="flex min-w-0 flex-col gap-1.5 sm:gap-2"
                   >
                     <label
-                      className={`text-sm font-medium transition-colors duration-150 ${
+                      className={`text-xs font-medium leading-tight transition-colors duration-150 sm:text-sm ${
                         focused ? "text-[#009311]" : "text-black/65"
                       }`}
                     >
@@ -186,7 +186,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
                     </label>
                     <input
                       inputMode="numeric"
-                      className={`rounded-lg border px-3 py-4 text-sm text-black outline-none transition-[border-color,box-shadow,background-color] duration-200 ${
+                      className={`rounded-lg border px-3 py-3 text-sm text-black outline-none transition-[border-color,box-shadow,background-color] duration-200 sm:py-4 ${
                         focused
                           ? "border-[#009311]/60 [box-shadow:0_0_0_3px_rgba(34,197,94,0.08)]"
                           : "border-[#E1E1E1]"
@@ -210,7 +210,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
                 );
               })}
 
-              <div className="space-y-1 pt-2">
+              <div className="col-span-2 grid grid-cols-2 gap-2 pt-2 sm:block sm:space-y-1">
                 {planToggleItems.map((item, index) => (
                   <motion.div
                     key={item.key}
@@ -230,7 +230,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
               </div>
 
               <motion.div
-                className="flex flex-col gap-2 pt-4 sm:flex-row"
+                className="col-span-2 flex flex-col gap-2 pt-3 sm:flex-row sm:pt-4"
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : undefined}
                 transition={{ duration: 0.25, ease: "easeOut", delay: 1.15 }}
@@ -256,7 +256,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
           </motion.div>
 
           <motion.div
-            className="min-h-[420px] rounded-3xl bg-white sm:min-h-[560px]"
+            className="min-h-[330px] rounded-3xl bg-white sm:min-h-[560px]"
             initial={{ opacity: 0, x: 32, scale: 0.97 }}
             animate={isInView ? { opacity: 1, x: 0, scale: 1 } : undefined}
             transition={{ duration: 0.5, ease: panelEase, delay: 0.1 }}

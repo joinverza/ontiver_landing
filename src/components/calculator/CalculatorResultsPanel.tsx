@@ -68,10 +68,10 @@ export default function CalculatorResultsPanel({
   onViewRecommendedPlan,
 }: CalculatorResultsPanelProps) {
   return (
-    <div ref={panelRef} className="rounded-3xl bg-white px-6 py-6 md:px-10">
-      <div className="flex min-h-[360px] flex-col items-center justify-center sm:min-h-[470px]">
+    <div ref={panelRef} className="rounded-3xl bg-white px-4 py-5 sm:px-6 sm:py-6 md:px-10">
+      <div className="flex min-h-[300px] flex-col items-center justify-center sm:min-h-[470px]">
         <motion.div
-          className="relative grid h-[min(72vw,315px)] w-[min(72vw,315px)] place-items-center"
+          className="relative grid h-[min(62vw,245px)] w-[min(62vw,245px)] place-items-center sm:h-[min(72vw,315px)] sm:w-[min(72vw,315px)]"
           animate={{
             opacity: status === "calculating" ? 1 : circleOpacity,
             scale: 1,
@@ -152,7 +152,7 @@ export default function CalculatorResultsPanel({
           {status === "result" ? (
             <motion.div
               key="results-under-circle"
-              className="mt-2 grid w-full max-w-[360px] gap-3 text-center sm:grid-cols-3"
+              className="mt-2 grid w-full max-w-[360px] grid-cols-3 gap-2 text-center sm:gap-3"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
@@ -215,7 +215,7 @@ export default function CalculatorResultsPanel({
           </p>
         ) : null}
 
-        <div className="mt-5 min-h-8 text-center">
+        <div className="mt-4 min-h-8 text-center sm:mt-5">
           <AnimatePresence mode="wait">
             {status === "result" ? (
               <motion.div
@@ -263,7 +263,7 @@ export default function CalculatorResultsPanel({
         <AnimatePresence>
           {showResultActions ? (
             <motion.div
-              className="mt-7 grid w-full gap-3 sm:grid-cols-2"
+              className="mt-5 grid w-full gap-2 sm:mt-7 sm:grid-cols-2 sm:gap-3"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}

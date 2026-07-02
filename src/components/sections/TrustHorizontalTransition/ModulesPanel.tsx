@@ -14,21 +14,21 @@ export default function ModulesPanel({
       className={
         desktopBackground
           ? "absolute inset-0 z-0 hidden h-screen w-screen items-center justify-center overflow-hidden bg-[#f7f7f5] px-12 py-0 text-[#06160f] md:flex lg:px-16"
-          : "relative isolate flex min-h-screen w-full shrink-0 items-center justify-center overflow-hidden border-l border-black/15 bg-[#f7f7f5] px-5 py-16 text-[#06160f] sm:px-8 md:hidden"
+          : "relative isolate flex min-h-[420px] w-full shrink-0 items-center justify-center overflow-hidden border-l border-black/15 bg-[#f7f7f5] px-5 py-8 text-[#06160f] sm:px-8 md:hidden"
       }
       aria-label="Ontiver service layer"
     >
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-px bg-black/10"
+        className="pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-black/10 md:block"
         aria-hidden="true"
       />
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center">
-        <h2 className="text-center text-[clamp(4rem,7.4vw,11rem)] font-semibold uppercase leading-[0.9] tracking-normal text-[#06160f]">
+        <h2 className="text-center text-[clamp(3.6rem,16vw,6.4rem)] font-semibold uppercase leading-[0.88] tracking-normal text-[#06160f] md:text-[clamp(4rem,7.4vw,11rem)]">
           Identity
           <span className="block text-[#007d21]">Consent</span>
           <span className="block">Compliance</span>
         </h2>
-        <p className="absolute bottom-[10vh] left-1/2 max-w-[28rem] -translate-x-1/2 text-center text-sm font-medium leading-relaxed text-[#5c6860]">
+        <p className="mt-6 max-w-[28rem] text-center text-sm font-medium leading-relaxed text-[#5c6860] md:absolute md:bottom-[10vh] md:left-1/2 md:mt-0 md:-translate-x-1/2">
           Verify once, reuse securely, and keep every consent event tied to a
           trusted record.
         </p>

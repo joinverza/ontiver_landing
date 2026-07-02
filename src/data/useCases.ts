@@ -18,6 +18,17 @@ export type UseCaseCard = {
     | "teams";
 };
 
+export type UseCasePageDetail = {
+  id: string;
+  eyebrow: string;
+  headline: string;
+  intro: string;
+  imageUrl: string;
+  stats: Array<{ value: string; label: string }>;
+  workflow: Array<{ title: string; description: string }>;
+  outcomes: string[];
+};
+
 export const directionOffsets: Record<Direction, { x: number; y: number }> = {
   top: { x: 0, y: -20 },
   right: { x: 20, y: 0 },
@@ -108,3 +119,48 @@ export const useCaseCards: UseCaseCard[] = [
     idle: "teams",
   },
 ];
+
+const workflowDefaults = [
+  {
+    title: "Collect only what matters",
+    description:
+      "Start with the minimum identity signals needed for the workflow.",
+  },
+  {
+    title: "Verify and store the record",
+    description:
+      "Create a reusable verification event with consent and audit history.",
+  },
+  {
+    title: "Reuse with permission",
+    description:
+      "Let users approve future checks without repeating the same friction.",
+  },
+];
+
+export const useCasePageDetails: Record<string, UseCasePageDetail> =
+  useCaseCards.reduce(
+    (details, card) => {
+      details[card.id] = {
+        id: card.id,
+        eyebrow: card.title,
+        headline: `${card.title} identity workflows that feel faster and safer.`,
+        intro: `${card.description} Ontiver helps teams verify once, reuse trusted records, and keep every consent event attached to the customer journey.`,
+        imageUrl: card.imageUrl,
+        stats: [
+          { value: "1x", label: "Reusable verification record" },
+          { value: "100%", label: "Consent-led data sharing" },
+          { value: "24/7", label: "Audit-ready activity history" },
+        ],
+        workflow: workflowDefaults,
+        outcomes: [
+          "Lower repeat KYC friction across returning users.",
+          "Cleaner compliance evidence for audits and internal reviews.",
+          "A permission-first identity layer that scales with product growth.",
+        ],
+      };
+
+      return details;
+    },
+    {} as Record<string, UseCasePageDetail>,
+  );

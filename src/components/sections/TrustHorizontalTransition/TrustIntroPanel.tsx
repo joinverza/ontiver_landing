@@ -6,10 +6,10 @@ export default function TrustIntroPanel() {
     <section
       id="security"
       data-trust-panel
-      className="relative flex min-h-screen w-full shrink-0 border-r border-black/15 bg-[#eeeeec] text-[#444] md:h-screen md:w-[50vw]"
+      className="relative flex min-h-[520px] w-full shrink-0 border-r border-black/15 bg-[#eeeeec] text-[#444] md:h-screen md:min-h-screen md:w-[50vw]"
       aria-label="Security and trust introduction"
     >
-      <div className="pointer-events-none absolute inset-0 z-20" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-0 z-20 hidden md:block" aria-hidden="true">
         <span
           data-trust-top-guide
           className="absolute left-10 top-[18vh] h-px w-[calc(100vw-5rem)] bg-black/10"
@@ -23,17 +23,17 @@ export default function TrustIntroPanel() {
         </span>
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col justify-end px-[clamp(1.5rem,6vw,7rem)] pb-[20vh] pt-[20vh]">
+      <div className="relative z-10 flex h-full w-full flex-col justify-end px-[clamp(1.5rem,6vw,7rem)] pb-16 pt-28 md:pb-[20vh] md:pt-[20vh]">
         <Text
           btext="Security & Trust"
           heading="Designed for sensitive identity data."
           animate={false}
-          containerClassName="items-start gap-5 pb-0"
+          containerClassName="items-start gap-3 pb-0 md:gap-5"
           badgeWrapperClassName="!mx-0 self-start text-start"
           badgeTextClassName="border border-black/25 bg-white/70 text-[#009311]"
-          headingClassName="!mx-0 max-w-[9ch] !text-left text-[clamp(3rem,3.8vw,4.8rem)] font-medium leading-[1.2]! tracking-wide"
+          headingClassName="!mx-0 max-w-[9ch] !text-left text-[clamp(3rem,3.8vw,4.8rem)] font-medium leading-[1.08]! tracking-wide md:leading-[1.2]!"
         />
-        <LinkArrow href="/contact" className="mt-12 w-fit">
+        <LinkArrow href="/contact" className="mt-8 w-fit md:mt-12">
           Request documentation
         </LinkArrow>
       </div>

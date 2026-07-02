@@ -53,12 +53,12 @@ export default function CalculatorFormPanel({
   onCalculate,
 }: CalculatorFormPanelProps) {
   return (
-    <div ref={panelRef} className="rounded-3xl bg-white px-6 py-6 md:px-8">
-      <h3 className="pb-10 text-lg font-semibold text-black">
+    <div ref={panelRef} className="rounded-3xl bg-white px-4 py-5 sm:px-6 sm:py-6 md:px-8">
+      <h3 className="pb-5 text-base font-semibold text-black sm:pb-10 sm:text-lg">
         Check KYC Savings
       </h3>
 
-      <div className="space-y-5">
+      <div className="grid grid-cols-2 gap-3 sm:block sm:space-y-5">
         {calculatorFields.slice(0, 2).map((field) => (
           <CalculatorInputField
             key={field.key}
@@ -74,15 +74,17 @@ export default function CalculatorFormPanel({
           />
         ))}
 
-        <DropOffSlider
-          dropOffRate={dropOffRate}
-          sliderColor={sliderColor}
-          sliderPopKey={sliderPopKey}
-          isDraggingSlider={isDraggingSlider}
-          onChange={onSliderChange}
-          onPointerDown={onSliderPointerDown}
-          onPointerUp={onSliderPointerUp}
-        />
+        <div className="col-span-2">
+          <DropOffSlider
+            dropOffRate={dropOffRate}
+            sliderColor={sliderColor}
+            sliderPopKey={sliderPopKey}
+            isDraggingSlider={isDraggingSlider}
+            onChange={onSliderChange}
+            onPointerDown={onSliderPointerDown}
+            onPointerUp={onSliderPointerUp}
+          />
+        </div>
 
         {calculatorFields.slice(2).map((field) => (
           <CalculatorInputField
@@ -100,7 +102,7 @@ export default function CalculatorFormPanel({
         ))}
       </div>
 
-      <div className="mt-8 grid gap-2 sm:grid-cols-[1fr_2fr]">
+      <div className="mt-5 grid gap-2 sm:mt-8 sm:grid-cols-[1fr_2fr]">
         <button
           className="kyc-calculator-action inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#BFC8D2] bg-white px-4 text-sm font-medium text-[#0A0B0D] transition-colors duration-200 hover:border-red-400/50 hover:text-red-600"
           type="button"

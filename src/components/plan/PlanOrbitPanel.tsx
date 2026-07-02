@@ -44,8 +44,8 @@ export default function PlanOrbitPanel({
   const fast = status === "calculating";
 
   return (
-    <div className="flex h-full flex-col items-center justify-center px-6 py-10 text-center">
-      <div className="relative flex size-[260px] items-center justify-center">
+    <div className="flex h-full flex-col items-center justify-center px-4 py-7 text-center sm:px-6 sm:py-10">
+      <div className="relative flex size-[220px] items-center justify-center sm:size-[260px]">
         <motion.div
           className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(0,147,17,0.2)_0%,transparent_62%)]"
           initial={{ scale: 0.5, opacity: 0 }}
@@ -161,7 +161,7 @@ export default function PlanOrbitPanel({
         </div>
       </div>
 
-      <div className="mt-6 min-h-[42px]">
+      <div className="mt-4 min-h-[36px] sm:mt-6 sm:min-h-[42px]">
         {status === "result" ? (
           <motion.div
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#009311]"
@@ -186,7 +186,7 @@ export default function PlanOrbitPanel({
       <AnimatePresence>
         {status === "result" ? (
           <motion.div
-            className="mt-4 flex flex-wrap justify-center gap-3"
+            className="mt-3 flex flex-wrap justify-center gap-2 sm:mt-4 sm:gap-3"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}

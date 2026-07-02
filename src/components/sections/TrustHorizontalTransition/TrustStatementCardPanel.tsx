@@ -5,17 +5,17 @@ export default function TrustStatementCardPanel() {
     <section
       data-card-panel
       data-trust-panel
-      className="relative flex min-h-screen w-full shrink-0 items-center justify-center border border-black/10 border-l-black/15 bg-[#eef2ec] px-5 py-14 text-[#06160f] sm:px-8 md:h-screen md:w-[50vw] md:px-[4vw] md:py-[10vh]"
+      className="relative flex min-h-[430px] w-full shrink-0 items-center justify-center border border-black/10 border-l-black/15 bg-[#eef2ec] px-5 py-8 text-[#06160f] sm:px-8 md:h-screen md:min-h-screen md:w-[50vw] md:px-[4vw] md:py-[10vh]"
       aria-label="Explore all Ontiver modules"
     >
       <article
         data-card-shell
-        className="relative flex h-[min(76vh,720px)] w-full max-w-[820px] flex-col items-center justify-center overflow-hidden bg-transparent px-6 text-center md:w-[42vw]"
+        className="relative flex min-h-[340px] w-full max-w-[820px] flex-col items-center justify-center overflow-hidden bg-transparent px-4 text-center md:h-[min(76vh,720px)] md:w-[42vw] md:px-6"
       >
         <div className="relative z-10 flex w-full max-w-[560px] flex-col items-center">
           <p
             data-card-title
-            className="text-balance text-[clamp(2rem,2.6vw,4rem)] font-semibold leading-[1.02] tracking-normal text-[#06160f]"
+            className="text-balance text-[clamp(1.85rem,7vw,2.6rem)] font-semibold leading-[1.04] tracking-normal text-[#06160f] md:text-[clamp(2rem,2.6vw,4rem)]"
           >
             Discover our complete collection
             <span className="block text-[#007d21]">
@@ -25,13 +25,13 @@ export default function TrustStatementCardPanel() {
           </p>
           <p
             data-card-description
-            className="mt-5 max-w-[34rem] text-sm leading-relaxed text-[#5c6860]"
+            className="mt-4 max-w-[34rem] text-sm leading-relaxed text-[#5c6860] md:mt-5"
           >
             Verification, consent, dashboarding, API access, and risk checks
             designed to work as one trusted system.
           </p>
 
-          <div data-card-link className="mt-12">
+          <div data-card-link className="mt-8 md:mt-12">
             <LinkArrow
               href="#modules"
               className="[--link-arrow-min-width:210px] text-[#007d21] hover:text-[#06160f]"
@@ -42,7 +42,7 @@ export default function TrustStatementCardPanel() {
         </div>
         <div
           data-card-frame
-          className="pointer-events-none absolute left-1/2 top-[47%] h-px w-[min(72%,360px)] -translate-x-1/2 bg-[#009311]/20"
+          className="pointer-events-none absolute left-1/2 top-[47%] hidden h-px w-[min(72%,360px)] -translate-x-1/2 bg-[#009311]/20 md:block"
           aria-hidden="true"
         />
         <div

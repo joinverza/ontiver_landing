@@ -428,12 +428,12 @@ export default function Calculator() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#f1f4ef] px-5 py-16 sm:px-6 sm:py-24">
+    <section ref={sectionRef} className="bg-[#f1f4ef] px-4 py-10 sm:px-6 sm:py-24">
       <div className="mx-auto w-[min(100%,1080px)]">
         <Text
           btext="KYC Savings Calculator"
           heading="Calculate Your KYC Savings"
-          containerClassName="pb-12"
+          containerClassName="pb-7 sm:pb-12"
           badgeTextClassName="border border-[#009311]/40! bg-[#f1f4ef]! text-[#005e19]!"
         />
 

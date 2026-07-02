@@ -45,7 +45,7 @@ export function ArticleGridCard({
     <article
       data-blog-card
       data-blog-card-index={index}
-      className={`blog-grid-card blog-card group relative overflow-hidden rounded-2xl border border-[#00291b]/15 bg-white ${className}`}
+      className={`blog-grid-card blog-card group relative overflow-hidden rounded-2xl border border-[#00291b]/15 bg-white max-[640px]:mx-auto max-[640px]:w-[min(82vw,300px)] ${className}`}
       onMouseMove={updateReadingLight}
       style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
     >
@@ -85,11 +85,11 @@ export function FeaturedArticleCard({ article }: { article: BlogArticle }) {
   return (
     <article
       data-blog-card
-      className="blog-feature-card blog-card group rounded-2xl border border-[#00291b]/15 bg-white p-3 sm:p-4 md:p-8"
+      className="blog-feature-card blog-card group rounded-2xl border border-[#00291b]/15 bg-white p-3 sm:p-4 md:p-8 max-[640px]:mx-auto max-[640px]:w-[min(82vw,300px)]"
       onMouseMove={updateReadingLight}
       style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
     >
-      <Link to={articleHref} className="grid gap-5 md:gap-7 lg:grid-cols-[1.08fr_0.92fr]">
+      <Link to={articleHref} className="grid gap-4 md:gap-7 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="blog-card-media aspect-[16/8.5] overflow-hidden rounded-xl bg-[#f1f4ef] sm:aspect-[16/10] lg:min-h-[320px] lg:aspect-auto">
           <img
             src={article.image}
@@ -123,7 +123,7 @@ export function DarkFeaturedArticleCard({ article }: { article: BlogArticle }) {
   return (
     <article
       data-blog-card
-      className="blog-cover-card blog-card group overflow-hidden rounded-2xl bg-[#0F1A13]"
+      className="blog-cover-card blog-card group overflow-hidden rounded-2xl bg-[#0F1A13] max-[640px]:mx-auto max-[640px]:w-[min(82vw,300px)]"
       onMouseMove={updateReadingLight}
       style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
     >
