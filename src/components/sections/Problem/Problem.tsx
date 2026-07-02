@@ -191,7 +191,7 @@ export default function Problem() {
             ))}
           </div>
 
-          <div className="absolute left-[16.666%] right-[16.666%] bottom-12 h-20 translate-y-full z-0 hidden md:block pointer-events-none">
+          {/* <div className="absolute left-[16.666%] right-[16.666%] bottom-12 h-20 translate-y-full z-0 hidden md:block pointer-events-none">
             <svg
               className="w-full h-full overflow-visible"
               viewBox="0 0 100 20"
@@ -236,7 +236,7 @@ export default function Problem() {
                 className="connecting-node opacity-0"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
