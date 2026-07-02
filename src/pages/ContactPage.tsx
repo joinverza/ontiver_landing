@@ -247,7 +247,7 @@ export default function ContactPage() {
         >
           <motion.div
             ref={leftPanelRef}
-            className="group relative overflow-hidden rounded-2xl bg-[#0A2818] p-6 text-white sm:p-8 md:p-10"
+            className="group relative overflow-hidden rounded-2xl bg-[#0A2818] p-5 text-white sm:p-8 md:p-10"
             whileHover={{ y: -6, rotateX: 1.5, rotateY: -1.2 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
           >
@@ -264,11 +264,11 @@ export default function ContactPage() {
                 Say something to start a live chat!
               </p>
 
-              <div className="mt-8 space-y-5">
+              <div className="mt-6 space-y-3.5 sm:mt-8 sm:space-y-5">
                 {contactRows.map((row) => (
                   <motion.div
                     key={row.label}
-                    className="contact-info-row group/row flex items-start gap-4 rounded-lg px-2 py-2 transition-colors duration-150 hover:bg-white/[0.04]"
+                    className="contact-info-row group/row flex items-start gap-3 rounded-lg px-2 py-1.5 transition-colors duration-150 hover:bg-white/[0.04] sm:gap-4 sm:py-2"
                     whileHover={{ x: 6 }}
                     transition={{ duration: 0.18, ease: "easeOut" }}
                   >
@@ -284,7 +284,7 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-9 flex gap-3">
+              <div className="mt-7 flex gap-3 sm:mt-9">
                 {contactSocialIcons.map((social) => (
                   <a
                     key={social.label}
@@ -304,11 +304,11 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <span className="pointer-events-none absolute bottom-4 left-6 text-[72px] font-bold leading-none text-white/[0.04] sm:left-8 sm:text-[92px] md:text-[140px]">
+            <span className="pointer-events-none absolute bottom-4 left-5 text-[58px] font-bold leading-none text-white/[0.04] sm:left-8 sm:text-[92px] md:text-[140px]">
               Ontiver
             </span>
             <svg
-              className="pointer-events-none absolute -bottom-16 -right-14 h-[180px] w-[180px] sm:h-[230px] sm:w-[230px]"
+              className="pointer-events-none absolute -bottom-12 -right-12 h-[140px] w-[140px] sm:-bottom-16 sm:-right-14 sm:h-[230px] sm:w-[230px]"
               viewBox="0 0 230 230"
               fill="none"
               aria-hidden="true"
@@ -340,7 +340,7 @@ export default function ContactPage() {
 
           <motion.form
             ref={rightPanelRef}
-            className="relative overflow-hidden rounded-2xl border border-[#00291b]/12 bg-white/90 p-6 backdrop-blur-xl sm:p-8 md:p-10"
+            className="relative overflow-hidden rounded-2xl border border-[#00291b]/12 bg-white/90 p-5 backdrop-blur-xl sm:p-8 md:p-10"
             whileHover={{ y: -6, rotateX: 1.1, rotateY: 1 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
             onSubmit={(event) => {
@@ -350,7 +350,7 @@ export default function ContactPage() {
           >
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,147,17,0.5),transparent)]" />
             <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-[#009311]/[0.06] blur-2xl" />
-            <div className="grid gap-x-9 gap-y-8 md:grid-cols-2">
+            <div className="grid gap-x-9 gap-y-5 sm:gap-y-8 md:grid-cols-2">
               {contactFields.map((field) => (
                 <ContactField
                   key={field.key}
@@ -366,7 +366,7 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <motion.div className="contact-submit-button mt-10 inline-flex w-full sm:w-auto" whileTap={{ scale: 0.97 }}>
+            <motion.div className="contact-submit-button mt-7 inline-flex w-full sm:mt-10 sm:w-auto" whileTap={{ scale: 0.97 }}>
               <MagneticFillButton
                 variant="green"
                 className="h-11 w-full rounded-lg px-5 text-sm font-semibold sm:w-[166px]"

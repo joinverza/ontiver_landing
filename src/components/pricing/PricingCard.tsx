@@ -25,9 +25,9 @@ export default function PricingCard({
 
   return (
     <article
-      className={`pricing-card relative flex h-full min-w-0 snap-start flex-col rounded-2xl border border-[#00291b]/15 px-6 py-7 opacity-0 sm:px-7 sm:py-8 lg:px-8 lg:py-9 ${
+      className={`pricing-card relative flex h-full min-w-0 snap-start flex-col rounded-2xl border border-[#00291b]/15 px-5 py-6 opacity-0 sm:px-7 sm:py-8 lg:px-8 lg:py-9 ${
         isDark
-          ? "pricing-card-growth border-light-primary/40 bg-[#F8FFF8] pt-8 text-[#00291B] sm:pt-10 lg:mt-3 lg:pt-12"
+          ? "pricing-card-growth border-light-primary/40 bg-[#F8FFF8] pt-7 text-[#00291B] sm:pt-10 lg:mt-3 lg:pt-12"
           : `${pricingCardTones[index]} text-black`
       }`}
       data-card-index={index}
@@ -43,7 +43,7 @@ export default function PricingCard({
 
       <div>
         <h2
-          className={`text-xl font-bold leading-tight tracking-[0] ${
+          className={`text-lg font-bold leading-tight tracking-[0] sm:text-xl ${
             isDark
               ? "text-[#00291B]"
               : index === 1
@@ -53,15 +53,15 @@ export default function PricingCard({
         >
           {plan.name}
         </h2>
-        <p className="mt-1.5 text-sm leading-snug text-black/55">
+        <p className="mt-1.5 text-xs leading-snug text-black/55 sm:text-sm">
           {plan.description}
         </p>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-5 sm:mt-6">
         <div className="flex items-baseline gap-1.5">
           <span
-            className="pricing-price text-[38px] font-bold leading-none tracking-[0] text-black sm:text-[44px]"
+            className="pricing-price text-[32px] font-bold leading-none tracking-[0] text-black sm:text-[44px]"
             data-monthly={plan.monthly ?? ""}
             data-annual={plan.annual ?? ""}
             data-custom={plan.monthly === null ? "true" : "false"}
@@ -72,16 +72,16 @@ export default function PricingCard({
             <span className="text-sm font-medium text-black/55">/mo</span>
           ) : null}
         </div>
-        <p className="mt-2 text-sm font-medium text-black/45">
+        <p className="mt-1.5 text-xs font-medium text-black/45 sm:mt-2 sm:text-sm">
           {plan.period}
         </p>
       </div>
 
-      <div className="mb-5 space-y-2">
+      <div className="mb-4 space-y-1.5 sm:mb-5 sm:space-y-2">
         {plan.metric ? (
-          <div className="pricing-feature flex min-h-7 translate-y-full items-start gap-3 opacity-0">
+          <div className="pricing-feature flex min-h-6 translate-y-full items-start gap-2.5 opacity-0 sm:min-h-7 sm:gap-3">
             <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-xs leading-6 text-black/75">
+            <span className="text-xs leading-5 text-black/75 sm:leading-6">
               <span className="feature-count" data-value={plan.metric.value}>
                 0
               </span>
@@ -92,10 +92,10 @@ export default function PricingCard({
         {plan.features.map((feature) => (
           <div
             key={feature}
-            className="pricing-feature flex min-h-7 translate-y-full items-start gap-3 opacity-0"
+            className="pricing-feature flex min-h-6 translate-y-full items-start gap-2.5 opacity-0 sm:min-h-7 sm:gap-3"
           >
             <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-xs leading-6 text-black/72">
+            <span className="text-xs leading-5 text-black/72 sm:leading-6">
               {feature}
             </span>
           </div>
@@ -104,7 +104,7 @@ export default function PricingCard({
 
       <MagneticFillButton
         variant={isDark ? "green" : "light"}
-        className="pricing-cta mt-7 h-12 w-full rounded-lg px-5 text-sm font-semibold"
+        className="pricing-cta mt-5 h-11 w-full rounded-lg px-5 text-sm font-semibold sm:mt-7 sm:h-12"
         onClick={onPlanAction}
       >
         <span className="pricing-cta-text">{plan.cta}</span>

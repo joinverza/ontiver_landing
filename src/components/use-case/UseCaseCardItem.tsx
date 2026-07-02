@@ -165,7 +165,7 @@ export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
     >
       <DirectionAwareHover
         imageUrl={card.imageUrl}
-        className={`use-case-card-surface h-full w-full min-h-[276px] origin-center rounded-3xl border-white/10 bg-[#06160f] ${card.cardClassName ?? ""}`}
+        className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-white/10 bg-[#06160f] sm:min-h-[250px] md:rounded-3xl md:min-h-[276px] ${card.cardClassName ?? ""}`}
         imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
         showOverlay={false}
         onDirectionEnter={handleEnter}
@@ -173,13 +173,13 @@ export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
       >
         <UseCaseIdleLayer type={card.idle} />
         <div
-          className={`absolute bottom-[42px] left-8 right-8 z-[50] overflow-visible max-[640px]:bottom-[30px] max-[640px]:left-6 max-[640px]:right-6 ${card.contentClassName ?? ""}`}
+          className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
         >
-          <div className="use-case-card-content relative z-[50] max-w-[228px] opacity-100 will-change-transform">
-            <h3 className="font-sans text-xl font-medium leading-[1.1] tracking-[0] text-white">
+          <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
+            <h3 className="font-sans text-lg font-medium leading-[1.08] tracking-[0] text-white md:text-xl">
               {card.title}
             </h3>
-            <p className="mt-2 font-body text-sm leading-[1.28] text-white/80">
+            <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-sm md:leading-[1.28]">
               {card.description}
             </p>
           </div>

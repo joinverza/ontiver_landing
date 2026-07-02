@@ -83,7 +83,7 @@ export default function Join() {
     >
       <div
         data-curtain-cta-panel
-        className="relative mx-auto flex min-h-[560px] max-w-[1280px] items-stretch overflow-hidden rounded-[24px] bg-[#000a03] text-left text-[#06160f] sm:rounded-[28px]"
+        className="relative mx-auto flex min-h-[560px] max-w-[1280px] items-stretch overflow-hidden rounded-t-[24px] bg-[#000a03] text-left text-[#06160f] lg:rounded-[28px]"
       >
         <div
           data-vault-cta-grid-bg

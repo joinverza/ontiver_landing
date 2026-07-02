@@ -15,7 +15,7 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "check") {
     return (
       <img
-        className="module-visual-check pointer-events-none absolute top-1 right-[18px] z-[3] w-[145px] origin-[50%_82%] opacity-[0.95] sm:w-[190px]"
+        className="module-visual-check pointer-events-none absolute top-1 right-[18px] z-[3] w-[112px] origin-[50%_82%] opacity-[0.95] sm:w-[150px] lg:w-[190px]"
         src="./assets/check.png"
         alt=""
         aria-hidden="true"
@@ -26,7 +26,7 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "share") {
     return (
       <div
-        className="module-visual-share pointer-events-none absolute top-[18px] right-3.5 z-[3] h-[145px] w-[145px] sm:h-[190px] sm:w-[190px]"
+        className="module-visual-share pointer-events-none absolute top-[18px] right-3.5 z-[3] h-[112px] w-[112px] sm:h-[150px] sm:w-[150px] lg:h-[190px] lg:w-[190px]"
         aria-hidden="true"
       >
         <img className="h-full w-full object-contain opacity-[0.74]" src="./assets/share.png" alt="" />
@@ -40,10 +40,10 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "radar") {
     return (
       <div
-        className="pointer-events-none absolute top-1/2 right-[-42px] z-[3] h-[235px] w-[235px] -translate-y-1/2 sm:right-[-54px] sm:h-[315px] sm:w-[315px] max-[900px]:right-[-42px] max-[900px]:h-[245px] max-[900px]:w-[245px]"
+        className="pointer-events-none absolute top-1/2 right-[-36px] z-[3] h-[180px] w-[180px] -translate-y-1/2 sm:h-[230px] sm:w-[230px] lg:right-[-54px] lg:h-[315px] lg:w-[315px] max-[900px]:right-[-38px] max-[900px]:h-[205px] max-[900px]:w-[205px]"
         aria-hidden="true"
       >
-        <img className="absolute top-1/2 left-[8.6rem] h-[82%] w-[82%] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.58] brightness-[0.72] contrast-[1.22] saturate-[0.95]" src="./assets/radar.png" alt="" />
+        <img className="absolute top-1/2 left-1/2 h-[82%] w-[82%] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.58] brightness-[0.72] contrast-[1.22] saturate-[0.95]" src="./assets/radar.png" alt="" />
         {/* <span className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,#05150E_0%,#05150E00_64%)]" /> */}
         <span className="radar-sweep-line absolute top-1/2 left-1/2 h-px w-[38%] origin-left bg-gradient-to-r from-[#70ff8a]/90 to-transparent" />
         <span className="radar-ring absolute inset-[19%] rounded-full border border-[#70ff8a]/20" />
@@ -60,7 +60,7 @@ function ModuleVisual({ type }: { type?: ModuleCard["visual"] }) {
   if (type === "code") {
     return (
       <div
-        className="module-visual-code pointer-events-none absolute right-[26px] bottom-[23px] z-[3] flex h-[50px] w-[78px] items-center justify-center rounded-br-[18px] bg-[#0bc43a] font-mono text-[26px] font-extrabold text-[#05150e]"
+        className="module-visual-code pointer-events-none absolute right-[18px] bottom-[18px] z-[3] flex h-10 w-16 items-center justify-center rounded-br-[14px] bg-[#0bc43a] font-mono text-[22px] font-extrabold text-[#05150e] sm:right-[26px] sm:bottom-[23px] sm:h-[50px] sm:w-[78px] sm:rounded-br-[18px] sm:text-[26px]"
         aria-hidden="true"
       >
         <span className="inline-block">&lt;</span>
@@ -92,11 +92,11 @@ function ModuleCardItem({ card }: { card: ModuleCard }) {
             className={`pointer-events-none absolute inset-0 z-[1] ${card.shadeClassName ?? "bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.26)_48%,rgba(0,0,0,0.78)_100%),radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.18),transparent_30%)]"}`}
             aria-hidden="true"
           />
-          <div className={`absolute right-[22px] bottom-16 left-7 z-[4] transition-transform duration-[260ms] ${card.copyClassName ?? ""}`}>
-            <h3 className={`max-w-full font-sans lg:text-[26px] leading-[1.08] font-medium tracking-[0] text-white text-[20px] ${card.titleClassName ?? ""}`}>
+          <div className={`absolute right-5 bottom-8 left-5 z-[4] transition-transform duration-[260ms] sm:right-[22px] sm:bottom-12 sm:left-7 lg:bottom-16 ${card.copyClassName ?? ""}`}>
+            <h3 className={`max-w-full font-sans text-[17px] font-medium leading-[1.06] tracking-[0] text-white sm:text-[20px] lg:text-[26px] ${card.titleClassName ?? ""}`}>
               {card.title}
             </h3>
-            <p className={`mt-2 max-w-[238px] font-body lg:text-[13px] text-sm leading-[1.15] text-white/80 ${card.descriptionClassName ?? ""}`}>
+            <p className={`mt-1.5 max-w-[220px] font-body text-xs leading-[1.18] text-white/80 sm:text-sm lg:max-w-[238px] lg:text-[13px] ${card.descriptionClassName ?? ""}`}>
               {card.description}
             </p>
           </div>
@@ -204,7 +204,7 @@ export default function Modules() {
           headingClassName=""
         />
 
-        <div className="grid grid-cols-[minmax(0,349fr)_minmax(0,408fr)_minmax(0,43fr)_minmax(0,349fr)] grid-rows-[clamp(176px,19.4vw,243px)_clamp(184px,20.2vw,253px)_clamp(176px,19.4vw,243px)] gap-[clamp(2px,0.6vw,8px)] text-white max-[900px]:grid-cols-2 max-[900px]:grid-rows-none max-[900px]:auto-rows-[minmax(220px,auto)] max-[900px]:gap-2 max-[640px]:grid-cols-1 max-[640px]:auto-rows-auto max-[640px]:gap-3.5">
+        <div className="grid grid-cols-[minmax(0,349fr)_minmax(0,408fr)_minmax(0,43fr)_minmax(0,349fr)] grid-rows-[clamp(176px,19.4vw,243px)_clamp(184px,20.2vw,253px)_clamp(176px,19.4vw,243px)] gap-[clamp(2px,0.6vw,8px)] text-white max-[900px]:grid-cols-2 max-[900px]:grid-rows-none max-[900px]:auto-rows-[minmax(190px,auto)] max-[900px]:gap-2 max-[640px]:grid-cols-1 max-[640px]:auto-rows-auto max-[640px]:gap-3">
           {moduleCards.map((card) => (
             <ModuleCardItem key={card.id} card={card} />
           ))}

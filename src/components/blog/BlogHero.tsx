@@ -15,7 +15,7 @@ export default function BlogHero() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-[#f3f3f1] px-5 pb-12 pt-[112px] sm:px-8 sm:-16 md:pt-28 lg:px-10 lg:pb-18 lg:pt-[10rem]">
+    <section className="relative w-full overflow-hidden bg-[#f3f3f1] px-5 pb-10 pt-[104px] sm:min-h-screen sm:px-8 sm:pb-12 md:pt-28 lg:px-10 lg:pb-18 lg:pt-[10rem]">
       <div
         className="poinpbter-events-none absolute inset-0 opacity-[0.22] [background-image:linear-gradient(to_right,rgba(0,45,14,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,45,14,0.055)_1px,transparent_1px)] [background-size:92px_92px]"
         aria-hidden="true"
@@ -29,10 +29,10 @@ export default function BlogHero() {
         }}
       ></div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between px-5 sm:px-6 md:px-12 lg:flex-row lg:px-20">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between px-0 sm:px-6 md:px-12 lg:flex-row lg:px-20">
         <div className="flex w-full flex-col items-start pt-0 md:pt-8 lg:w-[60%] lg:pb-10">
           <motion.h1
-            className="text-[clamp(2.45rem,7.1vw,4.1rem)] text-black sm:text-[clamp(3rem,7vw,4.5rem)] font-bold leading-[1.13] tracking-tight sm:mb-6"
+            className="text-[clamp(2.25rem,10vw,3.35rem)] font-bold leading-[1.04] tracking-tight text-black sm:mb-6 sm:text-[clamp(3rem,7vw,4.5rem)] sm:leading-[1.13]"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: heroEase }}
@@ -45,7 +45,7 @@ export default function BlogHero() {
           </motion.h1>
 
           <motion.p
-            className="mt-4 max-w-[435px] text-[0.95rem] leading-[1.25] text-black/55 sm:text-base md:mt-5 md:text-[1.12rem]"
+            className="mt-3 max-w-[435px] text-[0.9rem] leading-[1.35] text-black/55 sm:mt-4 sm:text-base md:mt-5 md:text-[1.12rem]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: heroEase }}
@@ -63,14 +63,14 @@ export default function BlogHero() {
           >
             <MagneticFillButton
               variant="green"
-              className="h-10 flex-1 rounded-lg px-6 text-md font-semibold sm:h-[52px]"
+              className="h-10 flex-1 rounded-lg px-5 text-sm font-semibold sm:h-[52px] sm:px-6 sm:text-base"
               onClick={scrollToBlogLibrary}
             >
               Explore Resources
             </MagneticFillButton>
             <MagneticFillButton
               variant="light"
-              className="h-10 flex-1 rounded-lg px-6 text-md font-semibold sm:h-[52px]"
+              className="h-10 flex-1 rounded-lg px-5 text-sm font-semibold sm:h-[52px] sm:px-6 sm:text-base"
               onClick={() => navigate("/blogs/developer-guide-to-verification-webhooks")}
             >
               Developer Docs
@@ -79,7 +79,7 @@ export default function BlogHero() {
         </div>
 
         <motion.div
-          className="relative flex justify-center md:justify-end"
+          className="relative mt-8 flex justify-center md:mt-10 md:justify-end lg:mt-0"
           initial={{ opacity: 0, x: 30, scale: 0.96 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.75, delay: 0.08, ease: heroEase }}
@@ -87,7 +87,7 @@ export default function BlogHero() {
           <img
             src="/assets/hero-blog.png"
             alt="Illustration of identity and developer resources"
-            className="w-full max-w-[430px] object-contain sm:max-w-[520px] md:max-w-[560px] lg:max-w-[620px]"
+            className="w-full max-w-[300px] object-contain sm:max-w-[430px] md:max-w-[520px] lg:max-w-[620px]"
           />
         </motion.div>
       </div>

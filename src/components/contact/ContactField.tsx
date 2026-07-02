@@ -35,10 +35,10 @@ export default function ContactField({
       >
         {field.label}
       </span>
-      <span className="relative mt-3 block">
+      <span className="relative mt-2 block sm:mt-3">
         {field.type === "textarea" ? (
           <textarea
-            className="min-h-[106px] w-full resize-y bg-transparent pb-3 text-sm text-black outline-none placeholder:text-black/25"
+            className="min-h-[88px] w-full resize-y bg-transparent pb-3 text-sm text-black outline-none placeholder:text-black/25 sm:min-h-[106px]"
             placeholder={field.placeholder}
             value={value}
             onChange={onChange}
@@ -47,7 +47,7 @@ export default function ContactField({
           />
         ) : (
           <input
-            className="h-9 w-full bg-transparent pb-3 text-sm text-black outline-none placeholder:text-black/25"
+            className="h-8 w-full bg-transparent pb-2.5 text-sm text-black outline-none placeholder:text-black/25 sm:h-9 sm:pb-3"
             placeholder={field.placeholder}
             type={field.type ?? "text"}
             value={value}

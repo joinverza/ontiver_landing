@@ -62,7 +62,7 @@ export const useCaseCards: UseCaseCard[] = [
     imageUrl: "./assets/marketplaces.png",
     className:
       "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
-    cardClassName: "min-h-[568px] max-[640px]:min-h-[260px]",
+    cardClassName: "min-h-[568px] max-[1024px]:min-h-[360px] max-[640px]:min-h-[210px]",
     contentClassName:
       "top-12 bottom-auto max-[640px]:top-auto max-[640px]:bottom-[30px]",
     lineClassName: "right-4 -bottom-2 left-4 h-px",
@@ -75,7 +75,7 @@ export const useCaseCards: UseCaseCard[] = [
     imageUrl: "./assets/platforms.png",
     className:
       "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
-    cardClassName: "min-h-[252px] max-[640px]:min-h-[260px]",
+    cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName:
       "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -88,7 +88,7 @@ export const useCaseCards: UseCaseCard[] = [
     imageUrl: "./assets/schools.png",
     className:
       "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
-    cardClassName: "min-h-[252px] max-[640px]:min-h-[260px]",
+    cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName:
       "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
     lineClassName: "right-4 -bottom-2 left-4 h-px",
@@ -101,7 +101,7 @@ export const useCaseCards: UseCaseCard[] = [
     imageUrl: "./assets/teams.png",
     className:
       "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
-    cardClassName: "min-h-[252px] max-[640px]:min-h-[260px]",
+    cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName:
       "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
     lineClassName: "right-4 -bottom-2 left-4 h-px",

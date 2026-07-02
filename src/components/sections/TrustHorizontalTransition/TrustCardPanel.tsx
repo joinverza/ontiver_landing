@@ -15,16 +15,16 @@ export default function TrustCardPanel({
     <section
       data-card-panel
       data-trust-panel
-      className="relative flex min-h-screen w-full shrink-0 items-center justify-center border-l border-black/10 border-l-black/15 bg-[#eeeeec] px-5 py-14 text-[#202020] sm:px-8 md:h-screen md:w-[50vw] md:px-[4vw] md:py-[10vh]"
+      className="relative flex min-h-[auto] w-full shrink-0 items-center justify-center border-l border-black/10 border-l-black/15 bg-[#eeeeec] px-4 py-10 text-[#202020] sm:px-6 sm:py-12 md:h-screen md:min-h-screen md:w-[50vw] md:px-[4vw] md:py-[10vh]"
       aria-label={title}
     >
       <article
         data-card-shell
-        className="group flex h-[min(80vh,740px)] w-full max-w-[840px] flex-col overflow-hidden transition-colors duration-300 not-[]:md:w-[42vw]"
+        className="group flex w-full max-w-[840px] flex-col overflow-hidden transition-colors duration-300 md:h-[min(80vh,740px)] not-[]:md:w-[42vw]"
       >
         <div
           data-card-image
-          className="relative h-[75%] overflow-hidden rounded-lg bg-[#d9ddd8] [--mx:50%] [--my:50%] [--tx:0px] [--ty:0px]"
+          className="relative aspect-[16/10] overflow-hidden rounded-lg bg-[#d9ddd8] [--mx:50%] [--my:50%] [--tx:0px] [--ty:0px] md:h-[75%] md:aspect-auto"
           onPointerMove={updateHoverVars}
           onPointerLeave={resetHoverVars}
         >
@@ -55,7 +55,7 @@ export default function TrustCardPanel({
           />
           <div
             data-card-orbit
-            className="pointer-events-none absolute right-7 top-7 size-24 rounded-full border border-white/25"
+            className="pointer-events-none absolute right-4 top-4 size-16 rounded-full border border-white/25 sm:size-20 md:right-7 md:top-7 md:size-24"
             aria-hidden="true"
           >
             <span className="absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22c55e]" />
@@ -64,19 +64,19 @@ export default function TrustCardPanel({
           </div>
           <p
             data-card-label
-            className="absolute left-8 top-8 text-[10px] font-semibold uppercase leading-tight tracking-[0.22em] text-white/85"
+            className="absolute left-5 top-5 text-[9px] font-semibold uppercase leading-tight tracking-[0.18em] text-white/85 md:left-8 md:top-8 md:text-[10px] md:tracking-[0.22em]"
           >
             {eyebrow}
             <span className="block text-white/60">{signal}</span>
           </p>
           <div
             data-card-metric
-            className="absolute bottom-7 left-8 flex items-end gap-3 text-white"
+            className="absolute bottom-5 left-5 flex items-end gap-2 text-white md:bottom-7 md:left-8 md:gap-3"
           >
-            <span className="text-[clamp(2.3rem,4vw,4.8rem)] font-semibold leading-none">
+            <span className="text-[clamp(1.8rem,8vw,3.2rem)] font-semibold leading-none md:text-[clamp(2.3rem,4vw,4.8rem)]">
               {metric}
             </span>
-            <span className="mb-1 max-w-[12ch] text-[10px] font-semibold uppercase tracking-[0.18em] text-white/65">
+            <span className="mb-1 max-w-[12ch] text-[9px] font-semibold uppercase tracking-[0.14em] text-white/65 md:text-[10px] md:tracking-[0.18em]">
               Trust signal
             </span>
           </div>
@@ -87,16 +87,16 @@ export default function TrustCardPanel({
           />
         </div>
 
-        <div className="flex min-h-0 flex-col bg-[#eeeeec] py-7">
+        <div className="flex min-h-0 flex-col bg-[#eeeeec] py-5 md:py-7">
           <h3
             data-card-title
-            className="max-w-[33ch] text-[clamp(1.7rem,2.4vw,1.1rem)] font-semibold leading-none tracking-normal"
+            className="max-w-[33ch] text-[clamp(1.35rem,6vw,1.85rem)] font-semibold leading-[1.02] tracking-normal md:text-[clamp(1.7rem,2.4vw,2.35rem)]"
           >
             {title}
           </h3>
           <div
             data-card-actions
-            className="mt-auto grid grid-cols-1 items-end justify-between gap-5 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]"
+            className="mt-auto grid grid-cols-1 items-end justify-between gap-4 pt-4 sm:grid-cols-[minmax(0,1fr)_auto] md:gap-5 md:pt-5"
           >
             <p
               data-card-description

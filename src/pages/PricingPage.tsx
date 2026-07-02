@@ -260,7 +260,7 @@ export default function PricingPage() {
           ref={cardsRef}
           className="px-5 py-16 sm:px-6 sm:py-24"
         >
-          <div className="mx-auto grid max-w-[1440px] snap-x grid-flow-col auto-cols-[minmax(min(88vw,330px),1fr)] gap-4 overflow-x-auto pb-4 [scrollbar-width:none] md:auto-cols-[calc((100%-32px)/3)] lg:grid-flow-row lg:grid-cols-5 lg:overflow-visible lg:pb-0 xl:gap-5">
+          <div className="mx-auto grid max-w-[1440px] snap-x grid-flow-col auto-cols-[minmax(min(82vw,300px),1fr)] gap-4 overflow-x-auto pb-4 [scrollbar-width:none] md:auto-cols-[calc((100%-32px)/3)] lg:grid-flow-row lg:grid-cols-5 lg:overflow-visible lg:pb-0 xl:gap-5">
             {pricingPlans.map((plan, index) => (
               <PricingCard
                 key={plan.name}

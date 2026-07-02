@@ -184,7 +184,7 @@ export default function BlogArticlePage() {
         transition={{ width: { duration: 0.05, ease: "linear" }, opacity: { duration: 0.2 } }}
       />
 
-      <section className="relative h-[360px] w-full overflow-hidden sm:h-[420px]">
+      <section className="relative h-[300px] w-full overflow-hidden sm:h-[420px]">
         <motion.div
           ref={heroImageRef}
           className="absolute inset-0 bg-cover bg-center"
@@ -201,7 +201,7 @@ export default function BlogArticlePage() {
         />
 
         <motion.button
-          className="absolute left-5 top-[104px] inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/25 sm:left-6 sm:top-[120px] md:left-20"
+          className="absolute left-4 top-[92px] inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/30 bg-white/15 px-3 py-1.5 text-xs font-semibold text-white transition-colors duration-150 hover:bg-white/25 sm:left-6 sm:top-[120px] sm:px-4 sm:py-2 sm:text-sm md:left-20"
           type="button"
           onClick={() => navigate("/blogs")}
           initial={{ opacity: 0, x: -12 }}
@@ -212,9 +212,9 @@ export default function BlogArticlePage() {
           Back
         </motion.button>
 
-        <div className="absolute right-5 bottom-8 left-5 max-w-[580px] text-white sm:left-6 md:left-20">
+        <div className="absolute bottom-6 left-4 right-4 max-w-[580px] text-white sm:bottom-8 sm:left-6 md:left-20">
           <motion.h1
-            className="text-[clamp(1.9rem,8vw,2.5rem)] font-bold leading-[1.15] [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"
+            className="text-[clamp(1.55rem,7vw,2.5rem)] font-bold leading-[1.1] [text-shadow:0_1px_3px_rgba(0,0,0,0.4)] sm:leading-[1.15]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
