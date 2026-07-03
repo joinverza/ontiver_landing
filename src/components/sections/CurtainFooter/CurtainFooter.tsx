@@ -152,13 +152,13 @@ export default function CurtainFooter() {
           transformOrigin: "center center",
         });
         gsap.set([leftGlow, rightGlow], { opacity: 0, display: "block" });
-        gsap.set([subheading, inputRow], { opacity: 0, y: 16 });
+        gsap.set([subheading, inputRow], { opacity: 1, y: 0 });
         if (badge) {
-          gsap.set(badge, { opacity: 0, y: 16 });
+          gsap.set(badge, { opacity: 1, y: 0 });
         }
-        gsap.set(headingWords, { opacity: 0, y: 20 });
+        gsap.set(headingWords, { opacity: 1, y: 0 });
         gsap.set(heading, { opacity: 1, y: 0 });
-        gsap.set(watermark, { opacity: 0, scale: 1 });
+        gsap.set(watermark, { opacity: 0.05, scale: 1 });
 
         const frameTimeline = gsap.timeline({
           scrollTrigger: {
@@ -270,61 +270,6 @@ export default function CurtainFooter() {
               duration: 0.15,
             },
             0.35,
-          );
-
-        if (badge) {
-          timeline.to(
-            badge,
-            {
-              opacity: 1,
-              y: 0,
-              ease: "power2.out",
-              duration: 0.14,
-            },
-            0.28,
-          );
-        }
-
-        timeline
-          .to(
-            headingWords,
-            {
-              opacity: 1,
-              y: 0,
-              stagger: 0.06,
-              ease: "power3.out",
-              duration: 0.2,
-            },
-            0.35,
-          )
-          .to(
-            subheading,
-            {
-              opacity: 1,
-              y: 0,
-              ease: "power2.out",
-              duration: 0.14,
-            },
-            0.48,
-          )
-          .to(
-            inputRow,
-            {
-              opacity: 1,
-              y: 0,
-              ease: "power2.out",
-              duration: 0.12,
-            },
-            0.56,
-          )
-          .to(
-            watermark,
-            {
-              opacity: 0.05,
-              ease: "none",
-              duration: 0.2,
-            },
-            0.5,
           );
 
         return () => {

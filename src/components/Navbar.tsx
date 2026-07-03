@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { navLinks } from "../data/navigation";
@@ -75,9 +75,12 @@ function DesktopNavLink({
 export default function Navbar() {
   const { pathname } = useLocation();
   const goToJoin = useJoinNavigation();
+  const lastScrollYRef = useRef(0);
+  const lastScrollTimeRef = useRef(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSolutionPinned, setIsSolutionPinned] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileNavHidden, setMobileNavHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isPricingPage = pathname === "/pricing";
 
@@ -93,12 +96,47 @@ export default function Navbar() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const syncMobileState = () => setIsMobile(mediaQuery.matches);
+    const syncMobileState = () => {
+      setIsMobile(mediaQuery.matches);
+      if (!mediaQuery.matches) {
+        setMobileNavHidden(false);
+        setMobileMenuOpen(false);
+      }
+    };
 
     syncMobileState();
     mediaQuery.addEventListener("change", syncMobileState);
     return () => mediaQuery.removeEventListener("change", syncMobileState);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    lastScrollYRef.current = window.scrollY;
+    lastScrollTimeRef.current = performance.now();
+
+    const handleMobileScroll = () => {
+      if (mobileMenuOpen) return;
+
+      const currentY = window.scrollY;
+      const now = performance.now();
+      const deltaY = currentY - lastScrollYRef.current;
+      const deltaTime = Math.max(16, now - lastScrollTimeRef.current);
+      const velocity = Math.abs(deltaY) / deltaTime;
+
+      if (currentY <= 12 || deltaY < -2) {
+        setMobileNavHidden(false);
+      } else if (currentY > 80 && deltaY > 8 && velocity > 0.35) {
+        setMobileNavHidden(true);
+      }
+
+      lastScrollYRef.current = currentY;
+      lastScrollTimeRef.current = now;
+    };
+
+    window.addEventListener("scroll", handleMobileScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleMobileScroll);
+  }, [isMobile, mobileMenuOpen]);
 
   useEffect(() => {
     const handleSolutionPinChange = (event: Event) => {
@@ -118,27 +156,44 @@ export default function Navbar() {
     <>
       <div
         data-ontiver-navbar
-        className="pointer-events-none fixed left-0 top-5 z-[9999] flex w-full justify-center md:top-6"
+        className="pointer-events-none fixed left-0 top-3 z-[9999] flex w-full justify-center md:top-6"
         style={{
           opacity: shouldHideForSolution ? 0 : 1,
-          transform: shouldHideForSolution ? "translateY(-140px)" : "translateY(0)",
+          transform:
+            shouldHideForSolution || (isMobile && mobileNavHidden && !mobileMenuOpen)
+              ? "translateY(-140px)"
+              : "translateY(0)",
           transition: shouldHideForSolution
             ? "opacity 300ms ease-in, transform 300ms ease-in"
-            : "opacity 300ms ease-out, transform 300ms ease-out",
+            : isMobile
+              ? "opacity 300ms ease-out, transform 360ms cubic-bezier(0.22,1,0.36,1)"
+              : "opacity 300ms ease-out, transform 300ms ease-out",
         }}
       >
         <div
+          data-mobile-nav-pill
           style={{
-            width: isOpen ? "min(1000px, calc(100vw - 32px))" : "48px",
-            height: isMobile ? "58px" : "76px",
+            width: isMobile
+              ? "calc(100vw - 32px)"
+              : isOpen
+                ? "min(1000px, calc(100vw - 32px))"
+                : "48px",
+            height: isMobile ? "52px" : "76px",
             opacity: isOpen ? 1 : 0,
             transform: isOpen ? "scale(1)" : "scale(0.5)",
-            borderRadius: isMobile ? "20px" : "25px",
-            backgroundColor: "white",
+            borderRadius: isMobile ? "40px" : "25px",
+            backgroundColor: isMobile
+              ? isScrolled
+                ? "rgba(255,255,255,0.95)"
+                : "rgba(255,255,255,0.88)"
+              : "white",
+            backdropFilter: isMobile ? "blur(14px)" : undefined,
             boxShadow: isPricingPage
               ? "none"
               : "0 8px 30px rgba(0,0,0,0.08)",
-            border: "1px solid rgba(0,0,0,0.05)",
+            border: isMobile
+              ? "1px solid rgba(0,0,0,0.08)"
+              : "1px solid rgba(0,0,0,0.05)",
             overflow: "hidden",
             pointerEvents: isOpen ? "auto" : "none",
             transition: isOpen
@@ -204,9 +259,10 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="group relative grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-black/10 bg-[#f7fff7] text-[#05150E] transition-colors duration-200 hover:border-[#009311]/35 md:hidden"
-              aria-label="Open menu"
-              onClick={() => setMobileMenuOpen(true)}
+              className="group relative grid h-10 w-10 cursor-pointer place-items-center border-0 bg-transparent p-0 text-[#05150E] md:hidden"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((open) => !open)}
               style={{
                 opacity: isOpen ? 1 : 0,
                 transform: isOpen ? "translateY(0)" : "translateY(6px)",
@@ -215,28 +271,29 @@ export default function Navbar() {
               }}
             >
               <motion.span
-                className="absolute h-[2px] w-4 rounded-full bg-current"
+                className="absolute h-[2px] w-5 rounded-[1px] bg-current"
                 animate={{
-                  y: mobileMenuOpen ? 0 : -5,
+                  y: mobileMenuOpen ? 0 : -4,
                   rotate: mobileMenuOpen ? 45 : 0,
                 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
-              />
-              <motion.span
-                className="absolute h-[2px] w-5 rounded-full bg-current"
-                animate={{
-                  opacity: mobileMenuOpen ? 0 : 1,
-                  scaleX: mobileMenuOpen ? 0.4 : 1,
+                transition={{
+                  duration: mobileMenuOpen ? 0.3 : 0.25,
+                  ease: [0.4, 0, 0.2, 1],
                 }}
-                transition={{ duration: 0.18, ease: "easeOut" }}
               />
               <motion.span
-                className="absolute h-[2px] w-4 rounded-full bg-current"
+                className="absolute h-[2px] rounded-[1px] bg-current"
                 animate={{
-                  y: mobileMenuOpen ? 0 : 5,
+                  y: mobileMenuOpen ? 0 : 4,
                   rotate: mobileMenuOpen ? -45 : 0,
+                  width: mobileMenuOpen ? 20 : 13,
                 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
+                whileHover={{ width: 20 }}
+                whileTap={{ width: 20 }}
+                transition={{
+                  duration: mobileMenuOpen ? 0.3 : 0.25,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
               />
             </button>
           </div>
