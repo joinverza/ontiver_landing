@@ -106,16 +106,15 @@ export default function UseCasePage() {
 
           <div
             data-usecase-hero
-            className="group relative overflow-hidden rounded-3xl border border-[#009311]/15 bg-[#06160f] p-2 shadow-[0_24px_70px_rgba(0,41,27,0.14)]"
+            className="group relative overflow-hidden rounded-3xl border border-[#009311]/15 bg-[#f4f8f5] p-2 shadow-[0_24px_70px_rgba(0,41,27,0.12)]"
           >
             <div className="aspect-[16/11] overflow-hidden rounded-[20px]">
               <img
                 src={detail.imageUrl}
                 alt={detail.eyebrow}
-                className="h-full w-full object-cover opacity-90 saturate-[1.08] transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="pointer-events-none absolute inset-2 rounded-[20px] bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.56))]" />
           </div>
         </div>
       </section>

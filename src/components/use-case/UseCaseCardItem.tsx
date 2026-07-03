@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { Link } from "react-router-dom";
 import { directionOffsets, type UseCaseCard } from "../../data/useCases";
 import DirectionAwareHover, { type Direction } from "../ui/DirectionAwareHover";
-import UseCaseIdleLayer from "./UseCaseIdleLayer";
 import type { UseCaseAnimatedCard } from "./useCaseAnimation";
 
 export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
@@ -171,13 +170,13 @@ export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
       >
         <DirectionAwareHover
           imageUrl={card.imageUrl}
-          className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-white/10 bg-[#06160f] sm:min-h-[250px] md:rounded-3xl md:min-h-[276px] ${card.cardClassName ?? ""}`}
-          imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
+          className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-black/10 bg-[#f4f8f5] sm:min-h-[250px] md:min-h-[276px] md:rounded-3xl ${card.cardClassName ?? ""}`}
+          imageClassName="opacity-100 brightness-100 saturate-100"
           showOverlay={false}
           onDirectionEnter={handleEnter}
           onDirectionLeave={handleLeave}
         >
-          <UseCaseIdleLayer type={card.idle} />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-2/3 bg-gradient-to-t from-[#06160f]/90 via-[#06160f]/35 to-transparent" />
           <div
             className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
           >
