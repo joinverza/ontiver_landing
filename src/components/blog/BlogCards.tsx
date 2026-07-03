@@ -45,7 +45,7 @@ export function ArticleGridCard({
     <article
       data-blog-card
       data-blog-card-index={index}
-      className={`blog-grid-card blog-card group relative overflow-hidden rounded-2xl border border-[#00291b]/15 bg-white max-[640px]:mx-auto max-[640px]:w-[min(82vw,300px)] ${className}`}
+      className={`blog-grid-card blog-card group relative overflow-hidden rounded-2xl border border-[#00291b]/15 bg-white max-[640px]:mx-auto max-[640px]:w-[min(82vw,550px)] ${className}`}
       onMouseMove={updateReadingLight}
       style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
     >
@@ -85,7 +85,7 @@ export function FeaturedArticleCard({ article }: { article: BlogArticle }) {
   return (
     <article
       data-blog-card
-      className="blog-feature-card blog-card group rounded-2xl border border-[#00291b]/15 bg-white p-3 sm:p-4 md:p-8 max-[640px]:mx-auto max-[640px]:w-[min(82vw,300px)]"
+      className="blog-feature-card blog-card group rounded-2xl border border-[#00291b]/15 bg-white p-3 sm:p-4 md:p-8 max-[640px]:mx-auto max-[640px]:w-[min(82vw,550px)]"
       onMouseMove={updateReadingLight}
       style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
     >

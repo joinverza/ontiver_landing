@@ -126,6 +126,12 @@ export default function CurtainFooter() {
           backgroundSize: "72px 72px",
           willChange: "transform",
         });
+        gsap.set(leftDoor, {
+          borderRight: "1px solid #22C55E",
+        });
+        gsap.set(rightDoor, {
+          borderLeft: "1px solid #22C55E",
+        });
         gsap.set(centerLine, {
           display: "block",
           opacity: 0.7,

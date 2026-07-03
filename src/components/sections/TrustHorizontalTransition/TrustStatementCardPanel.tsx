@@ -40,7 +40,7 @@ export default function TrustStatementCardPanel() {
             </LinkArrow>
           </div>
         </div>
-        <div
+        {/* <div
           data-card-frame
           className="pointer-events-none absolute left-1/2 top-[47%] hidden h-px w-[min(72%,360px)] -translate-x-1/2 bg-[#009311]/20 md:block"
           aria-hidden="true"
@@ -51,7 +51,7 @@ export default function TrustStatementCardPanel() {
           aria-hidden="true"
         >
           +
-        </div>
+        </div> */}
         <div
           data-card-metric
           className="pointer-events-none absolute inset-0 opacity-0"

@@ -43,7 +43,7 @@ function DesktopNavLink({
       }`}
       style={{
         opacity: isOpen ? 1 : 0,
-        transform: isOpen ? "translateY(0)" : "translateY(6px)",
+        transform: isOpen ? "translateY(0)" : "translateY(7px)",
         transition:
           "opacity 200ms ease, transform 200ms ease, color 240ms ease",
         transitionDelay: isOpen ? `${400 + index * 60}ms` : "0ms",
@@ -149,8 +149,10 @@ export default function Navbar() {
       window.removeEventListener("solution-pin-change", handleSolutionPinChange);
   }, []);
 
-  const shouldHideForSolution = isSolutionPinned && !isMobile && !isPricingPage;
-  const isOpen = isMobile || isPricingPage || (isScrolled && !isSolutionPinned);
+  const shouldHideForPinnedSequence =
+    isSolutionPinned && !isMobile && !isPricingPage;
+  const isOpen =
+    isMobile || isPricingPage || (isScrolled && !isSolutionPinned);
 
   return (
     <>
@@ -158,12 +160,13 @@ export default function Navbar() {
         data-ontiver-navbar
         className="pointer-events-none fixed left-0 top-3 z-[9999] flex w-full justify-center md:top-6"
         style={{
-          opacity: shouldHideForSolution ? 0 : 1,
+          opacity: shouldHideForPinnedSequence ? 0 : 1,
           transform:
-            shouldHideForSolution || (isMobile && mobileNavHidden && !mobileMenuOpen)
+            shouldHideForPinnedSequence ||
+            (isMobile && mobileNavHidden && !mobileMenuOpen)
               ? "translateY(-140px)"
               : "translateY(0)",
-          transition: shouldHideForSolution
+          transition: shouldHideForPinnedSequence
             ? "opacity 300ms ease-in, transform 300ms ease-in"
             : isMobile
               ? "opacity 300ms ease-out, transform 360ms cubic-bezier(0.22,1,0.36,1)"
@@ -216,7 +219,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               style={{
                 opacity: isOpen ? 1 : 0,
-                transform: isOpen ? "translateY(0)" : "translateY(6px)",
+                transform: isOpen ? "translateY(0)" : "translateY(7px)",
                 transition: "opacity 200ms ease, transform 200ms ease",
                 transitionDelay: isOpen ? "300ms" : "0ms",
                 flexShrink: 0,
@@ -242,7 +245,7 @@ export default function Navbar() {
               className="hidden md:block"
               style={{
                 opacity: isOpen ? 1 : 0,
-                transform: isOpen ? "translateY(0)" : "translateY(6px)",
+                transform: isOpen ? "translateY(0)" : "translateY(7px)",
                 transition: "opacity 200ms ease, transform 200ms ease",
                 transitionDelay: isOpen ? "600ms" : "0ms",
                 flexShrink: 0,
@@ -265,7 +268,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen((open) => !open)}
               style={{
                 opacity: isOpen ? 1 : 0,
-                transform: isOpen ? "translateY(0)" : "translateY(6px)",
+                transform: isOpen ? "translateY(0)" : "translateY(7px)",
                 transition: "opacity 200ms ease, transform 200ms ease",
                 transitionDelay: isOpen ? "420ms" : "0ms",
               }}

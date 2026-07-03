@@ -36,7 +36,7 @@ export default function ModulesPanel({
       {desktopBackground ? (
         <LinkArrow
           href="#faq"
-          className="absolute bottom-8 right-8 z-20 hidden md:inline-flex lg:bottom-10 lg:right-12"
+          className="absolute bottom-8 lg:-bottom-72 right-8 z-20 hidden md:inline-flex lg:right-12"
         >
           Continue
         </LinkArrow>

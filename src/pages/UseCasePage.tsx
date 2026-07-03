@@ -1,12 +1,18 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, type CSSProperties } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
-import Text from "../components/base/Text";
-import LinkArrow from "../components/ui/LinkArrow";
-import MagneticFillButton from "../components/ui/MagneticFillButton";
+import {
+  RelatedUseCases,
+  UseCaseCapabilities,
+  UseCaseChallenge,
+  UseCaseFlow,
+  UseCaseHero,
+  UseCaseQuote,
+  UseCaseStatsStrip,
+} from "../components/use-case-page";
 import { useCasePageDetails } from "../data/useCases";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -30,40 +36,253 @@ export default function UseCasePage() {
       const root = rootRef.current;
       if (!root) return;
 
-      const heroItems = gsap.utils.toArray<HTMLElement>("[data-usecase-hero]");
-      const revealItems = gsap.utils.toArray<HTMLElement>("[data-usecase-reveal]");
-
-      gsap.fromTo(
-        heroItems,
-        { opacity: 0, y: 34, scale: 0.98 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: "power3.out",
-        },
+      const heroImage = root.querySelector<HTMLElement>("[data-hero-image]");
+      const heroOverlay = root.querySelector<HTMLElement>("[data-hero-overlay]");
+      const heroText = root.querySelector<HTMLElement>("[data-hero-text]");
+      const heroChars = gsap.utils.toArray<HTMLElement>("[data-hero-char]");
+      const label = root.querySelector<HTMLElement>("[data-hero-label]");
+      const tagline = root.querySelector<HTMLElement>("[data-hero-tagline]");
+      const scrollIndicator = root.querySelector<HTMLElement>(
+        "[data-scroll-indicator]",
       );
 
-      revealItems.forEach((item, index) => {
-        gsap.fromTo(
-          item,
-          { opacity: 0, y: 32 },
+      const heroTl = gsap.timeline({ delay: 0.08 });
+      heroTl
+        .fromTo(
+          heroImage,
+          { scale: 1.12, filter: "brightness(0.8)" },
+          {
+            scale: 1,
+            filter: "brightness(1)",
+            duration: 1.1,
+            ease: "power3.out",
+          },
+        )
+        .fromTo(
+          label,
+          { opacity: 0, y: 12, letterSpacing: "0.8em" },
           {
             opacity: 1,
             y: 0,
-            duration: 0.55,
-            delay: index * 0.015,
+            letterSpacing: "0.4em",
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          0.35,
+        )
+        .fromTo(
+          heroChars,
+          { opacity: 0, y: 40, rotateX: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.7,
+            stagger: 0.025,
             ease: "power3.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 86%",
-              once: true,
+            transformPerspective: 800,
+          },
+          0.48,
+        )
+        .fromTo(
+          tagline,
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+          "-=0.3",
+        )
+        .fromTo(
+          scrollIndicator,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.4, ease: "none" },
+          "-=0.1",
+        );
+
+      gsap.to("[data-scroll-dot]", {
+        y: 40,
+        duration: 1.2,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+
+      gsap.to(heroImage, {
+        yPercent: 18,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.querySelector("[data-hero-section]"),
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+      });
+
+      gsap.to(heroText, {
+        yPercent: -18,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.querySelector("[data-hero-section]"),
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.4,
+        },
+      });
+
+      gsap.to(heroOverlay, {
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.querySelector("[data-hero-section]"),
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      const stats = gsap.utils.toArray<HTMLElement>("[data-stat-card]");
+      gsap.fromTo(
+        stats,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: root.querySelector("[data-stats-strip]"),
+            start: "top 82%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        "[data-challenge-line]",
+        { yPercent: 100, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.65,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: root.querySelector("[data-challenge-section]"),
+            start: "top 74%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.to("[data-word-reveal]", {
+        opacity: 1,
+        duration: 0.25,
+        stagger: 0.025,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.querySelector("[data-challenge-copy]"),
+          start: "top 82%",
+          once: true,
+        },
+      });
+
+      gsap.fromTo(
+        "[data-challenge-panel]",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: root.querySelector("[data-challenge-panel]"),
+            start: "top 84%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.to("[data-challenge-panel] img", {
+        scale: 1.08,
+        xPercent: -2,
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.fromTo(
+        "[data-quote-mark]",
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.45,
+          ease: "back.out(1.5)",
+          scrollTrigger: {
+            trigger: root.querySelector("[data-quote-section]"),
+            start: "top 72%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        "[data-quote-word]",
+        { yPercent: 100, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.4,
+          stagger: 0.03,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: root.querySelector("[data-quote-section]"),
+            start: "top 72%",
+            once: true,
+            onEnter: () => {
+              const attribution = root.querySelector<HTMLElement>(
+                "[data-quote-attribution]",
+              );
+              if (!attribution) return;
+
+              const text = attribution.dataset.text || "";
+              attribution.textContent = "";
+              gsap.delayedCall(0.9, () => {
+                const proxy = { value: 0 };
+                gsap.to(proxy, {
+                  value: text.length,
+                  duration: Math.max(0.8, text.length * 0.03),
+                  ease: "none",
+                  onUpdate: () => {
+                    attribution.textContent = text.slice(0, Math.floor(proxy.value));
+                  },
+                  onComplete: () => {
+                    attribution.textContent = text;
+                  },
+                });
+              });
             },
           },
-        );
-      });
+        },
+      );
+
+      gsap.fromTo(
+        "[data-related-card]",
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: root.querySelector("[data-related-section]"),
+            start: "top 82%",
+            once: true,
+          },
+        },
+      );
+
     },
     { scope: rootRef, dependencies: [id] },
   );
@@ -73,163 +292,18 @@ export default function UseCasePage() {
   }
 
   return (
-    <main ref={rootRef} className="bg-bg-light text-[#06160f]">
-      <section className="relative isolate overflow-hidden px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
-        <div
-          className="pointer-events-none absolute inset-0 z-0 opacity-70 [background-image:linear-gradient(rgba(0,147,17,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(0,147,17,0.045)_1px,transparent_1px)] [background-size:72px_72px]"
-          aria-hidden="true"
-        />
-        <div className="relative z-10 mx-auto grid w-[min(100%,1180px)] gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-          <div data-usecase-hero>
-            <p className="mb-4 w-fit rounded-full border border-[#009311]/30 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#009311]">
-              {detail.eyebrow}
-            </p>
-            <h1 className="max-w-[10ch] text-5xl font-semibold leading-[0.98] tracking-normal text-[#06160f] sm:text-6xl lg:text-7xl">
-              {detail.headline}
-            </h1>
-            <p className="mt-5 max-w-[560px] text-sm leading-relaxed text-black/60 sm:text-base">
-              {detail.intro}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <MagneticFillButton
-                variant="green"
-                className="h-12 rounded-lg px-6 text-sm font-semibold"
-                onClick={() => navigate("/#join")}
-              >
-                Join Waitlist
-              </MagneticFillButton>
-              <LinkArrow href="/pricing" className="[--link-arrow-min-width:180px]">
-                View plans
-              </LinkArrow>
-            </div>
-          </div>
-
-          <div
-            data-usecase-hero
-            className="group relative overflow-hidden rounded-3xl border border-[#009311]/15 bg-[#f4f8f5] p-2 shadow-[0_24px_70px_rgba(0,41,27,0.12)]"
-          >
-            <div className="aspect-[16/11] overflow-hidden rounded-[20px]">
-              <img
-                src={detail.imageUrl}
-                alt={detail.eyebrow}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-12 sm:px-6 sm:py-16">
-        <div className="mx-auto grid w-[min(100%,1080px)] gap-4 sm:grid-cols-3">
-          {detail.stats.map((stat) => (
-            <article
-              key={stat.label}
-              data-usecase-reveal
-              className="rounded-2xl border border-[#009311]/15 bg-white p-5"
-            >
-              <p className="text-4xl font-semibold text-[#009311]">{stat.value}</p>
-              <p className="mt-2 text-sm leading-relaxed text-black/55">{stat.label}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-5 py-12 sm:px-6 sm:py-18">
-        <div className="mx-auto grid w-[min(100%,1080px)] gap-8 lg:grid-cols-[0.7fr_1fr]">
-          <div data-usecase-reveal>
-            <Text
-              btext="Workflow"
-              heading="A consent-first path from onboarding to reuse."
-              animate={false}
-              containerClassName="items-start pb-0 text-left"
-              badgeWrapperClassName="!mx-0"
-              badgeTextClassName="border border-black/20"
-              headingClassName="!mx-0 !text-left"
-            />
-          </div>
-          <div className="grid gap-3">
-            {detail.workflow.map((step, index) => (
-              <article
-                key={step.title}
-                data-usecase-reveal
-                className="rounded-2xl border border-black/10 bg-white p-5"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#009311]">
-                  Step {index + 1}
-                </p>
-                <h2 className="mt-3 text-xl font-semibold text-[#06160f]">
-                  {step.title}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-black/55">
-                  {step.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-12 sm:px-6 sm:py-16">
-        <div
-          data-usecase-reveal
-          className="mx-auto grid w-[min(100%,1080px)] gap-8 rounded-3xl bg-[#06160f] p-6 text-white sm:p-8 lg:grid-cols-[0.8fr_1fr]"
-        >
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#22C55E]">
-              Outcomes
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight">
-              Built to keep trust moving.
-            </h2>
-          </div>
-          <div className="grid gap-3">
-            {detail.outcomes.map((outcome) => (
-              <p
-                key={outcome}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm leading-relaxed text-white/75"
-              >
-                {outcome}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 pb-16 pt-8 sm:px-6 sm:pb-24">
-        <div className="mx-auto w-[min(100%,1080px)]">
-          <div className="mb-5 flex items-end justify-between gap-4">
-            <h2 className="text-2xl font-semibold text-[#06160f]">
-              Related use cases
-            </h2>
-            <LinkArrow href="/#cases" className="[--link-arrow-min-width:170px]">
-              All cases
-            </LinkArrow>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {relatedItems.slice(0, 3).map((item) => (
-              <article
-                key={item.id}
-                data-usecase-reveal
-                className="rounded-2xl border border-[#009311]/15 bg-white p-5"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#009311]">
-                  {item.eyebrow}
-                </p>
-                <h3 className="mt-3 text-xl font-semibold leading-tight text-[#06160f]">
-                  {item.headline}
-                </h3>
-                <LinkArrow
-                  href={`/use-cases/${item.id}`}
-                  className="mt-6 [--link-arrow-min-width:180px]"
-                >
-                  Explore
-                </LinkArrow>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    <main
+      ref={rootRef}
+      className="bg-bg-light text-[#06160f]"
+      style={{ "--usecase-accent": detail.accent } as CSSProperties}
+    >
+      <UseCaseHero detail={detail} onBack={() => navigate(-1)} />
+      <UseCaseStatsStrip accent={detail.accent} stats={detail.stats} />
+      <UseCaseChallenge detail={detail} />
+      <UseCaseFlow workflow={detail.workflow} />
+      <UseCaseCapabilities capabilities={detail.capabilities} />
+      <UseCaseQuote quote={detail.quote} />
+      <RelatedUseCases items={relatedItems} />
       <CurtainFooter />
     </main>
   );
