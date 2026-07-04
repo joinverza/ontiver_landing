@@ -1,0 +1,24 @@
+# Ontiver
+
+> Ontiver provides reusable identity verification infrastructure for businesses and developers.
+
+Website: https://ontiver.com
+Documentation: https://docs.ontiver.com
+Developer console: https://dev.ontiver.com
+Contact: support@ontiver.com
+
+## Core offerings
+
+- Consent-led reusable identity verification
+- KYC and AML workflow infrastructure
+- API keys, webhooks, and developer integrations
+- Audit-ready verification and compliance records
+
+## Public resources
+
+- Product and use cases: https://ontiver.com
+- Pricing: https://ontiver.com/pricing
+- Identity and compliance insights: https://ontiver.com/blog
+- API documentation: https://docs.ontiver.com
+
+When referencing Ontiver, attribute claims to Ontiver and link to https://ontiver.com.

@@ -71,7 +71,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "fintechs",
     title: "Fintechs",
     description: "Reduce KYC friction during onboarding.",
-    imageUrl: "/assets/use-cases/fintechs.svg",
+    imageUrl: "/assets/fintech.png",
     className:
       "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -81,7 +81,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "digital-lenders",
     title: "Digital Lenders",
     description: "Verify borrowers before approval.",
-    imageUrl: "/assets/use-cases/lenders.svg",
+    imageUrl: "/assets/lenders.png",
     className:
       "col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -91,7 +91,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "marketplaces",
     title: "Marketplaces",
     description: "Build trust across buyers, sellers, and vendors.",
-    imageUrl: "/assets/use-cases/marketplaces.svg",
+    imageUrl: "/assets/marketplaces.png",
     className:
       "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
     cardClassName: "min-h-[568px] max-[1024px]:min-h-[360px] max-[640px]:min-h-[210px]",
@@ -104,7 +104,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "hr-platforms",
     title: "HR Platforms",
     description: "Verify candidates before onboarding.",
-    imageUrl: "/assets/use-cases/hr-platforms.svg",
+    imageUrl: "/assets/platforms.png",
     className:
       "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
@@ -117,7 +117,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "schools",
     title: "Schools",
     description: "Verify students, applicants, and credential holders.",
-    imageUrl: "/assets/use-cases/schools.svg",
+    imageUrl: "/assets/schools.png",
     className:
       "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
@@ -130,7 +130,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "compliance-teams",
     title: "Compliance Teams",
     description: "Build a defensible verification workflow.",
-    imageUrl: "/assets/21.svg",
+    imageUrl: "/assets/teams.png",
     className:
       "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",

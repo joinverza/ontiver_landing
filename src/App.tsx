@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useLenis } from "./hooks/useLenis";
+import SEO from "./components/SEO";
 import {
   BlogArticlePage,
   BlogPage,
@@ -46,6 +47,7 @@ export default function App() {
 
   return (
     <PageLayout>
+      <SEO />
       <ScrollToHash lenisRef={lenisRef} />
       <Routes>
         <Route path="/" element={<HomePage />} />

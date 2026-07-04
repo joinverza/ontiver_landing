@@ -37,14 +37,10 @@ export default function UseCasePage() {
       if (!root) return;
 
       const heroImage = root.querySelector<HTMLElement>("[data-hero-image]");
-      const heroOverlay = root.querySelector<HTMLElement>("[data-hero-overlay]");
       const heroText = root.querySelector<HTMLElement>("[data-hero-text]");
       const heroChars = gsap.utils.toArray<HTMLElement>("[data-hero-char]");
       const label = root.querySelector<HTMLElement>("[data-hero-label]");
       const tagline = root.querySelector<HTMLElement>("[data-hero-tagline]");
-      const scrollIndicator = root.querySelector<HTMLElement>(
-        "[data-scroll-indicator]",
-      );
 
       const heroTl = gsap.timeline({ delay: 0.08 });
       heroTl
@@ -89,21 +85,7 @@ export default function UseCasePage() {
           { opacity: 0, y: 16 },
           { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
           "-=0.3",
-        )
-        .fromTo(
-          scrollIndicator,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.4, ease: "none" },
-          "-=0.1",
         );
-
-      gsap.to("[data-scroll-dot]", {
-        y: 40,
-        duration: 1.2,
-        ease: "power1.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
 
       gsap.to(heroImage, {
         yPercent: 18,
@@ -124,17 +106,6 @@ export default function UseCasePage() {
           start: "top top",
           end: "bottom top",
           scrub: 1.4,
-        },
-      });
-
-      gsap.to(heroOverlay, {
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root.querySelector("[data-hero-section]"),
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
         },
       });
 

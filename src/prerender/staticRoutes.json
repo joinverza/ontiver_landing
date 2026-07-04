@@ -1,0 +1,20 @@
+[
+  {"path": "/"},
+  {"path": "/blog"},
+  {"path": "/blog/why-identity-verification-should-be-reusable"},
+  {"path": "/blog/cutting-kyc-costs-without-cutting-assurance"},
+  {"path": "/blog/aml-screening-for-product-teams"},
+  {"path": "/blog/building-consent-into-identity-flows"},
+  {"path": "/blog/developer-guide-to-verification-webhooks"},
+  {"path": "/blog/risk-signals-that-matter-in-onboarding"},
+  {"path": "/blog/what-audit-ready-identity-logs-need"},
+  {"path": "/blog/reusable-identity-for-marketplaces"},
+  {"path": "/use-cases/fintechs"},
+  {"path": "/use-cases/digital-lenders"},
+  {"path": "/use-cases/marketplaces"},
+  {"path": "/use-cases/hr-platforms"},
+  {"path": "/use-cases/schools"},
+  {"path": "/use-cases/compliance-teams"},
+  {"path": "/pricing"},
+  {"path": "/contact"}
+]
