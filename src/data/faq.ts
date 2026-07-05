@@ -100,13 +100,75 @@ export const homeGroupOrder = [
   "Pricing",
 ];
 
+export const individualFaqGroups: FAQGroup[] = [
+  {
+    group: "Your Identity",
+    items: [
+      {
+        question: "What does verify once mean?",
+        answer:
+          "It means completing a trusted identity check once, then using the resulting proof again in supported journeys instead of uploading the same documents every time.",
+      },
+      {
+        question: "Does Ontiver share my identity automatically?",
+        answer:
+          "No. Reuse is consent-led. You review the request and approve the trusted proof a supported service needs.",
+      },
+      {
+        question: "Can I see where my identity was used?",
+        answer:
+          "Ontiver is designed to keep verification and sharing activity together so you have a clearer history of requests and approvals.",
+      },
+    ],
+  },
+  {
+    group: "Privacy & Access",
+    items: [
+      {
+        question: "Do I have to send every document again?",
+        answer:
+          "Not when a supported service can accept your reusable trusted proof. The goal is to reduce repeated uploads while preserving the assurance the service needs.",
+      },
+      {
+        question: "Who controls permission to reuse my credentials?",
+        answer:
+          "You do. Consent is part of the reuse flow, so a supported business must request access before trusted proof is shared.",
+      },
+      {
+        question: "Where will I be able to use Ontiver?",
+        answer:
+          "Ontiver is being built for supported finance, lending, marketplace, work, and education journeys. Availability will expand as more businesses integrate.",
+      },
+    ],
+  },
+  {
+    group: "Early Access",
+    items: [
+      {
+        question: "How can I try Ontiver?",
+        answer:
+          "Join the individual waitlist to receive private beta invitations, product updates, and launch information.",
+      },
+      {
+        question: "Is joining the waitlist free?",
+        answer:
+          "Yes. Joining the waitlist is free and does not commit you to a paid plan.",
+      },
+    ],
+  },
+];
+
 export const faqHeading = {
   pricing: {
     btext: "Frequently Asked Question",
     heading: "Pricing questions, clear answers.",
   },
-  home: {
+  enterprise: {
     btext: "Frequently Asked Question",
-    heading: "Everything teams ask before trusting Ontiver.",
+    heading: "What enterprise teams ask before integrating Ontiver.",
+  },
+  individual: {
+    btext: "Questions from Individuals",
+    heading: "Understand how your reusable identity works.",
   },
 };

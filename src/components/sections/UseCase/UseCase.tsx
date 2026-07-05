@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { breathingDepthConfigs, useCaseCards } from "../../../data/useCases";
+import { individualUseCaseCards } from "../../../data/audienceContent";
+import type { Audience } from "../../../lib/audience";
 import Text from "../../base/Text";
 import UseCaseCardItem from "../../use-case/UseCaseCardItem";
 import {
@@ -12,7 +14,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function UseCase() {
+export default function UseCase({ audience }: { audience: Audience }) {
   const sectionRef = useRef<HTMLElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -276,14 +278,22 @@ export default function UseCase() {
             containerClassName="use-case-text pb-[clamp(36px,5vw,54px)]"
             badgeTextClassName="border border-light-primary/60! bg-[#06160f]/85! text-[#eaffef]!"
             color="white"
-            btext="Use Cases"
-            heading="Built for the teams that need verified trust most."
+            btext={audience === "enterprise" ? "Enterprise Use Cases" : "Where It Helps"}
+            heading={
+              audience === "enterprise"
+                ? "Built for the teams that need verified trust most."
+                : "Use trusted identity across more of everyday life."
+            }
             animate={false}
           />
 
           <div className="relative grid auto-rows-[minmax(128px,auto)] grid-cols-6 gap-4 [perspective:900px] max-[1024px]:grid-cols-2 max-[1024px]:auto-rows-auto max-[640px]:grid-cols-1 max-[640px]:gap-3.5">
-            {useCaseCards.map((card) => (
-              <UseCaseCardItem key={card.id} card={card} />
+            {(audience === "enterprise" ? useCaseCards : individualUseCaseCards).map((card) => (
+              <UseCaseCardItem
+                key={card.id}
+                card={card}
+                linkTo={audience === "enterprise" ? `/enterprise/use-cases/${card.id}` : undefined}
+              />
             ))}
           </div>
         </div>

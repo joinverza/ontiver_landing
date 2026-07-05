@@ -1,12 +1,16 @@
 import LinkArrow from "../../ui/LinkArrow";
+import type { Audience } from "../../../lib/audience";
 
 type ModulesPanelProps = {
   desktopBackground?: boolean;
+  audience: Audience;
 };
 
 export default function ModulesPanel({
   desktopBackground = false,
+  audience,
 }: ModulesPanelProps) {
+  const isEnterprise = audience === "enterprise";
   return (
     <section
       id="modules"
@@ -24,13 +28,16 @@ export default function ModulesPanel({
       />
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center">
         <h2 className="text-center text-[clamp(2.55rem,12vw,4.6rem)] font-semibold uppercase leading-[0.9] tracking-normal text-[#06160f] md:text-[clamp(4rem,7.4vw,11rem)]">
-          Identity
-          <span className="block text-[#007d21]">Consent</span>
-          <span className="block">Compliance</span>
+          {isEnterprise ? "Identity" : "Verify"}
+          <span className="block text-[#007d21]">
+            {isEnterprise ? "Consent" : "Approve"}
+          </span>
+          <span className="block">{isEnterprise ? "Compliance" : "Reuse"}</span>
         </h2>
         <p className="mt-6 max-w-[28rem] text-center text-sm font-medium leading-relaxed text-[#5c6860] md:absolute md:bottom-[10vh] md:left-1/2 md:mt-0 md:-translate-x-1/2">
-          Verify once, reuse securely, and keep every consent event tied to a
-          trusted record.
+          {isEnterprise
+            ? "Orchestrate verification, permission, and compliance evidence as one trusted system."
+            : "Keep trusted proof connected to you and reuse it only with your permission."}
         </p>
       </div>
       {desktopBackground ? (

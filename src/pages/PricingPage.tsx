@@ -74,12 +74,12 @@ export default function PricingPage() {
   };
 
   const handlePlanAction = (planName: string) => {
-    if (planName === "Enterprise") {
-      navigate("/contact");
+    if (planName === "Sandbox") {
+      window.location.assign("https://docs.ontiver.com/");
       return;
     }
 
-    navigate({ pathname: "/pricing", hash: "#join" });
+    navigate(`/enterprise/contact?plan=${planName.toLowerCase()}`);
   };
 
   useGSAP(
@@ -282,7 +282,7 @@ export default function PricingPage() {
 
         <Calculator />
         <PricingFAQ />
-        <CurtainFooter />
+        <CurtainFooter audience="enterprise" />
       </main>
     </div>
   );

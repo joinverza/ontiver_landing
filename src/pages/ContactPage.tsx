@@ -187,8 +187,8 @@ export default function ContactPage() {
       await sendContactRequest({
         name: values.firstName,
         email: values.email,
-        subject: `Website inquiry from ${values.companyName}`,
-        message: `${values.message}\n\nCompany: ${values.companyName}\nCompany size: ${values.companySize}`,
+        subject: values.subject,
+        message: values.message,
       });
       setSendState("sent");
     } catch (error) {
@@ -235,7 +235,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.62, ease: [0.4, 0, 0.2, 1] }}
           >
-            Whether you're launching a fintech, scaling a marketplace, or designing a compliance workflow, our team can help you choose the right identity solution.
+            Ask about early access, privacy, credential reuse, or anything else you need to understand about Ontiver.
           </motion.p>
         </div>
       </section>
@@ -261,7 +261,7 @@ export default function ContactPage() {
               </div>
               <p className="contact-subtitle mt-2 inline-flex items-center gap-2 text-[13px] text-white/60">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#23d838] animate-[contact-live-pulse_1.5s_ease-in-out_infinite]" />
-                Say something to start a live chat!
+                We are here for individual questions and support.
               </p>
 
               <div className="mt-6 space-y-3.5 sm:mt-8 sm:space-y-5">

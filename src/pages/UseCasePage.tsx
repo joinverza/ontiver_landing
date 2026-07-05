@@ -275,7 +275,7 @@ export default function UseCasePage() {
       <UseCaseCapabilities capabilities={detail.capabilities} />
       <UseCaseQuote quote={detail.quote} />
       <RelatedUseCases items={relatedItems} />
-      <CurtainFooter />
+      <CurtainFooter audience="enterprise" />
     </main>
   );
 }

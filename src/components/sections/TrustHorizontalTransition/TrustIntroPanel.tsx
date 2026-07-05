@@ -1,13 +1,15 @@
 import Text from "../../base/Text";
 import LinkArrow from "../../ui/LinkArrow";
+import type { Audience } from "../../../lib/audience";
 
-export default function TrustIntroPanel() {
+export default function TrustIntroPanel({ audience }: { audience: Audience }) {
+  const isEnterprise = audience === "enterprise";
   return (
     <section
       id="security"
       data-trust-panel
       className="relative flex min-h-[520px] w-full shrink-0 border-r border-black/15 bg-[#eeeeec] text-[#444] md:h-screen md:min-h-screen md:w-[50vw]"
-      aria-label="Security and trust introduction"
+      aria-label={isEnterprise ? "Enterprise security and trust" : "Identity privacy and control"}
     >
       <div className="pointer-events-none absolute inset-0 z-20 hidden md:block" aria-hidden="true">
         <span
@@ -25,16 +27,20 @@ export default function TrustIntroPanel() {
 
       <div className="relative z-10 flex h-full w-full flex-col justify-end px-[clamp(1.5rem,6vw,7rem)] pb-16 pt-28 md:pb-[20vh] md:pt-[20vh]">
         <Text
-          btext="Security & Trust"
-          heading="Designed for sensitive identity data."
+          btext={isEnterprise ? "Security & Trust" : "Privacy & Control"}
+          heading={
+            isEnterprise
+              ? "Designed for sensitive identity operations."
+              : "Designed to keep you in control."
+          }
           animate={false}
           containerClassName="items-start gap-3 pb-0 md:gap-5"
           badgeWrapperClassName="!mx-0 self-start text-start"
           badgeTextClassName="border border-black/25 bg-white/70 text-[#009311]"
           headingClassName="!mx-0 max-w-[9ch] !text-left text-[clamp(3rem,3.8vw,4.8rem)] font-medium leading-[1.08]! tracking-wide md:leading-[1.2]!"
         />
-        <LinkArrow href="/contact" className="mt-8 w-fit md:mt-12">
-          Request documentation
+        <LinkArrow href={isEnterprise ? "/enterprise/contact" : "/#join"} className="mt-8 w-fit md:mt-12">
+          {isEnterprise ? "Request security documentation" : "Join the waitlist"}
         </LinkArrow>
       </div>
     </section>

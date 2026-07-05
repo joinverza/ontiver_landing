@@ -1,8 +1,7 @@
 export type ContactFormField =
   | "firstName"
   | "email"
-  | "companyName"
-  | "companySize"
+  | "subject"
   | "message";
 
 export type ContactFieldConfig = {
@@ -13,26 +12,25 @@ export type ContactFieldConfig = {
   wide?: boolean;
 };
 
-export const contactHeading = "Let's Build Trust Infrastructure Together";
+export const contactHeading = "How Can We Help?";
 
 export const contactFields: ContactFieldConfig[] = [
   { key: "firstName", label: "First Name", placeholder: "Ada" },
   {
     key: "email",
-    label: "Work Email",
-    placeholder: "ada@company.com",
+    label: "Email",
+    placeholder: "ada@example.com",
     type: "email",
   },
   {
-    key: "companyName",
-    label: "Company Name",
-    placeholder: "Company Inc.",
+    key: "subject",
+    label: "What do you need help with?",
+    placeholder: "Early access, privacy, or general support",
   },
-  { key: "companySize", label: "Company Size", placeholder: "10-50" },
   {
     key: "message",
     label: "Message",
-    placeholder: "Tell us about your identity workflow",
+    placeholder: "Tell us how we can help",
     type: "textarea",
     wide: true,
   },
@@ -41,32 +39,33 @@ export const contactFields: ContactFieldConfig[] = [
 export const contactInitialValues: Record<ContactFormField, string> = {
   firstName: "",
   email: "",
-  companyName: "",
-  companySize: "",
+  subject: "",
   message: "",
 };
 
 export const contactRows = [
-  { icon: "/assets/call.svg", label: "+1012 3456 789" },
   { icon: "/assets/sms.svg", label: "hello@ontiver.com" },
-  {
-    icon: "/assets/location.svg",
-    label: "132 Dartmouth Street, Boston, Massachusetts 02156",
-  },
+  { icon: "/assets/clock-circle.svg", label: "We usually reply within two business days." },
+  { icon: "/assets/consent.svg", label: "Never include passwords or sensitive identity documents." },
 ];
 
 export const contactSocialIcons = [
-  { icon: "/assets/X.svg", label: "X", color: "#1DA1F2", href: "https://x.com/" },
   {
-    icon: "/assets/insta.svg",
-    label: "Instagram",
-    color: "#E1306C",
-    href: "https://www.instagram.com/",
+    icon: "/assets/twitter.svg",
+    label: "X",
+    color: "#111111",
+    href: "https://x.com/Ontiverhq",
   },
   {
-    icon: "/assets/discord.svg",
-    label: "Discord",
-    color: "#5865F2",
-    href: "https://discord.com/",
+    icon: "/assets/instagram.svg",
+    label: "Instagram",
+    color: "#E1306C",
+    href: "https://www.instagram.com/ontiverhq/",
+  },
+  {
+    icon: "/assets/linkedin.svg",
+    label: "LinkedIn",
+    color: "#0A66C2",
+    href: "https://www.linkedin.com/company/ontiverhq",
   },
 ];

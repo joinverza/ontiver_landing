@@ -73,3 +73,35 @@ export function sendContactRequest(request: ContactRequest): Promise<void> {
     website: "",
   });
 }
+
+export type PricingInquiryRequest = {
+  planKey: "launch" | "growth" | "compliance" | "enterprise";
+  planName: "Launch" | "Growth" | "Compliance" | "Enterprise";
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone?: string;
+  role?: string;
+  country?: string;
+  monthlyVerifications?: number;
+  useCase: string;
+  complianceNeeds?: string;
+  timeline?: string;
+  meetingPreference?: string;
+  message?: string;
+  website?: string;
+};
+
+export function sendPricingInquiry(
+  request: PricingInquiryRequest
+): Promise<void> {
+  return post("/pricing-inquiry", {
+    ...request,
+    companyName: request.companyName.trim(),
+    contactName: request.contactName.trim(),
+    email: request.email.trim(),
+    useCase: request.useCase.trim(),
+    brand: "ontiver",
+    website: request.website?.trim() || "",
+  });
+}

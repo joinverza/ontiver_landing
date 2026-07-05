@@ -4,6 +4,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import { moduleCards, type ModuleCard } from "../../../data/modules";
+import { individualModuleCards } from "../../../data/audienceContent";
+import type { Audience } from "../../../lib/audience";
 import Text from "../../base/Text";
 import DirectionAwareHover from "../../ui/DirectionAwareHover";
 import SignalFlowBackground from "../../ui/SignalFlowBackground";
@@ -110,7 +112,7 @@ function ModuleCardItem({ card }: { card: ModuleCard }) {
   );
 }
 
-export default function Modules() {
+export default function Modules({ audience }: { audience: Audience }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -163,15 +165,19 @@ export default function Modules() {
       </div>
       <div className="mx-auto w-[min(100%,1197px)]">
         <Text
-          btext="Product Modules"
-          heading="Everything your identity workflow needs."
+          btext={audience === "enterprise" ? "Enterprise Platform" : "Built for You"}
+          heading={
+            audience === "enterprise"
+              ? "Everything your identity operation needs."
+              : "Your identity, permission, and history in one place."
+          }
           containerClassName="gap-2 pb-[6rem] max-[640px]:pb-[30px]"
           badgeTextClassName="border border-black"
           headingClassName=""
         />
 
         <div className="grid grid-cols-[minmax(0,349fr)_minmax(0,408fr)_minmax(0,43fr)_minmax(0,349fr)] grid-rows-[clamp(176px,19.4vw,243px)_clamp(184px,20.2vw,253px)_clamp(176px,19.4vw,243px)] gap-[clamp(2px,0.6vw,8px)] text-white max-[900px]:grid-cols-2 max-[900px]:grid-rows-none max-[900px]:auto-rows-[minmax(190px,auto)] max-[900px]:gap-2 max-[640px]:grid-cols-1 max-[640px]:auto-rows-auto max-[640px]:gap-3">
-          {moduleCards.map((card) => (
+          {(audience === "enterprise" ? moduleCards : individualModuleCards).map((card) => (
             <ModuleCardItem key={card.id} card={card} />
           ))}
         </div>

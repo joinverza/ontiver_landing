@@ -1,6 +1,8 @@
 import LinkArrow from "../../ui/LinkArrow";
+import type { Audience } from "../../../lib/audience";
 
-export default function TrustStatementCardPanel() {
+export default function TrustStatementCardPanel({ audience }: { audience: Audience }) {
+  const isEnterprise = audience === "enterprise";
   return (
     <section
       data-card-panel
@@ -17,26 +19,27 @@ export default function TrustStatementCardPanel() {
             data-card-title
             className="text-balance text-[clamp(1.85rem,7vw,2.6rem)] font-semibold leading-[1.04] tracking-normal text-[#06160f] md:text-[clamp(2rem,2.6vw,4rem)]"
           >
-            Discover our complete collection
+            {isEnterprise ? "Bring every identity control" : "Carry trusted identity"}
             <span className="block text-[#007d21]">
-              of reusable identity modules
+              {isEnterprise ? "into one operating layer" : "with confidence and control"}
             </span>
-            for every workflow.
+            {isEnterprise ? "for every workflow." : "wherever it is supported."}
           </p>
           <p
             data-card-description
             className="mt-4 max-w-[34rem] text-sm leading-relaxed text-[#5c6860] md:mt-5"
           >
-            Verification, consent, dashboarding, API access, and risk checks
-            designed to work as one trusted system.
+            {isEnterprise
+              ? "Verification, consent, dashboards, API access, and risk checks designed to work as one trusted system."
+              : "Verify once, review every request, and avoid repeating the same identity process across supported services."}
           </p>
 
           <div data-card-link className="mt-8 md:mt-12">
             <LinkArrow
-              href="#modules"
+              href="#features"
               className="[--link-arrow-min-width:210px] text-[#007d21] hover:text-[#06160f]"
             >
-              View all modules
+              {isEnterprise ? "View enterprise modules" : "Explore your benefits"}
             </LinkArrow>
           </div>
         </div>

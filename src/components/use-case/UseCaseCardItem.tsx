@@ -6,7 +6,13 @@ import DirectionAwareHover, { type Direction } from "../ui/DirectionAwareHover";
 import UseCaseIdleLayer from "./UseCaseIdleLayer";
 import type { UseCaseAnimatedCard } from "./useCaseAnimation";
 
-export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
+export default function UseCaseCardItem({
+  card,
+  linkTo,
+}: {
+  card: UseCaseCard;
+  linkTo?: string;
+}) {
   const handleEnter = (
     direction: Direction,
     event: ReactMouseEvent<HTMLElement>
@@ -158,40 +164,48 @@ export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
     }
   };
 
+  const content = (
+    <DirectionAwareHover
+      imageUrl={card.imageUrl}
+      className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-white/10 bg-[#06160f] sm:min-h-[250px] md:rounded-3xl md:min-h-[276px] ${card.cardClassName ?? ""}`}
+      imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
+      showOverlay={false}
+      onDirectionEnter={handleEnter}
+      onDirectionLeave={handleLeave}
+    >
+      <UseCaseIdleLayer type={card.idle} />
+      <div
+        className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
+      >
+        <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
+          <h3 className="font-sans text-lg font-bold leading-[1.08] tracking-[0] text-white md:text-2xl">
+            {card.title}
+          </h3>
+          <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-base md:leading-[1.28]">
+            {card.description}
+          </p>
+        </div>
+      </div>
+    </DirectionAwareHover>
+  );
+
   return (
     <div
       className={`relative min-h-0 min-w-0 [transform-style:preserve-3d] will-change-[transform,opacity] max-[640px]:mx-auto max-[640px]:w-full max-[640px]:max-w-[410px] ${card.className}`}
       data-idle={card.idle}
       data-use-case-card
     >
-      <Link
-        to={`/use-cases/${card.id}`}
-        className="block h-full cursor-pointer no-underline"
-        aria-label={`Open ${card.title} use case`}
-      >
-        <DirectionAwareHover
-          imageUrl={card.imageUrl}
-          className={`use-case-card-surface h-full w-full min-h-[220px] origin-center rounded-2xl border-white/10 bg-[#06160f] sm:min-h-[250px] md:rounded-3xl md:min-h-[276px] ${card.cardClassName ?? ""}`}
-          imageClassName="opacity-[0.86] brightness-[0.92] saturate-[1.05]"
-          showOverlay={false}
-          onDirectionEnter={handleEnter}
-          onDirectionLeave={handleLeave}
+      {linkTo ? (
+        <Link
+          to={linkTo}
+          className="block h-full cursor-pointer no-underline"
+          aria-label={`Open ${card.title} use case`}
         >
-          <UseCaseIdleLayer type={card.idle} />
-          <div
-            className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
-          >
-            <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
-              <h3 className="font-sans text-lg font-bold leading-[1.08] tracking-[0] text-white md:text-2xl">
-                {card.title}
-              </h3>
-              <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-base md:leading-[1.28]">
-                {card.description}
-              </p>
-            </div>
-          </div>
-        </DirectionAwareHover>
-      </Link>
+          {content}
+        </Link>
+      ) : (
+        <div className="block h-full">{content}</div>
+      )}
       <span
         className={`use-case-connection-line pointer-events-none absolute z-[8] block bg-[#22c55e]/10 opacity-0 max-[640px]:hidden ${card.lineClassName}`}
         aria-hidden="true"

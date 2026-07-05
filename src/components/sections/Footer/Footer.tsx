@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import {
-  footerGroups,
+  enterpriseFooterGroups,
   footerIcons,
+  individualFooterGroups,
   type FooterLink,
 } from "../../../data/footer";
+import { getAudienceHome, type Audience } from "../../../lib/audience";
 import LinkArrow from "../../ui/LinkArrow";
 
 function FooterNavLink({ item }: { item: FooterLink }) {
@@ -18,7 +20,9 @@ function FooterNavLink({ item }: { item: FooterLink }) {
   );
 }
 
-export default function Footer() {
+export default function Footer({ audience = "individual" }: { audience?: Audience }) {
+  const footerGroups =
+    audience === "enterprise" ? enterpriseFooterGroups : individualFooterGroups;
   return (
     <footer
       data-curtain-footer
@@ -27,7 +31,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1320px]">
         <div className="grid gap-10 lg:grid-cols-[minmax(220px,0.65fr)_minmax(0,2.7fr)] lg:gap-20">
           <div data-curtain-footer-logo className="max-w-[240px]">
-            <Link to="/" aria-label="Ontiver home" className="inline-flex">
+            <Link to={getAudienceHome(audience)} aria-label="Ontiver home" className="inline-flex">
               <img
                 src="/assets/green-logo.svg"
                 alt="Ontiver"
@@ -39,7 +43,9 @@ export default function Footer() {
               data-curtain-footer-tagline
               className="mt-4 text-sm leading-relaxed text-white/65"
             >
-              Verify Once. Use Everywhere.
+              {audience === "enterprise"
+                ? "Identity infrastructure for trusted growth."
+                : "Your identity. Verified once. Ready when you are."}
             </p>
           </div>
 
@@ -93,13 +99,21 @@ export default function Footer() {
           </p>
           <div className="flex gap-3">
             {footerIcons.map((icon) => (
-              <img
+              <a
                 data-curtain-footer-social
                 key={icon.alt}
-                src={icon.icon}
-                alt={icon.alt}
-                className="h-5 w-5 cursor-pointer opacity-75 transition-[opacity,transform,filter] duration-150 ease-out hover:scale-[1.15] hover:opacity-100 hover:[filter:brightness(0)_saturate(100%)_invert(63%)_sepia(77%)_saturate(536%)_hue-rotate(89deg)_brightness(93%)_contrast(88%)]"
-              />
+                href={icon.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Follow Ontiver on ${icon.alt}`}
+                className="inline-grid h-9 w-9 place-items-center rounded-full border border-white/10 opacity-75 transition-[opacity,transform,border-color] duration-150 ease-out hover:scale-[1.08] hover:border-[#22C55E]/60 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22C55E]"
+              >
+                <img
+                  src={icon.icon}
+                  alt=""
+                  className="h-5 w-5 transition-[filter] duration-150 hover:[filter:brightness(0)_saturate(100%)_invert(63%)_sepia(77%)_saturate(536%)_hue-rotate(89deg)_brightness(93%)_contrast(88%)]"
+                />
+              </a>
             ))}
           </div>
         </div>

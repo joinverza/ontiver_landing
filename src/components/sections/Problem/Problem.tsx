@@ -4,6 +4,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import { problems } from "../../../data/problem";
+import { individualProblems } from "../../../data/audienceContent";
+import type { Audience } from "../../../lib/audience";
 import Text from "../../base/Text";
 import ProblemCard from "../../ui/ProblemCard";
 import SignalFlowBackground from "../../ui/SignalFlowBackground";
@@ -12,7 +14,7 @@ import SignalFlowBackground from "../../ui/SignalFlowBackground";
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("deckSpread", "M0,0 C0.4,0 0.2,1 1,1");
 
-export default function Problem() {
+export default function Problem({ audience }: { audience: Audience }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -166,8 +168,12 @@ export default function Problem() {
       <div className="relative z-10 w-full max-w-7xl mx-auto py-20 pb-32 px-6 md:px-10 lg:px-20">
         <div className="flex flex-col gap-2 w-full relative z-20">
           <Text 
-            btext="The Problem" 
-            heading="Why building digital products still feels harder than it should." 
+            btext={audience === "enterprise" ? "The Enterprise Problem" : "The Problem"}
+            heading={
+              audience === "enterprise"
+                ? "Identity operations should not slow down growth."
+                : "Proving who you are should not feel this repetitive."
+            }
           />
         </div>
 
@@ -176,7 +182,7 @@ export default function Problem() {
             ref={gridRef}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10"
           >
-            {problems.map((prob) => (
+            {(audience === "enterprise" ? problems : individualProblems).map((prob) => (
               <div
                 key={prob.title}
                 className="problem-card-wrapper relative will-change-transform"

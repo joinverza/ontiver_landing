@@ -42,7 +42,7 @@ export default function RelatedUseCases({ items }: RelatedUseCasesProps) {
                   {item.tagline}
                 </p>
                 <LinkArrow
-                  href={`/use-cases/${item.id}`}
+                  href={`/enterprise/use-cases/${item.id}`}
                   className="mt-6 [--link-arrow-min-width:160px]"
                 >
                   Explore

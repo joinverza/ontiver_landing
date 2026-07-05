@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Join from "../Join/Join";
 import Footer from "../Footer/Footer";
+import type { Audience } from "../../../lib/audience";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,7 +27,7 @@ function splitElementText(element: HTMLElement) {
   });
 }
 
-export default function CurtainFooter() {
+export default function CurtainFooter({ audience = "individual" }: { audience?: Audience }) {
   const ctaWrapperRef = useRef<HTMLDivElement>(null);
   const footerWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -666,14 +667,14 @@ export default function CurtainFooter() {
         data-section-reveal="off"
         className="relative bg-[#f7f8f5]"
       >
-        <Join />
+        <Join audience={audience} />
       </div>
       <div
         ref={footerWrapperRef}
         data-section-reveal="off"
         className="relative bg-[#000000]"
       >
-        <Footer />
+        <Footer audience={audience} />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import {useCasePageDetails} from "./useCases";
 
 const SITE_URL = "https://ontiver.com";
 const DEFAULT_IMAGE = `${SITE_URL}/assets/hero-blog.png`;
+const ENTERPRISE_IMAGE = `${SITE_URL}/assets/ontiver-enterprise.png`;
 
 export type SeoMeta = {
   title: string;
@@ -21,18 +22,21 @@ const baseOrganization = {
 };
 
 function normalizePath(pathname: string) {
-  if (pathname === "/blogs" || pathname === "/resources" || pathname === "/resources/blogs") return "/blog";
-  const articleAlias = pathname.match(/^\/(?:blogs|resources\/blogs)\/([^/]+)$/);
-  if (articleAlias) return `/blog/${articleAlias[1]}`;
+  if (pathname === "/blog" || pathname === "/resources" || pathname === "/resources/blogs") return "/blogs";
+  if (pathname === "/pricing") return "/enterprise/pricing";
+  const legacyUseCase = pathname.match(/^\/use-cases\/([^/]+)$/);
+  if (legacyUseCase) return `/enterprise/use-cases/${legacyUseCase[1]}`;
+  const articleAlias = pathname.match(/^\/(?:blog|resources\/blogs)\/([^/]+)$/);
+  if (articleAlias) return `/blogs/${articleAlias[1]}`;
   return pathname.length > 1 ? pathname.replace(/\/+$/, "") : "/";
 }
 
 export function getSeoMeta(pathname: string): SeoMeta {
   const path = normalizePath(pathname);
-  const articleMatch = path.match(/^\/blog\/([^/]+)$/);
+  const articleMatch = path.match(/^\/blogs\/([^/]+)$/);
   if (articleMatch) {
     const article = getBlogArticleBySlug(articleMatch[1]) ?? blogArticles[0];
-    const canonicalPath = `/blog/${article.slug}`;
+    const canonicalPath = `/blogs/${article.slug}`;
     return {
       title: `${article.title} | Ontiver`,
       description: article.excerpt,
@@ -53,7 +57,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
     };
   }
 
-  const useCaseMatch = path.match(/^\/use-cases\/([^/]+)$/);
+  const useCaseMatch = path.match(/^\/enterprise\/use-cases\/([^/]+)$/);
   if (useCaseMatch && useCasePageDetails[useCaseMatch[1]]) {
     const detail = useCasePageDetails[useCaseMatch[1]];
     return {
@@ -75,31 +79,45 @@ export function getSeoMeta(pathname: string): SeoMeta {
 
   const staticMeta: Record<string, Omit<SeoMeta, "canonicalPath" | "structuredData">> = {
     "/": {
-      title: "Reusable Identity Verification Infrastructure | Ontiver",
+      title: "Your Reusable Digital Identity | Ontiver",
       description:
-        "Ontiver helps businesses verify identity once, reuse trusted proofs with consent, and maintain audit-ready KYC and compliance workflows.",
+        "Verify once, keep control of your trusted credentials, and approve identity reuse across supported services without repeated document uploads.",
       image: DEFAULT_IMAGE,
       type: "website",
     },
-    "/blog": {
+    "/enterprise": {
+      title: "Enterprise Identity Verification Infrastructure | Ontiver",
+      description:
+        "Orchestrate identity verification, AML screening, consent, reusable credentials, and audit-ready compliance workflows with Ontiver.",
+      image: ENTERPRISE_IMAGE,
+      type: "website",
+    },
+    "/blogs": {
       title: "Identity, KYC and Compliance Insights | Ontiver",
       description:
         "Practical guides for product, engineering, and compliance teams building reusable identity, KYC, AML, and trusted onboarding workflows.",
       image: DEFAULT_IMAGE,
       type: "website",
     },
-    "/pricing": {
-      title: "Identity Verification Pricing and Plans | Ontiver",
+    "/enterprise/pricing": {
+      title: "Enterprise Identity Verification Pricing | Ontiver",
       description:
         "Compare Ontiver plans for reusable identity verification, KYC workflows, developer integrations, and enterprise compliance operations.",
-      image: DEFAULT_IMAGE,
+      image: ENTERPRISE_IMAGE,
       type: "website",
     },
     "/contact": {
-      title: "Contact Ontiver | Build Trusted Identity Workflows",
+      title: "Contact and Support for Individuals | Ontiver",
       description:
-        "Talk with Ontiver about reusable identity verification, KYC infrastructure, enterprise onboarding, partnerships, and developer integration.",
+        "Ask Ontiver about individual early access, reusable identity, consent, privacy, and supported credential-sharing journeys.",
       image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/enterprise/contact": {
+      title: "Request Enterprise Access | Ontiver",
+      description:
+        "Tell Ontiver about your identity verification volume, compliance requirements, use case, and rollout timeline.",
+      image: ENTERPRISE_IMAGE,
       type: "website",
     },
   };

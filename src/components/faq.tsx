@@ -7,6 +7,7 @@ import {
   faqGroups,
   faqHeading,
   homeGroupOrder,
+  individualFaqGroups,
   planNames,
   type FAQGroup,
   type FAQItem,
@@ -21,7 +22,7 @@ type ActiveFAQ = {
 } | null;
 
 type PricingFAQProps = {
-  variant?: "pricing" | "home";
+  variant?: "pricing" | "enterprise" | "individual";
 };
 
 function isSameFAQ(active: ActiveFAQ, groupIndex: number, itemIndex: number) {
@@ -281,6 +282,7 @@ export default function PricingFAQ({ variant = "pricing" }: PricingFAQProps) {
   const accordionRef = useRef<HTMLDivElement>(null);
   const orderedGroups = useMemo(() => {
     if (variant === "pricing") return faqGroups;
+    if (variant === "individual") return individualFaqGroups;
 
     return homeGroupOrder
       .map((groupName) => faqGroups.find((group) => group.group === groupName))

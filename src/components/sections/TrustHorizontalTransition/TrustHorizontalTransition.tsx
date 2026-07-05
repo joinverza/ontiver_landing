@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { securityFeatures } from "../../../data/trust";
+import { individualSecurityFeatures } from "../../../data/audienceContent";
+import type { Audience } from "../../../lib/audience";
 import ModulesPanel from "./ModulesPanel";
 import TrustCardPanel from "./TrustCardPanel";
 import TrustIntroPanel from "./TrustIntroPanel";
@@ -10,7 +12,9 @@ import TrustStatementCardPanel from "./TrustStatementCardPanel";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function TrustHorizontalTransition() {
+export default function TrustHorizontalTransition({ audience }: { audience: Audience }) {
+  const features =
+    audience === "enterprise" ? securityFeatures : individualSecurityFeatures;
   const wrapperRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -361,18 +365,18 @@ export default function TrustHorizontalTransition() {
       data-section-reveal="off"
       className="relative h-auto w-full overflow-hidden bg-[#eeeeec] md:ml-[calc(-50vw+50%)] md:h-screen md:w-screen"
     >
-      <ModulesPanel desktopBackground />
+      <ModulesPanel audience={audience} desktopBackground />
       <div
         ref={trackRef}
         className="relative z-20 flex w-full flex-col md:absolute md:left-0 md:top-0 md:h-full md:w-max md:flex-row md:will-change-transform"
       >
-        <TrustIntroPanel />
-        {securityFeatures.map((item) => (
+        <TrustIntroPanel audience={audience} />
+        {features.map((item) => (
           <TrustCardPanel key={item.title} {...item} />
         ))}
-        <TrustStatementCardPanel />
+        <TrustStatementCardPanel audience={audience} />
       </div>
-      <ModulesPanel />
+      <ModulesPanel audience={audience} />
     </section>
   );
 }

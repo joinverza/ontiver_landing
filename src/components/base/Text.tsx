@@ -74,7 +74,6 @@ export default function Text({
 
   // Split heading string into words at render time
   const words = heading.split(/(\s+)/);
-  let shimmerCharIndex = 0;
 
   return (
     <div
@@ -102,8 +101,6 @@ export default function Text({
         {words.map((word, wordIndex) => {
           if (word.trim() === "") return <span key={wordIndex}>{word}</span>;
 
-          const chars = Array.from(word);
-
           return (
             <span
               key={wordIndex}
@@ -116,21 +113,7 @@ export default function Text({
                   opacity: animate ? 0 : 1,
                 }}
               >
-                {chars.map((char, charIndex) => {
-                  const charStyle = {
-                    "--char-index": shimmerCharIndex++,
-                  } as CSSProperties;
-
-                  return (
-                    <span
-                      key={`${wordIndex}-${charIndex}`}
-                      className="heading-char inline-block text-[var(--heading-color,#111)] will-change-[color,text-shadow] animate-[problem-char-shimmer_8s_ease-in-out_infinite] [animation-delay:calc(3s_+_(var(--char-index)*35ms))]"
-                      style={charStyle}
-                    >
-                      {char}
-                    </span>
-                  );
-                })}
+                <span className="text-[var(--heading-color,#111)]">{word}</span>
               </span>
             </span>
           );

@@ -1,14 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { navLinks } from "../data/navigation";
+import type { NavLink } from "../data/navigation";
 import { footerIcons } from "../data/footer";
+import { getAudienceHome, type Audience } from "../lib/audience";
 import MagneticFillButton from "./ui/MagneticFillButton";
+import AudienceToggle from "./AudienceToggle";
 
 type MobileMenuProps = {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (value: boolean) => void;
   onJoinClick: () => void;
+  audience: Audience;
+  navLinks: NavLink[];
 };
 
 function getPillClipPath() {
@@ -26,6 +31,7 @@ function getPillClipPath() {
 
 function isActivePath(pathname: string, to: string) {
   if (to === "/") return pathname === "/";
+  if (to === "/enterprise") return pathname === "/enterprise";
   if (to === "/blogs") {
     return (
       pathname === "/blogs" ||
@@ -43,13 +49,15 @@ export default function MobileMenu({
   mobileMenuOpen,
   setMobileMenuOpen,
   onJoinClick,
+  audience,
+  navLinks,
 }: MobileMenuProps) {
   const { pathname } = useLocation();
   const menuRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const previousOverflowRef = useRef("");
-  const [isMounted, setIsMounted] = useState(false);
+  const hasOpenedRef = useRef(false);
 
   const closeMenu = useCallback(() => {
     setMobileMenuOpen(false);
@@ -102,7 +110,7 @@ export default function MobileMenu({
     timelineRef.current?.kill();
 
     if (mobileMenuOpen) {
-      setIsMounted(true);
+      hasOpenedRef.current = true;
       previousOverflowRef.current = document.body.style.overflow;
       document.body.style.overflow = "hidden";
 
@@ -188,7 +196,7 @@ export default function MobileMenu({
       return;
     }
 
-    if (!isMounted) return;
+    if (!hasOpenedRef.current) return;
 
     const collapseClip = () => {
       gsap.to(menu, {
@@ -204,7 +212,7 @@ export default function MobileMenu({
           gsap.set(animatedItems, { clearProps: "all" });
           gsap.set(pill, { clearProps: "opacity" });
           document.body.style.overflow = previousOverflowRef.current;
-          setIsMounted(false);
+          hasOpenedRef.current = false;
         },
       });
 
@@ -241,28 +249,36 @@ export default function MobileMenu({
         },
         0,
       );
-  }, [isMounted, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
   return (
     <div
       ref={menuRef}
       className="fixed inset-0 z-[9998] hidden flex-col overflow-hidden rounded-[24px] bg-white text-[#05150E] md:hidden"
-      aria-hidden={!mobileMenuOpen && !isMounted}
+      aria-hidden={!mobileMenuOpen}
     >
       <div
         ref={contentRef}
         className="flex min-h-dvh flex-col overflow-hidden bg-white"
       >
-        <div className="relative z-10 flex h-16 shrink-0 items-center justify-between border-b border-black/[0.08] px-6">
+        <div className="relative z-10 grid h-16 shrink-0 grid-cols-[1fr_auto_1fr] items-center border-b border-black/[0.08] px-5">
           <Link
-            to="/"
+            to={getAudienceHome(audience)}
             data-mobile-menu-logo
             aria-label="Ontiver home"
             onClick={closeMenu}
           >
             <img src="/assets/logo.svg" alt="Ontiver" className="h-7" />
           </Link>
-          <span className="h-10 w-10" aria-hidden="true" />
+          <AudienceToggle compact />
+          <button
+            type="button"
+            className="ml-auto grid h-10 w-10 cursor-pointer place-items-center rounded-full text-[#05150E] transition-colors hover:bg-black/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#009311]"
+            aria-label="Close menu"
+            onClick={closeMenu}
+          >
+            <X className="size-5" aria-hidden="true" />
+          </button>
         </div>
 
         <nav className="relative z-10 flex-1 overflow-y-auto pt-5">
@@ -317,19 +333,23 @@ export default function MobileMenu({
                 window.setTimeout(onJoinClick, 420);
               }}
             >
-              Join Waitlist
+              {audience === "enterprise" ? "Request Demo" : "Join Waitlist"}
             </MagneticFillButton>
           </div>
 
           <div className="mt-5 flex justify-center gap-5">
-            {footerIcons.slice(0, 4).map((icon) => (
-              <img
+            {footerIcons.map((icon) => (
+              <a
                 key={icon.alt}
                 data-mobile-menu-social
-                src={icon.icon}
-                alt={icon.alt}
-                className="h-6 w-6 opacity-50"
-              />
+                href={icon.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Follow Ontiver on ${icon.alt}`}
+                className="grid h-10 w-10 place-items-center rounded-full border border-black/10 opacity-60 transition hover:border-[#009311]/40 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#009311]"
+              >
+                <img src={icon.icon} alt="" className="h-5 w-5 brightness-0" />
+              </a>
             ))}
           </div>
         </div>

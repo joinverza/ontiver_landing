@@ -8,11 +8,13 @@ import {
   solutionSteps,
   type SolutionStep,
 } from "../../../data/solution";
+import { individualSolutionSteps } from "../../../data/audienceContent";
+import type { Audience } from "../../../lib/audience";
 import AuroraBadge from "../../ui/AuroraBadge";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function PipelineTrack() {
+function PipelineTrack({ steps }: { steps: SolutionStep[] }) {
   return (
     <div
       className="solution-progress pointer-events-none fixed top-0 right-[clamp(18px,3vw,44px)] z-[80] hidden h-screen w-7 translate-x-2.5 opacity-0 transition-[opacity,transform] duration-300 ease-in-out [.solution-is-pinned_&]:translate-x-0 [.solution-is-pinned_&]:opacity-100 md:block"
@@ -27,12 +29,12 @@ function PipelineTrack() {
         </div>
       </div>
 
-      {solutionSteps.map((step, index) => (
+      {steps.map((step, index) => (
         <span
           key={step.title}
           className="solution-progress-tick absolute left-1/2 h-0.5 w-3 -translate-x-1/2 translate-y-1/2 rounded-full bg-dark-primary/20 transition-[background-color,opacity,width] duration-180 ease-in-out [&.is-active]:w-[18px] [&.is-active]:bg-light-primary [&.is-active]:opacity-100"
           data-step={index}
-          style={{ bottom: `${((index + 1) / solutionSteps.length) * 100}%` }}
+          style={{ bottom: `${((index + 1) / steps.length) * 100}%` }}
         />
       ))}
     </div>
@@ -98,7 +100,9 @@ function SolutionItem({
   );
 }
 
-export default function Solution() {
+export default function Solution({ audience }: { audience: Audience }) {
+  const steps =
+    audience === "enterprise" ? solutionSteps : individualSolutionSteps;
   const sectionRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -550,12 +554,14 @@ export default function Solution() {
       ref={sectionRef}
       className="relative isolate w-full overflow-hidden bg-cover bg-center antialiased [--solution-progress:0] [--solution-progress-y:0%] [background-attachment:fixed] [background-image:linear-gradient(180deg,rgba(247,247,247,0.82),rgba(247,247,247,0.2)_20%,rgba(247,247,247,0.28)_78%,rgba(247,247,247,0.86)),url('/assets/solution-building-bg.svg')] md:min-h-screen max-md:[background-attachment:scroll]"
     >
-      <PipelineTrack />
+      <PipelineTrack steps={steps} />
 
       <div className="relative z-10 mx-auto flex w-full max-w-none flex-col justify-center bg-white/[0.72] px-5 py-16 backdrop-blur-[2px] sm:px-6 md:min-h-screen md:px-10 md:py-14 lg:px-20">
         <div className="relative z-20 flex w-full flex-col items-center gap-2 pb-10 md:pb-12">
           <div ref={badgeRef}>
-            <AuroraBadge>The Solution</AuroraBadge>
+            <AuroraBadge>
+              {audience === "enterprise" ? "Enterprise Workflow" : "How Ontiver Works"}
+            </AuroraBadge>
           </div>
 
           <h2
@@ -572,17 +578,17 @@ export default function Solution() {
             }}
           >
             <span ref={headingLeftRef} className="inline-block">
-              One verification.
+              {audience === "enterprise" ? "One identity layer." : "Verify once."}
             </span>
             <span ref={headingRightRef} className="inline-block">
               <span className="relative inline-block">
-                Trusted
+                {audience === "enterprise" ? "Trusted" : "Use it"}
                 <span
                   ref={underlineRef}
                   className="absolute bottom-0 left-0 h-[3px] w-full rounded-full bg-[#009311]"
                 />
               </span>{" "}
-              everywhere.
+              {audience === "enterprise" ? "across every workflow." : "with your permission."}
             </span>
           </h2>
         </div>
@@ -592,7 +598,7 @@ export default function Solution() {
           className="relative mx-auto grid w-full max-w-5xl grid-cols-6 grid-rows-[repeat(2,minmax(190px,1fr))] md:min-h-[clamp(400px,54vh,520px)] max-md:flex max-md:min-h-0 max-md:flex-col"
         >
           <BentoGridLines />
-          {solutionSteps.map((solu, index) => (
+          {steps.map((solu, index) => (
             <SolutionItem key={solu.title} item={solu} stepIndex={index} />
           ))}
         </div>

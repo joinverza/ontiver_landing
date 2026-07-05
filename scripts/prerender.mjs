@@ -21,8 +21,10 @@ async function main() {
   });
 
   let written = 0;
+  let expected = 0;
   try {
     const {prerenderRoutes} = await vite.ssrLoadModule("/src/prerender/routes.tsx");
+    expected = prerenderRoutes.length;
     const {renderRoute, injectIntoTemplate} = await vite.ssrLoadModule("/src/prerender/render.tsx");
     for (const route of prerenderRoutes) {
       try {
@@ -37,7 +39,9 @@ async function main() {
     await vite.close();
   }
   console.log(`prerendered ${written} routes`);
-  if (written !== 18) throw new Error(`expected 18 routes, wrote ${written}`);
+  if (written !== expected) {
+    throw new Error(`expected ${expected} routes, wrote ${written}`);
+  }
 }
 
 function writeRoute(html, routePath) {

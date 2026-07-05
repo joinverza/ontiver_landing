@@ -73,7 +73,7 @@ export default function BlogHero() {
               className="h-10 flex-1 rounded-lg px-5 text-sm font-semibold sm:h-[52px] sm:px-6 sm:text-base"
               onClick={() => navigate("/blogs/developer-guide-to-verification-webhooks")}
             >
-              Developer Docs
+              Read Integration Guide
             </MagneticFillButton>
           </motion.div>
         </div>
@@ -86,7 +86,7 @@ export default function BlogHero() {
         >
           <img
             src="/assets/hero-blog.png"
-            alt="Illustration of identity and developer resources"
+            alt="Illustration of identity and trust resources"
             className="w-full max-w-[300px] object-contain sm:max-w-[430px] md:max-w-[520px] lg:max-w-[620px]"
           />
         </motion.div>

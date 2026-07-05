@@ -8,7 +8,6 @@ const JOIN_SECTION_ROUTES = new Set([
   "/resources",
   "/resources/blogs",
   "/contact",
-  "/pricing",
 ]);
 
 function normalizePath(pathname: string) {

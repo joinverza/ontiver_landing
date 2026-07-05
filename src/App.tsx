@@ -1,16 +1,27 @@
 import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { useLenis } from "./hooks/useLenis";
 import SEO from "./components/SEO";
 import {
   BlogArticlePage,
   BlogPage,
   ContactPage,
+  EnterpriseContactPage,
   HomePage,
   PageLayout,
   PricingPage,
   UseCasePage,
 } from "./pages";
+
+function LegacyUseCaseRedirect() {
+  const { id } = useParams();
+  return <Navigate to={`/enterprise/use-cases/${id ?? ""}`} replace />;
+}
+
+function LegacyBlogArticleRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/blogs/${slug ?? ""}`} replace />;
+}
 
 function ScrollToHash({ lenisRef }: { lenisRef: ReturnType<typeof useLenis> }) {
   const { hash, key } = useLocation();
@@ -50,16 +61,26 @@ export default function App() {
       <SEO />
       <ScrollToHash lenisRef={lenisRef} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:slug" element={<BlogArticlePage />} />
+        <Route
+          path="/"
+          element={<HomePage key="individual-home" audience="individual" />}
+        />
+        <Route
+          path="/enterprise"
+          element={<HomePage key="enterprise-home" audience="enterprise" />}
+        />
+        <Route path="/blog" element={<Navigate to="/blogs" replace />} />
+        <Route path="/blog/:slug" element={<LegacyBlogArticleRedirect />} />
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/blogs/:slug" element={<BlogArticlePage />} />
-        <Route path="/resources" element={<BlogPage />} />
-        <Route path="/resources/blogs" element={<BlogPage />} />
-        <Route path="/resources/blogs/:slug" element={<BlogArticlePage />} />
-        <Route path="/use-cases/:id" element={<UseCasePage />} />
+        <Route path="/resources" element={<Navigate to="/blogs" replace />} />
+        <Route path="/resources/blogs" element={<Navigate to="/blogs" replace />} />
+        <Route path="/resources/blogs/:slug" element={<LegacyBlogArticleRedirect />} />
+        <Route path="/enterprise/use-cases/:id" element={<UseCasePage />} />
+        <Route path="/use-cases/:id" element={<LegacyUseCaseRedirect />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/enterprise/contact" element={<EnterpriseContactPage />} />
+        <Route path="/enterprise/pricing" element={<PricingPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -6,87 +6,97 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/blog</loc>
+    <loc>https://ontiver.com/enterprise</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/blog/why-identity-verification-should-be-reusable</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/cutting-kyc-costs-without-cutting-assurance</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/aml-screening-for-product-teams</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/building-consent-into-identity-flows</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/developer-guide-to-verification-webhooks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/risk-signals-that-matter-in-onboarding</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/what-audit-ready-identity-logs-need</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/blog/reusable-identity-for-marketplaces</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/use-cases/fintechs</loc>
+    <loc>https://ontiver.com/blogs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/use-cases/digital-lenders</loc>
+    <loc>https://ontiver.com/blogs/why-identity-verification-should-be-reusable</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/cutting-kyc-costs-without-cutting-assurance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/aml-screening-for-product-teams</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/building-consent-into-identity-flows</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/developer-guide-to-verification-webhooks</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/risk-signals-that-matter-in-onboarding</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/what-audit-ready-identity-logs-need</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/blogs/reusable-identity-for-marketplaces</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/fintechs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/use-cases/marketplaces</loc>
+    <loc>https://ontiver.com/enterprise/use-cases/digital-lenders</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/use-cases/hr-platforms</loc>
+    <loc>https://ontiver.com/enterprise/use-cases/marketplaces</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/use-cases/schools</loc>
+    <loc>https://ontiver.com/enterprise/use-cases/hr-platforms</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/use-cases/compliance-teams</loc>
+    <loc>https://ontiver.com/enterprise/use-cases/schools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ontiver.com/pricing</loc>
+    <loc>https://ontiver.com/enterprise/use-cases/compliance-teams</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/pricing</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ontiver.com/contact</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

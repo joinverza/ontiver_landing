@@ -13,8 +13,8 @@ const sitemap = [
   ...routes.map(({path: routePath}) => [
     "  <url>",
     `    <loc>${baseUrl}${routePath === "/" ? "/" : routePath}</loc>`,
-    `    <changefreq>${routePath.startsWith("/blog/") ? "monthly" : "weekly"}</changefreq>`,
-    `    <priority>${routePath === "/" ? "1.0" : routePath.startsWith("/blog/") ? "0.7" : "0.8"}</priority>`,
+    `    <changefreq>${routePath.startsWith("/blogs/") ? "monthly" : "weekly"}</changefreq>`,
+    `    <priority>${routePath === "/" ? "1.0" : routePath.startsWith("/blogs/") ? "0.7" : "0.8"}</priority>`,
     "  </url>",
   ].join("\n")),
   "</urlset>",
@@ -24,8 +24,10 @@ const sitemap = [
 const robots = `User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /dashboard/
 Disallow: /portal/
 Disallow: /developer/
+Disallow: /api/
 Disallow: /cgi-bin/
 
 User-agent: Googlebot

@@ -4,16 +4,11 @@ export type NavLink = {
   description: string;
 };
 
-export const navLinks: NavLink[] = [
+export const individualNavLinks: NavLink[] = [
   {
     name: "Home",
     to: "/",
     description: "Back to the landing page",
-  },
-  {
-    name: "Pricing",
-    to: "/pricing",
-    description: "Plans and calculators",
   },
   {
     name: "Resources/Blogs",
@@ -26,3 +21,28 @@ export const navLinks: NavLink[] = [
     description: "Talk to the Ontiver team",
   },
 ];
+
+export const enterpriseNavLinks: NavLink[] = [
+  {
+    name: "Enterprise",
+    to: "/enterprise",
+    description: "Enterprise identity infrastructure",
+  },
+  {
+    name: "Pricing",
+    to: "/enterprise/pricing",
+    description: "Plans and savings calculator",
+  },
+  {
+    name: "Resources/Blogs",
+    to: "/blogs",
+    description: "Identity and compliance insights",
+  },
+  {
+    name: "Contact",
+    to: "/enterprise/contact",
+    description: "Request enterprise access",
+  },
+];
+
+export const navLinks = individualNavLinks;

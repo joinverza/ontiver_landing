@@ -29,7 +29,7 @@ export const securityFeatures: SecurityFeature[] = [
     flow: ["Request", "Approve", "Share"],
     primaryAction: {
       label: "Review",
-      href: "/contact",
+      href: "/enterprise/contact",
     },
     secondaryAction: {
       label: "Read FAQ",
@@ -48,11 +48,11 @@ export const securityFeatures: SecurityFeature[] = [
     flow: ["Capture", "Sign", "Archive"],
     primaryAction: {
       label: "Request",
-      href: "/contact",
+      href: "/enterprise/contact",
     },
     secondaryAction: {
       label: "Compare plans",
-      href: "/pricing",
+      href: "/enterprise/pricing",
     },
   },
   {
@@ -70,7 +70,7 @@ export const securityFeatures: SecurityFeature[] = [
     },
     secondaryAction: {
       label: "Access",
-      href: "/contact",
+      href: "/enterprise/contact",
     },
   },
   {
@@ -85,11 +85,11 @@ export const securityFeatures: SecurityFeature[] = [
     flow: ["Collect less", "Protect", "Expire"],
     primaryAction: {
       label: "Explore",
-      href: "/contact",
+      href: "/enterprise/contact",
     },
     secondaryAction: {
       label: "Explore",
-      href: "/#cases",
+      href: "/enterprise#cases",
     },
   },
 ];

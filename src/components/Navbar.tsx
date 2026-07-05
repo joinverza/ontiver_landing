@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
-import { navLinks } from "../data/navigation";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { enterpriseNavLinks, individualNavLinks } from "../data/navigation";
 import { useJoinNavigation } from "../hooks/useJoinNavigation";
+import { getAudienceFromPath, getAudienceHome } from "../lib/audience";
 import MobileMenu from "./MobileMenu";
 import MagneticFillButton from "./ui/MagneticFillButton";
+import AudienceToggle from "./AudienceToggle";
 
 function isNavLinkActive(pathname: string, to: string) {
   if (to === "/") return pathname === "/";
+  if (to === "/enterprise") return pathname === "/enterprise";
   if (to === "/blogs") {
     return (
       pathname === "/blogs" ||
@@ -74,6 +77,7 @@ function DesktopNavLink({
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const goToJoin = useJoinNavigation();
   const lastScrollYRef = useRef(0);
   const lastScrollTimeRef = useRef(0);
@@ -82,7 +86,15 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileNavHidden, setMobileNavHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isPricingPage = pathname === "/pricing";
+  const audience = getAudienceFromPath(pathname);
+  const isEnterprise = audience === "enterprise";
+  const navLinks = isEnterprise ? enterpriseNavLinks : individualNavLinks;
+  const isPricingPage = pathname === "/enterprise/pricing";
+  const isHomePage = pathname === "/" || pathname === "/enterprise";
+  const homePath = getAudienceHome(audience);
+  const handlePrimaryAction = isEnterprise
+    ? () => navigate("/enterprise/contact")
+    : goToJoin;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -150,9 +162,9 @@ export default function Navbar() {
   }, []);
 
   const shouldHideForPinnedSequence =
-    isSolutionPinned && !isMobile && !isPricingPage;
+    isSolutionPinned && !isMobile && isHomePage;
   const isOpen =
-    isMobile || isPricingPage || (isScrolled && !isSolutionPinned);
+    isMobile || !isHomePage || !isSolutionPinned;
 
   return (
     <>
@@ -179,7 +191,7 @@ export default function Navbar() {
             width: isMobile
               ? "calc(100vw - 32px)"
               : isOpen
-                ? "min(1000px, calc(100vw - 32px))"
+                ? "min(1180px, calc(100vw - 32px))"
                 : "48px",
             height: isMobile ? "52px" : "76px",
             opacity: isOpen ? 1 : 0,
@@ -214,7 +226,7 @@ export default function Navbar() {
         >
           <div className="flex h-full items-center justify-between px-4 sm:px-6 md:px-8">
             <Link
-              to="/"
+              to={homePath}
               aria-label="Ontiver home"
               onClick={() => setMobileMenuOpen(false)}
               style={{
@@ -241,8 +253,12 @@ export default function Navbar() {
               ))}
             </div>
 
+            <div className="hidden md:block">
+              <AudienceToggle compact />
+            </div>
+
             <div
-              className="hidden md:block"
+              className="hidden lg:block"
               style={{
                 opacity: isOpen ? 1 : 0,
                 transform: isOpen ? "translateY(0)" : "translateY(7px)",
@@ -254,17 +270,19 @@ export default function Navbar() {
               <MagneticFillButton
                 variant="green"
                 className="rounded-2xl px-6 py-2.5 text-[1rem] font-medium shadow-md"
-                onClick={goToJoin}
+                onClick={handlePrimaryAction}
               >
-                Join Waitlist
+                {isEnterprise ? "Request Demo" : "Join Waitlist"}
               </MagneticFillButton>
             </div>
 
             <button
               type="button"
               className="group relative grid h-10 w-10 cursor-pointer place-items-center border-0 bg-transparent p-0 text-[#05150E] md:hidden"
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-label="Open menu"
               aria-expanded={mobileMenuOpen}
+              aria-hidden={mobileMenuOpen}
+              tabIndex={mobileMenuOpen ? -1 : 0}
               onClick={() => setMobileMenuOpen((open) => !open)}
               style={{
                 opacity: isOpen ? 1 : 0,
@@ -306,7 +324,9 @@ export default function Navbar() {
       <MobileMenu
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
-        onJoinClick={goToJoin}
+        onJoinClick={handlePrimaryAction}
+        audience={audience}
+        navLinks={navLinks}
       />
     </>
   );
