@@ -182,10 +182,10 @@ export default function UseCaseCardItem({ card }: { card: UseCaseCard }) {
             className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
           >
             <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
-              <h3 className="font-sans text-lg font-bold leading-[1.08] tracking-[0] text-black md:text-2xl">
+              <h3 className="font-sans text-lg font-bold leading-[1.08] tracking-[0] text-white md:text-2xl">
                 {card.title}
               </h3>
-              <p className="mt-1.5 font-body text-xs leading-[1.25] text-black/80 md:mt-2 md:text-base md:leading-[1.28]">
+              <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-base md:leading-[1.28]">
                 {card.description}
               </p>
             </div>
