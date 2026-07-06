@@ -172,7 +172,7 @@ export default function CurtainFooter({ audience = "individual" }: { audience?: 
             trigger: wrapper,
             start: "top 82%",
             end: "top 20%",
-            scrub: 1,
+            scrub: 0.7,
             invalidateOnRefresh: true,
           },
         });
@@ -205,9 +205,9 @@ export default function CurtainFooter({ audience = "individual" }: { audience?: 
           scrollTrigger: {
             trigger: wrapper,
             start: "top top",
-            end: "+=300%",
+            end: "+=210%",
             pin: true,
-            scrub: 1.2,
+            scrub: 0.8,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },

@@ -35,6 +35,7 @@ export default function TrustHorizontalTransition({ audience }: { audience: Audi
 
       media.add("(min-width: 768px)", () => {
         const totalScroll = () => Math.max(1, track.scrollWidth);
+        const acceleratedScroll = () => Math.max(1, totalScroll() * 0.7);
         const navbar = document.querySelector<HTMLElement>(
           "[data-ontiver-navbar]",
         );
@@ -45,8 +46,8 @@ export default function TrustHorizontalTransition({ audience }: { audience: Audi
           scrollTrigger: {
             trigger: wrapper,
             start: "top top",
-            end: () => `+=${totalScroll()}`,
-            scrub: 1.15,
+            end: () => `+=${acceleratedScroll()}`,
+            scrub: 0.8,
             pin: true,
             anticipatePin: 1,
             invalidateOnRefresh: true,
@@ -56,7 +57,7 @@ export default function TrustHorizontalTransition({ audience }: { audience: Audi
         const navTrigger = ScrollTrigger.create({
           trigger: wrapper,
           start: "top top",
-          end: () => `+=${totalScroll()}`,
+          end: () => `+=${acceleratedScroll()}`,
           onEnter: () => {
             if (!navbar) return;
             gsap.to(navbar, {
@@ -114,7 +115,7 @@ export default function TrustHorizontalTransition({ audience }: { audience: Audi
             trigger: wrapper,
             start: "top bottom",
             end: "top top",
-            scrub: 1,
+            scrub: 0.7,
             invalidateOnRefresh: true,
           },
         });
@@ -201,7 +202,7 @@ export default function TrustHorizontalTransition({ audience }: { audience: Audi
               containerAnimation: scrollTween,
               start: entryStart,
               end: "right 8%",
-              scrub: 0.75,
+              scrub: 0.5,
             },
           });
 

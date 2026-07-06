@@ -216,10 +216,10 @@ export default function Hero({ audience }: { audience: Audience }) {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between px-5 sm:px-6 md:px-12 lg:flex-row lg:px-20">
+      <div className={`relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between px-5 sm:px-6 md:px-12 ${isEnterprise ? "xl:flex-row xl:px-20" : "lg:flex-row lg:px-20"}`}>
         
         {/* Left Content */}
-        <div className="flex w-full flex-col items-start pt-0 md:pt-8 lg:w-[50%] lg:pb-10">
+        <div className={`flex w-full flex-col items-start pt-0 md:pt-8 ${isEnterprise ? "xl:w-[46%] xl:pb-10" : "lg:w-[50%] lg:pb-10"}`}>
           <div ref={heroBadgeRef} className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-[#395D54] px-4 py-1.5 sm:mb-8 sm:px-5" style={{ opacity: 0 }}>
             <span className="text-black text-[15px]">♦</span>
             <span className="text-black/80 font-medium text-sm">
@@ -287,8 +287,8 @@ export default function Hero({ audience }: { audience: Audience }) {
         </div>
 
         {/* Right Image */}
-        <div ref={heroImageRef} className="relative mt-10 flex w-full justify-center lg:mt-0 lg:w-[50%] lg:justify-end" style={{ opacity: 0 }}>
-          <div className="relative flex aspect-square w-full max-w-[440px] items-center justify-center sm:max-w-[560px] lg:aspect-auto lg:h-[750px] lg:max-w-[700px]">
+        <div ref={heroImageRef} className={`relative mt-10 flex w-full justify-center ${isEnterprise ? "xl:mt-0 xl:w-[54%] xl:justify-end" : "lg:mt-0 lg:w-[50%] lg:justify-end"}`} style={{ opacity: 0 }}>
+          <div className={`relative flex aspect-square w-full items-center justify-center ${isEnterprise ? "max-w-[500px] sm:max-w-[650px] xl:aspect-auto xl:h-[750px] xl:max-w-[820px]" : "max-w-[440px] sm:max-w-[560px] lg:aspect-auto lg:h-[750px] lg:max-w-[700px]"}`}>
             <img 
               src={isEnterprise ? "/assets/ontiver-enterprise.png" : "/assets/hero-phone.png"}
               alt={
@@ -298,13 +298,13 @@ export default function Hero({ audience }: { audience: Audience }) {
               }
               className={`z-10 h-full w-full origin-center object-contain object-center drop-shadow-2xl ${
                 isEnterprise
-                  ? "scale-[1.04] sm:scale-[1.1] lg:translate-x-16 lg:scale-[1.18] lg:origin-right"
+                  ? "scale-[1.1] sm:scale-[1.18] xl:translate-x-10 xl:scale-[1.28] xl:origin-right"
                   : "sm:scale-[1.06] lg:mt-44 lg:translate-x-44 lg:scale-[1.32] lg:origin-right lg:object-right"
               }`}
             />
 
             {/* Floating Badges */}
-            <div ref={badge1Ref} className="absolute left-[10%] top-[20%] z-20 hidden cursor-default items-center gap-3 rounded-3xl border border-[#009311]/30 px-6 py-3.5 backdrop-blur-md will-change-transform md:flex">
+            <div ref={badge1Ref} className={`absolute top-[20%] z-20 hidden cursor-default items-center gap-3 rounded-3xl border border-[#009311]/30 px-6 py-3.5 backdrop-blur-md will-change-transform ${isEnterprise ? "left-0 xl:-left-[26%] xl:flex" : "left-[10%] md:flex"}`}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                 <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -323,7 +323,7 @@ export default function Hero({ audience }: { audience: Audience }) {
               </svg>
             </div>
 
-            <div ref={badge2Ref} className="absolute left-[24%] top-[40%] z-20 hidden cursor-default items-center gap-3 rounded-3xl border border-[#009311]/30 px-6 py-3.5 backdrop-blur-md will-change-transform md:flex">
+            <div ref={badge2Ref} className={`absolute top-[40%] z-20 hidden cursor-default items-center gap-3 rounded-3xl border border-[#009311]/30 px-6 py-3.5 backdrop-blur-md will-change-transform ${isEnterprise ? "left-[4%] xl:-left-[20%] xl:flex" : "left-[24%] md:flex"}`}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <rect x="4" y="10" width="4" height="10"/>
                 <rect x="10" y="10" width="4" height="10"/>
@@ -344,7 +344,7 @@ export default function Hero({ audience }: { audience: Audience }) {
               </svg>
             </div>
 
-            <div ref={badge3Ref} className="absolute bottom-[28%] left-[12%] z-20 hidden cursor-default items-center gap-3 rounded-3xl border border-[#009311]/30 px-6 py-3.5 backdrop-blur-md will-change-transform md:flex">
+            <div ref={badge3Ref} className={`absolute bottom-[28%] z-20 hidden cursor-default items-center gap-3 rounded-3xl border border-[#009311]/30 px-6 py-3.5 backdrop-blur-md will-change-transform ${isEnterprise ? "left-0 xl:-left-[24%] xl:flex" : "left-[12%] md:flex"}`}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <rect x="4" y="10" width="4" height="10"/>
                 <rect x="10" y="10" width="4" height="10"/>

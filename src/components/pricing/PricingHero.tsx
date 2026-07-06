@@ -1,7 +1,6 @@
 import type { RefObject } from "react";
 import type { BillingCycle } from "../../data/pricing";
 import AuroraBadge from "../ui/AuroraBadge";
-import AudienceToggle from "../AudienceToggle";
 
 type PricingHeroProps = {
   billingCycle: BillingCycle;
@@ -21,7 +20,6 @@ export default function PricingHero({
         aria-hidden="true"
       />
       <div className="relative z-10">
-        <AudienceToggle className="mb-7" />
         <AuroraBadge spanClassName="text-[13px]!">
           Identity Infrastructure That Pays for Itself
         </AuroraBadge>

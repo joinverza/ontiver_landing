@@ -1,7 +1,6 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { Check, ShieldCheck } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
-import AudienceToggle from "../components/AudienceToggle";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import {
   sendPricingInquiry,
@@ -111,7 +110,6 @@ export default function EnterpriseContactPage() {
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-[1180px]">
-          <AudienceToggle className="mb-8" />
           <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div className="lg:sticky lg:top-32">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#008e22]">
