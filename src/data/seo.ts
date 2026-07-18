@@ -120,6 +120,36 @@ export function getSeoMeta(pathname: string): SeoMeta {
       image: ENTERPRISE_IMAGE,
       type: "website",
     },
+    "/privacy": {
+      title: "Privacy Policy | Ontiver",
+      description: "How Ontiver Inc., Nigeria processes and safeguards personal information across its identity services.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/terms": {
+      title: "Terms of Use | Ontiver",
+      description: "Terms for Ontiver consumer, enterprise, developer, and identity verification services.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/cookies": {
+      title: "Cookie Policy | Ontiver",
+      description: "Ontiver's use of essential browser storage, preferences, analytics, and diagnostics.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/account-deletion": {
+      title: "Account Deletion | Ontiver",
+      description: "Initiate deletion of an Ontiver account through the app or a secure email-verified web flow.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/legal": {
+      title: "Legal Centre | Ontiver",
+      description: "Ontiver policies, terms, privacy choices, and account-deletion information.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
   };
   const selected = staticMeta[path] ?? staticMeta["/"];
   return {

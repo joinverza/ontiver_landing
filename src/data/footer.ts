@@ -46,15 +46,16 @@ export const enterpriseFooterGroups: FooterGroup[] = [
       // { label: "Careers", href: "/careers" },
     ],
   },
-  // {
-  //   category: "Legal",
-  //   list: [
-  //     { label: "Privacy Policy", href: "/privacy" },
-  //     { label: "Terms of Service", href: "/terms" },
-  //     { label: "Data protection", href: "/data-protection" },
-  //     { label: "Cookie Policy", href: "/cookies" },
-  //   ],
-  // },
+  {
+    category: "Legal",
+    list: [
+      { label: "Legal Centre", href: "/legal" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Use", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
+      { label: "Account Deletion", href: "/account-deletion" },
+    ],
+  },
 ];
 
 export const individualFooterGroups: FooterGroup[] = [
@@ -80,6 +81,16 @@ export const individualFooterGroups: FooterGroup[] = [
     list: [
       { label: "Enterprise", href: "/enterprise" },
       { label: "Contact & Support", href: "/contact" },
+    ],
+  },
+  {
+    category: "Legal",
+    list: [
+      { label: "Legal Centre", href: "/legal" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Use", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
+      { label: "Account Deletion", href: "/account-deletion" },
     ],
   },
 ];

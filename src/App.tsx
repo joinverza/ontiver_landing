@@ -8,6 +8,7 @@ import {
   ContactPage,
   EnterpriseContactPage,
   HomePage,
+  LegalPage,
   PageLayout,
   PricingPage,
   UseCasePage,
@@ -82,6 +83,11 @@ export default function App() {
         <Route path="/enterprise/contact" element={<EnterpriseContactPage />} />
         <Route path="/enterprise/pricing" element={<PricingPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/privacy" element={<LegalPage />} />
+        <Route path="/terms" element={<LegalPage />} />
+        <Route path="/cookies" element={<LegalPage />} />
+        <Route path="/account-deletion" element={<LegalPage />} />
+        <Route path="/legal" element={<LegalPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </PageLayout>

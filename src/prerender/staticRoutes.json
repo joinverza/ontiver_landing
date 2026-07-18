@@ -18,5 +18,10 @@
   {"path": "/enterprise/use-cases/compliance-teams"},
   {"path": "/enterprise/pricing"},
   {"path": "/contact"},
-  {"path": "/enterprise/contact"}
+  {"path": "/enterprise/contact"},
+  {"path": "/privacy"},
+  {"path": "/terms"},
+  {"path": "/cookies"},
+  {"path": "/account-deletion"},
+  {"path": "/legal"}
 ]

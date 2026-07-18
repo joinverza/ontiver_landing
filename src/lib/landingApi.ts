@@ -9,10 +9,10 @@ type ApiErrorBody = {
   message?: string;
 };
 
-async function post<TBody extends object>(
+async function post<TBody extends object, TResult = void>(
   path: string,
   body: TBody
-): Promise<void> {
+): Promise<TResult> {
   const response = await fetch(`${landingApiUrl}${path}`, {
     method: "POST",
     headers: {
@@ -21,7 +21,12 @@ async function post<TBody extends object>(
     body: JSON.stringify(body),
   });
 
-  if (response.ok) return;
+  if (response.ok) {
+    const payload = (await response.json().catch(() => undefined)) as
+      | { data?: TResult }
+      | undefined;
+    return (payload?.data as TResult) ?? (undefined as TResult);
+  }
 
   let errorBody: ApiErrorBody | undefined;
   try {
@@ -37,6 +42,33 @@ async function post<TBody extends object>(
       : detail?.message || errorBody?.message || "We could not submit your request. Please try again.";
 
   throw new Error(message);
+}
+
+export type DeletionCodeResponse = {
+  message: string;
+  email: string;
+  devCode?: string;
+};
+
+export type DeletionConfirmationResponse = {
+  requestId: string;
+  status: string;
+  message: string;
+};
+
+export function requestAccountDeletionCode(email: string) {
+  return post<object, DeletionCodeResponse>("/account-deletion/request", {
+    email: email.trim(),
+    website: "",
+  });
+}
+
+export function confirmAccountDeletion(email: string, code: string) {
+  return post<object, DeletionConfirmationResponse>("/account-deletion/confirm", {
+    email: email.trim(),
+    code: code.trim(),
+    website: "",
+  });
 }
 
 export function joinWaitlist(email: string): Promise<void> {
