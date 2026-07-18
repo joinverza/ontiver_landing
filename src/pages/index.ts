@@ -6,4 +6,5 @@ export { default as HomePage } from "./HomePage";
 export { default as LegalPage } from "./LegalPage";
 export { default as PageLayout } from "./PageLayout";
 export { default as PricingPage } from "./PricingPage";
+export { default as SupportPage } from "./SupportPage";
 export { default as UseCasePage } from "./UseCasePage";

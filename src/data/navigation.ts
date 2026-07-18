@@ -16,9 +16,9 @@ export const individualNavLinks: NavLink[] = [
     description: "Guides and identity insights",
   },
   {
-    name: "Contact",
-    to: "/contact",
-    description: "Talk to the Ontiver team",
+    name: "Support",
+    to: "/support",
+    description: "Get help from the Ontiver team",
   },
 ];
 
@@ -39,9 +39,9 @@ export const enterpriseNavLinks: NavLink[] = [
     description: "Identity and compliance insights",
   },
   {
-    name: "Contact",
-    to: "/enterprise/contact",
-    description: "Request enterprise access",
+    name: "Support",
+    to: "/support",
+    description: "Get implementation and account help",
   },
 ];
 

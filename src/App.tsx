@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
-import { useLenis } from "./hooks/useLenis";
 import SEO from "./components/SEO";
 import {
   BlogArticlePage,
@@ -11,6 +10,7 @@ import {
   LegalPage,
   PageLayout,
   PricingPage,
+  SupportPage,
   UseCasePage,
 } from "./pages";
 
@@ -24,43 +24,29 @@ function LegacyBlogArticleRedirect() {
   return <Navigate to={`/blogs/${slug ?? ""}`} replace />;
 }
 
-function ScrollToHash({ lenisRef }: { lenisRef: ReturnType<typeof useLenis> }) {
+function ScrollToHash() {
   const { hash, key } = useLocation();
 
   useEffect(() => {
     if (!hash) {
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(0, { immediate: true, force: true });
-      } else {
-        window.scrollTo({ top: 0, behavior: "instant" });
-      }
+      window.scrollTo({ top: 0, behavior: "instant" });
       return;
     }
 
+    if (!/^#[A-Za-z][\w:.-]*$/.test(hash)) return;
     const target = document.querySelector(hash);
     if (!target) return;
-
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(target as HTMLElement, {
-        duration: 1.4,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-      return;
-    }
-
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [hash, key, lenisRef]);
+    target.scrollIntoView({ behavior: "auto", block: "start" });
+  }, [hash, key]);
 
   return null;
 }
 
 export default function App() {
-  const lenisRef = useLenis();
-
   return (
     <PageLayout>
       <SEO />
-      <ScrollToHash lenisRef={lenisRef} />
+      <ScrollToHash />
       <Routes>
         <Route
           path="/"
@@ -80,6 +66,7 @@ export default function App() {
         <Route path="/enterprise/use-cases/:id" element={<UseCasePage />} />
         <Route path="/use-cases/:id" element={<LegacyUseCaseRedirect />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/support" element={<SupportPage />} />
         <Route path="/enterprise/contact" element={<EnterpriseContactPage />} />
         <Route path="/enterprise/pricing" element={<PricingPage />} />
         <Route path="/pricing" element={<PricingPage />} />

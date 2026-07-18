@@ -120,6 +120,13 @@ export function getSeoMeta(pathname: string): SeoMeta {
       image: ENTERPRISE_IMAGE,
       type: "website",
     },
+    "/support": {
+      title: "Support | Ontiver",
+      description:
+        "Contact Ontiver Support without signing in and continue through a secure website conversation or email.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
     "/privacy": {
       title: "Privacy Policy | Ontiver",
       description: "How Ontiver Inc., Nigeria processes and safeguards personal information across its identity services.",

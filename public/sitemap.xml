@@ -96,6 +96,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ontiver.com/support</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ontiver.com/enterprise/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

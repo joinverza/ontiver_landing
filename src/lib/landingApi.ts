@@ -106,6 +106,66 @@ export function sendContactRequest(request: ContactRequest): Promise<void> {
   });
 }
 
+export type PublicSupportMessage = {
+  messageId: string;
+  senderType: "user" | "admin" | "system";
+  message: string;
+  createdAt: string;
+};
+
+export type PublicSupportRequest = {
+  name: string;
+  email: string;
+  topic: string;
+  subject: string;
+  message: string;
+  website?: string;
+};
+
+export type PublicSupportSession = {
+  requestId: string;
+  accessToken: string;
+  status: string;
+  message?: string;
+  createdAt: string;
+};
+
+export type PublicSupportConversation = {
+  requestId: string;
+  subject: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  messages: PublicSupportMessage[];
+};
+
+export function createPublicSupportRequest(request: PublicSupportRequest) {
+  return post<PublicSupportRequest, PublicSupportSession>("/support/requests", {
+    ...request,
+    name: request.name.trim(),
+    email: request.email.trim(),
+    topic: request.topic.trim(),
+    subject: request.subject.trim(),
+    message: request.message.trim(),
+    website: request.website?.trim() || "",
+  });
+}
+
+export async function getPublicSupportConversation(requestId: string, accessToken: string) {
+  const query = new URLSearchParams({ accessToken });
+  const response = await fetch(`${landingApiUrl}/support/requests/${encodeURIComponent(requestId)}?${query}`);
+  if (!response.ok) throw new Error("We could not open this secure support conversation.");
+  const payload = (await response.json()) as { data: PublicSupportConversation };
+  return payload.data;
+}
+
+export function sendPublicSupportMessage(requestId: string, accessToken: string, message: string) {
+  return post<object, { messageId: string; status: string; createdAt: string }>(
+    `/support/requests/${encodeURIComponent(requestId)}/messages`,
+    { accessToken, message: message.trim(), website: "" },
+  );
+}
+
 export type PricingInquiryRequest = {
   planKey: "launch" | "growth" | "compliance" | "enterprise";
   planName: "Launch" | "Growth" | "Compliance" | "Enterprise";

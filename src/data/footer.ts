@@ -43,6 +43,7 @@ export const enterpriseFooterGroups: FooterGroup[] = [
       { label: "Resources", href: "/blogs" },
       { label: "Blog", href: "/blogs" },
       { label: "Contact", href: "/enterprise/contact" },
+      { label: "Support", href: "/support" },
       // { label: "Careers", href: "/careers" },
     ],
   },
@@ -80,7 +81,8 @@ export const individualFooterGroups: FooterGroup[] = [
     category: "Company",
     list: [
       { label: "Enterprise", href: "/enterprise" },
-      { label: "Contact & Support", href: "/contact" },
+      { label: "Contact", href: "/contact" },
+      { label: "Support", href: "/support" },
     ],
   },
   {
