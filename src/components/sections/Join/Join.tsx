@@ -87,7 +87,7 @@ export default function Join({ audience }: { audience: Audience }) {
     >
       <div
         data-curtain-cta-panel
-        className="relative mx-auto flex min-h-[560px] max-w-full items-stretch overflow-hidden rounded-t-[24px] bg-[#000a03] text-left text-[#06160f]"
+        className="relative mx-auto flex min-h-[560px] max-w-full items-stretch overflow-hidden rounded-t-[64px] bg-[#000a03] text-left text-[#06160f]"
       >
         <div
           data-vault-cta-grid-bg
@@ -106,7 +106,7 @@ export default function Join({ audience }: { audience: Audience }) {
         />
         <span
           data-curtain-cta-watermark
-          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.15]"
+          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.05]"
         >
           Ontiver
         </span>

@@ -12,7 +12,7 @@ export default function TrustHorizontalTransition({ audience }: { audience: Audi
         <div className="grid gap-8 border-b border-black/10 pb-10 lg:grid-cols-[1fr_520px] lg:items-end">
           <div>
             <p className="flex items-center gap-2 text-meta font-bold uppercase tracking-[.18em] text-[#08772a]"><ShieldCheck className="h-4 w-4" /> Trust and control</p>
-            <h2 className="mt-5 max-w-[12ch] text-section font-semibold tracking-normal text-[#071b13]">Security people can understand.</h2>
+            <h2 className="mt-5 max-w-[16ch] text-section font-semibold tracking-normal text-[#071b13]">Security people can understand.</h2>
           </div>
           <p className="max-w-xl text-subtitle text-black/60">Ontiver combines explicit consent, auditable activity, scoped access, and data minimization without interrupting the page with pinned or horizontal-scrolling effects.</p>
         </div>
