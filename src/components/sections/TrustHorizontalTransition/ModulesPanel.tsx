@@ -27,14 +27,14 @@ export default function ModulesPanel({
         aria-hidden="true"
       />
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center">
-        <h2 className="text-center text-[clamp(2.55rem,12vw,4.6rem)] font-semibold uppercase leading-[0.9] tracking-normal text-[#06160f] md:text-[clamp(4rem,7.4vw,11rem)]">
+        <h2 className="text-center text-section font-semibold uppercase tracking-normal text-[#06160f]">
           {isEnterprise ? "Identity" : "Verify"}
           <span className="block text-[#007d21]">
             {isEnterprise ? "Consent" : "Approve"}
           </span>
           <span className="block">{isEnterprise ? "Compliance" : "Reuse"}</span>
         </h2>
-        <p className="mt-6 max-w-[28rem] text-center text-sm font-medium leading-relaxed text-[#5c6860] md:absolute md:bottom-[10vh] md:left-1/2 md:mt-0 md:-translate-x-1/2">
+        <p className="mt-6 max-w-[28rem] text-center text-subtitle font-medium text-[#5c6860] md:absolute md:bottom-[10vh] md:left-1/2 md:mt-0 md:-translate-x-1/2">
           {isEnterprise
             ? "Orchestrate verification, permission, and compliance evidence as one trusted system."
             : "Keep trusted proof connected to you and reuse it only with your permission."}

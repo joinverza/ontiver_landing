@@ -32,14 +32,6 @@ export const solutionSteps: SolutionStep[] = [
   },
 ];
 
-export const orbitalStarts = [
-  { x: -74, y: -58, rotation: -25 },
-  { x: 0, y: -68, rotation: 15 },
-  { x: 74, y: -58, rotation: 25 },
-  { x: -64, y: -56, rotation: -22 },
-  { x: 64, y: -56, rotation: 22 },
-];
-
 export const solutionCellClasses = [
   "col-[1/3] row-[1/2]",
   "col-[3/5] row-[1/2]",

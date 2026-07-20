@@ -1,7 +1,8 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const REVEAL_SELECTOR = "main > section, main > div, footer";
+const REVEAL_SELECTOR =
+  "main > section, main > div, [data-scroll-reveal]";
 
 export default function PageReveal() {
   const { pathname } = useLocation();
@@ -26,7 +27,10 @@ export default function PageReveal() {
 
     elements.forEach((element, index) => {
       element.classList.add("ontiver-reveal");
-      if (index === 0) element.classList.add("ontiver-reveal-visible");
+      const startsAtPageTop =
+        index === 0 && element.getBoundingClientRect().top <= 1;
+
+      if (startsAtPageTop) element.classList.add("ontiver-reveal-visible");
       else observer.observe(element);
     });
 

@@ -112,13 +112,13 @@ export default function EnterpriseContactPage() {
         <div className="relative mx-auto max-w-[1180px]">
           <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div className="lg:sticky lg:top-32">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#008e22]">
+              <p className="text-meta font-bold uppercase tracking-[0.22em] text-[#008e22]">
                 Enterprise access
               </p>
-              <h1 className="mt-5 max-w-[10ch] text-[clamp(2.8rem,7vw,5.4rem)] font-bold leading-[0.98] tracking-tight">
+              <h1 className="mt-5 max-w-[10ch] text-page-hero font-bold tracking-normal">
                 Map your identity operation with Ontiver.
               </h1>
-              <p className="mt-6 max-w-[560px] text-base leading-7 text-[#526058] sm:text-lg">
+              <p className="mt-6 max-w-[560px] text-subtitle text-[#526058]">
                 Tell us about your verification volume, compliance requirements,
                 and rollout timeline. We will recommend the right plan and
                 integration path.

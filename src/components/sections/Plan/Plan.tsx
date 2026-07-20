@@ -154,7 +154,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
           >
             <div className="overflow-hidden pb-5 sm:pb-10">
               <motion.h2
-                className="text-lg font-semibold text-black"
+                className="text-card-title font-semibold text-black"
                 initial={{ clipPath: "inset(0 100% 0 0)" }}
                 animate={isInView ? { clipPath: "inset(0 0% 0 0)" } : undefined}
                 transition={{ duration: 0.4, ease: "easeOut" }}

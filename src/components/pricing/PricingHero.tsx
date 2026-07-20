@@ -20,14 +20,14 @@ export default function PricingHero({
         aria-hidden="true"
       />
       <div className="relative z-10">
-        <AuroraBadge spanClassName="text-[13px]!">
+        <AuroraBadge>
           Identity Infrastructure That Pays for Itself
         </AuroraBadge>
-        <h1 className="mx-auto mt-7 max-w-[980px] text-balance text-[clamp(2.35rem,10vw,5rem)] font-bold leading-[1.05] tracking-tight text-black sm:mt-8">
+        <h1 className="mx-auto mt-7 max-w-[980px] text-balance text-page-hero font-bold tracking-normal text-black sm:mt-8">
           Pay for <span className="text-[#007D21]">Trust.</span> Not Repeated
           Verification.
         </h1>
-        <p className="mx-auto mt-5 max-w-[680px] text-base leading-relaxed text-black sm:mt-6 sm:text-lg">
+        <p className="mx-auto mt-5 max-w-[680px] text-subtitle text-black sm:mt-6">
           Simple, transparent pricing that scales with your verification volume.
           No hidden fees. No re-verification costs.
         </p>

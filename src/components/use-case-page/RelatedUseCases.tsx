@@ -10,7 +10,7 @@ export default function RelatedUseCases({ items }: RelatedUseCasesProps) {
     <section data-related-section className="px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-[min(100%,1120px)]">
         <div className="mb-6 flex items-end justify-between gap-4">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-black/40">
+          <p className="text-meta font-bold uppercase tracking-[0.24em] text-black/40">
             Also built for
           </p>
           <LinkArrow href="/#cases" className="[--link-arrow-min-width:170px]">
@@ -32,13 +32,13 @@ export default function RelatedUseCases({ items }: RelatedUseCasesProps) {
                 />
               </div>
               <div className="p-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#009311]">
+                <p className="text-meta font-bold uppercase tracking-[0.28em] text-[#009311]">
                   {item.eyebrow}
                 </p>
-                <h3 className="mt-3 text-xl font-semibold leading-tight">
+                <h3 className="mt-3 text-card-title font-semibold">
                   {item.heroTitle}
                 </h3>
-                <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-black/55">
+                <p className="mt-2 line-clamp-2 text-body text-black/55">
                   {item.tagline}
                 </p>
                 <LinkArrow

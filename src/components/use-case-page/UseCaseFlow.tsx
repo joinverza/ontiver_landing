@@ -61,7 +61,7 @@ export default function UseCaseFlow({ workflow }: UseCaseFlowProps) {
             containerClassName="items-start gap-4 pb-0"
             badgeWrapperClassName="mx-0"
             badgeTextClassName="border border-black/20 text-[var(--usecase-accent)]"
-            headingClassName="mx-0 max-w-[680px] text-left text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.08]"
+            headingClassName="mx-0 max-w-[680px] text-left text-section font-bold leading-[1.1]"
           />
         </div>
 
@@ -123,13 +123,13 @@ export default function UseCaseFlow({ workflow }: UseCaseFlowProps) {
                   <div>
                     <p
                       data-flow-label
-                      className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--usecase-accent)]"
+                      className="text-meta font-bold uppercase tracking-[0.22em] text-[var(--usecase-accent)]"
                     >
                       Step {index + 1}
                     </p>
                   </div>
                   <div>
-                    <h3 className="mt-3 text-2xl font-semibold leading-tight">
+                    <h3 className="mt-3 text-card-title font-semibold">
                       {splitTitleLines(step.title).map((line) => (
                         <span key={line} className="block">
                           <span data-flow-title-line className="block">
@@ -140,7 +140,7 @@ export default function UseCaseFlow({ workflow }: UseCaseFlowProps) {
                     </h3>
                   </div>
                   <div>
-                    <p className="mt-3 text-sm leading-relaxed text-black/55">
+                    <p className="mt-3 text-body text-black/55">
                       {step.description.split(" ").map((word, wordIndex) => (
                         <span
                           key={`${word}-${wordIndex}`}
@@ -203,7 +203,7 @@ export default function UseCaseFlow({ workflow }: UseCaseFlowProps) {
                       />
                     </svg>
                   </span>
-                  <p className="mt-5 text-sm leading-relaxed text-black/55">
+                  <p className="mt-5 text-body text-black/55">
                     Identity evidence stays connected to the workflow that
                     created it, so every reuse remains explainable.
                   </p>

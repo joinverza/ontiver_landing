@@ -29,7 +29,7 @@ export default function ArticleSidebar({
   return (
     <aside className="article-sidebar min-w-0 lg:sticky lg:top-[100px] lg:self-start">
       <div>
-        <h2 className="text-2xl font-bold text-[#05150E]">Follow Us</h2>
+        <h2 className="text-card-title font-bold text-[#05150E]">Follow Us</h2>
         <div className="mt-8 grid grid-cols-5 gap-3 sm:gap-4">
           <span className="article-follow-icon">
             <PlatformIcon
@@ -85,7 +85,7 @@ export default function ArticleSidebar({
       </div>
 
       <div className="mt-12">
-        <p className="text-sm leading-relaxed text-black/60">
+        <p className="text-body text-black/60">
           Subscribe to our newsletter and receive a selection of cool articles
           every week.
         </p>

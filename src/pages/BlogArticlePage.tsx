@@ -214,7 +214,7 @@ export default function BlogArticlePage() {
 
         <div className="absolute bottom-6 left-4 right-4 max-w-[580px] text-white sm:bottom-8 sm:left-6 md:left-20">
           <motion.h1
-            className="text-[clamp(1.55rem,7vw,2.5rem)] font-bold leading-[1.1] [text-shadow:0_1px_3px_rgba(0,0,0,0.4)] sm:leading-[1.15]"
+            className="text-page-hero font-bold tracking-normal [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
@@ -222,7 +222,7 @@ export default function BlogArticlePage() {
             {article.title}
           </motion.h1>
           <motion.div
-            className="mt-3 flex flex-wrap items-center gap-3 text-sm text-white/80"
+            className="mt-3 flex flex-wrap items-center gap-3 text-meta text-white/80"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.85, ease: [0.4, 0, 0.2, 1] }}
@@ -255,14 +255,14 @@ export default function BlogArticlePage() {
               block.type === "quote" ? (
                 <blockquote
                   key={index}
-                  className="article-body-block my-8 border-l-[3px] border-[#009311] pl-5 text-base italic leading-[1.8] text-black/60 sm:text-lg"
+                  className="article-body-block my-8 border-l-[3px] border-[#009311] pl-5 text-body italic text-black/60"
                 >
                   {block.text}
                 </blockquote>
               ) : (
                 <p
                   key={index}
-                  className="article-body-block mb-6 text-base leading-[1.8] text-[#111827] sm:text-[17px]"
+                  className="article-body-block mb-6 text-body text-[#111827]"
                 >
                   {block.text}
                 </p>
@@ -286,7 +286,7 @@ export default function BlogArticlePage() {
       <section className="px-5 py-16 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-[1180px]">
           <motion.h2
-            className="mb-8 text-3xl font-bold text-[#05150E]"
+            className="mb-8 text-section font-bold text-[#05150E]"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}

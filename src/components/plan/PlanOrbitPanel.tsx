@@ -137,7 +137,7 @@ export default function PlanOrbitPanel({
                 className="text-3xl font-bold text-[#009311]"
               />
               <motion.p
-                className="mt-2 text-xs leading-relaxed text-black/55"
+                className="mt-2 text-body text-black/55"
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.32 }}

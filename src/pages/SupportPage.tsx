@@ -134,14 +134,14 @@ export default function SupportPage() {
       <main className="min-h-screen bg-[#f4f7f4] pb-24 pt-32 text-[#10231b] sm:pt-40">
         <section className="mx-auto max-w-[1180px] px-5 sm:px-8">
           <div className="overflow-hidden rounded-[2rem] bg-[#061b13] px-6 py-10 text-white sm:px-10 sm:py-14 lg:px-14">
-            <div className="flex items-center gap-2 text-sm font-semibold text-emerald-300"><LifeBuoy className="h-4 w-4" /> Ontiver Support</div>
+            <div className="flex items-center gap-2 text-meta font-semibold uppercase tracking-[.16em] text-emerald-300"><LifeBuoy className="h-4 w-4" /> Ontiver Support</div>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end">
               <div>
-                <h1 className="max-w-3xl text-4xl font-semibold tracking-[-.04em] sm:text-6xl">Clear help, with a secure conversation.</h1>
-                <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">Send a support request without signing in. Your message enters Ontiver's audited administrator queue, and replies arrive by email and in your secure website conversation.</p>
+                <h1 className="max-w-3xl text-page-hero font-semibold tracking-normal">Clear help, with a secure conversation.</h1>
+                <p className="mt-5 max-w-2xl text-subtitle text-white/70">Send a support request without signing in. Your message enters Ontiver's audited administrator queue, and replies arrive by email and in your secure website conversation.</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[.06] p-5">
-                <div className="flex items-center gap-3"><Clock3 className="h-5 w-5 text-emerald-300" /><div><p className="font-semibold">Response target</p><p className="mt-1 text-sm text-white/60">Within two business days</p></div></div>
+                <div className="flex items-center gap-3"><Clock3 className="h-5 w-5 text-emerald-300" /><div><p className="text-card-title font-semibold">Response target</p><p className="mt-1 text-body text-white/60">Within two business days</p></div></div>
                 <a href="mailto:support@ontiver.com" className="mt-5 flex items-center gap-3 border-t border-white/10 pt-5 text-sm font-semibold text-white"><Mail className="h-5 w-5 text-emerald-300" /> support@ontiver.com</a>
               </div>
             </div>
@@ -155,8 +155,8 @@ export default function SupportPage() {
             ].map(([Icon, title, copy]) => (
               <div key={String(title)} className="rounded-2xl border border-black/10 bg-white p-5">
                 <Icon className="h-5 w-5 text-emerald-700" />
-                <h2 className="mt-4 font-semibold">{String(title)}</h2>
-                <p className="mt-2 text-sm leading-6 text-black/55">{String(copy)}</p>
+                <h2 className="mt-4 text-card-title font-semibold">{String(title)}</h2>
+                <p className="mt-2 text-body text-black/55">{String(copy)}</p>
               </div>
             ))}
           </div>
@@ -166,16 +166,16 @@ export default function SupportPage() {
               {session && conversation ? (
                 <>
                   <div className="flex flex-wrap items-start justify-between gap-4 border-b border-black/10 pb-6">
-                    <div><p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-700">Request {conversation.requestId}</p><h2 className="mt-2 text-2xl font-semibold">{conversation.subject}</h2></div>
-                    <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold capitalize text-emerald-800">{conversation.status}</span>
+                    <div><p className="text-meta font-bold uppercase tracking-[.16em] text-emerald-700">Request {conversation.requestId}</p><h2 className="mt-2 text-card-title font-semibold">{conversation.subject}</h2></div>
+                    <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-meta font-semibold capitalize text-emerald-800">{conversation.status}</span>
                   </div>
                   <div className="mt-6 min-h-72 space-y-4" aria-live="polite">
                     {conversation.messages.map((item) => (
                       <div key={item.messageId} className={`flex ${item.senderType === "admin" ? "justify-start" : "justify-end"}`}>
-                        <div className={`max-w-[86%] rounded-2xl px-4 py-3 text-sm leading-6 ${item.senderType === "admin" ? "bg-[#eef4ef] text-[#10231b]" : "bg-[#08271b] text-white"}`}>
-                          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[.12em] opacity-60">{item.senderType === "admin" ? "Ontiver Support" : "You"}</p>
+                        <div className={`max-w-[86%] rounded-2xl px-4 py-3 text-body ${item.senderType === "admin" ? "bg-[#eef4ef] text-[#10231b]" : "bg-[#08271b] text-white"}`}>
+                          <p className="mb-1 text-meta font-semibold uppercase tracking-[.12em] opacity-60">{item.senderType === "admin" ? "Ontiver Support" : "You"}</p>
                           <p>{item.message}</p>
-                          <time className="mt-2 block text-[11px] opacity-55">{new Date(item.createdAt).toLocaleString()}</time>
+                          <time className="mt-2 block text-meta opacity-55">{new Date(item.createdAt).toLocaleString()}</time>
                         </div>
                       </div>
                     ))}
@@ -191,9 +191,9 @@ export default function SupportPage() {
                 </>
               ) : (
                 <form onSubmit={submitRequest}>
-                  <p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-700">Create a request</p>
-                  <h2 className="mt-3 text-3xl font-semibold tracking-tight">How can we help?</h2>
-                  <p className="mt-3 text-sm leading-6 text-black/55">Provide enough context for the right support specialist to respond. Required fields are marked.</p>
+                  <p className="text-meta font-bold uppercase tracking-[.16em] text-emerald-700">Create a request</p>
+                  <h2 className="mt-3 text-section font-semibold tracking-normal">How can we help?</h2>
+                  <p className="mt-3 text-body text-black/55">Provide enough context for the right support specialist to respond. Required fields are marked.</p>
                   <div className="mt-7 grid gap-5 sm:grid-cols-2">
                     <label className="text-sm font-semibold">Full name *<input required minLength={2} autoComplete="name" value={form.name} onChange={(event) => setForm({...form, name: event.target.value})} className="mt-2 min-h-12 w-full rounded-xl border border-black/15 px-4 font-normal outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100" /></label>
                     <label className="text-sm font-semibold">Email address *<input required type="email" autoComplete="email" value={form.email} onChange={(event) => setForm({...form, email: event.target.value})} className="mt-2 min-h-12 w-full rounded-xl border border-black/15 px-4 font-normal outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100" /></label>
@@ -202,7 +202,7 @@ export default function SupportPage() {
                     <label className="text-sm font-semibold sm:col-span-2">Message *<textarea required minLength={10} maxLength={4000} value={form.message} onChange={(event) => setForm({...form, message: event.target.value})} className="mt-2 min-h-40 w-full resize-y rounded-xl border border-black/15 p-4 font-normal outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100" placeholder="Describe what happened, what you expected, and any non-sensitive error message." /></label>
                     <label className="sr-only" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => setForm({...form, website: event.target.value})} /></label>
                   </div>
-                  <p className="mt-5 text-xs leading-5 text-black/50">By submitting, you agree that Ontiver may use this information to respond and operate support. See our <Link className="font-semibold text-emerald-800 underline" to="/privacy">Privacy Policy</Link>.</p>
+                  <p className="mt-5 text-meta text-black/50">By submitting, you agree that Ontiver may use this information to respond and operate support. See our <Link className="font-semibold text-emerald-800 underline" to="/privacy">Privacy Policy</Link>.</p>
                   <button type="submit" disabled={busy} className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#08772a] px-6 text-sm font-semibold text-white hover:bg-[#066321] disabled:opacity-60">{busy ? "Submitting…" : "Submit support request"}<Send className="h-4 w-4" /></button>
                 </form>
               )}
@@ -212,16 +212,16 @@ export default function SupportPage() {
             <aside className="space-y-5">
               <div className="rounded-[2rem] border border-black/10 bg-white p-6">
                 <CheckCircle2 className="h-6 w-6 text-emerald-700" />
-                <h2 className="mt-4 text-xl font-semibold">Other ways to get help</h2>
-                <div className="mt-5 space-y-3 text-sm">
+                <h2 className="mt-4 text-card-title font-semibold">Other ways to get help</h2>
+                <div className="mt-5 space-y-3 text-body">
                   <a href="mailto:support@ontiver.com" className="flex min-h-12 items-center justify-between rounded-xl border border-black/10 px-4 font-semibold hover:bg-black/[.02]"><span className="flex items-center gap-2"><Mail className="h-4 w-4" /> Email support</span><ExternalLink className="h-4 w-4 text-black/35" /></a>
                   <a href="https://docs.ontiver.com/faq" className="flex min-h-12 items-center justify-between rounded-xl border border-black/10 px-4 font-semibold hover:bg-black/[.02]"><span className="flex items-center gap-2"><LifeBuoy className="h-4 w-4" /> Help and FAQs</span><ExternalLink className="h-4 w-4 text-black/35" /></a>
                 </div>
               </div>
               <div className="rounded-[2rem] bg-[#e9f2eb] p-6">
                 <ShieldCheck className="h-6 w-6 text-emerald-800" />
-                <h2 className="mt-4 text-lg font-semibold">Security reminder</h2>
-                <p className="mt-2 text-sm leading-6 text-black/60">Ontiver Support will never ask for your password, one-time code, complete identity number, card PIN, or API secret.</p>
+                <h2 className="mt-4 text-card-title font-semibold">Security reminder</h2>
+                <p className="mt-2 text-body text-black/60">Ontiver Support will never ask for your password, one-time code, complete identity number, card PIN, or API secret.</p>
               </div>
             </aside>
           </div>

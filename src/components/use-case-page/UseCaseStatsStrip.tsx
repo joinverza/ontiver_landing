@@ -35,7 +35,7 @@ export default function UseCaseStatsStrip({
               <Odometer value={stat.value} />
               {stat.suffix ? <span>{stat.suffix}</span> : null}
             </p>
-            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-black/45">
+            <p className="mt-2 text-meta font-semibold uppercase tracking-[0.16em] text-black/45">
               {stat.label}
             </p>
           </article>

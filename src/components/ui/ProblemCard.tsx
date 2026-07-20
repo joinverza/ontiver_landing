@@ -57,10 +57,10 @@ export default function ProblemCard({
         </div>
 
         <div className="relative min-h-[116px] bg-white px-3 pb-4 pt-3 sm:min-h-40 sm:pt-4 md:min-h-44">
-          <h6 className="mb-1.5 text-base font-semibold text-green transition-[color,text-shadow] duration-[220ms] group-hover:text-dark-primary group-hover:[text-shadow:0_0_16px_rgba(0,147,17,0.18)] sm:mb-2 sm:text-xl">
+          <h6 className="mb-1.5 text-card-title font-semibold text-green transition-[color,text-shadow] duration-[220ms] group-hover:text-dark-primary group-hover:[text-shadow:0_0_16px_rgba(0,147,17,0.18)] sm:mb-2">
             {title}
           </h6>
-          <p className="text-xs leading-[1.45] text-black/90 sm:text-sm sm:leading-relaxed">{description}</p>
+          <p className="text-body text-black/90">{description}</p>
         </div>
       </div>
     </div>

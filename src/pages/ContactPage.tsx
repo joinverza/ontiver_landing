@@ -227,10 +227,10 @@ export default function ContactPage() {
         <div className="mx-auto max-w-[760px] text-center">
           <SplitHeading
             text={contactHeading}
-            className="mx-auto max-w-[760px] text-balance text-[clamp(2.1rem,9vw,3.5rem)] font-bold leading-[1.08] tracking-[0] text-[#05150E]"
+            className="mx-auto max-w-[760px] text-balance text-page-hero font-bold tracking-normal text-[#05150E]"
           />
           <motion.p
-            className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.7] text-[#6B7280]"
+            className="mx-auto mt-5 max-w-[560px] text-subtitle text-[#6B7280]"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.62, ease: [0.4, 0, 0.2, 1] }}
@@ -255,11 +255,11 @@ export default function ContactPage() {
             <span className="pointer-events-none absolute -left-20 top-12 h-48 w-48 rounded-full bg-[#009311]/15 blur-2xl transition-transform duration-500 group-hover:translate-x-8 group-hover:scale-125" />
             <div className="relative z-10">
               <div className="overflow-hidden">
-                <h2 className="contact-title-clip text-lg font-bold">
+                <h2 className="contact-title-clip text-card-title font-bold">
                   Contact Information
                 </h2>
               </div>
-              <p className="contact-subtitle mt-2 inline-flex items-center gap-2 text-[13px] text-white/60">
+              <p className="contact-subtitle mt-2 inline-flex items-center gap-2 text-body text-white/60">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#23d838] animate-[contact-live-pulse_1.5s_ease-in-out_infinite]" />
                 We are here for individual questions and support.
               </p>
@@ -277,7 +277,7 @@ export default function ContactPage() {
                       alt=""
                       className="mt-0.5 h-4 w-4 opacity-80 brightness-0 invert transition-opacity duration-150 group-hover/row:opacity-100"
                     />
-                    <p className="text-sm leading-relaxed text-white/85 transition-colors duration-150 group-hover/row:text-white">
+                    <p className="text-body text-white/85 transition-colors duration-150 group-hover/row:text-white">
                       {row.label}
                     </p>
                   </motion.div>

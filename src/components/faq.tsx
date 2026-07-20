@@ -33,7 +33,7 @@ function AnswerWords({ answer }: { answer: string }) {
   const words = useMemo(() => answer.split(/(\s+)/), [answer]);
 
   return (
-    <p className="max-w-[640px] pb-5 pt-1 text-sm leading-[1.7] text-[#6B7280]">
+    <p className="max-w-[640px] pb-5 pt-1 text-body text-[#6B7280]">
       {words.map((word, index) => {
         if (word.trim() === "") {
           return <span key={index}>{word}</span>;
@@ -234,7 +234,7 @@ function FAQRow({
           onClick={() => onToggle(groupIndex, itemIndex)}
         >
           <span
-            className={`block text-base transition-[color,font-weight] duration-200 ${
+            className={`block text-card-title transition-[color,font-weight] duration-200 ${
               isOpen
                 ? "font-semibold text-black"
                 : "font-medium text-[#111827] group-hover:text-black"
@@ -438,7 +438,7 @@ export default function PricingFAQ({ variant = "pricing" }: PricingFAQProps) {
               containerClassName="items-start pb-0"
               badgeTextClassName="border border-black"
               badgeWrapperClassName="faq-heading-badge !mx-0"
-              headingClassName="faq-heading-text !mx-0 max-w-[12ch] !text-left text-[clamp(3rem,3.8vw,2.8rem)] font-medium leading-[1.2]! tracking-wide"
+              headingClassName="faq-heading-text !mx-0 max-w-[12ch] !text-left text-section font-medium leading-[1.1] tracking-normal"
             />
           </div>
         </div>
@@ -451,10 +451,10 @@ export default function PricingFAQ({ variant = "pricing" }: PricingFAQProps) {
             <div key={group.group} className="grid gap-3">
               <div
                 data-faq-group-label
-                className="relative z-[3] mb-3 flex items-center gap-3 border-l-[3px] border-[#009311] pl-3 text-[13px] font-semibold uppercase tracking-widest text-[#009311]"
+                className="relative z-[3] mb-3 flex items-center gap-3 border-l-[3px] border-[#009311] pl-3 text-meta font-semibold uppercase tracking-widest text-[#009311]"
               >
                 <span>{group.group}</span>
-                <span className="text-[11px] text-[#009311]/45">
+                <span className="text-meta text-[#009311]/45">
                   {String(groupIndex + 1).padStart(2, "0")}
                 </span>
               </div>

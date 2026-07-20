@@ -36,7 +36,7 @@ export default function AuroraBadge({
         />
 
         {/* The Text */}
-        <span className={`relative z-20 text-[#005e19] rounded-full bg-[#f1f4ef] px-5 py-1.5 text-sm font-semibold tracking-wide ${spanClassName}`}>
+        <span className={`relative z-20 rounded-full bg-[#f1f4ef] px-5 py-1.5 text-meta font-semibold tracking-wide text-[#005e19] ${spanClassName}`}>
           {children}
         </span>
       </div>

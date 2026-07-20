@@ -74,7 +74,7 @@ export const individualFooterGroups: FooterGroup[] = [
     list: [
       { label: "Resources", href: "/blogs" },
       { label: "Blog", href: "/blogs" },
-      { label: "Frequently Asked Questions", href: "/#faq" },
+      { label: "FAQ", href: "/#faq" },
     ],
   },
   {

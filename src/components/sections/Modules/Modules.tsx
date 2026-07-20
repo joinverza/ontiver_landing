@@ -95,10 +95,10 @@ function ModuleCardItem({ card }: { card: ModuleCard }) {
             aria-hidden="true"
           />
           <div className={`absolute right-5 bottom-8 left-5 z-[4] transition-transform duration-[260ms] sm:right-[22px] sm:bottom-12 sm:left-7 lg:bottom-16 ${card.copyClassName ?? ""}`}>
-            <h3 className={`max-w-full font-sans text-[17px] font-medium leading-[1.06] tracking-[0] text-white sm:text-[20px] lg:text-[26px] ${card.titleClassName ?? ""}`}>
+            <h3 className={`max-w-full font-sans text-card-title font-medium tracking-normal text-white ${card.titleClassName ?? ""}`}>
               {card.title}
             </h3>
-            <p className={`mt-1.5 max-w-[220px] font-body text-xs leading-[1.18] text-white/80 sm:text-sm lg:max-w-[238px] lg:text-[13px] ${card.descriptionClassName ?? ""}`}>
+            <p className={`mt-1.5 max-w-[220px] font-body text-body text-white/80 lg:max-w-[238px] ${card.descriptionClassName ?? ""}`}>
               {card.description}
             </p>
           </div>

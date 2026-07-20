@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { directionOffsets, type UseCaseCard } from "../../data/useCases";
 import DirectionAwareHover, { type Direction } from "../ui/DirectionAwareHover";
 import UseCaseIdleLayer from "./UseCaseIdleLayer";
-import type { UseCaseAnimatedCard } from "./useCaseAnimation";
 
 export default function UseCaseCardItem({
   card,
@@ -29,31 +28,11 @@ export default function UseCaseCardItem({
     const lineEl = shellEl?.querySelector<HTMLElement>(
       ".use-case-connection-line"
     );
-    const animatedShell = shellEl as UseCaseAnimatedCard | null;
-    const idleTween = animatedShell?._useCaseIdleTween;
-    const breathingTween = animatedShell?._useCaseBreathingTween;
-
-    let counterRotateX = 0;
-    let counterRotateY = 0;
-    if (shellEl) {
-      shellEl.dataset.hovered = "true";
-      counterRotateX = -Number(gsap.getProperty(shellEl, "rotateX") || 0);
-      counterRotateY = -Number(gsap.getProperty(shellEl, "rotateY") || 0);
-    }
-
-    if (breathingTween) {
-      gsap.to(breathingTween, {
-        timeScale: 0,
-        duration: 0.6,
-        ease: "power2.out",
-      });
-    }
-
     gsap.to(cardEl, {
       y: -6,
       scale: 1.02,
-      rotateX: counterRotateX,
-      rotateY: counterRotateY,
+      rotateX: 0,
+      rotateY: 0,
       borderColor: "rgba(34, 197, 94, 0.45)",
       duration: 0.3,
       ease: "power2.out",
@@ -86,9 +65,6 @@ export default function UseCaseCardItem({
       gsap.to(lineEl, { opacity: 1, duration: 0.2, overwrite: "auto" });
     }
 
-    if (idleTween) {
-      gsap.to(idleTween, { timeScale: 2, duration: 0.35, ease: "power2.out" });
-    }
   };
 
   const handleLeave = (
@@ -106,14 +82,6 @@ export default function UseCaseCardItem({
     const lineEl = shellEl?.querySelector<HTMLElement>(
       ".use-case-connection-line"
     );
-    const animatedShell = shellEl as UseCaseAnimatedCard | null;
-    const idleTween = animatedShell?._useCaseIdleTween;
-    const breathingTween = animatedShell?._useCaseBreathingTween;
-
-    if (shellEl) {
-      shellEl.dataset.hovered = "false";
-    }
-
     gsap.to(cardEl, {
       y: 0,
       scale: 1,
@@ -151,17 +119,6 @@ export default function UseCaseCardItem({
       gsap.to(lineEl, { opacity: 0, duration: 0.3, overwrite: "auto" });
     }
 
-    if (breathingTween) {
-      gsap.to(breathingTween, {
-        timeScale: 1,
-        duration: 1.2,
-        ease: "power2.inOut",
-      });
-    }
-
-    if (idleTween) {
-      gsap.to(idleTween, { timeScale: 1, duration: 0.8, ease: "power2.inOut" });
-    }
   };
 
   const content = (
@@ -178,10 +135,10 @@ export default function UseCaseCardItem({
         className={`absolute bottom-[34px] left-6 right-6 z-[50] overflow-visible max-[640px]:bottom-5 max-[640px]:left-5 max-[640px]:right-5 md:bottom-[42px] md:left-8 md:right-8 ${card.contentClassName ?? ""}`}
       >
         <div className="use-case-card-content relative z-[50] max-w-[210px] opacity-100 will-change-transform md:max-w-[228px]">
-          <h3 className="font-sans text-lg font-bold leading-[1.08] tracking-[0] text-white md:text-2xl">
+          <h3 className="font-sans text-card-title font-bold tracking-normal text-white">
             {card.title}
           </h3>
-          <p className="mt-1.5 font-body text-xs leading-[1.25] text-white/80 md:mt-2 md:text-base md:leading-[1.28]">
+          <p className="mt-1.5 font-body text-body text-white/80 md:mt-2">
             {card.description}
           </p>
         </div>
@@ -191,8 +148,7 @@ export default function UseCaseCardItem({
 
   return (
     <div
-      className={`relative min-h-0 min-w-0 [transform-style:preserve-3d] will-change-[transform,opacity] max-[640px]:mx-auto max-[640px]:w-full max-[640px]:max-w-[410px] ${card.className}`}
-      data-idle={card.idle}
+      className={`relative min-h-0 min-w-0 max-[640px]:mx-auto max-[640px]:w-full max-[640px]:max-w-[410px] ${card.className}`}
       data-use-case-card
     >
       {linkTo ? (

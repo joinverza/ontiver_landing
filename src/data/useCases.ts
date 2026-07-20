@@ -57,15 +57,6 @@ export const directionOffsets: Record<Direction, { x: number; y: number }> = {
   left: { x: -20, y: 0 },
 };
 
-export const breathingDepthConfigs = [
-  { rotateX: 2.2, rotateY: -1.4, duration: 5.5 },
-  { rotateX: -1.8, rotateY: 1.2, duration: 6.2 },
-  { rotateX: 1.5, rotateY: 2.0, duration: 4.8 },
-  { rotateX: -2.4, rotateY: -1.1, duration: 7.0 },
-  { rotateX: 1.9, rotateY: 1.6, duration: 5.2 },
-  { rotateX: -1.3, rotateY: -2.2, duration: 6.7 },
-];
-
 export const useCaseCards: UseCaseCard[] = [
   {
     id: "fintechs",

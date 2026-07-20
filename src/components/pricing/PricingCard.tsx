@@ -43,7 +43,7 @@ export default function PricingCard({
 
       <div>
         <h2
-          className={`text-lg font-bold leading-tight tracking-[0] sm:text-xl ${
+          className={`text-card-title font-bold tracking-normal ${
             isDark
               ? "text-[#00291B]"
               : index === 1
@@ -53,7 +53,7 @@ export default function PricingCard({
         >
           {plan.name}
         </h2>
-        <p className="mt-1.5 text-xs leading-snug text-black/55 sm:text-sm">
+        <p className="mt-1.5 text-body text-black/55">
           {plan.description}
         </p>
       </div>
@@ -72,7 +72,7 @@ export default function PricingCard({
             <span className="text-sm font-medium text-black/55">/mo</span>
           ) : null}
         </div>
-        <p className="mt-1.5 text-xs font-medium text-black/45 sm:mt-2 sm:text-sm">
+        <p className="mt-1.5 text-meta font-medium text-black/45 sm:mt-2">
           {plan.period}
         </p>
       </div>
@@ -81,7 +81,7 @@ export default function PricingCard({
         {plan.metric ? (
           <div className="pricing-feature flex min-h-6 translate-y-full items-start gap-2.5 opacity-0 sm:min-h-7 sm:gap-3">
             <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-xs leading-5 text-black/75 sm:leading-6">
+            <span className="text-body text-black/75">
               <span className="feature-count" data-value={plan.metric.value}>
                 0
               </span>
@@ -95,7 +95,7 @@ export default function PricingCard({
             className="pricing-feature flex min-h-6 translate-y-full items-start gap-2.5 opacity-0 sm:min-h-7 sm:gap-3"
           >
             <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-xs leading-5 text-black/72 sm:leading-6">
+            <span className="text-body text-black/72">
               {feature}
             </span>
           </div>

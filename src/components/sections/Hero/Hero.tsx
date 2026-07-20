@@ -232,7 +232,7 @@ export default function Hero({ audience }: { audience: Audience }) {
 
           <h1
             ref={heroHeadingRef}
-            className="mb-5 text-[clamp(2.55rem,12vw,4.75rem)] font-bold leading-[1.03] tracking-tight text-black sm:mb-6"
+            className="mb-5 text-hero font-bold tracking-normal text-black sm:mb-6"
           >
             {isEnterprise ? (
               <>
@@ -255,7 +255,7 @@ export default function Hero({ audience }: { audience: Audience }) {
             )}
           </h1>
 
-          <p ref={heroParagraphRef} className="mb-8 max-w-[500px] text-base font-normal leading-relaxed text-black sm:mb-10 sm:text-lg" style={{ opacity: 0 }}>
+          <p ref={heroParagraphRef} className="mb-8 max-w-[500px] text-subtitle font-normal text-black sm:mb-10" style={{ opacity: 0 }}>
             {isEnterprise
               ? "Ontiver gives product, compliance, and operations teams one layer for identity verification, AML screening, consent, reusable proofs, and audit-ready records."
               : "Verify once, keep control of your trusted credentials, and approve reuse across supported services without uploading the same documents again."}

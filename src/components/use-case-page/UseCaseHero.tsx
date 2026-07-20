@@ -49,16 +49,16 @@ export default function UseCaseHero({ detail, onBack }: UseCaseHeroProps) {
       >
         <p
           data-hero-label
-          className="mb-4 text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--usecase-accent)]"
+        className="mb-4 text-meta font-bold uppercase tracking-[0.28em] text-[var(--usecase-accent)]"
         >
           {detail.eyebrow}
         </p>
-        <h1 className="text-[clamp(4rem,5vw,5.5rem)] font-extrabold leading-[0.92] tracking-tight">
+        <h1 className="text-page-hero font-extrabold tracking-normal">
           {renderChars(detail.heroTitle)}
         </h1>
         <p
           data-hero-tagline
-          className="mt-6 max-w-[560px] text-base leading-relaxed text-white/70 sm:text-lg"
+          className="mt-6 max-w-[560px] text-subtitle text-white/70"
         >
           {detail.tagline}
         </p>

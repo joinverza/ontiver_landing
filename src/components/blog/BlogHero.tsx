@@ -32,7 +32,7 @@ export default function BlogHero() {
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between px-0 sm:px-6 md:px-12 lg:flex-row lg:px-20">
         <div className="flex w-full flex-col items-start pt-0 md:pt-8 lg:w-[60%] lg:pb-10">
           <motion.h1
-            className="text-[clamp(2.25rem,10vw,3.35rem)] font-bold leading-[1.04] tracking-tight text-black sm:mb-6 sm:text-[clamp(3rem,7vw,4.5rem)] sm:leading-[1.13]"
+            className="text-page-hero font-bold tracking-normal text-black sm:mb-6"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: heroEase }}
@@ -45,7 +45,7 @@ export default function BlogHero() {
           </motion.h1>
 
           <motion.p
-            className="mt-3 max-w-[435px] text-[0.9rem] leading-[1.35] text-black/55 sm:mt-4 sm:text-base md:mt-5 md:text-[1.12rem]"
+            className="mt-3 max-w-[435px] text-subtitle text-black/55 sm:mt-4 md:mt-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: heroEase }}

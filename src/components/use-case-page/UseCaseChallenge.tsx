@@ -34,12 +34,12 @@ export default function UseCaseChallenge({ detail }: UseCaseChallengeProps) {
               containerClassName="items-start gap-4 pb-0"
               badgeWrapperClassName="mx-0"
               badgeTextClassName="border border-black/20 text-[var(--usecase-accent)]"
-              headingClassName="mx-0 max-w-[620px] text-left text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.12]"
+              headingClassName="mx-0 max-w-[620px] text-left text-section font-bold leading-[1.1]"
             />
           </div>
           <p
             data-challenge-copy
-            className="max-w-[620px] text-base leading-[1.8] text-black/58"
+            className="max-w-[620px] text-subtitle text-black/58"
           >
             <WordReveal text={detail.challenge.body} />
           </p>
@@ -57,10 +57,10 @@ export default function UseCaseChallenge({ detail }: UseCaseChallengeProps) {
             />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(34,197,94,0.22),transparent_28%),linear-gradient(to_top,rgba(3,10,6,0.96),rgba(3,10,6,0.28))]" />
             <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8">
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[var(--usecase-accent)]">
+              <p className="text-meta font-bold uppercase tracking-[0.28em] text-[var(--usecase-accent)]">
                 Signal Map
               </p>
-              <h3 className="mt-3 max-w-[520px] text-3xl font-semibold leading-tight text-white sm:text-5xl">
+              <h3 className="mt-3 max-w-[520px] text-section font-semibold text-white">
                 {detail.challenge.visualTitle}
               </h3>
             </div>

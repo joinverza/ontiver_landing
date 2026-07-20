@@ -95,7 +95,7 @@ export default function Text({
         </div>
       ) : null}
       <h2
-        className={`w-full max-w-[600px] text-balance text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[120%] tracking-tight mx-auto text-center ${className} ${headingClassName}`}
+        className={`mx-auto w-full max-w-[600px] text-section text-balance font-medium tracking-normal ${className} ${headingClassName}`}
         style={color ? ({ "--heading-color": color } as CSSProperties) : undefined}
       >
         {words.map((word, wordIndex) => {

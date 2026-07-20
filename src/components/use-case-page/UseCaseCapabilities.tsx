@@ -38,7 +38,7 @@ export default function UseCaseCapabilities({
               containerClassName="items-start gap-4 pb-0"
               badgeWrapperClassName="mx-0"
               badgeTextClassName="border border-black/20 text-[var(--usecase-accent)]"
-              headingClassName="mx-0 max-w-[640px] text-left text-[clamp(2rem,4vw,3rem)] font-bold leading-tight"
+              headingClassName="mx-0 max-w-[640px] text-left text-section font-bold leading-[1.1]"
             />
           </div>
         </div>

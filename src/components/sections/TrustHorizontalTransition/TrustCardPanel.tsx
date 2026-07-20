@@ -64,7 +64,7 @@ export default function TrustCardPanel({
           </div>
           <p
             data-card-label
-            className="absolute left-5 top-5 text-[9px] font-semibold uppercase leading-tight tracking-[0.18em] text-white/85 md:left-8 md:top-8 md:text-[10px] md:tracking-[0.22em]"
+            className="absolute left-5 top-5 text-meta font-semibold uppercase tracking-[0.18em] text-white/85 md:left-8 md:top-8 md:tracking-[0.22em]"
           >
             {eyebrow}
             <span className="block text-white/60">{signal}</span>
@@ -90,7 +90,7 @@ export default function TrustCardPanel({
         <div className="flex min-h-0 flex-col bg-[#eeeeec] py-5 md:py-7">
           <h3
             data-card-title
-            className="max-w-[33ch] text-[clamp(1.35rem,6vw,1.85rem)] font-semibold leading-[1.02] tracking-normal md:text-[clamp(1.7rem,2.4vw,2.35rem)]"
+            className="max-w-[33ch] text-card-title font-semibold tracking-normal"
           >
             {title}
           </h3>
@@ -100,7 +100,7 @@ export default function TrustCardPanel({
           >
             <p
               data-card-description
-              className="max-w-[34ch] text-[13px] leading-relaxed text-[#555]/80"
+            className="max-w-[34ch] text-body text-[#555]/80"
             >
               {description}
             </p>

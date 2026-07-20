@@ -41,7 +41,7 @@ export default function Footer({ audience = "individual" }: { audience?: Audienc
             </Link>
             <p
               data-curtain-footer-tagline
-              className="mt-4 text-sm leading-relaxed text-white/65"
+              className="mt-4 text-body text-white/65"
             >
               {audience === "enterprise"
                 ? "Identity infrastructure for trusted growth."
@@ -49,14 +49,14 @@ export default function Footer({ audience = "individual" }: { audience?: Audienc
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:gap-x-96 gap-x-20 lg:gap-y-9 gap-y-28 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {footerGroups.map((group) => (
               <div
                 data-curtain-footer-column
                 key={group.category}
                 className="min-w-[220px]"
               >
-                <h5 className="pb-4 text-sm font-bold text-white sm:pb-5">
+                <h5 className="pb-4 text-card-title font-bold text-white sm:pb-5">
                   {group.category}
                 </h5>
                 <ul className="space-y-3">
@@ -92,7 +92,7 @@ export default function Footer({ audience = "individual" }: { audience?: Audienc
 
         <div
           data-curtain-footer-bottom
-          className="flex flex-col gap-5 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between"
+          className="flex flex-col gap-5 text-body text-white/60 sm:flex-row sm:items-center sm:justify-between"
         >
           <p data-curtain-footer-copyright>
             &copy; 2026 Ontiver. All rights reserved.

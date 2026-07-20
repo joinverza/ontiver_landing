@@ -17,7 +17,7 @@ export default function TrustStatementCardPanel({ audience }: { audience: Audien
         <div className="relative z-10 flex w-full max-w-[560px] flex-col items-center">
           <p
             data-card-title
-            className="text-balance text-[clamp(1.85rem,7vw,2.6rem)] font-semibold leading-[1.04] tracking-normal text-[#06160f] md:text-[clamp(2rem,2.6vw,4rem)]"
+            className="text-balance text-panel font-semibold tracking-normal text-[#06160f]"
           >
             {isEnterprise ? "Bring every identity control" : "Carry trusted identity"}
             <span className="block text-[#007d21]">
@@ -27,7 +27,7 @@ export default function TrustStatementCardPanel({ audience }: { audience: Audien
           </p>
           <p
             data-card-description
-            className="mt-4 max-w-[34rem] text-sm leading-relaxed text-[#5c6860] md:mt-5"
+            className="mt-4 max-w-[34rem] text-body text-[#5c6860] md:mt-5"
           >
             {isEnterprise
               ? "Verification, consent, dashboards, API access, and risk checks designed to work as one trusted system."

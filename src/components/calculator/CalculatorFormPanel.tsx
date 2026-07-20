@@ -54,7 +54,7 @@ export default function CalculatorFormPanel({
 }: CalculatorFormPanelProps) {
   return (
     <div ref={panelRef} className="rounded-3xl bg-white px-4 py-5 sm:px-6 sm:py-6 md:px-8">
-      <h3 className="pb-5 text-base font-semibold text-black sm:pb-10 sm:text-lg">
+      <h3 className="pb-5 text-card-title font-semibold text-black sm:pb-10">
         Check KYC Savings
       </h3>
 

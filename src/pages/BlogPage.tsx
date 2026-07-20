@@ -146,12 +146,12 @@ export default function BlogPage() {
         <div className="mx-auto max-w-[1180px]">
           <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#009311]">
+              <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#009311]">
                 Featured Insight
               </p>
-              <h2 className="mt-2 text-2xl font-bold text-[#05150E]">Start with the core story.</h2>
+              <h2 className="mt-2 text-section font-bold text-[#05150E]">Start with the core story.</h2>
             </div>
-            <p className="max-w-[330px] text-sm leading-relaxed text-black/50">
+            <p className="max-w-[330px] text-body text-black/50">
               The latest selected article from the active resource view.
             </p>
           </div>
@@ -163,14 +163,14 @@ export default function BlogPage() {
         <div className="mx-auto max-w-[1180px]">
           <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#009311]">
+              <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#009311]">
                 Resource Library
               </p>
-              <h2 className="mt-2 text-2xl font-bold text-[#05150E]">
+              <h2 className="mt-2 text-section font-bold text-[#05150E]">
                 Browse practical playbooks.
               </h2>
             </div>
-            <p className="text-sm font-medium text-black/45">
+            <p className="text-body font-medium text-black/45">
               {blogArticles.length} articles
             </p>
           </div>

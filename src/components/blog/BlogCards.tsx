@@ -60,17 +60,17 @@ export function ArticleGridCard({
           />
         </div>
         <div className="blog-card-content flex min-h-[170px] flex-col p-4 sm:min-h-[220px] sm:p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#009311]">
+          <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#009311]">
             {article.category}
           </p>
-          <h3 className="mt-2.5 text-base font-bold leading-snug text-[#05150E] transition-colors duration-150 group-hover:text-[#009311] sm:text-lg">
+          <h3 className="mt-2.5 text-card-title font-bold text-[#05150E] transition-colors duration-150 group-hover:text-[#009311]">
             {article.title}
           </h3>
-          <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-black/60 sm:mt-3 sm:line-clamp-3 sm:text-sm">
+          <p className="mt-2 line-clamp-2 text-body text-black/60 sm:mt-3 sm:line-clamp-3">
             {article.excerpt}
           </p>
           <div className="mt-auto flex items-center justify-between gap-3 pt-4 sm:pt-6">
-            <span className="text-xs font-medium text-black/35">{article.date}</span>
+            <span className="text-meta font-medium text-black/35">{article.date}</span>
             <ReadMoreLink />
           </div>
         </div>
@@ -98,17 +98,17 @@ export function FeaturedArticleCard({ article }: { article: BlogArticle }) {
           />
         </div>
         <div className="blog-card-content flex flex-col py-1">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#009311]">
+          <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#009311]">
             Featured
           </p>
-          <h2 className="mt-3 text-xl font-bold leading-[1.2] text-[#05150E] sm:mt-4 sm:text-2xl sm:leading-[1.3]">
+          <h2 className="mt-3 text-card-title font-bold text-[#05150E] sm:mt-4">
             {article.title}
           </h2>
-          <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-black/60 sm:mt-4 sm:line-clamp-3 sm:text-[15px]">
+          <p className="mt-3 line-clamp-2 text-body text-black/60 sm:mt-4 sm:line-clamp-3">
             {article.excerpt}
           </p>
           <div className="mt-auto flex items-center justify-between gap-3 pt-5 sm:pt-8">
-            <span className="text-sm font-medium text-black/35">{article.date}</span>
+            <span className="text-meta font-medium text-black/35">{article.date}</span>
             <ReadMoreLink />
           </div>
         </div>
@@ -137,17 +137,17 @@ export function DarkFeaturedArticleCard({ article }: { article: BlogArticle }) {
           <span className="absolute inset-0 bg-[linear-gradient(to_right,transparent_60%,#0F1A13)] opacity-80 transition-opacity duration-300 group-hover:opacity-50" />
         </div>
         <div className="blog-card-content flex flex-col p-4 sm:p-8 lg:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#5ff57a]">
+          <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#5ff57a]">
             Cover Story
           </p>
-          <h2 className="mt-3 text-xl font-bold leading-[1.2] text-white sm:mt-4 sm:text-2xl sm:leading-[1.3]">
+          <h2 className="mt-3 text-card-title font-bold text-white sm:mt-4">
             {article.title}
           </h2>
-          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/65 sm:mt-4 sm:line-clamp-4 sm:text-[15px]">
+          <p className="mt-3 line-clamp-3 text-body text-white/65 sm:mt-4 sm:line-clamp-4">
             {article.excerpt}
           </p>
           <div className="mt-auto flex items-center justify-between gap-3 pt-5 sm:pt-8">
-            <span className="text-sm font-medium text-white/35">{article.date}</span>
+            <span className="text-meta font-medium text-white/35">{article.date}</span>
             <ReadMoreLink light />
           </div>
         </div>

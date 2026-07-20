@@ -82,7 +82,6 @@ export default function Navbar() {
   const lastScrollYRef = useRef(0);
   const lastScrollTimeRef = useRef(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSolutionPinned, setIsSolutionPinned] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [mobileNavHidden, setMobileNavHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -90,7 +89,6 @@ export default function Navbar() {
   const isEnterprise = audience === "enterprise";
   const navLinks = isEnterprise ? enterpriseNavLinks : individualNavLinks;
   const isPricingPage = pathname === "/enterprise/pricing";
-  const isHomePage = pathname === "/" || pathname === "/enterprise";
   const homePath = getAudienceHome(audience);
   const handlePrimaryAction = isEnterprise
     ? () => navigate("/enterprise/contact")
@@ -150,21 +148,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleMobileScroll);
   }, [isMobile, mobileMenuOpen]);
 
-  useEffect(() => {
-    const handleSolutionPinChange = (event: Event) => {
-      const { isPinned } = (event as CustomEvent<{ isPinned: boolean }>).detail;
-      setIsSolutionPinned(isPinned);
-    };
-
-    window.addEventListener("solution-pin-change", handleSolutionPinChange);
-    return () =>
-      window.removeEventListener("solution-pin-change", handleSolutionPinChange);
-  }, []);
-
-  const shouldHideForPinnedSequence =
-    isSolutionPinned && !isMobile && isHomePage;
-  const isOpen =
-    isMobile || !isHomePage || !isSolutionPinned;
+  const isOpen = true;
 
   return (
     <>
@@ -172,15 +156,12 @@ export default function Navbar() {
         data-ontiver-navbar
         className="pointer-events-none fixed left-0 top-3 z-[9999] flex w-full justify-center md:top-6"
         style={{
-          opacity: shouldHideForPinnedSequence ? 0 : 1,
+          opacity: 1,
           transform:
-            shouldHideForPinnedSequence ||
-            (isMobile && mobileNavHidden && !mobileMenuOpen)
+            isMobile && mobileNavHidden && !mobileMenuOpen
               ? "translateY(-140px)"
               : "translateY(0)",
-          transition: shouldHideForPinnedSequence
-            ? "opacity 300ms ease-in, transform 300ms ease-in"
-            : isMobile
+          transition: isMobile
               ? "opacity 300ms ease-out, transform 360ms cubic-bezier(0.22,1,0.36,1)"
               : "opacity 300ms ease-out, transform 300ms ease-out",
         }}

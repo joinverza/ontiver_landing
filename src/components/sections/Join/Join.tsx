@@ -87,7 +87,7 @@ export default function Join({ audience }: { audience: Audience }) {
     >
       <div
         data-curtain-cta-panel
-        className="relative mx-auto flex min-h-[560px] max-w-[1280px] items-stretch overflow-hidden rounded-t-[24px] bg-[#000a03] text-left text-[#06160f] lg:rounded-[28px]"
+        className="relative mx-auto flex min-h-[560px] max-w-full items-stretch overflow-hidden rounded-t-[24px] bg-[#000a03] text-left text-[#06160f]"
       >
         <div
           data-vault-cta-grid-bg
@@ -104,49 +104,9 @@ export default function Join({ audience }: { audience: Audience }) {
           className="pointer-events-none absolute right-0 bottom-0 h-[52%] w-[28%]"
           aria-hidden="true"
         />
-        <div
-          data-vault-door-left
-          className="pointer-events-none absolute inset-y-0 left-0 z-[20] hidden w-1/2 rounded-l-[24px] bg-[#06170f] sm:rounded-l-[28px] md:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 0% 0%, rgba(0,147,17,0.38), rgba(0,147,17,0.1) 38%, transparent 68%), linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
-            backgroundSize: "auto, 72px 72px, 72px 72px",
-          }}
-          aria-hidden="true"
-        />
-        <div
-          data-vault-door-right
-          className="pointer-events-none absolute inset-y-0 right-0 z-[20] hidden w-1/2 rounded-r-[24px] bg-[#06170f] sm:rounded-r-[28px] md:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 100% 100%, rgba(0,147,17,0.34), rgba(0,147,17,0.1) 40%, transparent 70%), linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
-            backgroundSize: "auto, 72px 72px, 72px 72px",
-          }}
-          aria-hidden="true"
-        />
-        <div
-          data-vault-crack-glow
-          className="pointer-events-none absolute left-1/2 top-0 z-[31] hidden h-full w-[22%] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,147,17,0.42),rgba(0,147,17,0.16)_38%,rgba(0,147,17,0)_72%)] opacity-0 md:block"
-          aria-hidden="true"
-        />
-        <div
-          data-vault-crack-line
-          className="pointer-events-none absolute bottom-0 left-1/2 top-0 z-[32] hidden w-px -translate-x-1/2 bg-[#11cd43] opacity-0 shadow-[0_0_18px_rgba(17,205,67,0.72)] md:block"
-          aria-hidden="true"
-        />
-        <div
-          data-vault-left-shadow
-          className="pointer-events-none absolute top-0 bottom-0 left-1/2 z-[24] hidden w-24 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.12))] opacity-0 md:block"
-          aria-hidden="true"
-        />
-        <div
-          data-vault-right-shadow
-          className="pointer-events-none absolute top-0 bottom-0 left-1/2 z-[24] hidden w-24 bg-[linear-gradient(90deg,rgba(0,0,0,0.12),transparent)] opacity-0 md:block"
-          aria-hidden="true"
-        />
         <span
           data-curtain-cta-watermark
-          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.45]"
+          className="pointer-events-none absolute -bottom-32 z-[1] left-32 text-[clamp(7rem,20vw,17rem)] font-bold uppercase leading-none text-white/[0.15]"
         >
           Ontiver
         </span>
@@ -168,12 +128,12 @@ export default function Join({ audience }: { audience: Audience }) {
                   animate={false}
                   color="#fff"
                   containerClassName="items-start gap-0 pb-0"
-                  headingClassName="mx-0 max-w-[12ch] !text-left text-[clamp(2.45rem,3.7vw,6.65rem)] font-medium !leading-[1.04] tracking-[0.01em]"
+                  headingClassName="mx-0 max-w-[12ch] !text-left text-section font-medium tracking-normal"
                 />
               </div>
               <p
                 data-curtain-cta-subheading
-                className="max-w-[500px] text-balance text-[clamp(0.82rem,1vw,0.98rem)] leading-[1.28] text-white"
+                className="max-w-[500px] text-balance text-subtitle text-white"
               >
                 {isEnterprise
                   ? "Bring verification, AML screening, consent, reusable credentials, and audit evidence into one enterprise platform."
@@ -204,10 +164,10 @@ export default function Join({ audience }: { audience: Audience }) {
             {isEnterprise ? (
               <>
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#22C55E]">
+                  <p className="text-meta font-semibold uppercase tracking-[0.24em] text-[#22C55E]">
                     Enterprise access
                   </p>
-                  <h3 className="mt-3 max-w-[24ch] text-[clamp(1.2rem,1.65vw,1.65rem)] font-medium leading-tight text-white">
+                  <h3 className="mt-3 max-w-[24ch] text-card-title font-medium text-white">
                     Tell us what you need. We will map the right rollout.
                   </h3>
                 </div>
@@ -237,16 +197,16 @@ export default function Join({ audience }: { audience: Audience }) {
             ) : (
               <>
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#22C55E]">
+                  <p className="text-meta font-semibold uppercase tracking-[0.24em] text-[#22C55E]">
                     Early access
                   </p>
-                  <h3 className="mt-3 max-w-[24ch] text-[clamp(1.2rem,1.65vw,1.65rem)] font-medium leading-tight text-white">
+                  <h3 className="mt-3 max-w-[24ch] text-card-title font-medium text-white">
                     Tell us where to send your invite.
                   </h3>
                 </div>
 
                 <div className="grid gap-5">
-              <label className="grid gap-1 text-[clamp(0.95rem,1.05vw,1.08rem)] font-normal text-white/60">
+              <label className="grid gap-1 text-body font-normal text-white/60">
                 Your email *
                 <input
                   ref={inputRef}

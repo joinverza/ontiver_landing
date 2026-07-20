@@ -37,7 +37,7 @@ export default function TrustIntroPanel({ audience }: { audience: Audience }) {
           containerClassName="items-start gap-3 pb-0 md:gap-5"
           badgeWrapperClassName="!mx-0 self-start text-start"
           badgeTextClassName="border border-black/25 bg-white/70 text-[#009311]"
-          headingClassName="!mx-0 max-w-[9ch] !text-left text-[clamp(3rem,3.8vw,4.8rem)] font-medium leading-[1.08]! tracking-wide md:leading-[1.2]!"
+          headingClassName="!mx-0 max-w-[9ch] !text-left text-panel font-medium leading-[1.08] tracking-normal"
         />
         <LinkArrow href={isEnterprise ? "/enterprise/contact" : "/#join"} className="mt-8 w-fit md:mt-12">
           {isEnterprise ? "Request security documentation" : "Join the waitlist"}

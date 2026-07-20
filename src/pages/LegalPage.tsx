@@ -78,17 +78,17 @@ function DeletionPanel() {
     finally { setBusy(false); }
   }
 
-  if (step === "done") return <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950"><CheckCircle2 className="mb-3 h-7 w-7"/><h3 className="font-bold">Request verified</h3><p className="mt-2 text-sm leading-6">{message}</p></div>;
+  if (step === "done") return <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950"><CheckCircle2 className="mb-3 h-7 w-7"/><h3 className="text-card-title font-bold">Request verified</h3><p className="mt-2 text-body">{message}</p></div>;
   return <form onSubmit={submit} className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_20px_70px_rgba(4,26,16,.08)] sm:p-8">
-    <h2 className="text-xl font-semibold text-[#061b13]">{step === "request" ? "Verify your email" : "Enter your verification code"}</h2>
-    <p className="mt-2 text-sm leading-6 text-black/60">{step === "request" ? "We will send a six-digit code if an eligible Ontiver account uses this address." : message}</p>
+    <h2 className="text-card-title font-semibold text-[#061b13]">{step === "request" ? "Verify your email" : "Enter your verification code"}</h2>
+    <p className="mt-2 text-body text-black/60">{step === "request" ? "We will send a six-digit code if an eligible Ontiver account uses this address." : message}</p>
     <label className="mt-6 block text-sm font-semibold" htmlFor="deletion-email">Account email</label>
     <input id="deletion-email" type="email" required autoComplete="email" value={email} disabled={step === "confirm"} onChange={(e)=>setEmail(e.target.value)} className="mt-2 min-h-12 w-full rounded-xl border border-black/15 px-4 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 disabled:bg-black/5"/>
     {step === "confirm" && <><label className="mt-5 block text-sm font-semibold" htmlFor="deletion-code">Six-digit code</label><input id="deletion-code" required inputMode="numeric" pattern="[0-9]{6}" maxLength={6} value={code} onChange={(e)=>setCode(e.target.value.replace(/\D/g,""))} className="mt-2 min-h-12 w-full rounded-xl border border-black/15 px-4 tracking-[.35em] outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"/></>}
     <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
     {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-800">{error}</p>}
     <button disabled={busy} className="mt-6 min-h-12 w-full rounded-xl bg-[#061b13] px-5 font-semibold text-white transition hover:bg-emerald-900 disabled:opacity-60">{busy ? "Submitting…" : step === "request" ? "Send verification code" : "Confirm deletion request"}</button>
-    <p className="mt-4 text-xs leading-5 text-black/50">You can also initiate deletion inside the Ontiver app. We may retain limited records where law, fraud prevention, security, or dispute resolution requires it.</p>
+    <p className="mt-4 text-meta text-black/50">You can also initiate deletion inside the Ontiver app. We may retain limited records where law, fraud prevention, security, or dispute resolution requires it.</p>
   </form>;
 }
 
@@ -104,16 +104,16 @@ export default function LegalPage() {
     <main className="min-h-screen bg-[#f5f8f5] pb-24 pt-32 text-[#10231b] sm:pt-40">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-8">
         <div className="rounded-[2rem] bg-[#061b13] px-6 py-10 text-white sm:px-10 sm:py-14">
-          <div className="flex items-center gap-2 text-sm font-semibold text-emerald-300"><ShieldCheck className="h-4 w-4"/> Ontiver Trust & Legal</div>
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">{title}</h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">{summary}</p>
-          <p className="mt-6 text-xs uppercase tracking-[.16em] text-white/45">Effective and last updated {updated}</p>
+          <div className="flex items-center gap-2 text-meta font-semibold uppercase tracking-[.16em] text-emerald-300"><ShieldCheck className="h-4 w-4"/> Ontiver Trust & Legal</div>
+          <h1 className="mt-4 max-w-3xl text-page-hero font-semibold tracking-normal">{title}</h1>
+          <p className="mt-5 max-w-2xl text-subtitle text-white/70">{summary}</p>
+          <p className="mt-6 text-meta uppercase tracking-[.16em] text-white/45">Effective and last updated {updated}</p>
         </div>
         <div className="mt-8 grid gap-8 lg:grid-cols-[250px_minmax(0,1fr)]">
           <aside className="h-fit rounded-2xl border border-black/10 bg-white p-3 lg:sticky lg:top-28" aria-label="Legal navigation">
             {legalLinks.map(([label, href]) => <Link key={href} to={href} className={`flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-medium ${pathname===href ? "bg-emerald-50 text-emerald-900" : "text-black/60 hover:bg-black/[.03] hover:text-black"}`}>{label}<ChevronRight className="h-4 w-4"/></Link>)}
           </aside>
-          <article className="min-w-0 rounded-[2rem] border border-black/10 bg-white p-6 sm:p-10">
+          <article className="legal-content min-w-0 rounded-[2rem] border border-black/10 bg-white p-6 sm:p-10">
             {isCentre ? <><div className="grid gap-4 sm:grid-cols-2">{legalLinks.slice(0,4).map(([label,href])=><Link key={href} to={href} className="group rounded-2xl border border-black/10 p-5 transition hover:border-emerald-500 hover:bg-emerald-50/40"><h2 className="font-semibold">{label}</h2><p className="mt-2 text-sm leading-6 text-black/55">Review {label.toLowerCase()} and the choices available to you.</p><span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-emerald-800">Open <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1"/></span></Link>)}</div><div className="mt-8 rounded-2xl bg-[#eef5ef] p-6"><h2 className="text-xl font-semibold">Questions or rights requests?</h2><p className="mt-2 text-sm leading-6 text-black/60">Contact Ontiver Support without signing in. Your request enters our audited administrator queue and can continue securely on the website or by email.</p><Link to="/support" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#08772a] px-5 text-sm font-semibold text-white">Open support <ChevronRight className="h-4 w-4" /></Link></div></> : isDeletion ? <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_380px]"><div className="space-y-7"><section><h2 className="text-2xl font-semibold">Before you begin</h2><p className="mt-3 leading-7 text-black/65">Deleting your account removes access to your Ontiver wallet and starts controlled deletion of eligible profile, credential, consent, sharing, support, and activity data. Active Apple or Google grants are revoked. The process cannot be undone after completion.</p></section><section><h2 className="text-2xl font-semibold">Fastest option: use the app</h2><p className="mt-3 leading-7 text-black/65">Open Settings → Privacy & data → Delete account. The app requires step-up authentication and displays your request reference.</p></section><section><h2 className="text-2xl font-semibold">What happens next</h2><ul className="mt-3 space-y-3 text-black/65"><li>1. We verify that you control the account email.</li><li>2. The request enters a privacy and retention review.</li><li>3. Eligible data is removed and linked sign-in grants are revoked.</li><li>4. Limited evidence may remain only where law or security requires it.</li></ul></section><p className="flex items-center gap-2 text-sm text-black/55"><Mail className="h-4 w-4"/> Need help? <Link className="font-semibold text-emerald-800 underline" to="/support">Open support</Link></p></div><DeletionPanel/></div> : <div className="space-y-9">{document.sections.map(section=><section key={section.heading}><h2 className="text-2xl font-semibold tracking-tight">{section.heading}</h2>{section.paragraphs.map(p=><p key={p} className="mt-3 leading-7 text-black/65">{p}</p>)}{section.bullets && <ul className="mt-4 space-y-3">{section.bullets.map(item=><li key={item} className="flex gap-3 leading-7 text-black/65"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600"/>{item}</li>)}</ul>}</section>)}</div>}
           </article>
         </div>

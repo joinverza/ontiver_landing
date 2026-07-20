@@ -90,7 +90,7 @@ export default function HoverEffect({
 
               <div className="p-5">
                 <h4
-                  className={`mb-2 text-lg font-semibold text-gray-900 ${
+                  className={`mb-2 text-card-title font-semibold text-gray-900 ${
                     enableHover
                       ? "transition-colors duration-150 group-hover:text-[#007D21]"
                       : ""
@@ -98,7 +98,7 @@ export default function HoverEffect({
                 >
                   {item.title}
                 </h4>
-                <p className="text-sm leading-relaxed text-gray-500">{item.description}</p>
+                <p className="text-body text-gray-500">{item.description}</p>
               </div>
             </div>
           </motion.div>

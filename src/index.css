@@ -8,6 +8,22 @@
   --color-green: #007d21;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --text-hero: clamp(2.5rem, 7vw, 5rem);
+  --text-hero--line-height: 1.02;
+  --text-page-hero: clamp(2.25rem, 5.5vw, 4.5rem);
+  --text-page-hero--line-height: 1.05;
+  --text-panel: clamp(2.15rem, 4vw, 4rem);
+  --text-panel--line-height: 1.08;
+  --text-section: clamp(1.75rem, 3.4vw, 2.75rem);
+  --text-section--line-height: 1.1;
+  --text-subtitle: clamp(1rem, 1.2vw, 1.125rem);
+  --text-subtitle--line-height: 1.6;
+  --text-card-title: 1.125rem;
+  --text-card-title--line-height: 1.25;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.6;
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1.35;
   --breakpoint-xss: 450px;
   --breakpoint-xs: 550px;
   --breakpoint-sm: 640px;
@@ -40,6 +56,19 @@ body {
 :focus-visible {
   outline: 3px solid rgba(0, 125, 33, 0.28);
   outline-offset: 3px;
+}
+
+.legal-content h2,
+.legal-content h3 {
+  font-size: var(--text-card-title);
+  line-height: var(--text-card-title--line-height);
+  letter-spacing: 0;
+}
+
+.legal-content p,
+.legal-content li {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
 }
 
 /* Ontiver's single decorative motion language: one restrained fade-and-rise reveal. */

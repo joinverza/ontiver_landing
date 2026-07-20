@@ -34,7 +34,7 @@ export default function UseCaseQuote({ quote }: UseCaseQuoteProps) {
         <p
           data-quote-attribution
           data-text={quote.attribution}
-          className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--usecase-accent)]"
+          className="mt-8 text-meta font-semibold uppercase tracking-[0.16em] text-[var(--usecase-accent)]"
         />
       </div>
     </section>
