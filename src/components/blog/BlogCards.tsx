@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "../../lib/router";
 import type { CSSProperties, MouseEvent } from "react";
 import type { BlogArticle } from "../../data/blog";
 import LinkArrow from "../ui/LinkArrow";

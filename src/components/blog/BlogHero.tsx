@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../../lib/router";
 import MagneticFillButton from "../ui/MagneticFillButton";
 
 const heroEase: [number, number, number, number] = [0.19, 1, 0.22, 1];

@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { Check } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../../../lib/router";
 import Text from "../../base/Text";
 import MagneticFillButton from "../../ui/MagneticFillButton";
 import { joinWaitlist } from "../../../lib/landingApi";

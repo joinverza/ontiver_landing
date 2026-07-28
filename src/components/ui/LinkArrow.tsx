@@ -4,7 +4,7 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "../../lib/router";
 import gsap from "gsap";
 
 type LinkArrowVariant = "light" | "dark";

@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { Check, ShieldCheck } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "../lib/router";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import {
   sendPricingInquiry,

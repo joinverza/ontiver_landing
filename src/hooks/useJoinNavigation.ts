@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "../lib/router";
 
 const JOIN_SECTION_ROUTES = new Set([
   "/",

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../../../lib/router";
 import MagneticFillButton from "../../ui/MagneticFillButton";
 import { useJoinNavigation } from "../../../hooks/useJoinNavigation";
 import type { Audience } from "../../../lib/audience";

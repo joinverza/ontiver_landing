@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "../lib/router";
 
 const REVEAL_SELECTOR =
   "main > section, main > div, [data-scroll-reveal]";

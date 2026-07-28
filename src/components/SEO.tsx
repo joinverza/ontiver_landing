@@ -1,5 +1,5 @@
 import {Helmet} from "react-helmet-async";
-import {useLocation} from "react-router-dom";
+import {useLocation} from "../lib/router";
 import {getSeoMeta} from "../data/seo";
 
 const SITE_URL = "https://ontiver.com";

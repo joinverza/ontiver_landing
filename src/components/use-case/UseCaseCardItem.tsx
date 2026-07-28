@@ -1,6 +1,6 @@
 import type { MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
-import { Link } from "react-router-dom";
+import { Link } from "../../lib/router";
 import { directionOffsets, type UseCaseCard } from "../../data/useCases";
 import DirectionAwareHover, { type Direction } from "../ui/DirectionAwareHover";
 import UseCaseIdleLayer from "./UseCaseIdleLayer";

@@ -1,7 +1,7 @@
 import type {ComponentType} from "react";
 import {renderToString} from "react-dom/server";
 import {HelmetProvider, type HelmetServerState} from "react-helmet-async";
-import {MemoryRouter} from "react-router-dom";
+import {MemoryRouter} from "../lib/router";
 import {getSeoMeta} from "../data/seo";
 
 type RenderInput = {

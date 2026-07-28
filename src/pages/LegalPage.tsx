@@ -1,6 +1,6 @@
 import { FormEvent, useMemo, useState } from "react";
 import { CheckCircle2, ChevronRight, Mail, ShieldCheck } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "../lib/router";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import {
   confirmAccountDeletion,

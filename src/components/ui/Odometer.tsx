@@ -1,11 +1,8 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import "../../styles/odometer.css";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const ReactOdometer = lazy(() => import("react-odometerjs"));
 
 interface OdometerProps {
   value: number;
@@ -20,6 +17,7 @@ export default function Odometer({
   duration = 1800,
   className = "",
 }: OdometerProps) {
+  void duration;
   const [currentValue, setCurrentValue] = useState(0);
   const containerRef = useRef<HTMLSpanElement>(null);
 
@@ -47,20 +45,10 @@ export default function Odometer({
       ref={containerRef}
       className={`inline-flex items-baseline [&_.odometer]:leading-none ${className}`}
     >
-      {typeof document === "undefined" ? (
-        currentValue.toLocaleString(undefined, {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        })
-      ) : (
-        <Suspense fallback={currentValue.toLocaleString()}>
-          <ReactOdometer
-            value={currentValue}
-            format={decimals > 0 ? "(,ddd).dd" : "(,ddd)"}
-            duration={duration}
-          />
-        </Suspense>
-      )}
+      {currentValue.toLocaleString(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      })}
     </span>
   );
 }

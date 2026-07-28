@@ -12,7 +12,7 @@ import {
   Send,
   ShieldCheck,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "../lib/router";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import AuroraBadge from "../components/ui/AuroraBadge";
 import {

@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, Check } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../lib/router";
 import ContactField from "../components/contact/ContactField";
 import DotLoader from "../components/contact/DotLoader";
 import SplitHeading from "../components/contact/SplitHeading";

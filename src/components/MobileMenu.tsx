@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "../lib/router";
 import type { NavLink } from "../data/navigation";
 import { footerIcons } from "../data/footer";
 import { getAudienceHome, type Audience } from "../lib/audience";
