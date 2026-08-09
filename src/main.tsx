@@ -4,6 +4,10 @@ import { BrowserRouter } from "./lib/router";
 import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import App from "./App";
+import { SentryErrorBoundary } from "@ontiver/shared/components/SentryErrorBoundary";
+import { initializeBrowserSentry } from "@ontiver/shared/lib/sentry";
+
+initializeBrowserSentry("landing");
 
 const root = document.getElementById("root");
 
@@ -13,10 +17,12 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <SentryErrorBoundary>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
+    </SentryErrorBoundary>
   </StrictMode>,
 );
