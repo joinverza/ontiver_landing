@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { createSentryViteConfiguration } from "./src/lib/sentry-vite";
+import { createSentryViteConfiguration } from "./sentry-vite";
 
 const sentry = createSentryViteConfiguration({ appSurface: "landing" });
 
