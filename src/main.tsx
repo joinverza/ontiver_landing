@@ -4,8 +4,8 @@ import { BrowserRouter } from "./lib/router";
 import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import App from "./App";
-import { SentryErrorBoundary } from "@ontiver/shared/components/SentryErrorBoundary";
-import { initializeBrowserSentry } from "@ontiver/shared/lib/sentry";
+import { SentryErrorBoundary } from "./components/SentryErrorBoundary";
+import { initializeBrowserSentry } from "./lib/sentry";
 
 initializeBrowserSentry("landing");
 
