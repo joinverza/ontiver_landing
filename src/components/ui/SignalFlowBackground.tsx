@@ -71,7 +71,7 @@ export default function SignalFlowBackground() {
     let resizeTimer: number | undefined;
     const handleResize = () => {
       if (resizeTimer !== undefined) window.clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
+      resizeTimer = window.setTimeout(() => {
         updateSize();
         // We need to re-generate nodes and lines if we resize
         // For simplicity, let's just trigger a re-render or let it stretch
