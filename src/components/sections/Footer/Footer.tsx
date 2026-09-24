@@ -10,7 +10,7 @@ function FooterNavLink({ item }: { item: FooterLink }) {
 export default function Footer({ audience = "individual" }: { audience?: Audience }) {
   const groups = audience === "enterprise" ? enterpriseFooterGroups : individualFooterGroups;
   return (
-    <footer className="bg-[#edf5eb] pb-6 pt-16 text-[#002d0e] sm:pt-20">
+    <footer className="bg-[#edf5e7] pb-6 pt-16 text-[#002d0e] sm:pt-20">
       <div className="site-container">
         <div className="grid gap-10 pb-14 lg:grid-cols-[1.1fr_3fr] lg:gap-20">
           <div>

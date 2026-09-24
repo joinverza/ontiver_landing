@@ -1,66 +1,98 @@
-import { useEffect, useRef } from 'react';
-import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+import { limitWheelDelta } from "../lib/scrollInput";
+import { cancelScrollMomentum, isPageScrollLocked, setPageScrollController } from "../lib/scrollNavigation";
 
 export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    let frameId = 0;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let dispose: (() => void) | undefined;
 
-    const lenis = new Lenis({
-      duration: 1.45,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.85,
-    });
+    const updatePreference = () => {
+      dispose?.();
+      dispose = undefined;
+      if (preference.matches) return;
 
-    lenisRef.current = lenis;
-    lenis.scrollTo(0, { immediate: true, force: true });
+      const lenis: Lenis = new Lenis({
+        content: document.body,
+        lerp: 0.085,
+        smoothWheel: true,
+        wheelMultiplier: 0.58,
+        touchMultiplier: 1,
+        syncTouch: false,
+        stopInertiaOnNavigate: true,
+        autoRaf: false,
+        // Support conversations, textareas, and menus retain native scrolling.
+        allowNestedScroll: true,
+        virtualScroll: (input) => {
+          if (input.event.type === "wheel" && !input.event.ctrlKey && input.deltaY !== 0) {
+            const delta = limitWheelDelta(input.deltaY, lenis.targetScroll - lenis.animatedScroll, window.innerHeight);
+            // Keep Lenis's prevention active when its queued travel is full.
+            input.deltaY = delta || Math.sign(input.deltaY) * Number.EPSILON;
+          }
+          return true;
+        },
+      });
 
-    // Sync ScrollTrigger with Lenis
-    lenis.on('scroll', ScrollTrigger.update);
+      lenisRef.current = lenis;
+      setPageScrollController(lenis);
 
-    function raf(time: number) {
-      lenis.raf(time);
-      frameId = requestAnimationFrame(raf);
-    }
+      let frame = 0;
+      let previousTime: number | undefined;
+      let scrollTime = 0;
+      const animate = (time: number) => {
+        // Match Quickbite's clock cap without introducing a second animation loop.
+        const elapsed = previousTime === undefined ? 1000 / 60 : time - previousTime;
+        previousTime = time;
+        scrollTime += Math.min(elapsed, 1000 / 30);
+        lenis.raf(scrollTime);
+        frame = requestAnimationFrame(animate);
+      };
+      frame = requestAnimationFrame(animate);
 
-    frameId = requestAnimationFrame(raf);
+      const updateLock = () => {
+        if (isPageScrollLocked()) lenis.stop();
+        else lenis.start();
+      };
+      const lockObserver = new MutationObserver(updateLock);
+      lockObserver.observe(document.body, { attributes: true, attributeFilter: ["style", "class"] });
+      lockObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style"] });
+      updateLock();
 
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target;
-      if (!(target instanceof Element)) return;
+      const handleKeyboard = (event: KeyboardEvent) => {
+        if (event.defaultPrevented || lenis.isScrolling !== "smooth") return;
+        const scrollKey = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key);
+        const editable = event.target instanceof Element && event.target.closest("input, textarea, select, button, [contenteditable]:not([contenteditable='false'])");
+        if (event.key === "Tab" || (scrollKey && !editable)) cancelScrollMomentum();
+      };
+      document.addEventListener("keydown", handleKeyboard);
+      window.addEventListener("popstate", cancelScrollMomentum);
 
-      const anchor = target.closest('a');
-      if (!anchor) return;
+      let disposed = false;
+      void document.fonts?.ready.then(() => {
+        if (!disposed) lenis.resize();
+      });
 
-      const href = anchor.getAttribute('href');
-      
-      if (href && href.startsWith('#') && href.length > 1) {
-        const targetEl = document.querySelector(href);
-        if (targetEl) {
-          e.preventDefault();
-          lenis.scrollTo(targetEl as HTMLElement, {
-            duration: 1.5,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
-        }
-      }
+      dispose = () => {
+        disposed = true;
+        cancelAnimationFrame(frame);
+        lockObserver.disconnect();
+        document.removeEventListener("keydown", handleKeyboard);
+        window.removeEventListener("popstate", cancelScrollMomentum);
+        setPageScrollController(null);
+        lenis.destroy();
+        lenisRef.current = null;
+      };
     };
 
-    window.addEventListener('click', handleAnchorClick);
-
+    updatePreference();
+    preference.addEventListener("change", updatePreference);
     return () => {
-      cancelAnimationFrame(frameId);
-      lenis.off('scroll', ScrollTrigger.update);
-      lenis.destroy();
-      window.removeEventListener('click', handleAnchorClick);
-      lenisRef.current = null;
+      preference.removeEventListener("change", updatePreference);
+      dispose?.();
     };
   }, []);
 

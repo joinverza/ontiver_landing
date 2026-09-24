@@ -19,11 +19,11 @@ export const enterpriseFooterGroups: FooterGroup[] = [
   {
     category: "Product",
     list: [
-      { label: "Features", href: "/enterprise#features" },
+      { label: "Features", href: "/enterprise/platform" },
       { label: "Pricing", href: "/enterprise/pricing" },
       { label: "Developers", href: "https://docs.ontiver.com/", external: true },
-      { label: "Security & Trust", href: "/security" },
-      { label: "Use Cases", href: "/enterprise#cases" },
+      { label: "Security & Trust", href: "/enterprise/security" },
+      { label: "Use Cases", href: "/enterprise/use-cases" },
     ],
   },
   {
@@ -40,10 +40,10 @@ export const enterpriseFooterGroups: FooterGroup[] = [
     category: "Company",
     list: [
       // { label: "About", href: "/about" },
-      { label: "Resources", href: "/blogs" },
+      { label: "Resources", href: "/enterprise/resources" },
       { label: "Blog", href: "/blogs" },
       { label: "Contact", href: "/enterprise/contact" },
-      { label: "Support", href: "/support" },
+      { label: "Support", href: "/enterprise/support" },
       // { label: "Careers", href: "/careers" },
     ],
   },
@@ -63,16 +63,16 @@ export const individualFooterGroups: FooterGroup[] = [
   {
     category: "For Individuals",
     list: [
-      { label: "How It Works", href: "/#solution" },
-      { label: "Identity Benefits", href: "/#features" },
-      { label: "Where It Helps", href: "/#cases" },
+      { label: "How It Works", href: "/how-it-works" },
+      { label: "Identity Benefits", href: "/identity" },
+      { label: "Where It Helps", href: "/use-cases" },
       { label: "Security & Privacy", href: "/security" },
     ],
   },
   {
     category: "Resources",
     list: [
-      { label: "Resources", href: "/blogs" },
+      { label: "Resources", href: "/resources" },
       { label: "Blog", href: "/blogs" },
       { label: "FAQ", href: "/#faq" },
     ],

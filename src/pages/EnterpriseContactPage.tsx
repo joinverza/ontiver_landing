@@ -32,7 +32,7 @@ type FormValues = {
 };
 
 const fieldClass =
-  "mt-2.5 h-13 w-full rounded-xl border border-[#dde6dc] bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "mt-3 h-14 w-full rounded-xl border border-[#dde6dc] bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 const textareaClass = `${fieldClass} min-h-32 resize-y py-3.5`;
 
 export default function EnterpriseContactPage() {
@@ -103,16 +103,16 @@ export default function EnterpriseContactPage() {
   };
 
   return (
-    <main className="bg-[#f7f7f7] text-[#002d0e]">
+    <main className="bg-white text-[#002d0e]">
       <section className="page-intro">
-        <div className="site-container grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16">
+        <div className="site-container">
           <div>
             <p className="eyebrow">Enterprise access</p>
-            <h1 className="mt-5 max-w-[15ch] text-page-hero font-semibold">
+            <h1 className="mt-5 max-w-[1100px] text-page-hero font-bold">
               Map your identity operation with Ontiver.
             </h1>
           </div>
-          <p className="max-w-lg text-subtitle text-[#526058] lg:pb-2">
+          <p className="mt-7 max-w-[800px] text-subtitle text-[#526058]">
             Tell us about your verification volume, compliance requirements,
             and rollout timeline. We will discuss pilot availability, a suitable plan,
             and the scope of your integration.
@@ -121,28 +121,27 @@ export default function EnterpriseContactPage() {
       </section>
       <section className="section-space">
         <div className="site-container">
-          <div className="grid items-start gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:gap-8">
-            <div className="overflow-hidden rounded-[28px] bg-[#002d0e] p-7 text-white sm:p-9">
-              <span className="mb-8 grid size-14 place-items-center rounded-2xl border border-white/20 bg-white/5">
+          <div className="grid items-start gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
+            <div className="overflow-hidden rounded-[28px] bg-[#edf5eb] p-7 text-[#002d0e] sm:p-9">
+              <span className="mb-8 grid size-14 place-items-center rounded-2xl bg-white text-[#007d21]">
                 <ShieldCheck className="size-6" aria-hidden="true" />
               </span>
-              <h2 className="text-section font-semibold">Plan your integration.</h2>
-              <p className="mt-4 text-body text-white/65">Explore the platform capabilities relevant to your pilot. Availability and rollout scope are confirmed with our team.</p>
-              <div className="mt-8 divide-y divide-white/15 text-body text-white/75">
+              <h2 className="text-section font-bold">Plan your integration.</h2>
+              <p className="mt-5 text-body text-[#526058]">Agree the checks and rollout scope for your pilot.</p>
+              <div className="mt-8 divide-y divide-[#002d0e]/15 text-body text-[#526058]">
                 {[
-                  "Identity verification and reusable credentials",
-                  "AML, sanctions, PEP, and risk orchestration",
-                  "Consent evidence, reporting, and audit exports",
-                  "Sandbox evaluation and production rollout planning",
+                  "Verification and reusable proof",
+                  "Risk checks and consent records",
+                  "Integration and rollout planning",
                 ].map((item) => (
                   <span key={item} className="flex items-start gap-3 py-5">
-                    <Check className="mt-1 size-4 shrink-0 text-[#96e7a5]" aria-hidden="true" />
+                    <Check className="mt-1 size-5 shrink-0 text-[#007d21]" aria-hidden="true" />
                     {item}
                   </span>
                 ))}
               </div>
-              <div className="mt-8 flex items-start gap-3 border-t border-white/15 pt-6 text-body text-white/60">
-                <ShieldCheck className="mt-1 size-5 shrink-0 text-[#96e7a5]" aria-hidden="true" />
+              <div className="mt-8 flex items-start gap-3 border-t border-[#002d0e]/15 pt-6 text-body text-[#526058]">
+                <ShieldCheck className="mt-1 size-5 shrink-0 text-[#007d21]" aria-hidden="true" />
                 Do not include passwords, API keys, or identity documents.
               </div>
             </div>
@@ -154,7 +153,7 @@ export default function EnterpriseContactPage() {
             >
               <p className="eyebrow">Let's work together</p>
               <h2 className="mt-3 text-card-title font-semibold">Request enterprise access</h2>
-              <div className="mt-8 grid gap-x-5 gap-y-6 sm:grid-cols-2">
+              <div className="mt-9 grid gap-x-5 gap-y-7 sm:grid-cols-2 [&>label]:text-body">
                 <label className="text-sm font-semibold">
                   Preferred plan
                   <select

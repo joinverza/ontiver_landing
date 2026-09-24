@@ -13,13 +13,13 @@ export default function HomePage({ audience }: { audience: Audience }) {
     <main>
       <Hero audience={audience} />
       <PartnerStrip />
-      <EvidenceCards audience={audience} />
       <Modules audience={audience} />
+      <Solution audience={audience} />
+      <UseCase audience={audience} />
       <TrustHorizontalTransition audience={audience} />
       <CertificationStrip />
       <PilotResults />
-      <Solution audience={audience} />
-      <UseCase audience={audience} />
+      <EvidenceCards audience={audience} />
       <PricingFAQ variant={audience === "enterprise" ? "enterprise" : "individual"} />
       <CurtainFooter audience={audience} />
     </main>

@@ -40,7 +40,7 @@ export default function AudienceToggle({
             aria-pressed={selected}
             onClick={() => selectAudience(audience)}
             className={`cursor-pointer rounded-full font-semibold transition-[background-color,color,box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#009311] focus-visible:ring-offset-2 ${
-              compact ? "px-3 py-1.5 text-[11px]" : "px-4 py-2 text-xs sm:px-5 sm:text-sm"
+              compact ? "px-3 py-2 text-meta" : "px-4 py-2 text-sm sm:px-5"
             } ${
               selected
                 ? "bg-white text-[#007d21] shadow-sm"

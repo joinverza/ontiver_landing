@@ -19,10 +19,10 @@ export default function PricingCard({ plan, billingCycle, onPlanAction }: Pricin
         {highlighted ? <span aria-hidden="true" className="size-2 rounded-full bg-[#b8e5a7]" /> : null}
       </div>
       <h2 className="text-card-title font-semibold">{plan.name}</h2>
-      <p className={`mt-3 min-h-[84px] text-body ${highlighted ? "text-white/70" : "text-[#637060]"}`}>{plan.description}</p>
+      <p className={`mt-3 min-h-[84px] text-body xl:min-h-[120px] ${highlighted ? "text-white/70" : "text-[#637060]"}`}>{plan.description}</p>
       <div className="my-7">
         <p className="text-[36px] font-semibold leading-none tracking-[-0.04em]">{formatPrice(price)}</p>
-        <p className={`mt-3 text-meta ${highlighted ? "text-white/60" : "text-[#637060]"}`}>{plan.period}{billingCycle === "annual" && price !== null && price > 0 ? ", billed annually" : ""}</p>
+        <p className={`mt-3 min-h-10 text-meta ${highlighted ? "text-white/60" : "text-[#637060]"}`}>{plan.period}{billingCycle === "annual" && price !== null && price > 0 ? ", billed annually" : ""}</p>
       </div>
       <button type="button" onClick={onPlanAction} className={`mb-7 inline-flex min-h-12 cursor-pointer items-center justify-center whitespace-nowrap rounded-full px-3 text-body font-medium transition-colors ${highlighted ? "bg-[#c7edb3] text-[#002d0e] hover:bg-white" : "bg-[#edf5eb] text-[#002d0e] hover:bg-[#dfeeda]"}`}>
         {plan.cta}

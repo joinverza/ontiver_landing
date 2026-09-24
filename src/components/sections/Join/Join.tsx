@@ -1,54 +1,27 @@
-import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, LoaderCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { joinWaitlist } from "../../../lib/landingApi";
+import WaitlistForm from "../../WaitlistForm";
 import type { Audience } from "../../../lib/audience";
 import HeroActions from "../Hero/HeroActions";
-
-type JoinState = "idle" | "joining" | "joined" | "error";
+import { imagery } from "../../../data/imagery";
 
 export default function Join({ audience }: { audience: Audience }) {
   const enterprise = audience === "enterprise";
-  const [email, setEmail] = useState("");
-  const [state, setState] = useState<JoinState>("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (state === "joining" || state === "joined") return;
-    setState("joining");
-    setErrorMessage("");
-    try {
-      await joinWaitlist(email);
-      setState("joined");
-    } catch (error) {
-      setState("error");
-      setErrorMessage(error instanceof Error ? error.message : "We could not join the waitlist. Please try again.");
-    }
-  }
-
   return (
-    <section id="join" className="bg-[#edf5eb] pt-16 sm:pt-20">
+    <section id="join" className="bg-[#edf5e7] pt-16 sm:pt-24">
       <div className="site-container">
-        <div className="relative grid overflow-hidden rounded-[32px] bg-[#002d0e] p-7 text-white sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20 lg:p-16">
-          <img src="/assets/ontiver-icon.svg" aria-hidden="true" alt="" className="pointer-events-none absolute -right-10 -top-16 w-[450px] opacity-[.035] brightness-0 invert" />
-          <div className="relative">
-            <p className="eyebrow text-[#a5d69a]">{enterprise ? "Enterprise access" : "Early access"}</p>
-            <h2 className="section-heading mt-5 max-w-[530px]">{enterprise ? "Build your next workflow on trust." : "Your next chapter starts with you."}</h2>
-            <p className="mt-5 max-w-[520px] text-subtitle text-white/70">{enterprise ? "Explore how verification, consent, and reusable proof could fit your business. Let's start with your first workflow." : "Join the Ontiver waitlist for early access, private beta invites, and a simpler way to carry trusted identity proof."}</p>
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-meta text-white/60">{(enterprise ? ["A focused pilot", "Your workflow", "Clear success criteria"] : ["Early beta", "Private invites", "Product updates"]).map(item => <span key={item} className="inline-flex items-center gap-2"><span className="size-1 rounded-full bg-[#a5d69a]" />{item}</span>)}</div>
-          </div>
-          <div className="relative mt-10 lg:mt-0">
-            <h3 className="mb-6 text-card-title font-medium">{enterprise ? "Tell us what you need. We will map the right rollout." : "Tell us where to send your invite."}</h3>
-            {enterprise ? <HeroActions audience={audience} light /> : <form onSubmit={submit}>
-              <label htmlFor="waitlist-email" className="mb-3 block text-sm text-white/80">Your email *</label>
-              <input id="waitlist-email" type="email" required autoComplete="email" value={email} disabled={state === "joining" || state === "joined"} onChange={event => { setEmail(event.target.value); if (state === "error") setState("idle"); }} placeholder="you@example.com" className="min-h-14 w-full rounded-full border border-white/25 bg-white/10 px-5 text-body text-white outline-none placeholder:text-white/40 focus:border-[#a5d69a] disabled:opacity-60" />
-              <button disabled={state === "joining" || state === "joined"} type="submit" className="button-primary mt-3 min-h-14 w-full bg-white text-[#002d0e] hover:bg-[#d8edcf]">{state === "joining" ? <><LoaderCircle size={18} className="animate-spin" />Joining...</> : state === "joined" ? <><Check size={18} />You're on the list!</> : <>Join Waitlist<ArrowUpRight size={18} /></>}</button>
-              <Link to="/#solution" className="button-secondary mt-3 w-full border-white/30 text-white hover:bg-white/10 hover:text-white">See how it works</Link>
-              <div aria-live="polite">{state === "joined" ? <p className="mt-3 text-sm text-[#b4e9a8]">You're on the list!</p> : null}</div>
-              {state === "error" && errorMessage ? <p className="mt-3 text-sm text-red-200" role="alert">{errorMessage}</p> : null}
-            </form>}
-          </div>
+        <div className="mx-auto max-w-[860px] text-center">
+          <p className="eyebrow">{enterprise ? "Let's build reusable trust" : "Your invitation to what's next"}</p>
+          <h2 className="section-heading mt-5">{enterprise ? "Build your next workflow on trust." : "Your next chapter starts with you."}</h2>
+          <p className="mx-auto mt-6 max-w-[650px] text-subtitle text-[#002d0e]/65">{enterprise ? "Let's find the right starting point for your team." : "Join the waitlist for early access to identity on your terms."}</p>
+          {enterprise ? <div className="mt-8"><HeroActions audience={audience} centered /></div> : <>
+            <WaitlistForm className="mx-auto mt-8 max-w-[530px]" />
+            <div className="mt-5 text-center"><Link to="/how-it-works" className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">See how it works<ArrowUpRight size={17} /></Link></div>
+          </>}
+        </div>
+        <div className="mt-14 grid overflow-hidden rounded-[32px] bg-[#002d0e] text-white sm:mt-16 md:grid-cols-[1.35fr_1fr]">
+          <div className="flex flex-col justify-between gap-12 p-8 sm:p-12 lg:p-14"><img src="/assets/logo.svg" alt="Ontiver" className="w-full max-w-[430px] brightness-0 invert" /><p className="max-w-[420px] text-card-title font-medium text-[#c6e5b4]">Verify once. Stay in control.<br />Approve every share.</p></div>
+          <img src={imagery.individualHero.src} alt={imagery.individualHero.alt} loading="lazy" width={imagery.individualHero.width} height={imagery.individualHero.height} className="h-72 w-full object-cover md:h-full md:max-h-[390px]" style={{ objectPosition: imagery.individualHero.objectPosition }} />
         </div>
       </div>
     </section>

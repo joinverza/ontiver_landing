@@ -1,3 +1,5 @@
+import { imagery } from "./imagery";
+
 export type BlogBodyBlock =
   | { type: "paragraph"; text: string }
   | { type: "quote"; text: string };
@@ -22,7 +24,7 @@ export const blogArticles: BlogArticle[] = [
     title: "Why Identity Verification Should Be Reusable",
     excerpt:
       "Identity should not restart every time a user joins a new platform. Reusable verification lowers friction, reduces cost, and improves trust.",
-    image: "/assets/blog-man.png",
+    image: imagery.individualHero.src,
     date: "May 20, 2026",
     author: "James Weick",
     readTime: "6 min read",
@@ -61,7 +63,7 @@ export const blogArticles: BlogArticle[] = [
     title: "Cutting KYC Costs Without Cutting Assurance",
     excerpt:
       "A practical guide to lowering verification spend while preserving the risk checks, consent trails, and audit evidence compliance teams need.",
-    image: "/assets/fintech.png",
+    image: imagery.finance.src,
     date: "June 4, 2026",
     author: "Amara Cole",
     readTime: "5 min read",
@@ -95,7 +97,7 @@ export const blogArticles: BlogArticle[] = [
     title: "AML Screening for Product Teams",
     excerpt:
       "What builders need to know about watchlists, ongoing monitoring, match resolution, and how AML checks fit into user onboarding.",
-    image: "/assets/radar.png",
+    image: imagery.teamwork.src,
     date: "June 9, 2026",
     author: "Nora Adeyemi",
     readTime: "7 min read",
@@ -124,7 +126,7 @@ export const blogArticles: BlogArticle[] = [
     title: "Building Consent Into Identity Flows",
     excerpt:
       "Consent is more than a checkbox. It is a product layer that should be understandable, revocable, and tied to every reuse event.",
-    image: "/assets/consent.svg",
+    image: imagery.education.src,
     date: "June 14, 2026",
     author: "Tomi Fraser",
     readTime: "4 min read",
@@ -158,7 +160,7 @@ export const blogArticles: BlogArticle[] = [
     title: "A Developer Guide to Verification Webhooks",
     excerpt:
       "How to design webhook handlers that are idempotent, observable, resilient, and ready for compliance-critical verification events.",
-    image: "/assets/binary.png",
+    image: imagery.developer.src,
     date: "June 18, 2026",
     author: "Ife Martin",
     readTime: "8 min read",
@@ -187,7 +189,7 @@ export const blogArticles: BlogArticle[] = [
     title: "Risk Signals That Matter in Onboarding",
     excerpt:
       "A framework for ranking signals that improve fraud detection without overcomplicating the user journey.",
-    image: "/assets/matrix.png",
+    image: imagery.work.src,
     date: "June 21, 2026",
     author: "Lena Okafor",
     readTime: "6 min read",
@@ -216,7 +218,7 @@ export const blogArticles: BlogArticle[] = [
     title: "What Audit-Ready Identity Logs Need",
     excerpt:
       "The records compliance teams should expect from modern verification infrastructure, from consent events to decision evidence.",
-    image: "/assets/systems.png",
+    image: imagery.enterpriseHero.src,
     date: "June 24, 2026",
     author: "Maya Hart",
     readTime: "5 min read",
@@ -245,7 +247,7 @@ export const blogArticles: BlogArticle[] = [
     title: "Reusable Identity for Marketplaces",
     excerpt:
       "How marketplaces can verify buyers, sellers, and service providers without adding repeat friction at every transaction layer.",
-    image: "/assets/marketplaces.png",
+    image: imagery.marketplace.src,
     date: "June 26, 2026",
     author: "James Weick",
     readTime: "6 min read",

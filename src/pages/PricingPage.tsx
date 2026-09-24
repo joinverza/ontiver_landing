@@ -8,16 +8,14 @@ import Calculator from "../components/sections/Calculator/Calculator";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import PlanSection from "../components/sections/Plan/Plan";
 import { pricingPlans, type BillingCycle } from "../data/pricing";
+import { scrollPageTo } from "../lib/scrollNavigation";
 
 export default function PricingPage() {
   const navigate = useNavigate();
   const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-      block: "start",
-    });
+    scrollPageTo(document.getElementById(id));
   };
 
   const handlePlanAction = (planName: string) => {

@@ -1,5 +1,12 @@
-import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import RouteScroll from "./components/RouteScroll";
+import IndividualProductPage from "./pages/IndividualProductPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
+import IndividualUseCasesPage from "./pages/IndividualUseCasesPage";
+import PlatformOverviewPage from "./pages/PlatformOverviewPage";
+import EnterpriseUseCasesPage from "./pages/EnterpriseUseCasesPage";
+import ResourcesPage from "./pages/ResourcesPage";
+import WaitlistPage from "./pages/WaitlistPage";
 import SEO from "./components/SEO";
 import {
   BlogArticlePage,
@@ -26,29 +33,11 @@ function LegacyBlogArticleRedirect() {
   return <Navigate to={`/blogs/${slug ?? ""}`} replace />;
 }
 
-function ScrollToHash() {
-  const { hash, key } = useLocation();
-
-  useEffect(() => {
-    if (!hash) {
-      window.scrollTo({ top: 0, behavior: "instant" });
-      return;
-    }
-
-    if (!/^#[A-Za-z][\w:.-]*$/.test(hash)) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    target.scrollIntoView({ behavior: "auto", block: "start" });
-  }, [hash, key]);
-
-  return null;
-}
-
 export default function App() {
   return (
     <PageLayout>
       <SEO />
-      <ScrollToHash />
+      <RouteScroll />
       <Routes>
         <Route
           path="/"
@@ -62,7 +51,16 @@ export default function App() {
         <Route path="/blog/:slug" element={<LegacyBlogArticleRedirect />} />
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/blogs/:slug" element={<BlogArticlePage />} />
-        <Route path="/resources" element={<Navigate to="/blogs" replace />} />
+        <Route path="/identity" element={<IndividualProductPage />} />
+        <Route path="/how-it-works" element={<HowItWorksPage />} />
+        <Route path="/use-cases" element={<IndividualUseCasesPage />} />
+        <Route path="/waitlist" element={<WaitlistPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/enterprise/resources" element={<ResourcesPage audience="enterprise" />} />
+        <Route path="/enterprise/platform" element={<PlatformOverviewPage />} />
+        <Route path="/enterprise/use-cases" element={<EnterpriseUseCasesPage />} />
+        <Route path="/enterprise/security" element={<SecurityPage audience="enterprise" />} />
+        <Route path="/enterprise/support" element={<SupportPage audience="enterprise" />} />
         <Route path="/resources/blogs" element={<Navigate to="/blogs" replace />} />
         <Route path="/resources/blogs/:slug" element={<LegacyBlogArticleRedirect />} />
         <Route path="/enterprise/use-cases/:id" element={<UseCasePage />} />

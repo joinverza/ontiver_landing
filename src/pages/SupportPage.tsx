@@ -3,7 +3,6 @@ import {
   CheckCircle2,
   ExternalLink,
   LifeBuoy,
-  LockKeyhole,
   Mail,
   MessageCircle,
   Plus,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
+import type { Audience } from "../lib/audience";
 import {
   createPublicSupportRequest,
   getPublicSupportConversation,
@@ -32,26 +32,8 @@ const topics = [
   "Other",
 ];
 
-const supportPrinciples = [
-  {
-    icon: ShieldCheck,
-    title: "Private by design",
-    copy: "Sensitive credentials and identity documents should never be included.",
-  },
-  {
-    icon: MessageCircle,
-    title: "One conversation",
-    copy: "Your request and replies stay together in one conversation.",
-  },
-  {
-    icon: LockKeyhole,
-    title: "Secure access",
-    copy: "Keep your conversation link private; it gives access to your request.",
-  },
-];
-
 const controlClassName =
-  "min-h-13 w-full rounded-xl border border-[#dde6dc] bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "min-h-14 w-full rounded-xl border border-[#d7e2d4] bg-white px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 
 type FormValues = {
   name: string;
@@ -82,11 +64,11 @@ const emptyForm: FormValues = {
 function SupportField({ children, className = "", htmlFor, label, required = false }: SupportFieldProps) {
   return (
     <div className={className}>
-      <label htmlFor={htmlFor} className="text-sm font-medium text-[#002d0e]">
+      <label htmlFor={htmlFor} className="text-body font-medium text-[#002d0e]">
         {label}
         {required ? <span className="ml-1 text-[#008f24]">*</span> : null}
       </label>
-      <div className="mt-2.5">{children}</div>
+      <div className="mt-3">{children}</div>
     </div>
   );
 }
@@ -117,7 +99,7 @@ function readStoredSession(): PublicSupportSession | null {
   }
 }
 
-export default function SupportPage() {
+export default function SupportPage({ audience = "individual" }: { audience?: Audience }) {
   const [form, setForm] = useState<FormValues>(emptyForm);
   const [session, setSession] = useState<PublicSupportSession | null>(() => readStoredSession());
   const [conversation, setConversation] = useState<PublicSupportConversation | null>(null);
@@ -188,32 +170,32 @@ export default function SupportPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f7f7f7] text-[#002d0e]">
+      <main className="min-h-screen bg-white text-[#002d0e]">
         <section className="page-intro">
-          <header className="site-container grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end lg:gap-20">
+          <header className="site-container">
             <div>
               <p className="eyebrow">Ontiver Support</p>
-              <h1 className="mt-5 max-w-[12ch] text-page-hero font-semibold">
+              <h1 className="mt-5 max-w-[1060px] text-page-hero font-bold">
                 How can we help?
               </h1>
-              <p className="mt-5 max-w-xl text-subtitle text-[#526058]">
+              <p className="mt-7 max-w-[760px] text-subtitle text-[#526058]">
                 Start a secure conversation with our support team. We will keep your request and every reply together in one place.
               </p>
             </div>
 
-            <div className="divide-y divide-[#dde6dc] rounded-3xl border border-[#dde6dc] bg-white/70 px-6">
-              <div className="flex items-center gap-4 py-6">
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#edf5eb] text-[#007d21]">
-                  <MessageCircle className="h-4 w-4" />
+            <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-10">
+              <div className="flex items-center gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-[#007d21]">
+                  <MessageCircle className="size-5" />
                 </span>
                 <div>
                   <p className="text-meta font-semibold uppercase text-[#06160f]/45">Your conversation</p>
                   <p className="mt-1 text-body font-semibold">Continue here after submitting</p>
                 </div>
               </div>
-              <a href="mailto:support@ontiver.com" className="group flex items-center gap-4 py-6">
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#edf5eb] text-[#007d21]">
-                  <Mail className="h-4 w-4" />
+              <a href="mailto:support@ontiver.com" className="group flex items-center gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-[#007d21]">
+                  <Mail className="size-5" />
                 </span>
                 <div className="min-w-0">
                   <p className="text-meta font-semibold uppercase text-[#06160f]/45">Email support</p>
@@ -224,8 +206,8 @@ export default function SupportPage() {
           </header>
         </section>
         <section className="section-space site-container">
-          <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-8">
-            <section className="min-w-0 rounded-[28px] border border-[#dde6dc] bg-white p-7 sm:p-10">
+          <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
+            <section className="min-w-0 rounded-[28px] border border-[#e0e8dd] bg-[#f7f9f6] p-7 sm:p-10">
               {session && conversation ? (
                 <>
                   <div className="flex flex-wrap items-start justify-between gap-5 border-b border-[#06160f]/10 pb-6">
@@ -242,7 +224,7 @@ export default function SupportPage() {
                     </span>
                   </div>
 
-                  <div className="mt-6 max-h-[520px] min-h-72 space-y-4 overflow-y-auto pr-1" aria-live="polite">
+                  <div className="mt-6 max-h-[520px] min-h-72 space-y-4 overflow-y-auto pr-1" aria-live="polite" data-lenis-prevent>
                     {conversation.messages.map((item) => (
                       <div key={item.messageId} className={`flex ${item.senderType === "admin" ? "justify-start" : "justify-end"}`}>
                         <div
@@ -288,7 +270,7 @@ export default function SupportPage() {
                           type="button"
                           onClick={startNewRequest}
                           disabled={busy}
-                          className="inline-flex min-h-12 items-center gap-2 rounded-full px-4 text-sm font-medium text-[#526058] hover:text-[#007d21] disabled:opacity-50"
+                          className="inline-flex min-h-14 items-center gap-2 rounded-full px-4 text-body font-medium text-[#526058] hover:text-[#007d21] disabled:opacity-50"
                         >
                           <Plus className="h-4 w-4" /> New request
                         </button>
@@ -343,11 +325,8 @@ export default function SupportPage() {
                     Create a request
                   </div>
                   <h2 className="mt-4 text-section font-semibold">Tell us what you need</h2>
-                  <p className="mt-4 max-w-2xl text-body text-[#526058]">
-                    Share enough context for the right support specialist to respond. Required fields are marked.
-                  </p>
 
-                  <div className="mt-8 grid gap-x-5 gap-y-6 sm:grid-cols-2">
+                  <div className="mt-9 grid gap-x-5 gap-y-7 sm:grid-cols-2">
                     <SupportField htmlFor="support-name" label="Full name" required>
                       <input
                         id="support-name"
@@ -444,21 +423,21 @@ export default function SupportPage() {
               ) : null}
             </section>
 
-            <aside className="rounded-[28px] bg-[#002d0e] p-7 text-white sm:p-9">
-              <div className="flex items-center gap-2 text-meta font-semibold uppercase text-[#7ee09a]">
+            <aside className="rounded-[28px] bg-[#edf5eb] p-7 text-[#002d0e] sm:p-9">
+              <div className="flex items-center gap-2 text-meta font-semibold uppercase text-[#007d21]">
                 <ShieldCheck className="h-4 w-4" /> Before you send
               </div>
-              <h2 className="mt-5 text-section font-semibold">Keep sensitive details private.</h2>
-              <p className="mt-5 text-body text-white/70">
+              <h2 className="mt-5 text-section font-bold">Keep sensitive details private.</h2>
+              <p className="mt-5 text-body text-[#526058]">
                 Ontiver Support will never ask for passwords, one-time codes, card PINs, complete identity numbers, or API secrets.
               </p>
 
-              <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
+              <div className="mt-8 divide-y divide-[#002d0e]/15 border-y border-[#002d0e]/15">
                 <a href="mailto:support@ontiver.com" className="group flex min-h-16 items-center justify-between gap-4 py-4">
                   <span className="flex items-center gap-3 text-body font-semibold">
-                    <Mail className="h-4 w-4 text-[#7ee09a]" /> Email support
+                    <Mail className="size-5 text-[#007d21]" /> Email support
                   </span>
-                  <ExternalLink className="h-4 w-4 text-white/35 group-hover:text-[#7ee09a]" />
+                  <ExternalLink className="size-5 shrink-0 text-[#007d21]" />
                 </a>
                 <a
                   href="https://docs.ontiver.com/faq"
@@ -467,35 +446,24 @@ export default function SupportPage() {
                   className="group flex min-h-16 items-center justify-between gap-4 py-4"
                 >
                   <span className="flex items-center gap-3 text-body font-semibold">
-                    <LifeBuoy className="h-4 w-4 text-[#7ee09a]" /> Help and FAQs
+                    <LifeBuoy className="size-5 text-[#007d21]" /> Help and FAQs
                   </span>
-                  <ExternalLink className="h-4 w-4 text-white/35 group-hover:text-[#7ee09a]" />
+                  <ExternalLink className="size-5 shrink-0 text-[#007d21]" />
                 </a>
               </div>
 
               <div className="mt-8 flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#7ee09a]" />
+                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#007d21]" />
                 <div>
                   <p className="text-card-title font-semibold">Secure conversation</p>
-                  <p className="mt-2 text-body text-white/65">Your private session stays on this device after you submit.</p>
+                  <p className="mt-2 text-body text-[#526058]">Keep your conversation link private; it gives access to your request.</p>
                 </div>
               </div>
             </aside>
           </div>
-          <div className="mt-14 grid gap-8 border-t border-[#dde6dc] pt-10 md:grid-cols-3 lg:gap-12">
-            {supportPrinciples.map(({ icon: Icon, title, copy }) => (
-              <div key={title}>
-                <span className="mb-5 grid size-12 place-items-center rounded-2xl bg-[#edf5eb] text-[#007d21]">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <h2 className="text-card-title font-semibold">{title}</h2>
-                <p className="mt-3 text-body text-[#526058]">{copy}</p>
-              </div>
-            ))}
-          </div>
         </section>
       </main>
-      <CurtainFooter />
+      <CurtainFooter audience={audience} />
     </>
   );
 }

@@ -5,6 +5,7 @@ import CalculatorResultsPanel from "../../calculator/CalculatorResultsPanel";
 import { calculatorFields, calculatorInitialValues, type CalculatorFieldKey, type SavingsResult } from "../../../data/calculator";
 import { formatCurrency, parseAmount } from "../../../lib/calculator";
 import { getRecommendedPricingPlan } from "../../../lib/pricing";
+import { scrollPageTo } from "../../../lib/scrollNavigation";
 
 export default function Calculator({ standalone = false }: { standalone?: boolean }) {
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ export default function Calculator({ standalone = false }: { standalone?: boolea
     if (!result) return;
     const card = document.querySelector<HTMLElement>(`[data-plan="${result.recommendedPlan.toLowerCase()}"]`);
     if (card) {
-      card.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      scrollPageTo(card);
     } else {
       navigate("/enterprise/pricing#pricing-plans");
     }

@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { imagery } from "../../data/imagery";
 
 export default function BlogHero() {
   const { pathname } = useLocation();
@@ -11,7 +12,7 @@ export default function BlogHero() {
         <div>
           <p className="eyebrow">The Ontiver journal</p>
           <h1 className="mt-5 max-w-[800px] text-page-hero font-semibold tracking-[-0.045em] text-[#002d0e]">
-            Insights on Identity, Compliance, and Trust Infrastructure
+            Ideas for a more trusted world.
           </h1>
           <p className="mt-6 max-w-[560px] text-subtitle text-[#002d0e]/65">
             Explore practical guides, compliance insights, developer resources,
@@ -27,8 +28,8 @@ export default function BlogHero() {
             </Link>
           </div>
         </div>
-        <div className="relative flex aspect-[1.08] items-center justify-center overflow-hidden rounded-[32px] bg-[#dcebd7] p-5 sm:p-8">
-          <img src="/assets/hero-blog.png" alt="Illustration of identity and trust resources" className="h-full w-full object-contain" />
+        <div className="relative aspect-[.9] overflow-hidden rounded-[32px] bg-[#dcebd7]">
+          <img src={imagery.teamwork.src} alt={imagery.teamwork.alt} width={imagery.teamwork.width} height={imagery.teamwork.height} fetchPriority="high" className="h-full w-full object-cover" style={{ objectPosition: imagery.teamwork.objectPosition }} />
         </div>
       </div>
     </section>

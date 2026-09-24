@@ -3,6 +3,7 @@ import type { ProblemItem } from "./problem";
 import type { SolutionStep } from "./solution";
 import type { SecurityFeature } from "./trust";
 import type { UseCaseCard } from "./useCases";
+import { imagery } from "./imagery";
 
 export const individualProblems: ProblemItem[] = [
   {
@@ -153,7 +154,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "banking",
     title: "Banking & Fintech",
     description: "Explore identity-proof reuse in supported financial-service journeys.",
-    imageUrl: "/assets/fintech.png",
+    imageUrl: imagery.individualHero.src,
     className: "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
     idle: "fintech",
@@ -162,7 +163,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "lending",
     title: "Loans & Credit",
     description: "Reuse trusted proof when applying with supported lenders.",
-    imageUrl: "/assets/lenders.png",
+    imageUrl: imagery.finance.src,
     className: "col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
     idle: "lenders",
@@ -171,7 +172,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "marketplaces",
     title: "Marketplaces",
     description: "Explore permission-led verification with participating marketplaces.",
-    imageUrl: "/assets/marketplaces.png",
+    imageUrl: imagery.marketplace.src,
     className:
       "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
     cardClassName: "min-h-[568px] max-[1024px]:min-h-[360px] max-[640px]:min-h-[210px]",
@@ -183,7 +184,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "work",
     title: "Work & Hiring",
     description: "Share verified identity during supported hiring and onboarding.",
-    imageUrl: "/assets/platforms.png",
+    imageUrl: imagery.work.src,
     className: "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName: "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -194,7 +195,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "education",
     title: "Education",
     description: "Reuse trusted proof across supported admissions and credential journeys.",
-    imageUrl: "/assets/schools.png",
+    imageUrl: imagery.education.src,
     className: "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName: "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -205,7 +206,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "everyday",
     title: "Everyday Services",
     description: "Reuse proof where a participating service accepts Ontiver.",
-    imageUrl: "/assets/teams.png",
+    imageUrl: imagery.teamwork.src,
     className: "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName: "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",

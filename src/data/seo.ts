@@ -3,8 +3,8 @@ import {useCasePageDetails} from "./useCases";
 import {platformLayers} from "./platform";
 
 const SITE_URL = "https://ontiver.com";
-const DEFAULT_IMAGE = `${SITE_URL}/assets/hero-blog.png`;
-const ENTERPRISE_IMAGE = `${SITE_URL}/assets/ontiver-enterprise.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/photos/individual-hero.webp`;
+const ENTERPRISE_IMAGE = `${SITE_URL}/assets/photos/teamwork.webp`;
 
 export type SeoMeta = {
   title: string;
@@ -23,13 +23,14 @@ const baseOrganization = {
 };
 
 function normalizePath(pathname: string) {
-  if (pathname === "/blog" || pathname === "/resources" || pathname === "/resources/blogs") return "/blogs";
-  if (pathname === "/pricing") return "/enterprise/pricing";
-  const legacyUseCase = pathname.match(/^\/use-cases\/([^/]+)$/);
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : "/";
+  if (path === "/blog" || path === "/resources/blogs") return "/blogs";
+  if (path === "/pricing") return "/enterprise/pricing";
+  const legacyUseCase = path.match(/^\/use-cases\/([^/]+)$/);
   if (legacyUseCase) return `/enterprise/use-cases/${legacyUseCase[1]}`;
-  const articleAlias = pathname.match(/^\/(?:blog|resources\/blogs)\/([^/]+)$/);
+  const articleAlias = path.match(/^\/(?:blog|resources\/blogs)\/([^/]+)$/);
   if (articleAlias) return `/blogs/${articleAlias[1]}`;
-  return pathname.length > 1 ? pathname.replace(/\/+$/, "") : "/";
+  return path;
 }
 
 export function getSeoMeta(pathname: string): SeoMeta {
@@ -99,6 +100,66 @@ export function getSeoMeta(pathname: string): SeoMeta {
   }
 
   const staticMeta: Record<string, Omit<SeoMeta, "canonicalPath" | "structuredData">> = {
+    "/identity": {
+      title: "Reusable Identity and Sharing Controls | Ontiver",
+      description: "Explore reusable identity proof designed around your permission, with fewer repeated document uploads across supported businesses.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/how-it-works": {
+      title: "How Reusable Identity Works | Ontiver",
+      description: "See the journey from verification to reusable proof, reviewing requests, and choosing what to share with supported services.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/use-cases": {
+      title: "Everyday Identity Use Cases | Ontiver",
+      description: "Explore how reusable identity can support banking, lending, marketplaces, work, education, and everyday services.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/waitlist": {
+      title: "Join the Early Access Waitlist | Ontiver",
+      description: "Join the Ontiver waitlist for early access updates about reusable identity and sharing on your terms.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
+    "/resources": {
+      title: "Identity, Privacy and Sharing Resources | Ontiver",
+      description: "Explore guides, privacy information, and support for understanding your identity proof and sharing choices.",
+      image: `${SITE_URL}/assets/photos/education.webp`,
+      type: "website",
+    },
+    "/enterprise/resources": {
+      title: "Enterprise Verification Resources and Guides | Ontiver",
+      description: "Find identity verification, KYC, consent, and integration guides for product, engineering, and compliance teams.",
+      image: `${SITE_URL}/assets/photos/work.webp`,
+      type: "website",
+    },
+    "/enterprise/platform": {
+      title: "Identity Verification Platform | Ontiver",
+      description: "Explore the six Ontiver platform layers connecting identity sources, verification, workflows, intelligence, consent, and reusable proof.",
+      image: `${SITE_URL}/assets/photos/enterprise-hero.webp`,
+      type: "website",
+    },
+    "/enterprise/use-cases": {
+      title: "Identity Verification Use Cases for Businesses | Ontiver",
+      description: "Explore identity workflows for fintechs, lenders, marketplaces, HR platforms, education, and compliance teams.",
+      image: ENTERPRISE_IMAGE,
+      type: "website",
+    },
+    "/enterprise/security": {
+      title: "Enterprise Security and Privacy Review | Ontiver",
+      description: "Explore consent controls, data handling, access, audit records, and security review topics for your Ontiver pilot.",
+      image: ENTERPRISE_IMAGE,
+      type: "website",
+    },
+    "/enterprise/support": {
+      title: "Enterprise Support | Ontiver",
+      description: "Contact Ontiver Support about verification, integration, billing, and other enterprise questions through a private support conversation.",
+      image: ENTERPRISE_IMAGE,
+      type: "website",
+    },
     "/security": {
       title: "Privacy, Consent and Security | Ontiver",
       description: "Explore Ontiver's approach to consent, controlled identity sharing, data minimization, and enterprise security review.",

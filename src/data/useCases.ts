@@ -1,4 +1,5 @@
 import type { Direction } from "../components/ui/DirectionAwareHover";
+import { imagery } from "./imagery";
 
 export type UseCaseCard = {
   id: string;
@@ -59,7 +60,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "fintechs",
     title: "Fintechs",
     description: "Reduce KYC friction during onboarding.",
-    imageUrl: "/assets/fintech.png",
+    imageUrl: imagery.individualHero.src,
     className:
       "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -69,7 +70,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "digital-lenders",
     title: "Digital Lenders",
     description: "Verify borrowers before approval.",
-    imageUrl: "/assets/lenders.png",
+    imageUrl: imagery.finance.src,
     className:
       "col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -79,7 +80,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "marketplaces",
     title: "Marketplaces",
     description: "Build trust across buyers, sellers, and vendors.",
-    imageUrl: "/assets/marketplaces.png",
+    imageUrl: imagery.marketplace.src,
     className:
       "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
     cardClassName: "min-h-[568px] max-[1024px]:min-h-[360px] max-[640px]:min-h-[210px]",
@@ -92,7 +93,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "hr-platforms",
     title: "HR Platforms",
     description: "Verify candidates before onboarding.",
-    imageUrl: "/assets/platforms.png",
+    imageUrl: imagery.work.src,
     className:
       "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
@@ -105,7 +106,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "schools",
     title: "Schools",
     description: "Verify students, applicants, and credential holders.",
-    imageUrl: "/assets/schools.png",
+    imageUrl: imagery.education.src,
     className:
       "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
@@ -118,7 +119,7 @@ export const useCaseCards: UseCaseCard[] = [
     id: "compliance-teams",
     title: "Compliance Teams",
     description: "Build a defensible verification workflow.",
-    imageUrl: "/assets/teams.png",
+    imageUrl: imagery.teamwork.src,
     className:
       "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
@@ -186,7 +187,7 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     headline: "KYC should not restart every time a customer comes back.",
     intro:
       "Ontiver helps financial products verify once, store trusted proof, and reuse identity records only when the user consents.",
-    imageUrl: "/assets/use-cases/fintechs.svg",
+    imageUrl: imagery.individualHero.src,
     evaluationMeasures: [
       { label: "Verification turnaround", description: "Time from submission to a completed check." },
       { label: "Completion rate", description: "Completed and failed checks within the agreed pilot scope." },
@@ -223,7 +224,7 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     headline: "Borrower checks need speed and defensible risk evidence.",
     intro:
       "Ontiver gives lending teams a consent-led identity layer for onboarding, repeat borrowing, and risk review.",
-    imageUrl: "/assets/use-cases/lenders.svg",
+    imageUrl: imagery.finance.src,
     evaluationMeasures: [
       { label: "Manual-review rate", description: "Borrower checks that require a reviewer decision." },
       { label: "Verification volume", description: "Completed checks during the agreed pilot period." },
@@ -260,7 +261,7 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     headline: "Marketplaces need trust signals before transactions scale.",
     intro:
       "Ontiver helps marketplaces verify the people and businesses behind listings, payments, and high-trust interactions.",
-    imageUrl: "/assets/use-cases/marketplaces.svg",
+    imageUrl: imagery.marketplace.src,
     evaluationMeasures: [
       { label: "Seller verification", description: "Completed identity checks in the chosen seller journey." },
       { label: "Review handoffs", description: "Requests that need an operations-team decision." },
@@ -297,7 +298,7 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     headline: "Hiring should move quickly without weakening identity checks.",
     intro:
       "Ontiver supports worker verification, credential reuse, and audit-ready onboarding for modern HR teams.",
-    imageUrl: "/assets/use-cases/hr-platforms.svg",
+    imageUrl: imagery.work.src,
     evaluationMeasures: [
       { label: "Onboarding turnaround", description: "Time spent in the agreed worker-verification step." },
       { label: "Completed checks", description: "Candidate and worker verification outcomes." },
@@ -334,7 +335,7 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     headline: "Education workflows need identity proof that can follow the student.",
     intro:
       "Ontiver helps schools and credential platforms verify identities once and attach consent to every future reuse.",
-    imageUrl: "/assets/use-cases/schools.svg",
+    imageUrl: imagery.education.src,
     evaluationMeasures: [
       { label: "Completed checks", description: "Applicant identity checks within an agreed workflow." },
       { label: "Repeat collection", description: "Information requested again across supported journeys." },
@@ -371,7 +372,7 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     headline: "Compliance teams need evidence that survives product growth.",
     intro:
       "Ontiver turns identity events into a clear operational record for audits, reviews, and policy controls.",
-    imageUrl: "/assets/teams.png",
+    imageUrl: imagery.teamwork.src,
     evaluationMeasures: [
       { label: "Event traceability", description: "Sampled decisions with an associated event record." },
       { label: "Report completeness", description: "Evidence available against the agreed reporting scope." },

@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import type { UseCasePageDetail } from "../../data/useCases";
+import { getImageAlt, getImagePosition } from "../../data/imagery";
 
 export default function UseCaseChallenge({ detail }: { detail: UseCasePageDetail }) {
   return (
@@ -11,7 +12,7 @@ export default function UseCaseChallenge({ detail }: { detail: UseCasePageDetail
         </div>
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
           <div data-scroll-reveal className="overflow-hidden rounded-[28px] bg-[#edf5eb]">
-            <img src={detail.imageUrl} alt={detail.challenge.visualTitle} loading="lazy" className="aspect-[6/5] w-full object-cover" />
+            <img src={detail.imageUrl} alt={getImageAlt(detail.imageUrl) || detail.challenge.visualTitle} loading="lazy" className="aspect-[6/5] w-full object-cover" style={{ objectPosition: getImagePosition(detail.imageUrl) }} />
             <p className="px-7 py-5 text-meta font-medium text-[#637060]">{detail.challenge.visualTitle}</p>
           </div>
           <div data-scroll-reveal>

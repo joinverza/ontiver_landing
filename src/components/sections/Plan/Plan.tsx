@@ -3,6 +3,7 @@ import { ArrowUpRight, RotateCcw } from "lucide-react";
 import { planInitialToggles, planInitialValues, planInputFields, planToggleItems, type PlanFieldKey, type PlanToggleKey } from "../../../data/plan";
 import PlanOrbitPanel from "../../plan/PlanOrbitPanel";
 import PlanToggle from "../../plan/PlanToggle";
+import { scrollPageTo } from "../../../lib/scrollNavigation";
 
 type PlanProps = { onViewPlan?: () => void; onComparePlans?: () => void };
 type Recommendation = { plan: string; reason: string };
@@ -30,14 +31,9 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
     }
   };
 
-  const scrollTo = (element: HTMLElement | null) => element?.scrollIntoView({
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-    block: "start",
-  });
-
   const viewPlan = () => {
     const card = recommendation ? document.querySelector<HTMLElement>(`[data-plan="${recommendation.plan.toLowerCase()}"]`) : null;
-    if (card) scrollTo(card);
+    if (card) scrollPageTo(card);
     else onViewPlan?.();
   };
 
@@ -61,7 +57,7 @@ export default function Plan({ onViewPlan, onComparePlans }: PlanProps) {
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row"><button type="submit" className="button-primary grow">Check best plan<ArrowUpRight size={18} /></button><button type="button" className="button-secondary" onClick={() => { setValues(planInitialValues); setToggles(planInitialToggles); setRecommendation(null); }}><RotateCcw size={16} />Clear</button></div>
           </form>
-          <PlanOrbitPanel recommendation={recommendation} onViewPlan={viewPlan} onComparePlans={onComparePlans ?? (() => scrollTo(document.getElementById("plan-comparison")))} />
+          <PlanOrbitPanel recommendation={recommendation} onViewPlan={viewPlan} onComparePlans={onComparePlans ?? (() => scrollPageTo(document.getElementById("plan-comparison")))} />
         </div>
       </div>
     </section>

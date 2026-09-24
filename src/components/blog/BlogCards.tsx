@@ -1,6 +1,7 @@
 import { ArrowUpRight, Clock3 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import type { BlogArticle } from "../../data/blog";
+import { getImageAlt, getImagePosition } from "../../data/imagery";
 
 function useArticleHref(slug: string) {
   const { pathname } = useLocation();
@@ -19,7 +20,7 @@ export function ArticleImage({ article, lazy = true }: { article: BlogArticle; l
     );
   }
 
-  return <img src={article.image} alt={article.title} loading={lazy ? "lazy" : undefined} className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]" />;
+  return <img src={article.image} alt={getImageAlt(article.image) || article.title} loading={lazy ? "lazy" : undefined} className="h-full w-full object-cover" style={{ objectPosition: getImagePosition(article.image) }} />;
 }
 
 export function ArticleGridCard({

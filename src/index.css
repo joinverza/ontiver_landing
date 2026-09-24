@@ -1,29 +1,51 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/fonts/bricolage-grotesque-latin-variable.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @theme inline {
   --color-dark-primary: #002d0e;
   --color-light-primary: #009311;
   --color-border: #05150e;
   --color-bg-light: #f7f7f7;
   --color-green: #007d21;
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --text-hero: clamp(2.5rem, 5.4vw, 4.5rem);
-  --text-hero--line-height: 1.08;
-  --text-page-hero: clamp(2.5rem, 5.4vw, 4.5rem);
-  --text-page-hero--line-height: 1.08;
-  --text-panel: clamp(2.15rem, 4vw, 4rem);
-  --text-panel--line-height: 1.08;
-  --text-section: clamp(1.875rem, 3.4vw, 3rem);
-  --text-section--line-height: 1.15;
-  --text-subtitle: clamp(1rem, 1.2vw, 1.125rem);
-  --text-subtitle--line-height: 1.6;
-  --text-card-title: 1.375rem;
-  --text-card-title--line-height: 1.3;
-  --text-body: 1rem;
-  --text-body--line-height: 1.7;
-  --text-meta: 0.75rem;
-  --text-meta--line-height: 1.35;
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --text-hero: clamp(3rem, 6.7vw, 6rem);
+  --text-hero--line-height: 1.04;
+  --text-page-hero: clamp(3rem, 6.7vw, 6rem);
+  --text-page-hero--line-height: 1.04;
+  --text-panel: clamp(2.5rem, 4.45vw, 4rem);
+  --text-panel--line-height: 1.1;
+  --text-section: clamp(2.5rem, 4.45vw, 4rem);
+  --text-section--line-height: 1.1;
+  --text-subtitle: clamp(1.125rem, 1.4vw, 1.25rem);
+  --text-subtitle--line-height: 1.55;
+  --text-card-title: clamp(1.5rem, 1.82vw, 1.625rem);
+  --text-card-title--line-height: 1.25;
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.65;
+  --text-meta: 0.875rem;
+  --text-meta--line-height: 1.4;
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.125rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.35;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 1.3;
   --breakpoint-xss: 450px;
   --breakpoint-xs: 550px;
   --breakpoint-sm: 640px;
@@ -34,7 +56,7 @@
 }
 
 html {
-  scroll-padding-top: 132px;
+  scroll-padding-top: 104px;
 }
 
 html,
@@ -43,7 +65,7 @@ button,
 input,
 textarea,
 select {
-  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   font-optical-sizing: auto;
 }
 
@@ -51,7 +73,8 @@ body {
   margin: 0;
   color: #002d0e;
   background: #fff;
-  font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
 }
@@ -96,8 +119,8 @@ button:disabled {
   }
 
   .page-intro {
-    background: #edf5eb;
-    padding-block: clamp(10rem, 14vw, 12rem) clamp(3.5rem, 6vw, 5rem);
+    background: #fff;
+    padding-block: clamp(8rem, 11vw, 10rem) clamp(3.5rem, 6vw, 5rem);
   }
 
   .eyebrow {
@@ -115,7 +138,7 @@ button:disabled {
   .section-heading {
     font-size: var(--text-section);
     line-height: var(--text-section--line-height);
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: -0.035em;
     text-wrap: balance;
   }
@@ -136,7 +159,7 @@ button:disabled {
     border: 1px solid transparent;
     border-radius: 999px;
     padding: 0.8rem 1.5rem;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     line-height: 1.3;
     text-align: center;
@@ -145,12 +168,12 @@ button:disabled {
   }
 
   .button-primary {
-    background: #007d21;
+    background: #002d0e;
     color: white;
   }
 
   .button-primary:hover {
-    background: #002d0e;
+    background: #007d21;
   }
 
   .button-secondary {

@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { UseCasePageDetail } from "../../data/useCases";
+import { getImageAlt, getImagePosition } from "../../data/imagery";
 
 type UseCaseHeroProps = { detail: UseCasePageDetail; onBack: () => void };
 
@@ -18,7 +19,7 @@ export default function UseCaseHero({ detail, onBack }: UseCaseHeroProps) {
             <p className="mt-4 text-meta text-[#637060]">Pre-pilot · Scope and availability to be agreed.</p>
           </div>
           <div className="relative">
-            <img src={detail.imageUrl} alt="" fetchPriority="high" className="aspect-[6/5] w-full rounded-[28px] object-cover lg:rounded-[40px]" />
+            <img src={detail.imageUrl} alt={getImageAlt(detail.imageUrl)} fetchPriority="high" className="aspect-[6/5] w-full rounded-[28px] object-cover lg:rounded-[40px]" style={{ objectPosition: getImagePosition(detail.imageUrl) }} />
             <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-white/95 p-4 backdrop-blur-sm sm:bottom-7 sm:left-7 sm:right-auto sm:px-6">
               <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#edf5eb] text-[#007d21]"><ShieldCheck size={22} /></span>
               <div><p className="text-body font-semibold">Designed for consent-led identity.</p><p className="mt-0.5 text-meta text-[#637060]">Reuse where supported.</p></div>

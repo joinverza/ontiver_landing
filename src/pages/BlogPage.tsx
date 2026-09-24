@@ -37,7 +37,7 @@ export default function BlogPage() {
               <p className="eyebrow">Featured Insight</p>
               <h2 className="section-heading mt-3">Start with the core story.</h2>
             </div>
-            <p className="text-body text-[#002d0e]/60">The latest selected article from the active resource view.</p>
+            <p className="text-body text-[#002d0e]/60">A closer look at reusable identity and the ideas behind Ontiver.</p>
           </div>
           <FeaturedArticleCard article={featured} />
         </div>

@@ -6,7 +6,7 @@ import { platformLayers } from "../data/platform";
 export default function PlatformPage() {
   const { id } = useParams();
   const layer = platformLayers.find((item) => item.id === id);
-  if (!layer) return <Navigate to="/enterprise#features" replace />;
+  if (!layer) return <Navigate to="/enterprise/platform" replace />;
   const Icon = layer.icon;
   const relatedLayers = platformLayers.filter((item) => layer.relatedIds.includes(item.id));
 
@@ -14,7 +14,7 @@ export default function PlatformPage() {
     <main className="bg-white text-[#002d0e]">
       <section className="page-intro">
         <div className="site-container">
-          <Link to="/enterprise#features" className="mb-9 inline-flex items-center gap-2 text-sm font-medium text-[#526058] hover:text-[#007d21]">
+          <Link to="/enterprise/platform" className="mb-9 inline-flex items-center gap-2 text-sm font-medium text-[#526058] hover:text-[#007d21]">
             <ArrowLeft size={16} aria-hidden="true" /> Explore the platform
           </Link>
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
@@ -61,47 +61,33 @@ export default function PlatformPage() {
 
       <section id="capabilities" className="section-space">
         <div className="site-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-20">
-            <div><p className="eyebrow">The building blocks</p><h2 className="section-heading mt-4 max-w-lg">{layer.title}, connected to your workflow.</h2></div>
-            <p className="text-subtitle text-[#526058] lg:pt-9">{layer.overview}</p>
-          </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+          <div><p className="eyebrow">The building blocks</p><h2 className="section-heading mt-4">Built into your workflow.</h2></div>
+          <div className="mt-10 grid gap-x-10 sm:grid-cols-2">
             {layer.capabilities.map((capability) => (
-              <article key={capability.title} className="surface-card">
-                <CircleCheck className="mb-6 size-6 text-[#007d21]" aria-hidden="true" />
-                <h3 className="text-card-title font-semibold">{capability.title}</h3>
-                <p className="mt-3 max-w-lg text-body text-[#526058]">{capability.description}</p>
+              <article key={capability.title} className="flex gap-4 border-t border-[#dde6dc] py-6">
+                <CircleCheck className="mt-1 size-5 shrink-0 text-[#007d21]" aria-hidden="true" />
+                <div><h3 className="text-card-title font-semibold">{capability.title}</h3>
+                <p className="mt-2 max-w-lg text-body text-[#526058]">{capability.description}</p></div>
               </article>
             ))}
           </div>
-          <div className="mt-8 flex items-start gap-4 rounded-2xl bg-[#f7f9f6] p-6 sm:p-7">
+          <div className="mt-4 flex items-start gap-3 rounded-2xl bg-[#f7f9f6] p-5">
             <ShieldCheck className="mt-1 size-5 shrink-0 text-[#007d21]" aria-hidden="true" />
             <p className="text-body text-[#526058]">{layer.boundary}</p>
           </div>
         </div>
       </section>
 
-      <section className="section-space bg-[#f7f9f6]">
-        <div className="site-container">
-          <div className="mb-10 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
-            <div><p className="eyebrow">One connected platform</p><h2 className="section-heading mt-4">Keep building.</h2></div>
-            <Link to="/security" className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Our approach to trust <ArrowUpRight size={17} aria-hidden="true" /></Link>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {relatedLayers.map((item) => {
-              const RelatedIcon = item.icon;
-              return <Link key={item.id} to={`/enterprise/platform/${item.id}`} className="surface-card group block transition-colors hover:border-[#9bbb99]"><RelatedIcon className="mb-7 size-7 text-[#007d21]" aria-hidden="true" /><div className="flex items-start justify-between gap-5"><h3 className="text-card-title font-semibold">{item.title}</h3><ArrowUpRight size={22} className="shrink-0 text-[#007d21]" aria-hidden="true" /></div><p className="mt-3 text-body text-[#526058]">{item.description}</p></Link>;
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space">
+      <section className="bg-[#f7f9f6] py-10 sm:py-12">
         <div className="site-container">
           <div className="flex flex-col items-start justify-between gap-8 rounded-[28px] bg-[#002d0e] p-8 text-white sm:p-12 lg:flex-row lg:items-center">
-            <div><h2 className="section-heading max-w-xl">Build the right verification journey.</h2><p className="mt-4 max-w-xl text-subtitle text-white/75">Map your sources, checks, and review process with the Ontiver team.</p></div>
+            <h2 className="section-heading max-w-xl">Build your verification journey.</h2>
             <Link to="/enterprise/contact" className="button-primary shrink-0 !border-white !bg-white !text-[#002d0e] hover:!bg-[#edf5eb]">Request a demo <ArrowUpRight size={18} aria-hidden="true" /></Link>
           </div>
+          <nav aria-label="Related platform layers" className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-4">
+            {relatedLayers.map((item) => <Link key={item.id} to={`/enterprise/platform/${item.id}`} className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">{item.title}<ArrowUpRight size={17} aria-hidden="true" /></Link>)}
+            <Link to="/enterprise/security" className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Security and trust<ArrowUpRight size={17} aria-hidden="true" /></Link>
+          </nav>
         </div>
       </section>
       <Footer audience="enterprise" />
