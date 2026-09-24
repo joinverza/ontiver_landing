@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent } from "react";
-import { Check, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import {
@@ -32,8 +32,8 @@ type FormValues = {
 };
 
 const fieldClass =
-  "mt-2 h-12 w-full rounded-xl border border-[#0a2818]/15 bg-white px-4 text-sm text-[#06160f] outline-none transition focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/15";
-const textareaClass = `${fieldClass} h-28 resize-y py-3`;
+  "mt-2.5 h-13 w-full rounded-xl border border-[#dde6dc] bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+const textareaClass = `${fieldClass} min-h-32 resize-y py-3.5`;
 
 export default function EnterpriseContactPage() {
   const [searchParams] = useSearchParams();
@@ -103,50 +103,58 @@ export default function EnterpriseContactPage() {
   };
 
   return (
-    <main className="overflow-hidden bg-[#f1f4ef] text-[#06160f]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-6 md:pb-24 md:pt-40 lg:px-20">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] [background-size:90px_90px]"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto max-w-[1180px]">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div className="lg:sticky lg:top-32">
-              <p className="text-meta font-bold uppercase tracking-[0.22em] text-[#008e22]">
-                Enterprise access
-              </p>
-              <h1 className="mt-5 max-w-[10ch] text-page-hero font-bold tracking-normal">
-                Map your identity operation with Ontiver.
-              </h1>
-              <p className="mt-6 max-w-[560px] text-subtitle text-[#526058]">
-                Tell us about your verification volume, compliance requirements,
-                and rollout timeline. We will recommend the right plan and
-                integration path.
-              </p>
-              <div className="mt-9 grid gap-3 text-sm text-[#34473d]">
+    <main className="bg-[#f7f7f7] text-[#002d0e]">
+      <section className="page-intro">
+        <div className="site-container grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16">
+          <div>
+            <p className="eyebrow">Enterprise access</p>
+            <h1 className="mt-5 max-w-[15ch] text-page-hero font-semibold">
+              Map your identity operation with Ontiver.
+            </h1>
+          </div>
+          <p className="max-w-lg text-subtitle text-[#526058] lg:pb-2">
+            Tell us about your verification volume, compliance requirements,
+            and rollout timeline. We will discuss pilot availability, a suitable plan,
+            and the scope of your integration.
+          </p>
+        </div>
+      </section>
+      <section className="section-space">
+        <div className="site-container">
+          <div className="grid items-start gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:gap-8">
+            <div className="overflow-hidden rounded-[28px] bg-[#002d0e] p-7 text-white sm:p-9">
+              <span className="mb-8 grid size-14 place-items-center rounded-2xl border border-white/20 bg-white/5">
+                <ShieldCheck className="size-6" aria-hidden="true" />
+              </span>
+              <h2 className="text-section font-semibold">Plan your integration.</h2>
+              <p className="mt-4 text-body text-white/65">Explore the platform capabilities relevant to your pilot. Availability and rollout scope are confirmed with our team.</p>
+              <div className="mt-8 divide-y divide-white/15 text-body text-white/75">
                 {[
                   "Identity verification and reusable credentials",
                   "AML, sanctions, PEP, and risk orchestration",
                   "Consent evidence, reporting, and audit exports",
-                  "Sandbox support and production onboarding",
+                  "Sandbox evaluation and production rollout planning",
                 ].map((item) => (
-                  <span key={item} className="flex items-center gap-3">
-                    <Check className="size-4 shrink-0 text-[#009311]" />
+                  <span key={item} className="flex items-start gap-3 py-5">
+                    <Check className="mt-1 size-4 shrink-0 text-[#96e7a5]" aria-hidden="true" />
                     {item}
                   </span>
                 ))}
               </div>
-              <div className="mt-10 flex items-center gap-3 rounded-2xl border border-[#009311]/15 bg-white/65 p-4 text-sm text-[#526058]">
-                <ShieldCheck className="size-6 shrink-0 text-[#009311]" />
+              <div className="mt-8 flex items-start gap-3 border-t border-white/15 pt-6 text-body text-white/60">
+                <ShieldCheck className="mt-1 size-5 shrink-0 text-[#96e7a5]" aria-hidden="true" />
                 Do not include passwords, API keys, or identity documents.
               </div>
             </div>
 
             <form
               onSubmit={submit}
-              className="relative rounded-[28px] border border-[#0a2818]/10 bg-white/90 p-5 shadow-[0_28px_80px_rgba(5,38,21,0.09)] backdrop-blur sm:p-8 lg:p-10"
+              aria-busy={status === "sending"}
+              className="min-w-0 rounded-[28px] border border-[#dde6dc] bg-white p-7 sm:p-10"
             >
-              <div className="grid gap-5 sm:grid-cols-2">
+              <p className="eyebrow">Let's work together</p>
+              <h2 className="mt-3 text-card-title font-semibold">Request enterprise access</h2>
+              <div className="mt-8 grid gap-x-5 gap-y-6 sm:grid-cols-2">
                 <label className="text-sm font-semibold">
                   Preferred plan
                   <select
@@ -200,6 +208,7 @@ export default function EnterpriseContactPage() {
                   Phone
                   <input
                     className={fieldClass}
+                    type="tel"
                     autoComplete="tel"
                     value={values.phone}
                     onChange={(event) => update("phone", event.target.value)}
@@ -303,21 +312,22 @@ export default function EnterpriseContactPage() {
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
-                className="mt-7 inline-flex h-13 w-full cursor-pointer items-center justify-center rounded-xl bg-[#007d21] px-7 text-sm font-bold text-white transition hover:bg-[#00651b] disabled:cursor-not-allowed disabled:opacity-65"
+                className="button-primary mt-8 w-full"
               >
                 {status === "sending"
                   ? "Submitting request..."
                   : status === "sent"
                     ? "Request received"
                     : "Request enterprise access"}
+                {status === "sent" ? <Check className="size-4" aria-hidden="true" /> : <ArrowUpRight className="size-4" aria-hidden="true" />}
               </button>
               {status === "sent" ? (
-                <p className="mt-4 text-sm font-medium text-[#007d21]" role="status">
+                <p className="mt-4 text-body text-[#007d21]" role="status">
                   Thank you. The Ontiver team will review your request and follow up by email.
                 </p>
               ) : null}
               {error ? (
-                <p className="mt-4 text-sm text-red-600" role="alert">
+                <p className="mt-4 text-body text-red-700" role="alert">
                   {error}
                 </p>
               ) : null}

@@ -22,7 +22,7 @@ export const enterpriseFooterGroups: FooterGroup[] = [
       { label: "Features", href: "/enterprise#features" },
       { label: "Pricing", href: "/enterprise/pricing" },
       { label: "Developers", href: "https://docs.ontiver.com/", external: true },
-      { label: "Security & Trust", href: "/enterprise#security" },
+      { label: "Security & Trust", href: "/security" },
       { label: "Use Cases", href: "/enterprise#cases" },
     ],
   },
@@ -66,7 +66,7 @@ export const individualFooterGroups: FooterGroup[] = [
       { label: "How It Works", href: "/#solution" },
       { label: "Identity Benefits", href: "/#features" },
       { label: "Where It Helps", href: "/#cases" },
-      { label: "Security & Privacy", href: "/#security" },
+      { label: "Security & Privacy", href: "/security" },
     ],
   },
   {

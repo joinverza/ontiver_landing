@@ -8,3 +8,5 @@ export { default as PageLayout } from "./PageLayout";
 export { default as PricingPage } from "./PricingPage";
 export { default as SupportPage } from "./SupportPage";
 export { default as UseCasePage } from "./UseCasePage";
+export { default as PlatformPage } from "./PlatformPage";
+export { default as SecurityPage } from "./SecurityPage";

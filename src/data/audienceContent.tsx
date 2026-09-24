@@ -44,7 +44,7 @@ export const individualSolutionSteps: SolutionStep[] = [
   {
     icon: "/assets/verify.svg",
     title: "Verify once",
-    para: "Complete a trusted identity check once instead of repeating the same upload every time.",
+    para: "Complete an identity check and reuse the resulting proof where a participating service accepts it.",
   },
   {
     icon: "/assets/proof.svg",
@@ -152,7 +152,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
   {
     id: "banking",
     title: "Banking & Fintech",
-    description: "Open and use financial services with less repeated verification.",
+    description: "Explore identity-proof reuse in supported financial-service journeys.",
     imageUrl: "/assets/fintech.png",
     className: "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -170,7 +170,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
   {
     id: "marketplaces",
     title: "Marketplaces",
-    description: "Build confidence when buying, selling, or joining a platform.",
+    description: "Explore permission-led verification with participating marketplaces.",
     imageUrl: "/assets/marketplaces.png",
     className:
       "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
@@ -204,7 +204,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
   {
     id: "everyday",
     title: "Everyday Services",
-    description: "Carry trusted identity into more of the services you use.",
+    description: "Reuse proof where a participating service accepts Ontiver.",
     imageUrl: "/assets/teams.png",
     className: "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
@@ -231,7 +231,7 @@ export const individualSecurityFeatures: SecurityFeature[] = [
     image: "/assets/octagon.png",
     title: "A clear activity history",
     eyebrow: "Visibility",
-    metric: "24/7",
+    metric: "History",
     signal: "See how your identity is used.",
     description: "Keep verification and sharing activity together instead of guessing where your data went.",
     chips: ["Verification", "Sharing", "Status"],
@@ -255,10 +255,10 @@ export const individualSecurityFeatures: SecurityFeature[] = [
     image: "/assets/binary.png",
     title: "Trusted proof that moves with you",
     eyebrow: "Portability",
-    metric: "1x",
-    signal: "Verify once, reuse with consent.",
-    description: "Move through supported services without rebuilding your identity each time.",
-    chips: ["Portable proof", "Faster access", "Control"],
+    metric: "Reuse",
+    signal: "Reuse accepted proof with consent.",
+    description: "Reduce repeated identity collection where a supported service can accept an existing proof.",
+    chips: ["Portable proof", "Supported services", "Control"],
     flow: ["Verify", "Keep", "Reuse"],
     primaryAction: { label: "Join waitlist", href: "/#join" },
     secondaryAction: { label: "Contact", href: "/contact" },

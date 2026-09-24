@@ -1,114 +1,40 @@
 import { Check } from "lucide-react";
-import {
-  pricingCardTones,
-  type BillingCycle,
-  type Plan,
-} from "../../data/pricing";
+import { type BillingCycle, type Plan } from "../../data/pricing";
 import { formatPrice } from "../../lib/pricing";
-import MagneticFillButton from "../ui/MagneticFillButton";
 
 type PricingCardProps = {
   plan: Plan;
-  index: number;
   billingCycle: BillingCycle;
   onPlanAction: () => void;
 };
 
-export default function PricingCard({
-  plan,
-  index,
-  billingCycle,
-  onPlanAction,
-}: PricingCardProps) {
+export default function PricingCard({ plan, billingCycle, onPlanAction }: PricingCardProps) {
   const price = billingCycle === "annual" ? plan.annual : plan.monthly;
-  const isDark = plan.highlighted;
+  const highlighted = plan.highlighted;
 
   return (
-    <article
-      className={`pricing-card relative flex h-full min-w-0 snap-start flex-col rounded-2xl border border-[#00291b]/15 px-5 py-6 opacity-0 sm:px-7 sm:py-8 lg:px-8 lg:py-9 ${
-        isDark
-          ? "pricing-card-growth border-light-primary/40 bg-[#F8FFF8] pt-7 text-[#00291B] sm:pt-10 lg:mt-3 lg:pt-12"
-          : `${pricingCardTones[index]} text-black`
-      }`}
-      data-card-index={index}
-      data-highlighted={isDark ? "true" : "false"}
-      data-plan={plan.name.toLowerCase()}
-    >
-      {isDark ? (
-        <span
-          className="growth-ring pointer-events-none absolute inset-0 rounded-lg border border-light-primary/40 opacity-0"
-          aria-hidden="true"
-        />
-      ) : null}
-
-      <div>
-        <h2
-          className={`text-card-title font-bold tracking-normal ${
-            isDark
-              ? "text-[#00291B]"
-              : index === 1
-                ? "bg-gradient-to-r from-dark-primary to-light-primary bg-clip-text text-transparent"
-                : "text-black"
-          }`}
-        >
-          {plan.name}
-        </h2>
-        <p className="mt-1.5 text-body text-black/55">
-          {plan.description}
-        </p>
+    <article data-scroll-reveal data-plan={plan.name.toLowerCase()} className={`flex min-w-0 scroll-mt-28 flex-col rounded-[24px] border p-6 ${highlighted ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#dce6d9] bg-white text-[#002d0e]"}`}>
+      <div className="mb-5 flex min-h-6 items-center justify-between gap-2">
+        <span className={`text-meta font-semibold uppercase tracking-[0.12em] ${highlighted ? "text-[#b8e5a7]" : "text-[#007d21]"}`}>{highlighted ? "Featured plan" : "Ontiver"}</span>
+        {highlighted ? <span aria-hidden="true" className="size-2 rounded-full bg-[#b8e5a7]" /> : null}
       </div>
-
-      <div className="mt-5 sm:mt-6">
-        <div className="flex items-baseline gap-1.5">
-          <span
-            className="pricing-price text-[32px] font-bold leading-none tracking-[0] text-black sm:text-[44px]"
-            data-monthly={plan.monthly ?? ""}
-            data-annual={plan.annual ?? ""}
-            data-custom={plan.monthly === null ? "true" : "false"}
-          >
-            {formatPrice(price)}
-          </span>
-          {plan.monthly !== null ? (
-            <span className="text-sm font-medium text-black/55">/mo</span>
-          ) : null}
-        </div>
-        <p className="mt-1.5 text-meta font-medium text-black/45 sm:mt-2">
-          {plan.period}
-        </p>
+      <h2 className="text-card-title font-semibold">{plan.name}</h2>
+      <p className={`mt-3 min-h-[84px] text-body ${highlighted ? "text-white/70" : "text-[#637060]"}`}>{plan.description}</p>
+      <div className="my-7">
+        <p className="text-[36px] font-semibold leading-none tracking-[-0.04em]">{formatPrice(price)}</p>
+        <p className={`mt-3 text-meta ${highlighted ? "text-white/60" : "text-[#637060]"}`}>{plan.period}{billingCycle === "annual" && price !== null && price > 0 ? ", billed annually" : ""}</p>
       </div>
-
-      <div className="mb-4 space-y-1.5 sm:mb-5 sm:space-y-2">
-        {plan.metric ? (
-          <div className="pricing-feature flex min-h-6 translate-y-full items-start gap-2.5 opacity-0 sm:min-h-7 sm:gap-3">
-            <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-body text-black/75">
-              <span className="feature-count" data-value={plan.metric.value}>
-                0
-              </span>
-              {plan.metric.suffix}
-            </span>
-          </div>
-        ) : null}
-        {plan.features.map((feature) => (
-          <div
-            key={feature}
-            className="pricing-feature flex min-h-6 translate-y-full items-start gap-2.5 opacity-0 sm:min-h-7 sm:gap-3"
-          >
-            <Check className="mt-0.5 size-4 shrink-0 text-[#009311]" />
-            <span className="text-body text-black/72">
-              {feature}
-            </span>
-          </div>
-        ))}
+      <button type="button" onClick={onPlanAction} className={`mb-7 inline-flex min-h-12 cursor-pointer items-center justify-center whitespace-nowrap rounded-full px-3 text-body font-medium transition-colors ${highlighted ? "bg-[#c7edb3] text-[#002d0e] hover:bg-white" : "bg-[#edf5eb] text-[#002d0e] hover:bg-[#dfeeda]"}`}>
+        {plan.cta}
+      </button>
+      <div className={`border-t pt-6 ${highlighted ? "border-white/15" : "border-[#e4eae0]"}`}>
+        {plan.metric ? <p className="mb-5 text-body font-semibold">{plan.metric.value.toLocaleString()}{plan.metric.suffix}</p> : null}
+        <ul className="space-y-3">
+          {plan.features.map((feature) => (
+            <li key={feature} className={`flex items-start gap-2 text-body ${highlighted ? "text-white/75" : "text-[#637060]"}`}><Check size={16} className={`mt-1 shrink-0 ${highlighted ? "text-[#b8e5a7]" : "text-[#009311]"}`} />{feature}</li>
+          ))}
+        </ul>
       </div>
-
-      <MagneticFillButton
-        variant={isDark ? "green" : "light"}
-        className="pricing-cta mt-5 h-11 w-full rounded-lg px-5 text-sm font-semibold sm:mt-7 sm:h-12"
-        onClick={onPlanAction}
-      >
-        <span className="pricing-cta-text">{plan.cta}</span>
-      </MagneticFillButton>
     </article>
   );
 }

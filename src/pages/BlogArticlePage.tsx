@@ -1,37 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { motion } from "framer-motion";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { BarChart3, Clock3 } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, ArrowUpRight, Clock3, Quote } from "lucide-react";
 import ArticleSidebar from "../components/blog/ArticleSidebar";
 import ArticleSocialRail from "../components/blog/ArticleSocialRail";
-import { ArticleGridCard } from "../components/blog/BlogCards";
-import Footer from "../components/sections/Footer/Footer";
-import LinkArrow from "../components/ui/LinkArrow";
+import { ArticleGridCard, ArticleImage } from "../components/blog/BlogCards";
+import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import { blogArticles, getBlogArticleBySlug } from "../data/blog";
 import { subscribeToNewsletter } from "../lib/landingApi";
 
 type SubscribeState = "idle" | "loading" | "done" | "error";
 
-function formatCompact(value: number) {
-  return new Intl.NumberFormat("en-US", {
-    notation: value >= 1000 ? "compact" : "standard",
-    maximumFractionDigits: 1,
-  }).format(value);
-}
-
 export default function BlogArticlePage() {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const article = getBlogArticleBySlug(slug) ?? blogArticles[0];
-  const contentRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const viewsRef = useRef<HTMLParagraphElement>(null);
-  const sharesRef = useRef<HTMLParagraphElement>(null);
-  const socialRef = useRef<HTMLParagraphElement>(null);
+  const bodyRef = useRef<HTMLElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
@@ -40,10 +22,7 @@ export default function BlogArticlePage() {
   const [emailError, setEmailError] = useState(false);
   const [subscribeState, setSubscribeState] = useState<SubscribeState>("idle");
 
-  const related = useMemo(() => {
-    if (!article) return [];
-    return blogArticles.filter((item) => item.slug !== article.slug).slice(0, 3);
-  }, [article]);
+  const related = useMemo(() => blogArticles.filter((item) => item.slug !== article.slug).slice(0, 3), [article]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -51,124 +30,31 @@ export default function BlogArticlePage() {
       const rect = bodyRef.current.getBoundingClientRect();
       const total = bodyRef.current.scrollHeight - window.innerHeight * 0.45;
       const distance = Math.max(0, -rect.top);
-      const next = total <= 0 ? 0 : Math.min(100, (distance / total) * 100);
-      setProgress(next);
+      setProgress(total <= 0 ? 0 : Math.min(100, (distance / total) * 100));
       setShowProgress(rect.top < 12 && rect.bottom > window.innerHeight * 0.25);
-
-      if (heroImageRef.current) {
-        heroImageRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-      }
     };
-
     onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useGSAP(
-    () => {
-      if (!contentRef.current || !article) return;
-
-      const counters = [
-        { ref: viewsRef.current, value: article.views },
-        { ref: sharesRef.current, value: article.shares },
-        { ref: socialRef.current, value: 425 },
-      ];
-
-      counters.forEach(({ ref, value }) => {
-        if (!ref) return;
-        const counter = { val: 0 };
-        gsap.to(counter, {
-          val: value,
-          duration: 1.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 80%",
-            once: true,
-          },
-          onUpdate: () => {
-            ref.textContent = formatCompact(Math.round(counter.val));
-          },
-        });
-      });
-
-      gsap.fromTo(
-        ".article-sidebar",
-        { opacity: 0, x: 20 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          ease: "power3.out",
-          delay: 0.4,
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".article-follow-icon",
-        { opacity: 0, scale: 0 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.35,
-          stagger: 0.05,
-          ease: "back.out(2)",
-          delay: 0.65,
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
-
-      gsap.utils.toArray<HTMLElement>(".article-body-block").forEach((block) => {
-        gsap.fromTo(
-          block,
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: block,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
-      });
-    },
-    { scope: contentRef, dependencies: [article?.slug] }
-  );
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [article.slug]);
 
   const subscribe = async () => {
+    if (subscribeState === "loading" || subscribeState === "done") return;
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!valid || !consent) {
       setEmailError(true);
-      if (emailRef.current) {
-        gsap.fromTo(
-          emailRef.current,
-          { x: 0 },
-          { x: -4, duration: 0.08, repeat: 3, yoyo: true, ease: "power2.inOut" }
-        );
-      }
-      window.setTimeout(() => setEmailError(false), 350);
+      if (!valid) emailRef.current?.focus();
       return;
     }
-
+    setEmailError(false);
     setSubscribeState("loading");
     try {
       await subscribeToNewsletter(email);
       setSubscribeState("done");
-      window.setTimeout(() => setSubscribeState("idle"), 2000);
     } catch {
       setSubscribeState("error");
       setEmailError(true);
@@ -176,139 +62,55 @@ export default function BlogArticlePage() {
   };
 
   return (
-    <main className="bg-white text-[#111827]">
-      <motion.div
-        ref={progressRef}
-        className="fixed left-0 top-0 z-[200] h-0.5 bg-[#009311]"
-        animate={{ width: `${progress}%`, opacity: showProgress ? 1 : 0 }}
-        transition={{ width: { duration: 0.05, ease: "linear" }, opacity: { duration: 0.2 } }}
-      />
-
-      <section className="relative h-[300px] w-full overflow-hidden sm:h-[420px]">
-        <motion.div
-          ref={heroImageRef}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${article.image})` }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        />
-        <motion.div
-          className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.15)_0%,rgba(0,0,0,0.65)_100%)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-        />
-
-        <motion.button
-          className="absolute left-4 top-[92px] inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/30 bg-white/15 px-3 py-1.5 text-xs font-semibold text-white transition-colors duration-150 hover:bg-white/25 sm:left-6 sm:top-[120px] sm:px-4 sm:py-2 sm:text-sm md:left-20"
-          type="button"
-          onClick={() => navigate("/blogs")}
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
-        >
-          <span aria-hidden="true">←</span>
-          Back
-        </motion.button>
-
-        <div className="absolute bottom-6 left-4 right-4 max-w-[580px] text-white sm:bottom-8 sm:left-6 md:left-20">
-          <motion.h1
-            className="text-page-hero font-bold tracking-normal [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {article.title}
-          </motion.h1>
-          <motion.div
-            className="mt-3 flex flex-wrap items-center gap-3 text-meta text-white/80"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.85, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <span>by {article.author}</span>
-            <span>—</span>
-            <span className="inline-flex items-center gap-1.5">
-              <Clock3 size={14} />
-              {article.readTime}
-            </span>
-            <span>—</span>
-            <span className="inline-flex items-center gap-1.5">
-              <BarChart3 size={14} />
-              {formatCompact(article.views)} views
-            </span>
-          </motion.div>
-        </div>
-      </section>
-
-      <section ref={contentRef} className="px-5 py-12 sm:px-6 sm:py-14">
-        <div className="mx-auto grid max-w-[1040px] gap-8 lg:grid-cols-[80px_minmax(0,580px)_minmax(220px,260px)] lg:gap-10">
-          <ArticleSocialRail
-            viewsRef={viewsRef}
-            sharesRef={sharesRef}
-            socialRef={socialRef}
-          />
-
-          <article ref={bodyRef} className="max-w-[580px] min-w-0">
-            {article.body.map((block, index) =>
-              block.type === "quote" ? (
-                <blockquote
-                  key={index}
-                  className="article-body-block my-8 border-l-[3px] border-[#009311] pl-5 text-body italic text-black/60"
-                >
-                  {block.text}
-                </blockquote>
-              ) : (
-                <p
-                  key={index}
-                  className="article-body-block mb-6 text-body text-[#111827]"
-                >
-                  {block.text}
-                </p>
-              )
-            )}
-          </article>
-
-          <ArticleSidebar
-            emailRef={emailRef}
-            email={email}
-            emailError={emailError}
-            consent={consent}
-            subscribeState={subscribeState}
-            onEmailChange={setEmail}
-            onConsentChange={setConsent}
-            onSubscribe={subscribe}
-          />
-        </div>
-      </section>
-
-      <section className="px-5 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-[1180px]">
-          <motion.h2
-            className="mb-8 text-section font-bold text-[#05150E]"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            Related Articles
-          </motion.h2>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {related.map((item, index) => (
-              <ArticleGridCard key={item.slug} article={item} index={index} />
-            ))}
+    <main className="bg-white text-[#002d0e]">
+      <span aria-hidden="true" className="fixed left-0 top-0 z-[200] h-0.5 bg-[#009311]" style={{ width: `${progress}%`, opacity: showProgress ? 1 : 0 }} />
+      <section className="page-intro">
+        <div className="site-container">
+          <Link to="/blogs" className="inline-flex items-center gap-2 text-sm font-medium text-[#007d21] hover:underline"><ArrowLeft size={16} aria-hidden="true" /> Back to all resources</Link>
+          <div className="mt-9 max-w-[1000px]">
+            <p className="eyebrow">{article.category}</p>
+            <h1 className="mt-5 text-page-hero font-semibold tracking-[-0.045em]">{article.title}</h1>
+            <p className="mt-6 max-w-[740px] text-subtitle text-[#002d0e]/65">{article.excerpt}</p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-meta text-[#002d0e]/60">
+              <span className="font-semibold text-[#002d0e]">by {article.author}</span>
+              <span>{article.date}</span>
+              <span className="inline-flex items-center gap-1.5"><Clock3 size={15} aria-hidden="true" />{article.readTime}</span>
+            </div>
+          </div>
+          <div className="mt-10 aspect-[1.6] overflow-hidden rounded-[24px] bg-[#dcebd7] sm:mt-12 sm:aspect-[2.5] sm:rounded-[32px]">
+            <ArticleImage article={article} lazy={false} />
           </div>
         </div>
       </section>
-
-      <section className="px-6 pb-20 text-center">
-        <LinkArrow href="/blogs" className="mx-auto [--link-arrow-min-width:230px]">
-          Back to all resources
-        </LinkArrow>
+      <section className="section-space">
+        <div className="site-container grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14 xl:grid-cols-[64px_minmax(0,1fr)_300px] xl:gap-12">
+          <ArticleSocialRail />
+          <article ref={bodyRef} className="min-w-0 max-w-[720px]">
+            {article.body.map((block, index) => block.type === "quote" ? (
+              <blockquote key={index} className="my-9 rounded-r-[24px] border-l-[3px] border-[#009311] bg-[#edf5eb] p-6 sm:p-8">
+                <Quote size={26} className="mb-4 text-[#009311]" aria-hidden="true" />
+                <p className="text-card-title font-medium tracking-[-0.02em] text-[#002d0e]">{block.text}</p>
+              </blockquote>
+            ) : <p key={index} className="mb-6 text-body leading-[1.9] text-[#002d0e]/75">{block.text}</p>)}
+            <div className="mt-10 border-t border-[#dde6dc] pt-6">
+              <Link className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]" to="/blogs"><ArrowLeft size={16} aria-hidden="true" /> Back to all resources</Link>
+            </div>
+          </article>
+          <ArticleSidebar emailRef={emailRef} email={email} emailError={emailError} consent={consent} subscribeState={subscribeState} onEmailChange={setEmail} onConsentChange={setConsent} onSubscribe={subscribe} />
+        </div>
       </section>
-
-      <Footer />
+      <section className="section-space bg-[#f7f7f7]">
+        <div className="site-container">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div><p className="eyebrow">Keep exploring</p><h2 className="section-heading mt-3">Related Articles</h2></div>
+            <Link className="button-secondary" to="/blogs">All resources <ArrowUpRight size={17} aria-hidden="true" /></Link>
+          </div>
+          <div className="grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            {related.map((item, index) => <ArticleGridCard key={item.slug} article={item} index={index} />)}
+          </div>
+        </div>
+      </section>
+      <CurtainFooter />
     </main>
   );
 }

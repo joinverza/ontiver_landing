@@ -45,7 +45,7 @@ export const contactInitialValues: Record<ContactFormField, string> = {
 
 export const contactRows = [
   { icon: "/assets/sms.svg", label: "hello@ontiver.com" },
-  { icon: "/assets/clock-circle.svg", label: "We usually reply within two business days." },
+  { icon: "/assets/clock-circle.svg", label: "Send your question and we will follow up by email." },
   { icon: "/assets/consent.svg", label: "Never include passwords or sensitive identity documents." },
 ];
 

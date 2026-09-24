@@ -11,6 +11,41 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ontiver.com/security</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/platform/identity-sources</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/platform/verification-engine</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/platform/workflow-engine</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/platform/intelligence</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/platform/consent-and-privacy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/platform/identity-proofs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ontiver.com/blogs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

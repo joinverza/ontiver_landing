@@ -6,14 +6,19 @@ export type NavLink = {
 
 export const individualNavLinks: NavLink[] = [
   {
-    name: "Home",
-    to: "/",
-    description: "Back to the landing page",
+    name: "How it works",
+    to: "/#solution",
+    description: "Your verification and sharing journey",
   },
   {
-    name: "Resources/Blogs",
+    name: "Resources",
     to: "/blogs",
     description: "Guides and identity insights",
+  },
+  {
+    name: "Trust",
+    to: "/security",
+    description: "Privacy, permission, and your proof",
   },
   {
     name: "Support",
@@ -24,9 +29,9 @@ export const individualNavLinks: NavLink[] = [
 
 export const enterpriseNavLinks: NavLink[] = [
   {
-    name: "Enterprise",
-    to: "/enterprise",
-    description: "Enterprise identity infrastructure",
+    name: "Platform",
+    to: "/enterprise#features",
+    description: "Explore the six layers of identity infrastructure",
   },
   {
     name: "Pricing",
@@ -34,9 +39,14 @@ export const enterpriseNavLinks: NavLink[] = [
     description: "Plans and savings calculator",
   },
   {
-    name: "Resources/Blogs",
+    name: "Resources",
     to: "/blogs",
     description: "Identity and compliance insights",
+  },
+  {
+    name: "Trust",
+    to: "/security",
+    description: "Consent, data handling, and security review",
   },
   {
     name: "Support",

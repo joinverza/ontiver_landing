@@ -27,12 +27,9 @@ export type UseCasePageDetail = {
   headline: string;
   intro: string;
   imageUrl: string;
-  stats: Array<{
-    value: number;
-    display: string;
+  evaluationMeasures: Array<{
     label: string;
-    prefix?: string;
-    suffix?: string;
+    description: string;
   }>;
   challenge: {
     label: string;
@@ -42,9 +39,9 @@ export type UseCasePageDetail = {
   };
   workflow: Array<{ title: string; description: string }>;
   capabilities: Array<{ title: string; description: string }>;
-  quote: {
-    text: string;
-    attribution: string;
+  pilotFocus: {
+    title: string;
+    description: string;
   };
   outcomes: string[];
   cta: string;
@@ -141,7 +138,7 @@ const pageWorkflow = [
   {
     title: "Verify the identity packet",
     description:
-      "Run document, biometric, watchlist, and risk checks through one controlled workflow.",
+      "Start with the identity checks agreed for the pilot. Confirm additional document, biometric, or screening coverage before including it.",
   },
   {
     title: "Reuse only with permission",
@@ -151,7 +148,7 @@ const pageWorkflow = [
   {
     title: "Report every decision",
     description:
-      "Keep teams audit-ready with immutable logs, exports, and operational dashboards.",
+      "Review verification outcomes, consent events, and manual-review handoffs together. Agree evidence and export requirements for the pilot.",
   },
 ];
 
@@ -164,17 +161,17 @@ const pageCapabilities = [
   {
     title: "Consent ledger",
     description:
-      "Every share, reuse, revocation, and exception is stored as evidence.",
+      "Keep sharing and reuse decisions connected to the user's permission history.",
   },
   {
     title: "Risk orchestration",
     description:
-      "Combine KYC, AML, sanctions, and custom checks without scattered vendors.",
+      "Scope identity checks and review rules together, with additional screening subject to agreed provider coverage.",
   },
   {
     title: "Audit dashboards",
     description:
-      "Turn verification activity into reports compliance and operations can trust.",
+      "Review verification activity and define the reporting evidence your team needs to evaluate.",
   },
 ];
 
@@ -190,11 +187,11 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     intro:
       "Ontiver helps financial products verify once, store trusted proof, and reuse identity records only when the user consents.",
     imageUrl: "/assets/use-cases/fintechs.svg",
-    stats: [
-      { value: 3, display: "3x", label: "faster KYC", suffix: "x" },
-      { value: 98, display: "98%", label: "pass rate visibility", suffix: "%" },
-      { value: 0, display: "0", label: "repeat re-verifications" },
-      { value: 24, display: "24/7", label: "audit access", suffix: "/7" },
+    evaluationMeasures: [
+      { label: "Verification turnaround", description: "Time from submission to a completed check." },
+      { label: "Completion rate", description: "Completed and failed checks within the agreed pilot scope." },
+      { label: "Repeat verification", description: "Returning journeys that still require another check." },
+      { label: "Consent decisions", description: "Approved and declined requests to reuse identity proof." },
     ],
     challenge: {
       label: "The Challenge",
@@ -205,16 +202,16 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     },
     workflow: pageWorkflow,
     capabilities: pageCapabilities,
-    quote: {
-      text: "Reusable identity changed verification from a blocker into a trust layer we can build around.",
-      attribution: "Product Lead, African Fintech Network",
+    pilotFocus: {
+      title: "Start with one onboarding journey.",
+      description: "Agree a verification workflow, capture a baseline, and evaluate completion, turnaround, and consent before extending reuse across more journeys.",
     },
     outcomes: [
       "Reduce repeat KYC friction across returning users.",
       "Keep compliance evidence tied to each consent event.",
       "Launch new financial journeys without rebuilding identity checks.",
     ],
-    cta: "Ready to eliminate re-verification costs?",
+    cta: "Explore a focused fintech verification pilot.",
   },
   "digital-lenders": {
     id: "digital-lenders",
@@ -227,11 +224,11 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     intro:
       "Ontiver gives lending teams a consent-led identity layer for onboarding, repeat borrowing, and risk review.",
     imageUrl: "/assets/use-cases/lenders.svg",
-    stats: [
-      { value: 60, display: "60%", label: "less manual review", suffix: "%" },
-      { value: 4, display: "4", label: "checks in one flow" },
-      { value: 2, display: "2min", label: "median verification", suffix: "min" },
-      { value: 100, display: "100%", label: "consent history", suffix: "%" },
+    evaluationMeasures: [
+      { label: "Manual-review rate", description: "Borrower checks that require a reviewer decision." },
+      { label: "Verification volume", description: "Completed checks during the agreed pilot period." },
+      { label: "Decision turnaround", description: "Time between a verification request and its outcome." },
+      { label: "Consent coverage", description: "Reuse decisions with a recorded permission event." },
     ],
     challenge: {
       label: "The Challenge",
@@ -242,16 +239,16 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     },
     workflow: pageWorkflow,
     capabilities: pageCapabilities,
-    quote: {
-      text: "The strongest improvement was not just speed. It was knowing why every borrower passed or failed.",
-      attribution: "Risk Operations Manager, Digital Credit Platform",
+    pilotFocus: {
+      title: "Evaluate borrower checks before extending the flow.",
+      description: "Scope a borrower-verification pilot around agreed identity checks, review handoffs, and outcome evidence. Compare turnaround and review rates with the starting baseline.",
     },
     outcomes: [
       "Combine verification, consent, and AML evidence in one borrower record.",
       "Reduce manual review with clearer pass/fail signals.",
       "Reuse verified identity for repeat loans with permission.",
     ],
-    cta: "Ready to verify borrowers without slowing approvals?",
+    cta: "Scope a borrower-verification pilot with our team.",
   },
   marketplaces: {
     id: "marketplaces",
@@ -264,11 +261,11 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     intro:
       "Ontiver helps marketplaces verify the people and businesses behind listings, payments, and high-trust interactions.",
     imageUrl: "/assets/use-cases/marketplaces.svg",
-    stats: [
-      { value: 2, display: "2-sided", label: "trust coverage", suffix: "-sided" },
-      { value: 40, display: "40%", label: "fewer disputes", suffix: "%" },
-      { value: 1, display: "1", label: "reusable trust profile" },
-      { value: 100, display: "100%", label: "permission-led sharing", suffix: "%" },
+    evaluationMeasures: [
+      { label: "Seller verification", description: "Completed identity checks in the chosen seller journey." },
+      { label: "Review handoffs", description: "Requests that need an operations-team decision." },
+      { label: "Time to integrate", description: "Time from test credentials to a successful verification." },
+      { label: "Disclosure decisions", description: "Approved and declined proof-sharing requests." },
     ],
     challenge: {
       label: "The Challenge",
@@ -279,16 +276,16 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     },
     workflow: pageWorkflow,
     capabilities: pageCapabilities,
-    quote: {
-      text: "We could finally separate high-trust users from risky activity without punishing everyone with the same friction.",
-      attribution: "Marketplace Operations Lead",
+    pilotFocus: {
+      title: "Begin with a defined seller-verification flow.",
+      description: "Choose a participant group and an identity-check workflow. Evaluate completed checks, operational handoffs, and consent before expanding to more marketplace journeys.",
     },
     outcomes: [
       "Verify vendors, buyers, and operators with the same trust framework.",
       "Reuse approved records across repeat transactions.",
       "Give operations teams cleaner dispute and compliance evidence.",
     ],
-    cta: "Ready to make marketplace trust reusable?",
+    cta: "Discuss a marketplace identity pilot.",
   },
   "hr-platforms": {
     id: "hr-platforms",
@@ -301,11 +298,11 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     intro:
       "Ontiver supports worker verification, credential reuse, and audit-ready onboarding for modern HR teams.",
     imageUrl: "/assets/use-cases/hr-platforms.svg",
-    stats: [
-      { value: 48, display: "48hr", label: "faster onboarding", suffix: "hr" },
-      { value: 1, display: "1", label: "verified worker profile" },
-      { value: 75, display: "75%", label: "less repeated data entry", suffix: "%" },
-      { value: 100, display: "100%", label: "consent trail", suffix: "%" },
+    evaluationMeasures: [
+      { label: "Onboarding turnaround", description: "Time spent in the agreed worker-verification step." },
+      { label: "Completed checks", description: "Candidate and worker verification outcomes." },
+      { label: "Repeat requests", description: "Identity information requested again in repeat journeys." },
+      { label: "Consent decisions", description: "Worker approval and denial of proof-sharing requests." },
     ],
     challenge: {
       label: "The Challenge",
@@ -316,16 +313,16 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     },
     workflow: pageWorkflow,
     capabilities: pageCapabilities,
-    quote: {
-      text: "Ontiver made verified worker data portable without taking control away from the person.",
-      attribution: "People Operations Director",
+    pilotFocus: {
+      title: "Focus on the identity step in onboarding.",
+      description: "Evaluate candidate or worker verification within one hiring workflow. Define the permissions, review steps, and baseline measurements with the team before starting.",
     },
     outcomes: [
       "Cut duplicated identity checks across hiring journeys.",
       "Give workers control over verification reuse.",
       "Keep onboarding evidence ready for internal and external review.",
     ],
-    cta: "Ready to hire verified workers in hours, not days?",
+    cta: "Explore a candidate-verification pilot.",
   },
   schools: {
     id: "schools",
@@ -338,11 +335,11 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     intro:
       "Ontiver helps schools and credential platforms verify identities once and attach consent to every future reuse.",
     imageUrl: "/assets/use-cases/schools.svg",
-    stats: [
-      { value: 1, display: "1", label: "student trust record" },
-      { value: 80, display: "80%", label: "less duplicate collection", suffix: "%" },
-      { value: 3, display: "3", label: "credential workflows" },
-      { value: 100, display: "100%", label: "auditable consent", suffix: "%" },
+    evaluationMeasures: [
+      { label: "Completed checks", description: "Applicant identity checks within an agreed workflow." },
+      { label: "Repeat collection", description: "Information requested again across supported journeys." },
+      { label: "Review turnaround", description: "Time needed to resolve a verification request." },
+      { label: "Consent coverage", description: "Proof-sharing decisions with a permission record." },
     ],
     challenge: {
       label: "The Challenge",
@@ -353,16 +350,16 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     },
     workflow: pageWorkflow,
     capabilities: pageCapabilities,
-    quote: {
-      text: "The identity record became part of the student journey, not another form they had to fight through.",
-      attribution: "Registrar, Digital Learning Institution",
+    pilotFocus: {
+      title: "Explore one student-verification journey.",
+      description: "Discuss a scoped admissions or credential-holder workflow and confirm the supported identity checks. Define evidence and consent requirements before considering broader education use.",
     },
     outcomes: [
       "Verify students and credential holders once.",
       "Reuse identity proof for exams, records, and certificates with consent.",
       "Maintain defensible logs for academic and operational review.",
     ],
-    cta: "Ready to make student identity reusable?",
+    cta: "Discuss an education verification workflow.",
   },
   "compliance-teams": {
     id: "compliance-teams",
@@ -375,11 +372,11 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     intro:
       "Ontiver turns identity events into a clear operational record for audits, reviews, and policy controls.",
     imageUrl: "/assets/teams.png",
-    stats: [
-      { value: 100, display: "100%", label: "event traceability", suffix: "%" },
-      { value: 5, display: "5", label: "export-ready reports" },
-      { value: 0, display: "0", label: "orphaned consent events" },
-      { value: 24, display: "24/7", label: "review access", suffix: "/7" },
+    evaluationMeasures: [
+      { label: "Event traceability", description: "Sampled decisions with an associated event record." },
+      { label: "Report completeness", description: "Evidence available against the agreed reporting scope." },
+      { label: "Consent linkage", description: "Reuse decisions connected to recorded permission." },
+      { label: "Review turnaround", description: "Time spent investigating an identity decision." },
     ],
     challenge: {
       label: "The Challenge",
@@ -390,15 +387,15 @@ export const useCasePageDetails: Record<string, UseCasePageDetail> = {
     },
     workflow: pageWorkflow,
     capabilities: pageCapabilities,
-    quote: {
-      text: "The audit conversation changed because every identity decision had context, consent, and a timeline.",
-      attribution: "Head of Compliance, Regulated Platform",
+    pilotFocus: {
+      title: "Define the evidence your reviewers need.",
+      description: "Agree a limited set of verification and consent events to evaluate. Review their traceability and reporting coverage before deciding on a broader compliance workflow.",
     },
     outcomes: [
       "Centralize consent, verification, and risk evidence.",
       "Export cleaner reports for internal and regulatory review.",
       "Keep policy controls connected to real customer events.",
     ],
-    cta: "Ready to make compliance evidence easier to trust?",
+    cta: "Scope an identity-evidence review with our team.",
   },
 };

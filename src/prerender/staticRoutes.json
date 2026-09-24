@@ -1,6 +1,13 @@
 [
   {"path": "/"},
   {"path": "/enterprise"},
+  {"path": "/security"},
+  {"path": "/enterprise/platform/identity-sources"},
+  {"path": "/enterprise/platform/verification-engine"},
+  {"path": "/enterprise/platform/workflow-engine"},
+  {"path": "/enterprise/platform/intelligence"},
+  {"path": "/enterprise/platform/consent-and-privacy"},
+  {"path": "/enterprise/platform/identity-proofs"},
   {"path": "/blogs"},
   {"path": "/blogs/why-identity-verification-should-be-reusable"},
   {"path": "/blogs/cutting-kyc-costs-without-cutting-assurance"},

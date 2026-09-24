@@ -1,7 +1,6 @@
 import { FormEvent, type ReactNode, useCallback, useEffect, useState } from "react";
 import {
   CheckCircle2,
-  Clock3,
   ExternalLink,
   LifeBuoy,
   LockKeyhole,
@@ -14,7 +13,6 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
-import AuroraBadge from "../components/ui/AuroraBadge";
 import {
   createPublicSupportRequest,
   getPublicSupportConversation,
@@ -43,17 +41,17 @@ const supportPrinciples = [
   {
     icon: MessageCircle,
     title: "One conversation",
-    copy: "Replies stay together on this device and are also sent by email.",
+    copy: "Your request and replies stay together in one conversation.",
   },
   {
     icon: LockKeyhole,
     title: "Secure access",
-    copy: "A private token protects the messages connected to your request.",
+    copy: "Keep your conversation link private; it gives access to your request.",
   },
 ];
 
 const controlClassName =
-  "min-h-12 w-full rounded-lg border border-[#123b2a]/15 bg-[#fbfdfb] px-4 text-body font-normal text-[#06160f] outline-none transition-colors placeholder:text-[#06160f]/35 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "min-h-13 w-full rounded-xl border border-[#dde6dc] bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 
 type FormValues = {
   name: string;
@@ -84,11 +82,11 @@ const emptyForm: FormValues = {
 function SupportField({ children, className = "", htmlFor, label, required = false }: SupportFieldProps) {
   return (
     <div className={className}>
-      <label htmlFor={htmlFor} className="text-sm font-semibold text-[#06160f]">
+      <label htmlFor={htmlFor} className="text-sm font-medium text-[#002d0e]">
         {label}
         {required ? <span className="ml-1 text-[#008f24]">*</span> : null}
       </label>
-      <div className="mt-2">{children}</div>
+      <div className="mt-2.5">{children}</div>
     </div>
   );
 }
@@ -190,31 +188,31 @@ export default function SupportPage() {
 
   return (
     <>
-      <main className="relative min-h-screen overflow-hidden bg-[#f1f4ef] pb-24 pt-28 text-[#06160f] sm:pt-36">
-        <section className="relative mx-auto max-w-[1180px] px-5 sm:px-8">
-          <header className="grid gap-8 border-b border-[#06160f]/10 pb-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end lg:gap-16">
+      <main className="min-h-screen bg-[#f7f7f7] text-[#002d0e]">
+        <section className="page-intro">
+          <header className="site-container grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end lg:gap-20">
             <div>
-              <AuroraBadge>Ontiver Support</AuroraBadge>
-              <h1 className="mt-5 max-w-[12ch] text-page-hero font-semibold tracking-normal">
+              <p className="eyebrow">Ontiver Support</p>
+              <h1 className="mt-5 max-w-[12ch] text-page-hero font-semibold">
                 How can we help?
               </h1>
-              <p className="mt-5 max-w-2xl text-subtitle text-[#06160f]/62">
+              <p className="mt-5 max-w-xl text-subtitle text-[#526058]">
                 Start a secure conversation with our support team. We will keep your request and every reply together in one place.
               </p>
             </div>
 
-            <div className="divide-y divide-[#06160f]/10 border-y border-[#06160f]/10 lg:border-b-0 lg:border-t-0">
-              <div className="flex items-center gap-4 py-4 lg:pt-0">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#009311] text-white">
-                  <Clock3 className="h-4 w-4" />
+            <div className="divide-y divide-[#dde6dc] rounded-3xl border border-[#dde6dc] bg-white/70 px-6">
+              <div className="flex items-center gap-4 py-6">
+                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#edf5eb] text-[#007d21]">
+                  <MessageCircle className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="text-meta font-semibold uppercase text-[#06160f]/45">Response target</p>
-                  <p className="mt-1 text-body font-semibold">Within two business days</p>
+                  <p className="text-meta font-semibold uppercase text-[#06160f]/45">Your conversation</p>
+                  <p className="mt-1 text-body font-semibold">Continue here after submitting</p>
                 </div>
               </div>
-              <a href="mailto:support@ontiver.com" className="group flex items-center gap-4 py-4">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-[#007b20] shadow-[0_8px_24px_rgba(6,22,15,.06)]">
+              <a href="mailto:support@ontiver.com" className="group flex items-center gap-4 py-6">
+                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#edf5eb] text-[#007d21]">
                   <Mail className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
@@ -224,24 +222,10 @@ export default function SupportPage() {
               </a>
             </div>
           </header>
-
-          <div className="grid border-b border-[#06160f]/10 sm:grid-cols-3">
-            {supportPrinciples.map(({ icon: Icon, title, copy }) => (
-              <div
-                key={title}
-                className="flex gap-4 border-t border-[#06160f]/10 py-5 first:border-t-0 sm:border-l sm:border-t-0 sm:px-5 sm:first:border-l-0 sm:first:pl-0 sm:last:pr-0"
-              >
-                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[#008b24]" />
-                <div>
-                  <h2 className="text-card-title font-semibold">{title}</h2>
-                  <p className="mt-1 text-body text-[#06160f]/55">{copy}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid gap-6 pt-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
-            <section className="rounded-[1.25rem] border border-[#06160f]/10 bg-white p-5 shadow-[0_24px_70px_rgba(6,22,15,.07)] sm:p-8 lg:p-10">
+        </section>
+        <section className="section-space site-container">
+          <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-8">
+            <section className="min-w-0 rounded-[28px] border border-[#dde6dc] bg-white p-7 sm:p-10">
               {session && conversation ? (
                 <>
                   <div className="flex flex-wrap items-start justify-between gap-5 border-b border-[#06160f]/10 pb-6">
@@ -250,7 +234,7 @@ export default function SupportPage() {
                         <CheckCircle2 className="h-4 w-4" />
                         Request {conversation.requestId}
                       </div>
-                      <h2 className="mt-3 break-words text-section font-semibold tracking-normal">{conversation.subject}</h2>
+                      <h2 className="mt-3 break-words text-section font-semibold">{conversation.subject}</h2>
                     </div>
                     <span className="inline-flex items-center gap-2 rounded-full bg-[#e9f6ec] px-3 py-1.5 text-meta font-semibold capitalize text-[#006d1d]">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#009311]" />
@@ -263,20 +247,20 @@ export default function SupportPage() {
                       <div key={item.messageId} className={`flex ${item.senderType === "admin" ? "justify-start" : "justify-end"}`}>
                         <div
                           className={`max-w-[90%] rounded-xl px-4 py-3 text-body sm:max-w-[78%] ${
-                            item.senderType === "admin" ? "bg-[#edf3ee] text-[#06160f]" : "bg-[#063a22] text-white"
+                            item.senderType === "admin" ? "bg-[#edf5eb] text-[#002d0e]" : "bg-[#002d0e] text-white"
                           }`}
                         >
                           <p className="mb-1 text-meta font-semibold uppercase opacity-55">
                             {item.senderType === "admin" ? "Ontiver Support" : "You"}
                           </p>
                           <p className="whitespace-pre-wrap break-words">{item.message}</p>
-                          <time className="mt-2 block text-meta opacity-50">{new Date(item.createdAt).toLocaleString()}</time>
+                          <time dateTime={item.createdAt} className="mt-2 block text-meta opacity-70">{new Date(item.createdAt).toLocaleString()}</time>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <form onSubmit={submitReply} className="mt-6 border-t border-[#06160f]/10 pt-6">
+                  <form onSubmit={submitReply} aria-busy={busy} className="mt-6 border-t border-[#dde6dc] pt-6">
                     <SupportField htmlFor="support-reply" label="Continue the conversation" required>
                       <textarea
                         id="support-reply"
@@ -295,7 +279,7 @@ export default function SupportPage() {
                           type="button"
                           onClick={() => void loadConversation(session)}
                           disabled={loadingConversation}
-                          className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#06160f]/12 px-4 text-sm font-semibold text-[#06160f]/70 hover:bg-[#06160f]/[.03] disabled:opacity-50"
+                          className="button-secondary"
                         >
                           <RefreshCw className="h-4 w-4" />
                           {loadingConversation ? "Refreshing..." : "Refresh"}
@@ -303,7 +287,8 @@ export default function SupportPage() {
                         <button
                           type="button"
                           onClick={startNewRequest}
-                          className="inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-[#06160f]/55 hover:text-[#007b20]"
+                          disabled={busy}
+                          className="inline-flex min-h-12 items-center gap-2 rounded-full px-4 text-sm font-medium text-[#526058] hover:text-[#007d21] disabled:opacity-50"
                         >
                           <Plus className="h-4 w-4" /> New request
                         </button>
@@ -311,7 +296,7 @@ export default function SupportPage() {
                       <button
                         type="submit"
                         disabled={busy || !reply.trim()}
-                        className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#009311] px-5 text-sm font-semibold text-white hover:bg-[#007f1d] disabled:cursor-not-allowed disabled:opacity-50"
+                        className="button-primary"
                       >
                         <Send className="h-4 w-4" />
                         {busy ? "Sending..." : "Send message"}
@@ -337,14 +322,14 @@ export default function SupportPage() {
                       <button
                         type="button"
                         onClick={() => void loadConversation(session)}
-                        className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#009311] px-5 text-sm font-semibold text-white hover:bg-[#007f1d]"
+                        className="button-primary"
                       >
                         <RefreshCw className="h-4 w-4" /> Try again
                       </button>
                       <button
                         type="button"
                         onClick={startNewRequest}
-                        className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#06160f]/12 px-5 text-sm font-semibold"
+                        className="button-secondary"
                       >
                         <Plus className="h-4 w-4" /> New request
                       </button>
@@ -352,13 +337,13 @@ export default function SupportPage() {
                   ) : null}
                 </div>
               ) : (
-                <form onSubmit={submitRequest}>
-                  <div className="flex items-center gap-2 text-meta font-semibold uppercase text-[#008b24]">
+                <form onSubmit={submitRequest} aria-busy={busy}>
+                  <div className="eyebrow flex items-center gap-2">
                     <LifeBuoy className="h-4 w-4" />
                     Create a request
                   </div>
-                  <h2 className="mt-3 text-section font-semibold tracking-normal">Tell us what you need</h2>
-                  <p className="mt-3 max-w-2xl text-body text-[#06160f]/55">
+                  <h2 className="mt-4 text-section font-semibold">Tell us what you need</h2>
+                  <p className="mt-4 max-w-2xl text-body text-[#526058]">
                     Share enough context for the right support specialist to respond. Required fields are marked.
                   </p>
 
@@ -432,8 +417,8 @@ export default function SupportPage() {
                     </label>
                   </div>
 
-                  <div className="mt-6 flex flex-col gap-5 border-t border-[#06160f]/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="max-w-xl text-meta text-[#06160f]/48">
+                  <div className="mt-8 flex flex-col gap-5 border-t border-[#dde6dc] pt-7 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="max-w-xl text-meta text-[#526058]">
                       Ontiver uses this information to respond and operate support. See our{" "}
                       <Link className="font-semibold text-[#007b20] underline underline-offset-2" to="/privacy">
                         Privacy Policy
@@ -443,7 +428,7 @@ export default function SupportPage() {
                     <button
                       type="submit"
                       disabled={busy}
-                      className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#009311] px-6 text-sm font-semibold text-white hover:bg-[#007f1d] disabled:cursor-not-allowed disabled:opacity-50"
+                      className="button-primary shrink-0"
                     >
                       {busy ? "Submitting..." : "Submit request"}
                       <Send className="h-4 w-4" />
@@ -453,18 +438,18 @@ export default function SupportPage() {
               )}
 
               {error ? (
-                <p role="alert" className="mt-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+                <p role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-body text-red-800">
                   {error}
                 </p>
               ) : null}
             </section>
 
-            <aside className="rounded-[1.25rem] bg-[#062519] p-6 text-white shadow-[0_24px_70px_rgba(6,22,15,.12)] sm:p-8 lg:sticky lg:top-32">
+            <aside className="rounded-[28px] bg-[#002d0e] p-7 text-white sm:p-9">
               <div className="flex items-center gap-2 text-meta font-semibold uppercase text-[#7ee09a]">
                 <ShieldCheck className="h-4 w-4" /> Before you send
               </div>
-              <h2 className="mt-4 text-section font-semibold tracking-normal">Keep sensitive details private.</h2>
-              <p className="mt-3 text-body text-white/60">
+              <h2 className="mt-5 text-section font-semibold">Keep sensitive details private.</h2>
+              <p className="mt-5 text-body text-white/70">
                 Ontiver Support will never ask for passwords, one-time codes, card PINs, complete identity numbers, or API secrets.
               </p>
 
@@ -492,10 +477,21 @@ export default function SupportPage() {
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#7ee09a]" />
                 <div>
                   <p className="text-card-title font-semibold">Secure conversation</p>
-                  <p className="mt-1 text-body text-white/55">Your private session stays on this device after you submit.</p>
+                  <p className="mt-2 text-body text-white/65">Your private session stays on this device after you submit.</p>
                 </div>
               </div>
             </aside>
+          </div>
+          <div className="mt-14 grid gap-8 border-t border-[#dde6dc] pt-10 md:grid-cols-3 lg:gap-12">
+            {supportPrinciples.map(({ icon: Icon, title, copy }) => (
+              <div key={title}>
+                <span className="mb-5 grid size-12 place-items-center rounded-2xl bg-[#edf5eb] text-[#007d21]">
+                  <Icon className="size-5" aria-hidden="true" />
+                </span>
+                <h2 className="text-card-title font-semibold">{title}</h2>
+                <p className="mt-3 text-body text-[#526058]">{copy}</p>
+              </div>
+            ))}
           </div>
         </section>
       </main>

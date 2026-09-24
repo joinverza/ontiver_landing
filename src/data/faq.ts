@@ -15,22 +15,22 @@ export const faqGroups: FAQGroup[] = [
       {
         question: "What counts as a verification?",
         answer:
-          "A verification is one completed identity check in a production flow. Sandbox uses test responses, while Launch, Growth, Compliance, and Enterprise plans count completed production outcomes.",
+          "The listed production-plan allowances refer to completed identity checks. Sandbox is intended for test responses. Confirm the billing definition and live workflow scope with our team before a pilot starts.",
       },
       {
         question: "Can I switch plans mid-month?",
         answer:
-          "Yes. Teams can move from Launch to Growth or Compliance when volume increases, and Enterprise workflows can be scoped with sales when your needs change.",
+          "Talk to our team about changing your planned volume or requirements. Upgrade timing, billing adjustments, and feature availability are confirmed in your agreed service terms.",
       },
       {
         question: "Do you offer refunds or a money-back guarantee?",
         answer:
-          "Sandbox is free for integration testing. Paid Launch, Growth, Compliance, and Enterprise subscriptions are reviewed with the team based on usage and onboarding status.",
+          "Sandbox is listed as a free testing plan. Confirm any paid-plan cancellation, refund, and trial terms with our team before committing; this page does not promise a money-back guarantee.",
       },
       {
         question: "What happens if I exceed my verification limit?",
         answer:
-          "Your account keeps working. You can move to Growth, Compliance, or Enterprise, or apply an overage arrangement based on verification and compliance volume.",
+          "Discuss additional volume with our team before reaching the agreed limit. Any overage arrangement, plan change, and service-continuity terms must be confirmed for your account.",
       },
     ],
   },
@@ -40,22 +40,22 @@ export const faqGroups: FAQGroup[] = [
       {
         question: "Is AML screening included in all plans?",
         answer:
-          "Sandbox includes test AML responses. Launch can add AML screening, while Growth, Compliance, and Enterprise include broader risk and monitoring options.",
+          "The listed plans describe intended screening allocations and add-ons. Live AML and monitoring availability depends on the agreed workflow, provider coverage, and release readiness; confirm these during pilot scoping.",
       },
       {
         question: "How does credential reuse work for my users?",
         answer:
-          "A user can verify once, then consent to reuse trusted proof across supported workflows. Growth, Compliance, and Enterprise plans are built for higher-volume reuse.",
+          "The intended flow lets a user approve reuse of an existing proof where the receiving service accepts it. Expiry, the requested checks, or that service's requirements may call for a new verification.",
       },
       {
         question: "Are verifications stored securely and tied to the user?",
         answer:
-          "Yes. Ontiver keeps identity proof tied to the user with consent-aware access, audit logs, and controls suited for Compliance and Enterprise teams.",
+          "Ontiver is designed around user-linked proof, consent-aware access, and minimized identity data. Review the relevant access, retention, and production-readiness evidence with our team when scoping a pilot.",
       },
       {
         question: "What identity documents does Ontiver support?",
         answer:
-          "Ontiver supports common identity document and biometric workflows for African markets, with Enterprise coverage reviewed during onboarding for specialized documents.",
+          "The initial verification focus is Nigeria's NIN and BVN rails. Confirm live provider availability and the checks required for your workflow with our team. Additional document, biometric, or country coverage is not implied.",
       },
     ],
   },
@@ -65,22 +65,22 @@ export const faqGroups: FAQGroup[] = [
       {
         question: "Do you offer a free trial beyond Sandbox?",
         answer:
-          "Sandbox is the free testing environment. Teams that need live pilots can start with Launch, then upgrade to Growth, Compliance, or Enterprise as usage scales.",
+          "Sandbox is the proposed free testing plan. Contact our team to agree whether a live pilot is available, which workflows it covers, and any applicable commercial terms.",
       },
       {
         question: "How long does it take to integrate Ontiver?",
         answer:
-          "Most teams can start in Sandbox quickly with the API documentation. Launch and Growth integrations are usually straightforward, while Enterprise timelines depend on workflow scope.",
+          "Integration time depends on the agreed checks, your application, and provider readiness. Use the API documentation to plan the work, then agree pilot milestones with our team. We have not published measured integration times yet.",
       },
       {
         question: "Is there a sandbox environment for testing?",
         answer:
-          "Yes. Sandbox is designed for test keys, sample responses, API trials, and developer validation before moving to Launch or a larger production plan.",
+          "Sandbox is designed for test keys, sample responses, and developer validation. Review the documentation and request access to confirm the currently available testing scope before planning a production integration.",
       },
       {
         question: "Do you provide webhooks and API documentation?",
         answer:
-          "Yes. API documentation is available from Sandbox onward, with webhook-driven workflows supported for Launch, Growth, Compliance, and Enterprise integrations.",
+          "API documentation is available through our developer site. Agree webhook events, delivery testing, and production access as part of your pilot integration scope.",
       },
     ],
   },
@@ -107,7 +107,7 @@ export const individualFaqGroups: FAQGroup[] = [
       {
         question: "What does verify once mean?",
         answer:
-          "It means completing a trusted identity check once, then using the resulting proof again in supported journeys instead of uploading the same documents every time.",
+          "It means reusing an existing identity proof where a participating service accepts it. A new check may still be needed when proof expires or a service has different requirements.",
       },
       {
         question: "Does Ontiver share my identity automatically?",

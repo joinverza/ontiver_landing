@@ -21,10 +21,10 @@ export const securityFeatures: SecurityFeature[] = [
     image: "./assets/teams.png",
     title: "Consent-Based Sharing",
     eyebrow: "User Permission Layer",
-    metric: "100%",
-    signal: "Consent required before every reuse.",
+    metric: "Consent",
+    signal: "Designed around user approval for reuse.",
     description:
-      "All identity sharing requires user consent with full control and history.",
+      "Review the purpose and requested fields before approving supported identity-sharing workflows.",
     chips: ["Wallet approval", "Share limits", "Revocation"],
     flow: ["Request", "Approve", "Share"],
     primaryAction: {
@@ -38,12 +38,12 @@ export const securityFeatures: SecurityFeature[] = [
   },
   {
     image: "./assets/octagon.png",
-    title: "Audit-Ready Records",
+    title: "Reviewable Records",
     eyebrow: "Compliance Ledger",
-    metric: "24/7",
-    signal: "Timestamped logs for every verification event.",
+    metric: "History",
+    signal: "Verification events and consent decisions in context.",
     description:
-      "Every verification event is logged, timestamped, and exportable.",
+      "Define the event history, reporting, and export requirements to evaluate in a scoped pilot.",
     chips: ["Event logs", "Evidence trails", "Exports"],
     flow: ["Capture", "Sign", "Archive"],
     primaryAction: {
@@ -61,7 +61,7 @@ export const securityFeatures: SecurityFeature[] = [
     eyebrow: "Developer Gateway",
     metric: "API",
     signal: "Permissioned access for trusted business systems.",
-    description: "Business access is gated, permissioned, and monitored.",
+    description: "Scoped access and monitoring are part of the proposed integration controls, with readiness reviewed during pilot scoping.",
     chips: ["Scoped keys", "Webhooks", "Monitoring"],
     flow: ["Authenticate", "Authorize", "Monitor"],
     primaryAction: {
@@ -78,9 +78,9 @@ export const securityFeatures: SecurityFeature[] = [
     title: "Data Protection First",
     eyebrow: "Privacy Controls",
     metric: "Min",
-    signal: "Sensitive data is minimized by default.",
+    signal: "Designed to limit unnecessary data exposure.",
     description:
-      "Sensitive documents are handled with minimization principles. Not stored longer than needed.",
+      "Scope the required identity fields and review retention and handling controls before a pilot begins.",
     chips: ["Data minimization", "Retention rules", "Secure handling"],
     flow: ["Collect less", "Protect", "Expire"],
     primaryAction: {

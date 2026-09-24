@@ -11,8 +11,6 @@ export type BlogArticle = {
   date: string;
   author: string;
   readTime: string;
-  views: number;
-  shares: number;
   category: string;
   body: BlogBodyBlock[];
 };
@@ -28,8 +26,6 @@ export const blogArticles: BlogArticle[] = [
     date: "May 20, 2026",
     author: "James Weick",
     readTime: "6 min read",
-    views: 1600,
-    shares: 996,
     category: "Identity",
     body: [
       {
@@ -69,8 +65,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 4, 2026",
     author: "Amara Cole",
     readTime: "5 min read",
-    views: 1280,
-    shares: 712,
     category: "KYC",
     body: [
       {
@@ -105,8 +99,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 9, 2026",
     author: "Nora Adeyemi",
     readTime: "7 min read",
-    views: 980,
-    shares: 403,
     category: "AML",
     body: [
       {
@@ -136,8 +128,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 14, 2026",
     author: "Tomi Fraser",
     readTime: "4 min read",
-    views: 1420,
-    shares: 621,
     category: "Consent",
     body: [
       {
@@ -172,8 +162,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 18, 2026",
     author: "Ife Martin",
     readTime: "8 min read",
-    views: 870,
-    shares: 286,
     category: "Developers",
     body: [
       {
@@ -203,8 +191,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 21, 2026",
     author: "Lena Okafor",
     readTime: "6 min read",
-    views: 1110,
-    shares: 508,
     category: "Risk",
     body: [
       {
@@ -234,8 +220,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 24, 2026",
     author: "Maya Hart",
     readTime: "5 min read",
-    views: 760,
-    shares: 214,
     category: "Compliance",
     body: [
       {
@@ -265,8 +249,6 @@ export const blogArticles: BlogArticle[] = [
     date: "June 26, 2026",
     author: "James Weick",
     readTime: "6 min read",
-    views: 1320,
-    shares: 677,
     category: "Marketplaces",
     body: [
       {

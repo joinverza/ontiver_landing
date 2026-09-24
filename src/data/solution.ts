@@ -8,27 +8,27 @@ export const solutionSteps: SolutionStep[] = [
   {
     icon: "./assets/verify.svg",
     title: "Verify",
-    para: "User submits identity documents through a business's Ontiver-powered flow.",
+    para: "The user reviews the request and submits the information required by the agreed verification workflow.",
   },
   {
     icon: "./assets/screen.svg",
     title: "Screen",
-    para: "Ontiver runs AML checks, sanctions screening, and risk assessment automatically.",
+    para: "The selected checks run through the workflow's verification providers, with exceptions available for review.",
   },
   {
     icon: "./assets/proof.svg",
     title: "Store Proof",
-    para: "A verified identity proof is created and stored securely - tied to the user, not just the business.",
+    para: "Approved verification claims form the basis of an identity proof connected to the user.",
   },
   {
     icon: "./assets/consent.svg",
     title: "Consent Share",
-    para: "When another business needs to verify the same user, the user approves with a single consent action.",
+    para: "When a supported business requests proof, the user can review the purpose and approve or decline sharing.",
   },
   {
     icon: "./assets/reuse.svg",
     title: "Reuse",
-    para: "The new business gets trusted verification proof instantly. No repeat document uploads. No delay.",
+    para: "The receiving business checks the proof's status and suitability, reducing repeated uploads where its requirements allow.",
   },
 ];
 

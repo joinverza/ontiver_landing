@@ -25,7 +25,7 @@ export function useJoinNavigation() {
 
     if (pageHasJoinSection && hash === "#join") {
       document.getElementById("join")?.scrollIntoView({
-        behavior: "smooth",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
         block: "start",
       });
       return;

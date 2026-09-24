@@ -1,5 +1,5 @@
 import { FormEvent, useMemo, useState } from "react";
-import { CheckCircle2, ChevronRight, Mail, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ChevronRight, FileText, Mail, ShieldCheck } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import {
@@ -65,31 +65,57 @@ function DeletionPanel() {
   const [error, setError] = useState("");
 
   async function submit(event: FormEvent) {
-    event.preventDefault(); setBusy(true); setError("");
+    event.preventDefault();
+    if (busy) return;
+    setBusy(true);
+    setError("");
     try {
       if (step === "request") {
         const result = await requestAccountDeletionCode(email);
-        setMessage(result.message); setStep("confirm");
+        setMessage(result.message);
+        setStep("confirm");
       } else {
         const result = await confirmAccountDeletion(email, code);
-        setMessage(`${result.message} Reference: ${result.requestId}`); setStep("done");
+        setMessage(`${result.message} Reference: ${result.requestId}`);
+        setStep("done");
       }
-    } catch (value) { setError(value instanceof Error ? value.message : "We could not submit this request."); }
-    finally { setBusy(false); }
+    } catch (value) {
+      setError(value instanceof Error ? value.message : "We could not submit this request.");
+    } finally {
+      setBusy(false);
+    }
   }
 
-  if (step === "done") return <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950"><CheckCircle2 className="mb-3 h-7 w-7"/><h3 className="text-card-title font-bold">Request verified</h3><p className="mt-2 text-body">{message}</p></div>;
-  return <form onSubmit={submit} className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_20px_70px_rgba(4,26,16,.08)] sm:p-8">
-    <h2 className="text-card-title font-semibold text-[#061b13]">{step === "request" ? "Verify your email" : "Enter your verification code"}</h2>
-    <p className="mt-2 text-body text-black/60">{step === "request" ? "We will send a six-digit code if an eligible Ontiver account uses this address." : message}</p>
-    <label className="mt-6 block text-sm font-semibold" htmlFor="deletion-email">Account email</label>
-    <input id="deletion-email" type="email" required autoComplete="email" value={email} disabled={step === "confirm"} onChange={(e)=>setEmail(e.target.value)} className="mt-2 min-h-12 w-full rounded-xl border border-black/15 px-4 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 disabled:bg-black/5"/>
-    {step === "confirm" && <><label className="mt-5 block text-sm font-semibold" htmlFor="deletion-code">Six-digit code</label><input id="deletion-code" required inputMode="numeric" pattern="[0-9]{6}" maxLength={6} value={code} onChange={(e)=>setCode(e.target.value.replace(/\D/g,""))} className="mt-2 min-h-12 w-full rounded-xl border border-black/15 px-4 tracking-[.35em] outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"/></>}
-    <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
-    {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-800">{error}</p>}
-    <button disabled={busy} className="mt-6 min-h-12 w-full rounded-xl bg-[#061b13] px-5 font-semibold text-white transition hover:bg-emerald-900 disabled:opacity-60">{busy ? "Submitting…" : step === "request" ? "Send verification code" : "Confirm deletion request"}</button>
-    <p className="mt-4 text-meta text-black/50">You can also initiate deletion inside the Ontiver app. We may retain limited records where law, fraud prevention, security, or dispute resolution requires it.</p>
-  </form>;
+  if (step === "done") {
+    return (
+      <div role="status" className="h-fit rounded-[24px] border border-[#c7dfc4] bg-[#edf5eb] p-6 sm:p-8">
+        <CheckCircle2 className="mb-5 h-8 w-8 text-[#009311]" aria-hidden="true" />
+        <h3 className="text-card-title font-semibold text-[#002d0e]">Request verified</h3>
+        <p className="mt-3 text-body text-[#002d0e]/65">{message}</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="h-fit rounded-[24px] bg-[#edf5eb] p-6 sm:p-8">
+      <ShieldCheck className="h-7 w-7 text-[#007d21]" aria-hidden="true" />
+      <p className="eyebrow mt-5">Step {step === "request" ? "01" : "02"} / 02</p>
+      <h2 className="mt-3 text-card-title font-semibold tracking-[-0.02em] text-[#002d0e]">{step === "request" ? "Verify your email" : "Enter your verification code"}</h2>
+      <p className="mt-3 text-body text-[#002d0e]/65">{step === "request" ? "We will send a six-digit code if an eligible Ontiver account uses this address." : message}</p>
+      <label className="mt-6 block text-sm font-medium" htmlFor="deletion-email">Account email</label>
+      <input id="deletion-email" type="email" required autoComplete="email" value={email} disabled={step === "confirm"} onChange={(event) => setEmail(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl border border-[#dde6dc] bg-white px-4 text-body outline-none focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10 disabled:bg-white/60 disabled:text-[#002d0e]/50" />
+      {step === "confirm" && (
+        <>
+          <label className="mt-5 block text-sm font-medium" htmlFor="deletion-code">Six-digit code</label>
+          <input id="deletion-code" required inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} value={code} onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))} className="mt-2 min-h-12 w-full rounded-xl border border-[#dde6dc] bg-white px-4 text-body tracking-[.35em] outline-none focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10" />
+        </>
+      )}
+      <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+      {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-800">{error}</p>}
+      <button type="submit" disabled={busy} className="button-primary mt-6 w-full disabled:cursor-wait disabled:opacity-60">{busy ? "Submitting..." : step === "request" ? "Send verification code" : "Confirm deletion request"}</button>
+      <p className="mt-4 text-meta text-[#002d0e]/55">You can also initiate deletion inside the Ontiver app. We may retain limited records where law, fraud prevention, security, or dispute resolution requires it.</p>
+    </form>
+  );
 }
 
 export default function LegalPage() {
@@ -100,25 +126,99 @@ export default function LegalPage() {
   const title = isDeletion ? "Account Deletion" : isCentre ? "Legal Centre" : document.title;
   const summary = isDeletion ? "Delete an Ontiver account from the app or through this email-verified request." : isCentre ? "Policies, terms, privacy choices, and contact information for Ontiver services." : document.summary;
 
-  return <>
-    <main className="min-h-screen bg-[#f5f8f5] pb-24 pt-32 text-[#10231b] sm:pt-40">
-      <div className="mx-auto max-w-[1180px] px-5 sm:px-8">
-        <div className="rounded-[2rem] bg-[#061b13] px-6 py-10 text-white sm:px-10 sm:py-14">
-          <div className="flex items-center gap-2 text-meta font-semibold uppercase tracking-[.16em] text-emerald-300"><ShieldCheck className="h-4 w-4"/> Ontiver Trust & Legal</div>
-          <h1 className="mt-4 max-w-3xl text-page-hero font-semibold tracking-normal">{title}</h1>
-          <p className="mt-5 max-w-2xl text-subtitle text-white/70">{summary}</p>
-          <p className="mt-6 text-meta uppercase tracking-[.16em] text-white/45">Effective and last updated {updated}</p>
-        </div>
-        <div className="mt-8 grid gap-8 lg:grid-cols-[250px_minmax(0,1fr)]">
-          <aside className="h-fit rounded-2xl border border-black/10 bg-white p-3 lg:sticky lg:top-28" aria-label="Legal navigation">
-            {legalLinks.map(([label, href]) => <Link key={href} to={href} className={`flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-medium ${pathname===href ? "bg-emerald-50 text-emerald-900" : "text-black/60 hover:bg-black/[.03] hover:text-black"}`}>{label}<ChevronRight className="h-4 w-4"/></Link>)}
-          </aside>
-          <article className="legal-content min-w-0 rounded-[2rem] border border-black/10 bg-white p-6 sm:p-10">
-            {isCentre ? <><div className="grid gap-4 sm:grid-cols-2">{legalLinks.slice(0,4).map(([label,href])=><Link key={href} to={href} className="group rounded-2xl border border-black/10 p-5 transition hover:border-emerald-500 hover:bg-emerald-50/40"><h2 className="font-semibold">{label}</h2><p className="mt-2 text-sm leading-6 text-black/55">Review {label.toLowerCase()} and the choices available to you.</p><span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-emerald-800">Open <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1"/></span></Link>)}</div><div className="mt-8 rounded-2xl bg-[#eef5ef] p-6"><h2 className="text-xl font-semibold">Questions or rights requests?</h2><p className="mt-2 text-sm leading-6 text-black/60">Contact Ontiver Support without signing in. Your request enters our audited administrator queue and can continue securely on the website or by email.</p><Link to="/support" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#08772a] px-5 text-sm font-semibold text-white">Open support <ChevronRight className="h-4 w-4" /></Link></div></> : isDeletion ? <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_380px]"><div className="space-y-7"><section><h2 className="text-2xl font-semibold">Before you begin</h2><p className="mt-3 leading-7 text-black/65">Deleting your account removes access to your Ontiver wallet and starts controlled deletion of eligible profile, credential, consent, sharing, support, and activity data. Active Apple or Google grants are revoked. The process cannot be undone after completion.</p></section><section><h2 className="text-2xl font-semibold">Fastest option: use the app</h2><p className="mt-3 leading-7 text-black/65">Open Settings → Privacy & data → Delete account. The app requires step-up authentication and displays your request reference.</p></section><section><h2 className="text-2xl font-semibold">What happens next</h2><ul className="mt-3 space-y-3 text-black/65"><li>1. We verify that you control the account email.</li><li>2. The request enters a privacy and retention review.</li><li>3. Eligible data is removed and linked sign-in grants are revoked.</li><li>4. Limited evidence may remain only where law or security requires it.</li></ul></section><p className="flex items-center gap-2 text-sm text-black/55"><Mail className="h-4 w-4"/> Need help? <Link className="font-semibold text-emerald-800 underline" to="/support">Open support</Link></p></div><DeletionPanel/></div> : <div className="space-y-9">{document.sections.map(section=><section key={section.heading}><h2 className="text-2xl font-semibold tracking-tight">{section.heading}</h2>{section.paragraphs.map(p=><p key={p} className="mt-3 leading-7 text-black/65">{p}</p>)}{section.bullets && <ul className="mt-4 space-y-3">{section.bullets.map(item=><li key={item} className="flex gap-3 leading-7 text-black/65"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600"/>{item}</li>)}</ul>}</section>)}</div>}
-          </article>
-        </div>
-      </div>
-    </main>
-    <CurtainFooter />
-  </>;
+  return (
+    <>
+      <main className="min-h-screen bg-white text-[#002d0e]">
+        <header className="page-intro">
+          <div className="site-container">
+            <p className="eyebrow inline-flex items-center gap-2"><ShieldCheck size={16} aria-hidden="true" /> Ontiver Trust &amp; Legal</p>
+            <h1 className="mt-5 max-w-[900px] text-page-hero font-semibold tracking-[-0.045em]">{title}</h1>
+            <p className="mt-6 max-w-[640px] text-subtitle text-[#002d0e]/65">{summary}</p>
+            <p className="mt-7 inline-flex items-center gap-2 text-meta text-[#002d0e]/55"><span className="h-1.5 w-1.5 rounded-full bg-[#009311]" aria-hidden="true" /> Effective and last updated {updated}</p>
+          </div>
+        </header>
+        <section className="section-space">
+          <div className="site-container grid items-start gap-10 lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-14">
+            <aside className="min-w-0 lg:sticky lg:top-32">
+              <p className="eyebrow mb-4">Trust &amp; transparency</p>
+              <nav className="flex gap-2 overflow-x-auto pb-2 lg:block lg:space-y-1 lg:pb-0" aria-label="Legal navigation">
+                {legalLinks.map(([label, href]) => (
+                  <Link key={href} to={href} aria-current={pathname === href ? "page" : undefined} className={`flex min-h-12 shrink-0 items-center justify-between gap-3 whitespace-nowrap rounded-xl px-4 text-sm font-medium transition-colors ${pathname === href ? "bg-[#edf5eb] text-[#007d21]" : "text-[#002d0e]/60 hover:bg-[#f7f7f7] hover:text-[#002d0e]"}`}>{label}<ChevronRight size={16} className="hidden lg:block" aria-hidden="true" /></Link>
+                ))}
+              </nav>
+              {!isCentre && !isDeletion && (
+                <nav className="mt-8 hidden border-t border-[#dde6dc] pt-7 lg:block" aria-label="On this page">
+                  <p className="eyebrow mb-3">On this page</p>
+                  <ol className="space-y-3">
+                    {document.sections.map((section, index) => <li key={section.heading}><a className="flex gap-3 text-sm leading-6 text-[#002d0e]/55 transition-colors hover:text-[#007d21]" href={`#legal-section-${index + 1}`}><span className="text-meta tabular-nums text-[#007d21]">{String(index + 1).padStart(2, "0")}</span>{section.heading}</a></li>)}
+                  </ol>
+                </nav>
+              )}
+            </aside>
+            <article className="legal-content min-w-0">
+              {isCentre ? (
+                <>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    {legalLinks.slice(0, 4).map(([label, href]) => (
+                      <Link key={href} to={href} className="surface-card group flex flex-col items-start transition-colors hover:border-[#009311]/40 hover:bg-[#edf5eb]/40">
+                        <FileText size={24} className="text-[#007d21]" aria-hidden="true" />
+                        <h2 className="mt-6 text-card-title font-semibold tracking-[-0.02em]">{label}</h2>
+                        <p className="mt-3 text-body text-[#002d0e]/60">Review {label.toLowerCase()} and the choices available to you.</p>
+                        <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Open <ArrowUpRight size={17} aria-hidden="true" /></span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-8 rounded-[24px] bg-[#002d0e] p-7 text-white sm:p-10">
+                    <h2 className="text-card-title font-semibold tracking-[-0.02em]">Questions or rights requests?</h2>
+                    <p className="mt-4 max-w-[600px] text-body text-white/65">Contact Ontiver Support without signing in. Your request enters our audited administrator queue and can continue securely on the website or by email.</p>
+                    <Link to="/support" className="mt-7 inline-flex min-h-12 items-center gap-3 rounded-full bg-white px-6 text-sm font-semibold text-[#002d0e]">Open support <ArrowUpRight size={17} aria-hidden="true" /></Link>
+                  </div>
+                </>
+              ) : isDeletion ? (
+                <div className="grid items-start gap-10 xl:grid-cols-[minmax(0,1fr)_340px]">
+                  <div className="space-y-8">
+                    <section>
+                      <p className="eyebrow mb-3">Account &amp; data</p>
+                      <h2 className="text-card-title font-semibold tracking-[-0.02em]">Before you begin</h2>
+                      <p className="mt-4 text-body text-[#002d0e]/65">Deleting your account removes access to your Ontiver wallet and starts controlled deletion of eligible profile, credential, consent, sharing, support, and activity data. Active Apple or Google grants are revoked. The process cannot be undone after completion.</p>
+                    </section>
+                    <section className="border-t border-[#dde6dc] pt-8">
+                      <h2 className="text-card-title font-semibold tracking-[-0.02em]">Fastest option: use the app</h2>
+                      <p className="mt-4 text-body text-[#002d0e]/65">Open Settings → Privacy &amp; data → Delete account. The app requires step-up authentication and displays your request reference.</p>
+                    </section>
+                    <section className="border-t border-[#dde6dc] pt-8">
+                      <h2 className="text-card-title font-semibold tracking-[-0.02em]">What happens next</h2>
+                      <ol className="mt-5 space-y-4">
+                        {["We verify that you control the account email.", "The request enters a privacy and retention review.", "Eligible data is removed and linked sign-in grants are revoked.", "Limited evidence may remain only where law or security requires it."].map((item, index) => <li key={item} className="flex gap-3 text-body text-[#002d0e]/65"><span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#edf5eb] text-meta font-semibold text-[#007d21]">{index + 1}</span>{item}</li>)}
+                      </ol>
+                    </section>
+                    <p className="flex flex-wrap items-center gap-2 border-t border-[#dde6dc] pt-6 text-sm text-[#002d0e]/55"><Mail size={16} aria-hidden="true" /> Need help? <Link className="font-semibold text-[#007d21] underline underline-offset-4" to="/support">Open support</Link></p>
+                  </div>
+                  <DeletionPanel />
+                </div>
+              ) : (
+                <div className="max-w-[800px] space-y-9">
+                  {document.sections.map((section, index) => (
+                    <section id={`legal-section-${index + 1}`} key={section.heading} className="scroll-mt-32 border-b border-[#dde6dc] pb-9 last:border-b-0 last:pb-0">
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-meta font-medium tabular-nums text-[#007d21]">{String(index + 1).padStart(2, "0")}</span>
+                        <h2 className="text-card-title font-semibold tracking-[-0.02em]">{section.heading}</h2>
+                      </div>
+                      {section.paragraphs.map((paragraph) => <p key={paragraph} className="mt-4 text-body leading-[1.85] text-[#002d0e]/65">{paragraph}</p>)}
+                      {section.bullets && <ul className="mt-5 space-y-3">{section.bullets.map((item) => <li key={item} className="flex gap-3 text-body text-[#002d0e]/65"><span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#009311]" aria-hidden="true" />{item}</li>)}</ul>}
+                    </section>
+                  ))}
+                  <div className="rounded-[24px] bg-[#edf5eb] p-6 sm:p-8">
+                    <p className="text-card-title font-semibold tracking-[-0.02em]">Questions or rights requests?</p>
+                    <Link to="/support" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Open support <ArrowUpRight size={17} aria-hidden="true" /></Link>
+                  </div>
+                </div>
+              )}
+            </article>
+          </div>
+        </section>
+      </main>
+      <CurtainFooter />
+    </>
+  );
 }

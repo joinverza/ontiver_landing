@@ -1,11 +1,6 @@
 import Calculator from "../components/sections/Calculator/Calculator";
-import Footer from "../components/sections/Footer/Footer";
+import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 
 export default function CalculatorPage() {
-  return (
-    <main className="pt-32">
-      <Calculator />
-      <Footer />
-    </main>
-  );
+  return <main className="bg-white"><Calculator standalone /><CurtainFooter audience="enterprise" /></main>;
 }

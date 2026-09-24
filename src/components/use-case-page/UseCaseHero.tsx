@@ -1,81 +1,30 @@
-import { ArrowLeft } from "lucide-react";
-import MagneticFillButton from "../ui/MagneticFillButton";
+import { ArrowLeft, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { UseCasePageDetail } from "../../data/useCases";
 
-type UseCaseHeroProps = {
-  detail: UseCasePageDetail;
-  onBack: () => void;
-};
-
-function renderChars(text: string) {
-  return Array.from(text).map((char, index) => (
-    <span
-      key={`${char}-${index}`}
-      data-hero-char
-      className="inline-block will-change-transform"
-    >
-      {char === " " ? "\u00a0" : char}
-    </span>
-  ));
-}
+type UseCaseHeroProps = { detail: UseCasePageDetail; onBack: () => void };
 
 export default function UseCaseHero({ detail, onBack }: UseCaseHeroProps) {
   return (
-    <section
-      data-hero-section
-      className="relative min-h-screen overflow-hidden bg-black text-white"
-    >
-      <img
-        data-hero-image
-        src={detail.imageUrl}
-        alt=""
-        className="absolute inset-0 h-[120%] w-full object-cover"
-      />
-      <div
-        data-hero-overlay
-        className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.75)_60%,rgba(0,0,0,0.92)_100%)] opacity-90"
-      />
-      <MagneticFillButton
-        variant="dark"
-        onClick={onBack}
-        className="group absolute left-5 top-24 z-20 inline-flex h-11 cursor-pointer items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 text-sm font-semibold text-white backdrop-blur-md transition duration-200 hover:border-[var(--usecase-accent)] hover:bg-white hover:text-[#06160f] sm:left-10 lg:left-20"
-      >
-        <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
-        Back
-      </MagneticFillButton>
-      <div
-        data-hero-text
-        className="absolute bottom-[72px] left-5 z-10 max-w-[760px] sm:bottom-[80px] sm:left-10 lg:left-20"
-      >
-        <p
-          data-hero-label
-        className="mb-4 text-meta font-bold uppercase tracking-[0.28em] text-[var(--usecase-accent)]"
-        >
-          {detail.eyebrow}
-        </p>
-        <h1 className="text-page-hero font-extrabold tracking-normal">
-          {renderChars(detail.heroTitle)}
-        </h1>
-        <p
-          data-hero-tagline
-          className="mt-6 max-w-[560px] text-subtitle text-white/70"
-        >
-          {detail.tagline}
-        </p>
-      </div>
-      <div
-        data-scroll-indicator
-        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/35"
-      >
-        <span className="relative h-10 w-px bg-white/35">
-          <span
-            data-scroll-dot
-            className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white/60"
-          />
-        </span>
-        <span className="text-[9px] font-semibold uppercase tracking-[0.3em]">
-          Scroll
-        </span>
+    <section className="page-intro">
+      <div className="site-container">
+        <button type="button" onClick={onBack} className="mb-10 inline-flex cursor-pointer items-center gap-2 text-body text-[#637060] hover:text-[#007d21]"><ArrowLeft size={16} />Back</button>
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="eyebrow">Explore {detail.eyebrow} workflows</p>
+            <h1 className="mt-6 text-page-hero font-semibold tracking-[-0.045em]">{detail.heroTitle}</h1>
+            <p className="mt-6 max-w-[480px] text-subtitle text-[#526052]">{detail.tagline}</p>
+            <Link to="/enterprise/contact" className="button-primary mt-9">Discuss a pilot<ArrowUpRight size={18} /></Link>
+            <p className="mt-4 text-meta text-[#637060]">Pre-pilot · Scope and availability to be agreed.</p>
+          </div>
+          <div className="relative">
+            <img src={detail.imageUrl} alt="" fetchPriority="high" className="aspect-[6/5] w-full rounded-[28px] object-cover lg:rounded-[40px]" />
+            <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-white/95 p-4 backdrop-blur-sm sm:bottom-7 sm:left-7 sm:right-auto sm:px-6">
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#edf5eb] text-[#007d21]"><ShieldCheck size={22} /></span>
+              <div><p className="text-body font-semibold">Designed for consent-led identity.</p><p className="mt-0.5 text-meta text-[#637060]">Reuse where supported.</p></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

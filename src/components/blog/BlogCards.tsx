@@ -1,7 +1,6 @@
+import { ArrowUpRight, Clock3 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import type { CSSProperties, MouseEvent } from "react";
 import type { BlogArticle } from "../../data/blog";
-import LinkArrow from "../ui/LinkArrow";
 
 function useArticleHref(slug: string) {
   const { pathname } = useLocation();
@@ -9,25 +8,18 @@ function useArticleHref(slug: string) {
   return `${basePath}/${slug}`;
 }
 
-function updateReadingLight(event: MouseEvent<HTMLElement>) {
-  const rect = event.currentTarget.getBoundingClientRect();
-  event.currentTarget.style.setProperty("--x", `${event.clientX - rect.left}px`);
-  event.currentTarget.style.setProperty("--y", `${event.clientY - rect.top}px`);
-}
+export function ArticleImage({ article, lazy = true }: { article: BlogArticle; lazy?: boolean }) {
+  if (article.image.endsWith(".svg")) {
+    return (
+      <div className="flex h-full w-full items-center justify-center bg-[#dcebd7] p-8">
+        <div className="grid h-36 w-36 place-items-center rounded-full border border-[#c7dfc4] bg-[#edf5eb] sm:h-44 sm:w-44">
+          <img src={article.image} alt={article.title} loading={lazy ? "lazy" : undefined} className="h-20 w-20 object-contain" />
+        </div>
+      </div>
+    );
+  }
 
-function ReadMoreLink({ light = false }: { light?: boolean }) {
-  return (
-    <LinkArrow
-      variant={light ? "dark" : "light"}
-      className={`blog-read-more [--link-arrow-min-width:140px] ${
-        light
-          ? "border-white/25 text-[#5ff57a]"
-          : "border-[#009311]/35 text-[#009311]"
-      }`}
-    >
-      Read more
-    </LinkArrow>
-  );
+  return <img src={article.image} alt={article.title} loading={lazy ? "lazy" : undefined} className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]" />;
 }
 
 export function ArticleGridCard({
@@ -42,36 +34,22 @@ export function ArticleGridCard({
   const articleHref = useArticleHref(article.slug);
 
   return (
-    <article
-      data-blog-card
-      data-blog-card-index={index}
-      className={`blog-grid-card blog-card group relative overflow-hidden rounded-2xl border border-[#00291b]/15 bg-white max-[640px]:mx-auto max-[640px]:w-[min(82vw,550px)] ${className}`}
-      onMouseMove={updateReadingLight}
-      style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
-    >
-      <span className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-100 [background:radial-gradient(circle_150px_at_var(--x)_var(--y),rgba(0,147,17,0.1),transparent_72%)]" />
-      <span className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px origin-left scale-x-0 bg-[linear-gradient(90deg,transparent,#009311,transparent)] transition-transform duration-500 group-hover:scale-x-100" />
-      <Link to={articleHref} className="relative z-20 block h-full">
-        <div className="blog-card-media aspect-[16/8.5] overflow-hidden bg-[#f1f4ef] sm:aspect-video">
-          <img
-            src={article.image}
-            alt={article.title}
-            className="blog-card-image h-full w-full object-cover"
-          />
+    <article data-blog-card data-blog-card-index={index} className={`group min-w-0 ${className}`}>
+      <Link to={articleHref} className="flex h-full flex-col rounded-[24px] outline-offset-8">
+        <div className="aspect-[1.4] overflow-hidden rounded-[24px] bg-[#edf5eb]">
+          <ArticleImage article={article} />
         </div>
-        <div className="blog-card-content flex min-h-[170px] flex-col p-4 sm:min-h-[220px] sm:p-5">
-          <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#009311]">
-            {article.category}
-          </p>
-          <h3 className="mt-2.5 text-card-title font-bold text-[#05150E] transition-colors duration-150 group-hover:text-[#009311]">
-            {article.title}
-          </h3>
-          <p className="mt-2 line-clamp-2 text-body text-black/60 sm:mt-3 sm:line-clamp-3">
-            {article.excerpt}
-          </p>
-          <div className="mt-auto flex items-center justify-between gap-3 pt-4 sm:pt-6">
-            <span className="text-meta font-medium text-black/35">{article.date}</span>
-            <ReadMoreLink />
+        <div className="flex flex-1 flex-col px-1 pb-2 pt-6">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta text-[#002d0e]/55">
+            <span className="font-semibold uppercase tracking-[0.1em] text-[#007d21]">{article.category}</span>
+            <span aria-hidden="true">/</span>
+            <span>{article.readTime}</span>
+          </div>
+          <h3 className="mt-3 text-card-title font-semibold tracking-[-0.025em] text-[#002d0e] transition-colors group-hover:text-[#007d21]">{article.title}</h3>
+          <p className="mt-3 line-clamp-3 text-body text-[#002d0e]/60">{article.excerpt}</p>
+          <div className="mt-auto flex items-center justify-between gap-3 border-b border-[#dde6dc] pb-5 pt-6">
+            <span className="text-meta text-[#002d0e]/50">{article.date}</span>
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Read more <ArrowUpRight size={17} aria-hidden="true" /></span>
           </div>
         </div>
       </Link>
@@ -83,34 +61,20 @@ export function FeaturedArticleCard({ article }: { article: BlogArticle }) {
   const articleHref = useArticleHref(article.slug);
 
   return (
-    <article
-      data-blog-card
-      className="blog-feature-card blog-card group rounded-2xl border border-[#00291b]/15 bg-white p-3 sm:p-4 md:p-8 max-[640px]:mx-auto max-[640px]:w-[min(82vw,550px)]"
-      onMouseMove={updateReadingLight}
-      style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
-    >
-      <Link to={articleHref} className="grid gap-4 md:gap-7 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="blog-card-media aspect-[16/8.5] overflow-hidden rounded-xl bg-[#f1f4ef] sm:aspect-[16/10] lg:min-h-[320px] lg:aspect-auto">
-          <img
-            src={article.image}
-            alt={article.title}
-            className="blog-card-image h-full w-full object-cover"
-          />
+    <article data-blog-card className="group overflow-hidden rounded-[32px] bg-[#edf5eb]">
+      <Link to={articleHref} className="grid outline-offset-[-4px] lg:min-h-[460px] lg:grid-cols-2">
+        <div className="aspect-[1.4] overflow-hidden bg-[#dcebd7] lg:aspect-auto">
+          <ArticleImage article={article} lazy={false} />
         </div>
-        <div className="blog-card-content flex flex-col py-1">
-          <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#009311]">
-            Featured
-          </p>
-          <h2 className="mt-3 text-card-title font-bold text-[#05150E] sm:mt-4">
-            {article.title}
-          </h2>
-          <p className="mt-3 line-clamp-2 text-body text-black/60 sm:mt-4 sm:line-clamp-3">
-            {article.excerpt}
-          </p>
-          <div className="mt-auto flex items-center justify-between gap-3 pt-5 sm:pt-8">
-            <span className="text-meta font-medium text-black/35">{article.date}</span>
-            <ReadMoreLink />
+        <div className="flex flex-col items-start justify-center p-6 sm:p-10 lg:p-12">
+          <p className="eyebrow">Featured / {article.category}</p>
+          <h3 className="mt-5 text-section font-semibold tracking-[-0.035em] text-[#002d0e]">{article.title}</h3>
+          <p className="mt-5 text-body text-[#002d0e]/65">{article.excerpt}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-meta text-[#002d0e]/55">
+            <span>{article.date}</span>
+            <span className="inline-flex items-center gap-1.5"><Clock3 size={14} aria-hidden="true" />{article.readTime}</span>
           </div>
+          <span className="button-primary mt-8">Read more <ArrowUpRight size={17} aria-hidden="true" /></span>
         </div>
       </Link>
     </article>
@@ -121,35 +85,17 @@ export function DarkFeaturedArticleCard({ article }: { article: BlogArticle }) {
   const articleHref = useArticleHref(article.slug);
 
   return (
-    <article
-      data-blog-card
-      className="blog-cover-card blog-card group overflow-hidden rounded-2xl bg-[#0F1A13] max-[640px]:mx-auto max-[640px]:w-[min(82vw,300px)]"
-      onMouseMove={updateReadingLight}
-      style={{ "--x": "50%", "--y": "50%" } as CSSProperties}
-    >
-      <Link to={articleHref} className="grid lg:min-h-[360px] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="blog-card-media relative aspect-[16/8.5] overflow-hidden sm:aspect-[16/10] lg:min-h-[280px] lg:aspect-auto">
-          <img
-            src={article.image}
-            alt={article.title}
-            className="blog-card-image h-full w-full object-cover"
-          />
-          <span className="absolute inset-0 bg-[linear-gradient(to_right,transparent_60%,#0F1A13)] opacity-80 transition-opacity duration-300 group-hover:opacity-50" />
+    <article data-blog-card className="group overflow-hidden rounded-[32px] bg-[#002d0e]">
+      <Link to={articleHref} className="grid outline-offset-[-4px] lg:min-h-[460px] lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="flex flex-col items-start justify-center p-6 sm:p-10 lg:p-14">
+          <p className="text-meta font-semibold uppercase tracking-[0.14em] text-[#bbecaa]">Cover Story / {article.category}</p>
+          <h2 className="mt-5 text-section font-semibold tracking-[-0.035em] text-white">{article.title}</h2>
+          <p className="mt-5 text-body text-white/65">{article.excerpt}</p>
+          <p className="mt-6 text-meta text-white/50">{article.date} <span className="mx-2" aria-hidden="true">/</span> {article.readTime}</p>
+          <span className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-white px-6 text-sm font-semibold text-[#002d0e]">Read more <ArrowUpRight size={17} aria-hidden="true" /></span>
         </div>
-        <div className="blog-card-content flex flex-col p-4 sm:p-8 lg:p-10">
-          <p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#5ff57a]">
-            Cover Story
-          </p>
-          <h2 className="mt-3 text-card-title font-bold text-white sm:mt-4">
-            {article.title}
-          </h2>
-          <p className="mt-3 line-clamp-3 text-body text-white/65 sm:mt-4 sm:line-clamp-4">
-            {article.excerpt}
-          </p>
-          <div className="mt-auto flex items-center justify-between gap-3 pt-5 sm:pt-8">
-            <span className="text-meta font-medium text-white/35">{article.date}</span>
-            <ReadMoreLink light />
-          </div>
+        <div className="aspect-[1.4] overflow-hidden bg-[#061b13] lg:aspect-auto">
+          <ArticleImage article={article} />
         </div>
       </Link>
     </article>

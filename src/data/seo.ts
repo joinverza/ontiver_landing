@@ -1,5 +1,6 @@
 import {blogArticles, getBlogArticleBySlug} from "./blog";
 import {useCasePageDetails} from "./useCases";
+import {platformLayers} from "./platform";
 
 const SITE_URL = "https://ontiver.com";
 const DEFAULT_IMAGE = `${SITE_URL}/assets/hero-blog.png`;
@@ -77,7 +78,33 @@ export function getSeoMeta(pathname: string): SeoMeta {
     };
   }
 
+  const platformMatch = path.match(/^\/enterprise\/platform\/([^/]+)$/);
+  const layer = platformMatch ? platformLayers.find(item => item.id === platformMatch[1]) : undefined;
+  if (layer) {
+    return {
+      title: `${layer.title} | Ontiver Platform`,
+      description: layer.description,
+      canonicalPath: path,
+      image: ENTERPRISE_IMAGE,
+      type: "website",
+      structuredData: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: `${layer.title} | Ontiver Platform`,
+        description: layer.description,
+        url: `${SITE_URL}${path}`,
+        publisher: baseOrganization,
+      },
+    };
+  }
+
   const staticMeta: Record<string, Omit<SeoMeta, "canonicalPath" | "structuredData">> = {
+    "/security": {
+      title: "Privacy, Consent and Security | Ontiver",
+      description: "Explore Ontiver's approach to consent, controlled identity sharing, data minimization, and enterprise security review.",
+      image: DEFAULT_IMAGE,
+      type: "website",
+    },
     "/": {
       title: "Your Reusable Digital Identity | Ontiver",
       description:

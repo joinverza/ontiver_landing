@@ -1,82 +1,50 @@
-import type { ChangeEvent, FocusEvent } from "react";
+import type { ChangeEvent } from "react";
 import type { ContactFieldConfig } from "../../data/contact";
 
 type ContactFieldProps = {
   field: ContactFieldConfig;
   value: string;
-  focused: boolean;
   missing: boolean;
-  swept: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onFocus: (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onBlur: () => void;
 };
 
-export default function ContactField({
-  field,
-  value,
-  focused,
-  missing,
-  swept,
-  onChange,
-  onFocus,
-  onBlur,
-}: ContactFieldProps) {
-  const active = focused || value.length > 0;
+export default function ContactField({ field, value, missing, onChange }: ContactFieldProps) {
+  const wide = field.wide || field.key === "subject";
+  const inputClass = `min-h-13 w-full rounded-xl border bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10 ${
+    missing ? "border-red-500" : "border-[#dde6dc]"
+  }`;
 
   return (
-    <label
-      className={`contact-form-field block ${field.wide ? "md:col-span-2" : ""}`}
-    >
-      <span
-        className={`block text-[13px] font-medium transition-colors duration-150 ${
-          missing ? "text-red-500" : active ? "text-[#009311]" : "text-black/45"
-        }`}
-      >
-        {field.label}
+    <label className={`block min-w-0 ${wide ? "md:col-span-2" : ""}`}>
+      <span className="mb-2.5 block text-sm font-medium text-[#002d0e]">
+        {field.label} <span className="text-[#007d21]">*</span>
       </span>
-      <span className="relative mt-2 block sm:mt-3">
-        {field.type === "textarea" ? (
-          <textarea
-            className="min-h-[88px] w-full resize-y bg-transparent pb-3 text-sm text-black outline-none placeholder:text-black/25 sm:min-h-[106px]"
-            placeholder={field.placeholder}
-            value={value}
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-          />
-        ) : (
-          <input
-            className="h-8 w-full bg-transparent pb-2.5 text-sm text-black outline-none placeholder:text-black/25 sm:h-9 sm:pb-3"
-            placeholder={field.placeholder}
-            type={field.type ?? "text"}
-            value={value}
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-          />
-        )}
-        <span className="contact-field-line absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[#D8DED8]" />
-        <span
-          className={`absolute bottom-0 left-0 h-px w-full transition-colors duration-150 ${
-            missing
-              ? "bg-red-500/80"
-              : focused
-                ? "bg-[#009311]"
-                : value
-                  ? "bg-[#009311]/30"
-                  : "bg-[#D8DED8]"
-          }`}
+      {field.type === "textarea" ? (
+        <textarea
+          className={`${inputClass} min-h-36 resize-y py-3.5`}
+          placeholder={field.placeholder}
+          name={field.key}
+          required
+          value={value}
+          onChange={onChange}
+          aria-invalid={missing || undefined}
+          aria-describedby={missing ? `${field.key}-error` : undefined}
         />
-        <span
-          className={`absolute bottom-[-1.5px] left-0 h-1 w-1 rounded-full bg-[#009311] transition-opacity duration-100 ${
-            focused ? "opacity-100" : "opacity-0"
-          }`}
+      ) : (
+        <input
+          className={inputClass}
+          placeholder={field.placeholder}
+          type={field.type ?? "text"}
+          name={field.key}
+          autoComplete={field.key === "firstName" ? "given-name" : field.key === "email" ? "email" : undefined}
+          required
+          value={value}
+          onChange={onChange}
+          aria-invalid={missing || undefined}
+          aria-describedby={missing ? `${field.key}-error` : undefined}
         />
-        {swept ? (
-          <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left animate-[contact-field-sweep_300ms_ease-out_1] bg-[#25d83d]" />
-        ) : null}
-      </span>
+      )}
+      {missing ? <span id={`${field.key}-error`} className="mt-2 block text-sm text-red-700">Please complete this field.</span> : null}
     </label>
   );
 }

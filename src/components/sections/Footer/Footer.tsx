@@ -1,122 +1,28 @@
 import { Link } from "react-router-dom";
-import {
-  enterpriseFooterGroups,
-  footerIcons,
-  individualFooterGroups,
-  type FooterLink,
-} from "../../../data/footer";
+import { enterpriseFooterGroups, footerIcons, individualFooterGroups, type FooterLink } from "../../../data/footer";
 import { getAudienceHome, type Audience } from "../../../lib/audience";
-import LinkArrow from "../../ui/LinkArrow";
 
 function FooterNavLink({ item }: { item: FooterLink }) {
-  return (
-    <LinkArrow
-      href={item.href}
-      variant="dark"
-      className="w-full border-white/15 text-white/60 [--link-arrow-min-width:min(220px,100%)]"
-    >
-      {item.label}
-    </LinkArrow>
-  );
+  const className = "inline-flex py-1.5 text-sm text-[#002d0e]/65 transition-colors hover:text-[#007d21]";
+  return item.external ? <a className={className} href={item.href} target="_blank" rel="noreferrer">{item.label}</a> : <Link className={className} to={item.href}>{item.label}</Link>;
 }
 
 export default function Footer({ audience = "individual" }: { audience?: Audience }) {
-  const footerGroups =
-    audience === "enterprise" ? enterpriseFooterGroups : individualFooterGroups;
+  const groups = audience === "enterprise" ? enterpriseFooterGroups : individualFooterGroups;
   return (
-    <footer
-      data-curtain-footer
-      className="bg-[#000a03]! px-5 py-12 text-white sm:px-6 md:px-10 lg:px-20 lg:py-16"
-    >
-      <div className="mx-auto max-w-[1320px]">
-        <div className="grid gap-10 lg:grid-cols-[minmax(220px,0.65fr)_minmax(0,2.7fr)] lg:gap-20">
-          <div data-curtain-footer-logo className="max-w-[240px]">
-            <Link to={getAudienceHome(audience)} aria-label="Ontiver home" className="inline-flex">
-              <img
-                src="/assets/green-logo.svg"
-                alt="Ontiver"
-                className="curtain-footer-logo-image h-14 w-auto"
-                data-curtain-footer-logo-mark
-              />
-            </Link>
-            <p
-              data-curtain-footer-tagline
-              className="mt-4 text-body text-white/65"
-            >
-              {audience === "enterprise"
-                ? "Identity infrastructure for trusted growth."
-                : "Your identity. Verified once. Ready when you are."}
-            </p>
+    <footer className="bg-[#edf5eb] pb-6 pt-16 text-[#002d0e] sm:pt-20">
+      <div className="site-container">
+        <div className="grid gap-10 pb-14 lg:grid-cols-[1.1fr_3fr] lg:gap-20">
+          <div>
+            <Link to={getAudienceHome(audience)} aria-label="Ontiver home"><img src="/assets/logo.svg" alt="Ontiver" className="h-9 w-auto" /></Link>
+            <p className="mt-5 max-w-[270px] text-body text-[#002d0e]/65">{audience === "enterprise" ? "Identity infrastructure for trusted growth." : "Your identity. Verified once. Ready when you are."}</p>
+            <div className="mt-6 flex gap-2">{footerIcons.map(icon => <a key={icon.alt} href={icon.href} target="_blank" rel="noreferrer" aria-label={`Follow Ontiver on ${icon.alt}`} className="grid size-10 place-items-center rounded-full border border-[#002d0e]/15 hover:bg-white"><img src={icon.icon} alt="" className="size-4 brightness-0" /></a>)}</div>
           </div>
-
-          <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {footerGroups.map((group) => (
-              <div
-                data-curtain-footer-column
-                key={group.category}
-                className="min-w-[220px]"
-              >
-                <h5 className="pb-4 text-card-title font-bold text-white sm:pb-5">
-                  {group.category}
-                </h5>
-                <ul className="space-y-3">
-                  {group.list.map((item) => (
-                    <li data-curtain-footer-link key={item.label}>
-                      <FooterNavLink item={item} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-9 md:grid-cols-4">
+            {groups.map(group => <nav key={group.category} aria-label={`Footer ${group.category}`}><h3 className="mb-4 text-sm font-semibold">{group.category}</h3><ul>{group.list.map(item => <li key={item.label}><FooterNavLink item={item} /></li>)}</ul></nav>)}
           </div>
         </div>
-
-        <div
-          data-curtain-footer-divider
-          className="relative my-8 flex h-px items-center overflow-hidden"
-          aria-hidden="true"
-        >
-          <span
-            data-curtain-footer-divider-left
-            className="h-px flex-1 origin-right bg-white/15"
-          />
-          <span
-            data-curtain-footer-divider-right
-            className="h-px flex-1 origin-left bg-white/15"
-          />
-          <span
-            data-curtain-footer-divider-flash
-            className="pointer-events-none absolute left-0 top-0 h-px w-full bg-[linear-gradient(to_right,transparent,#22C55E,transparent)]"
-          />
-        </div>
-
-        <div
-          data-curtain-footer-bottom
-          className="flex flex-col gap-5 text-body text-white/60 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <p data-curtain-footer-copyright>
-            &copy; 2026 Ontiver. All rights reserved.
-          </p>
-          <div className="flex gap-3">
-            {footerIcons.map((icon) => (
-              <a
-                data-curtain-footer-social
-                key={icon.alt}
-                href={icon.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Follow Ontiver on ${icon.alt}`}
-                className="inline-grid h-9 w-9 place-items-center rounded-full border border-white/10 opacity-75 transition-[opacity,transform,border-color] duration-150 ease-out hover:scale-[1.08] hover:border-[#22C55E]/60 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22C55E]"
-              >
-                <img
-                  src={icon.icon}
-                  alt=""
-                  className="h-5 w-5 transition-[filter] duration-150 hover:[filter:brightness(0)_saturate(100%)_invert(63%)_sepia(77%)_saturate(536%)_hue-rotate(89deg)_brightness(93%)_contrast(88%)]"
-                />
-              </a>
-            ))}
-          </div>
-        </div>
+        <div className="flex flex-col justify-between gap-3 border-t border-[#002d0e]/15 py-6 text-meta text-[#002d0e]/55 sm:flex-row"><p>&copy; 2026 Ontiver. All rights reserved.</p><Link to="/privacy" className="hover:text-[#007d21]">Your identity. Your control.</Link></div>
       </div>
     </footer>
   );

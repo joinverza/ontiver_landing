@@ -2,13 +2,14 @@ import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const REVEAL_SELECTOR =
-  "main > section, main > div, [data-scroll-reveal]";
+  "main > section:not(#cases):not(#join), main > div, [data-scroll-reveal]";
 
 export default function PageReveal() {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
-    const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR))
+      .filter(element => !element.querySelector("[data-scroll-reveal]"));
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       elements.forEach((element) => element.classList.add("ontiver-reveal-visible"));
       return undefined;
@@ -22,7 +23,7 @@ export default function PageReveal() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -6% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0 },
     );
 
     elements.forEach((element, index) => {

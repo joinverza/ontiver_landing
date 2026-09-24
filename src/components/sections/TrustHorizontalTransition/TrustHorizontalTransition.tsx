@@ -1,33 +1,25 @@
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
-import { securityFeatures } from "../../../data/trust";
-import { individualSecurityFeatures } from "../../../data/audienceContent";
+import { ArrowUpRight, Check, Fingerprint, History, LockKeyhole, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { Audience } from "../../../lib/audience";
 
 export default function TrustHorizontalTransition({ audience }: { audience: Audience }) {
-  const features = audience === "enterprise" ? securityFeatures : individualSecurityFeatures;
-
   return (
-    <section id="security" className="bg-[#edf1ed] px-5 py-20 sm:px-8 sm:py-28">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="grid gap-8 border-b border-black/10 pb-10 lg:grid-cols-[1fr_520px] lg:items-end">
-          <div>
-            <p className="flex items-center gap-2 text-meta font-bold uppercase tracking-[.18em] text-[#08772a]"><ShieldCheck className="h-4 w-4" /> Trust and control</p>
-            <h2 className="mt-5 max-w-[16ch] text-section font-semibold tracking-normal text-[#071b13]">Security people can understand.</h2>
-          </div>
-          <p className="max-w-xl text-subtitle text-black/60">Ontiver combines explicit consent, auditable activity, scoped access, and data minimization without interrupting the page with pinned or horizontal-scrolling effects.</p>
+    <section id="security" className="section-space bg-[#002d0e] text-white">
+      <div className="site-container grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
+        <div data-scroll-reveal>
+          <p className="eyebrow text-[#b7daa9]">For the person behind the proof</p>
+          <h2 className="section-heading mt-5 max-w-[530px]">Your identity belongs in your hands.</h2>
+          <p className="mt-6 max-w-[500px] text-subtitle text-white/65">{audience === "enterprise" ? "Better verification should work for the people being verified, too. Ontiver is designed to make requests clear and give individuals a say in how their identity proof is shared." : "You should know who is requesting your information, why they need it, and what you are agreeing to share. That is the idea behind Ontiver."}</p>
+          <ul className="my-8 space-y-4 text-body text-white/80">{["Review the business and purpose of each request.", "Approve or decline the sharing of your proof.", "Keep a history of where your proof has been used."].map(item => <li key={item} className="flex items-start gap-3"><Check size={18} className="mt-1 shrink-0 text-[#b7daa9]" />{item}</li>)}</ul>
+          <Link to="/security" className="button-secondary border-white/30 text-white hover:bg-white/10 hover:text-white">Explore privacy & control<ArrowUpRight size={17} /></Link>
         </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {features.map((feature) => (
-            <article key={feature.title} className="rounded-[1.5rem] border border-black/10 bg-white p-6 sm:p-8">
-              <div className="flex items-start justify-between gap-5">
-                <div><p className="text-meta font-bold uppercase tracking-[.15em] text-[#08772a]">{feature.eyebrow}</p><h3 className="mt-3 text-card-title font-semibold tracking-normal text-[#071b13]">{feature.title}</h3></div>
-                <span className="rounded-full bg-[#eaf5ec] px-3 py-1.5 text-meta font-bold text-[#08772a]">{feature.metric}</span>
-              </div>
-              <p className="mt-4 text-body text-black/60">{feature.description}</p>
-              <div className="mt-6 flex flex-wrap gap-2">{feature.chips.map((chip) => <span key={chip} className="rounded-full border border-black/10 px-3 py-1.5 text-meta font-semibold text-black/60">{chip}</span>)}</div>
-              <a href={feature.primaryAction.href} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#08772a]">{feature.primaryAction.label}<ArrowUpRight className="h-4 w-4" /></a>
-            </article>
-          ))}
+        <div data-scroll-reveal className="rounded-[28px] bg-[#e9f1e4] p-5 text-[#002d0e] sm:p-8">
+          <div className="flex items-center justify-between gap-4 border-b border-[#002d0e]/10 pb-5"><img src="/assets/logo.svg" alt="Ontiver" className="h-6" /><span className="text-meta text-[#002d0e]/55">Illustrative sharing request</span></div>
+          <div className="my-7 flex items-center gap-4"><span className="grid size-14 place-items-center rounded-2xl bg-white"><Fingerprint size={29} className="text-[#007d21]" strokeWidth={1.5} /></span><div><p className="text-card-title font-semibold">A request for your proof</p><p className="mt-1 text-sm text-[#002d0e]/60">You decide what happens next.</p></div></div>
+          <dl className="space-y-4 rounded-2xl bg-white p-5 text-sm"><div className="flex justify-between gap-5"><dt className="text-[#002d0e]/60">Requested by</dt><dd className="font-medium">Example business</dd></div><div className="flex justify-between gap-5"><dt className="text-[#002d0e]/60">Purpose</dt><dd className="text-right font-medium">Account onboarding</dd></div><div className="flex justify-between gap-5 border-t border-[#002d0e]/10 pt-4"><dt className="text-[#002d0e]/60">Information</dt><dd className="flex items-center gap-1.5 text-right font-medium"><ShieldCheck size={16} className="shrink-0 text-[#007d21]" />Verification status</dd></div></dl>
+          <p className="mt-5 flex items-start gap-2 text-sm leading-relaxed text-[#002d0e]/65"><LockKeyhole size={16} className="mt-1 shrink-0" />Only the approved information is included in the proposed sharing flow.</p>
+          <div className="mt-6 grid grid-cols-2 gap-3" aria-label="Illustrative choices, not interactive controls"><span className="rounded-full border border-[#002d0e]/20 py-3 text-center text-sm font-semibold">Decline</span><span className="rounded-full bg-[#007d21] py-3 text-center text-sm font-semibold text-white">Approve share</span></div>
+          <p className="mt-5 flex items-center justify-center gap-2 text-meta text-[#002d0e]/60"><History size={15} />Your sharing history stays visible.</p>
         </div>
       </div>
     </section>

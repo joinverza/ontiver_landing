@@ -1,54 +1,22 @@
-import LinkArrow from "../ui/LinkArrow";
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { UseCasePageDetail } from "../../data/useCases";
 
-type RelatedUseCasesProps = {
-  items: UseCasePageDetail[];
-};
-
-export default function RelatedUseCases({ items }: RelatedUseCasesProps) {
+export default function RelatedUseCases({ items }: { items: UseCasePageDetail[] }) {
   return (
-    <section data-related-section className="px-5 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto w-[min(100%,1120px)]">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <p className="text-meta font-bold uppercase tracking-[0.24em] text-black/40">
-            Also built for
-          </p>
-          <LinkArrow href="/#cases" className="[--link-arrow-min-width:170px]">
-            All cases
-          </LinkArrow>
+    <section className="section-space bg-white">
+      <div className="site-container">
+        <div data-scroll-reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div><p className="eyebrow">Explore other workflows</p><h2 className="mt-5 text-section font-semibold tracking-[-0.035em]">Trust, across industries.</h2></div>
+          <Link to="/enterprise#cases" className="inline-flex items-center gap-2 text-body font-medium text-[#007d21]">All use cases<ArrowUpRight size={18} /></Link>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           {items.slice(0, 3).map((item) => (
-            <article
-              key={item.id}
-              data-related-card
-              className="group overflow-hidden rounded-2xl border border-black/10 bg-white"
-            >
-              <div className="aspect-[16/10] overflow-hidden bg-[#06160f]">
-                <img
-                  src={item.imageUrl}
-                  alt=""
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-5">
-                <p className="text-meta font-bold uppercase tracking-[0.28em] text-[#009311]">
-                  {item.eyebrow}
-                </p>
-                <h3 className="mt-3 text-card-title font-semibold">
-                  {item.heroTitle}
-                </h3>
-                <p className="mt-2 line-clamp-2 text-body text-black/55">
-                  {item.tagline}
-                </p>
-                <LinkArrow
-                  href={`/enterprise/use-cases/${item.id}`}
-                  className="mt-6 [--link-arrow-min-width:160px]"
-                >
-                  Explore
-                </LinkArrow>
-              </div>
-            </article>
+            <Link data-scroll-reveal key={item.id} to={`/enterprise/use-cases/${item.id}`} className="group block">
+              <div className="overflow-hidden rounded-[24px] bg-[#edf5eb]"><img src={item.imageUrl} alt="" loading="lazy" className="aspect-[4/3] w-full object-cover" /></div>
+              <div className="mt-6 flex items-center justify-between gap-3"><h3 className="text-card-title font-semibold group-hover:text-[#007d21]">{item.heroTitle}</h3><ArrowUpRight size={21} className="shrink-0 text-[#007d21]" /></div>
+              <p className="mt-3 text-body text-[#637060]">{item.tagline}</p>
+            </Link>
           ))}
         </div>
       </div>

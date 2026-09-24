@@ -1,69 +1,25 @@
-import Text from "../base/Text";
+import { Check } from "lucide-react";
 import type { UseCasePageDetail } from "../../data/useCases";
 
-type UseCaseChallengeProps = {
-  detail: UseCasePageDetail;
-};
-
-function WordReveal({ text }: { text: string }) {
+export default function UseCaseChallenge({ detail }: { detail: UseCasePageDetail }) {
   return (
-    <>
-      {text.split(" ").map((word, index) => (
-        <span
-          key={`${word}-${index}`}
-          data-word-reveal
-          className="mr-[0.25em] inline-block opacity-0"
-        >
-          {word}
-        </span>
-      ))}
-    </>
-  );
-}
-
-export default function UseCaseChallenge({ detail }: UseCaseChallengeProps) {
-  return (
-    <section data-challenge-section className="px-5 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto w-[min(100%,1120px)]">
-        <div className="grid gap-10 lg:grid-cols-[0.92fr_1fr] lg:items-start">
-          <div>
-            <Text
-              btext={detail.challenge.label}
-              heading={detail.challenge.heading}
-              animate={false}
-              containerClassName="items-start gap-4 pb-0"
-              badgeWrapperClassName="mx-0"
-              badgeTextClassName="border border-black/20 text-[var(--usecase-accent)]"
-              headingClassName="mx-0 max-w-[620px] text-left text-section font-bold leading-[1.1]"
-            />
-          </div>
-          <p
-            data-challenge-copy
-            className="max-w-[620px] text-subtitle text-black/58"
-          >
-            <WordReveal text={detail.challenge.body} />
-          </p>
+    <section className="section-space">
+      <div className="site-container">
+        <div data-scroll-reveal className="grid gap-7 border-b border-[#e4ebe0] pb-14 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
+          <h2 className="text-section font-semibold tracking-[-0.035em]">{detail.headline}</h2>
+          <p className="text-subtitle text-[#637060]">{detail.intro}</p>
         </div>
-
-        <div
-          data-challenge-panel
-          className="mt-12 overflow-hidden rounded-2xl bg-[#07120c]"
-        >
-          <div className="relative h-[clamp(280px,40vw,480px)] overflow-hidden">
-            <img
-              src={detail.imageUrl}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-70"
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(34,197,94,0.22),transparent_28%),linear-gradient(to_top,rgba(3,10,6,0.96),rgba(3,10,6,0.28))]" />
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8">
-              <p className="text-meta font-bold uppercase tracking-[0.28em] text-[var(--usecase-accent)]">
-                Signal Map
-              </p>
-              <h3 className="mt-3 max-w-[520px] text-section font-semibold text-white">
-                {detail.challenge.visualTitle}
-              </h3>
-            </div>
+        <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
+          <div data-scroll-reveal className="overflow-hidden rounded-[28px] bg-[#edf5eb]">
+            <img src={detail.imageUrl} alt={detail.challenge.visualTitle} loading="lazy" className="aspect-[6/5] w-full object-cover" />
+            <p className="px-7 py-5 text-meta font-medium text-[#637060]">{detail.challenge.visualTitle}</p>
+          </div>
+          <div data-scroll-reveal>
+            <p className="eyebrow">{detail.challenge.label}</p>
+            <h2 className="mt-5 text-section font-semibold tracking-[-0.035em]">{detail.challenge.heading}</h2>
+            <p className="mt-6 text-body text-[#637060]">{detail.challenge.body}</p>
+            <p className="mt-7 text-meta font-semibold uppercase tracking-[0.12em] text-[#007d21]">Intended workflow outcomes</p>
+            <ul className="mt-4 space-y-4">{detail.outcomes.map((outcome) => <li key={outcome} className="flex items-start gap-3 text-body text-[#526052]"><Check size={18} className="mt-1 shrink-0 text-[#009311]" />{outcome}</li>)}</ul>
           </div>
         </div>
       </div>

@@ -10,6 +10,8 @@ import {
   LegalPage,
   PageLayout,
   PricingPage,
+  PlatformPage,
+  SecurityPage,
   SupportPage,
   UseCasePage,
 } from "./pages";
@@ -64,6 +66,8 @@ export default function App() {
         <Route path="/resources/blogs" element={<Navigate to="/blogs" replace />} />
         <Route path="/resources/blogs/:slug" element={<LegacyBlogArticleRedirect />} />
         <Route path="/enterprise/use-cases/:id" element={<UseCasePage />} />
+        <Route path="/enterprise/platform/:id" element={<PlatformPage />} />
+        <Route path="/security" element={<SecurityPage />} />
         <Route path="/use-cases/:id" element={<LegacyUseCaseRedirect />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/support" element={<SupportPage />} />

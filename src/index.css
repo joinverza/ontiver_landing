@@ -6,22 +6,22 @@
   --color-border: #05150e;
   --color-bg-light: #f7f7f7;
   --color-green: #007d21;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --text-hero: clamp(2.5rem, 7vw, 5rem);
-  --text-hero--line-height: 1.02;
-  --text-page-hero: clamp(2.25rem, 5.5vw, 4.5rem);
-  --text-page-hero--line-height: 1.05;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --text-hero: clamp(2.5rem, 5.4vw, 4.5rem);
+  --text-hero--line-height: 1.08;
+  --text-page-hero: clamp(2.5rem, 5.4vw, 4.5rem);
+  --text-page-hero--line-height: 1.08;
   --text-panel: clamp(2.15rem, 4vw, 4rem);
   --text-panel--line-height: 1.08;
-  --text-section: clamp(1.75rem, 3.4vw, 2.75rem);
-  --text-section--line-height: 1.1;
+  --text-section: clamp(1.875rem, 3.4vw, 3rem);
+  --text-section--line-height: 1.15;
   --text-subtitle: clamp(1rem, 1.2vw, 1.125rem);
   --text-subtitle--line-height: 1.6;
-  --text-card-title: 1.125rem;
-  --text-card-title--line-height: 1.25;
-  --text-body: 0.9375rem;
-  --text-body--line-height: 1.6;
+  --text-card-title: 1.375rem;
+  --text-card-title--line-height: 1.3;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
   --text-meta: 0.75rem;
   --text-meta--line-height: 1.35;
   --breakpoint-xss: 450px;
@@ -34,7 +34,7 @@
 }
 
 html {
-  scroll-padding-top: 96px;
+  scroll-padding-top: 132px;
 }
 
 html,
@@ -43,11 +43,14 @@ button,
 input,
 textarea,
 select {
-  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  font-optical-sizing: auto;
 }
 
 body {
   margin: 0;
+  color: #002d0e;
+  background: #fff;
   font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -56,6 +59,114 @@ body {
 :focus-visible {
   outline: 3px solid rgba(0, 125, 33, 0.28);
   outline-offset: 3px;
+}
+
+::selection {
+  background: #d2edcc;
+  color: #002d0e;
+}
+
+button, a, input, textarea, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled), summary {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@layer components {
+  .text-hero, .text-page-hero {
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .site-container {
+    width: 100%;
+    max-width: 1336px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .section-space {
+    padding-block: clamp(4rem, 7.5vw, 7rem);
+  }
+
+  .page-intro {
+    background: #edf5eb;
+    padding-block: clamp(10rem, 14vw, 12rem) clamp(3.5rem, 6vw, 5rem);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #007d21;
+    font-size: var(--text-meta);
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .section-heading {
+    font-size: var(--text-section);
+    line-height: var(--text-section--line-height);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .surface-card {
+    border: 1px solid #dde6dc;
+    border-radius: 1.5rem;
+    background: #fff;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .button-primary, .button-secondary {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+
+  .button-primary {
+    background: #007d21;
+    color: white;
+  }
+
+  .button-primary:hover {
+    background: #002d0e;
+  }
+
+  .button-secondary {
+    border-color: #b9ccba;
+    background: transparent;
+    color: #002d0e;
+  }
+
+  .button-secondary:hover {
+    background: #e4efe1;
+    border-color: #007d21;
+  }
+
+  .button-primary:disabled, .button-secondary:disabled {
+    opacity: 0.55;
+  }
 }
 
 .legal-content h2,
