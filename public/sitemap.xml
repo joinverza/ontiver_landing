@@ -171,6 +171,86 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ontiver.com/enterprise/use-cases/logistics-delivery</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/manufacturing-industrial</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/construction-property-services</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/healthcare-workforce</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/insurance</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/real-estate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/travel-hospitality</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/telecoms-digital-services</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/crypto-web3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/government-public-programs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/ngos-humanitarian-aid</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/agriculture-agribusiness</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/energy-utilities</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/b2b-vendors</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/security-services</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ontiver.com/enterprise/use-cases/creators-talent</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ontiver.com/enterprise/pricing</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -187,21 +267,6 @@
   </url>
   <url>
     <loc>https://ontiver.com/enterprise/contact</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/privacy</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/terms</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ontiver.com/cookies</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

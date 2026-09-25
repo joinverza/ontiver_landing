@@ -1,10 +1,11 @@
 import {blogArticles, getBlogArticleBySlug} from "./blog";
 import {useCasePageDetails} from "./useCases";
 import {platformLayers} from "./platform";
+import {imagery} from "./imagery";
 
 const SITE_URL = "https://ontiver.com";
-const DEFAULT_IMAGE = `${SITE_URL}/assets/photos/individual-hero.webp`;
-const ENTERPRISE_IMAGE = `${SITE_URL}/assets/photos/teamwork.webp`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/ontiver-enterprise.png`;
+const ENTERPRISE_IMAGE = DEFAULT_IMAGE;
 
 export type SeoMeta = {
   title: string;
@@ -128,19 +129,19 @@ export function getSeoMeta(pathname: string): SeoMeta {
     "/resources": {
       title: "Identity, Privacy and Sharing Resources | Ontiver",
       description: "Explore guides, privacy information, and support for understanding your identity proof and sharing choices.",
-      image: `${SITE_URL}/assets/photos/education.webp`,
+      image: `${SITE_URL}${imagery.studentAdmissions.src}`,
       type: "website",
     },
     "/enterprise/resources": {
       title: "Enterprise Verification Resources and Guides | Ontiver",
       description: "Find identity verification, KYC, consent, and integration guides for product, engineering, and compliance teams.",
-      image: `${SITE_URL}/assets/photos/work.webp`,
+      image: `${SITE_URL}${imagery.candidateReview.src}`,
       type: "website",
     },
     "/enterprise/platform": {
       title: "Identity Verification Platform | Ontiver",
       description: "Explore the six Ontiver platform layers connecting identity sources, verification, workflows, intelligence, consent, and reusable proof.",
-      image: `${SITE_URL}/assets/photos/enterprise-hero.webp`,
+      image: `${SITE_URL}${imagery.candidateReview.src}`,
       type: "website",
     },
     "/enterprise/use-cases": {
@@ -170,14 +171,14 @@ export function getSeoMeta(pathname: string): SeoMeta {
     "/": {
       title: "Your Reusable Digital Identity | Ontiver",
       description:
-        "Verify once, keep control of your trusted credentials, and approve identity reuse across supported services without repeated document uploads.",
+        "Create one verified identity, then decide exactly what gets shared, with whom, and for how long — instead of uploading the same documents everywhere.",
       image: DEFAULT_IMAGE,
       type: "website",
     },
     "/enterprise": {
       title: "Enterprise Identity Verification Infrastructure | Ontiver",
       description:
-        "Orchestrate identity verification, AML screening, consent, reusable credentials, and audit-ready compliance workflows with Ontiver.",
+        "Verify users and businesses, manage consent, and confirm reusable identity proof through a secure dashboard and API without repeatedly collecting raw identity documents.",
       image: ENTERPRISE_IMAGE,
       type: "website",
     },
