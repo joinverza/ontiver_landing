@@ -1,6 +1,7 @@
 import { FormEvent, type ReactNode, useCallback, useEffect, useState } from "react";
 import {
   CheckCircle2,
+  Code2,
   ExternalLink,
   LifeBuoy,
   Mail,
@@ -13,6 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import type { Audience } from "../lib/audience";
+import ContextPhoto from "../components/ui/ContextPhoto";
+import { imagery } from "../data/imagery";
 import {
   createPublicSupportRequest,
   getPublicSupportConversation,
@@ -22,18 +25,24 @@ import {
 } from "../lib/landingApi";
 
 const STORAGE_KEY = "ontiver.publicSupportSession";
-const topics = [
-  "Account access",
-  "Privacy and data",
-  "Verification",
-  "Credentials and sharing",
-  "Billing",
-  "Developer integration",
-  "Other",
-];
+const shortcutsByAudience = {
+  individual: [
+    { topic: "Account access", icon: MessageCircle },
+    { topic: "Privacy and data", icon: ShieldCheck },
+    { topic: "Verification", icon: CheckCircle2 },
+    { topic: "Developer integration", icon: Code2 },
+  ],
+  enterprise: [
+    { topic: "Verification requests", icon: CheckCircle2 },
+    { topic: "Dashboard reviews", icon: MessageCircle },
+    { topic: "API integration", icon: Code2 },
+    { topic: "Consent records", icon: ShieldCheck },
+    { topic: "Workflow support", icon: LifeBuoy },
+  ],
+};
 
 const controlClassName =
-  "min-h-14 w-full rounded-xl border border-[#d7e2d4] bg-white px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "min-h-14 w-full rounded-[10px] border border-[#d7e2d4] bg-white px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 
 type FormValues = {
   name: string;
@@ -55,7 +64,7 @@ type SupportFieldProps = {
 const emptyForm: FormValues = {
   name: "",
   email: "",
-  topic: "Account access",
+  topic: "",
   subject: "",
   message: "",
   website: "",
@@ -101,6 +110,9 @@ function readStoredSession(): PublicSupportSession | null {
 
 export default function SupportPage({ audience = "individual" }: { audience?: Audience }) {
   const [form, setForm] = useState<FormValues>(emptyForm);
+  const topicShortcuts = shortcutsByAudience[audience];
+  const selectedTopic = form.topic || topicShortcuts[0].topic;
+  const topics = [...new Set([...topicShortcuts.map(({ topic }) => topic), "Credentials and sharing", "Billing", "Other", selectedTopic])];
   const [session, setSession] = useState<PublicSupportSession | null>(() => readStoredSession());
   const [conversation, setConversation] = useState<PublicSupportConversation | null>(null);
   const [reply, setReply] = useState("");
@@ -132,7 +144,7 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
     setBusy(true);
     setError("");
     try {
-      const created = await createPublicSupportRequest(form);
+      const created = await createPublicSupportRequest({ ...form, topic: selectedTopic });
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(created));
       setSession(created);
       setForm(emptyForm);
@@ -172,42 +184,30 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
     <>
       <main className="min-h-screen bg-white text-[#002d0e]">
         <section className="page-intro">
-          <header className="site-container">
+          <header className="site-container text-center">
             <div>
               <p className="eyebrow">Ontiver Support</p>
-              <h1 className="mt-5 max-w-[1060px] text-page-hero font-bold">
-                How can we help?
+              <h1 className="mx-auto mt-5 max-w-[1060px] text-page-hero font-medium">
+                {audience === "enterprise" ? "Get help with your Ontiver workflows." : "Get help with your Ontiver identity."}
               </h1>
-              <p className="mt-7 max-w-[760px] text-subtitle text-[#526058]">
-                Start a secure conversation with our support team. We will keep your request and every reply together in one place.
+              <p className="mx-auto mt-7 max-w-[760px] text-subtitle text-[#526058]">
+                {audience === "enterprise"
+                  ? "Get help with verification requests, dashboard reviews, API integrations, or consent records. Keep your request and replies together."
+                  : "Get help with a verification request, your proof wallet, consent, or account access. Keep your request and replies together."}
               </p>
             </div>
 
-            <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-10">
-              <div className="flex items-center gap-4">
-                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-[#007d21]">
-                  <MessageCircle className="size-5" />
-                </span>
-                <div>
-                  <p className="text-meta font-semibold uppercase text-[#06160f]/45">Your conversation</p>
-                  <p className="mt-1 text-body font-semibold">Continue here after submitting</p>
-                </div>
-              </div>
-              <a href="mailto:support@ontiver.com" className="group flex items-center gap-4">
-                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-[#007d21]">
-                  <Mail className="size-5" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-meta font-semibold uppercase text-[#06160f]/45">Email support</p>
-                  <p className="mt-1 truncate text-body font-semibold group-hover:text-[#007b20]">support@ontiver.com</p>
-                </div>
-              </a>
-            </div>
+            {!session && <div className={`mt-10 grid gap-3 text-left sm:grid-cols-2 ${audience === "enterprise" ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
+              {topicShortcuts.map(({ topic, icon: Icon }) => <button key={topic} type="button" onClick={() => { setForm(current => ({ ...current, topic })); document.getElementById("support-topic")?.focus(); }} className="flex items-center gap-3 rounded-2xl border border-transparent bg-[#f5f6f3] p-4 text-left transition-colors hover:border-[#007d21]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#007d21]">
+                <Icon className="size-6 shrink-0 text-[#007d21]" aria-hidden="true" />
+                <span className="text-body font-medium">{topic}</span>
+              </button>)}
+            </div>}
           </header>
         </section>
-        <section className="section-space site-container">
-          <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
-            <section className="min-w-0 rounded-[28px] border border-[#e0e8dd] bg-[#f7f9f6] p-7 sm:p-10">
+        <section className="site-container pb-20 lg:pb-32">
+          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-16">
+            <section className="min-w-0 bg-white">
               {session && conversation ? (
                 <>
                   <div className="flex flex-wrap items-start justify-between gap-5 border-b border-[#06160f]/10 pb-6">
@@ -272,7 +272,7 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
                           disabled={busy}
                           className="inline-flex min-h-14 items-center gap-2 rounded-full px-4 text-body font-medium text-[#526058] hover:text-[#007d21] disabled:opacity-50"
                         >
-                          <Plus className="h-4 w-4" /> New request
+                          <Plus className="h-4 w-4" /> Start a new request
                         </button>
                       </div>
                       <button
@@ -287,7 +287,7 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
                   </form>
                 </>
               ) : session ? (
-                <div className="flex min-h-[420px] flex-col items-center justify-center text-center" aria-live="polite">
+                <div className="flex min-h-[280px] flex-col items-center justify-center text-center" aria-live="polite">
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-[#e9f6ec] text-[#008b24]">
                     <MessageCircle className="h-6 w-6" />
                   </span>
@@ -313,21 +313,17 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
                         onClick={startNewRequest}
                         className="button-secondary"
                       >
-                        <Plus className="h-4 w-4" /> New request
+                        <Plus className="h-4 w-4" /> Start a new request
                       </button>
                     </div>
                   ) : null}
                 </div>
               ) : (
                 <form onSubmit={submitRequest} aria-busy={busy}>
-                  <div className="eyebrow flex items-center gap-2">
-                    <LifeBuoy className="h-4 w-4" />
-                    Create a request
-                  </div>
-                  <h2 className="mt-4 text-section font-semibold">Tell us what you need</h2>
+                  <h2 className="text-card-title font-medium">Tell us what you need</h2>
 
-                  <div className="mt-9 grid gap-x-5 gap-y-7 sm:grid-cols-2">
-                    <SupportField htmlFor="support-name" label="Full name" required>
+                  <div className="mt-7 grid gap-x-6 gap-y-6 sm:grid-cols-2">
+                    <SupportField htmlFor="support-name" label="Name" required>
                       <input
                         id="support-name"
                         required
@@ -338,7 +334,7 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
                         className={controlClassName}
                       />
                     </SupportField>
-                    <SupportField htmlFor="support-email" label="Email address" required>
+                    <SupportField htmlFor="support-email" label="Email" required>
                       <input
                         id="support-email"
                         required
@@ -353,7 +349,7 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
                       <select
                         id="support-topic"
                         required
-                        value={form.topic}
+                        value={selectedTopic}
                         onChange={(event) => setForm({ ...form, topic: event.target.value })}
                         className={controlClassName}
                       >
@@ -423,22 +419,16 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
               ) : null}
             </section>
 
-            <aside className="rounded-[28px] bg-[#edf5eb] p-7 text-[#002d0e] sm:p-9">
-              <div className="flex items-center gap-2 text-meta font-semibold uppercase text-[#007d21]">
-                <ShieldCheck className="h-4 w-4" /> Before you send
-              </div>
-              <h2 className="mt-5 text-section font-bold">Keep sensitive details private.</h2>
-              <p className="mt-5 text-body text-[#526058]">
-                Ontiver Support will never ask for passwords, one-time codes, card PINs, complete identity numbers, or API secrets.
-              </p>
-
-              <div className="mt-8 divide-y divide-[#002d0e]/15 border-y border-[#002d0e]/15">
-                <a href="mailto:support@ontiver.com" className="group flex min-h-16 items-center justify-between gap-4 py-4">
+            <aside className="min-w-0 text-[#002d0e]">
+              <div data-scroll-reveal><ContextPhoto image={audience === "enterprise" ? imagery.candidateReview : imagery.mobileApplication} size="wide" /></div>
+              <div className="mt-6 rounded-2xl bg-[#f5f6f3] px-6 py-2">
+              <div className="divide-y divide-[#002d0e]/15">
+                <Link to={audience === "enterprise" ? "/enterprise/contact" : "/contact"} className="group flex min-h-16 items-center justify-between gap-4 py-4">
                   <span className="flex items-center gap-3 text-body font-semibold">
-                    <Mail className="size-5 text-[#007d21]" /> Email support
+                    <Mail className="size-5 text-[#007d21]" /> Contact the team
                   </span>
                   <ExternalLink className="size-5 shrink-0 text-[#007d21]" />
-                </a>
+                </Link>
                 <a
                   href="https://docs.ontiver.com/faq"
                   target="_blank"
@@ -452,12 +442,11 @@ export default function SupportPage({ audience = "individual" }: { audience?: Au
                 </a>
               </div>
 
-              <div className="mt-8 flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#007d21]" />
-                <div>
-                  <p className="text-card-title font-semibold">Secure conversation</p>
-                  <p className="mt-2 text-body text-[#526058]">Keep your conversation link private; it gives access to your request.</p>
-                </div>
+              </div>
+              <div className="mt-7 border-t border-[#dde6dc] pt-6">
+                <h2 className="flex items-center gap-2 text-body font-medium"><ShieldCheck className="size-5 text-[#007d21]" aria-hidden="true" /> Keep sensitive details private.</h2>
+                <p className="mt-3 text-meta leading-relaxed text-[#526058]">Never share passwords, one-time codes, card PINs, complete identity numbers, or API secrets.</p>
+                {session && <p className="mt-3 text-meta leading-relaxed text-[#526058]">Keep your conversation link private; it gives access to your request.</p>}
               </div>
             </aside>
           </div>
