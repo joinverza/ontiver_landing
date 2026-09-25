@@ -1,4 +1,4 @@
-import { pricingPlans, type Plan } from "../data/pricing";
+import { pricingPlans, type Plan, type BillingCycle } from "../data/pricing";
 
 export function formatPrice(value: number | null) {
   if (value === null) return "Custom";
@@ -12,4 +12,12 @@ export function getRecommendedPricingPlan(monthlyVerifications: number): Plan {
   if (monthlyVerifications <= 1000) return pricingPlans[2];
   if (monthlyVerifications <= 3000) return pricingPlans[3];
   return pricingPlans[4];
+}
+
+export function getPricingInquiryUrl(planName: string | null, billingCycle: BillingCycle = "monthly", monthlyVerifications?: number) {
+  const plan = planName?.toLowerCase();
+  const params = new URLSearchParams({ plan: plan && ["launch", "growth", "compliance", "enterprise"].includes(plan) ? plan : "enterprise", billing: billingCycle });
+  if (plan === "sandbox") params.set("request", "sandbox");
+  if (monthlyVerifications !== undefined && Number.isFinite(monthlyVerifications) && monthlyVerifications >= 0) params.set("monthlyVerifications", String(monthlyVerifications));
+  return "/enterprise/contact?" + params.toString();
 }
