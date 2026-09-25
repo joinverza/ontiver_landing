@@ -9,18 +9,18 @@ type PricingFAQProps = { variant?: "pricing" | "enterprise" | "individual" };
 export default function PricingFAQ({ variant = "pricing" }: PricingFAQProps) {
   const [selectedGroup, setSelectedGroup] = useState(0);
   const groups = variant === "individual"
-    ? individualFaqGroups.filter((group) => group.group !== "Privacy & Access")
-    : faqGroups.filter((group) => group.group === "Integration" || group.group === (variant === "enterprise" ? "Identity & Compliance" : "Pricing"));
+    ? individualFaqGroups
+    : faqGroups.filter((group) => variant === "enterprise" ? group.group !== "Pricing" : group.group === "Pricing");
   const currentGroup = groups[selectedGroup] ?? groups[0];
-  const items = currentGroup.items.filter((_, index) => currentGroup.group === "Identity & Compliance" ? index !== 0 : currentGroup.group === "Integration" ? index !== 0 : currentGroup.group === "Pricing" ? index !== 2 : true).slice(0, 3);
+  const items = currentGroup.items;
   const heading = { pricing: "Pricing, explained.", enterprise: "Before you integrate.", individual: "Get to know Ontiver." }[variant];
   return (
-    <section id="faq" className="section-space bg-[#f7f7f7]">
+    <section id="faq" className="section-space bg-white">
       <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
         <div data-scroll-reveal>
           <AuroraBadge>Frequently asked questions</AuroraBadge>
           <h2 className="section-heading mt-5">{heading}</h2>
-          <Link to="/support" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Contact support<ArrowUpRight size={17} /></Link>
+          <Link to={variant === "individual" ? "/support" : "/enterprise/support"} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">Contact support<ArrowUpRight size={17} /></Link>
         </div>
         <div>
           <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label="Question categories">
@@ -30,6 +30,7 @@ export default function PricingFAQ({ variant = "pricing" }: PricingFAQProps) {
             {items.map((item) => <details key={currentGroup.group + item.question} name={`faq-${variant}`} className="group py-5">
               <summary className="flex list-none items-center justify-between gap-5 text-body font-semibold [&::-webkit-details-marker]:hidden">{item.question}<Plus size={19} className="shrink-0 transition-transform group-open:rotate-45" /></summary>
               <p className="pt-4 pr-6 text-body text-[#002d0e]/65">{item.answer}</p>
+              {item.link && <Link to={item.link.to} className="mt-3 inline-flex items-center gap-2 text-body font-medium text-[#007d21]">{item.link.label}<ArrowUpRight size={17} aria-hidden="true" /></Link>}
             </details>)}
           </div>
         </div>
