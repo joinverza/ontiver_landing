@@ -11,5 +11,5 @@ export default function RotatingPhrase({ phrases }: { phrases: string[] }) {
     }, 4200);
     return () => window.clearInterval(timer);
   }, [paused, reduced, phrases.length]);
-  return <span className="rotating-phrase"><span className="sr-only">{phrases[0]}</span><span aria-hidden="true" key={reduced ? 0 : index} className="phrase-enter">{phrases[reduced ? 0 : index]}</span></span>;
+  return <span className="rotating-phrase"><span className="sr-only">{phrases[0]}</span><span aria-hidden="true" className="invisible col-start-1 row-start-1">{phrases[0]}</span><span aria-hidden="true" key={reduced ? 0 : index} className="phrase-enter col-start-1 row-start-1">{phrases[reduced ? 0 : index]}</span></span>;
 }
