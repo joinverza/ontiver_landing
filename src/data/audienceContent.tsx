@@ -44,29 +44,31 @@ export const individualProblems: ProblemItem[] = [
 export const individualSolutionSteps: SolutionStep[] = [
   {
     icon: "/assets/verify.svg",
-    title: "Verify once",
-    para: "Complete an identity check and reuse the resulting proof where a participating service accepts it.",
+    title: "Review the request",
+    para: "See who's asking, what they need, and why, before you do anything.",
   },
   {
     icon: "/assets/proof.svg",
-    title: "Keep your proof",
-    para: "Your verified credentials stay connected to you in one secure identity record.",
+    title: "Make your choice",
+    para: "Approve, decline, or ask a question first.",
   },
   {
     icon: "/assets/consent.svg",
-    title: "Review requests",
-    para: "See who is asking, what they need, and why before anything is shared.",
+    title: "Submit your evidence",
+    para: "Provide only what's requested, through a guided flow.",
   },
   {
     icon: "/assets/share.svg",
-    title: "Approve sharing",
-    para: "Give clear permission for the exact credential a supported service needs.",
+    title: "Follow the review",
+    para: "Watch your request move through verification in real time.",
   },
   {
     icon: "/assets/reuse.svg",
-    title: "Move forward",
-    para: "Reuse trusted proof across supported services without starting over.",
+    title: "Keep approved proofs",
+    para: "Once verified, your proof stays with you for future use.",
   },
+  { icon: "/assets/consent.svg", title: "Approve the next share", para: "Reuse your proof with a new request instead of starting over." },
+  { icon: "/assets/reuse.svg", title: "Manage your history", para: "Review, revoke, or check on anything you've ever shared." },
 ];
 
 export const individualModuleCards: ModuleCard[] = [
@@ -152,17 +154,17 @@ export const individualModuleCards: ModuleCard[] = [
 export const individualUseCaseCards: UseCaseCard[] = [
   {
     id: "banking",
-    title: "Banking & Fintech",
-    description: "Explore identity-proof reuse in supported financial-service journeys.",
-    imageUrl: imagery.individualHero.src,
+    title: "Banking and fintech",
+    description: "Open an account without repeating your KYC from scratch.",
+    imageUrl: imagery.mobileApplication.src,
     className: "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
     idle: "fintech",
   },
   {
     id: "lending",
-    title: "Loans & Credit",
-    description: "Reuse trusted proof when applying with supported lenders.",
+    title: "Loans and credit",
+    description: "Apply for credit with a verified profile lenders can trust.",
     imageUrl: imagery.finance.src,
     className: "col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
@@ -171,8 +173,8 @@ export const individualUseCaseCards: UseCaseCard[] = [
   {
     id: "marketplaces",
     title: "Marketplaces",
-    description: "Explore permission-led verification with participating marketplaces.",
-    imageUrl: imagery.marketplace.src,
+    description: "Buy and sell with a verified identity that builds trust with strangers.",
+    imageUrl: imagery.merchantOrders.src,
     className:
       "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
     cardClassName: "min-h-[568px] max-[1024px]:min-h-[360px] max-[640px]:min-h-[210px]",
@@ -182,9 +184,9 @@ export const individualUseCaseCards: UseCaseCard[] = [
   },
   {
     id: "work",
-    title: "Work & Hiring",
-    description: "Share verified identity during supported hiring and onboarding.",
-    imageUrl: imagery.work.src,
+    title: "Work and hiring",
+    description: "Start a new job faster with pre-verified credentials.",
+    imageUrl: imagery.candidateReview.src,
     className: "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName: "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -194,8 +196,8 @@ export const individualUseCaseCards: UseCaseCard[] = [
   {
     id: "education",
     title: "Education",
-    description: "Reuse trusted proof across supported admissions and credential journeys.",
-    imageUrl: imagery.education.src,
+    description: "Apply and enroll with your identity and records verified once.",
+    imageUrl: imagery.studentAdmissions.src,
     className: "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName: "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
@@ -204,9 +206,9 @@ export const individualUseCaseCards: UseCaseCard[] = [
   },
   {
     id: "everyday",
-    title: "Everyday Services",
-    description: "Reuse proof where a participating service accepts Ontiver.",
-    imageUrl: imagery.teamwork.src,
+    title: "Driving and delivery",
+    description: "Get activated on delivery and logistics platforms without delay.",
+    imageUrl: imagery.courierOnboarding.src,
     className: "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
     cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
     contentClassName: "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
