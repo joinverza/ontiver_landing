@@ -25,7 +25,7 @@ export default function AudienceToggle({
 
   return (
     <div
-      className={`inline-grid grid-cols-2 rounded-full border border-[#0a2818]/10 bg-[#f1f5ef] p-1 ${className}`}
+      className={`inline-grid grid-cols-2 rounded-full border border-[#0a2818]/15 bg-white p-1 ${className}`}
       role="group"
       aria-label="Choose website audience"
     >
@@ -43,7 +43,7 @@ export default function AudienceToggle({
               compact ? "px-3 py-2 text-meta" : "px-4 py-2 text-sm sm:px-5"
             } ${
               selected
-                ? "bg-white text-[#007d21] shadow-sm"
+                ? "bg-[#e1ecd9] text-[#002d0e]"
                 : "text-[#244438] hover:bg-[#e8f5ea] hover:text-[#006f1b]"
             }`}
           >

@@ -1,0 +1,81 @@
+.nav-chevron {
+  transition: transform 200ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.ontiver-mobile-menu[data-state="open"] {
+  animation: ontiver-menu-enter 220ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.ontiver-mobile-menu[data-state="closing"] {
+  pointer-events: none;
+  animation: ontiver-menu-exit 160ms ease-in both;
+}
+
+.ontiver-mobile-menu[data-state="open"]::backdrop {
+  animation: ontiver-backdrop-enter 220ms ease-out both;
+}
+
+.ontiver-mobile-menu[data-state="closing"]::backdrop {
+  animation: ontiver-backdrop-enter 160ms ease-in reverse both;
+}
+
+.nav-accordion {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 240ms cubic-bezier(.2, .8, .2, 1), opacity 180ms ease, visibility 0s 240ms;
+}
+
+.nav-accordion[data-expanded="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+@keyframes ontiver-menu-enter {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ontiver-menu-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes ontiver-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+  main details { interpolate-size: allow-keywords; }
+  main details::details-content {
+    block-size: 0;
+    opacity: 0;
+    overflow: clip;
+    transition: block-size 240ms cubic-bezier(.2, .8, .2, 1), opacity 180ms ease, content-visibility 240ms;
+    transition-behavior: allow-discrete;
+  }
+  main details[open]::details-content { block-size: auto; opacity: 1; }
+}
+
+html[data-motion="paused"] .ontiver-mobile-menu,
+html[data-motion="paused"] .ontiver-mobile-menu::backdrop {
+  animation: none;
+}
+
+html[data-motion="paused"] :is(.nav-popup-panel, .ontiver-mobile-menu, .nav-chevron),
+html[data-motion="paused"] :is(.nav-popup-panel, .ontiver-mobile-menu) * {
+  transition: none !important;
+}
+
+html[data-motion="paused"] main details::details-content { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ontiver-mobile-menu, .ontiver-mobile-menu::backdrop { animation: none; }
+  :is(.nav-popup-panel, .ontiver-mobile-menu, .nav-chevron),
+  :is(.nav-popup-panel, .ontiver-mobile-menu) * { transition: none !important; }
+  main details::details-content { transition: none !important; }
+}
