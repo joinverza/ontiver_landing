@@ -2,13 +2,17 @@
 
 ## Current visual update
 
-The latest user request makes [Payaza](https://payaza.africa/) the visual reference again and explicitly selects [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque). It supersedes the earlier Persona section-order direction below. Ontiver retains its own content, palette, platform routes, pre-pilot proof handling, and consent messaging.
+The latest content correction follows the supplied industry workflow document and the user's request for relevant Pinterest photography, fewer interface cards, shorter sections and animated dropdowns/popups. See [content-source-map.md](content-source-map.md) for the current product mapping. The visual history below remains context for the retained Trustly layout direction.
 
-The current design adapts Payaza's floating white navigation, large left-aligned hero, wide photo/product strip, centered section headings, two-column feature explorer, rounded panels, pill buttons, and final CTA treatment. No Payaza brand assets or text were imported. Section motion remains a simple reveal; the image strip supports manual scrolling on smaller screens.
+The latest user request makes the live [Trustly business website](https://www.trustly.com/?r=0) and [Trustly personal website](https://www.trustly.com/personal) the visual references. This supersedes the preceding Payaza visual pass and the earlier Persona section-order direction. Ontiver retains its own content, palette, platform routes, pre-pilot proof handling, consent messaging, and the selected [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) font.
 
-## Navigation, scrolling, and concise content
+The current design adapts Trustly's white navigation, large editorial introductions, photo mosaics, asymmetric feature tiles, alternating photo/text sections, compact workflows, utility forms, document layouts, and photographic CTAs. Ontiver uses its own licensed photography and copy, with no Trustly brand assets, customer logos, commercial claims or certifications. The 14-photo library includes six new Pinterest-discovered originals. Current page coverage, typography, observed motion versus adaptations, and the 43-route mapping are documented in [trustly-redesign-reference.md](trustly-redesign-reference.md).
 
-The navigation now uses Payaza's grouped icon links, short descriptions, photo panel, and footer CTA pattern. Each parent label is a page link; its adjacent disclosure button opens the group. Desktop supports hover, click, keyboard navigation, Escape, and outside-click dismissal. Mobile uses an expandable menu inside the existing native modal dialog.
+The navigation, typography and motion notes below record previous implementation passes where they differ from that current reference. They remain as historical context; the original source-priority and publishing-proof requirements continue to apply. The live Trustly website is separate from the similarly named Framer template mentioned in the earlier research.
+
+## Previous pass: navigation, scrolling, and concise content
+
+The preceding navigation pass used Payaza's grouped icon links, short descriptions, photo panel, and footer CTA pattern. The current Trustly pass replaces that composition as documented above. Each parent label remains a page link; its adjacent disclosure button opens the group. Desktop supports hover, click, keyboard navigation, Escape, and outside-click dismissal. Mobile uses an expandable menu inside the existing native modal dialog.
 
 Ten dedicated destinations were added: `/identity`, `/how-it-works`, `/use-cases`, `/waitlist`, `/resources`, `/enterprise/platform`, `/enterprise/use-cases`, `/enterprise/resources`, `/enterprise/security`, and `/enterprise/support`. All 43 canonical routes have metadata and static prerender coverage. The shared waitlist form preserves the existing endpoint and validation on both the homepage and `/waitlist`.
 
