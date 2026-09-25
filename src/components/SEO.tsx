@@ -13,7 +13,7 @@ export default function SEO() {
     <Helmet>
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="robots" content={meta.noIndex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
       <link rel="canonical" href={canonical} />
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />

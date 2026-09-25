@@ -12,6 +12,7 @@ export type SeoMeta = {
   canonicalPath: string;
   image: string;
   type: "website" | "article";
+  noIndex?: boolean;
   structuredData: Record<string, unknown>;
 };
 
@@ -217,19 +218,22 @@ export function getSeoMeta(pathname: string): SeoMeta {
     },
     "/privacy": {
       title: "Privacy Policy | Ontiver",
-      description: "How Ontiver Inc., Nigeria processes and safeguards personal information across its identity services.",
+      description: "Ontiver's privacy policy is awaiting legal review. View the planned sections and contact the team with privacy questions.",
+      noIndex: true,
       image: DEFAULT_IMAGE,
       type: "website",
     },
     "/terms": {
       title: "Terms of Use | Ontiver",
-      description: "Terms for Ontiver consumer, enterprise, developer, and identity verification services.",
+      description: "Ontiver's terms of use are awaiting legal review. View the planned policy structure and contact options.",
+      noIndex: true,
       image: DEFAULT_IMAGE,
       type: "website",
     },
     "/cookies": {
       title: "Cookie Policy | Ontiver",
-      description: "Ontiver's use of essential browser storage, preferences, analytics, and diagnostics.",
+      description: "Ontiver's cookie policy is awaiting legal review, including browser storage categories and choices.",
+      noIndex: true,
       image: DEFAULT_IMAGE,
       type: "website",
     },

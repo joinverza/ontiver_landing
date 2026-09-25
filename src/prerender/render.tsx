@@ -31,7 +31,7 @@ export function renderRoute({path, Component}: RenderInput) {
     const headHtml = [
       `<title data-rh="true">${escape(meta.title)}</title>`,
       `<meta data-rh="true" name="description" content="${escape(meta.description)}">`,
-      '<meta data-rh="true" name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">',
+      `<meta data-rh="true" name="robots" content="${meta.noIndex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"}">`,
       `<link data-rh="true" rel="canonical" href="${canonical}">`,
       `<meta data-rh="true" property="og:title" content="${escape(meta.title)}">`,
       `<meta data-rh="true" property="og:description" content="${escape(meta.description)}">`,
