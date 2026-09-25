@@ -1,28 +1,22 @@
-import { ArrowUpRight, ChartNoAxesCombined, Check, Share2 } from "lucide-react";
+import { ArrowUpRight, ChartNoAxesCombined, Share2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { SavingsResult } from "../../data/calculator";
+import type { BillingCycle } from "../../data/pricing";
 import { formatCurrency } from "../../lib/calculator";
+import { getPricingInquiryUrl } from "../../lib/pricing";
+import { BusinessPhoto } from "../business/BusinessPhoto";
+import { imagery } from "../../data/imagery";
 
-type CalculatorResultsPanelProps = { result: SavingsResult | null; shareMessage: string; onShare: () => void; onViewRecommendedPlan: () => void };
-
-export default function CalculatorResultsPanel({ result, shareMessage, onShare, onViewRecommendedPlan }: CalculatorResultsPanelProps) {
-  return (
-    <div className="flex min-h-[430px] flex-col rounded-[28px] bg-[#002d0e] p-6 text-white sm:p-9" aria-live="polite" aria-atomic="true">
-      <div className="flex items-center justify-between gap-4"><p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#b8e5a7]">Your potential savings</p><ChartNoAxesCombined size={24} className="text-[#b8e5a7]" strokeWidth={1.5} /></div>
-      {result ? (
-        <>
-          <div className="py-10"><p className="text-body text-white/65">{result.monthlyPlanCost === null ? "Monthly value" : "Net monthly savings"}</p><p className="mt-4 break-words text-[clamp(2.5rem,4.5vw,4rem)] font-semibold leading-none tracking-[-0.05em]">{formatCurrency(result.monthlySavings)}</p></div>
-          <div className="grid grid-cols-2 gap-6 border-y border-white/15 py-7"><div><p className="text-meta text-white/60">Annual savings</p><p className="mt-3 break-words text-card-title font-semibold text-[#c7edb3]">{formatCurrency(result.annualSavings)}</p></div><div><p className="text-meta text-white/60">Drop-off recovery</p><p className="mt-3 text-card-title font-semibold text-[#c7edb3]">{result.recoveryRate}%</p></div></div>
-          <div className="py-7"><p className="inline-flex items-center gap-2 text-body font-semibold"><Check size={17} className="text-[#b8e5a7]" />Recommended: {result.recommendedPlan}</p><p className="mt-2 text-body text-white/60">{result.monthlyPlanCost === null ? "Custom pricing" : `${formatCurrency(result.monthlyPlanCost)}/month`}</p></div>
-          <div className="mt-auto flex flex-wrap items-center gap-5 pt-4"><button type="button" onClick={onViewRecommendedPlan} className="inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-full bg-[#c7edb3] px-6 text-body font-medium text-[#002d0e] hover:bg-white">View recommended plan<ArrowUpRight size={17} /></button><button type="button" onClick={onShare} className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-body text-white/80 hover:text-white"><Share2 size={17} />Share results</button></div>
-          {shareMessage ? <p className="mt-5 text-body text-[#c7edb3]">{shareMessage}</p> : null}
-        </>
-      ) : (
-        <div className="flex flex-1 flex-col justify-center py-12">
-          <div aria-hidden="true" className="mb-10 flex h-28 items-end gap-3"><span className="h-[25%] w-12 rounded-t-lg bg-[#c7edb3]/20" /><span className="h-[42%] w-12 rounded-t-lg bg-[#c7edb3]/35" /><span className="h-[65%] w-12 rounded-t-lg bg-[#c7edb3]/60" /><span className="h-full w-12 rounded-t-lg bg-[#c7edb3]" /></div>
-          <h3 className="max-w-[360px] text-section font-semibold tracking-[-0.035em]">Less repetition.<br />More possibility.</h3>
-          <p className="mt-5 max-w-[360px] text-body text-white/65">Add your current verification costs to see your savings estimate and recommended plan.</p>
-        </div>
-      )}
-    </div>
-  );
+type Props = { result: SavingsResult | null; billingCycle: BillingCycle; shareMessage: string; onShare: () => void };
+export default function CalculatorResultsPanel({ result, billingCycle, shareMessage, onShare }: Props) {
+  return <div className="flex min-w-0 flex-col self-start rounded-2xl bg-[#002d0e] p-5 text-white sm:p-7" aria-live="polite" aria-atomic="true">
+    <div className="flex items-center justify-between gap-4"><p className="text-meta font-semibold uppercase tracking-[0.16em] text-[#b8e5a7]">Your KYC estimate</p><ChartNoAxesCombined size={24} className="shrink-0 text-[#b8e5a7]" /></div>
+    {result ? <><dl className="mt-6 divide-y divide-white/15">
+      <div className="pb-5"><dt className="text-body text-white/70">Current KYC cost</dt><dd className="mt-3 text-section font-medium [overflow-wrap:anywhere]">{formatCurrency(result.currentKycCost)}<span className="ml-2 text-body font-normal">/ month</span></dd></div>
+      <div className="py-4"><dt className="text-body text-white/70">Estimated Ontiver cost</dt><dd className="mt-2 text-body font-medium">Pending a confirmed quote</dd></div>
+      <div className="py-4"><dt className="text-body text-white/70">Direct savings</dt><dd className="mt-2 text-body font-medium">Pending confirmed Ontiver costs</dd></div>
+      <div className="py-4"><dt className="text-body text-white/70">Lost users from drop-off</dt><dd className="mt-2 text-card-title font-medium">{result.lostUsers.toLocaleString()}<span className="ml-2 text-sm font-normal text-white/70">at {result.dropOffRate}%</span></dd></div>
+      <div className="py-4"><dt className="text-body text-white/70">Recommended plan</dt><dd className="mt-2 text-body font-medium">Pending workflow and volume review</dd></div>
+    </dl><p className="mt-2 text-sm text-white/65">This baseline does not assume a recovery rate or a reduction in verification costs.</p><div className="mt-6 flex flex-wrap items-center gap-5"><Link to={getPricingInquiryUrl(null, billingCycle, result.monthlyVerifications)} className="button-primary !bg-[#c7edb3] !text-[#002d0e]">Get a cost estimate<ArrowUpRight size={17} /></Link><button type="button" onClick={onShare} className="inline-flex min-h-11 items-center gap-2 text-body text-white/80"><Share2 size={17} />Share results</button></div>{shareMessage && <p className="mt-4 text-sm text-[#c7edb3]">{shareMessage}</p>}</> : <div className="py-6"><div className="mb-5 h-[160px] overflow-hidden rounded-xl sm:h-[200px]"><BusinessPhoto image={imagery.finance} /></div><h3 className="text-card-title font-medium">Start with your current costs.</h3><p className="mt-4 text-body text-white/70">Enter your figures to calculate a baseline. Ontiver cost and direct savings need a confirmed quote.</p></div>}
+  </div>;
 }

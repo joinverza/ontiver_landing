@@ -1,98 +1,34 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CalculatorFormPanel from "../../calculator/CalculatorFormPanel";
 import CalculatorResultsPanel from "../../calculator/CalculatorResultsPanel";
-import { calculatorFields, calculatorInitialValues, type CalculatorFieldKey, type SavingsResult } from "../../../data/calculator";
-import { formatCurrency, parseAmount } from "../../../lib/calculator";
-import { getRecommendedPricingPlan } from "../../../lib/pricing";
-import { scrollPageTo } from "../../../lib/scrollNavigation";
+import { calculatorInitialValues, type CalculatorFieldKey, type SavingsResult } from "../../../data/calculator";
+import type { BillingCycle } from "../../../data/pricing";
+import { calculateKycBaseline, formatCurrency, parseAmount } from "../../../lib/calculator";
 
-export default function Calculator({ standalone = false }: { standalone?: boolean }) {
-  const navigate = useNavigate();
+export default function Calculator({ standalone = false, billingCycle = "monthly" }: { standalone?: boolean; billingCycle?: BillingCycle }) {
   const [values, setValues] = useState<Record<CalculatorFieldKey, string>>(calculatorInitialValues);
-  const [dropOffRate, setDropOffRate] = useState(50);
-  const [sliderTouched, setSliderTouched] = useState(false);
+  const [dropOffRate, setDropOffRate] = useState(0);
   const [result, setResult] = useState<SavingsResult | null>(null);
   const [shareMessage, setShareMessage] = useState("");
-
-  const updateField = (key: CalculatorFieldKey, value: string) => {
-    setValues((current) => ({ ...current, [key]: value.replace(/[^\d.]/g, "") }));
-    setResult(null);
-    setShareMessage("");
-  };
-
-  const clearForm = () => {
-    setValues(calculatorInitialValues);
-    setDropOffRate(50);
-    setSliderTouched(false);
-    setResult(null);
-    setShareMessage("");
-  };
-
-  const calculateSavings = () => {
-    const monthlyVerifications = parseAmount(values.monthlyVerifications);
-    const costPerVerification = parseAmount(values.costPerVerification);
-    const averageRevenue = parseAmount(values.averageRevenue);
-    const manualReviewLoss = parseAmount(values.manualReviewLoss);
-    const filledCount = calculatorFields.filter((field) => values[field.key].trim()).length + (sliderTouched ? 1 : 0);
-    const recommendedPlan = getRecommendedPricingPlan(monthlyVerifications);
-    const recoveredUsers = monthlyVerifications * (dropOffRate / 100) * 0.22;
-    const verificationSavings = monthlyVerifications * costPerVerification * 0.28;
-    const revenueRecovery = recoveredUsers * averageRevenue;
-    const lossRecovery = manualReviewLoss * 0.45;
-    const monthlySavings = Math.max(0, verificationSavings + revenueRecovery + lossRecovery - (recommendedPlan.monthly ?? 0));
-    setResult({
-      monthlySavings,
-      annualSavings: monthlySavings * 12,
-      recoveryRate: Math.min(94, Math.round(18 + dropOffRate * 0.52 + filledCount * 4)),
-      recommendedPlan: recommendedPlan.name,
-      monthlyPlanCost: recommendedPlan.monthly,
-    });
-    setShareMessage("");
-  };
-
+  const resetResult = () => { setResult(null); setShareMessage(""); };
+  const updateField = (key: CalculatorFieldKey, value: string) => { setValues(current => ({ ...current, [key]: value })); resetResult(); };
+  const clearForm = () => { setValues(calculatorInitialValues); setDropOffRate(0); resetResult(); };
+  const calculate = () => { setResult(calculateKycBaseline(parseAmount(values.monthlyVerifications), parseAmount(values.costPerVerification), dropOffRate)); setShareMessage(""); };
   const shareResults = async () => {
     if (!result) return;
-    const message = `Ontiver KYC savings estimate on the ${result.recommendedPlan} plan: ${formatCurrency(result.monthlySavings)}/month, ${formatCurrency(result.annualSavings)}/year.`;
+    const message = "Ontiver KYC baseline: current cost " + formatCurrency(result.currentKycCost) + "/month; " + result.lostUsers.toLocaleString() + " users lost at " + result.dropOffRate + "% drop-off. Ontiver cost, direct savings and plan recommendation are pending a confirmed quote and workflow review.";
     try {
-      if (navigator.share) {
-        await navigator.share({ title: "Ontiver KYC Savings", text: message });
-        setShareMessage("Results shared.");
-      } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(message);
-        setShareMessage("Results copied to your clipboard.");
-      } else {
-        setShareMessage(message);
-      }
-    } catch (error) {
-      if (!(error instanceof Error && error.name === "AbortError")) setShareMessage("Unable to share automatically. You can copy the estimate above.");
-    }
+      if (navigator.share) { await navigator.share({ title: "Ontiver KYC estimate", text: message }); setShareMessage("Results shared."); }
+      else if (navigator.clipboard) { await navigator.clipboard.writeText(message); setShareMessage("Results copied to your clipboard."); }
+      else setShareMessage(message);
+    } catch (error) { if (!(error instanceof Error && error.name === "AbortError")) setShareMessage("Unable to share automatically. You can copy the estimate above."); }
   };
-
-  const viewRecommendedPlan = () => {
-    if (!result) return;
-    const card = document.querySelector<HTMLElement>(`[data-plan="${result.recommendedPlan.toLowerCase()}"]`);
-    if (card) {
-      scrollPageTo(card);
-    } else {
-      navigate("/enterprise/pricing#pricing-plans");
-    }
-  };
-
   const Heading = standalone ? "h1" : "h2";
-
-  return (
-    <section id="savings-calculator" className={`${standalone ? "page-intro" : "section-space"} bg-white text-[#002d0e]`}>
-      <div className="site-container">
-        <div data-scroll-reveal className="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-          <div><p className="eyebrow">KYC savings calculator</p><Heading className={`mt-5 font-semibold tracking-[-0.035em] ${standalone ? "text-page-hero" : "text-section"}`}>Calculate your KYC savings.</Heading></div>
-          <p className="max-w-[460px] text-subtitle text-[#637060]">See what reusable verification could mean for your costs, customer onboarding, and bottom line.</p>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <CalculatorFormPanel values={values} dropOffRate={dropOffRate} onFieldChange={updateField} onSliderChange={(value) => { setDropOffRate(value); setSliderTouched(true); setResult(null); setShareMessage(""); }} onClear={clearForm} onCalculate={calculateSavings} />
-          <CalculatorResultsPanel result={result} shareMessage={shareMessage} onShare={() => void shareResults()} onViewRecommendedPlan={viewRecommendedPlan} />
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="savings-calculator" className={`${standalone ? "page-intro" : "section-space"} bg-white text-[#002d0e]`}>
+    <div className="site-container">
+      <div data-scroll-reveal className="mb-8 max-w-[900px]"><p className="eyebrow">KYC savings calculator</p><Heading className={`mt-5 font-normal ${standalone ? "text-page-hero" : "text-section"}`}>See what reusable verification could save you.</Heading></div>
+      <div className="grid gap-6 lg:grid-cols-2"><CalculatorFormPanel values={values} dropOffRate={dropOffRate} onFieldChange={updateField} onSliderChange={value => { setDropOffRate(value); resetResult(); }} onClear={clearForm} onCalculate={calculate} /><CalculatorResultsPanel result={result} billingCycle={billingCycle} shareMessage={shareMessage} onShare={() => void shareResults()} /></div>
+      <p className="mt-6 max-w-[1000px] text-sm text-[#637060]">Estimates are based on the figures you enter and may vary by provider cost, usage, verification type, fraud profile, and integration quality.</p>
+    </div>
+  </section>;
 }
