@@ -1,7 +1,9 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
+import ContextPhoto from "../components/ui/ContextPhoto";
+import { imagery } from "../data/imagery";
 import {
   sendPricingInquiry,
   type PricingInquiryRequest,
@@ -32,7 +34,7 @@ type FormValues = {
 };
 
 const fieldClass =
-  "mt-3 h-14 w-full rounded-xl border border-[#dde6dc] bg-[#f7f9f6] px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "mt-3 h-14 w-full rounded-[10px] border border-[#dde6dc] bg-white px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 const textareaClass = `${fieldClass} min-h-32 resize-y py-3.5`;
 
 export default function EnterpriseContactPage() {
@@ -41,6 +43,13 @@ export default function EnterpriseContactPage() {
     const plan = searchParams.get("plan")?.toLowerCase();
     return plan && plan in planOptions ? (plan as PlanKey) : "enterprise";
   }, [searchParams]);
+  const requestKind = searchParams.get("request");
+  const isSandboxRequest = requestKind === "sandbox";
+  const isSecurityRequest = requestKind === "security-documentation";
+  const billing = searchParams.get("billing");
+  const billingContext = billing === "monthly" || billing === "annual" ? billing : null;
+  const volumeParam = searchParams.get("monthlyVerifications") || "";
+  const initialVolume = /^\d+$/.test(volumeParam) && Number(volumeParam) <= 100000000 ? String(Number(volumeParam)) : "";
   const [values, setValues] = useState<FormValues>({
     planKey: initialPlan,
     companyName: "",
@@ -49,9 +58,9 @@ export default function EnterpriseContactPage() {
     phone: "",
     role: "",
     country: "",
-    monthlyVerifications: "",
-    useCase: "",
-    complianceNeeds: "",
+    monthlyVerifications: initialVolume,
+    useCase: isSandboxRequest ? "Sandbox API and workflow testing" : isSecurityRequest ? "Request security documentation for our Ontiver evaluation." : "",
+    complianceNeeds: isSecurityRequest ? "Please share the security and compliance documentation available for review." : "",
     timeline: "",
     meetingPreference: "",
     website: "",
@@ -87,6 +96,11 @@ export default function EnterpriseContactPage() {
       timeline: values.timeline,
       meetingPreference: values.meetingPreference,
       website: values.website,
+      message: [
+        billingContext ? `Preferred billing: ${billingContext}` : "",
+        isSandboxRequest ? "Request type: Sandbox API and workflow testing access" : "",
+        isSecurityRequest ? "Request type: Security documentation" : "",
+      ].filter(Boolean).join("\n") || undefined,
     };
 
     try {
@@ -108,31 +122,27 @@ export default function EnterpriseContactPage() {
         <div className="site-container">
           <div>
             <p className="eyebrow">Enterprise access</p>
-            <h1 className="mt-5 max-w-[1100px] text-page-hero font-bold">
-              Map your identity operation with Ontiver.
+            <h1 className="mt-5 max-w-[1100px] text-page-hero font-medium">
+              Talk to the Ontiver team.
             </h1>
           </div>
           <p className="mt-7 max-w-[800px] text-subtitle text-[#526058]">
-            Tell us about your verification volume, compliance requirements,
-            and rollout timeline. We will discuss pilot availability, a suitable plan,
-            and the scope of your integration.
+            Tell us who you need to verify, which checks matter, and who reviews the results.
+            We will scope a pilot around consent, evidence, your dashboard or API integration, and measurable outcomes.
           </p>
         </div>
       </section>
-      <section className="section-space">
+      <section className="pb-20 lg:pb-32">
         <div className="site-container">
-          <div className="grid items-start gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
-            <div className="overflow-hidden rounded-[28px] bg-[#edf5eb] p-7 text-[#002d0e] sm:p-9">
-              <span className="mb-8 grid size-14 place-items-center rounded-2xl bg-white text-[#007d21]">
-                <ShieldCheck className="size-6" aria-hidden="true" />
-              </span>
-              <h2 className="text-section font-bold">Plan your integration.</h2>
-              <p className="mt-5 text-body text-[#526058]">Agree the checks and rollout scope for your pilot.</p>
-              <div className="mt-8 divide-y divide-[#002d0e]/15 text-body text-[#526058]">
+          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-16">
+            <aside className="order-2 min-w-0 text-[#002d0e]">
+              <div data-scroll-reveal><ContextPhoto image={imagery.candidateReview} size="wide" /></div>
+              <div className="mt-6 rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
+              <div className="divide-y divide-[#002d0e]/15 text-body text-[#526058]">
                 {[
-                  "Verification and reusable proof",
-                  "Risk checks and consent records",
-                  "Integration and rollout planning",
+                  "Confirm sources and checks",
+                  "Define consent, reviewers, and evidence",
+                  "Measure completion, review time, and reuse",
                 ].map((item) => (
                   <span key={item} className="flex items-start gap-3 py-5">
                     <Check className="mt-1 size-5 shrink-0 text-[#007d21]" aria-hidden="true" />
@@ -140,20 +150,24 @@ export default function EnterpriseContactPage() {
                   </span>
                 ))}
               </div>
-              <div className="mt-8 flex items-start gap-3 border-t border-[#002d0e]/15 pt-6 text-body text-[#526058]">
+              <div className="mt-5 flex items-start gap-3 border-t border-[#002d0e]/15 pt-5 text-meta text-[#526058]">
                 <ShieldCheck className="mt-1 size-5 shrink-0 text-[#007d21]" aria-hidden="true" />
-                Do not include passwords, API keys, or identity documents.
+                Please don't include sensitive documents or identification numbers in this form — we'll request evidence securely through the platform if needed.
               </div>
-            </div>
+              </div>
+              <Link to="/enterprise/support" className="mt-6 flex items-center justify-between gap-4 border-y border-[#dde6dc] py-5 text-body font-medium">Enterprise Support<ArrowUpRight size={20} aria-hidden="true" /></Link>
+            </aside>
 
             <form
               onSubmit={submit}
               aria-busy={status === "sending"}
-              className="min-w-0 rounded-[28px] border border-[#dde6dc] bg-white p-7 sm:p-10"
+              className="order-1 min-w-0 bg-white"
             >
-              <p className="eyebrow">Let's work together</p>
-              <h2 className="mt-3 text-card-title font-semibold">Request enterprise access</h2>
-              <div className="mt-9 grid gap-x-5 gap-y-7 sm:grid-cols-2 [&>label]:text-body">
+              <h2 className="text-card-title font-medium">Request enterprise access</h2>
+              {isSandboxRequest ? <p className="mt-3 border-l-2 border-[#007d21] pl-4 text-body text-[#526058]">You're requesting sandbox access for API and workflow testing. The team will follow up with next steps.</p> : null}
+              {isSecurityRequest ? <p className="mt-3 border-l-2 border-[#007d21] pl-4 text-body text-[#526058]">You're requesting security documentation. Add any requirements your team needs to review.</p> : null}
+              {billingContext ? <p className="mt-3 text-body text-[#526058]">Preferred billing: <span className="font-medium capitalize">{billingContext}</span></p> : null}
+              <div className="mt-7 grid gap-x-6 gap-y-6 sm:grid-cols-2 [&>label]:text-body [&>label]:font-medium">
                 <label className="text-sm font-semibold">
                   Preferred plan
                   <select
@@ -193,7 +207,7 @@ export default function EnterpriseContactPage() {
                   />
                 </label>
                 <label className="text-sm font-semibold">
-                  Work email *
+                  Email *
                   <input
                     required
                     type="email"
@@ -246,7 +260,7 @@ export default function EnterpriseContactPage() {
                   />
                 </label>
                 <label className="text-sm font-semibold">
-                  Rollout timeline
+                  Timeline
                   <select
                     className={fieldClass}
                     value={values.timeline}
@@ -281,16 +295,16 @@ export default function EnterpriseContactPage() {
                     required
                     minLength={10}
                     className={textareaClass}
-                    placeholder="Describe the customer journey or identity workflow you need to support."
+                    placeholder="For example: borrower onboarding with identity, phone, NIN/BVN where appropriate, consent, and lender review."
                     value={values.useCase}
                     onChange={(event) => update("useCase", event.target.value)}
                   />
                 </label>
                 <label className="text-sm font-semibold sm:col-span-2">
-                  Compliance and risk requirements
+                  Compliance needs
                   <textarea
                     className={textareaClass}
-                    placeholder="AML screening, monitoring, audit exports, data residency, or security review."
+                    placeholder="Required checks, reviewer roles, consent scope, retention, audit records, or security review."
                     value={values.complianceNeeds}
                     onChange={(event) =>
                       update("complianceNeeds", event.target.value)
@@ -311,7 +325,7 @@ export default function EnterpriseContactPage() {
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
-                className="button-primary mt-8 w-full"
+                className="button-primary mt-8 w-full sm:w-auto"
               >
                 {status === "sending"
                   ? "Submitting request..."
