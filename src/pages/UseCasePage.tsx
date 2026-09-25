@@ -1,32 +1,31 @@
 import { ArrowUpRight } from "lucide-react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
-import { RelatedUseCases, UseCaseCapabilities, UseCaseChallenge, UseCaseEvaluation, UseCaseFlow, UseCaseHero, UseCasePilotFocus } from "../components/use-case-page";
-import { useCasePageDetails } from "../data/useCases";
+import { Link, Navigate, useParams } from "react-router-dom";
+import Footer from "../components/sections/Footer/Footer";
+import { RelatedUseCases, UseCaseCapabilities, UseCaseChallenge, UseCaseFlow, UseCaseHero, UseCasePilotFocus } from "../components/use-case-page";
+import { priorityUseCases, useCasePageDetails } from "../data/useCases";
 
 export default function UseCasePage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const detail = id ? useCasePageDetails[id] : undefined;
-  if (!detail) return <Navigate to="/" replace />;
-  const relatedItems = Object.values(useCasePageDetails).filter((item) => item.id !== detail.id);
+  if (!detail) return <Navigate to="/enterprise/use-cases" replace />;
+  const relatedItems = [...Object.values(useCasePageDetails).filter(item => item.category === detail.category), ...priorityUseCases]
+    .filter((item, index, items) => item.id !== detail.id && items.findIndex(other => other.id === item.id) === index);
 
   return (
     <main className="bg-white text-[#002d0e]">
-      <UseCaseHero detail={detail} onBack={() => navigate(-1)} />
-      <UseCaseEvaluation measures={detail.evaluationMeasures} />
+      <UseCaseHero detail={detail} />
       <UseCaseChallenge detail={detail} />
       <UseCaseFlow workflow={detail.workflow} />
-      <UseCaseCapabilities capabilities={detail.capabilities} />
-      <UseCasePilotFocus focus={detail.pilotFocus} />
+      <UseCaseCapabilities detail={detail} />
+      <UseCasePilotFocus focus={detail.pilotFocus} measures={detail.evaluationMeasures} />
       <RelatedUseCases items={relatedItems} />
-      <section className="section-space bg-[#edf5eb]">
-        <div data-scroll-reveal className="site-container flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <h2 className="max-w-[740px] text-section font-semibold tracking-[-0.035em]">{detail.cta}</h2>
-          <Link to="/enterprise/contact" className="button-primary shrink-0">Discuss a pilot<ArrowUpRight size={18} /></Link>
+      <section className="section-space bg-[#002d0e] text-white">
+        <div data-scroll-reveal className="site-container flex flex-wrap items-end justify-between gap-8">
+          <h2 className="max-w-[730px] text-section font-normal">{detail.cta}</h2>
+          <Link to={detail.pilotPath} className="button-primary !border-white !bg-white !text-[#002d0e]">{detail.pilotCta}<ArrowUpRight size={18} /></Link>
         </div>
       </section>
-      <CurtainFooter audience="enterprise" />
+      <Footer audience="enterprise" />
     </main>
   );
 }

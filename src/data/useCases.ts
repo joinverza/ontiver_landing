@@ -1,402 +1,361 @@
 import type { Direction } from "../components/ui/DirectionAwareHover";
-import { imagery } from "./imagery";
 
-export type UseCaseCard = {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  className: string;
-  contentClassName?: string;
-  cardClassName?: string;
-  lineClassName: string;
-  idle:
-    | "fintech"
-    | "lenders"
-    | "marketplaces"
-    | "platforms"
-    | "schools"
-    | "teams";
-};
-
+export type IndustryCategory = "Finance" | "People and work" | "Operations and commerce" | "Public and community" | "Cross-industry";
 export type UseCasePageDetail = {
   id: string;
-  eyebrow: string;
-  accent: string;
+  section: number | null;
+  category: IndustryCategory;
+  title: string;
   heroTitle: string;
+  eyebrow: string;
   tagline: string;
-  headline: string;
-  intro: string;
+  purpose: string;
+  journey: string;
+  workflow: Array<{ title: string; description?: string }>;
+  claims: string[];
+  boundary: string;
+  priority: boolean;
   imageUrl: string;
-  evaluationMeasures: Array<{
-    label: string;
-    description: string;
-  }>;
-  challenge: {
-    label: string;
-    heading: string;
-    body: string;
-    visualTitle: string;
-  };
-  workflow: Array<{ title: string; description: string }>;
-  capabilities: Array<{ title: string; description: string }>;
-  pilotFocus: {
-    title: string;
-    description: string;
-  };
-  outcomes: string[];
+  evaluationMeasures: Array<{ label: string; description: string }>;
+  pilotFocus: { title: string; description: string };
   cta: string;
+  pilotCta: string;
+  pilotPath: string;
+};
+
+export type UseCaseCard = {
+  id: string; title: string; description: string; imageUrl: string; className: string;
+  contentClassName?: string; cardClassName?: string; lineClassName: string;
+  idle: "fintech" | "lenders" | "marketplaces" | "platforms" | "schools" | "teams";
 };
 
 export const directionOffsets: Record<Direction, { x: number; y: number }> = {
-  top: { x: 0, y: -20 },
-  right: { x: 20, y: 0 },
-  bottom: { x: 0, y: 20 },
-  left: { x: -20, y: 0 },
+  top: { x: 0, y: -20 }, right: { x: 20, y: 0 }, bottom: { x: 0, y: 20 }, left: { x: -20, y: 0 },
 };
 
-export const useCaseCards: UseCaseCard[] = [
-  {
-    id: "fintechs",
-    title: "Fintechs",
-    description: "Reduce KYC friction during onboarding.",
-    imageUrl: imagery.individualHero.src,
-    className:
-      "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
-    lineClassName: "top-4 -right-2 bottom-4 w-px",
-    idle: "fintech",
-  },
-  {
-    id: "digital-lenders",
-    title: "Digital Lenders",
-    description: "Verify borrowers before approval.",
-    imageUrl: imagery.finance.src,
-    className:
-      "col-[3/5] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
-    lineClassName: "top-4 -right-2 bottom-4 w-px",
-    idle: "lenders",
-  },
-  {
-    id: "marketplaces",
-    title: "Marketplaces",
-    description: "Build trust across buyers, sellers, and vendors.",
-    imageUrl: imagery.marketplace.src,
-    className:
-      "col-[5/7] row-[1/5] max-[1024px]:col-auto max-[1024px]:row-span-2 max-[640px]:row-auto",
-    cardClassName: "min-h-[568px] max-[1024px]:min-h-[360px] max-[640px]:min-h-[210px]",
-    contentClassName:
-      "top-12 bottom-auto max-[640px]:top-auto max-[640px]:bottom-[30px]",
-    lineClassName: "right-4 -bottom-2 left-4 h-px",
-    idle: "marketplaces",
-  },
-  {
-    id: "hr-platforms",
-    title: "HR Platforms",
-    description: "Verify candidates before onboarding.",
-    imageUrl: imagery.work.src,
-    className:
-      "col-[1/5] row-[3/5] max-[1024px]:col-span-full max-[1024px]:row-auto",
-    cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
-    contentClassName:
-      "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
-    lineClassName: "top-4 -right-2 bottom-4 w-px",
-    idle: "platforms",
-  },
-  {
-    id: "schools",
-    title: "Schools",
-    description: "Verify students, applicants, and credential holders.",
-    imageUrl: imagery.education.src,
-    className:
-      "col-[1/4] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
-    cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
-    contentClassName:
-      "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
-    lineClassName: "right-4 -bottom-2 left-4 h-px",
-    idle: "schools",
-  },
-  {
-    id: "compliance-teams",
-    title: "Compliance Teams",
-    description: "Build a defensible verification workflow.",
-    imageUrl: imagery.teamwork.src,
-    className:
-      "col-[4/7] row-[5/7] max-[1024px]:col-span-full max-[1024px]:row-auto",
-    cardClassName: "min-h-[252px] max-[640px]:min-h-[190px]",
-    contentClassName:
-      "top-1/2 bottom-auto -translate-y-1/2 max-[640px]:top-auto max-[640px]:bottom-[30px] max-[640px]:translate-y-0",
-    lineClassName: "right-4 -bottom-2 left-4 h-px",
-    idle: "teams",
-  },
-];
-
-const pageWorkflow = [
-  {
-    title: "Capture the consent event",
-    description:
-      "Ask once, explain clearly, and attach a consent trail to every reusable identity record.",
-  },
-  {
-    title: "Verify the identity packet",
-    description:
-      "Start with the identity checks agreed for the pilot. Confirm additional document, biometric, or screening coverage before including it.",
-  },
-  {
-    title: "Reuse only with permission",
-    description:
-      "Let returning users approve reuse without repeating the same verification friction.",
-  },
-  {
-    title: "Report every decision",
-    description:
-      "Review verification outcomes, consent events, and manual-review handoffs together. Agree evidence and export requirements for the pilot.",
-  },
-];
-
-const pageCapabilities = [
-  {
-    title: "Reusable credentials",
-    description:
-      "Verified identity proofs can move across repeat journeys with explicit approval.",
-  },
-  {
-    title: "Consent ledger",
-    description:
-      "Keep sharing and reuse decisions connected to the user's permission history.",
-  },
-  {
-    title: "Risk orchestration",
-    description:
-      "Scope identity checks and review rules together, with additional screening subject to agreed provider coverage.",
-  },
-  {
-    title: "Audit dashboards",
-    description:
-      "Review verification activity and define the reporting evidence your team needs to evaluate.",
-  },
-];
-
-export const useCasePageDetails: Record<string, UseCasePageDetail> = {
-  fintechs: {
-    id: "fintechs",
-    eyebrow: "Fintech",
-    accent: "#22C55E",
-    heroTitle: "Fintechs",
-    tagline:
-      "Reduce KYC friction and reuse verified trust across every return visit.",
-    headline: "KYC should not restart every time a customer comes back.",
-    intro:
-      "Ontiver helps financial products verify once, store trusted proof, and reuse identity records only when the user consents.",
-    imageUrl: imagery.individualHero.src,
-    evaluationMeasures: [
-      { label: "Verification turnaround", description: "Time from submission to a completed check." },
-      { label: "Completion rate", description: "Completed and failed checks within the agreed pilot scope." },
-      { label: "Repeat verification", description: "Returning journeys that still require another check." },
-      { label: "Consent decisions", description: "Approved and declined requests to reuse identity proof." },
-    ],
-    challenge: {
-      label: "The Challenge",
-      heading: "Fintech teams lose users when verification feels like a wall.",
-      body:
-        "Customers expect bank-grade safety without starting from zero at every transfer, wallet, account upgrade, or lending flow. The harder it is to prove trust, the more teams lose good users to avoidable friction.",
-      visualTitle: "Verification drop-off map",
-    },
-    workflow: pageWorkflow,
-    capabilities: pageCapabilities,
-    pilotFocus: {
-      title: "Start with one onboarding journey.",
-      description: "Agree a verification workflow, capture a baseline, and evaluate completion, turnaround, and consent before extending reuse across more journeys.",
-    },
-    outcomes: [
-      "Reduce repeat KYC friction across returning users.",
-      "Keep compliance evidence tied to each consent event.",
-      "Launch new financial journeys without rebuilding identity checks.",
-    ],
-    cta: "Explore a focused fintech verification pilot.",
-  },
-  "digital-lenders": {
-    id: "digital-lenders",
-    eyebrow: "Digital Lending",
-    accent: "#16A34A",
-    heroTitle: "Digital Lenders",
-    tagline:
-      "Verify borrowers faster, control fraud exposure, and keep approval evidence clean.",
-    headline: "Borrower checks need speed and defensible risk evidence.",
-    intro:
-      "Ontiver gives lending teams a consent-led identity layer for onboarding, repeat borrowing, and risk review.",
-    imageUrl: imagery.finance.src,
-    evaluationMeasures: [
-      { label: "Manual-review rate", description: "Borrower checks that require a reviewer decision." },
-      { label: "Verification volume", description: "Completed checks during the agreed pilot period." },
-      { label: "Decision turnaround", description: "Time between a verification request and its outcome." },
-      { label: "Consent coverage", description: "Reuse decisions with a recorded permission event." },
-    ],
-    challenge: {
-      label: "The Challenge",
-      heading: "Fast approvals can become risky when identity signals are scattered.",
-      body:
-        "Lenders need to move quickly without approving weak borrower profiles. When checks live in separate systems, risk teams lose the full picture and customers repeat the same steps.",
-      visualTitle: "Borrower risk signal board",
-    },
-    workflow: pageWorkflow,
-    capabilities: pageCapabilities,
-    pilotFocus: {
-      title: "Evaluate borrower checks before extending the flow.",
-      description: "Scope a borrower-verification pilot around agreed identity checks, review handoffs, and outcome evidence. Compare turnaround and review rates with the starting baseline.",
-    },
-    outcomes: [
-      "Combine verification, consent, and AML evidence in one borrower record.",
-      "Reduce manual review with clearer pass/fail signals.",
-      "Reuse verified identity for repeat loans with permission.",
-    ],
-    cta: "Scope a borrower-verification pilot with our team.",
-  },
-  marketplaces: {
-    id: "marketplaces",
-    eyebrow: "Marketplace",
-    accent: "#0D9488",
-    heroTitle: "Marketplaces",
-    tagline:
-      "Build trust between buyers, sellers, vendors, and operators before value moves.",
-    headline: "Marketplaces need trust signals before transactions scale.",
-    intro:
-      "Ontiver helps marketplaces verify the people and businesses behind listings, payments, and high-trust interactions.",
-    imageUrl: imagery.marketplace.src,
-    evaluationMeasures: [
-      { label: "Seller verification", description: "Completed identity checks in the chosen seller journey." },
-      { label: "Review handoffs", description: "Requests that need an operations-team decision." },
-      { label: "Time to integrate", description: "Time from test credentials to a successful verification." },
-      { label: "Disclosure decisions", description: "Approved and declined proof-sharing requests." },
-    ],
-    challenge: {
-      label: "The Challenge",
-      heading: "Every marketplace grows faster than its trust operations.",
-      body:
-        "As more buyers and vendors join, trust teams need a way to verify participants without making every transaction feel heavy. Reusable proof keeps safety visible without slowing the marketplace.",
-      visualTitle: "Seller trust investigation",
-    },
-    workflow: pageWorkflow,
-    capabilities: pageCapabilities,
-    pilotFocus: {
-      title: "Begin with a defined seller-verification flow.",
-      description: "Choose a participant group and an identity-check workflow. Evaluate completed checks, operational handoffs, and consent before expanding to more marketplace journeys.",
-    },
-    outcomes: [
-      "Verify vendors, buyers, and operators with the same trust framework.",
-      "Reuse approved records across repeat transactions.",
-      "Give operations teams cleaner dispute and compliance evidence.",
-    ],
-    cta: "Discuss a marketplace identity pilot.",
-  },
-  "hr-platforms": {
-    id: "hr-platforms",
-    eyebrow: "HR Platform",
-    accent: "#22C55E",
-    heroTitle: "HR Platforms",
-    tagline:
-      "Verify candidates, workers, and contractors before onboarding bottlenecks appear.",
-    headline: "Hiring should move quickly without weakening identity checks.",
-    intro:
-      "Ontiver supports worker verification, credential reuse, and audit-ready onboarding for modern HR teams.",
-    imageUrl: imagery.work.src,
-    evaluationMeasures: [
-      { label: "Onboarding turnaround", description: "Time spent in the agreed worker-verification step." },
-      { label: "Completed checks", description: "Candidate and worker verification outcomes." },
-      { label: "Repeat requests", description: "Identity information requested again in repeat journeys." },
-      { label: "Consent decisions", description: "Worker approval and denial of proof-sharing requests." },
-    ],
-    challenge: {
-      label: "The Challenge",
-      heading: "Worker onboarding breaks when identity evidence is rebuilt every time.",
-      body:
-        "Candidates, contractors, and internal teams repeat checks across roles, vendors, and regions. HR platforms need reusable records that still preserve user consent and compliance control.",
-      visualTitle: "Workforce verification lane",
-    },
-    workflow: pageWorkflow,
-    capabilities: pageCapabilities,
-    pilotFocus: {
-      title: "Focus on the identity step in onboarding.",
-      description: "Evaluate candidate or worker verification within one hiring workflow. Define the permissions, review steps, and baseline measurements with the team before starting.",
-    },
-    outcomes: [
-      "Cut duplicated identity checks across hiring journeys.",
-      "Give workers control over verification reuse.",
-      "Keep onboarding evidence ready for internal and external review.",
-    ],
-    cta: "Explore a candidate-verification pilot.",
-  },
-  schools: {
-    id: "schools",
-    eyebrow: "Education",
-    accent: "#4ADE80",
-    heroTitle: "Schools",
-    tagline:
-      "Verify applicants, students, and credential holders with records they can reuse.",
-    headline: "Education workflows need identity proof that can follow the student.",
-    intro:
-      "Ontiver helps schools and credential platforms verify identities once and attach consent to every future reuse.",
-    imageUrl: imagery.education.src,
-    evaluationMeasures: [
-      { label: "Completed checks", description: "Applicant identity checks within an agreed workflow." },
-      { label: "Repeat collection", description: "Information requested again across supported journeys." },
-      { label: "Review turnaround", description: "Time needed to resolve a verification request." },
-      { label: "Consent coverage", description: "Proof-sharing decisions with a permission record." },
-    ],
-    challenge: {
-      label: "The Challenge",
-      heading: "Students keep proving the same identity to disconnected systems.",
-      body:
-        "Admissions, exams, certificates, and alumni services often ask for the same proof again and again. A reusable consent-led record keeps education workflows lighter and more trustworthy.",
-      visualTitle: "Student credential proof",
-    },
-    workflow: pageWorkflow,
-    capabilities: pageCapabilities,
-    pilotFocus: {
-      title: "Explore one student-verification journey.",
-      description: "Discuss a scoped admissions or credential-holder workflow and confirm the supported identity checks. Define evidence and consent requirements before considering broader education use.",
-    },
-    outcomes: [
-      "Verify students and credential holders once.",
-      "Reuse identity proof for exams, records, and certificates with consent.",
-      "Maintain defensible logs for academic and operational review.",
-    ],
-    cta: "Discuss an education verification workflow.",
-  },
-  "compliance-teams": {
-    id: "compliance-teams",
-    eyebrow: "Compliance",
-    accent: "#15803D",
-    heroTitle: "Compliance Teams",
-    tagline:
-      "Give compliance teams a living evidence layer for consent, verification, and reuse.",
-    headline: "Compliance teams need evidence that survives product growth.",
-    intro:
-      "Ontiver turns identity events into a clear operational record for audits, reviews, and policy controls.",
-    imageUrl: imagery.teamwork.src,
-    evaluationMeasures: [
-      { label: "Event traceability", description: "Sampled decisions with an associated event record." },
-      { label: "Report completeness", description: "Evidence available against the agreed reporting scope." },
-      { label: "Consent linkage", description: "Reuse decisions connected to recorded permission." },
-      { label: "Review turnaround", description: "Time spent investigating an identity decision." },
-    ],
-    challenge: {
-      label: "The Challenge",
-      heading: "Identity controls become fragile when evidence is spread across tools.",
-      body:
-        "Compliance teams need to prove what happened, why it happened, who consented, and what was reused. Ontiver keeps those signals together as workflows scale.",
-      visualTitle: "Compliance evidence vault",
-    },
-    workflow: pageWorkflow,
-    capabilities: pageCapabilities,
-    pilotFocus: {
-      title: "Define the evidence your reviewers need.",
-      description: "Agree a limited set of verification and consent events to evaluate. Review their traceability and reporting coverage before deciding on a broader compliance workflow.",
-    },
-    outcomes: [
-      "Centralize consent, verification, and risk evidence.",
-      "Export cleaner reports for internal and regulatory review.",
-      "Keep policy controls connected to real customer events.",
-    ],
-    cta: "Scope an identity-evidence review with our team.",
-  },
+type IndustryTemplate = Pick<UseCasePageDetail, "id" | "section" | "category" | "title" | "heroTitle" | "tagline" | "purpose" | "journey" | "boundary" | "pilotCta" | "pilotPath"> & {
+  stages: string; claimList: string; priority?: boolean;
 };
+
+// Source: Ontiver Content — Enterprise Division (latest approved content brief).
+// Section references preserve the original industry-document mapping.
+const industryTemplates: IndustryTemplate[] = [
+  {
+    id: "digital-lenders", section: 4, category: "Finance", priority: true,
+    title: "Digital lenders", heroTitle: "Digital lenders",
+    tagline: "Verify borrowers before you take on identity and fraud risk.",
+    purpose: "Borrower onboarding, KYC, fraud prevention, and loan application support.",
+    stages: "Borrower → identity → phone → NIN/BVN where appropriate → documents → face/liveness → consistency/risk → review → verified profile → lender decision",
+    journey: "The lender creates a request. The borrower receives it in the mobile app, consents, and submits evidence. Ontiver runs the selected checks; the lender reviews the dashboard and makes the credit decision. Proof and the audit trail record the verification journey.",
+    claimList: "Identity|phone|NIN/BVN result|documents|face result|consent|risk signals",
+    boundary: "Ontiver provides evidence and signals — the lender makes the lending decision.",
+    pilotCta: "Book a Lending Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "fintechs", section: 5, category: "Finance", priority: true,
+    title: "Banking and fintech", heroTitle: "Banking and fintech",
+    tagline: "Onboard customers without repeating KYC/KYB from scratch.",
+    purpose: "Customer onboarding, KYC/KYB, account creation, and repeat verification.",
+    stages: "Customer invitation → identity → government ID → face/liveness where required → address/documents → risk review → account decision → reusable proof",
+    journey: "The institution creates a workflow. The customer consents in the app and selected checks run. A compliance officer reviews exceptions; the institution opens or declines the account. An approved proof can support future products.",
+    claimList: "Identity attributes|source references|consent|review outcomes|audit trail",
+    boundary: "Institution-specific regulatory, retention, and access rules apply — Ontiver adapts to them, not the reverse.",
+    pilotCta: "Book a Fintech Demo",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "hr-platforms", section: 6, category: "People and work", priority: true,
+    title: "Recruitment and HR", heroTitle: "Recruitment and HR",
+    tagline: "Verify candidates and workers before onboarding — without building the identity layer yourself.",
+    purpose: "Candidate screening, certificate verification, employment history, references, onboarding, workforce compliance.",
+    stages: "Candidate → identity → certificates → previous employment → referees → address/eligibility → review → employee profile → renewal",
+    journey: "HR sends a request. The candidate completes a mobile profile and uploads certificates and employment evidence; referees receive separate requests. Ontiver checks the evidence. HR reviews and approves, and selected claims can become a workforce proof.",
+    claimList: "Identity|education|employment|references|licenses|consent|expiry dates",
+    boundary: "AI flags inconsistencies; HR makes hiring decisions.",
+    pilotCta: "Book an HR Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "logistics-delivery", section: 7, category: "Operations and commerce", priority: true,
+    title: "Logistics and delivery", heroTitle: "Logistics and delivery",
+    tagline: "Know that the person receiving access to your platform is the person they claim to be.",
+    purpose: "Driver/rider onboarding, license and vehicle checks, contractor verification, continuous compliance.",
+    stages: "Worker → identity → face/liveness → license → vehicle documents → reference → emergency contact → review → activation → expiry monitoring",
+    journey: "An operations manager creates a request. The worker submits identity, license, vehicle, and reference information. Ontiver checks the evidence; operations reviews and activates the worker. Renewal alerts support the ongoing workflow.",
+    claimList: "Identity|license|vehicle linkage|reference|emergency contact|renewal status",
+    boundary: "A duplicate vehicle or mismatch is a review signal, not automatic fraud.",
+    pilotCta: "Book a Logistics Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "marketplaces", section: 8, category: "Operations and commerce", priority: true,
+    title: "Marketplaces and sellers", heroTitle: "Marketplaces and sellers",
+    tagline: "Add identity verification to high-risk sellers and users without building verification infrastructure.",
+    purpose: "Seller onboarding, merchant verification, payout ownership, duplicate-account detection.",
+    stages: "Seller applies → identity/business → phone → documents → bank/payout → address → risk checks → approval → periodic review",
+    journey: "The marketplace sends a request. The seller consents and submits information. Ontiver checks documents and ownership evidence; the marketplace reviews the application. Selected approved claims form a seller proof.",
+    claimList: "Identity|business registration|address|payout ownership|documents|risk signals",
+    boundary: "Identity verification is separate from product quality and marketplace performance.",
+    pilotCta: "Explore Marketplace Verification",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "manufacturing-industrial", section: 9, category: "Operations and commerce",
+    title: "Manufacturing, FMCG, and industrial", heroTitle: "Manufacturing, FMCG, and industrial",
+    tagline: "Verify the people and partners your operation depends on.",
+    purpose: "Employees, contractors, suppliers, distributors, agents, and site access.",
+    stages: "Role workflow → invitation → identity → documents → certificates → references → vehicle/site checks → approval → access profile → renewal",
+    journey: "A manager creates a request. The person submits identity and operational documents; referees or employers confirm claims. The enterprise reviews the evidence, and an approved person can receive a workforce or partner proof.",
+    claimList: "Identity|certificates|employment/supplier evidence|vehicle documents|training|consent",
+    boundary: "Your authorized reviewer makes the operational decision.",
+    pilotCta: "Discuss an Industrial Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "construction-property-services", section: 10, category: "Operations and commerce", priority: true,
+    title: "Construction and contractors", heroTitle: "Construction and contractors",
+    tagline: "Verify contractors, licenses, and site access before day one.",
+    purpose: "Contractor, artisan, site access, licenses, insurance, project workforce.",
+    stages: "Contractor → identity → trade certificate → project history → references → insurance → vehicle/equipment → approval → site assignment → renewal",
+    journey: "The project manager sends a request. The contractor uploads evidence and references confirm their claims. The enterprise reviews the submission; approved contractors receive project approval and renewal reminders.",
+    claimList: "Identity|trade qualifications|insurance|references|project history",
+    boundary: "Safety and project decisions remain with the construction company.",
+    pilotCta: "Book a Construction Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "healthcare-workforce", section: 11, category: "People and work",
+    title: "Healthcare workforce", heroTitle: "Healthcare workforce",
+    tagline: "Verify clinical credentials with the privacy controls the role demands.",
+    purpose: "Clinician, caregiver, lab, pharmacy, and contractor credentials.",
+    stages: "Professional → identity → license → qualification → institution confirmation → employment/reference → training → review → authorization → renewal",
+    journey: "The hospital requests verification. The professional consents and uploads credentials; institutions and referees confirm claims. The compliance team reviews the evidence, grants access where approved, and monitors expiry.",
+    claimList: "Identity|license|qualification|institution confirmation|training|consent",
+    boundary: "Heightened privacy, access, retention, and legal controls apply.",
+    pilotCta: "Discuss a Healthcare Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "schools", section: 12, category: "People and work",
+    title: "Education and EdTech", heroTitle: "Education and EdTech",
+    tagline: "Verify applicants, students, and credential holders more securely.",
+    purpose: "Student admission, certificate verification, staff credentials, scholarships, alumni proofs.",
+    stages: "Applicant → identity → academic records → certificate → institution confirmation → review → admission/student proof",
+    journey: "The school sends a request. The applicant submits identity and academic records. Ontiver checks the evidence; the admissions team reviews the case. Approved academic claims can become a proof.",
+    claimList: "Identity|certificates|enrollment|academic claims|consent",
+    boundary: "For minors, guardian and age-appropriate consent controls apply.",
+    pilotCta: "Discuss an Education Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "insurance", section: 13, category: "Finance",
+    title: "Insurance", heroTitle: "Insurance",
+    tagline: "Confirm identity behind every policy and every claim.",
+    purpose: "Policyholder onboarding, claims identity, beneficiaries, agents, and fraud signals.",
+    stages: "Customer/claimant → identity → policy details → supporting documents → relationship proof → consistency → review → policy/claim decision",
+    journey: "The insurer requests evidence. The customer consents and submits the requested information. Ontiver runs the selected checks; the claims or underwriting team reviews the results and records its decision.",
+    claimList: "Identity|policy evidence|documents|relationship proofs|consent",
+    boundary: "Ontiver supplies evidence and signals, not claim decisions.",
+    pilotCta: "Discuss an Insurance Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "real-estate", section: 14, category: "Operations and commerce",
+    title: "Real estate", heroTitle: "Real estate",
+    tagline: "Verify every party in a transaction, not just one.",
+    purpose: "Tenant, landlord, buyer, seller, agent, and property-service verification.",
+    stages: "Party → identity → address → income evidence where relevant → ownership/authority docs → references → review → transaction profile",
+    journey: "The agent sends a request. The party submits documents and relevant parties confirm claims. The enterprise reviews the evidence and selected proofs can be shared with permission.",
+    claimList: "Identity|address|ownership/authority|income evidence|references",
+    boundary: "Title and ownership decisions require authorized professionals and official records.",
+    pilotCta: "Discuss a Real Estate Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "travel-hospitality", section: 15, category: "Operations and commerce",
+    title: "Travel and hospitality", heroTitle: "Travel and hospitality",
+    tagline: "Verify guests and staff with only the data the purpose requires.",
+    purpose: "Guest identity, staff/contractor onboarding, guides, travel documents.",
+    stages: "Guest/worker → identity → travel document → booking/role → license where relevant → review → confirmation → expiry",
+    journey: "The hotel or operator requests information. The user submits only what is required. Ontiver checks the selected evidence; the enterprise reviews and confirms the booking or role.",
+    claimList: "Identity|travel document validity|booking linkage|licenses|consent",
+    boundary: "Collect only data required by purpose and jurisdiction.",
+    pilotCta: "Discuss a Travel Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "telecoms-digital-services", section: 16, category: "Operations and commerce",
+    title: "Telecoms and digital services", heroTitle: "Telecoms and digital services",
+    tagline: "Verify customers and agents without exposing unrestricted raw data.",
+    purpose: "Customer/agent onboarding, account recovery, field-agent verification.",
+    stages: "Customer/agent → identity → phone → ID where required → face/liveness → address/documents → review → activation",
+    journey: "The telecom creates a request. The user completes the mobile flow. Ontiver verifies the selected evidence; the enterprise reviews it before activation or recovery proceeds.",
+    claimList: "Identity|phone ownership signals|agent documents|consent",
+    boundary: "Prefer results and proofs over unrestricted raw data.",
+    pilotCta: "Discuss a Telecoms Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "crypto-web3", section: 17, category: "Finance",
+    title: "Crypto and Web3", heroTitle: "Crypto and Web3",
+    tagline: "Plug African identity verification into your onboarding flow.",
+    purpose: "User/business onboarding, wallet access, partner verification, and compliance.",
+    stages: "User/business → identity/KYB → documents → AML/sanctions providers where authorized → face/liveness → review → approval → proof",
+    journey: "The platform requests verification. The user or business consents, and Ontiver orchestrates the selected checks. Compliance reviews the results; the platform decides access.",
+    claimList: "Identity|business data|documents|consent|provider results|risk signals",
+    boundary: "Requires strong regulatory, AML, sanctions, custody, and data governance — confirm jurisdictional requirements before pilot scoping.",
+    pilotCta: "Discuss a Compliance Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "government-public-programs", section: 18, category: "Public and community",
+    title: "Government and public programs", heroTitle: "Government and public programs",
+    tagline: "Verify beneficiaries and staff without becoming a government authority.",
+    purpose: "Beneficiary registration, grants, permits, staff/contractor checks.",
+    stages: "Applicant → identity → eligibility evidence → duplicate checks → review → approval → program profile",
+    journey: "The agency creates a request. The applicant uses the app or an assisted channel. Ontiver checks the evidence; authorized officials review it and record the program status.",
+    claimList: "Identity|eligibility evidence|consent|review history",
+    boundary: "Ontiver supports the process — it is not the government authority of record.",
+    pilotCta: "Discuss a Public Program Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "ngos-humanitarian-aid", section: 19, category: "Public and community",
+    title: "NGOs and humanitarian aid", heroTitle: "NGOs and humanitarian aid",
+    tagline: "Verify beneficiaries responsibly, including those without standard documents.",
+    purpose: "Beneficiary identity, duplicate detection, volunteers, distribution accountability.",
+    stages: "Beneficiary → identity or alternative ID → program evidence → duplicate checks → consent → eligibility review → assistance profile",
+    journey: "The NGO registers a beneficiary. A field worker or the user submits evidence. Ontiver checks duplicates and consistency; staff review the case and record assistance status.",
+    claimList: "Identity/alternative identity|household/program data|consent|audit trail",
+    boundary: "Support vulnerable users and alternative identification methods.",
+    pilotCta: "Discuss an NGO Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "agriculture-agribusiness", section: 20, category: "Public and community",
+    title: "Agriculture and agribusiness", heroTitle: "Agriculture and agribusiness",
+    tagline: "Verify farmers, cooperatives, and suppliers before repeat transactions.",
+    purpose: "Farmer, cooperative, supplier, agent, and financing-support onboarding.",
+    stages: "Farmer/partner → identity → farm/cooperative → land/supplier docs → references → payout details → review → profile → update",
+    journey: "The agribusiness requests information. The user submits identity and operational details. Evidence is checked and the enterprise reviews approval; the profile can support repeat transactions.",
+    claimList: "Identity|cooperative/farm/supplier evidence|payout ownership|references",
+    boundary: "Identity proof is not proof of land ownership, yield, or creditworthiness.",
+    pilotCta: "Discuss an Agribusiness Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "energy-utilities", section: 21, category: "Operations and commerce",
+    title: "Energy and utilities", heroTitle: "Energy and utilities",
+    tagline: "Verify the technicians and contractors in the field.",
+    purpose: "Customer onboarding, technicians, contractors, agents, service requests.",
+    stages: "Customer/technician → identity → address → service documents → license → references → review → activation → renewal",
+    journey: "The utility sends a request. The customer or worker completes the mobile flow. Ontiver checks the selected evidence; the enterprise reviews it before service or field access is activated.",
+    claimList: "Identity|address|license|contractor evidence|consent",
+    boundary: "Identity proof is separate from technical inspection and safety decisions.",
+    pilotCta: "Discuss an Energy Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "b2b-vendors", section: 22, category: "Operations and commerce",
+    title: "B2B vendors and professional services", heroTitle: "B2B vendors and professional services",
+    tagline: "Verify every vendor before they're in your systems.",
+    purpose: "Consultants, agencies, freelancers, suppliers, corporate partners.",
+    stages: "Vendor → identity/KYB → certificates → references → payout ownership → registration/tax docs → review → activation",
+    journey: "Procurement sends a request. The vendor completes the flow. Ontiver verifies selected evidence; procurement reviews the results and approved claims can become a vendor proof.",
+    claimList: "Identity|business registration|credentials|references|payout ownership",
+    boundary: "Role-based access applies across procurement, finance, and compliance.",
+    pilotCta: "Discuss a Vendor Verification Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "security-services", section: 23, category: "People and work",
+    title: "Security services", heroTitle: "Security services",
+    tagline: "Deploy verified guards, with recurring checks built in.",
+    purpose: "Guard onboarding, licenses, training, references, deployment, recurring checks.",
+    stages: "Guard → identity → face/liveness → license → training → previous employer → references → review → deployment → renewal",
+    journey: "The security company requests verification. The guard submits evidence and the compliance team reviews it. An approved guard is assigned; expiry alerts support recurring review.",
+    claimList: "Identity|license|training|employment|references|consent",
+    boundary: "Sensitive data requires strict access and legal review.",
+    pilotCta: "Discuss a Security Services Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "creators-talent", section: 24, category: "People and work",
+    title: "Creators, freelancers, and talent platforms", heroTitle: "Creators, freelancers, and talent platforms",
+    tagline: "Verify identity once — reuse it across every gig.",
+    purpose: "Creator/freelancer identity, credentials, references, payout protection.",
+    stages: "Creator → identity → phone/email → portfolio/credentials → references → payout ownership → review → profile → reuse",
+    journey: "The platform requests verification. The creator submits claims and Ontiver verifies selected evidence. The platform reviews it; approved claims can form a verified profile or proof.",
+    claimList: "Identity|credentials|references|payout ownership|consent",
+    boundary: "Verified identity does not automatically prove skill or quality.",
+    pilotCta: "Discuss a Talent Platform Pilot",
+    pilotPath: "/enterprise/contact",
+  },
+  {
+    id: "compliance-teams", section: null, category: "Cross-industry",
+    title: "Compliance teams", heroTitle: "Compliance teams",
+    tagline: "Give your compliance team an auditable identity layer, not another spreadsheet.",
+    purpose: "Cross-industry support for teams that need auditable verification workflows regardless of sector.",
+    stages: "Request → Consent → Verify → Review → Proof → Reuse",
+    journey: "The organization defines roles, policies, and a workflow. The user sees the purpose and requested information, then approves or declines. Authorized reviewers inspect results, evidence, reasons, and the audit trail before the organization decides. Only approved claims enter a reusable proof.",
+    claimList: "Varies by configured workflow",
+    boundary: "Ontiver provides evidence and audit trail; your compliance team retains the decision.",
+    pilotCta: "Request Compliance Documentation",
+    pilotPath: "/enterprise/security",
+  },
+];
+
+const pilotMeasures = [
+  {
+    "label": "Completion rate",
+    "description": "The proportion of invited cases that complete the scoped workflow."
+  },
+  {
+    "label": "Completion time",
+    "description": "Time from request creation to a completed verification workflow."
+  },
+  {
+    "label": "Manual review rate",
+    "description": "The proportion of cases that need an authorized reviewer."
+  },
+  {
+    "label": "Flagged cases",
+    "description": "Cases flagged for additional review and the reasons recorded."
+  },
+  {
+    "label": "Time saved",
+    "description": "Operational time compared with the agreed starting baseline."
+  },
+  {
+    "label": "User satisfaction",
+    "description": "Feedback from the people completing the pilot workflow."
+  }
+];
+
+export const useCasePageDetails: Record<string, UseCasePageDetail> = Object.fromEntries(
+  industryTemplates.map(({ stages, claimList, ...template }) => [template.id, {
+    ...template,
+    priority: template.priority ?? false,
+    eyebrow: template.category === "Cross-industry" ? "Cross-industry review" : "Industry workflow",
+    workflow: stages.split(" → ").map((title) => ({ title })),
+    claims: claimList.split("|"),
+    imageUrl: "/assets/ontiver-enterprise.png",
+    evaluationMeasures: pilotMeasures,
+    pilotFocus: {
+      title: "Start with a focused pilot.",
+      description: "Most engagements begin as a 30-day identity workflow pilot: one enterprise, 50–200 cases, one workflow, one accountable owner. Scope includes invitation, consent, mobile completion, selected checks, dashboard review, and a final report.",
+    },
+    cta: "Start with a focused pilot.",
+  }]),
+);
+
+export const industryUseCases = Object.values(useCasePageDetails).filter((item) => item.section !== null);
+export const priorityUseCases = ["digital-lenders", "fintechs", "hr-platforms", "logistics-delivery", "marketplaces", "construction-property-services"].map((id) => useCasePageDetails[id]);
+
+// A focused homepage selection; the industry directory includes every template.
+export const useCaseCards: UseCaseCard[] = priorityUseCases.map((detail, index) => ({
+  id: detail.id, title: detail.heroTitle, description: detail.tagline, imageUrl: detail.imageUrl,
+  className: "", lineClassName: "",
+  idle: (["lenders", "fintech", "platforms", "teams", "marketplaces", "teams"] as const)[index],
+}));

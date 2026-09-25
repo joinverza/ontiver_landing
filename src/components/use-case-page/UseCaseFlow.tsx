@@ -2,22 +2,15 @@ import type { UseCasePageDetail } from "../../data/useCases";
 
 export default function UseCaseFlow({ workflow }: { workflow: UseCasePageDetail["workflow"] }) {
   return (
-    <section className="section-space bg-[#edf5eb]">
+    <section className="section-space bg-[#edf5e7]">
       <div className="site-container">
-        <div data-scroll-reveal className="max-w-[680px]">
-          <p className="eyebrow">Proposed workflow</p>
-          <h2 className="mt-5 text-section font-semibold tracking-[-0.035em]">One continuous flow from first proof to future reuse.</h2>
+        <div data-scroll-reveal className="grid gap-5 lg:grid-cols-2 lg:gap-16">
+          <div><p className="eyebrow">Proposed workflow</p><h2 className="mt-4 text-section font-normal">The steps behind the decision.</h2></div>
+          <p className="self-end text-body text-[#526058]">Configure the sequence around your operation. Confirm selected checks, providers, review rules, and release readiness before starting.</p>
         </div>
-        <ol className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {workflow.map((step, index) => (
-            <li data-scroll-reveal key={step.title} className="border-t border-[#c9dbc3] pt-7">
-              <span className="text-meta font-semibold text-[#007d21]">0{index + 1}</span>
-              <h3 className="mt-6 text-card-title font-semibold">{step.title}</h3>
-              <p className="mt-4 text-body text-[#637060]">{step.description}</p>
-            </li>
-          ))}
+        <ol className="mt-8 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3" aria-label="Ordered industry workflow">
+          {workflow.map((step, index) => <li data-scroll-reveal key={step.title} className="flex min-w-0 items-start gap-3 border-t border-[#c8d8c2] py-4"><span className="mt-1 text-meta tabular-nums text-[#007d21]">{String(index + 1).padStart(2, "0")}</span><div className="min-w-0"><h3 className="text-body font-medium [overflow-wrap:anywhere]">{step.title}</h3>{step.description && <p className="mt-2 text-sm text-[#526058]">{step.description}</p>}</div></li>)}
         </ol>
-        <p className="mt-12 max-w-[640px] text-body text-[#637060]">Identity evidence stays connected to the workflow that created it, so every reuse remains explainable.</p>
       </div>
     </section>
   );

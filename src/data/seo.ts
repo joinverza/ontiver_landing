@@ -64,7 +64,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
     const detail = useCasePageDetails[useCaseMatch[1]];
     return {
       title: `${detail.eyebrow} Identity Verification | Ontiver`,
-      description: detail.intro,
+      description: detail.tagline,
       canonicalPath: path,
       image: `${SITE_URL}${detail.imageUrl}`,
       type: "website",
@@ -72,7 +72,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
         "@context": "https://schema.org",
         "@type": "Service",
         name: `${detail.eyebrow} identity verification`,
-        description: detail.intro,
+        description: detail.tagline,
         provider: baseOrganization,
         url: `${SITE_URL}${path}`,
       },
