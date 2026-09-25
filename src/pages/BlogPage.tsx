@@ -30,24 +30,17 @@ export default function BlogPage() {
   return (
     <main id="blog" className="bg-white text-[#002d0e]">
       <BlogHero />
-      <section id="blog-library" className="section-space scroll-mt-24">
+      <section id="blog-library" className="scroll-mt-24 pb-16 lg:pb-28">
         <div className="site-container">
-          <div className="mb-8 grid gap-4 md:grid-cols-[1fr_330px] md:items-end">
-            <div>
-              <p className="eyebrow">Featured Insight</p>
-              <h2 className="section-heading mt-3">Start with the core story.</h2>
-            </div>
-            <p className="text-body text-[#002d0e]/60">A closer look at reusable identity and the ideas behind Ontiver.</p>
-          </div>
+          <h2 className="section-heading mb-10">Featured.</h2>
           <FeaturedArticleCard article={featured} />
         </div>
       </section>
-      <section className="section-space bg-[#f7f7f7]">
+      <section className="section-space border-t border-[#e1e6df]">
         <div className="site-container">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-[#dde6dc] pb-7">
             <div>
-              <p className="eyebrow">Resource Library</p>
-              <h2 className="section-heading mt-3">Browse practical playbooks.</h2>
+              <h2 className="section-heading">Articles.</h2>
             </div>
             <p className="text-meta font-medium text-[#002d0e]/55">{blogArticles.length} articles</p>
           </div>
