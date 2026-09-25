@@ -33,6 +33,7 @@ export const enterpriseFooterGroups: FooterGroup[] = [
       { label: "Lenders", href: "/enterprise/use-cases/digital-lenders" },
       { label: "Marketplaces", href: "/enterprise/use-cases/marketplaces" },
       { label: "HR Platforms", href: "/enterprise/use-cases/hr-platforms" },
+      { label: "Logistics & Delivery", href: "/enterprise/use-cases/logistics-delivery" },
       { label: "Schools", href: "/enterprise/use-cases/schools" },
     ],
   },
