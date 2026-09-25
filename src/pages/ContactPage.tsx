@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowUpRight, Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import ContactField from "../components/contact/ContactField";
 import DotLoader from "../components/contact/DotLoader";
 import CurtainFooter from "../components/sections/CurtainFooter/CurtainFooter";
 import { sendContactRequest } from "../lib/landingApi";
+import ContextPhoto from "../components/ui/ContextPhoto";
 import { imagery } from "../data/imagery";
 import {
   contactFields,
@@ -18,7 +19,6 @@ import {
 type SendState = "idle" | "sending" | "sent" | "error";
 
 export default function ContactPage() {
-  const navigate = useNavigate();
   const [values, setValues] = useState(contactInitialValues);
   const [missingFields, setMissingFields] = useState<Set<ContactFormField>>(new Set());
   const [sendState, setSendState] = useState<SendState>("idle");
@@ -70,49 +70,31 @@ export default function ContactPage() {
     <main className="bg-white text-[#002d0e]">
       <section className="page-intro">
         <div className="site-container">
-          <button
-            className="mb-9 inline-flex items-center gap-2 text-body font-medium text-[#002d0e]/65 transition-colors hover:text-[#009311]"
-            type="button"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft size={16} aria-hidden="true" /> Back
-          </button>
           <div className="max-w-[1060px]">
             <div>
               <p className="eyebrow">Get in touch</p>
-              <h1 className="mt-5 text-page-hero font-bold">
+              <h1 className="mt-5 text-page-hero font-medium">
                 {contactHeading}
               </h1>
             </div>
             <p className="mt-7 max-w-[760px] text-subtitle text-[#526058]">
-              Ask about early access, privacy, credential reuse, or anything else you need to understand about Ontiver.
+              Ask about early access, verification requests, your proof wallet, or how consent and sharing work.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="section-space">
+      <section className="pb-20 lg:pb-32">
         <div className="site-container">
-          <div className="grid items-start gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
-            <aside className="flex flex-col overflow-hidden rounded-[28px] bg-[#edf5eb] text-[#002d0e]">
-              <img
-                src={imagery.teamwork.src}
-                alt={imagery.teamwork.alt}
-                width={imagery.teamwork.width}
-                height={imagery.teamwork.height}
-                loading="lazy"
-                className="aspect-[16/7] w-full object-cover"
-                style={{ objectPosition: imagery.teamwork.objectPosition }}
-              />
-              <div className="p-7 sm:p-10">
+          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-16">
+            <aside className="order-2 min-w-0 text-[#002d0e]">
+              <div data-scroll-reveal><ContextPhoto image={imagery.mobileApplication} size="wide" /></div>
+              <div className="mt-6 rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
               <div>
-                <h2 className="text-section font-bold">Contact Information</h2>
-                <p className="mt-5 max-w-md text-body text-[#526058]">
-                  We are here for individual questions and support.
-                </p>
-                <div className="mt-10 divide-y divide-[#002d0e]/15">
+                <h2 className="text-card-title font-medium">Before you send</h2>
+                <div className="mt-4 divide-y divide-[#002d0e]/10">
                   {contactRows.map((row) => (
-                    <div key={row.label} className="flex items-start gap-4 py-5">
+                    <div key={row.label} className="flex items-start gap-4 py-4">
                       <img src={row.icon} alt="" className="mt-1 size-5 shrink-0 brightness-0" />
                       {row.label.includes("@") ? (
                         <a className="break-all text-body text-[#002d0e] underline-offset-4 hover:underline" href={`mailto:${row.label}`}>
@@ -125,7 +107,7 @@ export default function ContactPage() {
                   ))}
                 </div>
               </div>
-              <div className="mt-9 flex gap-3">
+              <div className="mt-5 flex gap-3">
                 {contactSocialIcons.map((social) => (
                   <a
                     key={social.label}
@@ -140,18 +122,19 @@ export default function ContactPage() {
                 ))}
               </div>
               </div>
+              <Link to="/support" className="mt-6 flex items-center justify-between gap-4 border-y border-[#dde6dc] py-5 text-body font-medium">Continue an existing support request<ArrowUpRight size={20} aria-hidden="true" /></Link>
             </aside>
 
             <form
-              className="min-w-0 rounded-[28px] border border-[#dde6dc] bg-white p-7 sm:p-10 [&_input]:min-h-14 [&_label>span:first-child]:text-body [&_textarea]:min-h-44"
+              className="order-1 min-w-0 bg-white [&_input]:min-h-14 [&_label>span:first-child]:text-body [&_textarea]:min-h-52"
               aria-busy={sendState === "sending"}
               onSubmit={(event) => {
                 event.preventDefault();
                 void submitRequest();
               }}
             >
-              <p className="eyebrow">Start a conversation</p>
-              <div className="mt-9 grid gap-x-6 gap-y-7 md:grid-cols-2">
+              <h2 className="text-card-title font-medium">Start a conversation</h2>
+              <div className="mt-7 grid gap-x-6 gap-y-6 md:grid-cols-2">
                 {contactFields.map((field) => (
                   <ContactField
                     key={field.key}

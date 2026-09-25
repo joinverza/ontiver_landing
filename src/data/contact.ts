@@ -12,10 +12,10 @@ export type ContactFieldConfig = {
   wide?: boolean;
 };
 
-export const contactHeading = "How Can We Help?";
+export const contactHeading = "How can we help?";
 
 export const contactFields: ContactFieldConfig[] = [
-  { key: "firstName", label: "First Name", placeholder: "Ada" },
+  { key: "firstName", label: "First name", placeholder: "Ada" },
   {
     key: "email",
     label: "Email",
@@ -43,10 +43,9 @@ export const contactInitialValues: Record<ContactFormField, string> = {
   message: "",
 };
 
+// Publish a support email and response timeframe once the team confirms them.
 export const contactRows = [
-  { icon: "/assets/sms.svg", label: "hello@ontiver.com" },
-  { icon: "/assets/clock-circle.svg", label: "Send your question and we will follow up by email." },
-  { icon: "/assets/consent.svg", label: "Never include passwords or sensitive identity documents." },
+  { icon: "/assets/consent.svg", label: "Please don't include sensitive documents or identification numbers in this form. If we need evidence from you, we'll request it securely through the app." },
 ];
 
 export const contactSocialIcons = [
