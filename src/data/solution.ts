@@ -7,29 +7,31 @@ export type SolutionStep = {
 export const solutionSteps: SolutionStep[] = [
   {
     icon: "./assets/verify.svg",
-    title: "Verify",
-    para: "The user reviews the request and submits the information required by the agreed verification workflow.",
+    title: "Create the request",
+    para: "Choose the person or business, the workflow, and what you need.",
   },
   {
     icon: "./assets/screen.svg",
-    title: "Screen",
-    para: "The selected checks run through the workflow's verification providers, with exceptions available for review.",
+    title: "Get the user's consent",
+    para: "They see who's asking, why, and what's required.",
   },
   {
     icon: "./assets/proof.svg",
-    title: "Store Proof",
-    para: "Approved verification claims form the basis of an identity proof connected to the user.",
+    title: "Verify the evidence",
+    para: "Ontiver runs the selected checks through internal services and approved providers.",
   },
   {
     icon: "./assets/consent.svg",
-    title: "Consent Share",
-    para: "When a supported business requests proof, the user can review the purpose and approve or decline sharing.",
+    title: "Explain the signals",
+    para: "Intelligence flags consistency, fraud, or review signals with reasons attached.",
   },
   {
     icon: "./assets/reuse.svg",
-    title: "Reuse",
-    para: "The receiving business checks the proof's status and suitability, reducing repeated uploads where its requirements allow.",
+    title: "Review and decide",
+    para: "Your reviewer inspects results, evidence, and the audit trail, then approves, rejects, or escalates.",
   },
+  { icon: "/assets/proof.svg", title: "Create an approved proof", para: "A reusable proof is created containing only the approved claims." },
+  { icon: "/assets/reuse.svg", title: "Let the user control reuse", para: "They decide whether to approve future requests using the same proof." },
 ];
 
 export const solutionCellClasses = [
