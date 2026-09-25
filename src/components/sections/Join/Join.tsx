@@ -1,29 +1,22 @@
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import WaitlistForm from "../../WaitlistForm";
 import type { Audience } from "../../../lib/audience";
-import HeroActions from "../Hero/HeroActions";
 import { imagery } from "../../../data/imagery";
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Join({ audience }: { audience: Audience }) {
   const enterprise = audience === "enterprise";
-  return (
-    <section id="join" className="bg-[#edf5e7] pt-16 sm:pt-24">
-      <div className="site-container">
-        <div className="mx-auto max-w-[860px] text-center">
-          <p className="eyebrow">{enterprise ? "Let's build reusable trust" : "Your invitation to what's next"}</p>
-          <h2 className="section-heading mt-5">{enterprise ? "Build your next workflow on trust." : "Your next chapter starts with you."}</h2>
-          <p className="mx-auto mt-6 max-w-[650px] text-subtitle text-[#002d0e]/65">{enterprise ? "Let's find the right starting point for your team." : "Join the waitlist for early access to identity on your terms."}</p>
-          {enterprise ? <div className="mt-8"><HeroActions audience={audience} centered /></div> : <>
-            <WaitlistForm className="mx-auto mt-8 max-w-[530px]" />
-            <div className="mt-5 text-center"><Link to="/how-it-works" className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]">See how it works<ArrowUpRight size={17} /></Link></div>
-          </>}
-        </div>
-        <div className="mt-14 grid overflow-hidden rounded-[32px] bg-[#002d0e] text-white sm:mt-16 md:grid-cols-[1.35fr_1fr]">
-          <div className="flex flex-col justify-between gap-12 p-8 sm:p-12 lg:p-14"><img src="/assets/logo.svg" alt="Ontiver" className="w-full max-w-[430px] brightness-0 invert" /><p className="max-w-[420px] text-card-title font-medium text-[#c6e5b4]">Verify once. Stay in control.<br />Approve every share.</p></div>
-          <img src={imagery.individualHero.src} alt={imagery.individualHero.alt} loading="lazy" width={imagery.individualHero.width} height={imagery.individualHero.height} className="h-72 w-full object-cover md:h-full md:max-h-[390px]" style={{ objectPosition: imagery.individualHero.objectPosition }} />
+  const photo = enterprise ? imagery.candidateReview : imagery.mobileApplication;
+  return <section id="join" className="bg-white py-10 sm:py-14">
+    <div className="site-container">
+      <div className="relative overflow-hidden rounded-[24px] bg-[#002d0e]">
+        {photo && <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: photo.objectPosition }} />}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#002d0e]/95 via-[#002d0e]/85 to-[#002d0e]/20" />
+        <div className="relative max-w-[760px] p-6 text-white sm:p-10">
+          <h2 className="section-heading">{enterprise ? "Build reusable trust with Ontiver." : "Ready to verify once and stay in control?"}</h2>
+          <p className="mt-5 max-w-[540px] text-body text-white/85">{enterprise ? "Scope the people, checks, reviewers and success measures for a focused pilot." : "We're onboarding early users as partner workflows go live."}</p>
+          {enterprise ? <div className="mt-8 flex flex-wrap gap-3"><Link to="/enterprise/contact" className="button-primary bg-white text-[#002d0e] hover:bg-[#d8edcf]">Request Enterprise Demo<ArrowUpRight size={17} aria-hidden="true" /></Link><Link to="/enterprise/contact?request=sandbox" className="button-secondary border-white/30 text-white hover:bg-white/10 hover:text-white">Start Sandbox</Link></div> : <Link to="/waitlist" className="button-primary mt-8 !bg-white !text-[#002d0e] hover:!bg-[#d8edcf]">Join the User Waitlist<ArrowUpRight size={17} aria-hidden="true" /></Link>}
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
