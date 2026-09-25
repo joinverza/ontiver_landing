@@ -1,8 +1,10 @@
 import { imagery } from "./imagery";
 
-export type BlogBodyBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "quote"; text: string };
+export type BlogBodyBlock = {
+  type: "paragraph" | "heading" | "quote";
+  text: string;
+  source?: { label: string; href: string };
+};
 
 export type BlogArticle = {
   id: number;
@@ -10,272 +12,609 @@ export type BlogArticle = {
   title: string;
   excerpt: string;
   image: string;
-  date: string;
+  date?: string;
   author: string;
   readTime: string;
   category: string;
   body: BlogBodyBlock[];
 };
 
-export const blogArticles: BlogArticle[] = [
+const articleDrafts: Omit<BlogArticle, "image" | "author" | "readTime">[] = [
   {
-    id: 1,
-    slug: "why-identity-verification-should-be-reusable",
-    title: "Why Identity Verification Should Be Reusable",
-    excerpt:
-      "Identity should not restart every time a user joins a new platform. Reusable verification lowers friction, reduces cost, and improves trust.",
-    image: imagery.individualHero.src,
-    date: "May 20, 2026",
-    author: "James Weick",
-    readTime: "6 min read",
-    category: "Identity",
-    body: [
+    "id": 1,
+    "slug": "why-identity-verification-should-be-reusable",
+    "title": "Why Identity Verification Should Be Reusable",
+    "excerpt": "Every platform asks for the same documents. It doesn't have to be that way.",
+    "category": "Identity",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "Most digital products still ask users to prove the same facts again and again. A person verifies their document for a lender, repeats the process for a marketplace, then starts over for a workplace tool. Each restart adds friction, cost, and a new moment where the user can abandon the journey.",
+        "type": "paragraph",
+        "text": "Most people verify their identity dozens of times a year — once for every bank, lender, marketplace, and employer that asks. Each time, the same documents get uploaded, the same checks get run, and the same risk gets created: more copies of sensitive data sitting in more places. Reusable identity flips that model. Verify once, and let approved businesses confirm what they need without starting from zero."
       },
       {
-        type: "paragraph",
-        text:
-          "Reusable identity changes that pattern. Once a trusted verification exists, businesses can ask for permission to reuse the proof instead of asking the user to repeat the entire workflow. The result is faster onboarding without lowering the standard of assurance.",
+        "type": "paragraph",
+        "text": "The amount of repeated work varies with the services a person uses. For each new request, the practical question is whether the organization needs the original evidence again, or whether a current, trustworthy statement about a particular fact would answer its request."
       },
       {
-        type: "quote",
-        text:
-          "Reusable identity is not about storing more data. It is about carrying forward trusted proof with consent, context, and auditability.",
+        "type": "heading",
+        "text": "Reuse a specific claim"
       },
       {
-        type: "paragraph",
-        text:
-          "For compliance teams, reusable credentials also create a cleaner audit story. Every reuse event can be tied to user consent, the relying party, the verification source, and the decision rules applied at the time.",
+        "type": "paragraph",
+        "text": "A useful proof says what was checked, who checked it, and when. It also needs a clear scope: confirming a person's identity is different from confirming employment, a qualification, or an address. A single badge marked verified cannot explain those differences to a reviewer."
       },
       {
-        type: "paragraph",
-        text:
-          "The strongest systems make reuse selective. A bank may need a different risk posture than a gig platform, and a high-value transaction may require a fresh check. Reuse works best when it is paired with policy controls, monitoring, and clear expiry rules.",
+        "type": "paragraph",
+        "text": "Consider a candidate who has already completed an identity check and now receives a request from an employer. That employer may accept the identity evidence while still asking for a recent employment record and a referee. Reuse should make the remaining work clearer, rather than conceal checks that have not happened."
       },
-    ],
+      {
+        "type": "heading",
+        "text": "Keep the user's decision visible"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before sharing, the person should see the requesting organization, the purpose, the required claims, and any deadline. They should be able to distinguish information already available from evidence they still need to provide. A change in recipient or purpose calls for a new decision, rather than an invisible extension of an old permission."
+      },
+      {
+        "type": "paragraph",
+        "text": "An understandable history matters afterward. It should connect each share to the recipient and request, and distinguish an active permission from one that has expired or been revoked. Revoking future access is different from recalling information that a recipient has already received; the interface should not blur those outcomes."
+      },
+      {
+        "type": "heading",
+        "text": "Make acceptance conditional"
+      },
+      {
+        "type": "paragraph",
+        "text": "The receiving organization must assess the source and relevance of the proof. An expired document, changed employment status, disputed record, or stronger assurance requirement may justify a fresh check. Reuse is most useful when the accepting organization can explain both why it accepted existing evidence and why it requested more."
+      },
+      {
+        "type": "paragraph",
+        "text": "NIST separates identity resolution, evidence validation, and verification that an applicant is associated with that evidence. That distinction helps teams avoid treating a stored document or a previous login as sufficient identity assurance.",
+        "source": {
+          "label": "NIST identity proofing and enrollment guidance",
+          "href": "https://pages.nist.gov/800-63-4/sp800-63a.html"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Start with one repeat journey"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose a narrow journey, such as a returning applicant sharing identity evidence with a new employer. Agree which claims can be accepted, who can issue them, how freshness is assessed, and how exceptions reach a reviewer. Test the full path with representative users before adding more industries."
+      },
+      {
+        "type": "paragraph",
+        "text": "Measure repeated uploads, time spent waiting, requests for clarification, and the reasons reviewers ask for fresh evidence. Keep those measures separate from final acceptance decisions. Ontiver's planned request, consent, review, and proof-wallet journey is designed around this approach; actual availability and acceptance depend on the deployed workflow and participating organization."
+      }
+    ]
   },
   {
-    id: 2,
-    slug: "cutting-kyc-costs-without-cutting-assurance",
-    title: "Cutting KYC Costs Without Cutting Assurance",
-    excerpt:
-      "A practical guide to lowering verification spend while preserving the risk checks, consent trails, and audit evidence compliance teams need.",
-    image: imagery.finance.src,
-    date: "June 4, 2026",
-    author: "Amara Cole",
-    readTime: "5 min read",
-    category: "KYC",
-    body: [
+    "id": 2,
+    "slug": "cutting-kyc-costs-without-cutting-assurance",
+    "title": "Cutting KYC Costs Without Cutting Assurance",
+    "excerpt": "Repeated verification is expensive for businesses and frustrating for users. Reusable proof addresses both.",
+    "category": "KYC",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "KYC costs rise quietly. A product team adds new regions, a compliance team adds AML screening, support handles edge cases, and the finance team sees verification spend grow faster than customer activation.",
+        "type": "paragraph",
+        "text": "KYC is often treated as a fixed cost of doing business — pay per check, accept the drop-off, and move on. But every repeated verification is a check you're paying for again, on a user you may have already verified through a partner workflow. Reusable proof doesn't lower your standards; it lowers how often you pay to confirm what's already known."
       },
       {
-        type: "paragraph",
-        text:
-          "The first optimization is visibility. Teams need to separate document checks, biometric checks, AML screens, retries, abandoned flows, and manual reviews. Without that split, the largest savings opportunities stay hidden.",
+        "type": "heading",
+        "text": "Start with the decision, then price the work"
       },
       {
-        type: "paragraph",
-        text:
-          "Reusable credentials reduce repeat checks, but savings also come from better orchestration. A returning low-risk user should not always follow the same path as a new high-risk user.",
+        "type": "paragraph",
+        "text": "Any saving depends on the checks that can legitimately be reused and the cost of managing that reuse. A previous result may be too old, unsuitable for the new purpose, or from a source the receiving business does not accept. The goal is to identify unnecessary repetition within an agreed assurance standard."
       },
       {
-        type: "quote",
-        text:
-          "The best KYC cost strategy is not fewer checks. It is the right check at the right moment for the right level of risk.",
+        "type": "paragraph",
+        "text": "Map the onboarding journey from request creation to the business decision. Separate provider charges from support effort, reviewer time, retries, and incomplete applications. A low price per check can still accompany an expensive process if users repeatedly submit unclear evidence or staff must reconcile results by hand."
       },
-    ],
+      {
+        "type": "heading",
+        "text": "Find avoidable repetition"
+      },
+      {
+        "type": "paragraph",
+        "text": "Look for repeated work caused by the workflow itself: duplicate requests, missing instructions, expired upload links, unhelpful error messages, or a new check triggered before a valid existing result is considered. Fixing those problems does not require lowering the evidence threshold. It requires clearer state and a way to recognize work already completed."
+      },
+      {
+        "type": "paragraph",
+        "text": "For example, a returning seller might already have current identity evidence but need to update business details. Ask for the changed information, review whether the existing identity proof remains acceptable, and record that reasoning. Do not assume that a previous approval automatically covers a different business, role, or transaction."
+      },
+      {
+        "type": "heading",
+        "text": "Define a reuse policy with reviewers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Write down the acceptable proof source, scope, age, and status for each claim. Specify what happens when a result is disputed, expires, or cannot be validated. Reviewers should have a clear route to request new evidence without forcing every applicant back through the entire onboarding process."
+      },
+      {
+        "type": "paragraph",
+        "text": "FATF's digital identity guidance emphasizes understanding a system's assurance and assessing whether it is sufficiently reliable for the relevant due-diligence use. A reusable result therefore needs evaluation in context; portability alone does not establish that it meets a business's obligations.",
+        "source": {
+          "label": "FATF guidance on digital identity",
+          "href": "https://www.fatf-gafi.org/content/dam/fatf/documents/recommendations/pdfs/Guidance-on-Digital-Identity-report.pdf"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Operational teams also need to understand the cost of the exception route. A reused proof that regularly creates ambiguous manual review may not reduce total effort. Track the reasons for exceptions so a provider mismatch, confusing request, and genuinely changed circumstance are not grouped into one failure rate."
+      },
+      {
+        "type": "heading",
+        "text": "Compare real results"
+      },
+      {
+        "type": "paragraph",
+        "text": "Evaluate comparable groups over the same period and with the same acceptance criteria. Track completed requests, repeat checks, reviewer effort, and correction or appeal outcomes alongside direct spend. A shorter journey is valuable only if the business still has the evidence needed for its decision."
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep the financial model transparent. Current verification volume and current cost can establish a baseline, but projected savings require an agreed future price and observed eligibility for reuse. Do not invent a recovery percentage for people who abandon onboarding or count all abandoned applications as recoverable revenue."
+      },
+      {
+        "type": "paragraph",
+        "text": "A useful pilot ends with a documented decision: which repeated steps can be removed, which remain necessary, and what evidence supports the change. Confirm Ontiver pricing and pilot scope through an actual proposal, then compare observed costs against the baseline."
+      }
+    ]
   },
   {
-    id: 3,
-    slug: "aml-screening-for-product-teams",
-    title: "AML Screening for Product Teams",
-    excerpt:
-      "What builders need to know about watchlists, ongoing monitoring, match resolution, and how AML checks fit into user onboarding.",
-    image: imagery.teamwork.src,
-    date: "June 9, 2026",
-    author: "Nora Adeyemi",
-    readTime: "7 min read",
-    category: "AML",
-    body: [
+    "id": 3,
+    "slug": "aml-screening-for-product-teams",
+    "title": "AML Screening for Product Teams",
+    "excerpt": "AML doesn't have to live only in a compliance team's spreadsheet — here's how it fits into a product workflow.",
+    "category": "AML",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "AML screening is often treated as a back-office concern, but product choices shape how well those controls work. The flow, timing, retry logic, and review paths all influence how many users finish onboarding and how many alerts become operational work.",
+        "type": "paragraph",
+        "text": "For product teams building onboarding flows, AML screening can feel like someone else's problem until a regulator asks about it. Built into the workflow engine rather than bolted on afterward, screening becomes part of the same request-consent-review cycle as every other check — visible, explainable, and auditable by design."
       },
       {
-        type: "paragraph",
-        text:
-          "A good product integration makes screening visible enough for operators and invisible enough for legitimate users. That means clear states, reliable webhooks, and a consistent record of why a decision was made.",
+        "type": "heading",
+        "text": "Separate screening from the decision"
       },
       {
-        type: "paragraph",
-        text:
-          "The highest-impact improvement is match quality. False positives slow teams down, while missed matches increase exposure. Product teams should track both as part of onboarding health.",
+        "type": "paragraph",
+        "text": "Agree the screening scope with the organization's qualified compliance team before designing the flow. They must define applicable obligations, lawful processing, provider coverage, and the actions required after a result. A consent interface does not determine the legal basis for every screening activity."
       },
-    ],
+      {
+        "type": "paragraph",
+        "text": "Identity evidence and a screening result answer different questions. A successful identity check does not establish that no financial-crime risk exists. Equally, a possible name match does not establish that the applicant is the person in the source record or that the application should be rejected."
+      },
+      {
+        "type": "heading",
+        "text": "Design states people can understand"
+      },
+      {
+        "type": "paragraph",
+        "text": "A product flow should distinguish waiting for information, screening in progress, unavailable results, and review required. A provider timeout should not look like a negative screening result. Explain the next action that the applicant can take without exposing restricted investigative details or internal detection rules."
+      },
+      {
+        "type": "paragraph",
+        "text": "On the operator side, preserve the relationship between the request, the screened subject, the provider result, and the review task. If a provider corrects a result or the applicant updates relevant information, the team needs to know which earlier decision might need attention. Silently overwriting the old state makes that harder."
+      },
+      {
+        "type": "heading",
+        "text": "Give reviewers context"
+      },
+      {
+        "type": "paragraph",
+        "text": "A review queue should show why a possible match was raised, what source information is available, and which details the reviewer is allowed to compare. The reviewer should be able to request clarification, dismiss a mismatched record with a reason, or escalate the case through the organization's approved procedure."
+      },
+      {
+        "type": "paragraph",
+        "text": "Avoid a universal score that hides the distinction between a missing field and a serious concern. Group cases by the work needed to resolve them. An incomplete date of birth, an unavailable provider response, and conflicting source information require different follow-up even if all three initially prevent an automated decision."
+      },
+      {
+        "type": "paragraph",
+        "text": "Access should follow the reviewer's role. Applicants, general support agents, and specialist reviewers do not necessarily need the same view. Product teams should agree what can be disclosed with compliance and privacy owners, rather than copying an entire provider response into every interface."
+      },
+      {
+        "type": "heading",
+        "text": "Test the operational handoff"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before a pilot, rehearse a possible match, a provider outage, a corrected applicant detail, an unassigned review, and a delayed response. Check that someone owns each unresolved case and that the applicant is not left in a success state while the organization still needs a decision."
+      },
+      {
+        "type": "paragraph",
+        "text": "Useful operational measures include how long cases wait, why they are escalated, and whether corrected information changes the outcome. These are questions to measure in a deployment, not promised Ontiver results. Do not label a provider's unconfirmed alert as fraud merely to simplify a dashboard."
+      },
+      {
+        "type": "paragraph",
+        "text": "For Ontiver, screening belongs within the proposed request and authorized-review workflow when the provider and deployment scope support it. Enabled checks, ongoing monitoring, notification duties, and escalation procedures must be established for that particular integration. A workflow label alone does not establish any of those capabilities."
+      }
+    ]
   },
   {
-    id: 4,
-    slug: "building-consent-into-identity-flows",
-    title: "Building Consent Into Identity Flows",
-    excerpt:
-      "Consent is more than a checkbox. It is a product layer that should be understandable, revocable, and tied to every reuse event.",
-    image: imagery.education.src,
-    date: "June 14, 2026",
-    author: "Tomi Fraser",
-    readTime: "4 min read",
-    category: "Consent",
-    body: [
+    "id": 4,
+    "slug": "building-consent-into-identity-flows",
+    "title": "Building Consent Into Identity Flows",
+    "excerpt": "Consent isn't a checkbox at signup — it's a decision made at the moment of every request.",
+    "category": "Consent",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "Consent becomes fragile when it is hidden inside dense legal copy. Users need to understand what is being shared, who receives it, and why it matters to the action they are taking.",
+        "type": "paragraph",
+        "text": "Most \"consent\" in digital products is a single checkbox agreed to once, then forgotten. Real consent is closer to what happens when a friend asks to borrow something specific — you know what's being asked for, why, and you can say no to just that one thing. Identity flows built around per-request consent give users that same granularity."
       },
       {
-        type: "paragraph",
-        text:
-          "In reusable identity systems, consent also needs memory. A user may approve reuse today, revoke it later, or approve one relying party while rejecting another.",
+        "type": "heading",
+        "text": "Describe one request clearly"
       },
       {
-        type: "quote",
-        text:
-          "Clear consent makes identity reuse feel like control, not surveillance.",
+        "type": "paragraph",
+        "text": "Start with the organization asking, the purpose, and the specific claims or evidence it needs. Put the deadline and the next step where the person can find them. A request for proof of identity should not quietly include unrelated employment information just because that information is already in a wallet."
       },
       {
-        type: "paragraph",
-        text:
-          "A strong consent layer pairs friendly language with durable records: timestamp, relying party, data category, purpose, and policy version. Those details matter when a compliance team needs to reconstruct a decision.",
+        "type": "paragraph",
+        "text": "Use concrete labels such as identity details, employment evidence, or qualification certificate. Explain whether the organization receives a result, selected fields, or an actual document. Those are different disclosures. A friendly label cannot substitute for describing what the receiving organization will be able to access."
       },
-    ],
+      {
+        "type": "heading",
+        "text": "Make the choices meaningful"
+      },
+      {
+        "type": "paragraph",
+        "text": "Separate required information from optional information and explain what declining a required item means for the application. Do not imply that a person can omit an essential claim and still complete the same process. Where the organization supports alternatives, make the route to ask a question or provide different evidence visible."
+      },
+      {
+        "type": "paragraph",
+        "text": "Imagine a job applicant receiving a request for identity and a qualification. They might approve those claims but ask why a full employment history is also being requested. A well-designed flow lets the organization clarify or revise the request, while keeping the applicant's earlier choices distinct from the new proposal."
+      },
+      {
+        "type": "paragraph",
+        "text": "Consent screens should work on small screens and with assistive technology. Avoid preselected optional permissions, vague accept-all buttons, or controls whose labels change meaning between steps. Before the final action, show a concise summary of the recipient and selected information so the person can catch an unintended share."
+      },
+      {
+        "type": "heading",
+        "text": "Keep a usable record"
+      },
+      {
+        "type": "paragraph",
+        "text": "Record the request and the version of the information presented when the person made a decision. Connect that decision to the selected claims, purpose, recipient, and time. The record should explain a particular sharing action, rather than merely say that someone accepted the website's general terms."
+      },
+      {
+        "type": "paragraph",
+        "text": "A user-facing history can make this record understandable: who asked, what was approved, when access began, and whether the permission is active, expired, or revoked. Keep operational detail proportionate. The person should not need to interpret an internal event payload to understand their own choices."
+      },
+      {
+        "type": "heading",
+        "text": "Explain what revocation changes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Stopping future sharing is not the same as deleting every copy already delivered to another organization. The interface should explain the effect supported by the actual system and direct questions about retained records to the relevant organization. Avoid a universal undo promise that the product cannot enforce."
+      },
+      {
+        "type": "paragraph",
+        "text": "Likewise, a consent choice is not a complete explanation of an organization's legal duties or every processing basis. Work with privacy and legal owners so the interface's description of a choice matches its actual effect in the intended service."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ontiver's planned mobile journey places incoming requests, selected claims, proof sharing, and history together. A useful acceptance test is to ask a participant to explain the recipient, purpose, and effect of their choice in their own words. If the answer differs from what the system does, revise the request before expanding the flow."
+      }
+    ]
   },
   {
-    id: 5,
-    slug: "developer-guide-to-verification-webhooks",
-    title: "A Developer Guide to Verification Webhooks",
-    excerpt:
-      "How to design webhook handlers that are idempotent, observable, resilient, and ready for compliance-critical verification events.",
-    image: imagery.developer.src,
-    date: "June 18, 2026",
-    author: "Ife Martin",
-    readTime: "8 min read",
-    category: "Developers",
-    body: [
+    "id": 5,
+    "slug": "developer-guide-to-verification-webhooks",
+    "title": "A Developer Guide to Verification Webhooks",
+    "excerpt": "What to expect, what to listen for, and how to build reliable integrations around verification events.",
+    "category": "Developers",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "Verification webhooks are small messages with large consequences. They often drive account activation, risk decisions, audit records, and support workflows.",
+        "type": "paragraph",
+        "text": "Verification isn't instantaneous, and building an integration that assumes it is leads to a bad user experience. This guide walks through the webhook events your integration should listen for — verification.started, verification.completed, verification.failed, proof.shared, consent.revoked, aml.review_required — and how to build state handling around each."
       },
       {
-        type: "paragraph",
-        text:
-          "The safest handlers are idempotent. If the same event arrives twice, the system should produce the same final state. Store event identifiers, verify signatures, and separate receipt from processing when latency matters.",
+        "type": "paragraph",
+        "text": "The event names in this article are illustrative names from a proposed integration design. They are not a confirmed Ontiver API contract. Before implementing a production listener, obtain the actual event catalog, payload schema, authentication method, versioning rules, retry behavior, and test environment for your integration."
       },
       {
-        type: "paragraph",
-        text:
-          "Observability matters as much as correctness. Teams should be able to answer which events arrived, which failed, which were retried, and which user state changed as a result.",
+        "type": "heading",
+        "text": "Give each event a limited meaning"
       },
-    ],
+      {
+        "type": "paragraph",
+        "text": "In this example, verification.started means that a particular check has begun; it should move the interface to a pending state. verification.completed means that the check has finished, so the integration must inspect its result and scope. It must not automatically translate into an approved loan, accepted employee, or activated seller."
+      },
+      {
+        "type": "paragraph",
+        "text": "verification.failed needs a documented reason model. A technical error, incomplete submission, and an unsuccessful check may require different responses. Keep the workflow identifier and attempt separate so a late result from an earlier attempt cannot silently replace the current application state."
+      },
+      {
+        "type": "paragraph",
+        "text": "proof.shared represents a particular disclosure in the example design. Check the intended recipient, claims, and relevant access state before using the proof. consent.revoked calls for reevaluating future access under the agreed contract; it does not establish that every previously delivered record has been erased."
+      },
+      {
+        "type": "paragraph",
+        "text": "aml.review_required would route a case to an authorized reviewer. It is neither a final adverse decision nor a statement that the applicant committed wrongdoing. The reviewer workflow should make ownership and next actions clear while restricting access to sensitive details."
+      },
+      {
+        "type": "heading",
+        "text": "Receive safely, then process"
+      },
+      {
+        "type": "paragraph",
+        "text": "Follow the provider's documented signature-verification procedure and keep secrets on the server. Stripe's guidance is a useful concrete example: it requires the raw request body for signature checks, discusses duplicate deliveries, and warns against relying on event arrival order. These are Stripe's documented behaviors, not evidence of Ontiver's implementation.",
+        "source": {
+          "label": "Stripe webhook delivery guidance",
+          "href": "https://docs.stripe.com/webhooks"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Design receipt and business processing as separate operations. A durable queue or event record can let a handler acknowledge an accepted delivery while a worker performs longer tasks. Define failure behavior explicitly: an event that could not be durably recorded should not disappear behind an unconditional success response."
+      },
+      {
+        "type": "heading",
+        "text": "Prevent duplicate effects"
+      },
+      {
+        "type": "paragraph",
+        "text": "Use a stable event identifier under the provider's documented scope to recognize repeat deliveries. Store the processing outcome as well as receipt. Otherwise a crash between recording the event and applying the change can leave the integration believing that work finished when it did not."
+      },
+      {
+        "type": "paragraph",
+        "text": "Protect the business operation too. Replaying an event should not send the same invitation repeatedly or create duplicate review tasks. When an event conflicts with the current state, use the provider's supported reconciliation method rather than guessing from the order of timestamps alone."
+      },
+      {
+        "type": "heading",
+        "text": "Exercise the failure paths"
+      },
+      {
+        "type": "paragraph",
+        "text": "Test repeated deliveries, delayed events, invalid signatures, unsupported event types, unavailable dependencies, and worker crashes. Use synthetic records rather than real identity documents. Operators need a way to see unresolved deliveries and retry eligible work without bypassing the same authorization and state checks."
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep logs focused on event references, outcomes, and diagnostic reasons. Do not copy credentials or full verification evidence into routine application logs. The result should be an integration whose behavior can be explained for one request from receipt through the organization's final decision."
+      }
+    ]
   },
   {
-    id: 6,
-    slug: "risk-signals-that-matter-in-onboarding",
-    title: "Risk Signals That Matter in Onboarding",
-    excerpt:
-      "A framework for ranking signals that improve fraud detection without overcomplicating the user journey.",
-    image: imagery.work.src,
-    date: "June 21, 2026",
-    author: "Lena Okafor",
-    readTime: "6 min read",
-    category: "Risk",
-    body: [
+    "id": 6,
+    "slug": "risk-signals-that-matter-in-onboarding",
+    "title": "Risk Signals That Matter in Onboarding",
+    "excerpt": "Not every flagged case is fraud. Here's how to read verification signals without over-trusting them.",
+    "category": "Risk",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "Not every signal deserves the same weight. Device reputation, document consistency, liveness confidence, velocity, watchlist matches, and behavioral clues should be ranked by predictive value and operational cost.",
+        "type": "paragraph",
+        "text": "A flagged case isn't a verdict — it's a prompt for a human to look closer. Document tampering signals, duplicate detection, and cross-source inconsistency all mean different things and call for different responses. Treating every signal the same way either buries your reviewers in false positives or lets real risk through."
       },
       {
-        type: "paragraph",
-        text:
-          "A mature onboarding system uses risk to route users, not punish them. Low-risk users move quickly. Higher-risk users receive stronger checks or human review.",
+        "type": "heading",
+        "text": "Name the uncertainty"
       },
       {
-        type: "paragraph",
-        text:
-          "The goal is a journey that feels simple for honest users and expensive for attackers.",
+        "type": "paragraph",
+        "text": "A useful signal describes an observation and its limits. A document image may be unclear, a field may differ from another source, or a record may appear to duplicate an earlier submission. None of those descriptions should be silently replaced with a statement that the applicant is dishonest."
       },
-    ],
+      {
+        "type": "paragraph",
+        "text": "Keep technical failure separate from evidence quality and unresolved risk. A failed provider connection says something about the check's availability. An unreadable upload says something about the evidence captured. A conflicting record asks for investigation. Combining them under one rejected status makes follow-up less accurate."
+      },
+      {
+        "type": "heading",
+        "text": "Connect each signal to evidence"
+      },
+      {
+        "type": "paragraph",
+        "text": "A reviewer should be able to identify the claim being checked, the relevant source, and the reason the system needs attention. If two records disagree, show which fields differ and when each source was obtained. A current address and an old address may reflect a move rather than an invented identity."
+      },
+      {
+        "type": "paragraph",
+        "text": "Possible document alteration also needs context. Compression, glare, cropping, or an unsupported document format can affect automated processing. The appropriate next step might be a clearer capture or an approved alternative route. The team should decide the response based on the evidence and the workflow, rather than use a dramatic fraud label."
+      },
+      {
+        "type": "heading",
+        "text": "Set review actions, not just scores"
+      },
+      {
+        "type": "paragraph",
+        "text": "For each signal, specify who can resolve it and what additional evidence is appropriate. A reviewer may request a correction, compare another authorized source, ask an institution to confirm a qualification, or escalate the case. Record the reason for the action so later reviewers can understand it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider a courier application where a name is abbreviated on one record. The reviewer needs an approved way to reconcile that difference. Asking for every original document again may add friction without answering the particular question. A narrow request can be both easier for the applicant and clearer for the operator."
+      },
+      {
+        "type": "paragraph",
+        "text": "The applicant also needs a workable route when proofing fails or is delayed. NIST's identity-proofing guidance includes accessible redress mechanisms and evaluation of their effectiveness. Use that principle when designing correction and support paths, and check whether applicants can find and complete them.",
+        "source": {
+          "label": "NIST identity proofing and enrollment guidance",
+          "href": "https://pages.nist.gov/800-63-4/sp800-63a.html"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Check how the process performs"
+      },
+      {
+        "type": "paragraph",
+        "text": "Review samples of resolved cases, including decisions changed after clarification. Look for recurring capture problems, unsupported evidence formats, and sources that cause disagreement. These patterns can reveal a product issue that a stricter risk threshold would not solve."
+      },
+      {
+        "type": "paragraph",
+        "text": "Measure reviewer workload and waiting time alongside any measured detection outcome. Do not assume that more alerts mean better protection. Evaluate whether the team has enough context to reach a justified decision and whether people with legitimate evidence can complete an appropriate alternative path."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ontiver's proposed intelligence and review layers are intended to connect signals, reasons, and evidence for an authorized decision-maker. The organization remains responsible for the outcome. Signals should help that person decide what to investigate, while preserving the distinction between a concern, a finding, and a final decision."
+      }
+    ]
   },
   {
-    id: 7,
-    slug: "what-audit-ready-identity-logs-need",
-    title: "What Audit-Ready Identity Logs Need",
-    excerpt:
-      "The records compliance teams should expect from modern verification infrastructure, from consent events to decision evidence.",
-    image: imagery.enterpriseHero.src,
-    date: "June 24, 2026",
-    author: "Maya Hart",
-    readTime: "5 min read",
-    category: "Compliance",
-    body: [
+    "id": 7,
+    "slug": "what-audit-ready-identity-logs-need",
+    "title": "What Audit-Ready Identity Logs Need",
+    "excerpt": "When a regulator or auditor asks \"how do you know,\" this is what your logs need to answer.",
+    "category": "Compliance",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "An audit-ready identity log should explain what happened, when it happened, who initiated it, and which evidence informed the decision.",
+        "type": "paragraph",
+        "text": "An audit trail that only shows \"verified: true\" tells an auditor nothing about how that conclusion was reached. Audit-ready logs need to show the request, the purpose, the evidence considered, who reviewed it, and what they decided — minimized to what's necessary, but complete enough to reconstruct the decision."
       },
       {
-        type: "paragraph",
-        text:
-          "Useful logs connect events across the journey: consent, document capture, biometric match, AML screen, review action, and reuse request.",
+        "type": "heading",
+        "text": "Reconstruct a single request"
       },
       {
-        type: "paragraph",
-        text:
-          "The best logs are boring in the best possible way. They are consistent, exportable, and readable under pressure.",
+        "type": "paragraph",
+        "text": "Begin with the question an operator must answer: why did this organization request this information, and how did it reach its decision? A coherent record should connect the request to its purpose, selected claims, relevant evidence references, review actions, and outcome. Separate the identity check's result from the business's final decision."
       },
-    ],
+      {
+        "type": "paragraph",
+        "text": "Imagine a lender asking for identity and employment evidence. The history should show whether the applicant supplied a new record or shared an existing proof, what the reviewer considered, and why more information was requested. It should not require someone to guess the sequence from unrelated emails and dashboard screenshots."
+      },
+      {
+        "type": "heading",
+        "text": "Keep events connected and understandable"
+      },
+      {
+        "type": "paragraph",
+        "text": "Use references that link the workflow, subject, organization, and relevant attempt without unnecessarily repeating personal details. Record the actor or system responsible for a change, the event time, and the outcome. Where delivery can be delayed, distinguish when something happened from when the receiving system recorded it."
+      },
+      {
+        "type": "paragraph",
+        "text": "A revised decision should be a visible part of the history. If an applicant corrects a detail or an institution supplies a new confirmation, preserve the relationship to the earlier record and the reason for reconsideration. An unexplained replacement of approved with rejected conceals the work the log is supposed to explain."
+      },
+      {
+        "type": "paragraph",
+        "text": "Define the meaning of statuses with operators. Completed might mean evidence collection ended, a provider check returned, or a reviewer made a decision. Those are distinct events. Clear event names and short reason codes are useful only when people can also understand their intended meaning."
+      },
+      {
+        "type": "heading",
+        "text": "Minimize the contents"
+      },
+      {
+        "type": "paragraph",
+        "text": "OWASP recommends carefully selecting logged data and excluding or masking sensitive material such as authentication secrets and unnecessary personal information. It also discusses protecting log access and detecting tampering. Logs need their own access and lifecycle controls; they should not become an uncontrolled second store of identity documents.",
+        "source": {
+          "label": "OWASP Logging Cheat Sheet",
+          "href": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "For the lender example, an evidence reference and a recorded review reason may be more useful than copying a full document into every event. The underlying evidence still needs appropriate management, but it should be accessed through the authorized workflow rather than scattered across diagnostic outputs."
+      },
+      {
+        "type": "paragraph",
+        "text": "Agree retention and export requirements with privacy, security, and legal owners for the actual service. Retention depends on the records and the obligations that apply to them. An export should disclose only the records the recipient is authorized to receive and explain the scope and time period it covers."
+      },
+      {
+        "type": "heading",
+        "text": "Practice retrieval before it matters"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose a representative completed case and ask a reviewer who did not handle it to reconstruct the decision. Include a case with a correction, a revoked sharing permission, or an escalated review. Note where the record is incomplete, ambiguous, or inaccessible, and fix those gaps in the workflow."
+      },
+      {
+        "type": "paragraph",
+        "text": "The phrase audit-ready describes a design goal, not a certification or a promise that a regulator will accept a particular record. Ontiver's planned history and review functions should be evaluated against agreed evidence requirements in a real deployment. The useful test is whether authorized people can explain a decision without exposing more information than the task requires."
+      }
+    ]
   },
   {
-    id: 8,
-    slug: "reusable-identity-for-marketplaces",
-    title: "Reusable Identity for Marketplaces",
-    excerpt:
-      "How marketplaces can verify buyers, sellers, and service providers without adding repeat friction at every transaction layer.",
-    image: imagery.marketplace.src,
-    date: "June 26, 2026",
-    author: "James Weick",
-    readTime: "6 min read",
-    category: "Marketplaces",
-    body: [
+    "id": 8,
+    "slug": "reusable-identity-for-marketplaces",
+    "title": "Reusable Identity for Marketplaces",
+    "excerpt": "Buyers and sellers both benefit from trust that doesn't need to be rebuilt on every platform.",
+    "category": "Marketplaces",
+    "body": [
       {
-        type: "paragraph",
-        text:
-          "Marketplaces rely on trust between people who may never meet. Identity checks reduce risk, but repeated checks can hurt activation, liquidity, and repeat usage.",
+        "type": "paragraph",
+        "text": "Marketplace trust usually gets rebuilt from scratch by every platform a seller joins — new documents, new review queue, new wait. A seller verified once, with a reusable proof, can bring that trust with them, while the marketplace still runs its own risk checks on top."
       },
       {
-        type: "paragraph",
-        text:
-          "Reusable identity lets a verified seller bring proof into new contexts while the marketplace keeps control over policy and risk thresholds.",
+        "type": "heading",
+        "text": "Separate identity from marketplace suitability"
       },
       {
-        type: "quote",
-        text:
-          "Trust grows faster when proof can travel with the user and policy can still adapt to the transaction.",
+        "type": "paragraph",
+        "text": "A portable identity proof can answer a limited question about a seller. It does not establish product quality, ownership of listed goods, delivery reliability, or suitability for every marketplace. Keep those business checks visible so identity verification does not turn into a blanket endorsement badge."
       },
       {
-        type: "paragraph",
-        text:
-          "The right implementation gives users speed, operators visibility, and compliance teams a record they can defend.",
+        "type": "paragraph",
+        "text": "For a small merchant packing online orders, onboarding might require identity evidence, business registration details, and a settlement-account check. Another marketplace may need different claims. The receiving platform should explain which existing proof it accepts and which additional information is needed for its own review."
       },
-    ],
-  },
+      {
+        "type": "heading",
+        "text": "Create a request the seller can act on"
+      },
+      {
+        "type": "paragraph",
+        "text": "Show the marketplace's name, the purpose of the request, the selected claims, and the deadline. Distinguish sharing an existing proof from uploading a document. The seller should understand what the platform receives and have a route to ask about a requirement that does not fit their business."
+      },
+      {
+        "type": "paragraph",
+        "text": "Suppose the seller already has current identity proof but recently changed their trading address. Reusing the identity check does not eliminate the need to review the address change. A focused request for the changed information can make the next step clear without pretending that the earlier approval covered it."
+      },
+      {
+        "type": "heading",
+        "text": "Preserve the marketplace's review"
+      },
+      {
+        "type": "paragraph",
+        "text": "A platform needs an acceptance policy for proof sources, freshness, scope, and status. When a proof cannot be validated or no longer meets the requirement, the workflow should request appropriate fresh evidence or route the case to review. A missing compatible proof should not itself be labeled suspicious."
+      },
+      {
+        "type": "paragraph",
+        "text": "The final business decision belongs to the marketplace. Record what evidence it accepted, what additional checks it performed, and why the seller was approved, rejected, or asked for more information. This lets support distinguish an identity issue from a listing, settlement, or commercial-policy question."
+      },
+      {
+        "type": "paragraph",
+        "text": "Buyers need equally careful language. A profile label should describe the check it represents without implying that every transaction is safe. Dispute handling, transaction monitoring, and marketplace rules remain separate responsibilities; reusable identity is not a substitute for them."
+      },
+      {
+        "type": "heading",
+        "text": "Make ongoing changes manageable"
+      },
+      {
+        "type": "paragraph",
+        "text": "A reusable proof can expire, be corrected, or become unsuitable for a new purpose. Plan how the marketplace will learn about relevant changes under its actual integration contract. Avoid assuming that every historical result comes with ongoing monitoring or immediate notifications."
+      },
+      {
+        "type": "paragraph",
+        "text": "The seller's history should show which organization received which claims and the status of the associated sharing permission. Explain the supported effect of revocation. It may stop future access without removing records already received and managed by the marketplace under its own applicable obligations."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start a pilot with one seller journey and agreed evidence requirements. Measure repeated submissions, requests for clarification, waiting time, and review outcomes using real results. Ontiver's proposed marketplace workflow connects the request, seller consent, verification, review, and proof; provider coverage and participating-platform acceptance must be confirmed for the deployment."
+      }
+    ]
+  }
 ];
+
+const articleImages = [
+  imagery.mobileApplication.src,
+  imagery.finance.src,
+  imagery.candidateReview.src,
+  imagery.mobileApplication.src,
+  imagery.developer.src,
+  imagery.courierOnboarding.src,
+  imagery.candidateReview.src,
+  imagery.merchantOrders.src,
+];
+
+// Publication dates and named bylines require verified editorial records.
+export const blogArticles: BlogArticle[] = articleDrafts.map((article, index) => {
+  const wordCount = article.body.map((block) => block.text).join(" ").trim().split(/\s+/).length;
+  return {
+    ...article,
+    image: articleImages[index],
+    author: "Ontiver editorial",
+    readTime: `${Math.max(1, Math.ceil(wordCount / 200))} min read`,
+  };
+});
 
 export function getBlogArticleBySlug(slug: string | undefined) {
   return blogArticles.find((article) => article.slug === slug);
