@@ -1,0 +1,33 @@
+/* Native scrolling stays accessible for the page, rails, dialogs and textareas. */
+:root {
+  scrollbar-gutter: stable;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #729475 #edf3e8;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: #edf3e8;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb {
+  border: 2px solid #edf3e8;
+  border-radius: 999px;
+  background: #729475;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #426c49;
+}
+*::-webkit-scrollbar-corner {
+  background: #edf3e8;
+}
+
+@media (forced-colors: active) {
+  * {
+    scrollbar-color: auto;
+  }
+}

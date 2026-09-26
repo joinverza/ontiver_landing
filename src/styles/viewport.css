@@ -1,0 +1,71 @@
+:root {
+  --site-header-height: 80px;
+  --section-padding: clamp(1.5rem, 4svh, 3.5rem);
+  --section-viewport: calc(100svh - var(--site-header-height));
+}
+
+main {
+  min-width: 0;
+}
+main:focus {
+  outline: none;
+}
+img,
+video {
+  max-width: 100%;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  inset: 12px auto auto 12px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #002d0e;
+  color: white;
+  transform: translateY(-180%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* A minimum, never a fixed/max height: longer content always expands the page. */
+@media (min-width: 1000px) and (min-height: 600px) {
+  .page-intro {
+    display: grid;
+    align-content: center;
+    min-block-size: 100svh;
+  }
+  .section-space:not(.section-compact):not(.section-flow) {
+    display: grid;
+    align-content: center;
+    min-block-size: var(--section-viewport);
+  }
+}
+
+/* Stacked layouts and short/zoomed windows retain readable, intrinsic heights. */
+@media (max-width: 999px), (max-height: 599px) {
+  :root {
+    --section-padding: clamp(1.5rem, 4svh, 2.5rem);
+  }
+  .page-intro,
+  .section-space {
+    min-block-size: auto;
+  }
+}
+
+@media (min-width: 1000px) and (max-height: 800px) {
+  .home-hero .hero-enter > .mt-5 {
+    margin-top: 1rem;
+  }
+  .home-hero .hero-enter > .mt-6,
+  .home-hero .hero-enter > .mt-7 {
+    margin-top: 1.25rem;
+  }
+  .identity-request-preview {
+    padding-block: 1rem;
+  }
+  .request-device {
+    padding: 1rem;
+  }
+}

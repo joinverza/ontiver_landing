@@ -1,0 +1,50 @@
+html {
+  scroll-padding-top: calc(var(--site-header-height) + 16px);
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+
+body {
+  margin: 0;
+  color: #002d0e;
+  background: #fff;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(0, 125, 33, 0.28);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #d2edcc;
+  color: #002d0e;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled),
+summary {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

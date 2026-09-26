@@ -1,33 +1,68 @@
-import type {ComponentType} from "react";
-import {renderToString} from "react-dom/server";
-import {HelmetProvider, type HelmetServerState} from "react-helmet-async";
-import {MemoryRouter} from "react-router-dom";
-import {getSeoMeta} from "../data/seo";
+import type { ComponentType } from "react";
+import { PassThrough } from "node:stream";
+import { renderToPipeableStream } from "react-dom/server";
+import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
+import { MemoryRouter } from "react-router-dom";
+import { getSeoMeta } from "../app/seo/metadata";
 
 type RenderInput = {
   path: string;
   Component: ComponentType;
 };
 
-export function renderRoute({path, Component}: RenderInput) {
-  const helmetContext: {helmet?: HelmetServerState | null} = {};
-  const previous = (HelmetProvider as unknown as {canUseDOM: boolean}).canUseDOM;
-  (HelmetProvider as unknown as {canUseDOM: boolean}).canUseDOM = false;
+export async function renderRoute({ path, Component }: RenderInput) {
+  const helmetContext: { helmet?: HelmetServerState | null } = {};
+  const previous = (HelmetProvider as unknown as { canUseDOM: boolean }).canUseDOM;
+  (HelmetProvider as unknown as { canUseDOM: boolean }).canUseDOM = false;
   try {
-    let bodyHtml = renderToString(
-      <HelmetProvider context={helmetContext}>
-        <MemoryRouter initialEntries={[path]}>
-          <Component />
-        </MemoryRouter>
-      </HelmetProvider>,
-    );
+    // Start piping only when every lazy route has resolved. Starting a readable
+    // stream earlier can buffer the fallback and its client replacement script.
+    let bodyHtml = await new Promise<string>((resolve, reject) => {
+      const output = new PassThrough();
+      let html = "";
+      let renderError: unknown;
+      output.setEncoding("utf8");
+      output.on("data", (chunk: string) => {
+        html += chunk;
+      });
+      output.once("end", () => resolve(html));
+      output.once("error", reject);
+      const timeout = setTimeout(() => {
+        abort();
+        reject(new Error(`Prerender timed out: ${path}`));
+      }, 30000);
+      const { pipe, abort } = renderToPipeableStream(
+        <HelmetProvider context={helmetContext}>
+          <MemoryRouter initialEntries={[path]}>
+            <Component />
+          </MemoryRouter>
+        </HelmetProvider>,
+        {
+          // Static documents must inline complete boundaries of any size.
+          progressiveChunkSize: Number.POSITIVE_INFINITY,
+          onAllReady: () => {
+            clearTimeout(timeout);
+            if (renderError) reject(renderError);
+            else pipe(output);
+          },
+          onError: (error) => {
+            renderError = error;
+          },
+          onShellError: (error) => {
+            clearTimeout(timeout);
+            reject(error);
+          },
+        },
+      );
+    });
     const meta = getSeoMeta(path);
     const canonical = `https://ontiver.com${meta.canonicalPath === "/" ? "" : meta.canonicalPath}`;
-    const escape = (value: string) => value
-      .replaceAll("&", "&amp;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
+    const escape = (value: string) =>
+      value
+        .replaceAll("&", "&amp;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
     const headHtml = [
       `<title data-rh="true">${escape(meta.title)}</title>`,
       `<meta data-rh="true" name="description" content="${escape(meta.description)}">`,
@@ -47,9 +82,9 @@ export function renderRoute({path, Component}: RenderInput) {
       `<script data-rh="true" type="application/ld+json">${JSON.stringify(meta.structuredData).replaceAll("<", "\\u003c")}</script>`,
     ].join("\n");
     for (const pattern of DEFAULT_HEAD_PATTERNS) bodyHtml = bodyHtml.replace(pattern, "");
-    return {bodyHtml, headHtml};
+    return { bodyHtml, headHtml, path };
   } finally {
-    (HelmetProvider as unknown as {canUseDOM: boolean}).canUseDOM = previous;
+    (HelmetProvider as unknown as { canUseDOM: boolean }).canUseDOM = previous;
   }
 }
 
@@ -65,10 +100,13 @@ const DEFAULT_HEAD_PATTERNS = [
 
 export function injectIntoTemplate(
   template: string,
-  parts: {headHtml: string; bodyHtml: string},
+  parts: { headHtml: string; bodyHtml: string; path: string },
 ) {
   let html = template;
   for (const pattern of DEFAULT_HEAD_PATTERNS) html = html.replace(pattern, "");
   html = html.replace("</head>", `${parts.headHtml}\n</head>`);
-  return html.replace('<div id="root"></div>', `<div id="root">${parts.bodyHtml}</div>`);
+  return html.replace(
+    '<div id="root"></div>',
+    `<div id="root" data-prerendered-path="${encodeURI(parts.path)}">${parts.bodyHtml}</div>`,
+  );
 }
