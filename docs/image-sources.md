@@ -1,0 +1,106 @@
+# Editorial photography
+
+Selected and downloaded on 24 September 2026. These photographs illustrate everyday identity, work, education, and business contexts. The models are not represented as Ontiver customers, partners, employees, or endorsers. No competitor imagery, watermarked previews, paid assets, or generated people are included.
+
+## Discovery and permission
+
+Pinterest was searched for Black and African professionals, people using phones, small business owners, and students, including pins that credit Pexels and PICHA Stock. The following actual pins were opened, their image previews inspected, and their source metadata examined:
+
+- [PICHA Stock / Pexels discovery pin](https://www.pinterest.com/pin/523543525436884156/) resolves to the [group-of-women pin](https://www.pinterest.com/pin/friends-sofa-photos--1079456604412132427/). Its outbound source is [PICHA Stock's original Pexels photograph](https://www.pexels.com/photo/group-of-women-sitting-on-couch-3869651/), used as `teamwork.webp`. The same photographer's related work supplied `work.webp`.
+- [Pexels student reference pin](https://www.pinterest.com/pin/850406342134120908/) resolves to [this student photography pin](https://in.pinterest.com/pin/student-photos-download-the-best-free-student-stock-photos-hd-images--111816003238439473/). Its preview informed the natural, people-led educational direction; that pin's image is not included in the app.
+
+Pinterest is a discovery reference, not the source of usage rights. All installed photographs were downloaded from their original Pexels image URLs. The remaining complementary photographs were selected directly from Pexels. The [Pexels license](https://www.pexels.com/license/) permits free website/app use and image modification, without mandatory attribution. It prohibits implying endorsement, offensive portrayals of identifiable people, unaltered resale, redistribution as stock, and trademark use. Attribution is recorded below voluntarily.
+
+## Installed photographs
+
+All files live in `public/assets/photos/`. Original dimensions are from the downloaded originals. Each image retains its source aspect ratio; the site applies `object-fit: cover` with the recommended focal point from `src/data/imagery.ts`. No color grading, compositing, identity alteration, or destructive crop was applied. Processing consists of EXIF orientation normalization, proportional downsampling, metadata removal, and WebP compression at quality 83.
+
+| Local file / use                                                | Photographer and original page                                                                                                                     | Original → delivered dimensions | Recommended focal point |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------- |
+| `individual-hero.webp` / phone portrait, fintech                | [Ono Kosuki — smiling office worker with smartphone](https://www.pexels.com/photo/smiling-ethnic-office-worker-with-smartphone-on-street-5999901/) | 4000 × 6000 → 1200 × 1800       | 50% 35%                 |
+| `enterprise-hero.webp` / technology professional, audit article | [Christina Morillo — software engineer with tablet](https://www.pexels.com/photo/software-engineer-looking-at-an-ipad-1181335/)                    | 6016 × 4016 → 1600 × 1068       | 70% 45%                 |
+| `teamwork.webp` / collaboration, contact, compliance            | [PICHA Stock — group of women sitting on couch](https://www.pexels.com/photo/group-of-women-sitting-on-couch-3869651/)                             | 4923 × 3282 → 1800 × 1200       | 50% 45%                 |
+| `marketplace.webp` / small business, marketplace                | [Amina Filkins — florists reviewing a tablet](https://www.pexels.com/photo/focused-multiracial-women-with-tablet-in-workshop-5410067/)             | 3801 × 2686 → 1600 × 1131       | 55% 45%                 |
+| `work.webp` / work and hiring                                   | [PICHA Stock — women looking at a laptop](https://www.pexels.com/photo/women-looking-at-the-laptop-3869650/)                                       | 5472 × 3648 → 1600 × 1067       | 60% 45%                 |
+| `education.webp` / learning and education                       | [Andrea Piacquadio — woman at a laptop](https://www.pexels.com/photo/happy-ethnic-woman-sitting-at-table-with-laptop-3769021/)                     | 6100 × 4067 → 1600 × 1067       | 60% 40%                 |
+| `finance.webp` / lending and finance                            | [fauxels — people discussing charts](https://www.pexels.com/photo/people-discuss-about-graphs-and-rates-3184292/)                                  | 6000 × 3374 → 1600 × 900        | 50% 50%                 |
+| `developer.webp` / developer article                            | [Christina Morillo — typing on a laptop](https://www.pexels.com/photo/close-up-photo-of-person-typing-on-laptop-1181675/)                          | 6016 × 4016 → 1600 × 1068       | 50% 50%                 |
+
+## Original download URLs
+
+The originals were obtained from these publisher-hosted files. The app serves the optimized local copies and never hotlinks these URLs.
+
+- [Individual hero original](https://images.pexels.com/photos/5999901/pexels-photo-5999901.jpeg)
+- [Enterprise hero original](https://images.pexels.com/photos/1181335/pexels-photo-1181335.jpeg)
+- [Teamwork original](https://images.pexels.com/photos/3869651/pexels-photo-3869651.jpeg)
+- [Marketplace original](https://images.pexels.com/photos/5410067/pexels-photo-5410067.jpeg)
+- [Work original](https://images.pexels.com/photos/3869650/pexels-photo-3869650.jpeg)
+- [Education original](https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg)
+- [Finance original](https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg)
+- [Developer original](https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg)
+
+The `imagery` registry supplies the local paths, descriptive alternative text, dimensions, and focal points. `getImageAlt(src)` and `getImagePosition(src)` allow existing image-URL data models to use the same metadata. These editorial illustrations should not be relabeled as actual customer stories or team portraits.
+
+## Photography additions for the editorial layout
+
+Six complementary photographs were selected through Pinterest on 24 September 2026. Each pin below was opened in a browser; its preview and outbound original-source metadata were inspected. The source photographs were then visually checked and downloaded from Pexels, under the same [Pexels license](https://www.pexels.com/license/). Existing photographs and registry keys are preserved. All additions retain their original colors and aspect ratios, with EXIF orientation normalization and WebP quality 83 compression.
+
+| Registry key / local file                     | Pinterest discovery                                                                         | Original photographer and source                                                                                                              | Original to delivered dimensions | File bytes |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- |
+| `cityPortrait` / `city-portrait.webp`         | [nappy portrait pin](https://www.pinterest.com/pin/248049891963325294/)                     | [nappy: man beneath an overpass](https://www.pexels.com/photo/man-wearing-black-long-jacket-and-blue-shirt-holding-pocket-936087/)            | 6720 x 4480 to 1800 x 1200       | 61,678     |
+| `studentLife` / `student-life.webp`           | [Zen Chung student pin](https://www.pinterest.com/pin/364087951143828893/)                  | [Zen Chung: student walking in a garden](https://www.pexels.com/photo/happy-asian-female-student-waling-in-park-5538001/)                     | 2406 x 3332 to 1400 x 1939       | 340,358    |
+| `everydayPhone` / `everyday-phone.webp`       | [Andrea Piacquadio phone pin](https://www.pinterest.com/pin/627126316854255459/)            | [Andrea Piacquadio: man on a phone beside a laptop](https://www.pexels.com/photo/man-in-blue-sweater-having-a-sweet-conversation-3783229/)    | 5760 x 3840 to 1600 x 1067       | 73,372     |
+| `smallBusiness` / `small-business.webp`       | [Amina Filkins florist pin](https://www.pinterest.com/pin/610941505735323031/)              | [Amina Filkins: florists preparing for work](https://www.pexels.com/photo/female-assistant-preparing-for-work-with-florist-5409680/)          | 3011 x 4000 to 1400 x 1860       | 464,370    |
+| `mobileDetail` / `mobile-detail.webp`         | [Tima Miroshnichenko smartphone pin](https://www.pinterest.com/pin/1145181011483399961/)    | [Tima Miroshnichenko: hands holding a phone](https://www.pexels.com/photo/a-person-holding-a-smartphone-with-a-blank-screen-6611933/)         | 4000 x 6000 to 1200 x 1800       | 39,344     |
+| `cityArchitecture` / `city-architecture.webp` | [Mehmet Turgut Kirkgoz architecture pin](https://www.pinterest.com/pin/396809417187438615/) | [Mehmet Turgut Kirkgoz: Zurich streetscape](https://www.pexels.com/photo/facade-of-the-zunfthaus-zur-saffran-in-zurich-switzerland-18744527/) | 3024 x 4032 to 1400 x 1867       | 490,086    |
+
+Pinterest can resolve older discovery URLs to related canonical pins. The resolved pin IDs during this review were `967640669908134758` (city portrait), `18647785947331462` (student), `611011874473590380` (phone), `182606959886661580` (florist), `236861261648299508` (phone detail), and `396809417187438615` (architecture). In every case, the page metadata linked to the original Pexels photograph recorded above. The installed image bytes came from Pexels, never from Pinterest previews.
+
+Original files:
+
+- [City portrait original](https://images.pexels.com/photos/936087/pexels-photo-936087.jpeg)
+- [Student life original](https://images.pexels.com/photos/5538001/pexels-photo-5538001.jpeg)
+- [Everyday phone original](https://images.pexels.com/photos/3783229/pexels-photo-3783229.jpeg)
+- [Small business original](https://images.pexels.com/photos/5409680/pexels-photo-5409680.jpeg)
+- [Mobile detail original](https://images.pexels.com/photos/6611933/pexels-photo-6611933.jpeg)
+- [City architecture original](https://images.pexels.com/photos/18744527/pexels-photo-18744527.jpeg)
+
+The wide city portrait has room to the left of the subject; the student and florist photographs suit taller tiles; the phone and streetscape images provide visual variety between portraits. The blank phone screen is part of the original photograph. The travel photograph is editorial context and does not assert service availability in Switzerland. None of the photographs represent an Ontiver customer, employee, testimonial, partner, or endorsement.
+
+## Workflow-specific photographs - 25 September 2026
+
+The latest selection follows the project documents: hiring and document review, driver onboarding, construction credentials, education, healthcare, and agricultural suppliers. Pinterest discovery pins were opened and their original-source metadata traced to Pexels. Each downloaded original was visually inspected; misleading pin descriptions were not treated as evidence of the image subject. All installed additions are real photographs, downloaded from the publisher and served locally. They illustrate a use case and do not depict an actual Ontiver applicant, customer, verification result, or certified professional.
+
+The [Pexels license](https://www.pexels.com/license/) was checked again on 25 September 2026. These photographs permit free website/app use and modification; attribution is recorded voluntarily. No endorsement by the people pictured is implied. Processing preserves the photograph's colors and full aspect ratio, normalizes EXIF orientation, downsamples proportionally, and compresses to WebP at quality 82. Display crops use the focal points in `src/data/imagery.ts`.
+
+| Registry key / local file                               | Pinterest discovery pin                                                     | Photographer and original source                                                                                                                                      | Original to delivered dimensions | File bytes |
+| ------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- |
+| `candidateReview` / `candidate-review.webp`             | [Document-review pin](https://uk.pinterest.com/pin/346143921363431387/)     | [Christina Morillo: women reviewing documents](https://www.pexels.com/photo/adult-african-american-people-black-women-business-1181605/)                              | 5855 x 3909 to 1600 x 1068       | 79,268     |
+| `courierOnboarding` / `courier-onboarding.webp`         | [Delivery-driver pin](https://in.pinterest.com/pin/928586016906245884/)     | [Kampus Production: driver with a phone and parcel](https://www.pexels.com/photo/a-man-sitting-in-the-driver-sear-of-a-van-holding-a-cardboard-box-7843963/)          | 6016 x 4016 to 1600 x 1068       | 91,310     |
+| `siteWorkers` / `site-workers.webp`                     | [Construction-worker pin](https://in.pinterest.com/pin/316589048803032303/) | [Life Of Pix: construction worker wearing safety equipment](https://www.pexels.com/photo/construction-worker-safety-danger-8159/)                                     | 5760 x 3840 to 1600 x 1067       | 116,288    |
+| `studentAdmissions` / `student-admissions.webp`         | [Teacher and student pin](https://www.pinterest.com/pin/22447698137822018/) | [Polina Tankilevitch: teacher discussing a lesson with a student](https://www.pexels.com/photo/teacher-discussing-her-lesson-with-her-student-6929206/)               | 2000 x 3000 to 1200 x 1800       | 102,082    |
+| `healthcareCredentials` / `healthcare-credentials.webp` | [Clinician pin](https://in.pinterest.com/pin/439452876157850188/)           | [Tima Miroshnichenko: clinician reviewing a tablet](https://www.pexels.com/photo/man-in-white-button-up-shirt-holding-black-tablet-computer-5452293/)                 | 3489 x 5233 to 1200 x 1800       | 75,966     |
+| `farmSupplier` / `farm-supplier.webp`                   | [Zen Chung harvest pin](https://in.pinterest.com/pin/833588212288741313/)   | [Zen Chung: people harvesting vegetables](https://www.pexels.com/photo/anonymous-local-female-farmers-picking-vegetables-during-harvesting-season-in-garden-5529604/) | 6000 x 4000 to 1600 x 1067       | 282,016    |
+
+The resolved canonical pins were [candidate review](https://www.pinterest.com/pin/first-generation-college-student-wallpaper--593067844659181206/), [courier](https://www.pinterest.com/pin/the-8-best-apps-for-delivery-drivers-to-maximize-efficiency--312226186688809032/), [construction](https://www.pinterest.com/pin/the-importance-of-management-in-the-construction-industry--531284087303024840/), [education](https://in.pinterest.com/pin/photo-by-polina-tankilevitch-on-pexels--22447698137822018/), [healthcare](https://www.pinterest.com/pin/photo-by-tima-miroshnichenko-on-pexels--143552306885666963/), and [vegetable harvesting](https://www.pinterest.com/pin/is-veganic-gardening-worth-it-how-to-get-a-thriving-backyard-without-using-animal-products--93027548548624785/). Canonical pin titles sometimes differ from their actual photographs; the original source and visible image determine the alt text and use.
+
+Original publisher downloads:
+
+- [Candidate review original](https://images.pexels.com/photos/1181605/pexels-photo-1181605.jpeg)
+- [Courier original](https://images.pexels.com/photos/7843963/pexels-photo-7843963.jpeg)
+- [Construction original](https://images.pexels.com/photos/8159/pexels-photo.jpg)
+- [Education original](https://images.pexels.com/photos/6929206/pexels-photo-6929206.jpeg)
+- [Healthcare original](https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg)
+- [Vegetable harvest original](https://images.pexels.com/photos/5529604/pexels-photo-5529604.jpeg)
+
+`mobileApplication` intentionally reuses the existing `individual-hero.webp` photograph by Ono Kosuki, credited above. The visible person holding a smartphone fits the mobile application journey without implying that a third-party app is Ontiver. This reuse does not count as a new photograph. A candidate showing Pexels on its phone screen was rejected and its unused local file removed. An unrelated beach photograph returned by another agricultural pin was also rejected and replaced with the verified vegetable-harvest original.
+
+### Complementary merchant photograph
+
+The [Pinterest packing-and-sending-orders pin](https://www.pinterest.com/pin/579345939566283046/) was opened as a workflow reference. It is a packing-tips graphic and does **not** contain the photograph installed below or a verified link to it. To illustrate the same concrete activity with suitable licensed photography, the merchant photograph was selected separately from Pexels. The source distinction is intentional: six new photographs above have direct Pinterest-to-original traces; this seventh photograph has Pinterest subject inspiration and a separately verified original source.
+
+| Registry key / local file                 | Photographer and original source                                                                                                          | Original to delivered dimensions | File bytes |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- |
+| `merchantOrders` / `merchant-orders.webp` | [Kampus Production: packing online orders at a desk](https://www.pexels.com/photo/woman-sitting-at-the-table-and-packing-orders-7857532/) | 6016 x 4016 to 1600 x 1068       | 89,956     |
+
+The [publisher-hosted original](https://images.pexels.com/photos/7857532/pexels-photo-7857532.jpeg) was downloaded and inspected. It shows a person checking a labeled cardboard parcel against an order sheet, with a laptop and packing tape nearby. The local WebP uses the same processing and Pexels license described above, with focal point `55% 50%`. No Pinterest preview or packing-tips graphic is included in the app.

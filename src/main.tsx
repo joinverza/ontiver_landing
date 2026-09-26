@@ -1,11 +1,11 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "./lib/router";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { SentryErrorBoundary } from "./app/SentryErrorBoundary";
+import { initializeBrowserSentry } from "./shared/lib/sentry";
 import "./index.css";
-import App from "./App";
-import { SentryErrorBoundary } from "./components/SentryErrorBoundary";
-import { initializeBrowserSentry } from "./lib/sentry";
+import App from "./app/App";
 
 initializeBrowserSentry("landing");
 
@@ -15,7 +15,17 @@ if (!root) {
   throw new Error("Root element not found");
 }
 
-createRoot(root).render(
+// Keep route lookups and the prerendered canonical path in agreement.
+const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+if (pathname !== window.location.pathname) {
+  window.history.replaceState(
+    window.history.state,
+    "",
+    `${pathname}${window.location.search}${window.location.hash}`,
+  );
+}
+
+const application = (
   <StrictMode>
     <SentryErrorBoundary>
       <HelmetProvider>
@@ -24,5 +34,11 @@ createRoot(root).render(
         </BrowserRouter>
       </HelmetProvider>
     </SentryErrorBoundary>
-  </StrictMode>,
+  </StrictMode>
 );
+
+// A static host may serve the home document for a legacy or unknown URL.
+// Hydrate only matching HTML; redirect/fallback routes mount their own content.
+if (root.hasChildNodes() && root.dataset.prerenderedPath === pathname)
+  hydrateRoot(root, application);
+else createRoot(root).render(application);
