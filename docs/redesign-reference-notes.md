@@ -41,15 +41,15 @@ Vectura, Veriity, and Trustly were also checked against their official Framer li
 
 ## How the documents informed the site
 
-| Supporting document | Use in this implementation |
-| --- | --- |
+| Supporting document                           | Use in this implementation                                                                                                      |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Industry Workflows & End-to-End Documentation | Six platform layers, source/check/review/consent/proof boundaries, product detail pages. The two supplied copies are identical. |
-| 2-in-1 Website B2C Content Strategy | Separate audience journeys and understandable consent/privacy content. |
-| Website Rebrand PRD | Product explanation, consistent typography, existing conversion paths, and restrained reveal motion. |
-| 90 Day GTM Strategy | Pilot outcomes are future measurements, not achieved traction. |
-| Quales Pilot Proposal | A proposed collaboration does not establish a customer endorsement or security certification. |
-| Launch Route | Deployment and hardening plans do not substantiate live production or certification claims. |
-| Memorandum | Early-stage product positioning; forecasts and pipeline discussions are not public performance evidence. |
+| 2-in-1 Website B2C Content Strategy           | Separate audience journeys and understandable consent/privacy content.                                                          |
+| Website Rebrand PRD                           | Product explanation, consistent typography, existing conversion paths, and restrained reveal motion.                            |
+| 90 Day GTM Strategy                           | Pilot outcomes are future measurements, not achieved traction.                                                                  |
+| Quales Pilot Proposal                         | A proposed collaboration does not establish a customer endorsement or security certification.                                   |
+| Launch Route                                  | Deployment and hardening plans do not substantiate live production or certification claims.                                     |
+| Memorandum                                    | Early-stage product positioning; forecasts and pipeline discussions are not public performance evidence.                        |
 
 ## Publishing proof later
 

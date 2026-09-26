@@ -10,41 +10,41 @@ Current direction: 25 September 2026. The user's requests govern the implementat
 
 The public product story now follows its universal journey: enterprise request → user consent → verification → explained signals → enterprise review → approved proof → user-controlled reuse. Ontiver connects approved sources and providers; the requesting organization makes the hiring, credit, admission, activation or access decision.
 
-| Source sections | Website application |
-| --- | --- |
-| 1–3, 31: positioning, platform layers and universal journey | Both homepages, the seven-step walkthrough, six platform pages and their shared data. |
-| 25: enterprise dashboard | Requests, review queue, normalized results, source evidence, audit events, roles, APIs and webhooks in platform and enterprise copy. |
-| 26: mobile app | Requester, purpose, deadline, evidence, referee invitations, request status, consent, proof wallet and sharing history on individual pages. |
-| 27–28: boundaries and sequencing | Human review, minimum necessary claims, expiry/revocation, agreed provider scope and phased availability. |
-| 29–30: market entry and pilot | Lending, HR, logistics, contractors and sellers as priority examples; one scoped workflow and measured pilot outcomes. |
+| Source sections                                             | Website application                                                                                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1–3, 31: positioning, platform layers and universal journey | Both homepages, the seven-step walkthrough, six platform pages and their shared data.                                                       |
+| 25: enterprise dashboard                                    | Requests, review queue, normalized results, source evidence, audit events, roles, APIs and webhooks in platform and enterprise copy.        |
+| 26: mobile app                                              | Requester, purpose, deadline, evidence, referee invitations, request status, consent, proof wallet and sharing history on individual pages. |
+| 27–28: boundaries and sequencing                            | Human review, minimum necessary claims, expiry/revocation, agreed provider scope and phased availability.                                   |
+| 29–30: market entry and pilot                               | Lending, HR, logistics, contractors and sellers as priority examples; one scoped workflow and measured pilot outcomes.                      |
 
 ## Industry mapping
 
 All source industry sequences have their own data and route. They do not repeat the former generic five-step story. Each page keeps the relevant claims, enterprise/user journey and decision boundary. The directory offers search and category filters; it does not imply every template or provider is already in production.
 
-| PDF section | Route beneath `/enterprise/use-cases/` |
-| --- | --- |
-| 4 Financial services and lending | `digital-lenders` |
-| 5 Banking and fintech | `fintechs` |
-| 6 Recruitment and HR | `hr-platforms` |
-| 7 Logistics and delivery | `logistics-delivery` |
-| 8 Marketplaces and sellers | `marketplaces` |
-| 9 Manufacturing, FMCG and industrial | `manufacturing-industrial` |
-| 10 Construction and property services | `construction-property-services` |
-| 11 Healthcare workforce | `healthcare-workforce` |
-| 12 Education and EdTech | `schools` |
-| 13 Insurance | `insurance` |
-| 14 Real estate | `real-estate` |
-| 15 Travel and hospitality | `travel-hospitality` |
-| 16 Telecoms and digital services | `telecoms-digital-services` |
-| 17 Crypto and Web3 | `crypto-web3` |
-| 18 Government and public programs | `government-public-programs` |
-| 19 NGOs and humanitarian aid | `ngos-humanitarian-aid` |
-| 20 Agriculture and agribusiness | `agriculture-agribusiness` |
-| 21 Energy and utilities | `energy-utilities` |
-| 22 B2B vendors and professional services | `b2b-vendors` |
-| 23 Security services | `security-services` |
-| 24 Creators, freelancers and talent | `creators-talent` |
+| PDF section                                    | Route beneath `/enterprise/use-cases/`       |
+| ---------------------------------------------- | -------------------------------------------- |
+| 4 Financial services and lending               | `digital-lenders`                            |
+| 5 Banking and fintech                          | `fintechs`                                   |
+| 6 Recruitment and HR                           | `hr-platforms`                               |
+| 7 Logistics and delivery                       | `logistics-delivery`                         |
+| 8 Marketplaces and sellers                     | `marketplaces`                               |
+| 9 Manufacturing, FMCG and industrial           | `manufacturing-industrial`                   |
+| 10 Construction and property services          | `construction-property-services`             |
+| 11 Healthcare workforce                        | `healthcare-workforce`                       |
+| 12 Education and EdTech                        | `schools`                                    |
+| 13 Insurance                                   | `insurance`                                  |
+| 14 Real estate                                 | `real-estate`                                |
+| 15 Travel and hospitality                      | `travel-hospitality`                         |
+| 16 Telecoms and digital services               | `telecoms-digital-services`                  |
+| 17 Crypto and Web3                             | `crypto-web3`                                |
+| 18 Government and public programs              | `government-public-programs`                 |
+| 19 NGOs and humanitarian aid                   | `ngos-humanitarian-aid`                      |
+| 20 Agriculture and agribusiness                | `agriculture-agribusiness`                   |
+| 21 Energy and utilities                        | `energy-utilities`                           |
+| 22 B2B vendors and professional services       | `b2b-vendors`                                |
+| 23 Security services                           | `security-services`                          |
+| 24 Creators, freelancers and talent            | `creators-talent`                            |
 | 3, 25, 27 Cross-industry review and audit role | `compliance-teams` (existing route retained) |
 
 ## Supporting documents and limits
