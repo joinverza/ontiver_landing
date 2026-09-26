@@ -2,8 +2,12 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { SentryErrorBoundary } from "./app/SentryErrorBoundary";
+import { initializeBrowserSentry } from "./shared/lib/sentry";
 import "./index.css";
 import App from "./app/App";
+
+initializeBrowserSentry("landing");
 
 const root = document.getElementById("root");
 
@@ -23,11 +27,13 @@ if (pathname !== window.location.pathname) {
 
 const application = (
   <StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <SentryErrorBoundary>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
+    </SentryErrorBoundary>
   </StrictMode>
 );
 
