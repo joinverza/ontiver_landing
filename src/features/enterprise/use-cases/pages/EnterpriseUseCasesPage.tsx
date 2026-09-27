@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
 import { getIndustryImage } from "../../../../shared/components/media/businessImages";
+import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
+import { imagery } from "../../../../shared/data/imagery";
 import { priorityUseCases, useCasePageDetails, type IndustryCategory } from "../data/useCases";
 
 const categories: Array<"All workflows" | IndustryCategory> = [
@@ -41,12 +43,18 @@ const EnterpriseUseCasesPage = () => {
       }
       description="Connect identity, evidence, consent, and enterprise review across 21 industry templates. Start with one operational journey."
       visual={
-        <div className="h-[260px] overflow-hidden rounded-2xl sm:h-[340px] lg:h-[380px]">
-          <BusinessPhoto image={getIndustryImage("hr-platforms")} priority />
+        <div className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]">
+          <WorkflowVisual
+            variant="workflow"
+            title="One platform. Your industry's workflow."
+            compact
+            className="hero-workflow-visual"
+          />
         </div>
       }
       secondaryAction={{ label: "Explore the platform", to: "/enterprise/platform" }}
       finalTitle="Start with one workflow."
+      finalImage={imagery.smallBusiness}
     >
       <section className="section-space" aria-labelledby="priority-workflows">
         <div className="site-container">

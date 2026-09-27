@@ -107,7 +107,7 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
                 claims={["Source results", "Consent scope", "Decision and audit trail"]}
               />
             ) : (
-              <ContextPhoto image={imagery.mobileApplication} priority />
+              <ContextPhoto image={imagery.cityPortrait} priority />
             )}
           </div>
         </div>

@@ -39,7 +39,7 @@ const TrustSection = ({ audience }: { audience: Audience }) => {
             </div>
           </div>
           <div data-media-reveal>
-            <ContextPhoto image={imagery.mobileApplication} />
+            <ContextPhoto image={enterprise ? imagery.developer : imagery.mobileDetail} />
           </div>
         </div>
       </div>

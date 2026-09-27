@@ -147,14 +147,6 @@ export const imagery = {
     width: 1600,
     height: 1067,
   },
-  // This licensed phone portrait also illustrates the mobile application journey.
-  mobileApplication: {
-    src: "/assets/photos/individual-hero.webp",
-    alt: "A smiling woman in a headscarf holding her smartphone outdoors",
-    objectPosition: "50% 35%",
-    width: 1200,
-    height: 1800,
-  },
   merchantOrders: {
     src: "/assets/photos/merchant-orders.webp",
     alt: "A small business owner checking a parcel against an order sheet beside a laptop",

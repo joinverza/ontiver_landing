@@ -17,6 +17,7 @@ type StandalonePageProps = {
   primaryAction?: PageAction;
   secondaryAction?: PageAction;
   finalTitle: string;
+  finalImage?: EditorialImage;
   finalVisual?: ReactNode;
   children: ReactNode;
 };
@@ -49,6 +50,7 @@ const StandalonePage = ({
   primaryAction,
   secondaryAction,
   finalTitle,
+  finalImage,
   finalVisual,
   children,
 }: StandalonePageProps) => {
@@ -84,7 +86,13 @@ const StandalonePage = ({
         </div>
       </section>
       {children}
-      <PhotoCTA title={finalTitle} label={action.label} to={action.to} visual={finalVisual} />
+      <PhotoCTA
+        title={finalTitle}
+        label={action.label}
+        to={action.to}
+        image={finalImage}
+        visual={finalVisual}
+      />
       <Footer audience={audience} />
     </main>
   );

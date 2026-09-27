@@ -103,7 +103,7 @@ const Solution = ({ audience }: { audience: Audience }) => {
               0{selectedStep + 1} / 0{steps.length}
             </span>
           </div>
-          <ContextPhoto image={enterprise ? imagery.candidateReview : imagery.mobileApplication} />
+          <ContextPhoto image={enterprise ? imagery.teamwork : imagery.everydayPhone} />
           <p key={selectedStep} className="workflow-screen mt-4 text-card-title font-medium">
             {steps[selectedStep].title}
           </p>

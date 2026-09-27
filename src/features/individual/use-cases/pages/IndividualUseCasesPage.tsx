@@ -55,12 +55,12 @@ const journeys = [
 
 const IndividualUseCasesPage = () => {
   const photos = [
-    imagery.mobileApplication,
+    imagery.finance,
     imagery.candidateReview,
     imagery.courierOnboarding,
-    imagery.siteWorkers,
     imagery.studentAdmissions,
     imagery.merchantOrders,
+    imagery.marketplace,
   ];
   return (
     <StandalonePage
@@ -73,9 +73,10 @@ const IndividualUseCasesPage = () => {
         </>
       }
       description="A job, loan or supplier application asks for different evidence. Ontiver is designed to help you complete each request and reuse approved claims where supported."
-      visual={<ContextPhoto image={imagery.candidateReview} priority />}
+      visual={<ContextPhoto image={imagery.individualHero} priority />}
       secondaryAction={{ label: "See how it works", to: "/how-it-works" }}
       finalTitle="Make room for what comes next."
+      finalImage={imagery.studentLife}
     >
       <section className="section-space" aria-label="Individual use cases">
         <div className="site-container grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">

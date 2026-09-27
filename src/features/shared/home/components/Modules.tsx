@@ -75,7 +75,7 @@ const Modules = ({ audience }: { audience: Audience }) => {
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div data-media-reveal>
             <ContextPhoto
-              image={enterprise ? imagery.candidateReview : imagery.studentAdmissions}
+              image={enterprise ? imagery.work : imagery.education}
             />
             <p className="mt-3 text-meta text-[#526058]">
               {enterprise

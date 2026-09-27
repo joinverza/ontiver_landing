@@ -153,7 +153,7 @@ export const individualUseCaseCards: UseCaseCard[] = [
     id: "banking",
     title: "Banking and fintech",
     description: "Open an account without repeating your KYC from scratch.",
-    imageUrl: imagery.mobileApplication.src,
+    imageUrl: imagery.mobileDetail.src,
     className: "col-[1/3] row-[1/3] max-[1024px]:col-auto max-[1024px]:row-auto",
     lineClassName: "top-4 -right-2 bottom-4 w-px",
     idle: "fintech",

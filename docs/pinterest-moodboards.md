@@ -1,6 +1,6 @@
 # Ontiver Pinterest reference boards
 
-Reviewed 25 September 2026 against the supplied Blog, Legal Structure, and Pinterest Image Guide. These five local boards record visual direction; no Pinterest account, public board, or saved pin was created. The reference designs are not licensed app assets. Existing installed photographs remain governed by the separate [image source ledger](image-sources.md).
+Reviewed 27 September 2026 against the supplied Blog, Legal Structure, and Pinterest Image Guide. These five local boards record visual direction; no Pinterest account, public board, or saved pin was created. The reference designs are not licensed app assets. Existing installed photographs remain governed by the separate [image source ledger](image-sources.md).
 
 Individual pin pages were opened in a browser. Some showed a login prompt while still exposing a public preview; that public preview was opened and visually inspected. New design-reference captures are stored outside the app at `C:/tmp/ontiver-moodboards/`. No reference screenshot, competitor interface, logo, displayed statistic, watermark, or paid illustration was copied into `public/` or used as Ontiver product evidence.
 
@@ -15,7 +15,7 @@ Direction: close enough to understand the person's action. Favor a phone, docume
 | [Teacher reviewing work with a student — Polina Tankilevitch](https://www.pinterest.com/pin/22447698137822018/) | Two people, an open book, and papers form one clear activity; soft indoor light.                          | Documentary-style educational stock. Useful for evidence preparation and education journeys; does not establish that an admissions decision occurred.                          |
 | [Document review — Christina Morillo](https://uk.pinterest.com/pin/346143921363431387/)                         | Two people face one another across a table; paperwork anchors the interaction; warm-neutral office light. | Observational workplace composition. Useful for the candidate's side of a request and follow-up conversation.                                                                  |
 
-The related installed originals are recorded under `everydayPhone`, `mobileDetail`, `studentAdmissions`, and `candidateReview` in the image ledger. This board does not require replacing the existing `mobileApplication` photograph, which already fits the journey.
+The related installed originals are recorded under `everydayPhone`, `mobileDetail`, `studentAdmissions`, and `candidateReview` in the image ledger. Hero and supporting sections use separate licensed photographs rather than reusing a single phone portrait across the journey.
 
 ## Board 2: Enterprise and dashboard
 
@@ -26,8 +26,9 @@ Direction: the operator's task should dominate the frame. Compare navigation, ca
 | [Fintech Dashboard for Automated Solution — Musemind](https://in.pinterest.com/pin/930837816735863636/) | Narrow dark navigation rail, broad cream workspace, and white right-hand detail area; pale blue and yellow accents.  | Strong separation between main work and contextual detail. The money figures, charts, and banking content are reference-only and unsuitable as invented Ontiver metrics. |
 | [Fintech Dashboard — Sam Halpert / Awsmd](https://www.pinterest.com/pin/828732768963998272/)            | Dark panels with subtle boundaries and purple illumination; a large focal summary beside smaller cards.              | Useful hierarchy study for an operator screen. Do not adopt its credit score, lender framing, colors, or claims as Ontiver functionality.                                |
 | [PayPal Redesign — Fintech SaaS Dashboard](https://www.pinterest.com/pin/787355947396448070/)           | Light dashboard displayed in a desktop monitor; sidebar, broad main region, supporting right rail, and compact rows. | A device frame can explain scale. It is a third-party redesign reference, not a real Ontiver dashboard or evidence of a PayPal relationship.                             |
+| [Green and white dashboard search pin](https://www.pinterest.com/pin/11188699075842445/)                | Pinterest search preview describes a dashboard with green and white graphics, charts, and numbers.                   | Use the clear workspace and chart hierarchy as a layout cue only. The linked dashboard, chart values, labels, and visual design are not Ontiver product evidence or assets. |
 
-The Awsmd discovery pin resolved to canonical pin `2885187256840075`. The displayed public previews, rather than search-result titles alone, informed the observations above.
+The Awsmd discovery pin resolved to canonical pin `2885187256840075`. The dashboard pin opened to a generic `.dashboard` title; its search-preview description provided the limited observation recorded above. Do not infer a specific product or copy the preview. The displayed public previews, rather than search-result titles alone, informed other observations above.
 
 ## Board 3: Industry workflows
 

@@ -30,10 +30,11 @@ const HowItWorksPage = () => {
         </>
       }
       description="From an organization's invitation to approved proof, the mobile app is designed to keep your evidence, choices and request status together."
-      visual={<ContextPhoto image={imagery.mobileApplication} priority />}
+      visual={<ContextPhoto image={imagery.studentAdmissions} priority />}
       primaryAction={{ label: "Take the First Step", to: "/waitlist" }}
       secondaryAction={{ label: "Explore your identity", to: "/identity" }}
       finalTitle="Take the first step."
+      finalImage={imagery.cityArchitecture}
     >
       <section className="section-space bg-[#f5f6f3]">
         <div className="site-container">

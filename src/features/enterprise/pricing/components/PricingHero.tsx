@@ -1,6 +1,5 @@
 import type { BillingCycle } from "../data/pricing";
-import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 
 type PricingHeroProps = {
   billingCycle: BillingCycle;
@@ -49,9 +48,15 @@ const PricingHero = ({ billingCycle, onBillingChange }: PricingHeroProps) => {
         </div>
         <div
           data-scroll-reveal
-          className="h-[260px] overflow-hidden rounded-2xl sm:h-[340px] lg:h-[380px]"
+          className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]"
         >
-          <BusinessPhoto image={imagery.finance} priority />
+          <WorkflowVisual
+            variant="review"
+            title="Plan a verification workflow"
+            purpose="Choose the checks your team needs"
+            compact
+            className="hero-workflow-visual"
+          />
         </div>
       </div>
     </section>

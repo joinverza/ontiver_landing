@@ -1,7 +1,7 @@
 import { ArrowUpRight, Code2, LayoutDashboard, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
-import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
+import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { imagery } from "../../../../shared/data/imagery";
 import { platformLayers } from "../data/platform";
 
@@ -19,12 +19,18 @@ const PlatformOverviewPage = () => {
       }
       description="Request evidence, record consent, run selected checks, and review the results. Turn approved claims into reusable proof, with the person in control of each share."
       visual={
-        <div className="h-[260px] overflow-hidden rounded-2xl sm:h-[340px] lg:h-[380px]">
-          <BusinessPhoto image={imagery.candidateReview} priority />
+        <div className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]">
+          <WorkflowVisual
+            variant="workflow"
+            title="Connected verification workflows"
+            compact
+            className="hero-workflow-visual"
+          />
         </div>
       }
       secondaryAction={{ label: "Explore Use Cases", to: "/enterprise/use-cases" }}
       finalTitle="Build your first workflow with us."
+      finalImage={imagery.cityArchitecture}
     >
       <section className="section-space">
         <div className="site-container">

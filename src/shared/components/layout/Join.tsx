@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const Join = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
-  const photo = enterprise ? imagery.candidateReview : imagery.mobileApplication;
+  const photo = enterprise ? imagery.smallBusiness : imagery.studentLife;
   return (
     <section id="join" className="bg-white py-10 sm:py-14">
       <div className="site-container">

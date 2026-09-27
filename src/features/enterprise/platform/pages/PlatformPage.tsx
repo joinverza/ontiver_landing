@@ -1,8 +1,7 @@
 import { ArrowLeft, ArrowUpRight, Plus } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
-import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
-import { platformImages } from "../../../../shared/components/media/businessImages";
+import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { platformLayers } from "../data/platform";
 
 const PlatformPage = () => {
@@ -39,9 +38,17 @@ const PlatformPage = () => {
             </div>
             <div
               data-scroll-reveal
-              className="h-[260px] overflow-hidden rounded-2xl sm:h-[340px] lg:h-[380px]"
+              className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]"
             >
-              <BusinessPhoto image={platformImages[layer.id]} priority />
+              <WorkflowVisual
+                variant={layer.visualVariant}
+                title={layer.visualTitle}
+                purpose={layer.description}
+                claims={layer.visualClaims}
+                steps={layer.workflow}
+                compact
+                className="hero-workflow-visual"
+              />
             </div>
           </div>
         </div>
@@ -120,15 +127,37 @@ const PlatformPage = () => {
         <div className="site-container">
           <div
             data-scroll-reveal
-            className="flex flex-wrap items-end justify-between gap-6 rounded-2xl bg-[#002d0e] p-6 text-white sm:p-9"
+            className="grid gap-8 rounded-2xl bg-[#002d0e] p-6 text-white sm:p-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-12"
           >
-            <h2 className="section-heading max-w-[730px]">Build your verification journey.</h2>
-            <Link
-              to="/enterprise/contact"
-              className="button-primary !border-white !bg-white !text-[#002d0e] hover:!bg-[#edf5e7]"
-            >
-              See This Layer in a Demo <ArrowUpRight size={18} aria-hidden="true" />
-            </Link>
+            <div>
+              <p className="text-meta font-semibold uppercase text-[#c7e6b5]">Before your pilot</p>
+              <h2 className="section-heading mt-3 max-w-[730px]">
+                Build your verification journey.
+              </h2>
+              <p className="mt-4 max-w-xl text-body text-white/75">{layer.boundary}</p>
+              <Link
+                to="/enterprise/contact"
+                className="button-primary mt-6 !border-white !bg-white !text-[#002d0e] hover:!bg-[#edf5e7]"
+              >
+                See This Layer in a Demo <ArrowUpRight size={18} aria-hidden="true" />
+              </Link>
+            </div>
+            <ol className="border-t border-white/20 lg:border-t-0 lg:border-l lg:pl-8">
+              {layer.workflow.slice(0, 3).map((step, index) => (
+                <li
+                  key={step.title}
+                  className="grid grid-cols-[2rem_1fr] gap-x-3 border-b border-white/20 py-4 first:pt-0 last:border-0 last:pb-0 lg:first:pt-1"
+                >
+                  <span className="text-meta text-[#c7e6b5]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-body font-semibold">{step.title}</h3>
+                    <p className="mt-1 text-sm text-white/70">{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
           <nav
             aria-label="Related platform layers"

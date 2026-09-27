@@ -87,13 +87,13 @@ const summaries = [
 ];
 
 const articleImages = [
-  imagery.mobileApplication.src,
+  imagery.individualHero.src,
   imagery.finance.src,
   imagery.candidateReview.src,
-  imagery.mobileApplication.src,
+  imagery.mobileDetail.src,
   imagery.developer.src,
   imagery.courierOnboarding.src,
-  imagery.candidateReview.src,
+  imagery.work.src,
   imagery.merchantOrders.src,
 ];
 

@@ -1,14 +1,5 @@
 import { imagery, type EditorialImage } from "../../data/imagery";
 
-export const platformImages: Record<string, EditorialImage> = {
-  "identity-sources": imagery.mobileApplication,
-  "verification-engine": imagery.candidateReview,
-  "workflow-engine": imagery.courierOnboarding,
-  intelligence: imagery.finance,
-  "consent-and-privacy": imagery.mobileApplication,
-  "identity-proofs": imagery.mobileApplication,
-};
-
 export const workflowImages = [
   imagery.mobileDetail,
   imagery.developer,
@@ -16,31 +7,26 @@ export const workflowImages = [
   imagery.work,
 ];
 
-const additionalImages: Record<string, EditorialImage> = imagery;
-
 export const industryImages: Record<string, EditorialImage> = {
   "digital-lenders": imagery.finance,
-  fintechs: imagery.mobileApplication,
+  fintechs: imagery.marketplace,
   "hr-platforms": imagery.candidateReview,
   "logistics-delivery": imagery.courierOnboarding,
   marketplaces: imagery.merchantOrders,
-  "manufacturing-industrial": imagery.siteWorkers,
+  "manufacturing-industrial": imagery.work,
   "construction-property-services": imagery.siteWorkers,
   "healthcare-workforce": imagery.healthcareCredentials,
   schools: imagery.studentAdmissions,
-  insurance: imagery.finance,
-  "real-estate": imagery.candidateReview,
-  "travel-hospitality": imagery.mobileApplication,
-  "telecoms-digital-services": imagery.mobileApplication,
+  insurance: imagery.education,
+  "real-estate": imagery.cityArchitecture,
+  "travel-hospitality": imagery.cityPortrait,
+  "telecoms-digital-services": imagery.mobileDetail,
   "crypto-web3": imagery.developer,
-  "government-public-programs": imagery.candidateReview,
-  "ngos-humanitarian-aid": imagery.candidateReview,
-  "agriculture-agribusiness": additionalImages.farmSupplier ?? imagery.mobileApplication,
-  "energy-utilities": imagery.siteWorkers,
-  "b2b-vendors": imagery.merchantOrders,
-  "security-services": imagery.candidateReview,
-  "creators-talent": imagery.developer,
-  "compliance-teams": imagery.candidateReview,
+  "ngos-humanitarian-aid": imagery.teamwork,
+  "agriculture-agribusiness": imagery.farmSupplier,
+  "energy-utilities": imagery.everydayPhone,
+  "b2b-vendors": imagery.smallBusiness,
+  "creators-talent": imagery.studentLife,
 };
 
 export function getIndustryImage(id: string) {

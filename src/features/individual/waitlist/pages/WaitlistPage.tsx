@@ -28,7 +28,7 @@ const WaitlistPage = () => {
             </Link>
           </div>
           <div className="min-w-0" data-scroll-reveal>
-            <ContextPhoto image={imagery.mobileApplication} priority />
+            <ContextPhoto image={imagery.everydayPhone} priority />
             <p className="mt-6 text-body text-[#526058]">
               Designed for pending requests, approved proofs and a clear record of sharing.
             </p>

@@ -7,7 +7,7 @@ import { contactRows, contactSocialIcons } from "../data/contact";
 export const ContactSidebar = () => (
   <aside className="order-2 min-w-0 text-[#002d0e]">
     <div data-scroll-reveal>
-      <ContextPhoto image={imagery.mobileApplication} size="wide" />
+      <ContextPhoto image={imagery.teamwork} size="wide" />
     </div>
     <div className="mt-6 rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
       <div>

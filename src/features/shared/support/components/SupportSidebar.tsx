@@ -10,7 +10,7 @@ export const SupportSidebar = ({ audience, hasSession }: SupportSidebarProps) =>
   <aside className="min-w-0 text-[#002d0e]">
     <div data-scroll-reveal>
       <ContextPhoto
-        image={audience === "enterprise" ? imagery.candidateReview : imagery.mobileApplication}
+        image={audience === "enterprise" ? imagery.candidateReview : imagery.education}
         size="wide"
       />
     </div>

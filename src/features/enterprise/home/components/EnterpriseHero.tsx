@@ -25,7 +25,7 @@ const EnterpriseHero = () => (
         </p>
       </div>
       <div className="hero-media-enter min-w-0">
-        <ContextPhoto image={imagery.candidateReview} priority />
+        <ContextPhoto image={imagery.enterpriseHero} priority />
       </div>
     </div>
   </section>

@@ -8,10 +8,30 @@ import { ArticleImage } from "../../blog/components/BlogCards";
 import type { Audience } from "../../../../shared/lib/audience";
 
 const resourceLinks = [
-  { icon: BookOpen, title: "Insights and guides", to: "/blogs" },
-  { icon: ShieldCheck, title: "Security and privacy", to: "/security" },
-  { icon: LifeBuoy, title: "Help and support", to: "/support" },
-  { icon: LockKeyhole, title: "Your privacy choices", to: "/legal" },
+  {
+    icon: BookOpen,
+    title: "Insights and guides",
+    description: "Practical explainers on identity, consent, and verification workflows.",
+    to: "/blogs",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Security and privacy",
+    description: "Understand access, data handling, and review responsibilities.",
+    to: "/security",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Help and support",
+    description: "Find answers or contact the team about a request.",
+    to: "/support",
+  },
+  {
+    icon: LockKeyhole,
+    title: "Your privacy choices",
+    description: "Review privacy information and account rights requests.",
+    to: "/legal",
+  },
 ];
 
 const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => {
@@ -50,11 +70,11 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
             className="min-w-0 self-center md:col-start-2 md:row-span-2 md:row-start-1"
           >
             <ContextPhoto
-              image={enterprise ? imagery.candidateReview : imagery.studentAdmissions}
+              image={enterprise ? imagery.work : imagery.studentAdmissions}
               size="wide"
             />
           </div>
-          {resourceLinks.map(({ icon: Icon, title, to }, index) => (
+          {resourceLinks.map(({ icon: Icon, title, description, to }, index) => (
             <Link
               key={to}
               to={enterprise && ["/security", "/support"].includes(to) ? `/enterprise${to}` : to}
@@ -62,7 +82,10 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
             >
               <Icon className="size-7 text-[#007d21]" aria-hidden="true" />
               <div className="mt-3 flex items-end justify-between gap-4">
-                <h2 className="max-w-56 text-card-title font-medium">{title}</h2>
+                <div>
+                  <h2 className="max-w-56 text-card-title font-medium">{title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-[#526058]">{description}</p>
+                </div>
                 <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white">
                   <ArrowUpRight size={19} aria-hidden="true" />
                 </span>
@@ -74,7 +97,14 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
       <section className="section-space border-t border-[#e1e6df]">
         <div className="site-container">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
-            <h2 className="section-heading">The latest thinking.</h2>
+            <div>
+              <p className="eyebrow">From the Ontiver team</p>
+              <h2 className="section-heading mt-3">The latest thinking.</h2>
+              <p className="mt-4 max-w-2xl text-body text-[#526058]">
+                Explore practical perspectives on verification, privacy, and workflows. Product
+                availability and provider checks are confirmed for each pilot.
+              </p>
+            </div>
             <Link to="/blogs" className="button-secondary">
               All articles
               <ArrowUpRight size={18} aria-hidden="true" />
@@ -92,6 +122,7 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
                 <h3 className="mt-3 text-card-title font-medium group-hover:text-[#007d21]">
                   {article.title}
                 </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#526058]">{article.excerpt}</p>
               </Link>
             ))}
           </div>
