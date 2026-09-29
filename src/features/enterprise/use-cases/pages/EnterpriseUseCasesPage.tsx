@@ -6,6 +6,7 @@ import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto
 import { getIndustryImage } from "../../../../shared/components/media/businessImages";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { priorityUseCases, useCasePageDetails, type IndustryCategory } from "../data/useCases";
 
 const categories: Array<"All workflows" | IndustryCategory> = [
@@ -43,11 +44,13 @@ const EnterpriseUseCasesPage = () => {
       }
       description="Connect identity, evidence, consent, and enterprise review across 21 industry templates. Start with one operational journey."
       visual={
-        <div className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]">
+        <div className="min-w-0">
           <WorkflowVisual
             variant="workflow"
+            photo={editorialPhotos.industryOverview}
             title="One platform. Your industry's workflow."
             compact
+            priority
             className="hero-workflow-visual"
           />
         </div>
@@ -83,7 +86,7 @@ const EnterpriseUseCasesPage = () => {
                 to={`/enterprise/use-cases/${item.id}`}
                 className="group w-[85%] min-w-0 shrink-0 md:w-auto"
               >
-                <div className="h-[170px] overflow-hidden rounded-xl sm:h-[200px]">
+                <div className="aspect-[3/2] overflow-hidden rounded-xl">
                   <BusinessPhoto image={getIndustryImage(item.id)} />
                 </div>
                 <div className="mt-4 flex items-start justify-between gap-4">

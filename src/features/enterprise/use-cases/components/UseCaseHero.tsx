@@ -1,16 +1,10 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { UseCasePageDetail } from "../data/useCases";
-import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
+import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { getIndustryImage } from "../../../../shared/components/media/businessImages";
-import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 
 const UseCaseHero = ({ detail }: { detail: UseCasePageDetail }) => {
-  const showWorkflowVisual =
-    detail.category === "Cross-industry" ||
-    detail.id === "government-public-programs" ||
-    detail.id === "security-services";
-
   return (
     <section className="page-intro">
       <div className="site-container">
@@ -36,28 +30,8 @@ const UseCaseHero = ({ detail }: { detail: UseCasePageDetail }) => {
               Proposed template · Pilot scope and availability to be agreed.
             </p>
           </div>
-          <div
-            data-scroll-reveal
-            className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]"
-          >
-            {showWorkflowVisual ? (
-              <WorkflowVisual
-                variant={
-                  detail.category === "Cross-industry"
-                    ? "workflow"
-                    : detail.id === "government-public-programs"
-                      ? "consent"
-                      : "review"
-                }
-                title={detail.heroTitle}
-                purpose={detail.purpose}
-                claims={detail.claims}
-                compact
-                className="hero-workflow-visual"
-              />
-            ) : (
-              <BusinessPhoto image={getIndustryImage(detail.id)} priority />
-            )}
+          <div data-scroll-reveal className="min-w-0">
+            <ContextPhoto image={getIndustryImage(detail.id)} priority />
           </div>
         </div>
       </div>
