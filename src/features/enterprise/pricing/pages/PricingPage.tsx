@@ -29,7 +29,7 @@ const PricingPage = () => {
       <section
         id="pricing-plans"
         aria-label="Pricing plans"
-        className="scroll-mt-28 bg-white pb-10 pt-4 lg:pb-14"
+        className="section-space scroll-mt-28 bg-white"
       >
         <div className="site-container grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {pricingPlans.map((plan) => (

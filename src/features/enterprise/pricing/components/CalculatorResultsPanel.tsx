@@ -5,7 +5,7 @@ import type { BillingCycle } from "../data/pricing";
 import { formatCurrency } from "../lib/calculator";
 import { getPricingInquiryUrl } from "../lib/pricing";
 import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 type Props = {
   result: SavingsResult | null;
@@ -82,8 +82,8 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
         </>
       ) : (
         <div className="py-6">
-          <div className="mb-5 h-[160px] overflow-hidden rounded-xl sm:h-[200px]">
-            <BusinessPhoto image={imagery.finance} />
+          <div className="mb-5 aspect-[16/9] overflow-hidden rounded-xl">
+            <BusinessPhoto image={editorialPhotos.pricingCalculator} />
           </div>
           <h3 className="text-card-title font-medium">Start with your current costs.</h3>
           <p className="mt-4 text-body text-white/70">
