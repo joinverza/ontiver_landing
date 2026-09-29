@@ -1,15 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
 import { contactRows, contactSocialIcons } from "../data/contact";
 
 export const ContactSidebar = () => (
   <aside className="order-2 min-w-0 text-[#002d0e]">
-    <div data-scroll-reveal>
-      <ContextPhoto image={imagery.teamwork} size="wide" />
-    </div>
-    <div className="mt-6 rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
+    <div className="rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
       <div>
         <h2 className="text-card-title font-medium">Before you send</h2>
         <div className="mt-4 divide-y divide-[#002d0e]/10">

@@ -1,18 +1,18 @@
 import { ExternalLink, LifeBuoy, Mail, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
 import type { Audience } from "../../../../shared/lib/audience";
 
 type SupportSidebarProps = { audience: Audience; hasSession: boolean };
 
 export const SupportSidebar = ({ audience, hasSession }: SupportSidebarProps) => (
   <aside className="min-w-0 text-[#002d0e]">
-    <div data-scroll-reveal>
-      <ContextPhoto
-        image={audience === "enterprise" ? imagery.candidateReview : imagery.education}
-        size="wide"
-      />
+    <div className="rounded-2xl bg-[#edf5eb] p-6">
+      <h2 className="text-card-title font-medium">Help us understand the request.</h2>
+      <p className="mt-3 text-body text-[#526058]">
+        {audience === "enterprise"
+          ? "Include the workflow, the step that needs attention, and any non-sensitive error message. Tell us whether you are using the dashboard or API."
+          : "Tell us what you were trying to do and where you got stuck. Include the request reference if you have one, without sending identity documents."}
+      </p>
     </div>
     <div className="mt-6 rounded-2xl bg-[#f5f6f3] px-6 py-2">
       <div className="divide-y divide-[#002d0e]/15">
