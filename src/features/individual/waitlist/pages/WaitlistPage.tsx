@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import WaitlistForm from "../components/WaitlistForm";
 import Footer from "../../../../shared/components/layout/Footer";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 const WaitlistPage = () => {
   return (
@@ -28,7 +28,7 @@ const WaitlistPage = () => {
             </Link>
           </div>
           <div className="min-w-0" data-scroll-reveal>
-            <ContextPhoto image={imagery.everydayPhone} priority />
+            <ContextPhoto image={editorialPhotos.waitlist} priority />
             <p className="mt-6 text-body text-[#526058]">
               Designed for pending requests, approved proofs and a clear record of sharing.
             </p>
