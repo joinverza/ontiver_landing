@@ -3,11 +3,7 @@ import { ArrowDown } from "lucide-react";
 import BlogHero from "../components/BlogHero";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { blogArticles } from "../data/summaries";
-import {
-  ArticleGridCard,
-  DarkFeaturedArticleCard,
-  FeaturedArticleCard,
-} from "../components/BlogCards";
+import { ArticleGridCard, DarkFeaturedArticleCard } from "../components/BlogCards";
 
 const BlogPage = () => {
   const [visibleCount, setVisibleCount] = useState(3);
@@ -25,14 +21,11 @@ const BlogPage = () => {
 
   return (
     <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
-      <BlogHero />
-      <section id="blog-library" className="scroll-mt-24 pb-16 lg:pb-28">
-        <div className="site-container">
-          <h2 className="section-heading mb-10">Featured.</h2>
-          <FeaturedArticleCard article={featured} />
-        </div>
-      </section>
-      <section className="section-space border-t border-[#e1e6df]">
+      <BlogHero featured={featured} />
+      <section
+        id="blog-library"
+        className="section-space section-flow scroll-mt-24 border-t border-[#e1e6df]"
+      >
         <div className="site-container">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-[#dde6dc] pb-7">
             <div>
@@ -66,7 +59,7 @@ const BlogPage = () => {
         </div>
       </section>
       {darkFeature && (
-        <section className="section-space">
+        <section className="section-space section-flow">
           <div className="site-container">
             <DarkFeaturedArticleCard article={darkFeature} />
           </div>

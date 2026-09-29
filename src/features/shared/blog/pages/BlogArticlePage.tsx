@@ -77,7 +77,7 @@ const BlogArticlePage = () => {
           </div>
         </div>
       </section>
-      <section className="section-space">
+      <section className="section-space section-flow">
         <div className="site-container grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14 xl:grid-cols-[64px_minmax(0,1fr)_300px] xl:gap-12">
           <ArticleSocialRail />
           <article ref={bodyRef} className="min-w-0 max-w-[720px]">
@@ -132,7 +132,7 @@ const BlogArticlePage = () => {
           />
         </div>
       </section>
-      <section className="section-space bg-[#f7f7f7]">
+      <section className="section-space section-flow bg-[#f7f7f7]">
         <div className="site-container">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="section-heading">Related articles.</h2>
