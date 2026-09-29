@@ -20,6 +20,7 @@ const ContextPhoto = ({
         height={image.height}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : undefined}
+        decoding="async"
         style={{ objectPosition: image.objectPosition }}
       />
     </div>

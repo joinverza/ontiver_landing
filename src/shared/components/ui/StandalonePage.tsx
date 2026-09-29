@@ -64,7 +64,7 @@ const StandalonePage = ({
     <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
       <section className="page-intro">
         <div
-          className={`site-container ${visual ? "grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14" : ""}`}
+          className={`site-container ${visual ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-14" : ""}`}
         >
           <div className={`hero-enter ${visual ? "min-w-0" : "max-w-[1050px]"}`}>
             <p className="eyebrow">{eyebrow}</p>

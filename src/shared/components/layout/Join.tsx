@@ -1,28 +1,14 @@
 import type { Audience } from "../../lib/audience";
-import { imagery } from "../../data/imagery";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
 const Join = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
-  const photo = enterprise ? imagery.smallBusiness : imagery.studentLife;
   return (
-    <section id="join" className="bg-white py-10 sm:py-14">
+    <section id="join" className="section-space bg-white">
       <div className="site-container">
-        <div className="relative overflow-hidden rounded-[24px] bg-[#002d0e]">
-          {photo && (
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-              style={{ objectPosition: photo.objectPosition }}
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#002d0e]/95 via-[#002d0e]/85 to-[#002d0e]/20" />
-          <div className="relative max-w-[760px] p-6 text-white sm:p-10">
+        <div className="grid items-center gap-8 rounded-[24px] bg-[#002d0e] p-6 text-white sm:p-10 lg:grid-cols-[1.4fr_.6fr] lg:gap-12">
+          <div className="min-w-0">
             <h2 className="section-heading">
               {enterprise
                 ? "Build reusable trust with Ontiver."
@@ -59,6 +45,20 @@ const Join = ({ audience }: { audience: Audience }) => {
               </Link>
             )}
           </div>
+          <ol className="border-t border-white/20 pt-2 lg:border-t-0 lg:border-l lg:pl-8">
+            {(enterprise
+              ? ["Choose one workflow", "Agree consent and checks", "Review the evidence together"]
+              : ["Understand the request", "Choose what to share", "Approve each new use"]
+            ).map((step, index) => (
+              <li
+                key={step}
+                className="flex items-baseline gap-4 border-b border-white/20 py-4 last:border-0"
+              >
+                <span className="text-meta text-[#c7e6b5]">0{index + 1}</span>
+                <span className="text-body">{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
