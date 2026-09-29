@@ -1,7 +1,7 @@
 import { ShieldCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { legalDocuments } from "../data/legalDocuments";
 import LegalNavigation from "../components/LegalNavigation";
@@ -24,7 +24,7 @@ const LegalPage = () => {
   return (
     <>
       <main id="main-content" tabIndex={-1} className="min-h-screen bg-white text-[#002d0e]">
-        <header className="page-intro">
+        <header className={`page-intro ${isCentre ? "" : "page-intro-compact"}`}>
           <div
             className={`site-container ${isCentre ? "grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20" : ""}`}
           >
@@ -43,12 +43,12 @@ const LegalPage = () => {
             </div>
             {isCentre && (
               <div data-scroll-reveal>
-                <ContextPhoto image={imagery.candidateReview} size="wide" />
+                <ContextPhoto image={editorialPhotos.legal} priority />
               </div>
             )}
           </div>
         </header>
-        <section className="pb-20 lg:pb-32">
+        <section className="section-space">
           <div className="site-container grid items-start gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-14">
             <LegalNavigation
               pathname={pathname}

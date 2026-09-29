@@ -1,9 +1,8 @@
 import { ArrowUpRight, History, KeyRound, LockKeyhole, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
-import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import type { Audience } from "../../../../shared/lib/audience";
 
 const reviewAreas = [
@@ -99,16 +98,15 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
             </div>
           </div>
           <div className="min-w-0" data-scroll-reveal>
-            {isEnterprise ? (
-              <WorkflowVisual
-                compact
-                variant="review"
-                title="Evidence for human review"
-                claims={["Source results", "Consent scope", "Decision and audit trail"]}
-              />
-            ) : (
-              <ContextPhoto image={imagery.cityPortrait} priority />
-            )}
+            <ContextPhoto
+              image={isEnterprise ? editorialPhotos.enterpriseSecurity : editorialPhotos.security}
+              priority
+            />
+            <p className="mt-4 text-meta text-[#526058]">
+              {isEnterprise
+                ? "Sensitive evidence deserves clear access, purpose, and review."
+                : "Identity information shared with purpose and permission."}
+            </p>
           </div>
         </div>
       </section>
@@ -116,16 +114,18 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
       <section id="your-controls" className="section-space scroll-mt-20">
         <div className="site-container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
           <div className="min-w-0" data-scroll-reveal>
-            {isEnterprise ? (
-              <ContextPhoto image={imagery.candidateReview} size="wide" />
-            ) : (
-              <WorkflowVisual
-                compact
-                variant="consent"
-                title="You choose what to share"
-                claims={["Name", "Identity proof status"]}
-              />
-            )}
+            <ContextPhoto
+              image={
+                isEnterprise
+                  ? editorialPhotos.enterpriseSecurityControls
+                  : editorialPhotos.securityControls
+              }
+            />
+            <div className="mt-4 grid grid-cols-3 divide-x divide-[#d9e2d5] rounded-2xl bg-[#edf5eb] px-2 py-4 text-center text-meta font-medium">
+              <span className="px-2">A stated purpose</span>
+              <span className="px-2">Scoped access</span>
+              <span className="px-2">A clear record</span>
+            </div>
           </div>
           <div>
             <div data-scroll-reveal>
@@ -151,7 +151,7 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
         </div>
       </section>
 
-      <section id="compliance" className="section-space scroll-mt-20 bg-[#edf5eb]">
+      <section id="compliance" className="section-space section-flow scroll-mt-20 bg-[#edf5eb]">
         <div className="site-container">
           <div
             className="flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-end"
@@ -193,18 +193,17 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
         </div>
       </section>
 
-      <section id="request-docs" className="scroll-mt-24 py-12 sm:py-16">
+      <section id="request-docs" className="section-space scroll-mt-24">
         <div className="site-container grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
           <div data-scroll-reveal>
             <h2 className="section-heading">
               {isEnterprise ? "Review the details with your team." : "Questions about your data?"}
             </h2>
-            {isEnterprise && (
-              <p className="mt-4 text-body text-[#526058]">
-                Use our enterprise request form to tell us which security and compliance
-                documentation you need.
-              </p>
-            )}
+            <p className="mt-4 text-body text-[#526058]">
+              {isEnterprise
+                ? "Use our enterprise request form to tell us which security and compliance documentation you need."
+                : "Read how information is handled, or ask the support team about a request, sharing choice, or account rights."}
+            </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end" data-scroll-reveal>
             <Link
