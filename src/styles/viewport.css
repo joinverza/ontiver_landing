@@ -1,7 +1,23 @@
 :root {
   --site-header-height: 80px;
-  --section-padding: clamp(1.5rem, 4svh, 3.5rem);
-  --section-viewport: calc(100svh - var(--site-header-height));
+  --section-padding: 3rem;
+  --section-padding-compact: 2rem;
+  --hero-padding: clamp(2rem, 4svh, 3.5rem);
+}
+
+/* Section spacing follows the layout width, so short screens retain breathing room. */
+@media (min-width: 640px) {
+  :root {
+    --section-padding: 4.5rem;
+    --section-padding-compact: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-padding: 6rem;
+    --section-padding-compact: 4rem;
+  }
 }
 
 main {
@@ -29,25 +45,18 @@ video {
   transform: translateY(0);
 }
 
-/* A minimum, never a fixed/max height: longer content always expands the page. */
+/* Hero sections introduce a page; subsequent sections follow their content.
+   A short CTA or accordion should never reserve an otherwise empty screen. */
 @media (min-width: 1000px) and (min-height: 600px) {
-  .page-intro {
+  .page-intro:not(.page-intro-compact) {
     display: grid;
     align-content: center;
     min-block-size: 100svh;
-  }
-  .section-space:not(.section-compact):not(.section-flow) {
-    display: grid;
-    align-content: center;
-    min-block-size: var(--section-viewport);
   }
 }
 
 /* Stacked layouts and short/zoomed windows retain readable, intrinsic heights. */
 @media (max-width: 999px), (max-height: 599px) {
-  :root {
-    --section-padding: clamp(1.5rem, 4svh, 2.5rem);
-  }
   .page-intro,
   .section-space {
     min-block-size: auto;
@@ -61,11 +70,5 @@ video {
   .home-hero .hero-enter > .mt-6,
   .home-hero .hero-enter > .mt-7 {
     margin-top: 1.25rem;
-  }
-  .identity-request-preview {
-    padding-block: 1rem;
-  }
-  .request-device {
-    padding: 1rem;
   }
 }

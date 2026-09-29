@@ -15,7 +15,7 @@ export const PartnerStrip = ({ audience = "enterprise" }: { audience?: Audience 
   return (
     <section
       aria-label="Pilot partners"
-      className="border-y border-[#002d0e]/10 bg-white py-7 sm:py-9"
+      className="section-space section-compact border-y border-[#002d0e]/10 bg-white"
     >
       <div className="site-container">
         {partners.length ? (
@@ -109,7 +109,7 @@ export const CertificationStrip = () => {
   return (
     <section
       aria-label="Security documentation"
-      className="border-y border-[#002d0e]/10 bg-white py-8"
+      className="section-space section-compact border-y border-[#002d0e]/10 bg-white"
     >
       <div className="site-container flex flex-wrap items-center justify-center gap-10">
         {certifications.map((item) => (
@@ -128,12 +128,18 @@ export const CertificationStrip = () => {
 };
 
 export const PilotResults = () => {
+  const hasResults = pilotMetrics.some((metric) => isPublishedMetricResult(metric.result));
   return (
-    <section id="pilot-results" className="bg-[#edf5eb] py-12 sm:py-16">
+    <section id="pilot-results" className="section-space bg-[#edf5eb]">
       <div className="site-container">
-        <p className="eyebrow">Pilot results</p>
-        <h2 className="section-heading mt-4">How Ontiver performs</h2>
-        <p className="mt-3 text-body text-[#526058]">Results coming soon.</p>
+        <p className="eyebrow">{hasResults ? "Pilot results" : "What we will measure"}</p>
+        <h2 className="section-heading mt-4">
+          {hasResults ? "How Ontiver performs" : "A pilot with a clear purpose."}
+        </h2>
+        <p className="mt-3 max-w-2xl text-body text-[#526058]">
+          Agree the baseline before starting. Follow completion, review time, and user-approved
+          reuse throughout the pilot. Published results will follow completed evaluations.
+        </p>
         <dl className="mt-6 grid gap-7 sm:grid-cols-3 sm:gap-10">
           {pilotMetrics.map((metric) => {
             const result = isPublishedMetricResult(metric.result) ? metric.result : null;
@@ -144,9 +150,12 @@ export const PilotResults = () => {
                 className="flex flex-col border-t border-[#002d0e]/20 pt-4"
               >
                 <dt className="text-card-title font-semibold">{metric.label}</dt>
-                <dd className="order-first mb-2 text-section font-semibold text-[#007d21]">
-                  {result ? result.value : <span aria-label="Result pending">—</span>}
-                </dd>
+                {result && (
+                  <dd className="order-first mb-2 text-section font-semibold text-[#007d21]">
+                    {result.value}
+                  </dd>
+                )}
+                <dd className="mt-3 text-body text-[#526058]">{metric.description}</dd>
                 <dd className="mt-2 text-meta font-medium text-[#002d0e]/55">
                   {result ? (
                     <a className="underline underline-offset-4" href={result.evidenceUrl}>

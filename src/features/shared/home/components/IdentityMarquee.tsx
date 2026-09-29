@@ -20,7 +20,10 @@ const IdentityMarquee = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
   const items = enterprise ? enterpriseItems : individualItems;
   return (
-    <section aria-label="The reusable identity journey" className="bg-white py-9 sm:py-12">
+    <section
+      aria-label="The reusable identity journey"
+      className="section-space section-compact bg-white"
+    >
       <div className="site-container">
         <div className="mb-7 flex items-center justify-between gap-4">
           <p className="text-meta text-[#526058]">
