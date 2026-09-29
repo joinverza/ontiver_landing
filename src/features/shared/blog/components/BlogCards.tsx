@@ -1,7 +1,6 @@
-import { ArrowUpRight, Clock3 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import type { BlogSummary } from "../data/summaries";
-import { getImageAlt, getImagePosition } from "../../../../shared/data/imagery";
 
 function useArticleHref(slug: string) {
   const { pathname } = useLocation();
@@ -34,10 +33,14 @@ export const ArticleImage = ({
   return (
     <img
       src={article.image}
-      alt={getImageAlt(article.image) || article.title}
+      alt={article.imageAlt}
+      width={article.imageWidth}
+      height={article.imageHeight}
       loading={lazy ? "lazy" : undefined}
+      fetchPriority={lazy ? undefined : "high"}
+      decoding="async"
       className="h-full w-full object-cover"
-      style={{ objectPosition: getImagePosition(article.image) }}
+      style={{ objectPosition: article.imagePosition }}
     />
   );
 };
@@ -80,38 +83,6 @@ export const ArticleGridCard = ({
           <div className="mt-auto flex items-center justify-between gap-3 border-b border-[#dde6dc] pb-5 pt-6">
             <span className="text-meta text-[#002d0e]/50">{article.date || article.author}</span>
           </div>
-        </div>
-      </Link>
-    </article>
-  );
-};
-
-export const FeaturedArticleCard = ({ article }: { article: BlogSummary }) => {
-  const articleHref = useArticleHref(article.slug);
-
-  return (
-    <article data-blog-card className="group overflow-hidden rounded-2xl bg-[#f5f6f3] p-5 sm:p-8">
-      <Link to={articleHref} className="grid gap-6 outline-offset-8 lg:grid-cols-2 lg:gap-10">
-        <div data-scroll-reveal className="context-photo context-photo--wide relative lg:order-2">
-          <ArticleImage article={article} lazy={false} />
-          <span className="absolute bottom-4 right-4 grid size-12 place-items-center rounded-full bg-white">
-            <ArrowUpRight size={24} aria-hidden="true" />
-          </span>
-        </div>
-        <div className="flex flex-col items-start justify-center py-4 lg:order-1">
-          <p className="eyebrow">Featured / {article.category}</p>
-          <h3 className="mt-5 text-card-title font-medium text-[#002d0e]">{article.title}</h3>
-          <p className="mt-5 text-body text-[#002d0e]/65">{article.excerpt}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-meta text-[#002d0e]/55">
-            {article.date && <span>{article.date}</span>}
-            <span className="inline-flex items-center gap-1.5">
-              <Clock3 size={14} aria-hidden="true" />
-              {article.readTime}
-            </span>
-          </div>
-          <span className="mt-8 inline-flex items-center gap-2 text-body font-medium">
-            Read article <ArrowUpRight size={19} aria-hidden="true" />
-          </span>
         </div>
       </Link>
     </article>

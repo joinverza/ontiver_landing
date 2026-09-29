@@ -1,6 +1,7 @@
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 const steps = [
   { title: "Review and consent", description: "See the request, the requester, and the purpose." },
@@ -30,11 +31,11 @@ const HowItWorksPage = () => {
         </>
       }
       description="From an organization's invitation to approved proof, the mobile app is designed to keep your evidence, choices and request status together."
-      visual={<ContextPhoto image={imagery.studentAdmissions} priority />}
+      visual={<ContextPhoto image={editorialPhotos.howItWorks} priority />}
       primaryAction={{ label: "Take the First Step", to: "/waitlist" }}
       secondaryAction={{ label: "Explore your identity", to: "/identity" }}
       finalTitle="Take the first step."
-      finalImage={imagery.cityArchitecture}
+      finalImage={imagery.cityPortrait}
     >
       <section className="section-space bg-[#f5f6f3]">
         <div className="site-container">

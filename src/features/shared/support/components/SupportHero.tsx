@@ -1,5 +1,7 @@
 import type { Audience } from "../../../../shared/lib/audience";
 import { shortcutsByAudience } from "../support.config";
+import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 type SupportHeroProps = {
   audience: Audience;
@@ -12,19 +14,39 @@ export const SupportHero = ({ audience, hasSession, onTopicSelect }: SupportHero
 
   return (
     <section className="page-intro">
-      <header className="site-container text-center">
-        <div>
-          <p className="eyebrow">Ontiver Support</p>
-          <h1 className="mx-auto mt-5 max-w-[1060px] text-page-hero font-medium">
-            {audience === "enterprise"
-              ? "Get help with your Ontiver workflows."
-              : "Get help with your Ontiver identity."}
-          </h1>
-          <p className="mx-auto mt-7 max-w-[760px] text-subtitle text-[#526058]">
-            {audience === "enterprise"
-              ? "Get help with verification requests, dashboard reviews, API integrations, or consent records. Keep your request and replies together."
-              : "Get help with a verification request, your proof wallet, consent, or account access. Keep your request and replies together."}
-          </p>
+      <header className="site-container">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="min-w-0">
+            <p className="eyebrow">Ontiver Support</p>
+            <h1 className="mt-5 text-page-hero font-medium">
+              {audience === "enterprise"
+                ? "Get help with your Ontiver workflows."
+                : "Get help with your Ontiver identity."}
+            </h1>
+            <p className="mt-7 max-w-[760px] text-subtitle text-[#526058]">
+              {audience === "enterprise"
+                ? "Get help with verification requests, dashboard reviews, API integrations, or consent records. Keep your request and replies together."
+                : "Get help with a verification request, your proof wallet, consent, or account access. Keep your request and replies together."}
+            </p>
+            <a href="#support-request" className="button-primary mt-7">
+              {hasSession ? "Continue your conversation" : "Tell us what you need"}
+            </a>
+          </div>
+          <div data-scroll-reveal className="min-w-0">
+            <ContextPhoto
+              image={
+                audience === "enterprise"
+                  ? editorialPhotos.enterpriseSupport
+                  : editorialPhotos.support
+              }
+              priority
+            />
+            <p className="mt-4 text-meta text-[#526058]">
+              {audience === "enterprise"
+                ? "A place for your workflow questions, integration details, and follow-up."
+                : "Your request and replies, together in one conversation."}
+            </p>
+          </div>
         </div>
 
         {!hasSession && (

@@ -16,9 +16,13 @@
     padding-block: var(--section-padding);
   }
 
+  .section-space.section-compact {
+    padding-block: var(--section-padding-compact);
+  }
+
   .page-intro {
     background: #fff;
-    padding-block: calc(var(--site-header-height) + var(--section-padding)) var(--section-padding);
+    padding-block: calc(var(--site-header-height) + var(--hero-padding)) var(--hero-padding);
   }
 
   .eyebrow {

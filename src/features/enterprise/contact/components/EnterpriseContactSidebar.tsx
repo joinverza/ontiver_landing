@@ -1,14 +1,10 @@
 import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
 
 export const EnterpriseContactSidebar = () => (
   <aside className="order-2 min-w-0 text-[#002d0e]">
-    <div data-scroll-reveal>
-      <ContextPhoto image={imagery.candidateReview} size="wide" />
-    </div>
-    <div className="mt-6 rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
+    <div className="rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
+      <h2 className="text-card-title font-medium">What we will work through</h2>
       <div className="divide-y divide-[#002d0e]/15 text-body text-[#526058]">
         {[
           "Confirm sources and checks",

@@ -1,5 +1,6 @@
 import type { BillingCycle } from "../data/pricing";
-import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
+import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 type PricingHeroProps = {
   billingCycle: BillingCycle;
@@ -46,17 +47,15 @@ const PricingHero = ({ billingCycle, onBillingChange }: PricingHeroProps) => {
             discounts have been confirmed.
           </p>
         </div>
-        <div
-          data-scroll-reveal
-          className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]"
-        >
-          <WorkflowVisual
-            variant="review"
-            title="Plan a verification workflow"
-            purpose="Choose the checks your team needs"
-            compact
-            className="hero-workflow-visual"
-          />
+        <div data-scroll-reveal className="min-w-0">
+          <ContextPhoto image={editorialPhotos.pricing} priority />
+          <div className="mt-4 rounded-2xl bg-[#edf5eb] p-5 sm:p-6">
+            <h2 className="text-card-title font-medium">Start with the workflow.</h2>
+            <p className="mt-2 text-body text-[#526058]">
+              Align your expected volume, required checks, and review process before confirming a
+              plan with the team.
+            </p>
+          </div>
         </div>
       </div>
     </section>

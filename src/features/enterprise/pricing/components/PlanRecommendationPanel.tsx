@@ -4,7 +4,7 @@ import type { PlanRecommendation } from "../data/plan";
 import type { BillingCycle } from "../data/pricing";
 import { getPricingInquiryUrl } from "../lib/pricing";
 import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 type Props = {
   recommendation: PlanRecommendation | null;
@@ -49,8 +49,8 @@ const PlanRecommendationPanel = ({
         </div>
       ) : (
         <div className="py-6">
-          <div className="mb-5 h-[160px] overflow-hidden rounded-xl sm:h-[200px]">
-            <BusinessPhoto image={imagery.merchantOrders} />
+          <div className="mb-5 aspect-[16/9] overflow-hidden rounded-xl">
+            <BusinessPhoto image={editorialPhotos.planGuidance} />
           </div>
           <h3 className="text-card-title font-medium">Find your fit.</h3>
           <p className="mt-3 text-body text-[#526052]">

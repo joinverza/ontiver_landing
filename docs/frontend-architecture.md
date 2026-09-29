@@ -41,9 +41,11 @@ Use one image helper where appropriate, keep intrinsic dimensions, lazy-load bel
 
 ## Section sizing
 
-`page-intro` accounts for the fixed header and uses at least one small viewport on desktop. `section-space` uses the available viewport below the header and centers short content. These are **minimum heights**, never fixed heights or clipping constraints. Long grids, forms, expanded accordions and articles can grow naturally. Stacked layouts and short/zoomed windows use intrinsic heights.
+`page-intro` accounts for the fixed header and uses at least one small viewport on desktop. Other sections size to their content with consistent responsive padding. Short CTAs and accordions do not reserve an empty viewport. Long grids, forms, expanded accordions and articles grow naturally. Stacked layouts and short/zoomed windows use intrinsic heights.
 
-Use `section-compact` for small notices and CTA strips and `section-flow` for deliberately continuous long content. Neither forces screen-height spacing. Photo and heading sizes use both viewport width and height, with readable minimums. Avoid `height: 100vh`, `max-height`, scroll snapping, or `overflow: hidden` on content sections.
+`section-space` adds 48px of top and bottom padding on mobile, 72px from 640px, and 96px from 1024px. Compact strips use 32px, 48px, and 64px respectively. Hero padding has its own token, so generous content-section spacing does not push the hero beyond the screen. Use these shared classes on page-level forms, resource grids, pricing plans, and CTAs instead of one-sided padding utilities.
+
+Use `section-compact` for small notices and CTA strips and `section-flow` for deliberately continuous long content. Image frames use explicit aspect ratios, intrinsic dimensions, and per-photo focal points. Editorial grids combine portraits with landscape details without stretching either image or clipping captions. Avoid fixed heights or `overflow: hidden` on text-bearing sections.
 
 ## Validation
 

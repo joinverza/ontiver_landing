@@ -31,8 +31,11 @@ const UseCasePage = () => {
       <UseCaseCapabilities detail={detail} />
       <UseCasePilotFocus focus={detail.pilotFocus} measures={detail.evaluationMeasures} />
       <RelatedUseCases items={relatedItems} />
-      <section className="section-space bg-[#002d0e] text-white">
-        <div data-scroll-reveal className="site-container grid gap-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-14">
+      <section className="section-space section-compact bg-[#002d0e] text-white">
+        <div
+          data-scroll-reveal
+          className="site-container grid gap-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-14"
+        >
           <div>
             <p className="text-meta font-semibold uppercase text-[#c7e6b5]">Focused pilot</p>
             <h2 className="mt-3 max-w-[730px] text-section font-normal">{detail.cta}</h2>

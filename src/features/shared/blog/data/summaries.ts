@@ -1,4 +1,4 @@
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 export type BlogSummary = {
   id: number;
@@ -6,6 +6,10 @@ export type BlogSummary = {
   title: string;
   excerpt: string;
   image: string;
+  imageAlt: string;
+  imagePosition: string;
+  imageWidth: number;
+  imageHeight: number;
   date?: string;
   author: string;
   readTime: string;
@@ -87,20 +91,24 @@ const summaries = [
 ];
 
 const articleImages = [
-  imagery.individualHero.src,
-  imagery.finance.src,
-  imagery.candidateReview.src,
-  imagery.mobileDetail.src,
-  imagery.developer.src,
-  imagery.courierOnboarding.src,
-  imagery.work.src,
-  imagery.merchantOrders.src,
+  editorialPhotos.blogIdentity,
+  editorialPhotos.blogKyc,
+  editorialPhotos.blogAml,
+  editorialPhotos.blogConsent,
+  editorialPhotos.blogWebhooks,
+  editorialPhotos.blogRisk,
+  editorialPhotos.blogAudit,
+  editorialPhotos.blogMarketplace,
 ];
 
 // Full article bodies are loaded only with an article page.
 export const blogArticles: BlogSummary[] = summaries.map((article, index) => ({
   ...article,
-  image: articleImages[index],
+  image: articleImages[index].src,
+  imageAlt: articleImages[index].alt,
+  imagePosition: articleImages[index].objectPosition,
+  imageWidth: articleImages[index].width,
+  imageHeight: articleImages[index].height,
   author: "Ontiver editorial",
 }));
 

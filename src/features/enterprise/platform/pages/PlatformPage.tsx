@@ -36,10 +36,7 @@ const PlatformPage = () => {
                 </a>
               </div>
             </div>
-            <div
-              data-scroll-reveal
-              className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]"
-            >
+            <div data-scroll-reveal className="min-w-0">
               <WorkflowVisual
                 variant={layer.visualVariant}
                 title={layer.visualTitle}
@@ -47,6 +44,7 @@ const PlatformPage = () => {
                 claims={layer.visualClaims}
                 steps={layer.workflow}
                 compact
+                priority
                 className="hero-workflow-visual"
               />
             </div>
@@ -123,7 +121,7 @@ const PlatformPage = () => {
         </div>
       </section>
 
-      <section className="section-space">
+      <section className="section-space section-compact">
         <div className="site-container">
           <div
             data-scroll-reveal
@@ -143,7 +141,20 @@ const PlatformPage = () => {
               </Link>
             </div>
             <ol className="border-t border-white/20 lg:border-t-0 lg:border-l lg:pl-8">
-              {layer.workflow.slice(0, 3).map((step, index) => (
+              {[
+                {
+                  title: "Choose one request",
+                  description: "Define the people, purpose, and evidence your pilot needs.",
+                },
+                {
+                  title: "Agree access and review",
+                  description: "Set consent, retention, and the team responsible for decisions.",
+                },
+                {
+                  title: "Measure the complete journey",
+                  description: "Track completion, review effort, and the quality of the evidence.",
+                },
+              ].map((step, index) => (
                 <li
                   key={step.title}
                   className="grid grid-cols-[2rem_1fr] gap-x-3 border-b border-white/20 py-4 first:pt-0 last:border-0 last:pb-0 lg:first:pt-1"

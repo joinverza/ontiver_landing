@@ -36,7 +36,7 @@ const RelatedUseCases = ({ items }: { items: UseCasePageDetail[] }) => {
               to={`/enterprise/use-cases/${item.id}`}
               className="group w-[85%] min-w-0 shrink-0 md:w-auto"
             >
-              <div className="h-[170px] overflow-hidden rounded-xl sm:h-[200px]">
+              <div className="aspect-[3/2] overflow-hidden rounded-xl">
                 <BusinessPhoto image={getIndustryImage(item.id)} />
               </div>
               <div className="mt-4 flex items-start justify-between gap-3">

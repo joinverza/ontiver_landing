@@ -5,7 +5,7 @@ import IdentityRequestPreview from "./IdentityRequestPreview";
 
 const IndividualHero = () => (
   <section className="page-intro home-hero bg-white">
-    <div className="site-container grid items-center gap-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-12">
+    <div className="site-container grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
       <div className="hero-enter min-w-0">
         <p className="eyebrow">Your identity. Your credentials. Your choice.</p>
         <h1 className="mt-5 text-hero font-medium">

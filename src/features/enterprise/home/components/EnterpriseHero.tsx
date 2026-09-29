@@ -1,10 +1,10 @@
 import HeroActions from "../../../shared/home/components/HeroActions";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 const EnterpriseHero = () => (
   <section className="page-intro home-hero bg-white">
-    <div className="site-container grid items-center gap-8 lg:grid-cols-[1.2fr_.8fr] lg:gap-12">
+    <div className="site-container grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
       <div className="hero-enter min-w-0">
         <p className="eyebrow">Identity verification & workflow infrastructure</p>
         <h1 className="mt-5 text-hero font-medium">
@@ -25,7 +25,7 @@ const EnterpriseHero = () => (
         </p>
       </div>
       <div className="hero-media-enter min-w-0">
-        <ContextPhoto image={imagery.enterpriseHero} priority />
+        <ContextPhoto image={editorialPhotos.enterpriseHome} priority />
       </div>
     </div>
   </section>

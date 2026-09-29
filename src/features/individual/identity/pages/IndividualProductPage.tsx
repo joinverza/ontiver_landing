@@ -2,6 +2,8 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
+import { imagery } from "../../../../shared/data/imagery";
 
 const requestChoices = [
   {
@@ -56,11 +58,11 @@ const IndividualProductPage = () => {
         </>
       }
       description="A reusable proof of who you are — created once, shared only when you approve it."
-      visual={<WorkflowVisual variant="mobile" title="Planned mobile app" compact />}
+      visual={<WorkflowVisual variant="mobile" photo={editorialPhotos.identity} priority compact />}
       primaryAction={{ label: "Join the Waitlist", to: "/waitlist" }}
       secondaryAction={{ label: "See how it works", to: "/how-it-works" }}
       finalTitle="Stay in control of your next request."
-      finalVisual={<WorkflowVisual variant="proof" title="Planned proof status" compact />}
+      finalImage={imagery.individualHero}
     >
       <section className="section-space">
         <div className="site-container">

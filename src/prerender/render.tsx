@@ -79,22 +79,27 @@ export async function renderRoute({ path, Component }: RenderInput) {
       `<meta data-rh="true" name="twitter:title" content="${escape(meta.title)}">`,
       `<meta data-rh="true" name="twitter:description" content="${escape(meta.description)}">`,
       `<meta data-rh="true" name="twitter:image" content="${meta.image}">`,
-      `<script data-rh="true" type="application/ld+json">${JSON.stringify(meta.structuredData).replaceAll("<", "\\u003c")}</script>`,
     ].join("\n");
-    for (const pattern of DEFAULT_HEAD_PATTERNS) bodyHtml = bodyHtml.replace(pattern, "");
+    // React 19 hoists metadata, but JSON-LD scripts stay in the rendered tree.
+    // Keep that script in place so hydration can reuse the static page.
+    for (const pattern of HEAD_METADATA_PATTERNS) bodyHtml = bodyHtml.replace(pattern, "");
     return { bodyHtml, headHtml, path };
   } finally {
     (HelmetProvider as unknown as { canUseDOM: boolean }).canUseDOM = previous;
   }
 }
 
-const DEFAULT_HEAD_PATTERNS = [
+const HEAD_METADATA_PATTERNS = [
   /<title>[^<]*<\/title>/i,
   /<meta\s+name="description"[^>]*>/i,
   /<meta\s+name="robots"[^>]*>/i,
   /<link\s+rel="canonical"[^>]*>/i,
   /<meta\s+property="og:[^"]*"[^>]*>/gi,
   /<meta\s+name="twitter:[^"]*"[^>]*>/gi,
+];
+
+const TEMPLATE_METADATA_PATTERNS = [
+  ...HEAD_METADATA_PATTERNS,
   /<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi,
 ];
 
@@ -103,7 +108,7 @@ export function injectIntoTemplate(
   parts: { headHtml: string; bodyHtml: string; path: string },
 ) {
   let html = template;
-  for (const pattern of DEFAULT_HEAD_PATTERNS) html = html.replace(pattern, "");
+  for (const pattern of TEMPLATE_METADATA_PATTERNS) html = html.replace(pattern, "");
   html = html.replace("</head>", `${parts.headHtml}\n</head>`);
   return html.replace(
     '<div id="root"></div>',

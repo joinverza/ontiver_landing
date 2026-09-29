@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { platformLayers } from "../data/platform";
 
 const PlatformOverviewPage = () => {
@@ -19,18 +20,20 @@ const PlatformOverviewPage = () => {
       }
       description="Request evidence, record consent, run selected checks, and review the results. Turn approved claims into reusable proof, with the person in control of each share."
       visual={
-        <div className="h-[300px] overflow-hidden rounded-2xl sm:h-[400px] lg:h-[500px]">
+        <div className="min-w-0">
           <WorkflowVisual
             variant="workflow"
+            photo={editorialPhotos.platformOverview}
             title="Connected verification workflows"
             compact
+            priority
             className="hero-workflow-visual"
           />
         </div>
       }
       secondaryAction={{ label: "Explore Use Cases", to: "/enterprise/use-cases" }}
       finalTitle="Build your first workflow with us."
-      finalImage={imagery.cityArchitecture}
+      finalImage={imagery.enterpriseHero}
     >
       <section className="section-space">
         <div className="site-container">

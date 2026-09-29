@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { blogArticles } from "../../blog/data/summaries";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { ArticleImage } from "../../blog/components/BlogCards";
 import type { Audience } from "../../../../shared/lib/audience";
 
@@ -49,36 +49,49 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
   return (
     <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
       <header className="page-intro">
-        <div className="site-container">
-          <p className="eyebrow">{enterprise ? "Resources for your team" : "Ontiver resources"}</p>
-          <h1 className="mt-5 max-w-[1040px] text-page-hero font-medium">
-            {enterprise
-              ? "Understand identity infrastructure, your way."
-              : "Understand your identity, your way."}
-          </h1>
-          <p className="mt-6 max-w-[680px] text-subtitle text-[#526058]">
-            {enterprise
-              ? "Explore source checks, review decisions, consent and reusable proof in Ontiver's planned workflows."
-              : "Learn about organization requests, evidence, consent choices and proof reuse before joining early access."}
-          </p>
+        <div className="site-container grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="min-w-0">
+            <p className="eyebrow">
+              {enterprise ? "Resources for your team" : "Ontiver resources"}
+            </p>
+            <h1 className="mt-5 max-w-[1040px] text-page-hero font-medium">
+              {enterprise
+                ? "Understand identity infrastructure, your way."
+                : "Understand your identity, your way."}
+            </h1>
+            <p className="mt-6 max-w-[680px] text-subtitle text-[#526058]">
+              {enterprise
+                ? "Explore source checks, review decisions, consent and reusable proof in Ontiver's planned workflows."
+                : "Learn about organization requests, evidence, consent choices and proof reuse before joining early access."}
+            </p>
+            <a href="#resource-topics" className="button-primary mt-7">
+              Explore the guides <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+          <div data-scroll-reveal className="min-w-0">
+            <ContextPhoto
+              image={enterprise ? editorialPhotos.enterpriseResources : editorialPhotos.resources}
+              priority
+            />
+            <p className="mt-4 text-meta text-[#526058]">
+              {enterprise
+                ? "From source checks to decisions your team can explain."
+                : "Clearer answers about the information you share."}
+            </p>
+          </div>
         </div>
       </header>
-      <section className="site-container pb-10 lg:pb-14" aria-label="Explore Ontiver resources">
-        <div className="grid gap-5 md:grid-cols-3">
-          <div
-            data-scroll-reveal
-            className="min-w-0 self-center md:col-start-2 md:row-span-2 md:row-start-1"
-          >
-            <ContextPhoto
-              image={enterprise ? imagery.work : imagery.studentAdmissions}
-              size="wide"
-            />
-          </div>
-          {resourceLinks.map(({ icon: Icon, title, description, to }, index) => (
+      <section
+        id="resource-topics"
+        className="section-space site-container scroll-mt-28"
+        aria-label="Explore Ontiver resources"
+      >
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {resourceLinks.map(({ icon: Icon, title, description, to }) => (
             <Link
               key={to}
               to={enterprise && ["/security", "/support"].includes(to) ? `/enterprise${to}` : to}
-              className={`group flex flex-col justify-between rounded-2xl bg-[#f5f6f3] p-5 transition-colors hover:bg-[#edf5eb] ${index < 2 ? "md:col-start-1" : "md:col-start-3"} ${index % 2 === 0 ? "md:row-start-1" : "md:row-start-2"}`}
+              className="group flex flex-col justify-between rounded-2xl bg-[#f5f6f3] p-5 transition-colors hover:bg-[#edf5eb]"
             >
               <Icon className="size-7 text-[#007d21]" aria-hidden="true" />
               <div className="mt-3 flex items-end justify-between gap-4">
@@ -94,7 +107,7 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
           ))}
         </div>
       </section>
-      <section className="section-space border-t border-[#e1e6df]">
+      <section className="section-space section-flow border-t border-[#e1e6df]">
         <div className="site-container">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
             <div>

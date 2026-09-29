@@ -32,6 +32,30 @@ for (const { path: route } of routes) {
     `${route}: published a Suspense fallback`,
   );
   assert.match(html, /rel="canonical"/, `${route}: canonical URL missing`);
+  assert.equal(
+    (html.match(/<script\b[^>]*type="application\/ld\+json"/g) ?? []).length,
+    1,
+    `${route}: missing or duplicate structured data`,
+  );
+  assert.match(
+    html.slice(html.indexOf('<div id="root"')),
+    /<script\b[^>]*type="application\/ld\+json"/,
+    `${route}: structured data must remain in the React tree for hydration`,
+  );
+  const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0] ?? "";
+  const photoTags = [...main.matchAll(/<img\b[^>]*\bsrc="(\/assets\/photos\/[^"]+)"[^>]*>/g)];
+  const photoPaths = photoTags.map((match) => match[1]);
+  assert.equal(
+    new Set(photoPaths).size,
+    photoPaths.length,
+    `${route}: repeats a photograph within the page`,
+  );
+  for (const [tag, src] of photoTags) {
+    assert(fs.existsSync(path.join(root, "dist", src)), `${route}: missing photo ${src}`);
+    assert.match(tag, /\balt="[^"]+"/, `${route}: photo description missing for ${src}`);
+    assert.match(tag, /\bwidth="\d+"/, `${route}: intrinsic photo width missing for ${src}`);
+    assert.match(tag, /\bheight="\d+"/, `${route}: intrinsic photo height missing for ${src}`);
+  }
   if (pendingPolicies.has(route))
     assert.match(
       html,
@@ -48,5 +72,5 @@ assert(
   "Expected separate route chunks rather than one eager application bundle",
 );
 console.log(
-  `Verified ${routes.length} complete prerendered routes and ${scripts.length} JavaScript chunks.`,
+  `Verified ${routes.length} complete prerendered routes, distinct local page photos, and ${scripts.length} JavaScript chunks.`,
 );

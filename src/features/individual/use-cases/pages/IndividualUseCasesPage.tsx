@@ -1,6 +1,7 @@
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 const journeys = [
   {
@@ -58,8 +59,8 @@ const IndividualUseCasesPage = () => {
     imagery.finance,
     imagery.candidateReview,
     imagery.courierOnboarding,
-    imagery.studentAdmissions,
     imagery.merchantOrders,
+    imagery.studentAdmissions,
     imagery.marketplace,
   ];
   return (
@@ -73,10 +74,10 @@ const IndividualUseCasesPage = () => {
         </>
       }
       description="A job, loan or supplier application asks for different evidence. Ontiver is designed to help you complete each request and reuse approved claims where supported."
-      visual={<ContextPhoto image={imagery.individualHero} priority />}
+      visual={<ContextPhoto image={editorialPhotos.individualUseCases} priority />}
       secondaryAction={{ label: "See how it works", to: "/how-it-works" }}
       finalTitle="Make room for what comes next."
-      finalImage={imagery.studentLife}
+      finalImage={editorialPhotos.graduate}
     >
       <section className="section-space" aria-label="Individual use cases">
         <div className="site-container grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
