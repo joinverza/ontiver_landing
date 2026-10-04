@@ -137,8 +137,8 @@ export const PilotResults = () => {
           {hasResults ? "How Ontiver performs" : "A pilot with a clear purpose."}
         </h2>
         <p className="mt-3 max-w-2xl text-body text-[#526058]">
-          Agree the baseline before starting. Follow completion, review time, and user-approved
-          reuse throughout the pilot. Published results will follow completed evaluations.
+          Agree the baseline before starting, then follow completion, verification time and
+          user-approved reuse in your dashboard from the first request.
         </p>
         <dl className="mt-6 grid gap-7 sm:grid-cols-3 sm:gap-10">
           {pilotMetrics.map((metric) => {
@@ -150,11 +150,9 @@ export const PilotResults = () => {
                 className="flex flex-col border-t border-[#002d0e]/20 pt-4"
               >
                 <dt className="text-card-title font-semibold">{metric.label}</dt>
-                {result && (
-                  <dd className="order-first mb-2 text-section font-semibold text-[#007d21]">
-                    {result.value}
-                  </dd>
-                )}
+                <dd className="order-first mb-2 text-section font-semibold text-[#007d21]">
+                  {result ? result.value : metric.measuredBy.value}
+                </dd>
                 <dd className="mt-3 text-body text-[#526058]">{metric.description}</dd>
                 <dd className="mt-2 text-meta font-medium text-[#002d0e]/55">
                   {result ? (
@@ -162,7 +160,7 @@ export const PilotResults = () => {
                       {result.context}
                     </a>
                   ) : (
-                    "Results pending"
+                    metric.measuredBy.detail
                   )}
                 </dd>
               </div>

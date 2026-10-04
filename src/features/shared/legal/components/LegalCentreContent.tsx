@@ -1,6 +1,6 @@
 import { ArrowUpRight, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
-import { legalLinks } from "../data/legalDocuments";
+import { LEGAL_LAST_UPDATED, legalLinks } from "../data/legalDocuments";
 
 const LegalCentreContent = () => (
   <>
@@ -14,7 +14,7 @@ const LegalCentreContent = () => (
           <FileText size={24} className="text-[#007d21]" aria-hidden="true" />
           <h2 className="mt-6 text-card-title font-medium">{label}</h2>
           <p className="mt-3 text-meta text-[#526058]">
-            {href === "/account-deletion" ? "Email-verified request form" : "Review pending"}
+            {href === "/account-deletion" ? "Email-verified request form" : `Updated ${LEGAL_LAST_UPDATED}`}
           </p>
           <span className="mt-5 grid size-10 self-end place-items-center rounded-full bg-white">
             <ArrowUpRight size={20} aria-hidden="true" />

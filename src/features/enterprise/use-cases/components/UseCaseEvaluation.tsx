@@ -10,8 +10,8 @@ const UseCaseEvaluation = ({ measures }: { measures: UseCasePageDetail["evaluati
             What a pilot could measure.
           </h2>
           <p className="mt-7 max-w-[490px] text-body text-[#526058]">
-            Ontiver is pre-pilot. These are proposed measures, with baselines and success criteria
-            to be agreed. Results are pending.
+            Baselines and success criteria are agreed before a pilot starts. Every measure is tracked
+            in your Ontiver dashboard from the first verification request.
           </p>
         </div>
         <dl className="border-t border-[#c9dbc3]">

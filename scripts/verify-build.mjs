@@ -7,7 +7,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const routes = JSON.parse(
   fs.readFileSync(path.join(root, "src/prerender/staticRoutes.json"), "utf8"),
 );
-const pendingPolicies = new Set(["/privacy", "/terms", "/cookies"]);
+const publishedPolicies = new Set(["/privacy", "/terms", "/cookies"]);
 routes.push({ path: "/pricing" });
 
 for (const { path: route } of routes) {
@@ -56,12 +56,8 @@ for (const { path: route } of routes) {
     assert.match(tag, /\bwidth="\d+"/, `${route}: intrinsic photo width missing for ${src}`);
     assert.match(tag, /\bheight="\d+"/, `${route}: intrinsic photo height missing for ${src}`);
   }
-  if (pendingPolicies.has(route))
-    assert.match(
-      html,
-      /content="noindex, follow"/,
-      `${route}: unpublished policy must remain noindex`,
-    );
+  if (publishedPolicies.has(route))
+    assert.doesNotMatch(html, /content="noindex/, `${route}: published policy must be indexable`);
 }
 
 const scripts = fs

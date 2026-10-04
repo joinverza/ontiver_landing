@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { legalDocuments } from "../data/legalDocuments";
+import { LEGAL_LAST_UPDATED, legalDocuments } from "../data/legalDocuments";
 import LegalNavigation from "../components/LegalNavigation";
 import LegalCentreContent from "../components/LegalCentreContent";
 import LegalDocumentContent from "../components/LegalDocumentContent";
@@ -37,7 +37,7 @@ const LegalPage = () => {
               {!isDeletion && (
                 <p className="mt-7 inline-flex items-center gap-2 text-meta font-medium text-[#526058]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#009311]" aria-hidden="true" />{" "}
-                  Awaiting qualified legal review
+                  Last updated {isCentre ? LEGAL_LAST_UPDATED : document.updated}
                 </p>
               )}
             </div>

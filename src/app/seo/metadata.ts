@@ -245,24 +245,21 @@ export function getSeoMeta(pathname: string): SeoMeta {
     "/privacy": {
       title: "Privacy Policy | Ontiver",
       description:
-        "Ontiver's privacy policy is awaiting legal review. View the planned sections and contact the team with privacy questions.",
-      noIndex: true,
+        "How Ontiver and Qynara Technologies Limited collect, use, share and protect personal data, retention periods, and your rights under the Nigeria Data Protection Act 2023.",
       image: DEFAULT_IMAGE,
       type: "website",
     },
     "/terms": {
       title: "Terms of Use | Ontiver",
       description:
-        "Ontiver's terms of use are awaiting legal review. View the planned policy structure and contact options.",
-      noIndex: true,
+        "The terms for using Ontiver's website, app, dashboards and API, including accounts, verification results, fees, acceptable use and governing law.",
       image: DEFAULT_IMAGE,
       type: "website",
     },
     "/cookies": {
       title: "Cookie Policy | Ontiver",
       description:
-        "Ontiver's cookie policy is awaiting legal review, including browser storage categories and choices.",
-      noIndex: true,
+        "The cookies and browser storage Ontiver uses for sign-in, security and preferences, and how to control them. No advertising or tracking cookies.",
       image: DEFAULT_IMAGE,
       type: "website",
     },

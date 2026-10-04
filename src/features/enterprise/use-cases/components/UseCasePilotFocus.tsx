@@ -27,7 +27,8 @@ const UseCasePilotFocus = ({
               <Plus size={20} className="shrink-0 transition-transform group-open:rotate-45" />
             </summary>
             <p className="mt-4 text-sm text-[#637060]">
-              Pilot results are pending. Baselines and success criteria are agreed before starting.
+              Baselines and success criteria are agreed before starting, and each measure is tracked
+              in your dashboard from the first request.
             </p>
             <dl className="mt-4 space-y-4">
               {measures.map((measure) => (

@@ -6,7 +6,6 @@ import {
   type FooterLink,
 } from "../../data/footer";
 import { getAudienceHome, type Audience } from "../../lib/audience";
-import { MotionToggle } from "../motion/MotionSettings";
 
 const FooterNavLink = ({ item }: { item: FooterLink }) => {
   const className =
@@ -71,7 +70,6 @@ const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
             <img src="/assets/logo.svg" alt="Ontiver" className="h-7 w-auto" />
           </Link>
           <div className="flex flex-wrap items-center gap-5">
-            <MotionToggle className="text-[#526058]" />
             <p className="text-meta text-[#526058]">&copy; 2026 Ontiver. All rights reserved.</p>
           </div>
         </div>
