@@ -69,8 +69,20 @@ const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
           <Link to={getAudienceHome(audience)} aria-label="Ontiver home">
             <img src="/assets/logo.svg" alt="Ontiver" className="h-7 w-auto" />
           </Link>
+          <Link
+            to="/security#regulatory-standing"
+            className="flex flex-wrap items-center gap-3 text-meta text-[#526058] hover:text-[#002d0e]"
+          >
+            <img src="/assets/certifications/ndpc-logo.png" alt="" className="h-6 w-auto rounded-sm bg-white" />
+            <span>NDPC registered (NDPC/DCP/14404)</span>
+            <span aria-hidden="true">·</span>
+            <img src="/assets/certifications/nimc-logo.png" alt="" className="h-6 w-auto rounded-sm bg-white" />
+            <span>NIMC-approved NINAuth Enterprise</span>
+          </Link>
           <div className="flex flex-wrap items-center gap-5">
-            <p className="text-meta text-[#526058]">&copy; 2026 Ontiver. All rights reserved.</p>
+            <p className="text-meta text-[#526058]">
+              &copy; 2026 Ontiver, operated by Qynara Technologies Limited (RC 9436348). All rights reserved.
+            </p>
           </div>
         </div>
       </div>

@@ -29,6 +29,49 @@ export const customerProof: PublishedProof[] = [];
 export const recognitionProof: PublishedProof[] = [];
 export const certificationProof: PublishedProof[] = [];
 
+export type RegulatoryCredential = {
+  id: string;
+  issuer: string;
+  logo: string;
+  title: string;
+  detail: string;
+  reference?: string;
+  issued: string;
+  evidence: { label: string; href: string; external?: boolean };
+};
+
+// Worded exactly as the issuing documents state; keep in step with the certificates.
+export const regulatoryCredentials: RegulatoryCredential[] = [
+  {
+    id: "ndpc",
+    issuer: "Nigeria Data Protection Commission",
+    logo: "/assets/certifications/ndpc-logo.png",
+    title: "Registered data controller and processor of major importance",
+    detail:
+      "Qynara Technologies Limited, which operates Ontiver, is registered under Section 44 of the Nigeria Data Protection Act 2023.",
+    reference: "Registration ID NDPC/DCP/14404",
+    issued: "Registered 7 September 2026",
+    evidence: {
+      label: "View certificate",
+      href: "/assets/certifications/ndpc-certificate-of-registration.pdf",
+      external: true,
+    },
+  },
+  {
+    id: "nimc",
+    issuer: "National Identity Management Commission",
+    logo: "/assets/certifications/nimc-logo.png",
+    title: "Approved NINAuth Enterprise",
+    detail:
+      "NIMC has approved Qynara Technologies Limited to operate as an Enterprise under the NINAuth Verification service, with NIN checks routed through a licensed NIMC verification partner.",
+    issued: "Approved 14 July 2026",
+    evidence: {
+      label: "Request the approval letter",
+      href: "/enterprise/contact?request=security-documentation",
+    },
+  },
+];
+
 export const pilotMetrics: PilotMetric[] = [
   {
     id: "completion",

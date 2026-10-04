@@ -7,6 +7,7 @@ import {
   isPublishedProof,
   pilotMetrics,
   recognitionProof,
+  regulatoryCredentials,
 } from "../../../../shared/data/proof";
 import type { Audience } from "../../../../shared/lib/audience";
 
@@ -171,3 +172,78 @@ export const PilotResults = () => {
     </section>
   );
 };
+
+export const RegulatoryCredentials = ({ tone = "white" }: { tone?: "white" | "muted" }) => (
+  <section
+    id="regulatory-standing"
+    aria-labelledby="regulatory-standing-heading"
+    className={`section-space section-compact scroll-mt-24 border-y border-[#002d0e]/10 ${tone === "muted" ? "bg-[#f7f9f5]" : "bg-white"}`}
+  >
+    <div className="site-container">
+      <div className="max-w-[720px]" data-scroll-reveal>
+        <p className="eyebrow">Regulatory standing</p>
+        <h2 id="regulatory-standing-heading" className="section-heading mt-4">
+          Registered and approved in Nigeria.
+        </h2>
+        <p className="mt-4 text-body text-[#526058]">
+          Ontiver is operated by Qynara Technologies Limited (RC 9436348), registered with the Nigeria
+          Data Protection Commission and approved by NIMC for NIN verification.
+        </p>
+      </div>
+      <div className="mt-10 grid gap-5 md:grid-cols-2">
+        {regulatoryCredentials.map((credential) => (
+          <article
+            key={credential.id}
+            data-scroll-reveal
+            className="flex flex-col rounded-[20px] border border-[#002d0e]/12 bg-white p-6 sm:p-7"
+          >
+            <div className="flex h-16 items-center">
+              <img
+                src={credential.logo}
+                alt={credential.issuer}
+                loading="lazy"
+                className="h-14 w-auto max-w-[200px] object-contain"
+              />
+            </div>
+            <p className="mt-6 text-meta font-semibold uppercase tracking-widest text-[#002d0e]/55">
+              {credential.issuer}
+            </p>
+            <h3 className="mt-2 text-card-title font-semibold">{credential.title}</h3>
+            <p className="mt-3 text-body text-[#526058]">{credential.detail}</p>
+            <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-meta text-[#002d0e]/70">
+              {credential.reference ? (
+                <div>
+                  <dt className="sr-only">Reference</dt>
+                  <dd className="font-medium text-[#002d0e]">{credential.reference}</dd>
+                </div>
+              ) : null}
+              <div>
+                <dt className="sr-only">Date</dt>
+                <dd>{credential.issued}</dd>
+              </div>
+            </dl>
+            <div className="mt-auto pt-6">
+              {credential.evidence.external ? (
+                <a
+                  href={credential.evidence.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+                >
+                  {credential.evidence.label} <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              ) : (
+                <Link
+                  to={credential.evidence.href}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+                >
+                  {credential.evidence.label} <ArrowUpRight size={16} aria-hidden="true" />
+                </Link>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+);

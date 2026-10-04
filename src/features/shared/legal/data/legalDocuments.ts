@@ -34,6 +34,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         heading: "Who we are",
         paragraphs: [
           `Ontiver is operated by ${ENTITY}, a company incorporated in Nigeria with its registered office at ${legalEntity.address} ("Ontiver", "we", "us").`,
+          "We are registered with the Nigeria Data Protection Commission as a data controller and processor of major importance (Registration ID NDPC/DCP/14404).",
           "We are the data controller for personal data we collect to run ontiver.com, the Ontiver app and vault, and the accounts of businesses and developers that use our dashboards and API.",
           "When a business (our customer) uses Ontiver to verify its own customers, that business decides why and how the verification happens. For that data we act as its data processor and follow its instructions; the business's own privacy notice also applies, and we help it respond to your requests.",
           `For any privacy question or request, email ${legalEntity.privacyEmail} or write to us at the address above.`,

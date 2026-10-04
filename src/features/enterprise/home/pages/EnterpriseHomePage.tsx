@@ -7,6 +7,7 @@ import PageFooter from "../../../../shared/components/layout/PageFooter";
 import TrustSection from "../../../shared/home/components/TrustSection";
 import {
   CertificationStrip,
+  RegulatoryCredentials,
   EvidenceCards,
   PartnerStrip,
   PilotResults,
@@ -31,6 +32,7 @@ const EnterpriseHomePage = () => (
     <UseCase audience="enterprise" />
     <TrustSection audience="enterprise" />
     <CertificationStrip />
+    <RegulatoryCredentials />
     <PilotResults />
     <EvidenceCards audience="enterprise" />
     <PricingFAQ variant="enterprise" />

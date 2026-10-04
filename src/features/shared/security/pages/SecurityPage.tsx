@@ -4,6 +4,7 @@ import Footer from "../../../../shared/components/layout/Footer";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import type { Audience } from "../../../../shared/lib/audience";
+import { RegulatoryCredentials } from "../../home/components/Proof";
 
 const reviewAreas = [
   {
@@ -150,6 +151,8 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
           </div>
         </div>
       </section>
+
+      <RegulatoryCredentials />
 
       <section id="compliance" className="section-space section-flow scroll-mt-20 bg-[#edf5eb]">
         <div className="site-container">
