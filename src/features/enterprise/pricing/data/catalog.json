@@ -1,0 +1,313 @@
+{
+  "currency": "USD",
+  "plans": [
+    {
+      "id": "sandbox",
+      "name": "Sandbox",
+      "tagline": "Build and test your integration with the Growth feature set and test data.",
+      "audience": "Developers and product teams evaluating Ontiver",
+      "monthly": 0,
+      "annualMonthly": 0,
+      "requiresContact": false,
+      "recommended": false,
+      "includedVerifications": 100,
+      "overagePerVerification": null,
+      "apiRequests": 1000,
+      "amlScreens": 0,
+      "amlScreenOverage": null,
+      "monitoringProfiles": 0,
+      "monitoringOverage": null,
+      "teamSeats": 2,
+      "uptimeTarget": null,
+      "support": "Documentation and email support",
+      "onboarding": "Self-serve",
+      "features": [
+        "contact_proofs",
+        "identity_checks",
+        "phone_verification",
+        "reusable_proofs",
+        "risk_rules",
+        "webhooks",
+        "workflows"
+      ],
+      "addons": [],
+      "cta": "Start free in Sandbox",
+      "highlights": [
+        "100 test verifications every month",
+        "Simulated NIN, BVN, document and face-match results",
+        "Workflows, risk rules and reusable proofs to try",
+        "Sandbox API keys, webhooks and SDKs",
+        "No card required"
+      ]
+    },
+    {
+      "id": "launch",
+      "name": "Launch",
+      "tagline": "Go live with real identity checks at pilot volume.",
+      "audience": "Early production pilots and small compliance teams",
+      "monthly": 199,
+      "annualMonthly": 159,
+      "requiresContact": false,
+      "recommended": false,
+      "includedVerifications": 500,
+      "overagePerVerification": 0.5,
+      "apiRequests": 5000,
+      "amlScreens": 0,
+      "amlScreenOverage": null,
+      "monitoringProfiles": 0,
+      "monitoringOverage": null,
+      "teamSeats": 3,
+      "uptimeTarget": "99.5%",
+      "support": "Email support, 2 business-day response",
+      "onboarding": "Self-serve with setup guides",
+      "features": [
+        "contact_proofs",
+        "identity_checks",
+        "phone_verification",
+        "production_api",
+        "webhooks",
+        "workflows"
+      ],
+      "addons": [
+        "aml_screening",
+        "aml_monitoring"
+      ],
+      "cta": "Start with Launch",
+      "highlights": [
+        "500 verifications included each month",
+        "$0.50 per additional verification",
+        "Production API keys and live checks",
+        "Workflows, webhooks and request logs",
+        "Optional AML add-ons"
+      ]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "tagline": "Scale onboarding with reusable proofs, risk rules and AML screening.",
+      "audience": "Fintechs, lenders and marketplaces scaling onboarding",
+      "monthly": 499,
+      "annualMonthly": 399,
+      "requiresContact": false,
+      "recommended": true,
+      "includedVerifications": 1000,
+      "overagePerVerification": 0.45,
+      "apiRequests": 50000,
+      "amlScreens": 250,
+      "amlScreenOverage": 0.35,
+      "monitoringProfiles": 0,
+      "monitoringOverage": null,
+      "teamSeats": 10,
+      "uptimeTarget": "99.9%",
+      "support": "Priority email support, 1 business-day response",
+      "onboarding": "Guided onboarding call",
+      "features": [
+        "aml_screening",
+        "contact_proofs",
+        "identity_checks",
+        "phone_verification",
+        "production_api",
+        "reusable_proofs",
+        "risk_rules",
+        "webhooks",
+        "workflows"
+      ],
+      "addons": [],
+      "cta": "Choose Growth",
+      "highlights": [
+        "1,000 verifications included each month",
+        "$0.45 per additional verification",
+        "250 AML screens included",
+        "Risk policies and duplicate-identity signals",
+        "Reusable proofs and customer registry"
+      ]
+    },
+    {
+      "id": "compliance",
+      "name": "Compliance",
+      "tagline": "Audit-ready verification with monitoring, reports and dual control.",
+      "audience": "Regulated teams that answer to auditors and regulators",
+      "monthly": 999,
+      "annualMonthly": 799,
+      "requiresContact": false,
+      "recommended": false,
+      "includedVerifications": 3000,
+      "overagePerVerification": 0.4,
+      "apiRequests": 100000,
+      "amlScreens": 500,
+      "amlScreenOverage": 0.35,
+      "monitoringProfiles": 1000,
+      "monitoringOverage": 0.05,
+      "teamSeats": 25,
+      "uptimeTarget": "99.9%",
+      "support": "Priority support with a named compliance contact",
+      "onboarding": "Guided onboarding and security questionnaire",
+      "features": [
+        "aml_monitoring",
+        "aml_screening",
+        "compliance_exports",
+        "contact_proofs",
+        "dual_control",
+        "identity_checks",
+        "phone_verification",
+        "production_api",
+        "reusable_proofs",
+        "risk_rules",
+        "webhooks",
+        "workflows"
+      ],
+      "addons": [],
+      "cta": "Choose Compliance",
+      "highlights": [
+        "3,000 verifications included each month",
+        "$0.40 per additional verification",
+        "500 AML screens and 1,000 monitored profiles",
+        "Compliance reports and signed audit exports",
+        "Dual control for keys, webhooks and data access"
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tagline": "Custom volume, contracts and controls for high-volume programmes.",
+      "audience": "Banks, telcos and platforms with custom requirements",
+      "monthly": null,
+      "annualMonthly": null,
+      "requiresContact": true,
+      "recommended": false,
+      "includedVerifications": null,
+      "overagePerVerification": null,
+      "apiRequests": null,
+      "amlScreens": null,
+      "amlScreenOverage": null,
+      "monitoringProfiles": null,
+      "monitoringOverage": null,
+      "teamSeats": null,
+      "uptimeTarget": "99.95% with contractual SLA",
+      "support": "Dedicated account manager and 24/7 incident line",
+      "onboarding": "Dedicated onboarding, security review and custom workflows",
+      "features": [
+        "aml_monitoring",
+        "aml_screening",
+        "compliance_exports",
+        "contact_proofs",
+        "dual_control",
+        "identity_checks",
+        "phone_verification",
+        "production_api",
+        "reusable_proofs",
+        "risk_rules",
+        "webhooks",
+        "workflows"
+      ],
+      "addons": [
+        "financial_data"
+      ],
+      "cta": "Talk to sales",
+      "highlights": [
+        "Volume pricing and annual contracts",
+        "Everything in Compliance",
+        "Contractual SLA and security review",
+        "Bank account data add-on",
+        "Dedicated account manager"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "key": "production_api",
+      "label": "Production API and live checks",
+      "description": "Run real NIN, BVN, document and biometric checks with production keys."
+    },
+    {
+      "key": "identity_checks",
+      "label": "Identity checks",
+      "description": "NIN, BVN, passport, driver's licence and voter's card verification with document and face match."
+    },
+    {
+      "key": "phone_verification",
+      "label": "Phone ownership verification",
+      "description": "One-time-code phone ownership proofs."
+    },
+    {
+      "key": "contact_proofs",
+      "label": "Verified contact proof",
+      "description": "Email ownership proofs your customers can reuse."
+    },
+    {
+      "key": "workflows",
+      "label": "Verification workflows",
+      "description": "Consent-first onboarding cases with templates, steps and reviewer queues."
+    },
+    {
+      "key": "webhooks",
+      "label": "Webhooks and request logs",
+      "description": "Signed webhooks, delivery retries and API request logs."
+    },
+    {
+      "key": "risk_rules",
+      "label": "Risk policies and rules",
+      "description": "Configure verification policies, risk thresholds and duplicate-identity signals."
+    },
+    {
+      "key": "reusable_proofs",
+      "label": "Reusable proofs and customer registry",
+      "description": "Accept proofs customers already hold and manage the issued-proof registry."
+    },
+    {
+      "key": "aml_screening",
+      "label": "AML screening",
+      "description": "Sanctions, PEP and adverse media screening."
+    },
+    {
+      "key": "aml_monitoring",
+      "label": "Ongoing AML monitoring",
+      "description": "Continuous re-screening of monitored customer profiles."
+    },
+    {
+      "key": "compliance_exports",
+      "label": "Compliance reports and signed audit exports",
+      "description": "Generate regulator-ready reports and export signed audit trails."
+    },
+    {
+      "key": "dual_control",
+      "label": "Dual control approvals",
+      "description": "Require a second approver for API keys, webhooks and sensitive data access."
+    }
+  ],
+  "addons": [
+    {
+      "id": "aml_screening",
+      "name": "AML Screening",
+      "monthly": 99,
+      "summary": "Sanctions, PEP and adverse media screening with 250 screens included.",
+      "includedScreens": 250,
+      "screenOverage": 0.35,
+      "availableOn": [
+        "launch"
+      ]
+    },
+    {
+      "id": "aml_monitoring",
+      "name": "AML Monitoring Bundle",
+      "monthly": 299,
+      "summary": "Screening plus ongoing monitoring: 1,000 screens and 1,000 monitored profiles.",
+      "includedScreens": 1000,
+      "screenOverage": 0.35,
+      "includedProfiles": 1000,
+      "profileOverage": 0.05,
+      "availableOn": [
+        "launch"
+      ]
+    },
+    {
+      "id": "financial_data",
+      "name": "Bank Account Data",
+      "monthly": null,
+      "summary": "Consented bank account data for source-of-funds and underwriting. Contract approval required.",
+      "availableOn": [
+        "enterprise"
+      ]
+    }
+  ]
+}

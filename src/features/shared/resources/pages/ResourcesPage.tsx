@@ -1,7 +1,7 @@
 import { ArrowUpRight, BookOpen, LifeBuoy, LockKeyhole, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
-import { blogArticles } from "../../blog/data/summaries";
+import { useBlogLibrary } from "../../blog/hooks/useBlogContent";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { ArticleImage } from "../../blog/components/BlogCards";
@@ -36,6 +36,7 @@ const resourceLinks = [
 
 const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => {
   const enterprise = audience === "enterprise";
+  const blogArticles = useBlogLibrary();
   const selected = blogArticles
     .filter((article) =>
       (enterprise

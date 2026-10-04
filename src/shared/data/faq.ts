@@ -1,3 +1,5 @@
+const SANDBOX_SIGNUP_URL = `${(import.meta.env.VITE_ONTIVER_DEVELOPER_URL || "https://dev.ontiver.com").replace(/\/+$/, "")}/signup`;
+
 export type FAQItem = {
   question: string;
   answer: string;
@@ -13,17 +15,29 @@ export const faqGroups: FAQGroup[] = [
       {
         question: "How is pricing calculated?",
         answer:
-          "Our pricing model and plan allowances are being finalized. Contact the team to discuss your volume and requirements.",
-        link: { label: "Discuss pricing", to: "/enterprise/contact" },
+          "Each paid plan has a monthly fee that includes a set number of verifications and API requests. Verifications above the allowance are billed at your plan's rate: $0.50 on Launch, $0.45 on Growth and $0.40 on Compliance. Enterprise is priced on volume in an annual contract.",
+        link: { label: "Compare plans", to: "/enterprise/pricing#plan-comparison" },
+      },
+      {
+        question: "Is Sandbox really free?",
+        answer:
+          "Yes. Sandbox costs nothing and needs no card. You get 100 test verifications a month with simulated results, sandbox API keys, webhooks, and the Growth feature set so you can build the whole integration.",
+        link: { label: "Start free in Sandbox", to: SANDBOX_SIGNUP_URL },
+      },
+      {
+        question: "Does annual billing cost less?",
+        answer:
+          "Annual billing saves 20%: Launch is $159, Growth $399 and Compliance $799 a month, billed yearly.",
       },
       {
         question: "Can I change plans later?",
-        answer: "Yes — you can move between plans as your verification volume changes.",
+        answer:
+          "Yes. Upgrade from your billing page when you need more volume or features; the new allowance applies straight away. To move to a smaller plan, contact us and it takes effect at the next billing period.",
       },
       {
-        question: "Is there a free trial or sandbox?",
-        answer: "Yes — Sandbox is designed for testing before you commit to a paid plan.",
-        link: { label: "Request Sandbox access", to: "/enterprise/contact?request=sandbox" },
+        question: "What happens if I go over my allowance?",
+        answer:
+          "Checks keep running. Extra verifications are billed at your plan's rate for that billing period, and your dashboard shows usage against the allowance as it happens.",
       },
     ],
   },
@@ -60,7 +74,7 @@ export const faqGroups: FAQGroup[] = [
         question: "Can businesses integrate Ontiver through API?",
         answer:
           "Yes — API and dashboard access are both available, with sandbox testing before production.",
-        link: { label: "Start Sandbox", to: "/enterprise/contact?request=sandbox" },
+        link: { label: "Start free in Sandbox", to: SANDBOX_SIGNUP_URL },
       },
       {
         question: "What industries can Ontiver support?",

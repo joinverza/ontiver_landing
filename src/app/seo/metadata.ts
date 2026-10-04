@@ -1,4 +1,4 @@
-import { blogArticles, getBlogArticleBySlug } from "../../features/shared/blog/data/summaries";
+import { getBlogArticleBySlug } from "../../features/shared/blog/data/summaries";
 import { useCasePageDetails } from "../../features/enterprise/use-cases/data/useCases";
 import { platformLayers } from "../../features/enterprise/platform/data/platform";
 import { imagery } from "../../shared/data/imagery";
@@ -38,8 +38,20 @@ function normalizePath(pathname: string) {
 export function getSeoMeta(pathname: string): SeoMeta {
   const path = normalizePath(pathname);
   const articleMatch = path.match(/^\/blogs\/([^/]+)$/);
-  if (articleMatch) {
-    const article = getBlogArticleBySlug(articleMatch[1]) ?? blogArticles[0];
+  const bundledArticle = articleMatch ? getBlogArticleBySlug(articleMatch[1]) : undefined;
+  if (articleMatch && !bundledArticle) {
+    // Posts published from the admin dashboard set their own tags once loaded.
+    return {
+      title: "Ontiver Blog",
+      description: "Articles on reusable identity, KYC, AML and consent from the Ontiver team.",
+      canonicalPath: path,
+      image: DEFAULT_IMAGE,
+      type: "article",
+      structuredData: { "@context": "https://schema.org", "@type": "Blog", name: "Ontiver Blog", publisher: baseOrganization },
+    };
+  }
+  if (articleMatch && bundledArticle) {
+    const article = bundledArticle;
     const canonicalPath = `/blogs/${article.slug}`;
     return {
       title: `${article.title} | Ontiver`,

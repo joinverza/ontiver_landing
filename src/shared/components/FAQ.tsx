@@ -61,15 +61,24 @@ const PricingFAQ = ({ variant = "pricing" }: PricingFAQProps) => {
                   <Plus size={19} className="shrink-0 transition-transform group-open:rotate-45" />
                 </summary>
                 <p className="pt-4 pr-6 text-body text-[#002d0e]/65">{item.answer}</p>
-                {item.link && (
-                  <Link
-                    to={item.link.to}
-                    className="mt-3 inline-flex items-center gap-2 text-body font-medium text-[#007d21]"
-                  >
-                    {item.link.label}
-                    <ArrowUpRight size={17} aria-hidden="true" />
-                  </Link>
-                )}
+                {item.link &&
+                  (/^https?:/.test(item.link.to) ? (
+                    <a
+                      href={item.link.to}
+                      className="mt-3 inline-flex items-center gap-2 text-body font-medium text-[#007d21]"
+                    >
+                      {item.link.label}
+                      <ArrowUpRight size={17} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.link.to}
+                      className="mt-3 inline-flex items-center gap-2 text-body font-medium text-[#007d21]"
+                    >
+                      {item.link.label}
+                      <ArrowUpRight size={17} aria-hidden="true" />
+                    </Link>
+                  ))}
               </details>
             ))}
           </div>

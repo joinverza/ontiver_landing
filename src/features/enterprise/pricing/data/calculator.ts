@@ -10,9 +10,9 @@ export type SavingsResult = {
   currentKycCost: number;
   lostUsers: number;
   dropOffRate: number;
-  estimatedOntiverCost: null;
-  directSavings: null;
-  recommendedPlan: null;
+  estimatedOntiverCost: number | null;
+  directSavings: number | null;
+  recommendedPlan: string | null;
 };
 export const calculatorFields: CalculatorField[] = [
   {

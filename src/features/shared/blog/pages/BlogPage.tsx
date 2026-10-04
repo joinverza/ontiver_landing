@@ -2,13 +2,14 @@ import { useState } from "react";
 import { ArrowDown } from "lucide-react";
 import BlogHero from "../components/BlogHero";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
-import { blogArticles } from "../data/summaries";
+import { useBlogLibrary } from "../hooks/useBlogContent";
 import { ArticleGridCard, DarkFeaturedArticleCard } from "../components/BlogCards";
 
 const BlogPage = () => {
+  const blogArticles = useBlogLibrary();
   const [visibleCount, setVisibleCount] = useState(3);
-  const featured = blogArticles[0];
-  const darkFeature = blogArticles[4];
+  const featured = blogArticles.find((article) => article.featured) ?? blogArticles[0];
+  const darkFeature = blogArticles.filter((article) => article !== featured)[3];
   const libraryArticles = blogArticles.filter(
     (article) => article !== featured && article !== darkFeature,
   );

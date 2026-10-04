@@ -3,12 +3,29 @@ const apiBaseUrl = (import.meta.env.VITE_ONTIVER_API_BASE_URL || "https://api.on
   "",
 );
 
-const landingApiUrl = `${apiBaseUrl}/api/v1/banking/landing`;
+// Website endpoints live on the public API surface (no credentials, CORS-limited to the website).
+const landingApiUrl = `${apiBaseUrl}/api/v1/public`;
 
 type ApiErrorBody = {
   detail?: string | { message?: string };
   message?: string;
+  error?: { message?: string };
 };
+
+/** Images uploaded from the admin dashboard are served by the API host. */
+export const resolveApiAssetUrl = (url: string) =>
+  url.startsWith("/static/") ? `${apiBaseUrl}${url}` : url;
+
+async function get<TResult>(path: string, init?: RequestInit): Promise<TResult> {
+  const response = await fetch(`${landingApiUrl}${path}`, { ...init, headers: { Accept: "application/json", ...init?.headers } });
+  if (!response.ok) {
+    const error = new Error(`Request failed with status ${response.status}`) as Error & { status?: number };
+    error.status = response.status;
+    throw error;
+  }
+  const payload = (await response.json()) as { data: TResult };
+  return payload.data;
+}
 
 async function post<TBody extends object, TResult = void>(
   path: string,
@@ -40,6 +57,7 @@ async function post<TBody extends object, TResult = void>(
     typeof detail === "string"
       ? detail
       : detail?.message ||
+        errorBody?.error?.message ||
         errorBody?.message ||
         "We could not submit your request. Please try again.";
 
@@ -154,13 +172,14 @@ export function createPublicSupportRequest(request: PublicSupportRequest) {
 }
 
 export async function getPublicSupportConversation(requestId: string, accessToken: string) {
-  const query = new URLSearchParams({ accessToken });
-  const response = await fetch(
-    `${landingApiUrl}/support/requests/${encodeURIComponent(requestId)}?${query}`,
-  );
-  if (!response.ok) throw new Error("We could not open this secure support conversation.");
-  const payload = (await response.json()) as { data: PublicSupportConversation };
-  return payload.data;
+  try {
+    // The token travels in a header so it never appears in URLs, logs or browser history.
+    return await get<PublicSupportConversation>(`/support/requests/${encodeURIComponent(requestId)}`, {
+      headers: { "X-Support-Access-Token": accessToken },
+    });
+  } catch {
+    throw new Error("We could not open this secure support conversation.");
+  }
 }
 
 export function sendPublicSupportMessage(requestId: string, accessToken: string, message: string) {
@@ -198,4 +217,84 @@ export function sendPricingInquiry(request: PricingInquiryRequest): Promise<void
     brand: "ontiver",
     website: request.website?.trim() || "",
   });
+}
+
+export type LandingContentSection = { heading: string; body: string[] };
+
+/** A published Blog, Press or Careers entry managed from the admin dashboard. */
+export type LandingContentEntry = {
+  id: string;
+  contentType: "blog" | "press" | "career";
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  source: string;
+  dateLabel: string;
+  readTime: string;
+  imageUrl: string;
+  externalUrl: string;
+  featured: boolean;
+  summary: string[];
+  body: string[];
+  sections: LandingContentSection[];
+  metadata: { seoDescription?: string; imageAlt?: string } & Record<string, unknown>;
+  publishedAt: string | null;
+  updatedAt: string;
+};
+
+export function listPublishedContent(contentType: "blog" | "press" | "career", limit = 50) {
+  return get<{ items: LandingContentEntry[]; total: number }>(`/content/${contentType}?limit=${limit}`);
+}
+
+export function getPublishedContent(contentType: "blog" | "press" | "career", slug: string) {
+  return get<LandingContentEntry>(`/content/${contentType}/${encodeURIComponent(slug)}`);
+}
+
+export type PricingPlan = {
+  id: "sandbox" | "launch" | "growth" | "compliance" | "enterprise";
+  name: string;
+  tagline: string;
+  audience: string;
+  monthly: number | null;
+  annualMonthly: number | null;
+  requiresContact: boolean;
+  recommended: boolean;
+  includedVerifications: number | null;
+  overagePerVerification: number | null;
+  apiRequests: number | null;
+  amlScreens: number | null;
+  amlScreenOverage: number | null;
+  monitoringProfiles: number | null;
+  monitoringOverage: number | null;
+  teamSeats: number | null;
+  uptimeTarget: string | null;
+  support: string;
+  onboarding: string;
+  features: string[];
+  addons: string[];
+  cta: string;
+  highlights: string[];
+};
+
+export type PricingCatalog = {
+  currency: string;
+  plans: PricingPlan[];
+  features: { key: string; label: string; description: string }[];
+  addons: {
+    id: string;
+    name: string;
+    monthly: number | null;
+    summary: string;
+    availableOn: string[];
+    includedScreens?: number;
+    screenOverage?: number;
+    includedProfiles?: number;
+    profileOverage?: number;
+  }[];
+};
+
+export function getPricingCatalog() {
+  return get<PricingCatalog>("/pricing");
 }

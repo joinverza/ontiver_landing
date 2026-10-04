@@ -12,22 +12,23 @@ import {
 import PlanRecommendationPanel from "./PlanRecommendationPanel";
 import PlanToggle from "./PlanToggle";
 import { scrollPageTo } from "../../../../shared/lib/scrollNavigation";
-import type { BillingCycle } from "../data/pricing";
+import type { BillingCycle, PricingCatalog } from "../data/pricing";
 import { getPlanRecommendation } from "../lib/pricing";
 
 type PlanProps = {
+  catalog: PricingCatalog;
   billingCycle?: BillingCycle;
   onViewPlan?: () => void;
   onComparePlans?: () => void;
 };
 
-const Plan = ({ billingCycle = "monthly", onViewPlan, onComparePlans }: PlanProps) => {
+const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }: PlanProps) => {
   const id = useId();
   const [values, setValues] = useState<Record<PlanFieldKey, string>>(planInitialValues);
   const [toggles, setToggles] = useState<Record<PlanToggleKey, boolean>>(planInitialToggles);
   const [recommendation, setRecommendation] = useState<PlanRecommendation | null>(null);
 
-  const checkBestPlan = () => setRecommendation(getPlanRecommendation(values, toggles));
+  const checkBestPlan = () => setRecommendation(getPlanRecommendation(values, toggles, catalog, billingCycle));
 
   const viewPlan = () => {
     const card = recommendation?.plan
@@ -42,7 +43,11 @@ const Plan = ({ billingCycle = "monthly", onViewPlan, onComparePlans }: PlanProp
       <div className="site-container">
         <div data-scroll-reveal className="mb-12 max-w-[780px]">
           <p className="eyebrow">Explore your plan options</p>
-          <h2 className="mt-5 text-section font-normal">A plan that fits the way you grow.</h2>
+          <h2 className="mt-5 text-section font-normal">Find the plan that costs you least.</h2>
+          <p className="mt-5 text-body text-[#526052]">
+            Enter your expected monthly usage and the controls you need. We compare every published
+            plan, including extra-verification and screening charges.
+          </p>
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
           <form
@@ -97,7 +102,7 @@ const Plan = ({ billingCycle = "monthly", onViewPlan, onComparePlans }: PlanProp
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button type="submit" className="button-primary grow">
-                Explore plan fit
+                Recommend a plan
                 <ArrowUpRight size={18} />
               </button>
               <button

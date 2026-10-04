@@ -6,15 +6,17 @@ import {
   type CalculatorFieldKey,
   type SavingsResult,
 } from "../data/calculator";
-import type { BillingCycle } from "../data/pricing";
+import type { BillingCycle, PricingCatalog } from "../data/pricing";
 import { calculateKycBaseline, formatCurrency, parseAmount } from "../lib/calculator";
 
 const Calculator = ({
   standalone = false,
   billingCycle = "monthly",
+  catalog,
 }: {
   standalone?: boolean;
   billingCycle?: BillingCycle;
+  catalog?: PricingCatalog;
 }) => {
   const [values, setValues] = useState<Record<CalculatorFieldKey, string>>(calculatorInitialValues);
   const [dropOffRate, setDropOffRate] = useState(0);
@@ -39,6 +41,8 @@ const Calculator = ({
         parseAmount(values.monthlyVerifications),
         parseAmount(values.costPerVerification),
         dropOffRate,
+        catalog,
+        billingCycle,
       ),
     );
     setShareMessage("");
@@ -52,7 +56,10 @@ const Calculator = ({
       result.lostUsers.toLocaleString() +
       " users lost at " +
       result.dropOffRate +
-      "% drop-off. Ontiver cost, direct savings and plan recommendation are pending a confirmed quote and workflow review.";
+      "% drop-off." +
+      (result.estimatedOntiverCost !== null && result.recommendedPlan
+        ? " Estimated Ontiver cost on " + result.recommendedPlan + ": " + formatCurrency(result.estimatedOntiverCost) + "/month."
+        : "");
     try {
       if (navigator.share) {
         await navigator.share({ title: "Ontiver KYC estimate", text: message });

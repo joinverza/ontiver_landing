@@ -1,7 +1,7 @@
 import { Check, Minus } from "lucide-react";
-import type { ComparisonValue } from "../data/pricing";
+import type { ComparisonCell } from "../data/pricing";
 
-const FeatureValue = ({ value }: { value: ComparisonValue }) => {
+const FeatureValue = ({ value }: { value: ComparisonCell }) => {
   if (value === true) {
     return <Check aria-label="Included" role="img" className="mx-auto size-4 text-light-primary" />;
   }

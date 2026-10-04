@@ -1,6 +1,6 @@
+import { editorialPhotos } from "../../data/editorialPhotos";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { imagery } from "../../data/imagery";
 import type { NavItem, NavLink } from "../../data/navigation";
 import type { Audience } from "../../lib/audience";
 
@@ -52,7 +52,8 @@ type DropdownPanelProps = {
 
 const DropdownPanel = ({ id, item, audience, open, onEnter, onNavigate }: DropdownPanelProps) => {
   const enterprise = audience === "enterprise";
-  const image = imagery.candidateReview;
+  // The card links to Resources, so it shows the Resources photography for each audience.
+  const image = enterprise ? editorialPhotos.enterpriseResources : editorialPhotos.resources;
 
   return (
     <div

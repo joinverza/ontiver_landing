@@ -38,11 +38,23 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
             </div>
             <div className="py-4">
               <dt className="text-body text-white/70">Estimated Ontiver cost</dt>
-              <dd className="mt-2 text-body font-medium">Pending a confirmed quote</dd>
+              <dd className="mt-2 text-body font-medium">
+                {result.estimatedOntiverCost !== null
+                  ? `${formatCurrency(result.estimatedOntiverCost)} / month`
+                  : result.recommendedPlan === "Enterprise"
+                    ? "Volume pricing — we'll quote it"
+                    : "Enter your monthly volume"}
+              </dd>
             </div>
             <div className="py-4">
               <dt className="text-body text-white/70">Direct savings</dt>
-              <dd className="mt-2 text-body font-medium">Pending confirmed Ontiver costs</dd>
+              <dd className="mt-2 text-body font-medium">
+                {result.directSavings === null
+                  ? "Shown once a plan applies"
+                  : result.directSavings >= 0
+                    ? `${formatCurrency(result.directSavings)} / month`
+                    : `Your current cost is ${formatCurrency(-result.directSavings)} lower per month`}
+              </dd>
             </div>
             <div className="py-4">
               <dt className="text-body text-white/70">Lost users from drop-off</dt>
@@ -55,18 +67,19 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
             </div>
             <div className="py-4">
               <dt className="text-body text-white/70">Recommended plan</dt>
-              <dd className="mt-2 text-body font-medium">Pending workflow and volume review</dd>
+              <dd className="mt-2 text-body font-medium">{result.recommendedPlan ?? "Enter your monthly volume"}</dd>
             </div>
           </dl>
           <p className="mt-2 text-sm text-white/65">
-            This baseline does not assume a recovery rate or a reduction in verification costs.
+            Ontiver cost uses the published price list, including extra verifications. It does not
+            count savings from proof reuse or recovered drop-off.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-5">
             <Link
               to={getPricingInquiryUrl(null, billingCycle, result.monthlyVerifications)}
               className="button-primary !bg-[#c7edb3] !text-[#002d0e]"
             >
-              Get a cost estimate
+              Talk to us about this estimate
               <ArrowUpRight size={17} />
             </Link>
             <button
@@ -87,8 +100,8 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
           </div>
           <h3 className="text-card-title font-medium">Start with your current costs.</h3>
           <p className="mt-4 text-body text-white/70">
-            Enter your figures to calculate a baseline. Ontiver cost and direct savings need a
-            confirmed quote.
+            Enter your volume and current cost per check to compare it with Ontiver's published
+            plans.
           </p>
         </div>
       )}

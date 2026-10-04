@@ -1,11 +1,9 @@
 import { blogArticles as summaries, type BlogSummary } from "./summaries";
 import articleBodies from "./bodies.json";
 
-export type BlogBodyBlock = {
-  type: "paragraph" | "heading" | "quote";
-  text: string;
-  source?: { label: string; href: string };
-};
+import type { BlogBodyBlock } from "./cmsArticles";
+
+export type { BlogBodyBlock };
 
 export type BlogArticle = BlogSummary & { body: BlogBodyBlock[] };
 

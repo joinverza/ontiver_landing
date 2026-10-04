@@ -1,7 +1,7 @@
 import { ArrowUpRight, Layers3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { PlanRecommendation } from "../data/plan";
-import type { BillingCycle } from "../data/pricing";
+import { DEVELOPER_SIGNUP_URL, type BillingCycle } from "../data/pricing";
 import { getPricingInquiryUrl } from "../lib/pricing";
 import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
@@ -33,19 +33,29 @@ const PlanRecommendationPanel = ({
       {recommendation ? (
         <div className="py-6">
           <h3 className="text-card-title font-medium">
-            {recommendation.plan ? recommendation.plan + " to discuss" : "Recommendation pending"}
+            {recommendation.plan ? `We recommend ${recommendation.plan}` : "Let's talk"}
           </h3>
           <p className="mt-4 text-body text-[#526052]">{recommendation.reason}</p>
-          <p className="mt-5 text-sm text-[#526052]">
-            {billingCycle === "annual" ? "Annual" : "Monthly"} pricing requires a confirmed quote.
-          </p>
-          <Link
-            to={getPricingInquiryUrl(recommendation.plan, billingCycle, monthlyVerifications)}
-            className="button-primary mt-6"
-          >
-            Request a quote
-            <ArrowUpRight size={17} />
-          </Link>
+          {recommendation.estimate !== undefined ? (
+            <p className="mt-5 text-sm text-[#526052]">
+              Estimate on {billingCycle === "annual" ? "annual" : "monthly"} billing, before taxes.
+              Your dashboard shows actual usage as it happens.
+            </p>
+          ) : null}
+          {recommendation.plan === "Sandbox" ? (
+            <a href={DEVELOPER_SIGNUP_URL} className="button-primary mt-6">
+              Start free in Sandbox
+              <ArrowUpRight size={17} />
+            </a>
+          ) : (
+            <Link
+              to={getPricingInquiryUrl(recommendation.plan, billingCycle, monthlyVerifications)}
+              className="button-primary mt-6"
+            >
+              {recommendation.plan && recommendation.plan !== "Enterprise" ? `Get started with ${recommendation.plan}` : "Talk to sales"}
+              <ArrowUpRight size={17} />
+            </Link>
+          )}
         </div>
       ) : (
         <div className="py-6">
@@ -54,8 +64,8 @@ const PlanRecommendationPanel = ({
           </div>
           <h3 className="text-card-title font-medium">Find your fit.</h3>
           <p className="mt-3 text-body text-[#526052]">
-            Share expected usage and the controls you need. Final scope and pricing are confirmed by
-            the team.
+            Enter your usage on the left to see the lowest-cost plan and an estimated monthly
+            total.
           </p>
         </div>
       )}
