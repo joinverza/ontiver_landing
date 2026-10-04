@@ -22,6 +22,7 @@
       "support": "Documentation and email support",
       "onboarding": "Self-serve",
       "features": [
+        "address_verification",
         "contact_proofs",
         "identity_checks",
         "phone_verification",
@@ -61,6 +62,7 @@
       "support": "Email support, 2 business-day response",
       "onboarding": "Self-serve with setup guides",
       "features": [
+        "address_verification",
         "contact_proofs",
         "identity_checks",
         "phone_verification",
@@ -102,6 +104,7 @@
       "support": "Priority email support, 1 business-day response",
       "onboarding": "Guided onboarding call",
       "features": [
+        "address_verification",
         "aml_screening",
         "contact_proofs",
         "identity_checks",
@@ -143,6 +146,7 @@
       "support": "Priority support with a named compliance contact",
       "onboarding": "Guided onboarding and security questionnaire",
       "features": [
+        "address_verification",
         "aml_monitoring",
         "aml_screening",
         "compliance_exports",
@@ -187,6 +191,7 @@
       "support": "Dedicated account manager and 24/7 incident line",
       "onboarding": "Dedicated onboarding, security review and custom workflows",
       "features": [
+        "address_verification",
         "aml_monitoring",
         "aml_screening",
         "compliance_exports",
@@ -228,6 +233,11 @@
       "key": "phone_verification",
       "label": "Phone ownership verification",
       "description": "One-time-code phone ownership proofs."
+    },
+    {
+      "key": "address_verification",
+      "label": "Address and postcode verification",
+      "description": "NIPOST postcode lookup, autocomplete and declared-address matching."
     },
     {
       "key": "contact_proofs",
