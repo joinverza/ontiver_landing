@@ -28,12 +28,12 @@ const PricingCard = ({ plan, billingCycle, ctaHref, external = false }: PricingC
       className={`flex min-w-0 scroll-mt-28 flex-col rounded-2xl border p-5 sm:p-6 ${highlighted ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#dce6d9] bg-[#f7f8f5] text-[#002d0e]"}`}
     >
       <div className="mb-3 flex min-h-6 items-center justify-between gap-2">
-        <h2 id={`plan-${plan.id}-name`} className="text-card-title font-medium">
+        <h2 id={`plan-${plan.id}-name`} className="text-card-title font-medium leading-tight">
           {plan.name}
         </h2>
         {highlighted ? (
-          <span className="rounded-full bg-[#c7edb3] px-2.5 py-1 text-xs font-semibold text-[#002d0e]">
-            Most popular
+          <span className="whitespace-nowrap rounded-full bg-[#c7edb3] px-2.5 py-1 text-xs font-semibold text-[#002d0e]">
+            Popular
           </span>
         ) : plan.id === "sandbox" ? (
           <span className="rounded-full bg-[#edf5eb] px-2.5 py-1 text-xs font-semibold text-[#007d21]">
@@ -41,11 +41,11 @@ const PricingCard = ({ plan, billingCycle, ctaHref, external = false }: PricingC
           </span>
         ) : null}
       </div>
-      <p className={`text-body ${muted}`}>{plan.tagline}</p>
+      <p className={`text-body xl:min-h-[7.5rem] ${muted}`}>{plan.tagline}</p>
 
-      <div className="my-6">
+      <div className="my-5">
         {price === null ? (
-          <p className="text-[2rem] font-medium leading-none tracking-[-0.03em]">Custom</p>
+          <p className="text-[2.5rem] font-medium leading-none tracking-[-0.04em]">Custom</p>
         ) : (
           <p className="flex items-baseline gap-1.5">
             <span className="text-[2.5rem] font-medium leading-none tracking-[-0.04em]">
@@ -68,13 +68,13 @@ const PricingCard = ({ plan, billingCycle, ctaHref, external = false }: PricingC
       <a
         href={ctaHref}
         {...(external ? { rel: "noopener" } : {})}
-        className={`mb-6 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full px-4 text-body font-medium transition-colors ${highlighted ? "bg-[#c7edb3] text-[#002d0e] hover:bg-white" : "bg-[#002d0e] text-white hover:bg-[#0b4a1f]"}`}
+        className={`mb-6 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full px-3 text-[15px] font-medium transition-colors xl:text-sm ${highlighted ? "bg-[#c7edb3] text-[#002d0e] hover:bg-white" : "bg-[#002d0e] text-white hover:bg-[#0b4a1f]"}`}
       >
         {plan.cta}
       </a>
 
       <div className={`border-t pt-5 ${highlighted ? "border-white/15" : "border-[#e4eae0]"}`}>
-        <p className={`mb-3 text-meta font-semibold uppercase tracking-[0.1em] ${highlighted ? "text-[#b8e5a7]" : "text-[#007d21]"}`}>
+        <p className={`mb-3 text-sm font-medium ${highlighted ? "text-[#b8e5a7]" : "text-[#007d21]"}`}>
           {plan.audience}
         </p>
         <ul className="space-y-2.5">

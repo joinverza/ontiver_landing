@@ -82,7 +82,7 @@ export const workflowVisualContent: Record<WorkflowVisualVariant, VisualContent>
     title: "Every share has a record.",
     label: "Your sharing history",
     description: "See who received which claims, for what purpose, and until when.",
-    image: imagery.education,
+    image: editorialPhotos.sharingHistory,
     items: ["Request received", "Purpose reviewed", "Claims approved", "Access expires"],
   },
   developers: {

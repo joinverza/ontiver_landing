@@ -190,3 +190,11 @@ The [Pexels license](https://www.pexels.com/license/) was checked on 29 Septembe
 | `enterpriseHome`             | [Pexels 5257576](https://www.pexels.com/photo/colleagues-planning-a-business-5257576/)                                              | 1600 x 1067      | 50% 45%     | 79,154  |
 
 Source IDs and file hashes were checked for duplicates across all 63 additions. Total delivered size is 6,586,844 bytes across the collection; individual pages load only the images they render. Article thumbnails may identify their corresponding article across navigation contexts, while page hero assignments are distinct.
+
+## Addition (4 October 2026)
+
+| Key / file | Photographer and original page | Delivered | Focal point |
+| --- | --- | --- | --- |
+| `sharingHistory` / `editorial/sharingHistory.webp` — "Every share has a record" workflow card | [Ketut Subiyanto — serious woman using smartphone](https://www.pexels.com/photo/serious-woman-using-smartphone-4353614/) | 1600 x 2400 → 1200 x 1800, WebP q83, metadata removed | 50% 30% |
+
+Replaces the reuse of `education.webp` (a woman studying at a laptop) on the sharing-history card, where the subject did not match the content. Downloaded from the original Pexels image URL under the [Pexels license](https://www.pexels.com/license/).

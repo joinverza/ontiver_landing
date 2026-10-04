@@ -387,6 +387,13 @@ export const editorialPhotos = {
     width: 1600,
     height: 1067,
   },
+  sharingHistory: {
+    src: "/assets/photos/editorial/sharingHistory.webp",
+    alt: "A woman in glasses reviewing activity on her phone while seated by a window",
+    objectPosition: "50% 30%",
+    width: 1200,
+    height: 1800,
+  },
   proof: {
     src: "/assets/photos/editorial/proof.webp",
     alt: "People reviewing the details of a document together beside a laptop",
