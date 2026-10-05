@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "4 October 2026";
+export const LEGAL_LAST_UPDATED = "5 October 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -97,7 +97,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         bullets: [
           "Businesses you choose to share a proof with, and only the fields you approve, for the purpose and period shown when you approve.",
           "The business that asked you to verify, which receives the results of the checks it requested.",
-          "Identity and screening providers: Smile ID and Youverify, and authorised sources of government and bank identity records such as NIN and BVN records.",
+          "Identity and screening providers: Smile ID, and authorised sources of government and bank identity records such as NIN and BVN records.",
           "Communication providers: Resend for email and Sendexa for SMS and WhatsApp verification codes.",
           "NIPOST, for postcode lookups. We send only the postcode or coordinates, never your name.",
           "Paystack for payments, and Mono for bank account data you choose to connect.",
