@@ -93,6 +93,8 @@ export function initializeBrowserSentry(appSurface: string): boolean {
     tracesSampleRate: sampleRate(env.VITE_SENTRY_TRACES_SAMPLE_RATE, 0.1),
     tracePropagationTargets: traceTargets(env),
     integrations: [Sentry.browserTracingIntegration()],
+    // Errors thrown by scripts that browser extensions inject into the page are not ours.
+    denyUrls: [/^(?:chrome|moz|safari(?:-web)?)-extension:\/\//i, /^webkit-masked-url:/i],
     beforeSend: (event) => scrubEvent(event),
     beforeSendTransaction: (event) => scrubEvent(event),
     beforeBreadcrumb: (breadcrumb) => {
