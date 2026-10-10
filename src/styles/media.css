@@ -40,3 +40,132 @@
 .hero-workflow-visual {
   min-width: 0;
 }
+
+/* Hero film ──────────────────────────────────────────────────────────────── */
+.hero-film {
+  margin: 0;
+}
+.hero-film__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: clamp(18px, 2.2vw, 28px);
+  background: #0b1f14;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 2px 6px rgba(0, 45, 14, 0.08),
+    0 30px 60px -28px rgba(0, 45, 14, 0.45);
+  isolation: isolate;
+  /* Keeps the rounded clip crisp in Safari while the video composites. */
+  transform: translateZ(0);
+}
+.hero-film__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.hero-film__video::cue {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.4vw, 1.25rem);
+  color: #fff;
+  background: rgba(5, 21, 14, 0.78);
+}
+.hero-film__play {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 7vw, 88px);
+  height: clamp(64px, 7vw, 88px);
+  padding-left: 4px;
+  border-radius: 999px;
+  color: #002d0e;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(10px);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease;
+}
+.hero-film__play:hover {
+  background: #fff;
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.hero-film__spinner {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 999px;
+  animation: hero-film-spin 800ms linear infinite;
+}
+@keyframes hero-film-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hero-film__controls {
+  position: absolute;
+  /* The film carries its own chapter bar along the bottom, so controls live in the
+     dark vignette at the top corners instead. */
+  inset: clamp(10px, 1.4vw, 18px) clamp(12px, 1.6vw, 20px) auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.hero-film__control {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: rgba(5, 21, 14, 0.55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.hero-film__control:hover {
+  background: rgba(5, 21, 14, 0.75);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.hero-film__control:focus-visible,
+.hero-film__play:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.hero-film__control--end {
+  margin-left: auto;
+}
+@media (max-width: 479px) {
+  .hero-film__controls {
+    gap: 6px;
+  }
+  .hero-film__control {
+    min-width: 32px;
+    height: 32px;
+  }
+  .hero-film__control--label span {
+    display: none;
+  }
+  .hero-film__control--label {
+    padding: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-film__spinner {
+    animation-duration: 2.4s;
+  }
+}
