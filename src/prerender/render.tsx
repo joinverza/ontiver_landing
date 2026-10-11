@@ -3,7 +3,7 @@ import { PassThrough } from "node:stream";
 import { renderToPipeableStream } from "react-dom/server";
 import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
-import { getSeoMeta } from "../app/seo/metadata";
+import { getSeoMeta, isShareCard } from "../app/seo/metadata";
 
 type RenderInput = {
   path: string;
@@ -73,6 +73,10 @@ export async function renderRoute({ path, Component }: RenderInput) {
       `<meta data-rh="true" property="og:type" content="${meta.type}">`,
       `<meta data-rh="true" property="og:url" content="${canonical}">`,
       `<meta data-rh="true" property="og:image" content="${meta.image}">`,
+      `<meta data-rh="true" property="og:image:alt" content="${escape(meta.title)}">`,
+      ...(isShareCard(meta.image)
+        ? ['<meta data-rh="true" property="og:image:width" content="1200">', '<meta data-rh="true" property="og:image:height" content="630">']
+        : []),
       '<meta data-rh="true" property="og:site_name" content="Ontiver">',
       '<meta data-rh="true" property="og:locale" content="en_US">',
       '<meta data-rh="true" name="twitter:card" content="summary_large_image">',

@@ -4,8 +4,11 @@ import { platformLayers } from "../../features/enterprise/platform/data/platform
 import { imagery } from "../../shared/data/imagery";
 
 const SITE_URL = "https://ontiver.com";
-const DEFAULT_IMAGE = `${SITE_URL}/assets/ontiver-enterprise.png`;
-const ENTERPRISE_IMAGE = DEFAULT_IMAGE;
+// 1200 × 630 share cards built from the brand typeface and the product's 3D renders.
+const DEFAULT_IMAGE = `${SITE_URL}/assets/og/ontiver-share.jpg`;
+const ENTERPRISE_IMAGE = `${SITE_URL}/assets/og/ontiver-share-enterprise.jpg`;
+/** Our own share cards have known dimensions, which lets every platform lay the preview out before loading it. */
+export const isShareCard = (image: string) => image.includes("/assets/og/");
 
 export type SeoMeta = {
   title: string;
