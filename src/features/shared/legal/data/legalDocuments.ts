@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "5 October 2026";
+export const LEGAL_LAST_UPDATED = "11 October 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -238,7 +238,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         heading: "Fees and payment",
         paragraphs: [
           "Sandbox is free. Paid plans are charged in the currency and at the prices shown on our pricing page or in your order form, in advance, through our payment processor Paystack. Usage above your plan's included volume is charged at the overage rates shown for your plan. Prices exclude applicable taxes, which we add where required.",
-          "Plans renew automatically until cancelled. You can cancel at any time by emailing support@ontiver.com; cancellation takes effect at the end of the current billing period, and fees already paid are not refunded except where the law requires. We will give at least 30 days' notice of price changes for your plan.",
+          "Plans renew automatically until cancelled. You can cancel at any time from Billing in your workspace or by emailing support@ontiver.com; cancellation takes effect at the end of the current billing period, and fees already paid are not refunded except where the law requires. We will give at least 30 days' notice of price changes for your plan.",
         ],
       },
       {
