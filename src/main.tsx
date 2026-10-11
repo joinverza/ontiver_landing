@@ -3,11 +3,11 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SentryErrorBoundary } from "./app/SentryErrorBoundary";
-import { initializeBrowserSentry } from "./shared/lib/sentry";
+import { deferSentry } from "./shared/lib/sentryLoader";
 import "./index.css";
 import App from "./app/App";
 
-initializeBrowserSentry("landing");
+deferSentry();
 
 const root = document.getElementById("root");
 

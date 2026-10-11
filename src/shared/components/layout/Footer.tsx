@@ -43,7 +43,7 @@ const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
                   aria-label={`Follow Ontiver on ${icon.alt}`}
                   className="grid size-10 place-items-center rounded-full border border-[#002d0e]/15 hover:bg-white"
                 >
-                  <img src={icon.icon} alt="" className="size-4 brightness-0" />
+                  <img src={icon.icon} alt="" loading="lazy" decoding="async" className="size-4 brightness-0" />
                 </a>
               ))}
             </div>
@@ -67,16 +67,16 @@ const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
         </div>
         <div className="flex flex-wrap items-center justify-between gap-5 border-t border-[#002d0e]/20 pt-7">
           <Link to={getAudienceHome(audience)} aria-label="Ontiver home">
-            <img src="/assets/logo.svg" alt="Ontiver" className="h-7 w-auto" />
+            <img src="/assets/logo.svg" alt="Ontiver" loading="lazy" decoding="async" className="h-7 w-auto" />
           </Link>
           <Link
             to="/security#regulatory-standing"
             className="flex flex-wrap items-center gap-3 text-meta text-[#526058] hover:text-[#002d0e]"
           >
-            <img src="/assets/certifications/ndpc-logo.png" alt="" className="h-6 w-auto rounded-sm bg-white" />
+            <img src="/assets/certifications/ndpc-logo.png" alt="" loading="lazy" decoding="async" className="h-6 w-auto rounded-sm bg-white" />
             <span>NDPC registered (NDPC/DCP/14404)</span>
             <span aria-hidden="true">·</span>
-            <img src="/assets/certifications/nimc-logo.png" alt="" className="h-6 w-auto rounded-sm bg-white" />
+            <img src="/assets/certifications/nimc-logo.png" alt="" loading="lazy" decoding="async" className="h-6 w-auto rounded-sm bg-white" />
             <span>NIMC-approved NINAuth Enterprise</span>
           </Link>
           <div className="flex flex-wrap items-center gap-5">

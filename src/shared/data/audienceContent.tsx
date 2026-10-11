@@ -240,7 +240,7 @@ export const individualSecurityFeatures: SecurityFeature[] = [
       "Keep verification and sharing activity together instead of guessing where your data went.",
     chips: ["Verification", "Sharing", "Status"],
     flow: ["Capture", "Review", "Remember"],
-    primaryAction: { label: "Learn more", href: "/#features" },
+    primaryAction: { label: "Learn more", href: "/#how-it-works" },
     secondaryAction: { label: "Read FAQ", href: "#faq" },
   },
   {
@@ -252,7 +252,7 @@ export const individualSecurityFeatures: SecurityFeature[] = [
     description: "Reuse trusted proof without handing every service the same document bundle.",
     chips: ["Less data", "Purpose-led", "Protected"],
     flow: ["Request", "Limit", "Protect"],
-    primaryAction: { label: "See how it works", href: "/#solution" },
+    primaryAction: { label: "See how it works", href: "/#how-it-works" },
     secondaryAction: { label: "Contact", href: "/contact" },
   },
   {

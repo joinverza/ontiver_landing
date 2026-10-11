@@ -111,3 +111,5 @@ export const sentryPrivacy = {
   scrubText,
   scrubValue,
 };
+
+export const captureException = (error: unknown) => Sentry.captureException(error);

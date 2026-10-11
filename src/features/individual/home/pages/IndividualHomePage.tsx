@@ -1,35 +1,16 @@
 import IndividualHero from "../components/IndividualHero";
-import EarlyAccess from "../components/EarlyAccess";
-import Solution from "../../../shared/home/components/Solution";
-import Modules from "../../../shared/home/components/Modules";
-import UseCase from "../../../shared/home/components/UseCase";
+import { HowItWorks, InYourControl } from "../components/HowItWorks";
 import PricingFAQ from "../../../../shared/components/FAQ";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
-import TrustSection from "../../../shared/home/components/TrustSection";
-import {
-  CertificationStrip,
-  RegulatoryCredentials,
-  EvidenceCards,
-  PartnerStrip,
-  PilotResults,
-} from "../../../shared/home/components/Proof";
-import IdentityMarquee from "../../../shared/home/components/IdentityMarquee";
 
+// The home page explains one idea: verify once, then approve each share. Deeper detail (use cases,
+// certifications, the pilot) lives on its own pages so the first visit stays easy to follow.
 const IndividualHomePage = () => (
   <main id="main-content" tabIndex={-1}>
     <IndividualHero />
-    <IdentityMarquee audience="individual" />
-    <PartnerStrip audience="individual" />
-    <Modules audience="individual" />
-    <Solution audience="individual" />
-    <UseCase audience="individual" />
-    <TrustSection audience="individual" />
-    <CertificationStrip />
-    <RegulatoryCredentials />
-    <PilotResults />
-    <EvidenceCards audience="individual" />
+    <HowItWorks />
+    <InYourControl />
     <PricingFAQ variant="individual" />
-    <EarlyAccess />
     <PageFooter audience="individual" />
   </main>
 );
