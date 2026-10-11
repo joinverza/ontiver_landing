@@ -302,8 +302,8 @@
           "screenOverage": 0.35
         },
         "NGN": {
-          "monthly": 149000,
-          "screenOverage": 525
+          "monthly": 132000,
+          "screenOverage": 465
         }
       }
     },
@@ -326,9 +326,9 @@
           "profileOverage": 0.05
         },
         "NGN": {
-          "monthly": 449000,
-          "screenOverage": 525,
-          "profileOverage": 75
+          "monthly": 398000,
+          "screenOverage": 465,
+          "profileOverage": 66
         }
       }
     },
@@ -443,42 +443,42 @@
         ]
       },
       "launch": {
-        "monthly": 299000,
-        "annualMonthly": 239000,
-        "overage": 750,
+        "monthly": 265000,
+        "annualMonthly": 211000,
+        "overage": 665,
         "amlScreenOverage": null,
         "monitoringOverage": null,
         "highlights": [
           "500 verifications included each month",
-          "₦750 per additional verification",
+          "₦665 per additional verification",
           "Production API keys and live checks",
           "Workflows, webhooks and request logs",
           "Optional AML add-ons"
         ]
       },
       "growth": {
-        "monthly": 749000,
-        "annualMonthly": 599000,
-        "overage": 675,
-        "amlScreenOverage": 525,
+        "monthly": 663000,
+        "annualMonthly": 530000,
+        "overage": 598,
+        "amlScreenOverage": 465,
         "monitoringOverage": null,
         "highlights": [
           "1,000 verifications included each month",
-          "₦675 per additional verification",
+          "₦598 per additional verification",
           "250 AML screens included",
           "Risk policies and duplicate-identity signals",
           "Reusable proofs and customer registry"
         ]
       },
       "compliance": {
-        "monthly": 1499000,
-        "annualMonthly": 1199000,
-        "overage": 600,
-        "amlScreenOverage": 525,
-        "monitoringOverage": 75,
+        "monthly": 1328000,
+        "annualMonthly": 1062000,
+        "overage": 532,
+        "amlScreenOverage": 465,
+        "monitoringOverage": 66,
         "highlights": [
           "3,000 verifications included each month",
-          "₦600 per additional verification",
+          "₦532 per additional verification",
           "500 AML screens and 1,000 monitored profiles",
           "Compliance reports and signed audit exports",
           "Dual control for keys, webhooks and data access"
