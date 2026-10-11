@@ -1,20 +1,23 @@
 import { Check } from "lucide-react";
 import {
   annualSavingPercent,
-  formatUsd,
+  formatPrice,
   monthlyPrice,
   type BillingCycle,
+  type PricingCurrency,
   type PricingPlan,
 } from "../data/pricing";
 
 type PricingCardProps = {
   plan: PricingPlan;
   billingCycle: BillingCycle;
+  currency: PricingCurrency;
   ctaHref: string;
   external?: boolean;
 };
 
-const PricingCard = ({ plan, billingCycle, ctaHref, external = false }: PricingCardProps) => {
+const PricingCard = ({ plan, billingCycle, currency, ctaHref, external = false }: PricingCardProps) => {
+  const formatUsd = (value: number, cents = false) => formatPrice(value, currency, cents);
   const highlighted = plan.recommended;
   const price = monthlyPrice(plan, billingCycle);
   const saving = annualSavingPercent(plan);
@@ -49,7 +52,7 @@ const PricingCard = ({ plan, billingCycle, ctaHref, external = false }: PricingC
         ) : (
           <p className="flex items-baseline gap-1.5">
             <span className="text-[2.5rem] font-medium leading-none tracking-[-0.04em]">
-              {price === 0 ? "$0" : formatUsd(price)}
+              {formatUsd(price)}
             </span>
             <span className={`text-body ${muted}`}>/ month</span>
           </p>

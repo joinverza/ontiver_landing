@@ -7,12 +7,14 @@ export function parseAmount(value: string) {
   return Number.isFinite(amount) && amount >= 0 ? amount : 0;
 }
 
-export function formatCurrency(value: number) {
+export function formatCurrency(value: number, currency = "USD") {
+  const fraction = currency === "NGN" ? 0 : 2;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    currency,
+    currencyDisplay: "narrowSymbol",
+    minimumFractionDigits: fraction,
+    maximumFractionDigits: fraction,
   }).format(value);
 }
 

@@ -295,7 +295,17 @@
       "screenOverage": 0.35,
       "availableOn": [
         "launch"
-      ]
+      ],
+      "prices": {
+        "USD": {
+          "monthly": 99,
+          "screenOverage": 0.35
+        },
+        "NGN": {
+          "monthly": 149000,
+          "screenOverage": 525
+        }
+      }
     },
     {
       "id": "aml_monitoring",
@@ -308,7 +318,19 @@
       "profileOverage": 0.05,
       "availableOn": [
         "launch"
-      ]
+      ],
+      "prices": {
+        "USD": {
+          "monthly": 299,
+          "screenOverage": 0.35,
+          "profileOverage": 0.05
+        },
+        "NGN": {
+          "monthly": 449000,
+          "screenOverage": 525,
+          "profileOverage": 75
+        }
+      }
     },
     {
       "id": "financial_data",
@@ -317,7 +339,165 @@
       "summary": "Consented bank account data for source-of-funds and underwriting. Contract approval required.",
       "availableOn": [
         "enterprise"
-      ]
+      ],
+      "prices": {
+        "USD": {
+          "monthly": null
+        },
+        "NGN": {
+          "monthly": null
+        }
+      }
     }
-  ]
+  ],
+  "currencies": [
+    "USD",
+    "NGN"
+  ],
+  "prices": {
+    "USD": {
+      "sandbox": {
+        "monthly": 0,
+        "annualMonthly": 0,
+        "overage": null,
+        "amlScreenOverage": null,
+        "monitoringOverage": null,
+        "highlights": [
+          "100 test verifications every month",
+          "Simulated NIN, BVN, document and face-match results",
+          "Workflows, risk rules and reusable proofs to try",
+          "Sandbox API keys, webhooks and SDKs",
+          "No card required"
+        ]
+      },
+      "launch": {
+        "monthly": 199,
+        "annualMonthly": 159,
+        "overage": 0.5,
+        "amlScreenOverage": null,
+        "monitoringOverage": null,
+        "highlights": [
+          "500 verifications included each month",
+          "$0.50 per additional verification",
+          "Production API keys and live checks",
+          "Workflows, webhooks and request logs",
+          "Optional AML add-ons"
+        ]
+      },
+      "growth": {
+        "monthly": 499,
+        "annualMonthly": 399,
+        "overage": 0.45,
+        "amlScreenOverage": 0.35,
+        "monitoringOverage": null,
+        "highlights": [
+          "1,000 verifications included each month",
+          "$0.45 per additional verification",
+          "250 AML screens included",
+          "Risk policies and duplicate-identity signals",
+          "Reusable proofs and customer registry"
+        ]
+      },
+      "compliance": {
+        "monthly": 999,
+        "annualMonthly": 799,
+        "overage": 0.4,
+        "amlScreenOverage": 0.35,
+        "monitoringOverage": 0.05,
+        "highlights": [
+          "3,000 verifications included each month",
+          "$0.40 per additional verification",
+          "500 AML screens and 1,000 monitored profiles",
+          "Compliance reports and signed audit exports",
+          "Dual control for keys, webhooks and data access"
+        ]
+      },
+      "enterprise": {
+        "monthly": null,
+        "annualMonthly": null,
+        "overage": null,
+        "amlScreenOverage": null,
+        "monitoringOverage": null,
+        "highlights": [
+          "Volume pricing and annual contracts",
+          "Everything in Compliance",
+          "Contractual SLA and security review",
+          "Bank account data add-on",
+          "Dedicated account manager"
+        ]
+      }
+    },
+    "NGN": {
+      "sandbox": {
+        "monthly": 0,
+        "annualMonthly": 0,
+        "overage": null,
+        "amlScreenOverage": null,
+        "monitoringOverage": null,
+        "highlights": [
+          "100 test verifications every month",
+          "Simulated NIN, BVN, document and face-match results",
+          "Workflows, risk rules and reusable proofs to try",
+          "Sandbox API keys, webhooks and SDKs",
+          "No card required"
+        ]
+      },
+      "launch": {
+        "monthly": 299000,
+        "annualMonthly": 239000,
+        "overage": 750,
+        "amlScreenOverage": null,
+        "monitoringOverage": null,
+        "highlights": [
+          "500 verifications included each month",
+          "₦750 per additional verification",
+          "Production API keys and live checks",
+          "Workflows, webhooks and request logs",
+          "Optional AML add-ons"
+        ]
+      },
+      "growth": {
+        "monthly": 749000,
+        "annualMonthly": 599000,
+        "overage": 675,
+        "amlScreenOverage": 525,
+        "monitoringOverage": null,
+        "highlights": [
+          "1,000 verifications included each month",
+          "₦675 per additional verification",
+          "250 AML screens included",
+          "Risk policies and duplicate-identity signals",
+          "Reusable proofs and customer registry"
+        ]
+      },
+      "compliance": {
+        "monthly": 1499000,
+        "annualMonthly": 1199000,
+        "overage": 600,
+        "amlScreenOverage": 525,
+        "monitoringOverage": 75,
+        "highlights": [
+          "3,000 verifications included each month",
+          "₦600 per additional verification",
+          "500 AML screens and 1,000 monitored profiles",
+          "Compliance reports and signed audit exports",
+          "Dual control for keys, webhooks and data access"
+        ]
+      },
+      "enterprise": {
+        "monthly": null,
+        "annualMonthly": null,
+        "overage": null,
+        "amlScreenOverage": null,
+        "monitoringOverage": null,
+        "highlights": [
+          "Volume pricing and annual contracts",
+          "Everything in Compliance",
+          "Contractual SLA and security review",
+          "Bank account data add-on",
+          "Dedicated account manager"
+        ]
+      }
+    }
+  }
 }

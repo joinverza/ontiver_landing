@@ -237,7 +237,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
       {
         heading: "Fees and payment",
         paragraphs: [
-          "Sandbox is free. Paid plans are charged in the currency and at the prices shown on our pricing page or in your order form, in advance, through our payment processor Paystack. Usage above your plan's included volume is charged at the overage rates shown for your plan. Prices exclude applicable taxes, which we add where required.",
+          "Sandbox is free. Paid plans are charged in advance, through our payment processor Paystack, in the currency you choose at checkout (US dollars or Nigerian naira) and at the prices shown on our pricing page or in your order form. Naira prices are set prices, not converted at the exchange rate of the day. Prices exclude applicable taxes, which we add where required.",
+          "Usage above your plan's monthly allowance is counted per calendar month (UTC) and charged at the overage rates published for your plan, in your subscription's currency. After each month we email a usage statement. Unless you turn on automatic usage charges, it is an invoice payable from Billing within 14 days. If you turn them on, you authorise us to charge the card on your subscription for each statement, up to the monthly cap you set, no earlier than 5 days after we email the statement; anything above your cap is invoiced instead. You can change the cap or turn automatic charges off at any time in Billing. If you question a statement before it is charged, we hold the charge while we look into it.",
           "Plans renew automatically until cancelled. You can cancel at any time from Billing in your workspace or by emailing support@ontiver.com; cancellation takes effect at the end of the current billing period, and fees already paid are not refunded except where the law requires. We will give at least 30 days' notice of price changes for your plan.",
         ],
       },

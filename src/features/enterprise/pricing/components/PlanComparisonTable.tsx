@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { comparisonGroups, formatUsd, monthlyPrice, type BillingCycle, type PricingCatalog } from "../data/pricing";
+import { comparisonGroups, formatPrice, monthlyPrice, type BillingCycle, type PricingCatalog } from "../data/pricing";
 import FeatureValue from "./FeatureValue";
 
 type Props = { catalog: PricingCatalog; billingCycle: BillingCycle };
@@ -45,7 +45,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                     >
                       <span className="block font-semibold">{plan.name}</span>
                       <span className="mt-1 block text-meta font-normal text-[#637060]">
-                        {price === null ? "Custom" : price === 0 ? "Free" : `${formatUsd(price)}/mo`}
+                        {price === null ? "Custom" : price === 0 ? "Free" : `${formatPrice(price, catalog.currency)}/mo`}
                       </span>
                     </th>
                   );

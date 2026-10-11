@@ -1,5 +1,7 @@
 import {
   DEVELOPER_SIGNUP_URL,
+  PORTAL_SIGNUP_URL,
+  type PricingCurrency,
   monthlyPrice,
   type BillingCycle,
   type PricingCatalog,
@@ -28,9 +30,16 @@ export function getPricingInquiryUrl(
   return "/enterprise/contact?" + params.toString();
 }
 
-/** Where a plan's call to action leads: Sandbox is self-serve, paid plans start with our team. */
-export const planCtaHref = (plan: PricingPlan, billingCycle: BillingCycle) =>
-  plan.id === "sandbox" ? DEVELOPER_SIGNUP_URL : getPricingInquiryUrl(plan.id, billingCycle);
+/**
+ * Where a plan's call to action leads: Sandbox is a developer account, published plans start a
+ * workspace (the plan is chosen and paid for in Billing), and Enterprise starts with our team.
+ */
+export const planCtaHref = (plan: PricingPlan, billingCycle: BillingCycle, currency: PricingCurrency = "USD") => {
+  if (plan.id === "sandbox") return DEVELOPER_SIGNUP_URL;
+  if (plan.requiresContact) return getPricingInquiryUrl(plan.id, billingCycle);
+  const params = new URLSearchParams({ plan: plan.id, billing: billingCycle, currency });
+  return `${PORTAL_SIGNUP_URL}?${params.toString()}`;
+};
 
 export type CostEstimate = {
   plan: PricingPlan;

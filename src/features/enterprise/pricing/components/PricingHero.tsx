@@ -1,14 +1,17 @@
-import { annualSavingPercent, type BillingCycle, type PricingCatalog } from "../data/pricing";
+import { annualSavingPercent, type BillingCycle, type PricingCatalog, type PricingCurrency } from "../data/pricing";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 type PricingHeroProps = {
   billingCycle: BillingCycle;
   onBillingChange: (cycle: BillingCycle) => void;
+  currency: PricingCurrency;
+  onCurrencyChange: (currency: PricingCurrency) => void;
   catalog: PricingCatalog;
 };
 
-const PricingHero = ({ billingCycle, onBillingChange, catalog }: PricingHeroProps) => {
+const PricingHero = ({ billingCycle, onBillingChange, currency, onCurrencyChange, catalog }: PricingHeroProps) => {
+  const currencies = catalog.currencies ?? [];
   const saving = Math.max(0, ...catalog.plans.map(annualSavingPercent));
   return (
     <section className="page-intro">
@@ -40,6 +43,25 @@ const PricingHero = ({ billingCycle, onBillingChange, catalog }: PricingHeroProp
                 </button>
               ))}
             </div>
+            {currencies.length > 1 ? (
+              <div
+                className="inline-flex rounded-full border border-[#d9e5d6] bg-white p-1"
+                role="group"
+                aria-label="Currency"
+              >
+                {currencies.map((value) => (
+                  <button
+                    key={value}
+                    type="button"
+                    aria-pressed={currency === value}
+                    onClick={() => onCurrencyChange(value)}
+                    className={`min-h-11 cursor-pointer rounded-full px-5 text-body font-medium transition-colors ${currency === value ? "bg-[#002d0e] text-white" : "text-[#526052] hover:bg-[#edf5eb]"}`}
+                  >
+                    {value === "NGN" ? "\u20a6 NGN" : "$ USD"}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             {saving ? (
               <span aria-live="polite" className="text-meta font-medium text-[#007d21]">
                 {billingCycle === "annual" ? `You're saving ${saving}%` : `Save ${saving}% with annual billing`}

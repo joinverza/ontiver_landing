@@ -4,6 +4,7 @@ import CalculatorInputField from "./CalculatorInputField";
 import DropOffSlider from "./DropOffSlider";
 
 type CalculatorFormPanelProps = {
+  currency: string;
   values: Record<CalculatorFieldKey, string>;
   dropOffRate: number;
   onFieldChange: (key: CalculatorFieldKey, value: string) => void;
@@ -13,6 +14,7 @@ type CalculatorFormPanelProps = {
 };
 
 const CalculatorFormPanel = ({
+  currency,
   values,
   dropOffRate,
   onFieldChange,
@@ -33,7 +35,11 @@ const CalculatorFormPanel = ({
         {calculatorFields.map((field) => (
           <CalculatorInputField
             key={field.key}
-            field={field}
+            field={
+              field.prefix
+                ? { ...field, label: field.label.replace("(USD)", `(${currency})`), prefix: currency === "NGN" ? "₦" : "$" }
+                : field
+            }
             value={values[field.key]}
             onChange={onFieldChange}
           />
