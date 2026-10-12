@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "11 October 2026";
+export const LEGAL_LAST_UPDATED = "12 October 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -47,7 +47,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Account details: name, email address, phone number, password (stored only as a one-way hash), multi-factor authentication settings, and your role in an organisation.",
           "Identity verification data: government identification numbers such as NIN and BVN, identity document images and the details read from them, a selfie or short liveness video, and face-comparison data derived from them.",
           "Contact proofs: confirmation that you control a phone number or email address. One-time codes are never stored in readable form.",
-          "Address data: the address you declare, its postcode, optional location coordinates, and the matching result from the NIPOST postcode register.",
+          "Address data: the address you declare, its postcode, the matching result from the NIPOST postcode register, and, when you verify your address in the app, the precise location of your phone at the moment you confirm the address and at each check-in from home, with its accuracy and whether the device reported a simulated location. We never track your location in the background.",
+          "Share links: when you share a proof by link or QR code, the details you chose, when the link expires, and how often it was opened. We store only a fingerprint of the link itself.",
           "Screening results: whether a name matches sanctions, politically exposed person or adverse media lists, where a business requests screening.",
           "Bank account data: only where you connect a bank account and agree to share it, for example to confirm account ownership.",
           "Proofs and sharing records: proofs issued to your vault, and a record of each request to share them, including who asked, the purpose, the fields requested and your decision.",
@@ -61,6 +62,17 @@ export const legalDocuments: Record<string, LegalDocument> = {
         heading: "Where the information comes from",
         paragraphs: [
           "Most information comes from you directly. We also receive information from a business that asks you to verify with Ontiver, from identity and screening providers and authorised government and bank identity records when we run a check you or that business requested, from Google or Apple if you use them to sign in, and automatically from your device when you use our services.",
+        ],
+      },
+      {
+        heading: "Google user data",
+        paragraphs: [
+          "If you choose Sign in with Google in the Ontiver app or on ontiver.com, we ask Google only for the basic sign-in scopes: openid, email and profile. Google then shares your Google account ID, your name, your email address, whether that email address is verified, and your profile picture link. We do not request access to your Gmail, contacts, calendar, Drive or any other Google data.",
+          "We use this information only to create your Ontiver account, sign you in, show your name in the app, and contact you about your account. We do not use it for advertising, we do not sell it, we do not use it to build profiles or to train AI or machine-learning models, and we do not let people read it except where you ask us for support, for security investigations, or where the law requires.",
+          "We store your Google account ID and email address with your Ontiver account, encrypted at rest. Google also gives us a sign-in token. We keep it encrypted and use it only to revoke Ontiver's access when you unlink Google or delete your account. We never receive your Google password.",
+          "We share Google user data only with the service providers that host and secure Ontiver (listed below), and only to run your account, or where the law requires it. We do not transfer it to anyone else.",
+          "We keep this information while your Google sign-in is linked. You can unlink Google in the app under Settings, Account & sign-in, Linked sign-in methods, or delete your Ontiver account; we then delete the Google account ID and revoke the token, subject to the records the law requires us to keep. You can also remove Ontiver's access at any time at myaccount.google.com/permissions.",
+          "Ontiver's use and transfer of information received from Google APIs to any other app will adhere to the Google API Services User Data Policy (developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements.",
         ],
       },
       {
