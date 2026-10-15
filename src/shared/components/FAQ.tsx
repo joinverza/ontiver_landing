@@ -1,13 +1,17 @@
-import { useState } from "react";
-import { ArrowUpRight, Plus } from "lucide-react";
+import ActionIcon from "./ui/ActionIcon";
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { faqGroups, individualFaqGroups } from "../data/faq";
 import AuroraBadge from "./ui/AuroraBadge";
+import SlidingPill from "./ui/SlidingPill";
+import "./faq.css";
 
 type PricingFAQProps = { variant?: "pricing" | "enterprise" | "individual" };
 
 const PricingFAQ = ({ variant = "pricing" }: PricingFAQProps) => {
   const [selectedGroup, setSelectedGroup] = useState(0);
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+  const instanceId = useId();
   const groups =
     variant === "individual"
       ? individualFaqGroups
@@ -22,65 +26,93 @@ const PricingFAQ = ({ variant = "pricing" }: PricingFAQProps) => {
     individual: "Get to know Ontiver.",
   }[variant];
   return (
-    <section id="faq" className="section-space bg-white">
-      <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
-        <div data-scroll-reveal>
-          <AuroraBadge>Frequently asked questions</AuroraBadge>
-          <h2 className="section-heading mt-5">{heading}</h2>
-          <Link
-            to={variant === "individual" ? "/support" : "/enterprise/support"}
-            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
-          >
-            Contact support
-            <ArrowUpRight size={17} />
-          </Link>
-        </div>
-        <div>
-          <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label="Question categories">
-            {groups.map((group, index) => (
-              <button
-                key={group.group}
-                type="button"
-                aria-pressed={index === selectedGroup}
-                onClick={() => setSelectedGroup(index)}
-                className={`min-h-10 rounded-full border px-4 py-2 text-meta font-semibold transition-colors ${index === selectedGroup ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#002d0e]/15 bg-white text-[#002d0e]/70 hover:border-[#007d21]"}`}
-              >
-                {group.group}
-              </button>
-            ))}
+    <section
+      id="faq"
+      className="section-space faq-section"
+      aria-labelledby={`${instanceId}-heading`}
+    >
+      <div className="site-container faq-layout">
+        <div className="faq-introduction">
+          <div data-scroll-reveal>
+            <AuroraBadge>Frequently asked questions</AuroraBadge>
+            <h2 id={`${instanceId}-heading`} className="section-heading mt-5">
+              {heading}
+            </h2>
+            <Link
+              to={variant === "individual" ? "/support" : "/enterprise/support"}
+              className="faq-support-link mt-8"
+            >
+              Contact support
+              <ActionIcon size={18} aria-hidden="true" />
+            </Link>
           </div>
-          <div className="divide-y divide-[#002d0e]/15 border-y border-[#002d0e]/15">
-            {items.map((item) => (
-              <details
-                key={currentGroup.group + item.question}
-                name={`faq-${variant}`}
-                className="group py-5"
-              >
-                <summary className="flex list-none items-center justify-between gap-5 text-body font-semibold [&::-webkit-details-marker]:hidden">
-                  {item.question}
-                  <Plus size={19} className="shrink-0 transition-transform group-open:rotate-45" />
-                </summary>
-                <p className="pt-4 pr-6 text-body text-[#002d0e]/65">{item.answer}</p>
-                {item.link &&
-                  (/^https?:/.test(item.link.to) ? (
-                    <a
-                      href={item.link.to}
-                      className="mt-3 inline-flex items-center gap-2 text-body font-medium text-[#007d21]"
+        </div>
+        <div className="faq-content">
+          <SlidingPill
+            label="Question categories"
+            value={selectedGroup}
+            onChange={(index) => {
+              setSelectedGroup(index);
+              setOpenQuestion(null);
+            }}
+            options={groups.map((group, index) => ({ value: index, label: group.group }))}
+            layout="wrap"
+            size="compact"
+            className="mb-6"
+          />
+          <div className="faq-list">
+            {items.map((item, index) => {
+              const questionKey = `${currentGroup.group}-${item.question}`;
+              const expanded = openQuestion === questionKey;
+              const questionId = `${instanceId}-question-${index}`;
+              const answerId = `${instanceId}-answer-${index}`;
+              return (
+                <article key={questionKey} className="faq-item" data-open={expanded || undefined}>
+                  <h3>
+                    <button
+                      id={questionId}
+                      type="button"
+                      className="faq-question"
+                      aria-expanded={expanded}
+                      aria-controls={answerId}
+                      onClick={() => setOpenQuestion(expanded ? null : questionKey)}
                     >
-                      {item.link.label}
-                      <ArrowUpRight size={17} aria-hidden="true" />
-                    </a>
-                  ) : (
-                    <Link
-                      to={item.link.to}
-                      className="mt-3 inline-flex items-center gap-2 text-body font-medium text-[#007d21]"
-                    >
-                      {item.link.label}
-                      <ArrowUpRight size={17} aria-hidden="true" />
-                    </Link>
-                  ))}
-              </details>
-            ))}
+                      <span className="faq-index" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span>{item.question}</span>
+                      <span className="faq-mark" aria-hidden="true" />
+                    </button>
+                  </h3>
+                  <div
+                    id={answerId}
+                    className="faq-answer"
+                    role="region"
+                    aria-labelledby={questionId}
+                    aria-hidden={!expanded}
+                    inert={!expanded}
+                  >
+                    <div className="faq-answer-inner">
+                      <div className="faq-answer-copy">
+                        <p className="text-body">{item.answer}</p>
+                        {item.link &&
+                          (/^https?:/.test(item.link.to) ? (
+                            <a href={item.link.to} className="faq-answer-link">
+                              {item.link.label}
+                              <ActionIcon size={17} aria-hidden="true" />
+                            </a>
+                          ) : (
+                            <Link to={item.link.to} className="faq-answer-link">
+                              {item.link.label}
+                              <ActionIcon size={17} aria-hidden="true" />
+                            </Link>
+                          ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
