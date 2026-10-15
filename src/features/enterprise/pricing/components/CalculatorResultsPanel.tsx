@@ -8,12 +8,13 @@ import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 type Props = {
+  currency: string;
   result: SavingsResult | null;
   billingCycle: BillingCycle;
   shareMessage: string;
   onShare: () => void;
 };
-const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }: Props) => {
+const CalculatorResultsPanel = ({ currency, result, billingCycle, shareMessage, onShare }: Props) => {
   return (
     <div
       className="flex min-w-0 flex-col self-start rounded-2xl bg-[#002d0e] p-5 text-white sm:p-7"
@@ -32,7 +33,7 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
             <div className="pb-5">
               <dt className="text-body text-white/70">Current KYC cost</dt>
               <dd className="mt-3 text-section font-medium [overflow-wrap:anywhere]">
-                {formatCurrency(result.currentKycCost)}
+                {formatCurrency(result.currentKycCost, currency)}
                 <span className="ml-2 text-body font-normal">/ month</span>
               </dd>
             </div>
@@ -40,7 +41,7 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
               <dt className="text-body text-white/70">Estimated Ontiver cost</dt>
               <dd className="mt-2 text-body font-medium">
                 {result.estimatedOntiverCost !== null
-                  ? `${formatCurrency(result.estimatedOntiverCost)} / month`
+                  ? `${formatCurrency(result.estimatedOntiverCost, currency)} / month`
                   : result.recommendedPlan === "Enterprise"
                     ? "Volume pricing — we'll quote it"
                     : "Enter your monthly volume"}
@@ -52,8 +53,8 @@ const CalculatorResultsPanel = ({ result, billingCycle, shareMessage, onShare }:
                 {result.directSavings === null
                   ? "Shown once a plan applies"
                   : result.directSavings >= 0
-                    ? `${formatCurrency(result.directSavings)} / month`
-                    : `Your current cost is ${formatCurrency(-result.directSavings)} lower per month`}
+                    ? `${formatCurrency(result.directSavings, currency)} / month`
+                    : `Your current cost is ${formatCurrency(-result.directSavings, currency)} lower per month`}
               </dd>
             </div>
             <div className="py-4">

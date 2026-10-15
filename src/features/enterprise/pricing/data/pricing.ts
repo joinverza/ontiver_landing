@@ -1,14 +1,49 @@
-import type { PricingCatalog, PricingPlan } from "../../../../shared/lib/landingApi";
+import type { PricingCatalog, PricingCurrency, PricingPlan } from "../../../../shared/lib/landingApi";
 import catalogSnapshot from "./catalog.json";
 
 export type BillingCycle = "monthly" | "annual";
-export type { PricingCatalog, PricingPlan };
+export type { PricingCatalog, PricingCurrency, PricingPlan };
 
 /**
  * Snapshot of the API's plan catalog (banking/plans.py), used for the first paint and the
  * prerendered page. A backend test fails if this file and the catalog disagree.
  */
 export const bundledCatalog = catalogSnapshot as PricingCatalog;
+
+export const PORTAL_SIGNUP_URL = `${(import.meta.env.VITE_ONTIVER_PORTAL_URL || "https://portal.ontiver.com").replace(/\/+$/, "")}/portal/signup`;
+
+export const CURRENCY_NAMES: Record<PricingCurrency, string> = { USD: "US dollars", NGN: "naira" };
+
+/**
+ * The catalog with every price in one currency. Naira prices are fixed local prices published by
+ * the API, not converted at today's exchange rate.
+ */
+export function localizeCatalog(catalog: PricingCatalog, currency: PricingCurrency): PricingCatalog {
+  const prices = catalog.prices?.[currency];
+  if (!prices) return catalog;
+  return {
+    ...catalog,
+    currency,
+    plans: catalog.plans.map((plan) => {
+      const local = prices[plan.id];
+      return local
+        ? {
+            ...plan,
+            monthly: local.monthly,
+            annualMonthly: local.annualMonthly,
+            overagePerVerification: local.overage,
+            amlScreenOverage: local.amlScreenOverage,
+            monitoringOverage: local.monitoringOverage,
+            highlights: local.highlights,
+          }
+        : plan;
+    }),
+    addons: catalog.addons.map((addon) => {
+      const local = addon.prices?.[currency];
+      return local ? { ...addon, ...local, monthly: local.monthly ?? null } : addon;
+    }),
+  };
+}
 
 export const DEVELOPER_SIGNUP_URL = `${(import.meta.env.VITE_ONTIVER_DEVELOPER_URL || "https://dev.ontiver.com").replace(/\/+$/, "")}/signup`;
 
@@ -18,13 +53,17 @@ export const annualSavingPercent = (plan: PricingPlan) =>
 export const monthlyPrice = (plan: PricingPlan, cycle: BillingCycle) =>
   cycle === "annual" ? (plan.annualMonthly ?? plan.monthly) : plan.monthly;
 
-export const formatUsd = (value: number, cents = false) =>
-  new Intl.NumberFormat("en-US", {
+/** $499, ₦749,000, $0.45. Naira amounts never show kobo. */
+export const formatPrice = (value: number, currency: string, cents = false) => {
+  const fraction = cents && !Number.isInteger(value) && currency !== "NGN" ? 2 : 0;
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
-    minimumFractionDigits: cents ? 2 : 0,
-    maximumFractionDigits: cents ? 2 : 0,
+    currency,
+    currencyDisplay: "narrowSymbol",
+    minimumFractionDigits: fraction,
+    maximumFractionDigits: fraction,
   }).format(value);
+};
 
 const count = (value: number | null, custom = "Custom") => (value === null ? custom : value.toLocaleString("en-US"));
 
@@ -34,10 +73,11 @@ export type ComparisonGroup = { title: string; rows: { label: string; hint?: str
 /** Rows for the comparison table, all derived from the catalog. */
 export const comparisonGroups = (catalog: PricingCatalog): ComparisonGroup[] => {
   const { plans, features, addons } = catalog;
+  const money = (value: number, cents = false) => formatPrice(value, catalog.currency, cents);
   const featureCell = (plan: PricingPlan, key: string): ComparisonCell => {
     if (plan.features.includes(key)) return plan.id === "sandbox" && key !== "webhooks" ? "Test data" : true;
     // Add-on ids match the feature they unlock (AML screening, AML monitoring).
-    return plan.addons.includes(key) ? `Add-on from ${formatUsd(addons.find((addon) => addon.id === key)?.monthly ?? 0)}/mo` : false;
+    return plan.addons.includes(key) ? `Add-on from ${money(addons.find((addon) => addon.id === key)?.monthly ?? 0)}/mo` : false;
   };
   return [
     {
@@ -47,20 +87,20 @@ export const comparisonGroups = (catalog: PricingCatalog): ComparisonGroup[] => 
         {
           label: "Each additional verification",
           values: plans.map((plan) =>
-            plan.overagePerVerification !== null ? formatUsd(plan.overagePerVerification, true) : plan.id === "sandbox" ? "Not available" : "Volume pricing",
+            plan.overagePerVerification !== null ? money(plan.overagePerVerification, true) : plan.id === "sandbox" ? "Not available" : "Volume pricing",
           ),
         },
         { label: "API requests each month", values: plans.map((plan) => count(plan.apiRequests)) },
         {
           label: "AML screens included",
           values: plans.map((plan) =>
-            plan.amlScreens ? `${count(plan.amlScreens)} · then ${formatUsd(plan.amlScreenOverage ?? 0, true)}` : plan.addons.includes("aml_screening") ? "With add-on" : plan.amlScreens === null ? "Custom" : false,
+            plan.amlScreens ? `${count(plan.amlScreens)} · then ${money(plan.amlScreenOverage ?? 0, true)}` : plan.addons.includes("aml_screening") ? "With add-on" : plan.amlScreens === null ? "Custom" : false,
           ),
         },
         {
           label: "Monitored customer profiles",
           values: plans.map((plan) =>
-            plan.monitoringProfiles ? `${count(plan.monitoringProfiles)} · then ${formatUsd(plan.monitoringOverage ?? 0, true)}` : plan.addons.includes("aml_monitoring") ? "With add-on" : plan.monitoringProfiles === null ? "Custom" : false,
+            plan.monitoringProfiles ? `${count(plan.monitoringProfiles)} · then ${money(plan.monitoringOverage ?? 0, true)}` : plan.addons.includes("aml_monitoring") ? "With add-on" : plan.monitoringProfiles === null ? "Custom" : false,
           ),
         },
         { label: "Team seats", values: plans.map((plan) => count(plan.teamSeats, "Unlimited")) },

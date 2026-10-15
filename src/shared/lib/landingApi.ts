@@ -278,8 +278,22 @@ export type PricingPlan = {
   highlights: string[];
 };
 
+export type PricingCurrency = "USD" | "NGN";
+
+/** A plan's prices in one currency, in whole units (dollars or naira). */
+export type PlanPrices = {
+  monthly: number | null;
+  annualMonthly: number | null;
+  overage: number | null;
+  amlScreenOverage: number | null;
+  monitoringOverage: number | null;
+  highlights: string[];
+};
+
 export type PricingCatalog = {
   currency: string;
+  currencies?: PricingCurrency[];
+  prices?: Record<PricingCurrency, Record<string, PlanPrices>>;
   plans: PricingPlan[];
   features: { key: string; label: string; description: string }[];
   addons: {
@@ -292,6 +306,7 @@ export type PricingCatalog = {
     screenOverage?: number;
     includedProfiles?: number;
     profileOverage?: number;
+    prices?: Record<string, { monthly?: number | null; screenOverage?: number; profileOverage?: number }>;
   }[];
 };
 

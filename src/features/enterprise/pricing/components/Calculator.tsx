@@ -51,14 +51,14 @@ const Calculator = ({
     if (!result) return;
     const message =
       "Ontiver KYC baseline: current cost " +
-      formatCurrency(result.currentKycCost) +
+      formatCurrency(result.currentKycCost, catalog?.currency) +
       "/month; " +
       result.lostUsers.toLocaleString() +
       " users lost at " +
       result.dropOffRate +
       "% drop-off." +
       (result.estimatedOntiverCost !== null && result.recommendedPlan
-        ? " Estimated Ontiver cost on " + result.recommendedPlan + ": " + formatCurrency(result.estimatedOntiverCost) + "/month."
+        ? " Estimated Ontiver cost on " + result.recommendedPlan + ": " + formatCurrency(result.estimatedOntiverCost, catalog?.currency) + "/month."
         : "");
     try {
       if (navigator.share) {
@@ -88,6 +88,7 @@ const Calculator = ({
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
           <CalculatorFormPanel
+            currency={catalog?.currency ?? "USD"}
             values={values}
             dropOffRate={dropOffRate}
             onFieldChange={updateField}
@@ -99,6 +100,7 @@ const Calculator = ({
             onCalculate={calculate}
           />
           <CalculatorResultsPanel
+            currency={catalog?.currency ?? "USD"}
             result={result}
             billingCycle={billingCycle}
             shareMessage={shareMessage}
