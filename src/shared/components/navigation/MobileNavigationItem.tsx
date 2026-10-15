@@ -1,10 +1,11 @@
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import ActionIcon from "../ui/ActionIcon";
 import { Link } from "react-router-dom";
-import type { NavItem } from "../../data/navigation";
+import { isNavigationLinkActive, type NavItem } from "../../data/navigation";
 
 type MobileNavigationItemProps = {
   item: NavItem;
   pathname: string;
+  active: boolean;
   expanded: boolean;
   onToggle: () => void;
   onNavigate: () => void;
@@ -13,6 +14,7 @@ type MobileNavigationItemProps = {
 const MobileNavigationItem = ({
   item,
   pathname,
+  active,
   expanded,
   onToggle,
   onNavigate,
@@ -24,9 +26,10 @@ const MobileNavigationItem = ({
       <div className="flex items-center justify-between gap-4 py-4">
         <Link
           to={item.to}
-          aria-current={pathname === item.to ? "page" : undefined}
+          aria-current={pathname === item.to ? "page" : active ? "location" : undefined}
+          data-active={active}
           onClick={onNavigate}
-          className="flex-1 py-2 text-card-title font-semibold"
+          className="mobile-navigation-link flex-1 py-2 text-card-title font-semibold"
         >
           {item.name}
         </Link>
@@ -39,14 +42,15 @@ const MobileNavigationItem = ({
             onClick={onToggle}
             className="grid size-11 shrink-0 place-items-center rounded-full border border-[#002d0e]/15"
           >
-            <ChevronDown
+            <ActionIcon
+              direction="down"
               size={19}
               className={`nav-chevron ${expanded ? "rotate-180" : ""}`}
               aria-hidden="true"
             />
           </button>
         ) : (
-          <ArrowUpRight size={22} aria-hidden="true" />
+          <ActionIcon size={22} aria-hidden="true" />
         )}
       </div>
       {item.children && (
@@ -58,17 +62,15 @@ const MobileNavigationItem = ({
           className="nav-accordion"
         >
           <div className="min-h-0 overflow-hidden">
-            <div className="space-y-1 rounded-2xl bg-white px-2 pb-5">
+            <div className="space-y-1 rounded-2xl bg-surface px-2 pb-5">
               {item.children.map((child) => {
                 const Icon = child.icon;
                 const content = (
                   <>
-                    {Icon && (
-                      <Icon size={20} className="shrink-0 text-[#007d21]" aria-hidden="true" />
-                    )}
+                    {Icon && <Icon size={20} className="shrink-0 text-accent" aria-hidden="true" />}
                     <span>{child.name}</span>
                     {child.external && (
-                      <ArrowUpRight size={15} className="ml-auto shrink-0" aria-hidden="true" />
+                      <ActionIcon size={15} className="ml-auto shrink-0" aria-hidden="true" />
                     )}
                   </>
                 );
@@ -89,7 +91,14 @@ const MobileNavigationItem = ({
                   <Link
                     key={child.to}
                     to={child.to}
-                    aria-current={pathname === child.to ? "page" : undefined}
+                    aria-current={
+                      pathname === child.to
+                        ? "page"
+                        : isNavigationLinkActive(child, pathname)
+                          ? "location"
+                          : undefined
+                    }
+                    data-active={isNavigationLinkActive(child, pathname)}
                     onClick={onNavigate}
                     className={className}
                   >

@@ -1,5 +1,6 @@
+import ActionIcon from "../ui/ActionIcon";
+import NavigationIcon from "../ui/NavigationIcon";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { enterpriseNavLinks, individualNavLinks } from "../../data/navigation";
 import { getAudienceFromPath, getAudienceHome } from "../../lib/audience";
@@ -33,11 +34,11 @@ const Navbar = () => {
     <>
       <header
         data-ontiver-navbar
-        className="fixed inset-x-0 top-0 z-50 border-b border-[#002d0e]/10 bg-white/97 backdrop-blur-md"
+        className="fixed inset-x-0 top-0 z-50 border-b border-[#002d0e]/10 bg-surface/97 backdrop-blur-md"
       >
         <div
           data-mobile-nav-pill
-          className="site-container flex min-h-[76px] items-center justify-between gap-4 py-3 lg:min-h-20"
+          className="site-container navbar-rail flex items-center justify-between gap-4"
         >
           <div className="flex shrink-0 items-center gap-5">
             <Link to={getAudienceHome(audience)} aria-label="Ontiver home" className="shrink-0">
@@ -53,12 +54,9 @@ const Navbar = () => {
             pathname={pathname}
             routeKey={routeKey}
           />
-          <Link
-            to={primaryPath}
-            className="button-primary hidden min-h-10 px-5 py-2.5 lgg:inline-flex"
-          >
+          <Link to={primaryPath} className="button-primary navbar-action hidden lgg:inline-flex">
             {enterprise ? "Get a demo" : "Join Waitlist"}
-            <ArrowUpRight size={16} aria-hidden="true" />
+            <ActionIcon size={16} aria-hidden="true" />
           </Link>
           <button
             type="button"
@@ -67,9 +65,9 @@ const Navbar = () => {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMobileMenu({ routeKey, open: true })}
-            className="grid size-11 place-items-center rounded-full bg-[#edf5eb] lgg:hidden"
+            className="navigation-control navigation-control--icon inline-flex lgg:hidden"
           >
-            <Menu size={21} aria-hidden="true" />
+            <NavigationIcon variant="menu" size={24} />
           </button>
         </div>
       </header>

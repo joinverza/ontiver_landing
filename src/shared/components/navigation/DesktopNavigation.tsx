@@ -1,6 +1,6 @@
-import { ChevronDown } from "lucide-react";
+import ActionIcon from "../ui/ActionIcon";
 import { Link } from "react-router-dom";
-import type { NavItem } from "../../data/navigation";
+import { getActiveNavigationItem, type NavItem } from "../../data/navigation";
 import type { Audience } from "../../lib/audience";
 import DropdownPanel from "./DropdownPanel";
 import { useDesktopNavigation } from "./useDesktopNavigation";
@@ -15,12 +15,13 @@ type DesktopNavigationProps = {
 const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavigationProps) => {
   const { navRef, openName, cancelPending, close, enter, leave, toggle, focusPanel, escape } =
     useDesktopNavigation(routeKey);
+  const activeItem = getActiveNavigationItem(items, pathname);
 
   return (
     <nav
       ref={navRef}
       aria-label="Main navigation"
-      className="hidden items-center gap-3 lgg:flex xl:gap-4"
+      className="desktop-navigation hidden items-center lgg:flex"
       onKeyDown={(event) => {
         if (event.key === "Escape" && openName) {
           event.preventDefault();
@@ -29,7 +30,7 @@ const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavig
       }}
     >
       {items.map((item) => {
-        const active = pathname === item.to || pathname.startsWith(item.to + "/");
+        const active = activeItem === item;
         const open = openName === item.name;
         const panelId = `nav-${item.name.toLowerCase().replaceAll(" ", "-")}`;
         const focusItemPanel = () => focusPanel(item.name, panelId);
@@ -41,13 +42,14 @@ const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavig
             onMouseEnter={() => enter(item.children ? item.name : null)}
             onMouseLeave={() => leave(item.name)}
             onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget as Node)) close();
+              if (open && !event.currentTarget.contains(event.relatedTarget as Node)) close();
             }}
           >
             <div className="flex items-center">
               <Link
                 to={item.to}
-                aria-current={pathname === item.to ? "page" : undefined}
+                aria-current={pathname === item.to ? "page" : active ? "location" : undefined}
+                data-active={active}
                 onClick={close}
                 onKeyDown={(event) => {
                   if (item.children && event.key === "ArrowDown") {
@@ -55,7 +57,7 @@ const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavig
                     focusItemPanel();
                   }
                 }}
-                className={`py-3 text-sm font-medium transition-colors hover:text-[#007d21] ${active || open ? "text-[#007d21]" : "text-[#002d0e]/75"}`}
+                className={`desktop-navigation-link py-3 transition-colors hover:text-accent ${active || open ? "text-accent" : "text-[#002d0e]/75"}`}
               >
                 {item.name}
               </Link>
@@ -74,7 +76,8 @@ const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavig
                   }}
                   className="grid size-7 place-items-center rounded-full text-[#002d0e]/70 hover:bg-[#edf5e7]"
                 >
-                  <ChevronDown
+                  <ActionIcon
+                    direction="down"
                     size={14}
                     className={`nav-chevron ${open ? "rotate-180" : ""}`}
                     aria-hidden="true"
@@ -87,9 +90,11 @@ const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavig
                 id={panelId}
                 item={item}
                 audience={audience}
+                pathname={pathname}
                 open={open}
                 onEnter={cancelPending}
                 onNavigate={close}
+                onClose={escape}
               />
             )}
           </div>

@@ -1,7 +1,8 @@
+import ActionIcon from "../ui/ActionIcon";
+import NavigationIcon from "../ui/NavigationIcon";
 import { useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import type { NavItem } from "../../data/navigation";
+import { getActiveNavigationItem, type NavItem } from "../../data/navigation";
 import { getAudienceHome, type Audience } from "../../lib/audience";
 import AudienceToggle from "./AudienceToggle";
 import { useMotionSettings } from "../motion/MotionSettings";
@@ -37,6 +38,7 @@ const MobileMenu = ({
     name: null as string | null,
   });
   const close = () => setMobileMenuOpen(false);
+  const activeItem = getActiveNavigationItem(navLinks, pathname);
 
   if (group.routeKey !== routeKey || group.menuOpen !== mobileMenuOpen) {
     setGroup({ routeKey, menuOpen: mobileMenuOpen, name: null });
@@ -64,7 +66,7 @@ const MobileMenu = ({
           event.currentTarget.dataset.state = "entered";
         }
       }}
-      className="ontiver-mobile-menu fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overscroll-contain border-0 bg-white p-6 text-[#002d0e] backdrop:bg-black/20 sm:p-10"
+      className="ontiver-mobile-menu fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overscroll-contain border-0 bg-surface p-6 text-[#002d0e] backdrop:bg-black/20 sm:p-10"
     >
       <div className="flex min-h-full flex-col">
         <div className="flex items-center justify-between">
@@ -75,9 +77,9 @@ const MobileMenu = ({
             type="button"
             aria-label="Close menu"
             onClick={close}
-            className="grid size-12 place-items-center rounded-full border border-[#002d0e]/15 bg-white"
+            className="navigation-control navigation-control--icon inline-flex"
           >
-            <X size={21} aria-hidden="true" />
+            <NavigationIcon variant="close" size={24} />
           </button>
         </div>
         <AudienceToggle className="mt-10 self-start" />
@@ -87,6 +89,7 @@ const MobileMenu = ({
               key={item.to}
               item={item}
               pathname={pathname}
+              active={activeItem === item}
               expanded={expanded === item.name}
               onToggle={() =>
                 setGroup({
@@ -108,7 +111,7 @@ const MobileMenu = ({
           }}
         >
           {audience === "enterprise" ? "Request Demo" : "Join Waitlist"}
-          <ArrowUpRight size={18} aria-hidden="true" />
+          <ActionIcon size={18} aria-hidden="true" />
         </button>
         <p className="pt-7 text-center text-meta text-[#002d0e]/55">
           &copy; 2026 Ontiver. All rights reserved.

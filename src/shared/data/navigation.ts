@@ -17,6 +17,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { platformLayers } from "../../features/enterprise/platform/data/platform";
+import { editorialPhotos } from "./editorialPhotos";
+import type { EditorialImage } from "./imagery";
 
 export type NavLink = {
   name: string;
@@ -27,6 +29,45 @@ export type NavLink = {
 };
 
 export type NavItem = NavLink & { children?: NavLink[] };
+
+export const isNavigationLinkActive = (item: NavLink, pathname: string) =>
+  !item.external && (pathname === item.to || pathname.startsWith(`${item.to}/`));
+
+export const getActiveNavigationItem = (items: NavItem[], pathname: string) =>
+  items.find((item) => isNavigationLinkActive(item, pathname)) ??
+  items.find((item) => item.children?.some((child) => isNavigationLinkActive(child, pathname)));
+
+export const navigationImages: Record<string, EditorialImage> = {
+  "/identity": editorialPhotos.identity,
+  "/how-it-works": editorialPhotos.howItWorks,
+  "/use-cases": editorialPhotos.individualUseCases,
+  "/security": editorialPhotos.security,
+  "/resources": editorialPhotos.resources,
+  "/blogs": editorialPhotos.blogIdentity,
+  "/privacy": editorialPhotos.legal,
+  "/support": editorialPhotos.support,
+  "/contact": editorialPhotos.contact,
+  "/enterprise/platform": editorialPhotos.platformOverview,
+  "/enterprise/platform/identity-sources": editorialPhotos.identitySources,
+  "/enterprise/platform/verification-engine": editorialPhotos.verification,
+  "/enterprise/platform/workflow-engine": editorialPhotos.workflow,
+  "/enterprise/platform/intelligence": editorialPhotos.intelligence,
+  "/enterprise/platform/consent-and-privacy": editorialPhotos.consent,
+  "/enterprise/platform/identity-proofs": editorialPhotos.proof,
+  "/enterprise/use-cases": editorialPhotos.industryOverview,
+  "/enterprise/use-cases/fintechs": editorialPhotos.fintech,
+  "/enterprise/use-cases/digital-lenders": editorialPhotos.lending,
+  "/enterprise/use-cases/marketplaces": editorialPhotos.marketplace,
+  "/enterprise/use-cases/hr-platforms": editorialPhotos.hr,
+  "/enterprise/use-cases/logistics-delivery": editorialPhotos.logistics,
+  "/enterprise/use-cases/schools": editorialPhotos.education,
+  "/enterprise/use-cases/compliance-teams": editorialPhotos.compliance,
+  "/enterprise/resources": editorialPhotos.enterpriseResources,
+  "/enterprise/security": editorialPhotos.enterpriseSecurity,
+  "/enterprise/support": editorialPhotos.enterpriseSupport,
+  "/enterprise/contact": editorialPhotos.enterpriseContact,
+  "https://docs.ontiver.com/": editorialPhotos.blogWebhooks,
+};
 
 export const individualNavLinks: NavItem[] = [
   {
