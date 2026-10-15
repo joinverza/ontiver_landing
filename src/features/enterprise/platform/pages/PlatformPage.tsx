@@ -1,4 +1,5 @@
-import { ArrowLeft, ArrowUpRight, Plus } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { ArrowLeft, Plus } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
@@ -11,55 +12,55 @@ const PlatformPage = () => {
   const relatedLayers = platformLayers.filter((item) => layer.relatedIds.includes(item.id));
 
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
+    <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
       <section className="page-intro">
-        <div className="site-container">
+        <div
+          className={`site-container split-hero-grid ${platformLayers.indexOf(layer) % 2 ? "split-hero-grid--image-left" : ""}`}
+        >
           <Link
             to="/enterprise/platform"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-[#526058] hover:text-[#007d21]"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-[#526058] hover:text-accent"
           >
             <ArrowLeft size={16} aria-hidden="true" /> Explore the platform
           </Link>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div data-scroll-reveal className="min-w-0">
-              <p className="eyebrow">Ontiver {layer.title}</p>
-              <h1 className="mt-5 text-page-hero font-normal [overflow-wrap:anywhere]">
-                {layer.headline}
-              </h1>
-              <p className="mt-6 max-w-xl text-subtitle text-[#526058]">{layer.description}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/enterprise/contact" className="button-primary">
-                  See This Layer in a Demo <ArrowUpRight size={17} aria-hidden="true" />
-                </Link>
-                <a href="#capabilities" className="button-secondary">
-                  Explore capabilities
-                </a>
-              </div>
+          <div data-scroll-reveal className="page-hero-content">
+            <p className="eyebrow">Ontiver {layer.title}</p>
+            <h1 className="page-hero-heading text-page-hero font-normal">{layer.headline}</h1>
+            <p className="page-hero-description text-subtitle text-[#526058]">
+              {layer.description}
+            </p>
+            <div className="page-hero-actions">
+              <Link to="/enterprise/contact" className="button-primary">
+                See This Layer in a Demo <ActionIcon size={17} aria-hidden="true" />
+              </Link>
+              <a href="#capabilities" className="button-secondary">
+                Explore capabilities
+              </a>
             </div>
-            <div data-scroll-reveal className="min-w-0">
-              <WorkflowVisual
-                variant={layer.visualVariant}
-                title={layer.visualTitle}
-                purpose={layer.description}
-                claims={layer.visualClaims}
-                steps={layer.workflow}
-                compact
-                priority
-                className="hero-workflow-visual"
-              />
-            </div>
+          </div>
+          <div data-scroll-reveal className="page-hero-media">
+            <WorkflowVisual
+              variant={layer.visualVariant}
+              title={layer.visualTitle}
+              purpose={layer.description}
+              claims={layer.visualClaims}
+              steps={layer.workflow}
+              compact
+              priority
+              className="hero-workflow-visual"
+            />
           </div>
         </div>
       </section>
 
-      <nav aria-label="Platform layers" className="border-y border-[#e2e9df] bg-white">
+      <nav aria-label="Platform layers" className="border-y border-[#e2e9df] bg-surface">
         <div className="site-container flex flex-wrap gap-x-6 gap-y-1 py-5">
           {platformLayers.map((item) => (
             <Link
               key={item.id}
               to={`/enterprise/platform/${item.id}`}
               aria-current={item.id === layer.id ? "page" : undefined}
-              className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${item.id === layer.id ? "bg-[#edf5eb] text-[#007d21]" : "text-[#526058] hover:bg-[#f7f9f6] hover:text-[#007d21]"}`}
+              className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${item.id === layer.id ? "bg-[#edf5eb] text-accent" : "text-[#526058] hover:bg-surface-muted hover:text-accent"}`}
             >
               {item.title}
             </Link>
@@ -68,7 +69,7 @@ const PlatformPage = () => {
       </nav>
 
       <section id="capabilities" className="section-space scroll-mt-28">
-        <div className="site-container grid items-start gap-8 lg:grid-cols-2 lg:gap-16">
+        <div className="site-container equal-columns grid gap-8 lg:grid-cols-2 lg:gap-16">
           <div data-scroll-reveal>
             <p className="eyebrow">The building blocks</p>
             <h2 className="section-heading mt-5">
@@ -85,7 +86,7 @@ const PlatformPage = () => {
                   {capability.title}
                   <Plus
                     size={20}
-                    className="shrink-0 text-[#007d21] transition-transform group-open:rotate-45"
+                    className="shrink-0 text-accent transition-transform group-open:rotate-45"
                     aria-hidden="true"
                   />
                 </summary>
@@ -96,7 +97,7 @@ const PlatformPage = () => {
         </div>
       </section>
 
-      <section className="section-space bg-[#f7f8f5]">
+      <section className="section-space bg-surface-muted">
         <div className="site-container">
           <h2 data-scroll-reveal className="section-heading max-w-3xl">
             How it comes together.
@@ -110,7 +111,7 @@ const PlatformPage = () => {
                 key={step.title}
                 className="min-w-0 border-t border-[#cfdacb] pt-4"
               >
-                <span className="text-meta font-medium text-[#007d21]">
+                <span className="text-meta font-medium text-accent">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 text-card-title font-medium">{step.title}</h3>
@@ -125,7 +126,7 @@ const PlatformPage = () => {
         <div className="site-container">
           <div
             data-scroll-reveal
-            className="grid gap-8 rounded-2xl bg-[#002d0e] p-6 text-white sm:p-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-12"
+            className="equal-columns grid gap-8 bg-[#002d0e] p-6 text-white sm:p-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-12"
           >
             <div>
               <p className="text-meta font-semibold uppercase text-[#c7e6b5]">Before your pilot</p>
@@ -133,11 +134,8 @@ const PlatformPage = () => {
                 Build your verification journey.
               </h2>
               <p className="mt-4 max-w-xl text-body text-white/75">{layer.boundary}</p>
-              <Link
-                to="/enterprise/contact"
-                className="button-primary mt-6 !border-white !bg-white !text-[#002d0e] hover:!bg-[#edf5e7]"
-              >
-                See This Layer in a Demo <ArrowUpRight size={18} aria-hidden="true" />
+              <Link to="/enterprise/contact" className="button-primary button-on-dark mt-6">
+                See This Layer in a Demo <ActionIcon size={18} aria-hidden="true" />
               </Link>
             </div>
             <ol className="border-t border-white/20 lg:border-t-0 lg:border-l lg:pl-8">
@@ -178,18 +176,18 @@ const PlatformPage = () => {
               <Link
                 key={item.id}
                 to={`/enterprise/platform/${item.id}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
               >
                 {item.title}
-                <ArrowUpRight size={17} aria-hidden="true" />
+                <ActionIcon size={17} aria-hidden="true" />
               </Link>
             ))}
             <Link
               to="/enterprise/security"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
             >
               Security and trust
-              <ArrowUpRight size={17} aria-hidden="true" />
+              <ActionIcon size={17} aria-hidden="true" />
             </Link>
           </nav>
         </div>

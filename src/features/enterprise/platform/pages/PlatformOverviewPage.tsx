@@ -1,4 +1,5 @@
-import { ArrowUpRight, Code2, LayoutDashboard, Smartphone } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { Code2, LayoutDashboard, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
@@ -15,7 +16,7 @@ const PlatformOverviewPage = () => {
         <>
           Identity checks.
           <br />
-          <span className="text-[#007d21]">Connected workflows.</span>
+          <span className="text-accent">Connected workflows.</span>
         </>
       }
       description="Request evidence, record consent, run selected checks, and review the results. Turn approved claims into reusable proof, with the person in control of each share."
@@ -37,41 +38,36 @@ const PlatformOverviewPage = () => {
     >
       <section className="section-space">
         <div className="site-container">
-          <h2 data-scroll-reveal className="section-heading mx-auto max-w-4xl text-center">
+          <h2 data-scroll-reveal className="section-heading max-w-4xl">
             Six layers.
             <br />
             One verification journey.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-body text-[#526058]">
+          <p className="mt-6 max-w-2xl text-body text-[#526058]">
             Start with the checks your pilot needs. Additional sources and capabilities are scoped
             with your team.
           </p>
-          <div className="mt-9 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="editorial-links mt-9">
             {platformLayers.map((layer) => {
               return (
                 <Link
                   data-scroll-reveal
                   key={layer.id}
                   to={`/enterprise/platform/${layer.id}`}
-                  className="group block min-w-0 border-t border-[#d6dfd1] py-6"
+                  className="editorial-link group"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-card-title font-medium group-hover:text-[#007d21]">
-                      {layer.title}
-                    </h3>
-                    <ArrowUpRight
-                      className="mt-1 size-5 shrink-0 text-[#007d21]"
-                      aria-hidden="true"
-                    />
-                  </div>
+                  <h3 className="text-card-title font-medium group-hover:text-accent">
+                    {layer.title}
+                  </h3>
                   <p className="mt-3 max-w-sm text-body text-[#526058]">{layer.description}</p>
+                  <ActionIcon className="editorial-link-arrow size-6" aria-hidden="true" />
                 </Link>
               );
             })}
           </div>
         </div>
       </section>
-      <section className="section-space bg-[#f7f8f5]">
+      <section className="section-space bg-surface-muted">
         <div className="site-container">
           <h2 data-scroll-reveal className="section-heading max-w-4xl">
             Built for both sides
@@ -97,7 +93,7 @@ const PlatformOverviewPage = () => {
               },
             ].map(({ icon: Icon, title, copy }) => (
               <article data-scroll-reveal key={title} className="border-t border-[#cfdacb] pt-5">
-                <Icon className="size-7 text-[#007d21]" aria-hidden="true" />
+                <Icon className="size-7 text-accent" aria-hidden="true" />
                 <h3 className="mt-4 text-card-title font-medium">{title}</h3>
                 <p className="mt-3 text-body text-[#526058]">{copy}</p>
               </article>
