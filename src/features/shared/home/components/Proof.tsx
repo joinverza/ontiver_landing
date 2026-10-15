@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link } from "react-router-dom";
 import {
   certificationProof,
@@ -16,7 +16,7 @@ export const PartnerStrip = ({ audience = "enterprise" }: { audience?: Audience 
   return (
     <section
       aria-label="Pilot partners"
-      className="section-space section-compact border-y border-[#002d0e]/10 bg-white"
+      className="section-space section-compact border-y border-[#002d0e]/10 bg-surface"
     >
       <div className="site-container">
         {partners.length ? (
@@ -62,7 +62,7 @@ export const PartnerStrip = ({ audience = "enterprise" }: { audience?: Audience 
               className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold"
             >
               {audience === "enterprise" ? "Explore a pilot" : "Join the Waitlist"}
-              <ArrowUpRight size={16} />
+              <ActionIcon size={16} />
             </Link>
           </div>
         )}
@@ -75,7 +75,7 @@ export const EvidenceCards = ({ audience }: { audience: Audience }) => {
   const recognition = recognitionProof.filter(isPublishedProof);
   if (!recognition.length) return null;
   return (
-    <section aria-label="Independent recognition" className="section-space bg-[#f7f9f5]">
+    <section aria-label="Independent recognition" className="section-space bg-surface-muted">
       <div className="site-container">
         <div className="mb-9">
           <p className="eyebrow">Independent recognition</p>
@@ -94,7 +94,7 @@ export const EvidenceCards = ({ audience }: { audience: Audience }) => {
               <h3 className="text-card-title font-semibold">{item.name}</h3>
               <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold">
                 Read the report
-                <ArrowUpRight size={17} />
+                <ActionIcon size={17} />
               </span>
             </a>
           ))}
@@ -110,7 +110,7 @@ export const CertificationStrip = () => {
   return (
     <section
       aria-label="Security documentation"
-      className="section-space section-compact border-y border-[#002d0e]/10 bg-white"
+      className="section-space section-compact border-y border-[#002d0e]/10 bg-surface"
     >
       <div className="site-container flex flex-wrap items-center justify-center gap-10">
         {certifications.map((item) => (
@@ -141,21 +141,30 @@ export const PilotResults = () => {
           Agree the baseline before starting, then follow completion, verification time and
           user-approved reuse in your dashboard from the first request.
         </p>
-        <dl className="mt-6 grid gap-7 sm:grid-cols-3 sm:gap-10">
+        <dl className="spotlight-grid mt-8">
           {pilotMetrics.map((metric) => {
             const result = isPublishedMetricResult(metric.result) ? metric.result : null;
             return (
               <div
                 data-scroll-reveal
                 key={metric.id}
-                className="flex flex-col border-t border-[#002d0e]/20 pt-4"
+                className="spotlight-cell"
+                tabIndex={0}
+                aria-labelledby={`pilot-metric-${metric.id}`}
               >
-                <dt className="text-card-title font-semibold">{metric.label}</dt>
-                <dd className="order-first mb-2 text-section font-semibold text-[#007d21]">
+                <dt
+                  id={`pilot-metric-${metric.id}`}
+                  className="spotlight-intro text-card-title font-medium"
+                >
+                  {metric.label}
+                </dt>
+                <dd className="spotlight-description spotlight-reveal text-body">
+                  {metric.description}
+                </dd>
+                <dd className="spotlight-value spotlight-reveal font-medium">
                   {result ? result.value : metric.measuredBy.value}
                 </dd>
-                <dd className="mt-3 text-body text-[#526058]">{metric.description}</dd>
-                <dd className="mt-2 text-meta font-medium text-[#002d0e]/55">
+                <dd className="spotlight-detail spotlight-reveal text-meta">
                   {result ? (
                     <a className="underline underline-offset-4" href={result.evidenceUrl}>
                       {result.context}
@@ -177,7 +186,7 @@ export const RegulatoryCredentials = ({ tone = "white" }: { tone?: "white" | "mu
   <section
     id="regulatory-standing"
     aria-labelledby="regulatory-standing-heading"
-    className={`section-space section-compact scroll-mt-24 border-y border-[#002d0e]/10 ${tone === "muted" ? "bg-[#f7f9f5]" : "bg-white"}`}
+    className={`section-space section-compact scroll-mt-24 border-y border-[#002d0e]/10 ${tone === "muted" ? "bg-surface-muted" : "bg-surface"}`}
   >
     <div className="site-container">
       <div className="max-w-[720px]" data-scroll-reveal>
@@ -186,8 +195,8 @@ export const RegulatoryCredentials = ({ tone = "white" }: { tone?: "white" | "mu
           Registered and approved in Nigeria.
         </h2>
         <p className="mt-4 text-body text-[#526058]">
-          Ontiver is operated by Qynara Technologies Limited (RC 9436348), registered with the Nigeria
-          Data Protection Commission and approved by NIMC for NIN verification.
+          Ontiver is operated by Qynara Technologies Limited (RC 9436348), registered with the
+          Nigeria Data Protection Commission and approved by NIMC for NIN verification.
         </p>
       </div>
       <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -195,7 +204,7 @@ export const RegulatoryCredentials = ({ tone = "white" }: { tone?: "white" | "mu
           <article
             key={credential.id}
             data-scroll-reveal
-            className="flex flex-col rounded-[20px] border border-[#002d0e]/12 bg-white p-6 sm:p-7"
+            className="flex flex-col rounded-[20px] border border-[#002d0e]/12 bg-surface p-6 sm:p-7"
           >
             <div className="flex h-16 items-center">
               <img
@@ -228,16 +237,16 @@ export const RegulatoryCredentials = ({ tone = "white" }: { tone?: "white" | "mu
                   href={credential.evidence.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
                 >
-                  {credential.evidence.label} <ArrowUpRight size={16} aria-hidden="true" />
+                  {credential.evidence.label} <ActionIcon size={16} aria-hidden="true" />
                 </a>
               ) : (
                 <Link
                   to={credential.evidence.href}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
                 >
-                  {credential.evidence.label} <ArrowUpRight size={16} aria-hidden="true" />
+                  {credential.evidence.label} <ActionIcon size={16} aria-hidden="true" />
                 </Link>
               )}
             </div>

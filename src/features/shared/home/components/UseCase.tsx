@@ -1,5 +1,5 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCaseCards } from "../../../enterprise/use-cases/data/useCases";
 import { individualUseCaseCards } from "../../../../shared/data/audienceContent";
@@ -48,7 +48,7 @@ const UseCase = ({ audience }: { audience: Audience }) => {
     });
   };
   return (
-    <section id="cases" className="section-space bg-[#f4f6f1]">
+    <section id="cases" className="section-space bg-surface-muted">
       <div className="site-container">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-7">
           <div className="max-w-[790px]">
@@ -72,7 +72,7 @@ const UseCase = ({ audience }: { audience: Audience }) => {
               disabled={edges.start}
               className="grid size-13 place-items-center rounded-full border border-[#002d0e]/35 disabled:opacity-30"
             >
-              <ArrowLeft size={23} />
+              <ActionIcon direction="back" size={23} />
             </button>
             <button
               type="button"
@@ -81,7 +81,7 @@ const UseCase = ({ audience }: { audience: Audience }) => {
               disabled={edges.end}
               className="grid size-13 place-items-center rounded-full bg-[#002d0e] text-white disabled:opacity-30"
             >
-              <ArrowRight size={23} />
+              <ActionIcon size={23} />
             </button>
           </div>
         </div>
@@ -109,15 +109,21 @@ const UseCase = ({ audience }: { audience: Audience }) => {
               imagery.candidateReview;
             const content = (
               <>
-                <ContextPhoto image={photo} size="card" />
-                <h3 className="mt-4 flex items-start justify-between gap-3 text-card-title font-medium">
-                  {card.title}
-                  {enterprise && <ArrowUpRight size={22} className="mt-1 shrink-0" />}
-                </h3>
-                <p className="mt-2 text-body text-[#526058]">{card.description}</p>
+                <div className="case-study-media">
+                  <ContextPhoto image={photo} size="card" />
+                </div>
+                <div className="case-study-content">
+                  <h3 className="flex items-start justify-between gap-3 text-section font-medium">
+                    {card.title}
+                    {enterprise && (
+                      <ActionIcon size={28} className="mt-1 shrink-0" aria-hidden="true" />
+                    )}
+                  </h3>
+                  <p className="mt-5 text-subtitle text-[#526058]">{card.description}</p>
+                </div>
               </>
             );
-            const className = "w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[29%]";
+            const className = "case-study-slide w-full shrink-0 snap-start";
             return enterprise ? (
               <Link key={card.id} to={`/enterprise/use-cases/${card.id}`} className={className}>
                 {content}
@@ -134,7 +140,7 @@ const UseCase = ({ audience }: { audience: Audience }) => {
           className="mt-7 inline-flex items-center gap-2 text-body font-medium"
         >
           {enterprise ? "Explore all industry workflows" : "Explore these journeys"}
-          <ArrowUpRight size={18} />
+          <ActionIcon size={18} />
         </Link>
       </div>
     </section>

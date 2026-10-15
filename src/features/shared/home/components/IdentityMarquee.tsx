@@ -22,7 +22,7 @@ const IdentityMarquee = ({ audience }: { audience: Audience }) => {
   return (
     <section
       aria-label="The reusable identity journey"
-      className="section-space section-compact bg-white"
+      className="section-space section-compact bg-surface"
     >
       <div className="site-container">
         <div className="mb-7 flex items-center justify-between gap-4">
@@ -44,9 +44,9 @@ const IdentityMarquee = ({ audience }: { audience: Audience }) => {
                 {items.map(({ title, icon: Icon }) => (
                   <span
                     key={title}
-                    className="flex items-center gap-4 rounded-2xl bg-[#f4f6f1] px-8 py-5 text-card-title font-medium"
+                    className="flex items-center gap-4 rounded-2xl bg-surface-muted px-8 py-5 text-card-title font-medium"
                   >
-                    <Icon size={27} className="text-[#007d21]" aria-hidden="true" />
+                    <Icon size={27} className="text-accent" aria-hidden="true" />
                     {title}
                   </span>
                 ))}
