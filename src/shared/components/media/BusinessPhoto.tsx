@@ -1,4 +1,5 @@
 import type { EditorialImage } from "../../data/imagery";
+import { SiteImage } from "./SiteImage";
 
 export const BusinessPhoto = ({
   image,
@@ -10,14 +11,12 @@ export const BusinessPhoto = ({
   priority?: boolean;
 }) => {
   return (
-    <img
+    <SiteImage
       src={image.src}
       alt={image.alt}
       width={image.width}
       height={image.height}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : undefined}
-      decoding="async"
+      priority={priority}
       className={`h-full w-full object-cover ${className}`}
       style={{ objectPosition: image.objectPosition }}
     />
@@ -36,8 +35,7 @@ export const PhotoMosaic = ({
       {images.slice(0, 3).map((image, index) => (
         <div
           key={image.src}
-          data-scroll-reveal
-          className={`min-h-0 overflow-hidden rounded-2xl ${index === 2 ? "col-span-2" : ""}`}
+          className={`min-h-0 overflow-hidden ${index === 2 ? "col-span-2" : ""}`}
         >
           <BusinessPhoto image={image} priority={priority && index < 2} />
         </div>

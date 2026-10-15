@@ -1,4 +1,5 @@
 import type { EditorialImage } from "../../data/imagery";
+import { SiteImage } from "./SiteImage";
 
 type EditorialCollageProps = {
   image: EditorialImage;
@@ -20,14 +21,13 @@ const EditorialCollage = ({
   >
     {[image, ...(detailImage ? [detailImage] : [])].map((photo, index) => (
       <div className="editorial-collage-frame" key={photo.src}>
-        <img
+        <SiteImage
           src={photo.src}
           alt={photo.alt}
           width={photo.width}
           height={photo.height}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority && index === 0 ? "high" : undefined}
-          decoding="async"
+          priority={priority && index === 0}
+          sizes={priority ? "(min-width: 1024px) 47vw, 100vw" : undefined}
           style={{ objectPosition: photo.objectPosition }}
         />
       </div>

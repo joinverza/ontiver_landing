@@ -194,7 +194,9 @@ export const observePageReveals = (shell: HTMLElement) => {
     window.removeEventListener("resize", queueFrame);
     document.removeEventListener("visibilitychange", updateListeners);
     reveals.forEach((element) => {
-      element.classList.add("ontiver-reveal-visible");
+      // Restore the visible baseline without marking unseen content as revealed.
+      // StrictMode can initialize the same mounted elements again immediately.
+      element.classList.remove("ontiver-reveal");
       element.style.removeProperty("--reveal-delay");
     });
     motionTargets.forEach(resetMotion);

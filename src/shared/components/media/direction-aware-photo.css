@@ -1,0 +1,92 @@
+.direction-photo {
+  --hover-x: 0px;
+  --hover-y: 24px;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0;
+  background: var(--surface-muted);
+}
+
+.direction-photo-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.direction-photo-media > img,
+.direction-photo-media > .editorial-collage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.direction-photo-media > img {
+  display: block;
+}
+
+.direction-photo-media > .editorial-collage {
+  display: grid;
+}
+
+.direction-photo-caption {
+  padding: clamp(1.25rem, 2.222vw, 2.5rem);
+  color: #fff;
+  background: linear-gradient(#00190da3, #00190df2);
+  font-size: var(--text-body);
+  line-height: 1.55;
+}
+
+.direction-photo-caption :is(p, h2, h3, li, svg) {
+  color: inherit;
+}
+
+.direction-photo-caption .editorial-workflow-copy {
+  padding: 0;
+}
+
+.direction-photo-caption .editorial-workflow-details {
+  border-color: #ffffff50;
+}
+
+.direction-photo:focus-visible {
+  outline: 3px solid var(--ink-accent);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html:not([data-motion="paused"]) .direction-photo-caption {
+    opacity: 0;
+    transform: translate(var(--hover-x), var(--hover-y));
+    transition:
+      opacity 240ms ease,
+      transform 300ms ease;
+  }
+
+  html:not([data-motion="paused"]) .direction-photo-media {
+    transform: scale(1.055);
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html:not([data-motion="paused"])
+    .direction-photo:is(:hover, :focus-within)
+    .direction-photo-caption,
+  html:not([data-motion="paused"]) a:focus-visible > .direction-photo .direction-photo-caption {
+    opacity: 1;
+    transform: none;
+  }
+
+  html:not([data-motion="paused"])
+    .direction-photo:is(:hover, :focus-within)
+    .direction-photo-media,
+  html:not([data-motion="paused"]) a:focus-visible > .direction-photo .direction-photo-media {
+    transform: scale(1.055) translate(calc(var(--hover-x) * -0.3), calc(var(--hover-y) * -0.3));
+  }
+}
