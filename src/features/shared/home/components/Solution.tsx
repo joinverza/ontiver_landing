@@ -1,13 +1,13 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useEffect, useState } from "react";
-import { ArrowRight, Pause, Play } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { solutionSteps } from "../../../../shared/data/solution";
 import { individualSolutionSteps } from "../../../../shared/data/audienceContent";
 import type { Audience } from "../../../../shared/lib/audience";
 import { useMotionSettings } from "../../../../shared/components/motion/MotionSettings";
-import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
 import { useDocumentVisible, useInViewport } from "../../../../shared/hooks/useVisibility";
+import SolutionMedia from "./SolutionMedia";
 
 const Solution = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
@@ -32,9 +32,18 @@ const Solution = ({ audience }: { audience: Audience }) => {
   }, [playing, steps.length]);
 
   return (
-    <section ref={sectionRef} id="solution" className="section-space bg-[#f4f6f1]">
-      <div className="site-container grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-        <div data-scroll-reveal>
+    <section ref={sectionRef} id="solution" className="section-space bg-surface-muted">
+      <div className="site-container story-split">
+        <div className="story-split-media">
+          <SolutionMedia key={audience} steps={steps} selectedStep={selectedStep} />
+        </div>
+        <div data-scroll-reveal className="story-split-content">
+          <div className="mb-5 flex items-center justify-between gap-3 text-meta text-[#526058]">
+            <span>{enterprise ? "Enterprise + user journey" : "Planned user app"}</span>
+            <span>
+              0{selectedStep + 1} / 0{steps.length}
+            </span>
+          </div>
           <div className="mb-9 flex items-start justify-between gap-5">
             <h2 className="section-heading">
               {enterprise ? "Request. Review. Reuse." : "From a request to a reusable proof."}
@@ -60,7 +69,10 @@ const Solution = ({ audience }: { audience: Audience }) => {
             }}
           >
             {steps.map((step, index) => (
-              <div key={step.title} className="relative border-l border-[#002d0e]/15 py-2.5 pl-5">
+              <div
+                key={step.title}
+                className="relative border-t border-l border-[#002d0e]/15 py-5 pl-5 last:border-b"
+              >
                 {selectedStep === index && (
                   <span
                     key={selectedStep}
@@ -83,30 +95,21 @@ const Solution = ({ audience }: { audience: Audience }) => {
                   </button>
                 </h3>
                 <div id={`workflow-step-${audience}-${index}`} hidden={selectedStep !== index}>
-                  <p className="mt-3 text-body text-[#526058]">{step.para}</p>
+                  <p className="solution-description mt-3 text-body text-[#526058]">{step.para}</p>
                 </div>
               </div>
             ))}
           </div>
+          <p key={selectedStep} className="workflow-screen mt-5 text-card-title font-medium">
+            {steps[selectedStep].title}
+          </p>
           <Link
             to={enterprise ? "/enterprise/platform" : "/how-it-works"}
             className="mt-8 inline-flex items-center gap-3 text-body font-medium"
           >
             Explore the journey
-            <ArrowRight size={19} className="text-[#007d21]" />
+            <ActionIcon size={19} className="text-accent" />
           </Link>
-        </div>
-        <div data-media-reveal className="min-w-0">
-          <div className="mb-4 flex items-center justify-between gap-3 text-meta text-[#526058]">
-            <span>{enterprise ? "Enterprise + user journey" : "Planned user app"}</span>
-            <span>
-              0{selectedStep + 1} / 0{steps.length}
-            </span>
-          </div>
-          <ContextPhoto image={enterprise ? imagery.teamwork : imagery.everydayPhone} />
-          <p key={selectedStep} className="workflow-screen mt-4 text-card-title font-medium">
-            {steps[selectedStep].title}
-          </p>
         </div>
       </div>
     </section>

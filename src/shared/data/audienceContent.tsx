@@ -4,6 +4,7 @@ import type { SolutionStep } from "./solution";
 import type { SecurityFeature } from "./trust";
 import type { UseCaseCard } from "../../features/enterprise/use-cases/data/useCases";
 import { imagery } from "./imagery";
+import { editorialPhotos } from "./editorialPhotos";
 
 export const individualProblems: ProblemItem[] = [
   {
@@ -34,36 +35,43 @@ export const individualSolutionSteps: SolutionStep[] = [
     icon: "/assets/verify.svg",
     title: "Review the request",
     para: "See who's asking, what they need, and why, before you do anything.",
+    image: editorialPhotos.personalPhone,
   },
   {
     icon: "/assets/proof.svg",
     title: "Make your choice",
     para: "Approve, decline, or ask a question first.",
+    image: editorialPhotos.consent,
   },
   {
     icon: "/assets/consent.svg",
     title: "Submit your evidence",
     para: "Provide only what's requested, through a guided flow.",
+    image: editorialPhotos.howItWorks,
   },
   {
     icon: "/assets/share.svg",
     title: "Follow the review",
     para: "Watch your request move through verification in real time.",
+    image: editorialPhotos.personalLaptop,
   },
   {
     icon: "/assets/reuse.svg",
     title: "Keep approved proofs",
     para: "Once verified, your proof stays with you for future use.",
+    image: editorialPhotos.individualUseCases,
   },
   {
     icon: "/assets/consent.svg",
     title: "Approve the next share",
     para: "Reuse your proof with a new request instead of starting over.",
+    image: editorialPhotos.blogIdentity,
   },
   {
     icon: "/assets/reuse.svg",
     title: "Manage your history",
     para: "Review, revoke, or check on anything you've ever shared.",
+    image: editorialPhotos.sharingHistory,
   },
 ];
 

@@ -1,0 +1,42 @@
+.solution-description {
+  min-block-size: 4lh;
+}
+
+@media (min-width: 640px) {
+  .solution-description {
+    min-block-size: 3lh;
+  }
+}
+
+.solution-photos {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-muted);
+  isolation: isolate;
+}
+
+.solution-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+.solution-photo[data-active="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-photo {
+    transition: none;
+  }
+}
+
+html[data-motion="paused"] .solution-photo {
+  transition: none;
+}
