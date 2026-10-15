@@ -6,10 +6,10 @@ import {
   type FooterLink,
 } from "../../data/footer";
 import { getAudienceHome, type Audience } from "../../lib/audience";
+import "./footer.css";
 
 const FooterNavLink = ({ item }: { item: FooterLink }) => {
-  const className =
-    "inline-flex py-1.5 text-sm text-[#526058] transition-colors hover:text-[#007d21]";
+  const className = "footer-link inline-flex text-[#526058] transition-colors hover:text-accent";
   return item.external ? (
     <a className={className} href={item.href} target="_blank" rel="noreferrer">
       {item.label}
@@ -24,16 +24,16 @@ const FooterNavLink = ({ item }: { item: FooterLink }) => {
 const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
   const groups = audience === "enterprise" ? enterpriseFooterGroups : individualFooterGroups;
   return (
-    <footer className="bg-[#f4f6f1] pb-7 pt-16 text-[#002d0e] sm:pt-20">
+    <footer className="site-footer bg-surface-muted text-[#002d0e]">
       <div className="site-container">
-        <div className="grid gap-12 pb-14 lg:grid-cols-[.9fr_1.6fr] lg:gap-20">
-          <div>
-            <p className="section-heading max-w-[430px]">
+        <div className="footer-main">
+          <div className="footer-intro">
+            <p className="footer-statement">
               {audience === "enterprise"
                 ? "Trust for every next step."
                 : "Your identity. Your control."}
             </p>
-            <div className="mt-9 flex gap-4">
+            <nav className="footer-social" aria-label="Ontiver social channels">
               {footerIcons.map((icon) => (
                 <a
                   key={icon.alt}
@@ -41,17 +41,24 @@ const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Follow Ontiver on ${icon.alt}`}
-                  className="grid size-10 place-items-center rounded-full border border-[#002d0e]/15 hover:bg-white"
+                  className="footer-social-link"
                 >
-                  <img src={icon.icon} alt="" loading="lazy" decoding="async" className="size-4 brightness-0" />
+                  <img
+                    src={icon.icon}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="footer-social-icon"
+                  />
+                  <span className="footer-social-label">{icon.alt}</span>
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
-          <div className="grid grid-cols-2 gap-x-7 gap-y-9 md:grid-cols-4">
+          <div className="footer-navigation">
             {groups.map((group) => (
               <nav key={group.category} aria-label={`Footer ${group.category}`}>
-                <h2 className="mb-4 border-b border-[#002d0e]/15 pb-3 text-meta font-medium text-[#526058]">
+                <h2 className="footer-category text-meta font-semibold text-[#526058]">
                   {group.category}
                 </h2>
                 <ul>
@@ -65,23 +72,42 @@ const Footer = ({ audience = "individual" }: { audience?: Audience }) => {
             ))}
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-5 border-t border-[#002d0e]/20 pt-7">
+        <div className="footer-bottom">
           <Link to={getAudienceHome(audience)} aria-label="Ontiver home">
-            <img src="/assets/logo.svg" alt="Ontiver" loading="lazy" decoding="async" className="h-7 w-auto" />
+            <img
+              src="/assets/logo.svg"
+              alt="Ontiver"
+              loading="lazy"
+              decoding="async"
+              className="footer-logo"
+            />
           </Link>
           <Link
-            to="/security#regulatory-standing"
-            className="flex flex-wrap items-center gap-3 text-meta text-[#526058] hover:text-[#002d0e]"
+            to={`${audience === "enterprise" ? "/enterprise" : ""}/security#regulatory-standing`}
+            className="footer-credentials text-meta text-[#526058] hover:text-[#002d0e]"
           >
-            <img src="/assets/certifications/ndpc-logo.png" alt="" loading="lazy" decoding="async" className="h-6 w-auto rounded-sm bg-white" />
+            <img
+              src="/assets/certifications/ndpc-logo.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-6 w-auto bg-surface"
+            />
             <span>NDPC registered (NDPC/DCP/14404)</span>
             <span aria-hidden="true">·</span>
-            <img src="/assets/certifications/nimc-logo.png" alt="" loading="lazy" decoding="async" className="h-6 w-auto rounded-sm bg-white" />
+            <img
+              src="/assets/certifications/nimc-logo.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-6 w-auto bg-surface"
+            />
             <span>NIMC-approved NINAuth Enterprise</span>
           </Link>
-          <div className="flex flex-wrap items-center gap-5">
+          <div className="footer-legal">
             <p className="text-meta text-[#526058]">
-              &copy; 2026 Ontiver, operated by Qynara Technologies Limited (RC 9436348). All rights reserved.
+              &copy; 2026 Ontiver, operated by Qynara Technologies Limited (RC 9436348). All rights
+              reserved.
             </p>
           </div>
         </div>

@@ -1,0 +1,58 @@
+.cta-band {
+  background: #002d0e;
+  color: #fff;
+}
+
+.cta-band-layout {
+  display: grid;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.cta-band-primary,
+.cta-band-details {
+  min-width: 0;
+}
+
+.cta-band-primary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cta-band-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid rgb(255 255 255 / 24%);
+  padding-top: 1.75rem;
+}
+
+.cta-band-details > p {
+  max-width: 44rem;
+}
+
+.cta-band-measures {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cta-band-measures > div {
+  border-top: 1px solid rgb(255 255 255 / 22%);
+  padding-top: 1rem;
+}
+
+@media (min-width: 1000px) {
+  .cta-band-layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2.5rem, 4vw, 5rem);
+  }
+
+  .cta-band-details {
+    border-top: 0;
+    border-left: 1px solid rgb(255 255 255 / 24%);
+    padding-top: 0;
+    padding-left: clamp(2.5rem, 4vw, 5rem);
+  }
+}

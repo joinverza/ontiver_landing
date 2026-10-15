@@ -1,10 +1,11 @@
+import ActionIcon from "./ActionIcon";
 import type { ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Footer from "../layout/Footer";
 import type { EditorialImage } from "../../data/imagery";
 import type { Audience } from "../../lib/audience";
 import PhotoCTA from "./PhotoCTA";
+import { SiteImage } from "../media/SiteImage";
 
 type PageAction = { label: string; to: string };
 
@@ -30,12 +31,12 @@ export const EditorialPhoto = ({
   className?: string;
 }) => {
   return (
-    <img
+    <SiteImage
       src={image.src}
       alt={image.alt}
       width={image.width}
       height={image.height}
-      className={`h-full w-full rounded-[28px] object-cover ${className}`}
+      className={`h-full w-full object-cover ${className}`}
       style={{ objectPosition: image.objectPosition }}
     />
   );
@@ -54,6 +55,8 @@ const StandalonePage = ({
   finalVisual,
   children,
 }: StandalonePageProps) => {
+  const { pathname } = useLocation();
+  const imageLeft = ["/how-it-works", "/enterprise/platform", "/use-cases"].includes(pathname);
   const action =
     primaryAction ??
     (audience === "enterprise"
@@ -61,19 +64,19 @@ const StandalonePage = ({
       : { label: "Join the Waitlist", to: "/waitlist" });
 
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
+    <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
       <section className="page-intro">
         <div
-          className={`site-container ${visual ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-14" : ""}`}
+          className={`site-container ${visual ? "split-hero-grid" : ""} ${imageLeft ? "split-hero-grid--image-left" : ""}`}
         >
-          <div className={`hero-enter ${visual ? "min-w-0" : "max-w-[1050px]"}`}>
+          <div className="page-hero-content hero-enter">
             <p className="eyebrow">{eyebrow}</p>
-            <h1 className="mt-6 text-page-hero font-medium">{title}</h1>
-            <p className="mt-7 max-w-[760px] text-subtitle text-[#526058]">{description}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <h1 className="page-hero-heading text-page-hero font-medium">{title}</h1>
+            <p className="page-hero-description text-subtitle text-[#526058]">{description}</p>
+            <div className="page-hero-actions">
               <Link to={action.to} className="button-primary">
                 {action.label}
-                <ArrowUpRight size={18} aria-hidden="true" />
+                <ActionIcon size={18} aria-hidden="true" />
               </Link>
               {secondaryAction ? (
                 <Link to={secondaryAction.to} className="button-secondary">
@@ -82,7 +85,7 @@ const StandalonePage = ({
               ) : null}
             </div>
           </div>
-          {visual ? <div className="hero-media-enter min-w-0">{visual}</div> : null}
+          {visual ? <div className="page-hero-media hero-media-enter">{visual}</div> : null}
         </div>
       </section>
       {children}
