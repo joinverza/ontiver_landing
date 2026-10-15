@@ -1,0 +1,185 @@
+/* Fine rules define the columns without adding separate card backgrounds. */
+.editorial-links {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  border-block: 1px solid #dce4d9;
+  background: #dce4d9;
+}
+
+.editorial-link {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 2.222vw, 3rem);
+  background: var(--surface-page);
+}
+
+a.editorial-link {
+  transition: background-color 200ms ease;
+}
+
+a.editorial-link:is(:hover, :focus-visible) {
+  background: var(--surface-raised);
+}
+
+.editorial-link-arrow {
+  flex: none;
+  margin-top: auto;
+  padding-top: 1.75rem;
+  box-sizing: content-box;
+  color: var(--ink-accent);
+  transition: transform 220ms ease;
+}
+
+a.editorial-link:is(:hover, :focus-visible) .editorial-link-arrow {
+  transform: translate(4px, -4px);
+}
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  border-block: 1px solid #dce4d9;
+  background: #dce4d9;
+}
+
+.spotlight-cell {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: clamp(1.75rem, 2.5vw, 3rem);
+  background: var(--surface-page);
+  color: #fff;
+  outline-offset: -5px;
+}
+
+.spotlight-cell::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 8px;
+  border-radius: 16px;
+  background: #002d0e;
+  mask-image: radial-gradient(circle 22px at calc(100% + 12px) 50%, transparent 98%, #000 100%);
+}
+
+.spotlight-cell:focus-visible {
+  outline: 2px solid #007d21;
+}
+
+.spotlight-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.spotlight-icon {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.15rem;
+  color: #c7e6b5;
+}
+
+.spotlight-description {
+  margin-top: 1.25rem;
+  opacity: 0.8;
+}
+
+.spotlight-value {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-size: clamp(1.75rem, 2.778vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.spotlight-detail {
+  margin-top: 1rem;
+  opacity: 0.75;
+}
+
+@media (min-width: 768px) {
+  .editorial-links,
+  .spotlight-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .editorial-links--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .editorial-links--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Touch and reduced-motion users always see every detail. */
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  html:not([data-motion="paused"]) .spotlight-cell {
+    min-height: 22rem;
+    color: #002d0e;
+    transition: color 250ms ease;
+  }
+
+  html:not([data-motion="paused"]) .spotlight-grid--compact .spotlight-cell {
+    min-height: 18rem;
+  }
+
+  html:not([data-motion="paused"]) .spotlight-grid--compact .spotlight-intro {
+    transform: translateY(3rem);
+  }
+
+  html:not([data-motion="paused"]) .spotlight-cell::before {
+    opacity: 0;
+    transform: scale(0.96);
+    transition:
+      opacity 250ms ease,
+      transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html:not([data-motion="paused"]) .spotlight-intro {
+    transform: translateY(5rem);
+    transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html:not([data-motion="paused"]) .spotlight-icon {
+    color: var(--ink-accent);
+    transition: color 250ms ease;
+  }
+
+  html:not([data-motion="paused"]) .spotlight-reveal {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 250ms ease,
+      transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html:not([data-motion="paused"]) .spotlight-cell:is(:hover, :focus-within) {
+    color: #fff;
+  }
+
+  html:not([data-motion="paused"]) .spotlight-cell:is(:hover, :focus-within)::before,
+  html:not([data-motion="paused"]) .spotlight-cell:is(:hover, :focus-within) .spotlight-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  html:not([data-motion="paused"])
+    .spotlight-grid
+    .spotlight-cell:is(:hover, :focus-within)
+    .spotlight-intro {
+    transform: none;
+  }
+
+  html:not([data-motion="paused"]) .spotlight-cell:is(:hover, :focus-within) .spotlight-icon {
+    color: #c7e6b5;
+  }
+}

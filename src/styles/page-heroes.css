@@ -1,0 +1,167 @@
+/* Home introductions remain editorial; secondary pages use balanced image/copy columns. */
+.split-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.split-hero-grid > .page-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 0.5rem;
+  margin-block: 0;
+}
+
+.split-hero-grid > a {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-bottom: 0;
+}
+
+.split-hero-grid > .page-hero-media {
+  display: grid;
+  margin-top: 0;
+  min-width: 0;
+}
+
+.split-hero-grid .page-hero-media :is(.context-photo, .editorial-workflow, .editorial-collage) {
+  height: 100%;
+  max-height: none;
+  border-radius: 0;
+}
+
+.split-hero-grid .page-hero-media > .context-photo,
+.split-hero-grid .page-hero-media .editorial-workflow {
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 1023px) {
+  .split-hero-grid .page-hero-media .editorial-workflow {
+    height: auto;
+    min-height: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .split-hero-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 3.334vw, 4rem);
+  }
+
+  .split-hero-grid--image-left > .page-hero-content {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .split-hero-grid--image-left > .page-hero-media {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .split-hero-grid--image-left:has(> a) > :is(.page-hero-content, .page-hero-media) {
+    grid-row: 2;
+  }
+
+  .split-hero-grid .page-hero-content > h1 {
+    font-size: clamp(2.5rem, 3.334vw, 4.5rem);
+    line-height: 1.12;
+  }
+
+  .split-hero-grid > .page-hero-media {
+    min-height: clamp(400px, 32vw, 600px);
+  }
+
+  .split-hero-grid--compact > .page-hero-media {
+    min-height: 400px;
+  }
+
+  .split-hero-grid .page-hero-media > .context-photo,
+  .split-hero-grid .page-hero-media .editorial-workflow {
+    aspect-ratio: auto;
+  }
+}
+
+.equal-columns {
+  align-items: stretch;
+}
+
+.equal-columns > * {
+  min-width: 0;
+  align-self: stretch;
+}
+.page-hero-content {
+  min-width: 0;
+  max-width: 90rem;
+}
+
+.page-hero-heading {
+  margin-top: clamp(1.5rem, 2.222vw, 3rem);
+  max-width: 22ch;
+}
+
+.page-hero-content > h1 {
+  max-width: 22ch;
+}
+
+.page-hero-description {
+  max-width: 50rem;
+  margin-top: clamp(1.5rem, 2.222vw, 3rem);
+}
+
+.page-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.75rem, 3.334vw, 4rem);
+}
+
+.page-hero-media {
+  min-width: 0;
+  margin-top: clamp(2.5rem, 5.556vw, 7rem);
+}
+
+.page-hero-media.context-photo,
+.page-hero-media .context-photo,
+.page-hero-media .editorial-collage {
+  aspect-ratio: 2.2;
+  max-height: 48rem;
+  border-radius: 0;
+}
+
+.page-hero-media .editorial-workflow {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.page-hero-media .editorial-workflow-copy {
+  padding: clamp(1.25rem, 2.222vw, 3rem);
+}
+
+.page-hero-media .editorial-workflow-description {
+  max-width: 65ch;
+  font-size: var(--text-body);
+}
+
+.page-hero-media .editorial-workflow-details {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 639px) {
+  .hero-actions,
+  .hero-actions > :is(a, button) {
+    width: 100%;
+  }
+
+  .page-hero-actions > :is(a, button) {
+    width: 100%;
+  }
+
+  .page-hero-media.context-photo,
+  .page-hero-media .context-photo,
+  .page-hero-media .editorial-collage {
+    aspect-ratio: 1.2;
+  }
+}

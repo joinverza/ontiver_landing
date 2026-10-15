@@ -1,22 +1,30 @@
 :root {
-  --site-header-height: 80px;
+  --site-header-height: 85px;
+  --site-gutter: 12px;
   --section-padding: 3rem;
   --section-padding-compact: 2rem;
-  --hero-padding: clamp(2rem, 4svh, 3.5rem);
+  --hero-padding: 23px;
+  --hero-bottom-padding: 3rem;
 }
 
 /* Section spacing follows the layout width, so short screens retain breathing room. */
 @media (min-width: 640px) {
   :root {
+    --site-gutter: 24px;
     --section-padding: 4.5rem;
-    --section-padding-compact: 3rem;
+    --section-padding-compact: 2.5rem;
+    --hero-padding: 4rem;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
-    --section-padding: 6rem;
-    --section-padding-compact: 4rem;
+    --site-header-height: clamp(85px, 5.9vw, 128px);
+    --site-gutter: clamp(24px, 2.222vw, 64px);
+    --section-padding: clamp(4.5rem, 6.667vw, 7rem);
+    --section-padding-compact: clamp(2.5rem, 3.334vw, 3.5rem);
+    --hero-padding: clamp(5rem, 8.334vw, 12rem);
+    --hero-bottom-padding: clamp(4rem, 5.556vw, 6rem);
   }
 }
 
@@ -45,30 +53,4 @@ video {
   transform: translateY(0);
 }
 
-/* Hero sections introduce a page; subsequent sections follow their content.
-   A short CTA or accordion should never reserve an otherwise empty screen. */
-@media (min-width: 1000px) and (min-height: 600px) {
-  .page-intro:not(.page-intro-compact) {
-    display: grid;
-    align-content: center;
-    min-block-size: 100svh;
-  }
-}
-
-/* Stacked layouts and short/zoomed windows retain readable, intrinsic heights. */
-@media (max-width: 999px), (max-height: 599px) {
-  .page-intro,
-  .section-space {
-    min-block-size: auto;
-  }
-}
-
-@media (min-width: 1000px) and (max-height: 800px) {
-  .home-hero .hero-enter > .mt-5 {
-    margin-top: 1rem;
-  }
-  .home-hero .hero-enter > .mt-6,
-  .home-hero .hero-enter > .mt-7 {
-    margin-top: 1.25rem;
-  }
-}
+/* Headlines, media, and longer descriptions determine their own section height. */

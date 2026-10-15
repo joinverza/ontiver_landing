@@ -7,7 +7,7 @@ const PageLayout = ({ children }: { children: ReactNode }) => {
   useLenis();
   return (
     <MotionSettings>
-      <div className="relative overflow-clip bg-white">
+      <div className="relative overflow-clip bg-surface">
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

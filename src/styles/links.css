@@ -1,0 +1,112 @@
+/* Text-only links share a painted underline; no dimensions change on interaction. */
+a:not(:where([data-ontiver-navbar] *, .ontiver-mobile-menu *)):is(
+    .text-link,
+    .footer-link,
+    .faq-support-link,
+    .faq-answer-link,
+    .underline,
+    [class~="hover:underline"],
+    .inline-flex:not(.button-primary, .button-secondary, [class*="rounded"], :has(img))
+  ),
+a.editorial-link > :is(h2, h3) {
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(
+      color-mix(in srgb, currentColor 30%, transparent),
+      color-mix(in srgb, currentColor 30%, transparent)
+    );
+  background-position:
+    right calc(100% - var(--link-line-bottom, 0.08em)),
+    left calc(100% - var(--link-line-bottom, 0.08em));
+  background-repeat: no-repeat;
+  background-size:
+    0% 1px,
+    var(--link-line-rest, 0%) 1px;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Keep an existing underline visible at rest for links embedded in prose. */
+a.underline {
+  --link-line-rest: 100%;
+}
+
+a.footer-link {
+  --link-line-bottom: 0.5rem;
+}
+
+a:is(.faq-support-link, .faq-answer-link) {
+  --link-line-bottom: 0.375rem;
+}
+
+a:not(:where([data-ontiver-navbar] *, .ontiver-mobile-menu *)):is(
+    .text-link,
+    .footer-link,
+    .faq-support-link,
+    .faq-answer-link,
+    .underline,
+    [class~="hover:underline"],
+    .inline-flex:not(.button-primary, .button-secondary, [class*="rounded"], :has(img))
+  ):is(:hover, :focus-visible),
+a.editorial-link:is(:hover, :focus-visible) > :is(h2, h3) {
+  background-position:
+    left calc(100% - var(--link-line-bottom, 0.08em)),
+    left calc(100% - var(--link-line-bottom, 0.08em));
+  background-size:
+    100% 1px,
+    var(--link-line-rest, 0%) 1px;
+  text-decoration: none;
+}
+
+a:not(:where([data-ontiver-navbar] *, .ontiver-mobile-menu *)):is(
+    .text-link,
+    .footer-link,
+    .faq-support-link,
+    .faq-answer-link,
+    .underline,
+    [class~="hover:underline"],
+    .inline-flex:not(.button-primary, .button-secondary, [class*="rounded"], :has(img))
+  ):focus-visible {
+  outline: 2px solid var(--ink-accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-motion="paused"])
+    a:not(:where([data-ontiver-navbar] *, .ontiver-mobile-menu *)):is(
+      .text-link,
+      .footer-link,
+      .faq-support-link,
+      .faq-answer-link,
+      .underline,
+      [class~="hover:underline"],
+      .inline-flex:not(.button-primary, .button-secondary, [class*="rounded"], :has(img))
+    ),
+  html:not([data-motion="paused"]) a.editorial-link > :is(h2, h3) {
+    transition:
+      background-size 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 180ms ease;
+  }
+}
+
+@media (forced-colors: active) {
+  a:not(:where([data-ontiver-navbar] *, .ontiver-mobile-menu *)):is(
+      .text-link,
+      .footer-link,
+      .faq-support-link,
+      .faq-answer-link,
+      .underline,
+      [class~="hover:underline"],
+      .inline-flex:not(.button-primary, .button-secondary, [class*="rounded"], :has(img))
+    ):is(:hover, :focus-visible),
+  a.editorial-link:is(:hover, :focus-visible) > :is(h2, h3) {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  a.underline:not(:where([data-ontiver-navbar] *, .ontiver-mobile-menu *)) {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}

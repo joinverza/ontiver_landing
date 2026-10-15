@@ -107,14 +107,17 @@
     animation: screen-entrance 500ms both cubic-bezier(0.22, 1, 0.36, 1);
   }
   [data-media-reveal].ontiver-reveal {
-    clip-path: inset(7% 0 0 round 20px);
+    clip-path: inset(42% 38% round 16px);
+    transform: scale(1.045);
+    transform-origin: center;
     transition:
-      clip-path 1000ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 800ms,
-      transform 900ms;
+      clip-path 950ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 650ms ease-out,
+      transform 950ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   [data-media-reveal].ontiver-reveal-visible {
-    clip-path: inset(0 round 20px);
+    clip-path: inset(0 round 0);
+    transform: scale(1);
   }
   [data-parallax] {
     transform: translate3d(0, var(--image-offset, 0px), 0) scale(1.08);
@@ -138,8 +141,8 @@
 @keyframes media-entrance {
   from {
     opacity: 0;
-    clip-path: inset(10% 0 0 round 20px);
-    transform: scale(0.98);
+    clip-path: inset(42% 38% round 16px);
+    transform: scale(1.045);
   }
   to {
     opacity: 1;
@@ -204,6 +207,13 @@ html[data-motion="paused"] [data-parallax] {
 }
 html[data-motion="paused"] .word-reveal > span {
   opacity: 1 !important;
+}
+
+html[data-motion="paused"] :is(.button-primary, .button-secondary),
+html[data-motion="paused"] :is(.button-primary, .button-secondary)::before,
+html[data-motion="paused"] :is(.button-primary, .button-secondary)::after,
+html[data-motion="paused"] :is(.button-primary, .button-secondary) > svg {
+  transition: none;
 }
 
 @keyframes ontiver-functional-spin {
