@@ -58,7 +58,11 @@ const Calculator = ({
       result.dropOffRate +
       "% drop-off." +
       (result.estimatedOntiverCost !== null && result.recommendedPlan
-        ? " Estimated Ontiver cost on " + result.recommendedPlan + ": " + formatCurrency(result.estimatedOntiverCost, catalog?.currency) + "/month."
+        ? " Estimated Ontiver cost on " +
+          result.recommendedPlan +
+          ": " +
+          formatCurrency(result.estimatedOntiverCost, catalog?.currency) +
+          "/month."
         : "");
     try {
       if (navigator.share) {
@@ -77,16 +81,20 @@ const Calculator = ({
   return (
     <section
       id="savings-calculator"
-      className={`${standalone ? "page-intro" : "section-space"} bg-white text-[#002d0e]`}
+      className={`${standalone ? "page-intro" : "section-space"} bg-surface text-[#002d0e]`}
     >
       <div className="site-container">
-        <div data-scroll-reveal className="mb-8 max-w-[900px]">
+        <div data-scroll-reveal className={standalone ? "page-hero-content" : "mb-8 max-w-[900px]"}>
           <p className="eyebrow">KYC savings calculator</p>
-          <Heading className={`mt-5 font-normal ${standalone ? "text-page-hero" : "text-section"}`}>
+          <Heading
+            className={`font-normal ${standalone ? "page-hero-heading text-page-hero" : "mt-5 text-section"}`}
+          >
             See what reusable verification could save you.
           </Heading>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div
+          className={`equal-columns grid gap-6 lg:grid-cols-2 ${standalone ? "page-hero-media" : ""}`}
+        >
           <CalculatorFormPanel
             currency={catalog?.currency ?? "USD"}
             values={values}
@@ -107,7 +115,7 @@ const Calculator = ({
             onShare={() => void shareResults()}
           />
         </div>
-        <p className="mt-6 max-w-[1000px] text-sm text-[#637060]">
+        <p className="mt-6 max-w-[1000px] text-sm text-[#526058]">
           Estimates are based on the figures you enter and may vary by provider cost, usage,
           verification type, fraud profile, and integration quality.
         </p>

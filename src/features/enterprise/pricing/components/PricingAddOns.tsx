@@ -5,7 +5,7 @@ const planNames = (catalog: PricingCatalog, ids: string[]) =>
 
 /** Optional extras, with the plans they can be added to. */
 const PricingAddOns = ({ catalog }: { catalog: PricingCatalog }) => (
-  <section aria-labelledby="pricing-addons" className="section-space bg-[#f7f8f5]">
+  <section aria-labelledby="pricing-addons" className="section-space bg-surface-muted">
     <div className="site-container">
       <div data-scroll-reveal className="mb-10 max-w-[760px]">
         <p className="eyebrow">Add-ons</p>
@@ -19,40 +19,56 @@ const PricingAddOns = ({ catalog }: { catalog: PricingCatalog }) => (
       </div>
       <div className="grid gap-4 md:grid-cols-3">
         {catalog.addons.map((addon) => (
-          <article key={addon.id} data-scroll-reveal className="rounded-2xl border border-[#dce6d9] bg-white p-6">
+          <article
+            key={addon.id}
+            data-scroll-reveal
+            className="rounded-2xl border border-[#dce6d9] bg-surface p-6"
+          >
             <h3 className="text-card-title font-medium">{addon.name}</h3>
             <p className="mt-2 text-[1.5rem] font-medium tracking-[-0.02em]">
-              {addon.monthly === null ? "Priced in contract" : `${formatPrice(addon.monthly, catalog.currency)}/month`}
+              {addon.monthly === null
+                ? "Priced in contract"
+                : `${formatPrice(addon.monthly, catalog.currency)}/month`}
             </p>
             <p className="mt-4 text-body text-[#526052]">{addon.summary}</p>
-            <dl className="mt-5 space-y-2 border-t border-[#e4eae0] pt-4 text-meta text-[#637060]">
+            <dl className="mt-5 space-y-2 border-t border-[#e4eae0] pt-4 text-meta text-[#526058]">
               {addon.includedScreens ? (
                 <div className="flex justify-between gap-4">
                   <dt>Screens included</dt>
-                  <dd className="font-medium text-[#002d0e]">{addon.includedScreens.toLocaleString("en-US")}</dd>
+                  <dd className="font-medium text-[#002d0e]">
+                    {addon.includedScreens.toLocaleString("en-US")}
+                  </dd>
                 </div>
               ) : null}
               {addon.screenOverage ? (
                 <div className="flex justify-between gap-4">
                   <dt>Each additional screen</dt>
-                  <dd className="font-medium text-[#002d0e]">{formatPrice(addon.screenOverage, catalog.currency, true)}</dd>
+                  <dd className="font-medium text-[#002d0e]">
+                    {formatPrice(addon.screenOverage, catalog.currency, true)}
+                  </dd>
                 </div>
               ) : null}
               {addon.includedProfiles ? (
                 <div className="flex justify-between gap-4">
                   <dt>Monitored profiles included</dt>
-                  <dd className="font-medium text-[#002d0e]">{addon.includedProfiles.toLocaleString("en-US")}</dd>
+                  <dd className="font-medium text-[#002d0e]">
+                    {addon.includedProfiles.toLocaleString("en-US")}
+                  </dd>
                 </div>
               ) : null}
               {addon.profileOverage ? (
                 <div className="flex justify-between gap-4">
                   <dt>Each additional profile</dt>
-                  <dd className="font-medium text-[#002d0e]">{formatPrice(addon.profileOverage, catalog.currency, true)}/month</dd>
+                  <dd className="font-medium text-[#002d0e]">
+                    {formatPrice(addon.profileOverage, catalog.currency, true)}/month
+                  </dd>
                 </div>
               ) : null}
               <div className="flex justify-between gap-4">
                 <dt>Available on</dt>
-                <dd className="font-medium text-[#002d0e]">{planNames(catalog, addon.availableOn)}</dd>
+                <dd className="font-medium text-[#002d0e]">
+                  {planNames(catalog, addon.availableOn)}
+                </dd>
               </div>
             </dl>
           </article>

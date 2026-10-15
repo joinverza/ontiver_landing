@@ -1,4 +1,5 @@
-import { ArrowUpRight, RotateCcw } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { RotateCcw } from "lucide-react";
 import { calculatorFields, type CalculatorFieldKey } from "../data/calculator";
 import CalculatorInputField from "./CalculatorInputField";
 import DropOffSlider from "./DropOffSlider";
@@ -24,7 +25,7 @@ const CalculatorFormPanel = ({
 }: CalculatorFormPanelProps) => {
   return (
     <form
-      className="rounded-2xl border border-[#dde6dc] bg-[#f7f8f5] p-6 sm:p-9"
+      className="flex min-w-0 flex-col rounded-2xl border border-[#dde6dc] bg-surface-muted p-6 sm:p-9"
       onSubmit={(event) => {
         event.preventDefault();
         onCalculate();
@@ -37,7 +38,11 @@ const CalculatorFormPanel = ({
             key={field.key}
             field={
               field.prefix
-                ? { ...field, label: field.label.replace("(USD)", `(${currency})`), prefix: currency === "NGN" ? "₦" : "$" }
+                ? {
+                    ...field,
+                    label: field.label.replace("(USD)", `(${currency})`),
+                    prefix: currency === "NGN" ? "₦" : "$",
+                  }
                 : field
             }
             value={values[field.key]}
@@ -46,10 +51,10 @@ const CalculatorFormPanel = ({
         ))}
         <DropOffSlider dropOffRate={dropOffRate} onChange={onSliderChange} />
       </div>
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
         <button type="submit" className="button-primary grow">
           Calculate estimate
-          <ArrowUpRight size={18} />
+          <ActionIcon size={18} />
         </button>
         <button type="button" onClick={onClear} className="button-secondary">
           <RotateCcw size={16} />

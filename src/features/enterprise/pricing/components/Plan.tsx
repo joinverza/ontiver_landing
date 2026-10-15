@@ -1,5 +1,6 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useId, useState } from "react";
-import { ArrowUpRight, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import {
   planInitialToggles,
   planInitialValues,
@@ -28,7 +29,8 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
   const [toggles, setToggles] = useState<Record<PlanToggleKey, boolean>>(planInitialToggles);
   const [recommendation, setRecommendation] = useState<PlanRecommendation | null>(null);
 
-  const checkBestPlan = () => setRecommendation(getPlanRecommendation(values, toggles, catalog, billingCycle));
+  const checkBestPlan = () =>
+    setRecommendation(getPlanRecommendation(values, toggles, catalog, billingCycle));
 
   const viewPlan = () => {
     const card = recommendation?.plan
@@ -39,7 +41,7 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
   };
 
   return (
-    <section className="section-space bg-[#f7f8f5] text-[#002d0e]">
+    <section className="section-space bg-surface-muted text-[#002d0e]">
       <div className="site-container">
         <div data-scroll-reveal className="mb-12 max-w-[780px]">
           <p className="eyebrow">Explore your plan options</p>
@@ -49,9 +51,9 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
             plan, including extra-verification and screening charges.
           </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="equal-columns grid gap-6 lg:grid-cols-2">
           <form
-            className="rounded-2xl border border-[#dde6dc] bg-white p-6 sm:p-9"
+            className="flex min-w-0 flex-col rounded-2xl border border-[#dde6dc] bg-surface p-6 sm:p-9"
             onSubmit={(event) => {
               event.preventDefault();
               checkBestPlan();
@@ -82,7 +84,7 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
                       }));
                       setRecommendation(null);
                     }}
-                    className="mt-2 h-13 w-full rounded-xl border border-[#dce5d8] bg-[#fbfcfa] px-4 text-body outline-none placeholder:text-[#8a9485] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"
+                    className="mt-2 h-13 w-full rounded-xl border border-[#dce5d8] bg-surface-raised px-4 text-body outline-none placeholder:text-[#8a9485] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"
                   />
                 </div>
               ))}
@@ -100,10 +102,10 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
                 />
               ))}
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
               <button type="submit" className="button-primary grow">
                 Recommend a plan
-                <ArrowUpRight size={18} />
+                <ActionIcon size={18} />
               </button>
               <button
                 type="button"

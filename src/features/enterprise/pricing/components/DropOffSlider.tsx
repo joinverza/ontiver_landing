@@ -14,7 +14,7 @@ const DropOffSlider = ({
         <label htmlFor={id} className="text-body font-medium text-[#526052]">
           Onboarding drop-off rate
         </label>
-        <output htmlFor={id} className="text-body font-semibold text-[#007d21]">
+        <output htmlFor={id} className="text-body font-semibold text-accent">
           {dropOffRate}%
         </output>
       </div>
@@ -27,7 +27,7 @@ const DropOffSlider = ({
         onChange={(event) => onChange(Number(event.target.value))}
         className="h-2 w-full cursor-pointer accent-[#009311]"
       />
-      <div className="mt-3 flex justify-between text-meta text-[#637060]">
+      <div className="mt-3 flex justify-between text-meta text-[#526058]">
         <span>0%</span>
         <span>100%</span>
       </div>

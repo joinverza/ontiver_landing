@@ -1,4 +1,5 @@
-import { ArrowUpRight, Layers3 } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { Layers3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { PlanRecommendation } from "../data/plan";
 import { DEVELOPER_SIGNUP_URL, type BillingCycle } from "../data/pricing";
@@ -22,13 +23,13 @@ const PlanRecommendationPanel = ({
 }: Props) => {
   return (
     <div
-      className="flex flex-col self-start rounded-2xl bg-[#edf5e7] p-5 sm:p-7"
+      className="flex min-w-0 flex-col rounded-2xl bg-[#edf5e7] p-6 sm:p-9"
       aria-live="polite"
       aria-atomic="true"
     >
       <div className="flex items-center justify-between gap-4">
         <p className="eyebrow">Plan guidance</p>
-        <Layers3 size={24} className="shrink-0 text-[#007d21]" />
+        <Layers3 size={24} className="shrink-0 text-accent" />
       </div>
       {recommendation ? (
         <div className="py-6">
@@ -45,48 +46,49 @@ const PlanRecommendationPanel = ({
           {recommendation.plan === "Sandbox" ? (
             <a href={DEVELOPER_SIGNUP_URL} className="button-primary mt-6">
               Start free in Sandbox
-              <ArrowUpRight size={17} />
+              <ActionIcon size={17} />
             </a>
           ) : (
             <Link
               to={getPricingInquiryUrl(recommendation.plan, billingCycle, monthlyVerifications)}
               className="button-primary mt-6"
             >
-              {recommendation.plan && recommendation.plan !== "Enterprise" ? `Get started with ${recommendation.plan}` : "Talk to sales"}
-              <ArrowUpRight size={17} />
+              {recommendation.plan && recommendation.plan !== "Enterprise"
+                ? `Get started with ${recommendation.plan}`
+                : "Talk to sales"}
+              <ActionIcon size={17} />
             </Link>
           )}
         </div>
       ) : (
         <div className="py-6">
-          <div className="mb-5 aspect-[16/9] overflow-hidden rounded-xl">
+          <div className="mb-5 aspect-[16/9] overflow-hidden">
             <BusinessPhoto image={editorialPhotos.planGuidance} />
           </div>
           <h3 className="text-card-title font-medium">Find your fit.</h3>
           <p className="mt-3 text-body text-[#526052]">
-            Enter your usage on the left to see the lowest-cost plan and an estimated monthly
-            total.
+            Enter your usage on the left to see the lowest-cost plan and an estimated monthly total.
           </p>
         </div>
       )}
-      <div className="flex flex-wrap gap-5">
+      <div className="mt-auto flex flex-wrap gap-5 pt-6">
         {recommendation?.plan && (
           <button
             type="button"
             onClick={onViewPlan}
-            className="inline-flex min-h-11 items-center gap-2 text-body font-medium text-[#007d21]"
+            className="inline-flex min-h-11 items-center gap-2 text-body font-medium text-accent"
           >
             View {recommendation.plan}
-            <ArrowUpRight size={17} />
+            <ActionIcon size={17} />
           </button>
         )}
         <button
           type="button"
           onClick={onComparePlans}
-          className="inline-flex min-h-11 items-center gap-2 text-body font-medium text-[#007d21]"
+          className="inline-flex min-h-11 items-center gap-2 text-body font-medium text-accent"
         >
           Compare plans
-          <ArrowUpRight size={17} />
+          <ActionIcon size={17} />
         </button>
       </div>
     </div>

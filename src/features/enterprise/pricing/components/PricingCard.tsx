@@ -1,3 +1,4 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Check } from "lucide-react";
 import {
   annualSavingPercent,
@@ -16,19 +17,25 @@ type PricingCardProps = {
   external?: boolean;
 };
 
-const PricingCard = ({ plan, billingCycle, currency, ctaHref, external = false }: PricingCardProps) => {
+const PricingCard = ({
+  plan,
+  billingCycle,
+  currency,
+  ctaHref,
+  external = false,
+}: PricingCardProps) => {
   const formatUsd = (value: number, cents = false) => formatPrice(value, currency, cents);
   const highlighted = plan.recommended;
   const price = monthlyPrice(plan, billingCycle);
   const saving = annualSavingPercent(plan);
-  const muted = highlighted ? "text-white/70" : "text-[#637060]";
+  const muted = highlighted ? "text-white/70" : "text-[#526058]";
 
   return (
     <article
       data-scroll-reveal
       data-plan={plan.id}
       aria-labelledby={`plan-${plan.id}-name`}
-      className={`flex min-w-0 scroll-mt-28 flex-col rounded-2xl border p-5 sm:p-6 ${highlighted ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#dce6d9] bg-[#f7f8f5] text-[#002d0e]"}`}
+      className={`flex min-w-0 scroll-mt-28 flex-col rounded-2xl border p-5 sm:p-6 ${highlighted ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#dce6d9] bg-surface-muted text-[#002d0e]"}`}
     >
       <div className="mb-3 flex min-h-6 items-center justify-between gap-2">
         <h2 id={`plan-${plan.id}-name`} className="text-card-title font-medium leading-tight">
@@ -39,7 +46,7 @@ const PricingCard = ({ plan, billingCycle, currency, ctaHref, external = false }
             Popular
           </span>
         ) : plan.id === "sandbox" ? (
-          <span className="rounded-full bg-[#edf5eb] px-2.5 py-1 text-xs font-semibold text-[#007d21]">
+          <span className="rounded-full bg-[#edf5eb] px-2.5 py-1 text-xs font-semibold text-accent">
             Free
           </span>
         ) : null}
@@ -71,18 +78,22 @@ const PricingCard = ({ plan, billingCycle, currency, ctaHref, external = false }
       <a
         href={ctaHref}
         {...(external ? { rel: "noopener" } : {})}
-        className={`mb-6 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full px-3 text-[15px] font-medium transition-colors xl:text-sm ${highlighted ? "bg-[#c7edb3] text-[#002d0e] hover:bg-white" : "bg-[#002d0e] text-white hover:bg-[#0b4a1f]"}`}
+        className={`button-primary mb-6 ${highlighted ? "button-on-dark" : ""}`}
       >
         {plan.cta}
+        <ActionIcon size={18} aria-hidden="true" />
       </a>
 
       <div className={`border-t pt-5 ${highlighted ? "border-white/15" : "border-[#e4eae0]"}`}>
-        <p className={`mb-3 text-sm font-medium ${highlighted ? "text-[#b8e5a7]" : "text-[#007d21]"}`}>
+        <p className={`mb-3 text-sm font-medium ${highlighted ? "text-[#b8e5a7]" : "text-accent"}`}>
           {plan.audience}
         </p>
         <ul className="space-y-2.5">
           {plan.highlights.map((line) => (
-            <li key={line} className={`flex gap-2.5 text-body ${highlighted ? "text-white/85" : "text-[#3f4d3f]"}`}>
+            <li
+              key={line}
+              className={`flex gap-2.5 text-body ${highlighted ? "text-white/85" : "text-[#3f4d3f]"}`}
+            >
               <Check
                 size={17}
                 aria-hidden="true"

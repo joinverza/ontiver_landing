@@ -1,4 +1,5 @@
-import { ArrowUpRight, ChartNoAxesCombined, Share2 } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { ChartNoAxesCombined, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { SavingsResult } from "../data/calculator";
 import type { BillingCycle } from "../data/pricing";
@@ -14,10 +15,16 @@ type Props = {
   shareMessage: string;
   onShare: () => void;
 };
-const CalculatorResultsPanel = ({ currency, result, billingCycle, shareMessage, onShare }: Props) => {
+const CalculatorResultsPanel = ({
+  currency,
+  result,
+  billingCycle,
+  shareMessage,
+  onShare,
+}: Props) => {
   return (
     <div
-      className="flex min-w-0 flex-col self-start rounded-2xl bg-[#002d0e] p-5 text-white sm:p-7"
+      className="flex min-w-0 flex-col rounded-2xl bg-[#002d0e] p-6 text-white sm:p-9"
       aria-live="polite"
       aria-atomic="true"
     >
@@ -68,7 +75,9 @@ const CalculatorResultsPanel = ({ currency, result, billingCycle, shareMessage, 
             </div>
             <div className="py-4">
               <dt className="text-body text-white/70">Recommended plan</dt>
-              <dd className="mt-2 text-body font-medium">{result.recommendedPlan ?? "Enter your monthly volume"}</dd>
+              <dd className="mt-2 text-body font-medium">
+                {result.recommendedPlan ?? "Enter your monthly volume"}
+              </dd>
             </div>
           </dl>
           <p className="mt-2 text-sm text-white/65">
@@ -78,10 +87,10 @@ const CalculatorResultsPanel = ({ currency, result, billingCycle, shareMessage, 
           <div className="mt-6 flex flex-wrap items-center gap-5">
             <Link
               to={getPricingInquiryUrl(null, billingCycle, result.monthlyVerifications)}
-              className="button-primary !bg-[#c7edb3] !text-[#002d0e]"
+              className="button-primary button-on-dark"
             >
               Talk to us about this estimate
-              <ArrowUpRight size={17} />
+              <ActionIcon size={17} />
             </Link>
             <button
               type="button"
@@ -96,7 +105,7 @@ const CalculatorResultsPanel = ({ currency, result, billingCycle, shareMessage, 
         </>
       ) : (
         <div className="py-6">
-          <div className="mb-5 aspect-[16/9] overflow-hidden rounded-xl">
+          <div className="mb-5 aspect-[16/9] overflow-hidden">
             <BusinessPhoto image={editorialPhotos.pricingCalculator} />
           </div>
           <h3 className="text-card-title font-medium">Start with your current costs.</h3>
