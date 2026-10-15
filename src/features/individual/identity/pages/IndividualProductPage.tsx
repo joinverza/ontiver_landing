@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
@@ -54,11 +54,11 @@ const IndividualProductPage = () => {
         <>
           Your identity.
           <br />
-          <span className="text-[#007d21]">Your control.</span>
+          <span className="text-accent">Your control.</span>
         </>
       }
       description="A reusable proof of who you are — created once, shared only when you approve it."
-      visual={<WorkflowVisual variant="mobile" photo={editorialPhotos.identity} priority compact />}
+      visual={<WorkflowVisual variant="mobile" photo={editorialPhotos.identity} compact priority />}
       primaryAction={{ label: "Join the Waitlist", to: "/waitlist" }}
       secondaryAction={{ label: "See how it works", to: "/how-it-works" }}
       finalTitle="Stay in control of your next request."
@@ -83,7 +83,7 @@ const IndividualProductPage = () => {
           </div>
         </div>
       </section>
-      <section className="section-space bg-[#f5f6f3]">
+      <section className="section-space bg-surface-muted">
         <div className="site-container">
           <div className="grid gap-10 md:grid-cols-2 md:gap-16">
             {[
@@ -97,7 +97,7 @@ const IndividualProductPage = () => {
                     <details key={item.title} className="group py-4">
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-card-title font-medium [&::-webkit-details-marker]:hidden">
                         {item.title}
-                        <span aria-hidden="true" className="text-[#007d21] group-open:rotate-45">
+                        <span aria-hidden="true" className="text-accent group-open:rotate-45">
                           +
                         </span>
                       </summary>
@@ -115,10 +115,10 @@ const IndividualProductPage = () => {
             <h2 className="text-card-title font-medium">Where it helps</h2>
             <Link
               to="/use-cases"
-              className="inline-flex items-center gap-2 text-body font-semibold text-[#007d21]"
+              className="inline-flex items-center gap-2 text-body font-semibold text-accent"
             >
               See Supported Platforms
-              <ArrowUpRight size={18} aria-hidden="true" />
+              <ActionIcon size={18} aria-hidden="true" />
             </Link>
           </div>
         </div>

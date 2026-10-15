@@ -2,6 +2,7 @@ import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { imagery } from "../../../../shared/data/imagery";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
+import ImageHoverPanels from "../../../../shared/components/media/ImageHoverPanels";
 
 const journeys = [
   {
@@ -70,46 +71,57 @@ const IndividualUseCasesPage = () => {
         <>
           Different requests.
           <br />
-          <span className="text-[#007d21]">One place to respond.</span>
+          <span className="text-accent">One place to respond.</span>
         </>
       }
       description="A job, loan or supplier application asks for different evidence. Ontiver is designed to help you complete each request and reuse approved claims where supported."
-      visual={<ContextPhoto image={editorialPhotos.individualUseCases} priority />}
+      visual={
+        <ContextPhoto
+          image={editorialPhotos.individualUseCases}
+          priority
+          sizes="(min-width: 1024px) 47vw, 100vw"
+        />
+      }
       secondaryAction={{ label: "See how it works", to: "/how-it-works" }}
       finalTitle="Make room for what comes next."
       finalImage={editorialPhotos.graduate}
     >
       <section className="section-space" aria-label="Individual use cases">
-        <div className="site-container grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-          {journeys.map((journey, index) => (
-            <article key={journey.title} className="min-w-0" data-scroll-reveal>
-              <ContextPhoto image={photos[index]} size="card" />
-              <h2 className="mt-4 text-card-title font-medium">{journey.title}</h2>
-              <p className="mt-2 text-body text-[#526058]">{journey.organization}</p>
-              <details className="group mt-4 border-y border-[#002d0e]/15 py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-body font-medium text-[#007d21] [&::-webkit-details-marker]:hidden">
-                  View request details
-                  <span aria-hidden="true" className="group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <dl className="mt-4 space-y-4 text-body">
-                  <div>
-                    <dt className="font-medium">Purpose</dt>
-                    <dd className="mt-1 text-[#526058]">{journey.purpose}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Required claims</dt>
-                    <dd className="mt-1 text-[#526058]">{journey.claims}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Your journey</dt>
-                    <dd className="mt-1 text-[#526058]">{journey.description}</dd>
-                  </div>
-                </dl>
-              </details>
-            </article>
-          ))}
+        <div className="site-container">
+          <ImageHoverPanels
+            label="Individual use cases"
+            headingLevel="h2"
+            items={journeys.map((journey, index) => ({
+              id: journey.title,
+              title: journey.title,
+              description: journey.organization,
+              image: photos[index],
+              details: (
+                <details className="group py-4">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-body font-medium text-accent [&::-webkit-details-marker]:hidden">
+                    View request details
+                    <span aria-hidden="true" className="group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <dl className="mt-4 space-y-4 text-body">
+                    <div>
+                      <dt className="font-medium">Purpose</dt>
+                      <dd className="mt-1 text-[#526058]">{journey.purpose}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-medium">Required claims</dt>
+                      <dd className="mt-1 text-[#526058]">{journey.claims}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-medium">Your journey</dt>
+                      <dd className="mt-1 text-[#526058]">{journey.description}</dd>
+                    </div>
+                  </dl>
+                </details>
+              ),
+            }))}
+          />
         </div>
       </section>
     </StandalonePage>

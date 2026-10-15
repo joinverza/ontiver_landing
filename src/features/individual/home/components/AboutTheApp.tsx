@@ -19,25 +19,44 @@ const facts = [
 ];
 
 const AboutTheApp = () => (
-  <section className="section-space bg-[#f6f8f7]" aria-labelledby="about-app-heading">
+  <section className="section-space bg-surface-muted" aria-labelledby="about-app-heading">
     <div className="site-container">
       <p className="eyebrow">About the Ontiver app</p>
       <h2 id="about-app-heading" className="section-heading mt-4 max-w-[720px]">
         A verified identity you carry, and share only when you approve.
       </h2>
-      <div className="mt-10 grid gap-8 md:grid-cols-3">
+      <div className="editorial-links mt-10">
         {facts.map(({ title, body }) => (
-          <div key={title}>
+          <div key={title} className="editorial-link">
             <h3 className="text-card-title font-semibold">{title}</h3>
             <p className="mt-2 text-body text-[#526058]">{body}</p>
           </div>
         ))}
       </div>
       <p className="mt-10 text-body text-[#526058]">
-        Read our <Link to="/privacy" className="font-semibold text-[#007d21] underline underline-offset-4">Privacy Policy</Link>,{" "}
-        <Link to="/terms" className="font-semibold text-[#007d21] underline underline-offset-4">Terms of Use</Link> and{" "}
-        <Link to="/account-deletion" className="font-semibold text-[#007d21] underline underline-offset-4">how to delete your account</Link>, or contact{" "}
-        <a href="mailto:support@ontiver.com" className="font-semibold text-[#007d21] underline underline-offset-4">support@ontiver.com</a>.
+        Read our{" "}
+        <Link to="/privacy" className="font-semibold text-accent underline underline-offset-4">
+          Privacy Policy
+        </Link>
+        ,{" "}
+        <Link to="/terms" className="font-semibold text-accent underline underline-offset-4">
+          Terms of Use
+        </Link>{" "}
+        and{" "}
+        <Link
+          to="/account-deletion"
+          className="font-semibold text-accent underline underline-offset-4"
+        >
+          how to delete your account
+        </Link>
+        , or contact{" "}
+        <a
+          href="mailto:support@ontiver.com"
+          className="font-semibold text-accent underline underline-offset-4"
+        >
+          support@ontiver.com
+        </a>
+        .
       </p>
     </div>
   </section>
