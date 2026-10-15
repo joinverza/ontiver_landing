@@ -1,4 +1,5 @@
-import { ArrowUpRight, BookOpen, LifeBuoy, LockKeyhole, ShieldCheck } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { BookOpen, LifeBuoy, LockKeyhole, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { useBlogLibrary } from "../../blog/hooks/useBlogContent";
@@ -48,37 +49,42 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
   const articles = selected.length ? selected : blogArticles.slice(0, 3);
 
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
+    <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
       <header className="page-intro">
-        <div className="site-container grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div className="min-w-0">
+        <div
+          className={`site-container split-hero-grid ${enterprise ? "split-hero-grid--image-left" : ""}`}
+        >
+          <div className="page-hero-content">
             <p className="eyebrow">
               {enterprise ? "Resources for your team" : "Ontiver resources"}
             </p>
-            <h1 className="mt-5 max-w-[1040px] text-page-hero font-medium">
+            <h1 className="mt-5 text-page-hero font-medium">
               {enterprise
                 ? "Understand identity infrastructure, your way."
                 : "Understand your identity, your way."}
             </h1>
-            <p className="mt-6 max-w-[680px] text-subtitle text-[#526058]">
+            <p className="page-hero-description mt-6 text-subtitle text-[#526058]">
               {enterprise
                 ? "Explore source checks, review decisions, consent and reusable proof in Ontiver's planned workflows."
                 : "Learn about organization requests, evidence, consent choices and proof reuse before joining early access."}
             </p>
-            <a href="#resource-topics" className="button-primary mt-7">
-              Explore the guides <ArrowUpRight size={18} aria-hidden="true" />
-            </a>
+            <div className="page-hero-actions">
+              <a href="#resource-topics" className="button-primary">
+                Explore the guides <ActionIcon size={18} aria-hidden="true" />
+              </a>
+            </div>
           </div>
-          <div data-scroll-reveal className="min-w-0">
+          <div className="page-hero-media hero-media-enter">
             <ContextPhoto
               image={enterprise ? editorialPhotos.enterpriseResources : editorialPhotos.resources}
               priority
+              sizes="(min-width: 1024px) 47vw, 100vw"
+              caption={
+                enterprise
+                  ? "From source checks to decisions your team can explain."
+                  : "Clearer answers about the information you share."
+              }
             />
-            <p className="mt-4 text-meta text-[#526058]">
-              {enterprise
-                ? "From source checks to decisions your team can explain."
-                : "Clearer answers about the information you share."}
-            </p>
           </div>
         </div>
       </header>
@@ -87,23 +93,17 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
         className="section-space site-container scroll-mt-28"
         aria-label="Explore Ontiver resources"
       >
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="editorial-links editorial-links--four">
           {resourceLinks.map(({ icon: Icon, title, description, to }) => (
             <Link
               key={to}
               to={enterprise && ["/security", "/support"].includes(to) ? `/enterprise${to}` : to}
-              className="group flex flex-col justify-between rounded-2xl bg-[#f5f6f3] p-5 transition-colors hover:bg-[#edf5eb]"
+              className="editorial-link group"
             >
-              <Icon className="size-7 text-[#007d21]" aria-hidden="true" />
-              <div className="mt-3 flex items-end justify-between gap-4">
-                <div>
-                  <h2 className="max-w-56 text-card-title font-medium">{title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-[#526058]">{description}</p>
-                </div>
-                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white">
-                  <ArrowUpRight size={19} aria-hidden="true" />
-                </span>
-              </div>
+              <Icon className="size-7 text-accent" aria-hidden="true" />
+              <h2 className="mt-6 text-card-title font-medium">{title}</h2>
+              <p className="mt-3 text-body text-[#526058]">{description}</p>
+              <ActionIcon size={23} className="editorial-link-arrow" aria-hidden="true" />
             </Link>
           ))}
         </div>
@@ -121,7 +121,7 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
             </div>
             <Link to="/blogs" className="button-secondary">
               All articles
-              <ArrowUpRight size={18} aria-hidden="true" />
+              <ActionIcon size={18} aria-hidden="true" />
             </Link>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
@@ -133,7 +133,7 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
                 <p className="mt-5 text-meta text-[#526058]">
                   {article.category} / {article.readTime}
                 </p>
-                <h3 className="mt-3 text-card-title font-medium group-hover:text-[#007d21]">
+                <h3 className="mt-3 text-card-title font-medium group-hover:text-accent">
                   {article.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#526058]">{article.excerpt}</p>

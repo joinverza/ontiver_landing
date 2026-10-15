@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link } from "react-router-dom";
 import { legalLinks, type LegalDocument } from "../data/legalDocuments";
 
@@ -15,7 +15,8 @@ const LegalNavigation = ({ pathname, document, showContents }: LegalNavigationPr
         <details className="group mb-5 border-b border-[#dde6dc] pb-5 lg:hidden">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-body font-medium [&::-webkit-details-marker]:hidden">
             Table of contents
-            <ChevronDown
+            <ActionIcon
+              direction="down"
               size={20}
               className="transition-transform group-open:rotate-180"
               aria-hidden="true"
@@ -27,7 +28,7 @@ const LegalNavigation = ({ pathname, document, showContents }: LegalNavigationPr
                 <li key={section.heading}>
                   <a
                     href={`#legal-section-${index + 1}`}
-                    className="block text-sm leading-relaxed text-[#526058] hover:text-[#007d21]"
+                    className="block text-sm leading-relaxed text-[#526058] hover:text-accent"
                   >
                     {index + 1}. {section.heading}
                   </a>
@@ -44,10 +45,10 @@ const LegalNavigation = ({ pathname, document, showContents }: LegalNavigationPr
             {document.sections.map((section, index) => (
               <li key={section.heading}>
                 <a
-                  className="flex gap-3 text-sm leading-6 text-[#002d0e]/55 transition-colors hover:text-[#007d21]"
+                  className="flex gap-3 text-sm leading-6 text-[#002d0e]/55 transition-colors hover:text-accent"
                   href={`#legal-section-${index + 1}`}
                 >
-                  <span className="text-meta tabular-nums text-[#007d21]">
+                  <span className="text-meta tabular-nums text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   {section.heading}
@@ -61,7 +62,8 @@ const LegalNavigation = ({ pathname, document, showContents }: LegalNavigationPr
     <details className="group lg:hidden">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-full border border-[#cbd5c7] px-5 py-3 text-body font-medium [&::-webkit-details-marker]:hidden">
         Legal documents
-        <ChevronDown
+        <ActionIcon
+          direction="down"
           size={20}
           className="transition-transform group-open:rotate-180"
           aria-hidden="true"
@@ -89,10 +91,10 @@ const LegalNavigation = ({ pathname, document, showContents }: LegalNavigationPr
           key={href}
           to={href}
           aria-current={pathname === href ? "page" : undefined}
-          className={`flex min-h-12 items-center justify-between gap-3 rounded-xl px-3 text-sm transition-colors ${pathname === href ? "bg-[#edf5eb] text-[#007d21]" : "text-[#002d0e]/60 hover:bg-[#f5f6f3] hover:text-[#002d0e]"}`}
+          className={`flex min-h-12 items-center justify-between gap-3 rounded-xl px-3 text-sm transition-colors ${pathname === href ? "bg-[#edf5eb] text-accent" : "text-[#002d0e]/60 hover:bg-surface-muted hover:text-[#002d0e]"}`}
         >
           {label}
-          <ChevronRight size={16} aria-hidden="true" />
+          <ActionIcon size={16} aria-hidden="true" />
         </Link>
       ))}
     </nav>

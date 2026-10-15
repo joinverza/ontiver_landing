@@ -1,10 +1,12 @@
-import { ArrowUpRight, History, KeyRound, LockKeyhole, SlidersHorizontal } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { History, KeyRound, LockKeyhole, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import type { Audience } from "../../../../shared/lib/audience";
 import { RegulatoryCredentials } from "../../home/components/Proof";
+import "../../../../shared/components/ui/promise-cards.css";
 
 const reviewAreas = [
   {
@@ -66,31 +68,33 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
   const controls = isEnterprise ? enterpriseControls : individualControls;
 
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
+    <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
       <section className="page-intro">
-        <div className="site-container grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          <div className="min-w-0" data-scroll-reveal>
+        <div
+          className={`site-container split-hero-grid ${isEnterprise ? "" : "split-hero-grid--image-left"}`}
+        >
+          <div className="page-hero-content" data-scroll-reveal>
             <p className="eyebrow">Security and trust</p>
-            <h1 className="mt-5 max-w-[16ch] text-page-hero font-semibold">
+            <h1 className="mt-5 text-page-hero font-medium">
               {isEnterprise
                 ? "Built for sensitive identity workflows."
                 : "Security and privacy by design."}
             </h1>
-            <p className="mt-6 max-w-xl text-subtitle text-[#526058]">
+            <p className="page-hero-description mt-6 text-subtitle text-[#526058]">
               {isEnterprise
                 ? "Ontiver is designed around secure verification, consent-based sharing, auditability, and data-protection-first architecture."
                 : "Ontiver is built to reduce how often your sensitive documents are handled, and to keep you in control of every share."}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="page-hero-actions">
               {isEnterprise ? (
                 <a href="#request-docs" className="button-primary">
                   Request Security Documentation
-                  <ArrowUpRight size={17} aria-hidden="true" />
+                  <ActionIcon size={17} aria-hidden="true" />
                 </a>
               ) : (
                 <Link to="/privacy" className="button-primary">
                   Read the Privacy Policy
-                  <ArrowUpRight size={17} aria-hidden="true" />
+                  <ActionIcon size={17} aria-hidden="true" />
                 </Link>
               )}
               <Link to={isEnterprise ? "/privacy" : "/support"} className="button-secondary">
@@ -98,40 +102,43 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
               </Link>
             </div>
           </div>
-          <div className="min-w-0" data-scroll-reveal>
+          <div className="page-hero-media hero-media-enter">
             <ContextPhoto
               image={isEnterprise ? editorialPhotos.enterpriseSecurity : editorialPhotos.security}
               priority
+              sizes="(min-width: 1024px) 47vw, 100vw"
+              caption={
+                isEnterprise
+                  ? "Sensitive evidence deserves clear access, purpose, and review."
+                  : "Identity information shared with purpose and permission."
+              }
             />
-            <p className="mt-4 text-meta text-[#526058]">
-              {isEnterprise
-                ? "Sensitive evidence deserves clear access, purpose, and review."
-                : "Identity information shared with purpose and permission."}
-            </p>
           </div>
         </div>
       </section>
 
       <section id="your-controls" className="section-space scroll-mt-20">
-        <div className="site-container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
-          <div className="min-w-0" data-scroll-reveal>
-            <ContextPhoto
-              image={
-                isEnterprise
-                  ? editorialPhotos.enterpriseSecurityControls
-                  : editorialPhotos.securityControls
-              }
-            />
-            <div className="mt-4 grid grid-cols-3 divide-x divide-[#d9e2d5] rounded-2xl bg-[#edf5eb] px-2 py-4 text-center text-meta font-medium">
-              <span className="px-2">A stated purpose</span>
-              <span className="px-2">Scoped access</span>
-              <span className="px-2">A clear record</span>
+        <div className="site-container story-split">
+          <div className="story-split-media">
+            <div data-media-reveal>
+              <ContextPhoto
+                image={
+                  isEnterprise
+                    ? editorialPhotos.enterpriseSecurityControls
+                    : editorialPhotos.securityControls
+                }
+              />
             </div>
           </div>
-          <div>
+          <div className="story-split-content">
             <div data-scroll-reveal>
               <p className="eyebrow">Designed controls</p>
               <h2 className="section-heading mt-4">Purpose. Permission. A clear record.</h2>
+            </div>
+            <div className="mt-6 grid grid-cols-3 divide-x divide-[#d9e2d5] border-y border-[#d9e2d5] py-4 text-center text-meta font-medium">
+              <span className="px-2">A stated purpose</span>
+              <span className="px-2">Scoped access</span>
+              <span className="px-2">A clear record</span>
             </div>
             <div className="mt-8 divide-y divide-[#d9e2d5]">
               {controls.map(({ title, copy }) => (
@@ -143,10 +150,10 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
             </div>
             <Link
               to={isEnterprise ? "/enterprise/contact?request=security-documentation" : "/waitlist"}
-              className="mt-4 inline-flex items-center gap-3 text-body font-semibold text-[#007d21]"
+              className="mt-4 inline-flex items-center gap-3 text-body font-semibold text-accent"
             >
               {isEnterprise ? "Request security documentation" : "Join the user waitlist"}
-              <ArrowUpRight size={20} aria-hidden="true" />
+              <ActionIcon size={20} aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -178,16 +185,16 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
                 to="/enterprise/contact?request=security-documentation"
                 className="button-primary shrink-0"
               >
-                Request a security review <ArrowUpRight size={17} aria-hidden="true" />
+                Request a security review <ActionIcon size={17} aria-hidden="true" />
               </Link>
             )}
           </div>
-          <div className="mt-12 grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="promise-grid mt-12">
             {reviewAreas.map(({ icon: Icon, title, copy, individualCopy }) => (
-              <article key={title} className="border-t border-[#cbdac5] pt-6" data-scroll-reveal>
-                <Icon className="mb-5 size-7 text-[#007d21]" aria-hidden="true" />
+              <article key={title} className="promise-card" data-scroll-reveal>
+                <Icon className="mb-5 size-7 text-accent" aria-hidden="true" />
                 <h3 className="text-card-title font-semibold">{title}</h3>
-                <p className="mt-3 text-body text-[#526058]">
+                <p className="promise-card-description text-body">
                   {isEnterprise ? copy : individualCopy}
                 </p>
               </article>
@@ -197,7 +204,7 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
       </section>
 
       <section id="request-docs" className="section-space scroll-mt-24">
-        <div className="site-container grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
+        <div className="site-container equal-columns grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div data-scroll-reveal>
             <h2 className="section-heading">
               {isEnterprise ? "Review the details with your team." : "Questions about your data?"}
@@ -208,13 +215,16 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
                 : "Read how information is handled, or ask the support team about a request, sharing choice, or account rights."}
             </p>
           </div>
-          <div className="flex flex-wrap gap-3 lg:justify-end" data-scroll-reveal>
+          <div
+            className="flex flex-wrap content-center items-center gap-3 lg:justify-end"
+            data-scroll-reveal
+          >
             <Link
               to={isEnterprise ? "/enterprise/contact?request=security-documentation" : "/privacy"}
               className="button-primary"
             >
               {isEnterprise ? "Request Security Documentation" : "Read the Privacy Policy"}
-              <ArrowUpRight size={17} aria-hidden="true" />
+              <ActionIcon size={17} aria-hidden="true" />
             </Link>
             <Link to={isEnterprise ? "/privacy" : "/support"} className="button-secondary">
               {isEnterprise ? "Read the Privacy Policy" : "Contact Support"}

@@ -29,7 +29,7 @@ const AccountDeletionContent = () => (
             "Save the request reference and any response shown.",
           ].map((item, index) => (
             <li key={item} className="flex gap-3 text-body text-[#002d0e]/65">
-              <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#edf5eb] text-meta font-semibold text-[#007d21]">
+              <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#edf5eb] text-meta font-semibold text-accent">
                 {index + 1}
               </span>
               {item}
@@ -39,7 +39,7 @@ const AccountDeletionContent = () => (
       </section>
       <p className="flex flex-wrap items-center gap-2 border-t border-[#dde6dc] pt-6 text-sm text-[#002d0e]/55">
         <Mail size={16} aria-hidden="true" /> Need help?{" "}
-        <Link className="font-semibold text-[#007d21] underline underline-offset-4" to="/support">
+        <Link className="font-semibold text-accent underline underline-offset-4" to="/support">
           Open support
         </Link>
       </p>

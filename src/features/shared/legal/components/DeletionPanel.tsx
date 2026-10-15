@@ -61,7 +61,7 @@ const DeletionPanel = () => {
         </p>
         <Link
           to="/support"
-          className="mt-5 inline-flex text-body font-medium text-[#007d21] underline underline-offset-4"
+          className="mt-5 inline-flex text-body font-medium text-accent underline underline-offset-4"
         >
           Contact support
         </Link>
@@ -71,7 +71,7 @@ const DeletionPanel = () => {
 
   return (
     <form onSubmit={submit} className="h-fit rounded-[24px] bg-[#edf5eb] p-6 sm:p-8">
-      <ShieldCheck className="h-7 w-7 text-[#007d21]" aria-hidden="true" />
+      <ShieldCheck className="h-7 w-7 text-accent" aria-hidden="true" />
       <p className="eyebrow mt-5">Step {step === "request" ? "01" : "02"} / 02</p>
       <h2 className="mt-3 text-card-title font-semibold tracking-[-0.02em] text-[#002d0e]">
         {step === "request" ? "Verify your email" : "Enter your verification code"}
@@ -95,7 +95,7 @@ const DeletionPanel = () => {
         value={email}
         disabled={step === "confirm"}
         onChange={(event) => setEmail(event.target.value)}
-        className="mt-2 min-h-12 w-full rounded-xl border border-[#dde6dc] bg-white px-4 text-body outline-none focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10 disabled:bg-white/60 disabled:text-[#002d0e]/50"
+        className="mt-2 min-h-12 w-full rounded-xl border border-[#dde6dc] bg-surface-raised px-4 text-body outline-none focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10 disabled:bg-white/60 disabled:text-[#002d0e]/50"
       />
       {step === "confirm" && (
         <>
@@ -111,7 +111,7 @@ const DeletionPanel = () => {
             maxLength={6}
             value={code}
             onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
-            className="mt-2 min-h-12 w-full rounded-xl border border-[#dde6dc] bg-white px-4 text-body tracking-[.35em] outline-none focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"
+            className="mt-2 min-h-12 w-full rounded-xl border border-[#dde6dc] bg-surface-raised px-4 text-body tracking-[.35em] outline-none focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"
           />
           <label className="mt-5 flex items-start gap-3 text-sm leading-relaxed">
             <input
@@ -156,7 +156,7 @@ const DeletionPanel = () => {
             setMessage("");
             setError("");
           }}
-          className="mt-4 text-sm font-medium text-[#007d21] underline underline-offset-4"
+          className="mt-4 text-sm font-medium text-accent underline underline-offset-4"
         >
           Use another email or request a new code
         </button>

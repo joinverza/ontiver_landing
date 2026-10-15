@@ -2,12 +2,21 @@ import { ShieldCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
+import { imagery, type EditorialImage } from "../../../../shared/data/imagery";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { LEGAL_LAST_UPDATED, legalDocuments } from "../data/legalDocuments";
 import LegalNavigation from "../components/LegalNavigation";
 import LegalCentreContent from "../components/LegalCentreContent";
 import LegalDocumentContent from "../components/LegalDocumentContent";
 import AccountDeletionContent from "../components/AccountDeletionContent";
+
+const legalHeroImages: Record<string, EditorialImage> = {
+  "/legal": editorialPhotos.legal,
+  "/privacy": imagery.work,
+  "/terms": imagery.cityPortrait,
+  "/cookies": imagery.everydayPhone,
+  "/account-deletion": imagery.individualHero,
+};
 
 const LegalPage = () => {
   const { pathname } = useLocation();
@@ -20,32 +29,34 @@ const LegalPage = () => {
     : isCentre
       ? "Legal documents, privacy questions, and account deletion requests."
       : document.summary;
+  const image = legalHeroImages[pathname] ?? legalHeroImages["/privacy"];
+  const imageLeft = isCentre || pathname === "/terms" || isDeletion;
 
   return (
     <>
-      <main id="main-content" tabIndex={-1} className="min-h-screen bg-white text-[#002d0e]">
+      <main id="main-content" tabIndex={-1} className="min-h-screen bg-surface text-[#002d0e]">
         <header className={`page-intro ${isCentre ? "" : "page-intro-compact"}`}>
           <div
-            className={`site-container ${isCentre ? "grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20" : ""}`}
+            className={`site-container split-hero-grid ${imageLeft ? "split-hero-grid--image-left" : ""} ${isCentre ? "" : "split-hero-grid--compact"}`}
           >
-            <div>
+            <div className="page-hero-content">
               <p className="eyebrow inline-flex items-center gap-2">
                 <ShieldCheck size={16} aria-hidden="true" /> Ontiver Trust &amp; Legal
               </p>
-              <h1 className="mt-5 max-w-[1100px] text-page-hero font-medium">{title}</h1>
-              <p className="mt-6 max-w-[640px] text-subtitle text-[#002d0e]/65">{summary}</p>
+              <h1 className="mt-5 text-page-hero font-medium">{title}</h1>
+              <p className="page-hero-description mt-6 text-subtitle text-[#002d0e]/65">
+                {summary}
+              </p>
               {!isDeletion && (
                 <p className="mt-7 inline-flex items-center gap-2 text-meta font-medium text-[#526058]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#009311]" aria-hidden="true" />{" "}
-                  Last updated {isCentre ? LEGAL_LAST_UPDATED : document.updated}
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#009311]" aria-hidden="true" /> Last
+                  updated {isCentre ? LEGAL_LAST_UPDATED : document.updated}
                 </p>
               )}
             </div>
-            {isCentre && (
-              <div data-scroll-reveal>
-                <ContextPhoto image={editorialPhotos.legal} priority />
-              </div>
-            )}
+            <div className="page-hero-media hero-media-enter">
+              <ContextPhoto image={image} priority sizes="(min-width: 1024px) 47vw, 100vw" />
+            </div>
           </div>
         </header>
         <section className="section-space">

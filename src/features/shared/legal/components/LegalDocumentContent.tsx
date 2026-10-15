@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link } from "react-router-dom";
 import type { LegalDocument } from "../data/legalDocuments";
 
@@ -7,7 +7,7 @@ const LegalDocumentContent = ({ document }: { document: LegalDocument }) => (
     {document.sections.map((section, index) => (
       <section id={`legal-section-${index + 1}`} key={section.heading} className="scroll-mt-28">
         <div className="flex items-baseline gap-4">
-          <span className="text-meta font-medium tabular-nums text-[#007d21]">
+          <span className="text-meta font-medium tabular-nums text-accent">
             {String(index + 1).padStart(2, "0")}
           </span>
           <h2 className="text-card-title font-semibold tracking-[-0.02em]">{section.heading}</h2>
@@ -38,9 +38,9 @@ const LegalDocumentContent = ({ document }: { document: LegalDocument }) => (
       </p>
       <Link
         to="/support"
-        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#007d21]"
+        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent"
       >
-        Open support <ArrowUpRight size={17} aria-hidden="true" />
+        Open support <ActionIcon size={17} aria-hidden="true" />
       </Link>
     </div>
   </div>
