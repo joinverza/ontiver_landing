@@ -1,4 +1,5 @@
-import { ArrowUpRight, Check } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { Check } from "lucide-react";
 import { useEnterpriseInquiry } from "../hooks/useEnterpriseInquiry";
 import { useHydratedSearch } from "../hooks/useHydratedSearch";
 import { EnterpriseInquiryFields } from "./EnterpriseInquiryFields";
@@ -16,7 +17,11 @@ const EnterpriseInquiryFormContent = ({ search }: { search: string }) => {
   } = useEnterpriseInquiry(search);
 
   return (
-    <form onSubmit={submit} aria-busy={status === "sending"} className="order-1 min-w-0 bg-white">
+    <form
+      onSubmit={submit}
+      aria-busy={status === "sending"}
+      className="order-1 min-w-0 border border-[#dde6dc] bg-surface-raised p-6 sm:p-9"
+    >
       <h2 className="text-card-title font-medium">Request enterprise access</h2>
       {isSandboxRequest ? (
         <p className="mt-3 border-l-2 border-[#007d21] pl-4 text-body text-[#526058]">
@@ -49,11 +54,11 @@ const EnterpriseInquiryFormContent = ({ search }: { search: string }) => {
         {status === "sent" ? (
           <Check className="size-4" aria-hidden="true" />
         ) : (
-          <ArrowUpRight className="size-4" aria-hidden="true" />
+          <ActionIcon className="size-4" aria-hidden="true" />
         )}
       </button>
       {status === "sent" ? (
-        <p className="mt-4 text-body text-[#007d21]" role="status">
+        <p className="mt-4 text-body text-accent" role="status">
           Thank you. The Ontiver team will review your request and follow up by email.
         </p>
       ) : null}

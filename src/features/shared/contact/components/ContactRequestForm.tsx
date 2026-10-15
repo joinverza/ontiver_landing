@@ -1,4 +1,5 @@
-import { ArrowUpRight, Check } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { Check } from "lucide-react";
 import { contactFields } from "../data/contact";
 import { useContactRequest } from "../hooks/useContactRequest";
 import { ContactField } from "./ContactField";
@@ -10,7 +11,7 @@ export const ContactRequestForm = () => {
 
   return (
     <form
-      className="order-1 min-w-0 bg-white [&_input]:min-h-14 [&_label>span:first-child]:text-body [&_textarea]:min-h-52"
+      className="order-1 min-w-0 border border-[#dde6dc] bg-surface-raised p-6 sm:p-9 [&_input]:min-h-14 [&_label>span:first-child]:text-body [&_textarea]:min-h-52"
       aria-busy={sendState === "sending"}
       onSubmit={(event) => {
         event.preventDefault();
@@ -46,12 +47,12 @@ export const ContactRequestForm = () => {
             </>
           ) : (
             <>
-              Submit Request <ArrowUpRight size={18} aria-hidden="true" />
+              Submit Request <ActionIcon size={18} aria-hidden="true" />
             </>
           )}
         </button>
         {sendState === "sent" ? (
-          <p className="mt-4 text-body text-[#007d21]" role="status">
+          <p className="mt-4 text-body text-accent" role="status">
             Request Sent!
           </p>
         ) : null}

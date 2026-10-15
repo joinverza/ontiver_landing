@@ -1,7 +1,8 @@
 import { planOptions, type PlanKey, type EnterpriseInquiryValues } from "../inquiry.config";
+import { FormSelect } from "../../../../shared/components/forms/FormSelect";
 
 const fieldClass =
-  "mt-3 h-14 w-full rounded-[10px] border border-[#dde6dc] bg-white px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "mt-3 h-14 w-full rounded-[10px] border border-[#dde6dc] bg-surface-raised px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#526058] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 const textareaClass = `${fieldClass} min-h-32 resize-y py-3.5`;
 
 type EnterpriseInquiryFieldsProps = {
@@ -16,17 +17,15 @@ export const EnterpriseInquiryFields = ({ values, update }: EnterpriseInquiryFie
   <div className="mt-7 grid gap-x-6 gap-y-6 sm:grid-cols-2 [&>label]:text-body [&>label]:font-medium">
     <label className="text-sm font-semibold">
       Preferred plan
-      <select
-        className={fieldClass}
+      <FormSelect
+        className="mt-3"
+        label="Preferred plan"
+        allowEmpty={false}
+        placeholder="Select a plan"
         value={values.planKey}
-        onChange={(event) => update("planKey", event.target.value as PlanKey)}
-      >
-        {Object.entries(planOptions).map(([key, label]) => (
-          <option key={key} value={key}>
-            {label}
-          </option>
-        ))}
-      </select>
+        options={Object.entries(planOptions).map(([value, label]) => ({ value, label }))}
+        onChange={(value) => update("planKey", value as PlanKey)}
+      />
     </label>
     <label className="text-sm font-semibold">
       Company name *
@@ -103,31 +102,32 @@ export const EnterpriseInquiryFields = ({ values, update }: EnterpriseInquiryFie
     </label>
     <label className="text-sm font-semibold">
       Timeline
-      <select
-        className={fieldClass}
+      <FormSelect
+        className="mt-3"
+        label="Timeline"
+        placeholder="Select a timeline"
         value={values.timeline}
-        onChange={(event) => update("timeline", event.target.value)}
-      >
-        <option value="">Select a timeline</option>
-        <option>Immediately</option>
-        <option>Within 30 days</option>
-        <option>Within 3 months</option>
-        <option>Researching options</option>
-      </select>
+        onChange={(value) => update("timeline", value)}
+        options={["Immediately", "Within 30 days", "Within 3 months", "Researching options"].map(
+          (value) => ({ value, label: value }),
+        )}
+      />
     </label>
     <label className="text-sm font-semibold">
       Meeting preference
-      <select
-        className={fieldClass}
+      <FormSelect
+        className="mt-3"
+        label="Meeting preference"
+        placeholder="Select a preference"
         value={values.meetingPreference}
-        onChange={(event) => update("meetingPreference", event.target.value)}
-      >
-        <option value="">Select a preference</option>
-        <option>Email first</option>
-        <option>15-minute discovery call</option>
-        <option>Technical demo</option>
-        <option>Security review</option>
-      </select>
+        onChange={(value) => update("meetingPreference", value)}
+        options={[
+          "Email first",
+          "15-minute discovery call",
+          "Technical demo",
+          "Security review",
+        ].map((value) => ({ value, label: value }))}
+      />
     </label>
     <label className="text-sm font-semibold sm:col-span-2">
       Use case *

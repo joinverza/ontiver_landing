@@ -17,7 +17,7 @@ export const shortcutsByAudience = {
 };
 
 export const controlClassName =
-  "min-h-14 w-full rounded-[10px] border border-[#d7e2d4] bg-white px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#647365]/65 focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
+  "min-h-14 w-full rounded-[10px] border border-[#d7e2d4] bg-surface-raised px-4 text-body font-normal text-[#002d0e] outline-none transition-colors placeholder:text-[#526058] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10";
 
 export type SupportFormValues = {
   name: string;

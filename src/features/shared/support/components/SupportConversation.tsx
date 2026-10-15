@@ -28,7 +28,7 @@ export const SupportConversation = ({
   <>
     <div className="flex flex-wrap items-start justify-between gap-5 border-b border-[#06160f]/10 pb-6">
       <div className="min-w-0">
-        <div className="flex items-center gap-2 text-meta font-semibold uppercase text-[#008b24]">
+        <div className="flex items-center gap-2 text-meta font-semibold uppercase text-accent">
           <CheckCircle2 className="h-4 w-4" />
           Request {conversation.requestId}
         </div>
@@ -97,7 +97,7 @@ export const SupportConversation = ({
             type="button"
             onClick={onStartNewRequest}
             disabled={busy}
-            className="inline-flex min-h-14 items-center gap-2 rounded-full px-4 text-body font-medium text-[#526058] hover:text-[#007d21] disabled:opacity-50"
+            className="inline-flex min-h-14 items-center gap-2 rounded-full px-4 text-body font-medium text-[#526058] hover:text-accent disabled:opacity-50"
           >
             <Plus className="h-4 w-4" /> Start a new request
           </button>

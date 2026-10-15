@@ -1,7 +1,9 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useId, useRef, useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, LoaderCircle } from "lucide-react";
+import { Check, LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { joinWaitlist, sendContactRequest } from "../../../../shared/lib/landingApi";
+import { FormSelect } from "../../../../shared/components/forms/FormSelect";
 
 type SignupValues = {
   name: string;
@@ -15,7 +17,7 @@ type SignupValues = {
 const consentText =
   "I agree to join the Ontiver waitlist and have my signup details and interests sent to the Ontiver team for early-access follow-up.";
 const fieldClass =
-  "mt-2 min-h-12 w-full min-w-0 rounded-[10px] border border-[#b6caaa] bg-white px-4 text-body font-normal text-[#002d0e] outline-none placeholder:text-[#002d0e]/45 focus:border-[#007d21] focus:ring-2 focus:ring-[#007d21]/10 disabled:opacity-65";
+  "mt-2 min-h-12 w-full min-w-0 rounded-[10px] border border-[#b6caaa] bg-surface-raised px-4 text-body font-normal text-[#002d0e] outline-none placeholder:text-[#002d0e]/45 focus:border-[#007d21] focus:ring-2 focus:ring-[#007d21]/10 disabled:opacity-65";
 
 const WaitlistForm = ({
   className = "",
@@ -150,18 +152,21 @@ const WaitlistForm = ({
         </label>
         <label htmlFor={`${formId}-type`} className="text-body font-medium">
           User type *
-          <select
+          <FormSelect
             id={`${formId}-type`}
             name="userType"
+            label="User type"
+            placeholder="Select a user type"
             required
+            disabled={locked}
             value={values.userType}
-            onChange={(event) => update("userType", event.target.value)}
-            className={fieldClass}
-          >
-            {["Individual", "Business", "Developer", "Partner"].map((type) => (
-              <option key={type}>{type}</option>
-            ))}
-          </select>
+            onChange={(value) => update("userType", value)}
+            options={["Individual", "Business", "Developer", "Partner"].map((type) => ({
+              value: type,
+              label: type,
+            }))}
+            className="mt-2"
+          />
         </label>
         <label htmlFor={`${formId}-phone`} className="text-body font-medium">
           Phone <span className="font-normal text-[#526058]">(optional)</span>
@@ -209,7 +214,7 @@ const WaitlistForm = ({
       </fieldset>
       <p className="mt-3 text-meta text-[#526058]">
         Read our{" "}
-        <Link to="/privacy" className="font-medium text-[#007d21] underline underline-offset-4">
+        <Link to="/privacy" className="font-medium text-accent underline underline-offset-4">
           Privacy Policy
         </Link>
         .
@@ -232,13 +237,13 @@ const WaitlistForm = ({
         ) : (
           <>
             {partial ? "Retry remaining step" : submitLabel}
-            <ArrowUpRight size={18} aria-hidden="true" />
+            <ActionIcon size={18} aria-hidden="true" />
           </>
         )}
       </button>
       <div aria-live="polite">
         {state === "joined" ? (
-          <p className="mt-3 text-body text-[#007d21]">
+          <p className="mt-3 text-body text-accent">
             You're on the list! Your signup details have been sent to the Ontiver team.
           </p>
         ) : null}

@@ -1,10 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link } from "react-router-dom";
 import { contactRows, contactSocialIcons } from "../data/contact";
 
 export const ContactSidebar = () => (
-  <aside className="order-2 min-w-0 text-[#002d0e]">
-    <div className="rounded-2xl bg-[#f5f6f3] p-6 sm:p-7">
+  <aside className="order-2 flex min-w-0 flex-col bg-surface-muted p-6 text-[#002d0e] sm:p-9">
+    <div>
       <div>
         <h2 className="text-card-title font-medium">Before you send</h2>
         <div className="mt-4 divide-y divide-[#002d0e]/10">
@@ -29,7 +29,7 @@ export const ContactSidebar = () => (
         {contactSocialIcons.map((social) => (
           <a
             key={social.label}
-            className="grid size-12 place-items-center rounded-full border border-[#002d0e]/20 transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#007d21]"
+            className="grid size-12 place-items-center rounded-full border border-[#002d0e]/20 transition-colors hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#007d21]"
             aria-label={social.label}
             href={social.href}
             rel="noreferrer"
@@ -42,10 +42,10 @@ export const ContactSidebar = () => (
     </div>
     <Link
       to="/support"
-      className="mt-6 flex items-center justify-between gap-4 border-y border-[#dde6dc] py-5 text-body font-medium"
+      className="mt-auto flex items-center justify-between gap-4 border-b border-[#cbd5c7] pb-5 pt-8 text-body font-medium"
     >
       Continue an existing support request
-      <ArrowUpRight size={20} aria-hidden="true" />
+      <ActionIcon size={20} aria-hidden="true" />
     </Link>
   </aside>
 );

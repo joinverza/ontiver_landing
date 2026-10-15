@@ -3,6 +3,7 @@ import { Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { controlClassName, type SupportFormValues } from "../support.config";
 import { SupportField } from "./SupportField";
+import { FormSelect } from "../../../../shared/components/forms/FormSelect";
 
 type SupportRequestFormProps = {
   form: SupportFormValues;
@@ -48,17 +49,15 @@ export const SupportRequestForm = ({
         />
       </SupportField>
       <SupportField htmlFor="support-topic" label="Topic" required>
-        <select
+        <FormSelect
           id="support-topic"
+          label="Topic"
+          placeholder="Select a topic"
           required
           value={selectedTopic}
-          onChange={(event) => onChange("topic", event.target.value)}
-          className={controlClassName}
-        >
-          {topics.map((topic) => (
-            <option key={topic}>{topic}</option>
-          ))}
-        </select>
+          options={topics.map((topic) => ({ value: topic, label: topic }))}
+          onChange={(value) => onChange("topic", value)}
+        />
       </SupportField>
       <SupportField htmlFor="support-subject" label="Subject" required>
         <input
@@ -97,7 +96,7 @@ export const SupportRequestForm = ({
     <div className="mt-8 flex flex-col gap-5 border-t border-[#dde6dc] pt-7 sm:flex-row sm:items-center sm:justify-between">
       <p className="max-w-xl text-meta text-[#526058]">
         Ontiver uses this information to respond and operate support. See our{" "}
-        <Link className="font-semibold text-[#007b20] underline underline-offset-2" to="/privacy">
+        <Link className="font-semibold text-accent underline underline-offset-2" to="/privacy">
           Privacy Policy
         </Link>
         .

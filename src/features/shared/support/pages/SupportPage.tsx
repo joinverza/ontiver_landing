@@ -12,15 +12,15 @@ const SupportPage = ({ audience = "individual" }: { audience?: Audience }) => {
 
   return (
     <>
-      <main id="main-content" tabIndex={-1} className="min-h-screen bg-white text-[#002d0e]">
+      <main id="main-content" tabIndex={-1} className="min-h-screen bg-surface text-[#002d0e]">
         <SupportHero
           audience={audience}
           hasSession={Boolean(support.session)}
           onTopicSelect={(topic) => support.updateForm("topic", topic)}
         />
         <section id="support-request" className="section-space site-container scroll-mt-28">
-          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-16">
-            <section className="min-w-0 bg-white">
+          <div className="equal-columns grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-8">
+            <section className="min-w-0 border border-[#dde6dc] bg-surface-raised p-6 sm:p-9">
               {support.session && support.conversation ? (
                 <SupportConversation
                   conversation={support.conversation}
