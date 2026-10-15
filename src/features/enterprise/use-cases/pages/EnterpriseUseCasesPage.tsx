@@ -1,13 +1,15 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useState } from "react";
-import { ArrowUpRight, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
-import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
+import ImageHoverPanels from "../../../../shared/components/media/ImageHoverPanels";
 import { getIndustryImage } from "../../../../shared/components/media/businessImages";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { imagery } from "../../../../shared/data/imagery";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { priorityUseCases, useCasePageDetails, type IndustryCategory } from "../data/useCases";
+import SlidingPill from "../../../../shared/components/ui/SlidingPill";
 
 const categories: Array<"All workflows" | IndustryCategory> = [
   "All workflows",
@@ -39,7 +41,7 @@ const EnterpriseUseCasesPage = () => {
         <>
           One platform.
           <br />
-          <span className="text-[#007d21]">Your industry's workflow.</span>
+          <span className="text-accent">Your industry's workflow.</span>
         </>
       }
       description="Connect identity, evidence, consent, and enterprise review across 21 industry templates. Start with one operational journey."
@@ -71,40 +73,19 @@ const EnterpriseUseCasesPage = () => {
               marketplaces and sellers, construction and contractors.
             </p>
           </div>
-          <div
-            data-horizontal-cards
-            data-lenis-prevent
-            tabIndex={0}
-            role="region"
-            aria-label="Priority industry cards"
-            className="flex items-start gap-5 overflow-x-auto pb-3 md:grid md:grid-cols-2 md:gap-x-7 md:gap-y-8 md:overflow-visible lg:grid-cols-3"
-          >
-            {priorityUseCases.map((item) => (
-              <Link
-                data-scroll-reveal
-                key={item.id}
-                to={`/enterprise/use-cases/${item.id}`}
-                className="group w-[85%] min-w-0 shrink-0 md:w-auto"
-              >
-                <div className="aspect-[3/2] overflow-hidden rounded-xl">
-                  <BusinessPhoto image={getIndustryImage(item.id)} />
-                </div>
-                <div className="mt-4 flex items-start justify-between gap-4">
-                  <h3 className="text-card-title font-medium group-hover:text-[#007d21]">
-                    {item.heroTitle}
-                  </h3>
-                  <ArrowUpRight
-                    className="mt-1 size-5 shrink-0 text-[#007d21]"
-                    aria-hidden="true"
-                  />
-                </div>
-                <p className="mt-2 text-sm text-[#526058]">{item.purpose}</p>
-              </Link>
-            ))}
-          </div>
+          <ImageHoverPanels
+            label="Priority industry cards"
+            items={priorityUseCases.map((item) => ({
+              id: item.id,
+              title: item.heroTitle,
+              description: item.purpose,
+              image: getIndustryImage(item.id),
+              to: `/enterprise/use-cases/${item.id}`,
+            }))}
+          />
           <div
             data-scroll-reveal
-            className="mt-9 grid gap-6 rounded-xl bg-[#edf5e7] p-6 lg:grid-cols-[0.8fr_1.2fr]"
+            className="mt-9 grid gap-6 rounded-xl bg-surface-raised p-6 lg:grid-cols-[0.8fr_1.2fr]"
           >
             <h3 className="text-card-title font-medium">Start with a focused pilot.</h3>
             <div>
@@ -113,10 +94,10 @@ const EnterpriseUseCasesPage = () => {
               </p>
               <Link
                 to="/enterprise/contact"
-                className="mt-5 inline-flex items-center gap-2 text-body font-medium text-[#007d21]"
+                className="mt-5 inline-flex items-center gap-2 text-body font-medium text-accent"
               >
                 Discuss a Pilot
-                <ArrowUpRight size={18} />
+                <ActionIcon size={18} />
               </Link>
             </div>
           </div>
@@ -124,7 +105,7 @@ const EnterpriseUseCasesPage = () => {
       </section>
       <section
         id="industry-directory"
-        className="section-space bg-[#f7f8f5]"
+        className="section-space bg-surface-muted"
         aria-labelledby="directory-heading"
       >
         <div className="site-container">
@@ -135,8 +116,8 @@ const EnterpriseUseCasesPage = () => {
                 Find your workflow.
               </h2>
             </div>
-            <label className="flex w-full items-center gap-3 rounded-full border border-[#cfddc9] bg-white px-5 py-3 sm:w-[340px]">
-              <Search size={19} className="shrink-0 text-[#637060]" aria-hidden="true" />
+            <label className="flex w-full items-center gap-3 rounded-full border border-[#cfddc9] bg-surface-raised px-5 py-3 sm:w-[340px]">
+              <Search size={19} className="shrink-0 text-[#526058]" aria-hidden="true" />
               <span className="sr-only">Search industry workflows</span>
               <input
                 type="search"
@@ -147,20 +128,16 @@ const EnterpriseUseCasesPage = () => {
               />
             </label>
           </div>
-          <div className="mt-10 flex flex-wrap gap-2" aria-label="Filter industry workflows">
-            {categories.map((item) => (
-              <button
-                key={item}
-                type="button"
-                aria-pressed={category === item}
-                onClick={() => setCategory(item)}
-                className={`max-w-full rounded-full border px-4 py-2 text-sm transition-colors ${category === item ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#cfddc9] bg-white text-[#526058] hover:border-[#007d21]"}`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <p className="mt-6 text-sm text-[#637060]" aria-live="polite">
+          <SlidingPill
+            label="Filter industry workflows"
+            value={category}
+            onChange={setCategory}
+            options={categories.map((item) => ({ value: item, label: item }))}
+            layout="wrap"
+            size="compact"
+            className="mt-10"
+          />
+          <p className="mt-6 text-sm text-[#526058]" aria-live="polite">
             {filtered.length} {filtered.length === 1 ? "workflow" : "workflows"} · 21 industry
             templates and one cross-industry review role.
           </p>
@@ -172,16 +149,12 @@ const EnterpriseUseCasesPage = () => {
                 className="group grid grid-cols-[1fr_auto] items-start gap-4 border-t border-[#d6dfd1] py-4"
               >
                 <div className="min-w-0">
-                  <p className="text-meta text-[#637060]">{item.category}</p>
-                  <h3 className="mt-2 text-card-title font-medium group-hover:text-[#007d21]">
+                  <p className="text-meta text-[#526058]">{item.category}</p>
+                  <h3 className="mt-2 text-card-title font-medium group-hover:text-accent">
                     {item.title}
                   </h3>
                 </div>
-                <ArrowUpRight
-                  size={22}
-                  className="mt-1 shrink-0 text-[#007d21]"
-                  aria-hidden="true"
-                />
+                <ActionIcon size={22} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
               </Link>
             ))}
             {filtered.length === 0 && (

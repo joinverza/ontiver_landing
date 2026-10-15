@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import {
@@ -24,7 +24,7 @@ const UseCasePage = () => {
   );
 
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
+    <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
       <UseCaseHero detail={detail} />
       <UseCaseChallenge detail={detail} />
       <UseCaseFlow workflow={detail.workflow} />
@@ -40,12 +40,9 @@ const UseCasePage = () => {
             <p className="text-meta font-semibold uppercase text-[#c7e6b5]">Focused pilot</p>
             <h2 className="mt-3 max-w-[730px] text-section font-normal">{detail.cta}</h2>
             <p className="mt-4 max-w-2xl text-body text-white/75">{detail.purpose}</p>
-            <Link
-              to={detail.pilotPath}
-              className="button-primary mt-6 !border-white !bg-white !text-[#002d0e]"
-            >
+            <Link to={detail.pilotPath} className="button-primary button-on-dark mt-6">
               {detail.pilotCta}
-              <ArrowUpRight size={18} />
+              <ActionIcon size={18} />
             </Link>
           </div>
           <div className="border-t border-white/20 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
