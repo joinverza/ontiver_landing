@@ -1,0 +1,103 @@
+.enterprise-hero {
+  position: relative;
+  z-index: 1;
+  background: var(--surface-page);
+  color: #002d0e;
+  border-radius: 0 0 clamp(28px, 5.556vw, 112px) clamp(28px, 5.556vw, 112px);
+}
+
+.enterprise-hero .page-hero-content > .eyebrow,
+.enterprise-hero-accent {
+  color: var(--ink-accent);
+}
+
+.enterprise-hero-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: clamp(4rem, 6.25vw, 8rem);
+}
+
+.enterprise-hero-media {
+  min-width: 0;
+  margin: 0;
+}
+
+.enterprise-hero-film .hero-film__frame {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.enterprise-hero-story-content {
+  min-width: 0;
+}
+
+.enterprise-hero-introduction {
+  max-width: 32ch;
+  font-size: clamp(1.5rem, 2.222vw, 2.667rem);
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+
+.enterprise-hero-journey {
+  margin-top: clamp(2.5rem, 5.556vw, 7rem);
+  border-radius: 20px;
+  background: var(--surface-raised);
+  color: #002d0e;
+}
+
+.enterprise-hero-journey .section-space {
+  padding-block: clamp(2rem, 3.334vw, 4rem);
+  border-radius: 20px;
+}
+
+.enterprise-hero-journey .site-container {
+  padding-inline: clamp(1rem, 2.222vw, 2.5rem);
+}
+
+.enterprise-hero-journey .trust-marquee-track,
+.enterprise-hero-journey .trust-marquee-set {
+  gap: 1rem;
+}
+
+.enterprise-hero-journey .trust-marquee-set > span {
+  white-space: nowrap;
+  padding: 1rem 1.25rem;
+  font-size: var(--text-body);
+}
+
+.enterprise-hero-statement {
+  padding: clamp(2rem, 3.334vw, 4rem) clamp(1rem, 2.222vw, 2.5rem);
+}
+
+.enterprise-hero-statement .section-heading {
+  font-size: clamp(1.75rem, 2.778vw, 3.334rem);
+}
+
+@media (min-width: 1024px) and (min-height: 600px) {
+  .enterprise-hero-story {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 2.778vw, 4rem);
+  }
+
+  .enterprise-hero-media {
+    position: sticky;
+    top: calc(var(--site-header-height) + 1rem);
+  }
+
+  .enterprise-hero-film .hero-film__frame {
+    max-height: calc(100svh - var(--site-header-height) - 2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enterprise-hero-media {
+    position: static;
+  }
+}
+
+html[data-motion="paused"] .enterprise-hero-media {
+  position: static;
+}

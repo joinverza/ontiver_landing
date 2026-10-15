@@ -1,0 +1,183 @@
+.individual-hero {
+  padding-top: calc(var(--site-header-height) + clamp(2.75rem, 5.6vw, 7rem));
+}
+
+.individual-hero-copy {
+  display: grid;
+  gap: 2rem;
+  align-items: end;
+}
+
+.individual-hero-heading {
+  min-width: 0;
+}
+
+.individual-hero-heading h1 {
+  margin-block: clamp(1.5rem, 2.8vw, 3rem);
+  letter-spacing: -0.055em;
+}
+
+.individual-hero-line {
+  display: block;
+}
+
+.individual-hero-introduction {
+  min-width: 0;
+  max-width: 44rem;
+}
+
+.individual-hero-assurance {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #002d0e26;
+}
+
+.individual-hero-security {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: fit-content;
+  font-size: var(--text-meta);
+  font-weight: 500;
+}
+
+.individual-hero-security svg {
+  flex-shrink: 0;
+  color: var(--ink-accent);
+}
+
+.individual-film-stage {
+  --film-unfold: 1;
+  position: relative;
+  isolation: isolate;
+  perspective: 1800px;
+  margin-top: clamp(2.5rem, 5vw, 5rem);
+  padding-block: 1rem;
+}
+
+.individual-film-screen {
+  position: relative;
+  z-index: 1;
+  transform-origin: center 70%;
+}
+
+.individual-film-aperture {
+  position: relative;
+  overflow: hidden;
+}
+
+.individual-film-stage .hero-film__frame {
+  border-radius: 0;
+}
+
+.individual-film-depth {
+  position: absolute;
+  inset: 0 2.5%;
+  z-index: -1;
+  border: 1px solid #002d0e25;
+  background: var(--surface-muted);
+  pointer-events: none;
+}
+
+.individual-film-depth--back {
+  inset-inline: 5%;
+  background: #cad9c3;
+  transform: translateY(-0.65rem);
+}
+
+.individual-film-glint {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, #e5f4de2e 50%, transparent 70%);
+  pointer-events: none;
+  transform: translateX(-120%);
+}
+
+@media (min-width: 1024px) {
+  .individual-hero-copy {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+
+  .individual-hero-heading h1 {
+    font-size: clamp(2.75rem, 4.45vw, 6.5rem);
+  }
+
+  .individual-hero-introduction > p {
+    font-size: clamp(1.125rem, 1.4vw, 1.75rem);
+  }
+
+  .individual-hero-heading .hero-actions > a {
+    --button-x: clamp(1.25rem, 2vw, 2.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .individual-film-stage[data-animated] .individual-film-screen {
+    transform: translate3d(0, calc((1 - var(--film-unfold)) * 28px), 0)
+      rotateX(calc((1 - var(--film-unfold)) * 9deg)) scale(calc(0.91 + var(--film-unfold) * 0.09));
+  }
+
+  .individual-film-stage[data-animated] .individual-film-depth--back {
+    transform: translateY(calc(-0.65rem - (1 - var(--film-unfold)) * 24px))
+      scaleX(calc(0.94 + var(--film-unfold) * 0.06));
+  }
+
+  .individual-film-stage[data-animated] .individual-film-depth--front {
+    transform: translateY(calc((1 - var(--film-unfold)) * -12px));
+  }
+
+  .individual-film-stage[data-revealed] .individual-film-aperture {
+    animation: film-aperture 1150ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .individual-film-stage[data-revealed] .individual-film-glint {
+    display: block;
+    animation: film-glint 1600ms 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .individual-film-stage:focus-within .individual-film-screen {
+    transform: none;
+  }
+
+  .individual-film-stage:focus-within .individual-film-aperture {
+    animation: none;
+  }
+}
+
+@keyframes film-aperture {
+  from {
+    clip-path: inset(16% 8%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes film-glint {
+  from {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+html[data-motion="paused"]
+  .individual-film-stage
+  :is(.individual-film-screen, .individual-film-aperture, .individual-film-glint) {
+  animation: none;
+  transform: none;
+}
+
+html[data-motion="paused"] .individual-film-glint {
+  display: none;
+}

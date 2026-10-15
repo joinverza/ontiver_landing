@@ -9,24 +9,12 @@ import {
   CertificationStrip,
   RegulatoryCredentials,
   EvidenceCards,
-  PartnerStrip,
   PilotResults,
 } from "../../../shared/home/components/Proof";
-import IdentityMarquee from "../../../shared/home/components/IdentityMarquee";
-import WordReveal from "../../../../shared/components/ui/WordReveal";
 
 const EnterpriseHomePage = () => (
   <main id="main-content" tabIndex={-1}>
     <EnterpriseHero />
-    <IdentityMarquee audience="enterprise" />
-    <PartnerStrip audience="enterprise" />
-    <section className="section-space section-compact">
-      <div className="site-container">
-        <WordReveal className="max-w-[1080px]">
-          Verify the people and partners your operation depends on.
-        </WordReveal>
-      </div>
-    </section>
     <Modules audience="enterprise" />
     <Solution audience="enterprise" />
     <UseCase audience="enterprise" />
