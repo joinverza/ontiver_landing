@@ -1,4 +1,5 @@
-import { ArrowUpRight, Check } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { Check } from "lucide-react";
 import { type RefObject } from "react";
 import { contactSocialIcons } from "../../contact/data/contact";
 import PlatformIcon from "./PlatformIcon";
@@ -29,7 +30,7 @@ const ArticleSidebar = ({
   return (
     <aside className="min-w-0 lg:sticky lg:top-32 lg:self-start">
       <form
-        className="rounded-2xl bg-[#f5f6f3] p-6 sm:p-8 lg:p-6"
+        className="rounded-2xl bg-surface-muted p-6 sm:p-8 lg:p-6"
         onSubmit={(event) => {
           event.preventDefault();
           onSubscribe();
@@ -48,7 +49,7 @@ const ArticleSidebar = ({
             <input
               id="article-newsletter-email"
               ref={emailRef}
-              className={`h-12 w-full rounded-xl border bg-white px-4 text-body outline-none transition-colors placeholder:text-[#002d0e]/35 ${emailError ? "border-red-500/60" : "border-[#dde6dc] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"}`}
+              className={`h-12 w-full rounded-xl border bg-surface-raised px-4 text-body outline-none transition-colors placeholder:text-[#002d0e]/35 ${emailError ? "border-red-500/60" : "border-[#dde6dc] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"}`}
               placeholder="Enter your email"
               value={email}
               type="email"
@@ -82,12 +83,12 @@ const ArticleSidebar = ({
               </>
             ) : (
               <>
-                Subscribe <ArrowUpRight size={17} aria-hidden="true" />
+                Subscribe <ActionIcon size={17} aria-hidden="true" />
               </>
             )}
           </button>
           {subscribeState === "done" && (
-            <p role="status" className="text-meta text-[#007d21]">
+            <p role="status" className="text-meta text-accent">
               You are subscribed. Thanks for joining us.
             </p>
           )}

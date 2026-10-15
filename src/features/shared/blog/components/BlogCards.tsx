@@ -1,6 +1,8 @@
-import { ArrowUpRight } from "lucide-react";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Link, useLocation } from "react-router-dom";
 import type { BlogSummary } from "../data/summaries";
+import { SiteImage } from "../../../../shared/components/media/SiteImage";
+import "../blog.css";
 
 function useArticleHref(slug: string) {
   const { pathname } = useLocation();
@@ -11,9 +13,11 @@ function useArticleHref(slug: string) {
 export const ArticleImage = ({
   article,
   lazy = true,
+  sizes,
 }: {
   article: BlogSummary;
   lazy?: boolean;
+  sizes?: string;
 }) => {
   if (article.image.endsWith(".svg")) {
     return (
@@ -31,14 +35,13 @@ export const ArticleImage = ({
   }
 
   return (
-    <img
+    <SiteImage
       src={article.image}
       alt={article.imageAlt}
       width={article.imageWidth}
       height={article.imageHeight}
-      loading={lazy ? "lazy" : undefined}
-      fetchPriority={lazy ? undefined : "high"}
-      decoding="async"
+      priority={!lazy}
+      sizes={sizes}
       className="h-full w-full object-cover"
       style={{ objectPosition: article.imagePosition }}
     />
@@ -49,39 +52,46 @@ export const ArticleGridCard = ({
   article,
   index = 0,
   className = "",
+  priority = false,
 }: {
   article: BlogSummary;
   index?: number;
   className?: string;
+  priority?: boolean;
 }) => {
   const articleHref = useArticleHref(article.slug);
 
   return (
-    <article data-blog-card data-blog-card-index={index} className={`group min-w-0 ${className}`}>
+    <article
+      data-blog-card
+      data-blog-card-index={index}
+      className={`blog-card group min-w-0 ${className}`}
+    >
       <Link to={articleHref} className="flex h-full flex-col rounded-2xl outline-offset-8">
-        <div
-          data-scroll-reveal
-          className="context-photo context-photo--card relative [&>img]:transition-transform [&>img]:duration-500 motion-safe:group-hover:[&>img]:scale-[1.03]"
-        >
-          <ArticleImage article={article} />
-          <span className="absolute bottom-4 right-4 grid size-11 place-items-center rounded-full bg-white text-[#002d0e]">
-            <ArrowUpRight size={22} aria-hidden="true" />
+        <div className="blog-card-media context-photo context-photo--card relative [&>img]:transition-transform [&>img]:duration-500 motion-safe:group-hover:[&>img]:scale-[1.03]">
+          <ArticleImage
+            article={article}
+            lazy={!priority}
+            sizes="(min-width: 2400px) 1200px, (min-width: 768px) 50vw, 100vw"
+          />
+          <span className="absolute bottom-4 right-4 grid size-11 place-items-center rounded-full bg-surface text-[#002d0e]">
+            <ActionIcon size={22} aria-hidden="true" />
           </span>
         </div>
-        <div className="flex flex-1 flex-col px-1 pb-2 pt-4">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta text-[#002d0e]/55">
-            <span className="font-semibold uppercase tracking-[0.1em] text-[#007d21]">
-              {article.category}
+        <div className="blog-card-content flex flex-1 flex-col pb-2 pt-5">
+          <div className="blog-card-meta flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-meta text-[#526058]">
+            <span className="font-medium text-[#002d0e]">{article.author}</span>
+            <span className="flex flex-wrap gap-x-4 gap-y-1">
+              {article.date && <span>{article.date}</span>}
+              <span>{article.readTime}</span>
             </span>
-            <span aria-hidden="true">/</span>
-            <span>{article.readTime}</span>
           </div>
-          <h3 className="mt-3 text-card-title font-medium text-[#002d0e] transition-colors group-hover:text-[#007d21]">
+          <h3 className="blog-card-title mt-4 text-card-title font-medium text-[#002d0e] transition-colors group-hover:text-accent">
             {article.title}
           </h3>
-          <p className="mt-4 text-body text-[#002d0e]/65">{article.excerpt}</p>
-          <div className="mt-auto flex items-center justify-between gap-3 border-b border-[#dde6dc] pb-5 pt-6">
-            <span className="text-meta text-[#002d0e]/50">{article.date || article.author}</span>
+          <p className="mt-3 text-body text-[#002d0e]/65">{article.excerpt}</p>
+          <div className="blog-card-tags mt-auto flex items-center gap-3 pt-6">
+            <span className="blog-category-chip">{article.category}</span>
           </div>
         </div>
       </Link>
@@ -123,8 +133,8 @@ export const DarkFeaturedArticleCard = ({ article }: { article: BlogSummary }) =
             )}
             {article.readTime}
           </p>
-          <span className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-white px-6 text-sm font-semibold text-[#002d0e]">
-            Read more <ArrowUpRight size={17} aria-hidden="true" />
+          <span className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-surface px-6 text-sm font-semibold text-[#002d0e]">
+            Read more <ActionIcon size={17} aria-hidden="true" />
           </span>
         </div>
       </Link>

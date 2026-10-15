@@ -1,47 +1,91 @@
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useState } from "react";
-import { ArrowDown } from "lucide-react";
+import { Search } from "lucide-react";
 import BlogHero from "../components/BlogHero";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { useBlogLibrary } from "../hooks/useBlogContent";
-import { ArticleGridCard, DarkFeaturedArticleCard } from "../components/BlogCards";
+import { ArticleGridCard } from "../components/BlogCards";
+import SlidingPill from "../../../../shared/components/ui/SlidingPill";
 
 const BlogPage = () => {
   const blogArticles = useBlogLibrary();
-  const [visibleCount, setVisibleCount] = useState(3);
-  const featured = blogArticles.find((article) => article.featured) ?? blogArticles[0];
-  const darkFeature = blogArticles.filter((article) => article !== featured)[3];
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const categories = [...new Set(blogArticles.map((article) => article.category))];
+  const searchTerm = search.trim().toLowerCase();
   const libraryArticles = blogArticles.filter(
-    (article) => article !== featured && article !== darkFeature,
+    (article) =>
+      (!category || article.category === category) &&
+      (!searchTerm ||
+        [article.title, article.excerpt, article.category, article.author].some((text) =>
+          text.toLowerCase().includes(searchTerm),
+        )),
   );
   const gridArticles = libraryArticles.slice(0, visibleCount);
   const canLoadMore = visibleCount < libraryArticles.length;
 
   const loadMore = () => {
-    setVisibleCount((current) => Math.min(current + 3, libraryArticles.length));
+    setVisibleCount((current) => Math.min(current + 6, libraryArticles.length));
   };
 
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white text-[#002d0e]">
-      <BlogHero featured={featured} />
+    <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
+      <BlogHero />
       <section
         id="blog-library"
-        className="section-space section-flow scroll-mt-24 border-t border-[#e1e6df]"
+        className="blog-library scroll-mt-24"
+        aria-labelledby="blog-library-heading"
       >
         <div className="site-container">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-[#dde6dc] pb-7">
-            <div>
-              <h2 className="section-heading">Articles.</h2>
+          <h2 id="blog-library-heading" className="sr-only">
+            Articles.
+          </h2>
+          <div className="blog-toolbar">
+            <div className="blog-categories">
+              <SlidingPill
+                label="Article categories"
+                value={category}
+                options={["", ...categories].map((item) => ({
+                  value: item,
+                  label: item || "All articles",
+                }))}
+                onChange={(item) => {
+                  setCategory(item);
+                  setVisibleCount(6);
+                }}
+                layout="scroll"
+                size="compact"
+              />
             </div>
-            <p className="text-meta font-medium text-[#002d0e]/55">
-              {blogArticles.length} articles
-            </p>
+            <label className="blog-search">
+              <Search size={19} aria-hidden="true" />
+              <input
+                type="search"
+                aria-label="Search articles"
+                placeholder="Search articles"
+                value={search}
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                  setVisibleCount(6);
+                }}
+              />
+            </label>
           </div>
-          <div className="grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+          <p className="blog-results-count text-meta text-[#526058]" role="status">
+            {libraryArticles.length} articles
+          </p>
+          <div className="blog-article-grid">
             {gridArticles.map((article, index) => (
-              <ArticleGridCard key={article.slug} article={article} index={index} />
+              <ArticleGridCard
+                key={article.slug}
+                article={article}
+                index={index}
+                priority={index === 0}
+              />
             ))}
           </div>
-          <div className="mt-12 text-center">
+          <div className="blog-load-more">
             <button
               type="button"
               className="button-secondary disabled:cursor-default disabled:opacity-50"
@@ -50,7 +94,7 @@ const BlogPage = () => {
             >
               {canLoadMore ? (
                 <>
-                  Load More Articles <ArrowDown size={17} aria-hidden="true" />
+                  Load More Articles <ActionIcon direction="down" size={17} aria-hidden="true" />
                 </>
               ) : (
                 "All Articles Loaded"
@@ -59,13 +103,6 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-      {darkFeature && (
-        <section className="section-space section-flow">
-          <div className="site-container">
-            <DarkFeaturedArticleCard article={darkFeature} />
-          </div>
-        </section>
-      )}
       <PageFooter />
     </main>
   );
