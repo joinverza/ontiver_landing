@@ -1,6 +1,55 @@
-const revealMarker = "[data-scroll-reveal], [data-media-reveal]";
-const revealSelector = `main > section, main > div, ${revealMarker}`;
+const mediaSelector = "[data-media-reveal], .page-hero-media, .story-split-media, .direction-photo";
+const cardSelector =
+  "article[data-scroll-reveal], .surface-card, .spotlight-cell, .workflow-win, .faq-item, .editorial-link, .case-study-slide, .image-hover-panel";
+const actionSelector =
+  ".button-primary, .button-secondary, a.inline-flex, .faq-support-link, .individual-hero-security";
+const textSelector = "h1, h2, h3, p, li, dt, dd, .eyebrow, .aurora-badge";
+const atomicSelector = `${mediaSelector}, ${cardSelector}`;
+const itemSelector = `${atomicSelector}, ${actionSelector}, ${textSelector}`;
+const revealSelector = `[data-scroll-reveal], ${itemSelector}`;
+// These regions already choreograph their own motion or contain interactive
+// content. Keep the film's layered entrance independent from section reveals.
+const independentMotionSelector = [
+  "nav",
+  "footer",
+  "form",
+  "[hidden]",
+  '[aria-hidden="true"]',
+  "[inert]",
+  '[role="dialog"]',
+  '[role="tablist"]',
+  '[role="tabpanel"]',
+  ".sr-only",
+  ".hero-enter",
+  ".hero-media-enter",
+  ".individual-film-stage",
+  ".hero-film",
+  ".enterprise-hero-media",
+  ".workflow-screen",
+  ".trust-marquee",
+  ".image-timeline",
+  "[data-word-reveal]",
+].join(", ");
 const motionSelector = "[data-parallax], [data-word-reveal]";
+
+const isRevealItem = (element: HTMLElement) => {
+  if (!element.closest("main") || element.closest(independentMotionSelector)) return false;
+  // A card or photo enters as one item; its hover details keep their own motion.
+  if (element.parentElement?.closest(atomicSelector)) return false;
+  if (element.parentElement?.closest(`${textSelector}, ${actionSelector}`)) return false;
+  return (
+    element.matches(itemSelector) ||
+    (element.matches("[data-scroll-reveal]") && !element.querySelector(itemSelector))
+  );
+};
+
+const revealKind = (element: HTMLElement) => {
+  if (element.matches(cardSelector)) return "card";
+  if (element.matches(mediaSelector)) return "media";
+  if (element.matches("h1, h2, h3")) return "heading";
+  if (element.matches(actionSelector)) return "action";
+  return "text";
+};
 
 type MotionTarget = {
   element: HTMLElement;
@@ -13,22 +62,30 @@ const resetMotion = ({ element, words }: MotionTarget) => {
 };
 
 export const observePageReveals = (shell: HTMLElement) => {
+  if (!("IntersectionObserver" in window)) return;
   const reveals = new Set<HTMLElement>();
+  const staggerGroups = new WeakMap<Element, number>();
   const motionTargets = new Map<HTMLElement, MotionTarget>();
   const activeTargets = new Set<HTMLElement>();
   let frame = 0;
   let listening = false;
-  let revealIndex = 0;
+
+  const showReveal = (element: Element) => {
+    if (!element.classList.contains("ontiver-reveal-visible")) {
+      element.classList.add("ontiver-reveal-animate");
+    }
+    element.classList.add("ontiver-reveal-visible");
+    revealObserver.unobserve(element);
+  };
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("ontiver-reveal-visible");
-        revealObserver.unobserve(entry.target);
+        showReveal(entry.target);
       });
     },
-    { rootMargin: "0px 0px -4% 0px" },
+    { rootMargin: "0px 0px -24px 0px" },
   );
 
   const renderMotion = (elements: Iterable<HTMLElement>) => {
@@ -109,21 +166,30 @@ export const observePageReveals = (shell: HTMLElement) => {
     const newReveals = candidates
       .filter(
         (element) =>
-          element.matches(revealSelector) &&
-          !reveals.has(element) &&
-          !element.querySelector(revealMarker),
+          element.matches(revealSelector) && !reveals.has(element) && isRevealItem(element),
       )
       .map((element) => ({
         element,
-        inFirstPaint: element.getBoundingClientRect().top < window.innerHeight,
+        box: element.getBoundingClientRect(),
       }));
 
-    newReveals.forEach(({ element, inFirstPaint }) => {
+    newReveals.forEach(({ element, box }) => {
       reveals.add(element);
-      // Already-painted SSR content must never flash from visible to hidden.
-      if (inFirstPaint) element.classList.add("ontiver-reveal-visible");
-      if (element.hasAttribute("data-scroll-reveal")) {
-        element.style.setProperty("--reveal-delay", `${(revealIndex++ % 3) * 70}ms`);
+      const group = element.parentElement ?? shell;
+      const index = staggerGroups.get(group) ?? 0;
+      staggerGroups.set(group, index + 1);
+      element.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 65}ms`);
+      element.dataset.revealKind = revealKind(element);
+
+      // Prerendered content is visible without JS. Items already on screen get
+      // a gentle lift, never a visible-to-hidden hydration flash.
+      if (box.top < window.innerHeight && box.bottom > 0) {
+        if (!element.classList.contains("ontiver-reveal-visible")) {
+          element.classList.add("ontiver-load-enter");
+        }
+        element.classList.add("ontiver-reveal-visible");
+      } else if (box.bottom <= 0) {
+        element.classList.add("ontiver-reveal-visible");
       }
       element.classList.add("ontiver-reveal");
       if (!element.classList.contains("ontiver-reveal-visible")) revealObserver.observe(element);
@@ -132,9 +198,16 @@ export const observePageReveals = (shell: HTMLElement) => {
     // A lazy section can replace its skeleton with children that reveal on
     // their own. Its previously registered wrapper must remain visible.
     reveals.forEach((element) => {
-      if (element.querySelector(revealMarker)) {
-        element.classList.add("ontiver-reveal-visible");
+      if (
+        element.matches("[data-scroll-reveal]") &&
+        !element.matches(itemSelector) &&
+        element.querySelector(itemSelector)
+      ) {
         revealObserver.unobserve(element);
+        element.classList.remove("ontiver-reveal", "ontiver-reveal-animate", "ontiver-load-enter");
+        element.style.removeProperty("--reveal-delay");
+        delete element.dataset.revealKind;
+        reveals.delete(element);
       }
     });
 
@@ -184,6 +257,26 @@ export const observePageReveals = (shell: HTMLElement) => {
   register(shell);
   mountObserver.observe(shell, { childList: true, subtree: true });
   document.addEventListener("visibilitychange", updateListeners);
+  const onFocus = (event: FocusEvent) => {
+    if (!(event.target instanceof Element)) return;
+    const item = event.target.closest(".ontiver-reveal");
+    if (!item) return;
+    // Keyboard navigation must not land on a delayed, invisible action.
+    showReveal(item);
+    item.classList.remove("ontiver-reveal-animate", "ontiver-load-enter");
+    item.classList.add("ontiver-reveal-focused");
+  };
+  const onAnimationEnd = (event: AnimationEvent) => {
+    if (
+      !(event.target instanceof HTMLElement) ||
+      !event.animationName.startsWith("ontiver-item-")
+    ) {
+      return;
+    }
+    event.target.classList.remove("ontiver-reveal-animate", "ontiver-load-enter");
+  };
+  shell.addEventListener("focusin", onFocus);
+  shell.addEventListener("animationend", onAnimationEnd);
 
   return () => {
     mountObserver.disconnect();
@@ -193,11 +286,22 @@ export const observePageReveals = (shell: HTMLElement) => {
     window.removeEventListener("scroll", queueFrame);
     window.removeEventListener("resize", queueFrame);
     document.removeEventListener("visibilitychange", updateListeners);
+    shell.removeEventListener("focusin", onFocus);
+    shell.removeEventListener("animationend", onAnimationEnd);
     reveals.forEach((element) => {
       // Restore the visible baseline without marking unseen content as revealed.
       // StrictMode can initialize the same mounted elements again immediately.
-      element.classList.remove("ontiver-reveal");
+      if (element.matches(".ontiver-load-enter, .ontiver-reveal-animate")) {
+        element.classList.remove("ontiver-reveal-visible");
+      }
+      element.classList.remove(
+        "ontiver-reveal",
+        "ontiver-reveal-animate",
+        "ontiver-load-enter",
+        "ontiver-reveal-focused",
+      );
       element.style.removeProperty("--reveal-delay");
+      delete element.dataset.revealKind;
     });
     motionTargets.forEach(resetMotion);
   };
