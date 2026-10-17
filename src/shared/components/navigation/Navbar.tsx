@@ -7,11 +7,13 @@ import { getAudienceFromPath, getAudienceHome } from "../../lib/audience";
 import AudienceToggle from "./AudienceToggle";
 import MobileMenu from "./MobileMenu";
 import DesktopNavigation from "./DesktopNavigation";
+import { useScrollNavbar } from "./useScrollNavbar";
 import "./navigation-motion.css";
 
 const Navbar = () => {
   const { pathname, key: routeKey } = useLocation();
   const navigate = useNavigate();
+  const headerRef = useScrollNavbar(routeKey);
   const [mobileMenu, setMobileMenu] = useState({ routeKey, open: false });
   const audience = getAudienceFromPath(pathname);
   const enterprise = audience === "enterprise";
@@ -33,6 +35,7 @@ const Navbar = () => {
   return (
     <>
       <header
+        ref={headerRef}
         data-ontiver-navbar
         className="fixed inset-x-0 top-0 z-50 border-b border-[#002d0e]/10 bg-surface/97 backdrop-blur-md"
       >
@@ -40,7 +43,7 @@ const Navbar = () => {
           data-mobile-nav-pill
           className="site-container navbar-rail flex items-center justify-between gap-4"
         >
-          <div className="flex shrink-0 items-center gap-5">
+          <div data-navbar-chrome className="flex shrink-0 items-center gap-5">
             <Link to={getAudienceHome(audience)} aria-label="Ontiver home" className="shrink-0">
               <img src="/assets/logo.svg" alt="Ontiver" className="h-7 w-auto sm:h-8" />
             </Link>

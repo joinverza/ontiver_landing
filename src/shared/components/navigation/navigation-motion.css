@@ -7,6 +7,60 @@
   min-height: clamp(56px, 4.167vw, 80px);
 }
 
+:root {
+  --navbar-motion-duration: 360ms;
+  --navbar-motion-easing: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 1250px) {
+  [data-ontiver-navbar] {
+    translate: 0 0;
+    transition: translate var(--navbar-motion-duration) var(--navbar-motion-easing);
+  }
+
+  [data-ontiver-navbar] .navbar-action {
+    translate: 0 0;
+    transition:
+      translate var(--navbar-motion-duration) var(--navbar-motion-easing),
+      box-shadow var(--navbar-motion-duration) ease,
+      background-color var(--navbar-motion-duration) ease,
+      border-color var(--navbar-motion-duration) ease,
+      color var(--navbar-motion-duration) ease;
+  }
+
+  [data-ontiver-navbar][data-compact="true"] {
+    translate: 0 calc(-1 * var(--navbar-collapse-distance, var(--site-header-height)));
+    pointer-events: none;
+  }
+
+  /* Equal and opposite travel keeps the same CTA stationary throughout the transition. */
+  [data-ontiver-navbar][data-compact="true"] .navbar-action {
+    translate: 0 var(--navbar-collapse-distance, var(--site-header-height));
+    pointer-events: auto;
+    border-color: #c7dfc4;
+    box-shadow: 0 8px 24px #001b1426;
+  }
+
+  [data-ontiver-navbar][data-cta-tone="light"] .navbar-action {
+    --button-hover-bg: #f3f4ef;
+    background-color: #dcebcf;
+    border-color: #dcebcf;
+    color: #002d0e;
+  }
+}
+
+html[data-motion="paused"] [data-ontiver-navbar],
+html[data-motion="paused"] [data-ontiver-navbar] .navbar-action {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-ontiver-navbar],
+  [data-ontiver-navbar] .navbar-action {
+    transition: none;
+  }
+}
+
 .desktop-navigation {
   gap: clamp(12px, 1.5vw, 32px);
 }

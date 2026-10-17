@@ -20,6 +20,7 @@ const DesktopNavigation = ({ audience, items, pathname, routeKey }: DesktopNavig
   return (
     <nav
       ref={navRef}
+      data-navbar-chrome
       aria-label="Main navigation"
       className="desktop-navigation hidden items-center lgg:flex"
       onKeyDown={(event) => {
