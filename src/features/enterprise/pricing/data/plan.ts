@@ -2,13 +2,13 @@ export type PlanFieldKey = "verifications" | "amlScreens" | "apiRequests";
 export type PlanToggleKey = "auditLogs" | "amlMonitoring" | "sla" | "testingOnly";
 export type PlanRecommendation = { plan: string | null; reason: string; estimate?: number };
 export const planInputFields: Array<{ key: PlanFieldKey; label: string; placeholder: string }> = [
-  { key: "verifications", label: "Monthly verifications", placeholder: "Enter expected volume" },
+  { key: "verifications", label: "Monthly verifications", placeholder: "Enter volume" },
   {
     key: "amlScreens",
     label: "Requested monthly AML screens",
-    placeholder: "Enter requested volume",
+    placeholder: "Enter volume",
   },
-  { key: "apiRequests", label: "Monthly API requests", placeholder: "Enter expected requests" },
+  { key: "apiRequests", label: "Monthly API requests", placeholder: "Enter requests" },
 ];
 export const planToggleItems: Array<{ key: PlanToggleKey; label: string }> = [
   { key: "auditLogs", label: "Need signed audit exports and compliance reports?" },

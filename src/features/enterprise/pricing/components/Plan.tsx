@@ -15,6 +15,7 @@ import PlanToggle from "./PlanToggle";
 import { scrollPageTo } from "../../../../shared/lib/scrollNavigation";
 import type { BillingCycle, PricingCatalog } from "../data/pricing";
 import { getPlanRecommendation } from "../lib/pricing";
+import "./plan-guidance.css";
 
 type PlanProps = {
   catalog: PricingCatalog;
@@ -41,9 +42,9 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
   };
 
   return (
-    <section className="section-space bg-surface-muted text-[#002d0e]">
+    <section className="plan-guidance section-space bg-surface-muted text-[#002d0e]">
       <div className="site-container">
-        <div data-scroll-reveal className="mb-12 max-w-[780px]">
+        <div data-scroll-reveal className="plan-guidance-intro mb-16! max-w-[780px]">
           <p className="eyebrow">Explore your plan options</p>
           <h2 className="mt-5 text-section font-normal">Find the plan that costs you least.</h2>
           <p className="mt-5 text-body text-[#526052]">
@@ -53,14 +54,14 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
         </div>
         <div className="equal-columns grid gap-6 lg:grid-cols-2">
           <form
-            className="flex min-w-0 flex-col rounded-2xl border border-[#dde6dc] bg-surface p-6 sm:p-9"
+            className="plan-guidance-panel flex min-w-0 flex-col rounded-2xl border border-[#dde6dc] bg-surface p-6 sm:p-9"
             onSubmit={(event) => {
               event.preventDefault();
               checkBestPlan();
             }}
           >
             <h3 className="text-card-title font-semibold">Plan guidance tool</h3>
-            <div className="mt-8 space-y-5">
+            <div className="plan-guidance-inputs mt-10! space-y-5">
               {planInputFields.map((field) => (
                 <div key={field.key}>
                   <label
@@ -84,12 +85,12 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
                       }));
                       setRecommendation(null);
                     }}
-                    className="mt-2 h-13 w-full rounded-xl border border-[#dce5d8] bg-surface-raised px-4 text-body outline-none placeholder:text-[#8a9485] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"
+                    className="mt-2 h-13 w-full rounded-xl border border-[#dce5d8] bg-surface-raised px-4 text-body outline-none placeholder:text-[#8a9485] placeholder:text-[15px] focus:border-[#009311] focus:ring-2 focus:ring-[#009311]/10"
                   />
                 </div>
               ))}
             </div>
-            <div className="mt-7 divide-y divide-[#e6ece2] border-y border-[#e6ece2] py-2">
+            <div className="plan-guidance-options mt-7 divide-y divide-[#e6ece2] border-y border-[#e6ece2] py-2">
               {planToggleItems.map((item) => (
                 <PlanToggle
                   key={item.key}
@@ -102,7 +103,7 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
                 />
               ))}
             </div>
-            <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
+            <div className="plan-guidance-actions mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
               <button type="submit" className="button-primary grow">
                 Recommend a plan
                 <ActionIcon size={18} />

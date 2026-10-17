@@ -23,7 +23,7 @@ const PlanRecommendationPanel = ({
 }: Props) => {
   return (
     <div
-      className="flex min-w-0 flex-col rounded-2xl bg-[#edf5e7] p-6 sm:p-9"
+      className="plan-guidance-panel flex min-w-0 flex-col rounded-2xl bg-[#edf5e7] p-6 sm:p-9"
       aria-live="polite"
       aria-atomic="true"
     >
@@ -32,7 +32,7 @@ const PlanRecommendationPanel = ({
         <Layers3 size={24} className="shrink-0 text-accent" />
       </div>
       {recommendation ? (
-        <div className="py-6">
+        <div className="plan-guidance-result py-6">
           <h3 className="text-card-title font-medium">
             {recommendation.plan ? `We recommend ${recommendation.plan}` : "Let's talk"}
           </h3>
@@ -61,8 +61,8 @@ const PlanRecommendationPanel = ({
           )}
         </div>
       ) : (
-        <div className="py-6">
-          <div className="mb-5 aspect-[16/9] overflow-hidden">
+        <div className="plan-guidance-result py-6">
+          <div className="plan-guidance-preview mb-5 aspect-[16/9] overflow-hidden">
             <BusinessPhoto image={editorialPhotos.planGuidance} />
           </div>
           <h3 className="text-card-title font-medium">Find your fit.</h3>
@@ -71,7 +71,7 @@ const PlanRecommendationPanel = ({
           </p>
         </div>
       )}
-      <div className="mt-auto flex flex-wrap gap-5 pt-6">
+      <div className="plan-guidance-actions mt-auto flex flex-wrap gap-5 pt-6">
         {recommendation?.plan && (
           <button
             type="button"
