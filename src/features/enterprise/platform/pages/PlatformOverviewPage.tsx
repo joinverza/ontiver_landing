@@ -1,11 +1,20 @@
-import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Code2, LayoutDashboard, Smartphone } from "lucide-react";
-import { Link } from "react-router-dom";
+import ImageHoverPanels from "../../../../shared/components/media/ImageHoverPanels";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { imagery } from "../../../../shared/data/imagery";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { platformLayers } from "../data/platform";
+import "./platform-overview.css";
+
+const layerImages = {
+  sources: editorialPhotos.identitySources,
+  checks: editorialPhotos.verification,
+  workflow: editorialPhotos.workflow,
+  intelligence: editorialPhotos.intelligence,
+  consent: editorialPhotos.consent,
+  proof: editorialPhotos.proof,
+};
 
 const PlatformOverviewPage = () => {
   return (
@@ -36,34 +45,37 @@ const PlatformOverviewPage = () => {
       finalTitle="Build your first workflow with us."
       finalImage={imagery.enterpriseHero}
     >
-      <section className="section-space">
+      <section
+        className="section-space platform-layers-section"
+        aria-labelledby="platform-layers-heading"
+      >
         <div className="site-container">
-          <h2 data-scroll-reveal className="section-heading max-w-4xl">
-            Six layers.
-            <br />
-            One verification journey.
-          </h2>
-          <p className="mt-6 max-w-2xl text-body text-[#526058]">
-            Start with the checks your pilot needs. Additional sources and capabilities are scoped
-            with your team.
-          </p>
-          <div className="editorial-links mt-9">
-            {platformLayers.map((layer) => {
-              return (
-                <Link
-                  data-scroll-reveal
-                  key={layer.id}
-                  to={`/enterprise/platform/${layer.id}`}
-                  className="editorial-link group"
-                >
-                  <h3 className="text-card-title font-medium group-hover:text-accent">
-                    {layer.title}
-                  </h3>
-                  <p className="mt-3 max-w-sm text-body text-[#526058]">{layer.description}</p>
-                  <ActionIcon className="editorial-link-arrow size-6" aria-hidden="true" />
-                </Link>
-              );
-            })}
+          <div className="platform-layers-intro">
+            <h2
+              id="platform-layers-heading"
+              data-scroll-reveal
+              className="section-heading max-w-4xl"
+            >
+              Six layers.
+              <br />
+              One verification journey.
+            </h2>
+            <p className="mt-6 max-w-2xl text-body text-[#526058]">
+              Start with the checks your pilot needs. Additional sources and capabilities are scoped
+              with your team.
+            </p>
+          </div>
+          <div className="mt-9">
+            <ImageHoverPanels
+              label="Platform layers"
+              items={platformLayers.map((layer) => ({
+                id: layer.id,
+                title: layer.title,
+                description: layer.description,
+                image: layerImages[layer.visualVariant],
+                to: `/enterprise/platform/${layer.id}`,
+              }))}
+            />
           </div>
         </div>
       </section>
