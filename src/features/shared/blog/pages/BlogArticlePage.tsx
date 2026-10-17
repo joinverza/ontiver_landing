@@ -2,7 +2,7 @@ import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowLeft, Clock3, Quote } from "lucide-react";
+import { Clock3, Quote } from "lucide-react";
 import ArticleSidebar from "../components/ArticleSidebar";
 import ArticleSocialRail from "../components/ArticleSocialRail";
 import ReadingProgress from "../components/ReadingProgress";
@@ -28,7 +28,7 @@ const ArticleStatus = ({ title, message }: { title: string; message: string }) =
           <p className="page-hero-description mt-6 text-subtitle text-[#002d0e]/70">{message}</p>
           <div className="page-hero-actions">
             <Link className="button-secondary" to="/blogs">
-              <ArrowLeft size={16} aria-hidden="true" /> All articles
+              <ActionIcon direction="back" size={16} aria-hidden="true" /> All articles
             </Link>
           </div>
         </div>
@@ -135,7 +135,7 @@ const ArticleView = ({
             to="/blogs"
             className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
           >
-            <ArrowLeft size={16} aria-hidden="true" /> Back to all resources
+            <ActionIcon direction="back" size={16} aria-hidden="true" /> Back to all resources
           </Link>
           <div className="page-hero-content">
             <p className="eyebrow">{article.category}</p>
@@ -202,7 +202,7 @@ const ArticleView = ({
                 className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
                 to="/blogs"
               >
-                <ArrowLeft size={16} aria-hidden="true" /> Back to all resources
+                <ActionIcon direction="back" size={16} aria-hidden="true" /> Back to all resources
               </Link>
             </div>
           </article>

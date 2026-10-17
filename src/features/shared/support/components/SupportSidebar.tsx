@@ -1,5 +1,6 @@
-import { ExternalLink, LifeBuoy, Mail, ShieldCheck } from "lucide-react";
+import { LifeBuoy, Mail, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import type { Audience } from "../../../../shared/lib/audience";
 
 type SupportSidebarProps = { audience: Audience; hasSession: boolean };
@@ -23,7 +24,7 @@ export const SupportSidebar = ({ audience, hasSession }: SupportSidebarProps) =>
           <span className="flex items-center gap-3 text-body font-semibold">
             <Mail className="size-5 text-accent" /> Contact the team
           </span>
-          <ExternalLink className="size-5 shrink-0 text-accent" />
+          <ActionIcon className="size-5 shrink-0 text-accent" />
         </Link>
         <a
           href="https://docs.ontiver.com/faq"
@@ -34,7 +35,7 @@ export const SupportSidebar = ({ audience, hasSession }: SupportSidebarProps) =>
           <span className="flex items-center gap-3 text-body font-semibold">
             <LifeBuoy className="size-5 text-accent" /> Help and FAQs
           </span>
-          <ExternalLink className="size-5 shrink-0 text-accent" />
+          <ActionIcon direction="up-right" className="size-5 shrink-0 text-accent" />
         </a>
       </div>
     </div>

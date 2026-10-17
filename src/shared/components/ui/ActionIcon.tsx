@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 
 type ActionIconProps = Omit<ComponentProps<"svg">, "direction"> & {
   size?: number | string;
-  direction?: "forward" | "back" | "up" | "down";
+  direction?: "forward" | "back" | "up" | "down" | "up-right";
 };
 
 const iconTransforms = {
@@ -10,6 +10,7 @@ const iconTransforms = {
   back: "translate(24 0) scale(-1 1)",
   up: "rotate(-90 12 12)",
   down: "rotate(90 12 12)",
+  "up-right": "rotate(-45 12 12)",
 };
 
 const ActionIcon = ({

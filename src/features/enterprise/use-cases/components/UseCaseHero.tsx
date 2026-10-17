@@ -1,5 +1,4 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { UseCasePageDetail } from "../data/useCases";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
@@ -15,7 +14,7 @@ const UseCaseHero = ({ detail }: { detail: UseCasePageDetail }) => {
           to="/enterprise/use-cases"
           className="mb-8 inline-flex items-center gap-2 text-body text-[#526058] hover:text-accent"
         >
-          <ArrowLeft size={16} />
+          <ActionIcon direction="back" size={16} />
           All industries
         </Link>
         <div data-scroll-reveal className="page-hero-content">

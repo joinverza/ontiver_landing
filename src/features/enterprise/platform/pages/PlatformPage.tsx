@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { ArrowLeft, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
@@ -21,7 +21,7 @@ const PlatformPage = () => {
             to="/enterprise/platform"
             className="mb-8 inline-flex items-center gap-2 text-sm text-[#526058] hover:text-accent"
           >
-            <ArrowLeft size={16} aria-hidden="true" /> Explore the platform
+            <ActionIcon direction="back" size={16} aria-hidden="true" /> Explore the platform
           </Link>
           <div data-scroll-reveal className="page-hero-content">
             <p className="eyebrow">Ontiver {layer.title}</p>
