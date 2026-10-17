@@ -7,30 +7,35 @@ import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { ArticleImage } from "../../blog/components/BlogCards";
 import type { Audience } from "../../../../shared/lib/audience";
+import "./resource-cards.css";
 
 const resourceLinks = [
   {
     icon: BookOpen,
     title: "Insights and guides",
     description: "Practical explainers on identity, consent, and verification workflows.",
+    action: "Explore guides",
     to: "/blogs",
   },
   {
     icon: ShieldCheck,
     title: "Security and privacy",
     description: "Understand access, data handling, and review responsibilities.",
+    action: "Explore security",
     to: "/security",
   },
   {
     icon: LifeBuoy,
     title: "Help and support",
     description: "Find answers or contact the team about a request.",
+    action: "Get support",
     to: "/support",
   },
   {
     icon: LockKeyhole,
     title: "Your privacy choices",
     description: "Review privacy information and account rights requests.",
+    action: "View your choices",
     to: "/legal",
   },
 ];
@@ -93,17 +98,30 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
         className="section-space site-container scroll-mt-28"
         aria-label="Explore Ontiver resources"
       >
-        <div className="editorial-links editorial-links--four">
-          {resourceLinks.map(({ icon: Icon, title, description, to }) => (
+        <div className="resource-links">
+          {resourceLinks.map(({ icon: Icon, title, description, action, to }) => (
             <Link
               key={to}
               to={enterprise && ["/security", "/support"].includes(to) ? `/enterprise${to}` : to}
-              className="editorial-link group"
+              className="surface-card resource-link-card"
+              aria-labelledby={`resource-${to.slice(1)}-title`}
+              aria-describedby={`resource-${to.slice(1)}-description`}
             >
-              <Icon className="size-7 text-accent" aria-hidden="true" />
-              <h2 className="mt-6 text-card-title font-medium">{title}</h2>
-              <p className="mt-3 text-body text-[#526058]">{description}</p>
-              <ActionIcon size={23} className="editorial-link-arrow" aria-hidden="true" />
+              <span className="resource-link-icon" aria-hidden="true">
+                <Icon size={25} strokeWidth={1.7} />
+              </span>
+              <h2 id={`resource-${to.slice(1)}-title`} className="resource-link-title">
+                {title}
+              </h2>
+              <p id={`resource-${to.slice(1)}-description`} className="resource-link-description">
+                {description}
+              </p>
+              <span className="resource-link-action" aria-hidden="true">
+                <span>{action}</span>
+                <span className="resource-link-arrow">
+                  <ActionIcon size={22} />
+                </span>
+              </span>
             </Link>
           ))}
         </div>
