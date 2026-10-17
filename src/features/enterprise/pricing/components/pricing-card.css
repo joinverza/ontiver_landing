@@ -1,0 +1,12 @@
+.pricing-card {
+  container-type: inline-size;
+}
+
+.pricing-card-copy {
+  font-size: clamp(0.9375rem, 0.9vw, 1rem);
+  line-height: 1.6;
+}
+
+.pricing-card-price {
+  font-size: clamp(1.875rem, 17cqi, 2.5rem);
+}

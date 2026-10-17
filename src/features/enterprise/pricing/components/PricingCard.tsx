@@ -8,6 +8,7 @@ import {
   type PricingCurrency,
   type PricingPlan,
 } from "../data/pricing";
+import "./pricing-card.css";
 
 type PricingCardProps = {
   plan: PricingPlan;
@@ -35,7 +36,7 @@ const PricingCard = ({
       data-scroll-reveal
       data-plan={plan.id}
       aria-labelledby={`plan-${plan.id}-name`}
-      className={`flex min-w-0 scroll-mt-28 flex-col rounded-2xl border p-5 sm:p-6 ${highlighted ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#dce6d9] bg-surface-muted text-[#002d0e]"}`}
+      className={`pricing-card flex min-w-0 scroll-mt-28 flex-col rounded-2xl border p-5 sm:p-6 ${highlighted ? "border-[#002d0e] bg-[#002d0e] text-white" : "border-[#dce6d9] bg-surface-muted text-[#002d0e]"}`}
     >
       <div className="mb-3 flex min-h-6 items-center justify-between gap-2">
         <h2 id={`plan-${plan.id}-name`} className="text-card-title font-medium leading-tight">
@@ -51,20 +52,22 @@ const PricingCard = ({
           </span>
         ) : null}
       </div>
-      <p className={`text-body xl:min-h-[7.5rem] ${muted}`}>{plan.tagline}</p>
+      <p className={`pricing-card-copy xl:min-h-24 ${muted}`}>{plan.tagline}</p>
 
       <div className="my-5">
         {price === null ? (
-          <p className="text-[2.5rem] font-medium leading-none tracking-[-0.04em]">Custom</p>
+          <p className="pricing-card-price font-medium leading-none tracking-[-0.04em]">Custom</p>
         ) : (
-          <p className="flex items-baseline gap-1.5">
-            <span className="text-[2.5rem] font-medium leading-none tracking-[-0.04em]">
+          <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
+            <span className="pricing-card-price font-medium leading-none tracking-[-0.04em]">
               {formatUsd(price)}
             </span>
-            <span className={`text-body ${muted}`}>/ month</span>
+            <span className={`whitespace-nowrap text-[0.8125rem] leading-snug ${muted}`}>
+              / month
+            </span>
           </p>
         )}
-        <p className={`mt-3 min-h-10 text-meta ${muted}`}>
+        <p className={`mt-3 min-h-10 text-[0.8125rem] leading-relaxed ${muted}`}>
           {price === null
             ? "Annual contract with volume pricing"
             : price === 0
@@ -85,14 +88,16 @@ const PricingCard = ({
       </a>
 
       <div className={`border-t pt-5 ${highlighted ? "border-white/15" : "border-[#e4eae0]"}`}>
-        <p className={`mb-3 text-sm font-medium ${highlighted ? "text-[#b8e5a7]" : "text-accent"}`}>
+        <p
+          className={`mb-3 text-[0.875rem] font-medium leading-relaxed ${highlighted ? "text-[#b8e5a7]" : "text-accent"}`}
+        >
           {plan.audience}
         </p>
         <ul className="space-y-2.5">
           {plan.highlights.map((line) => (
             <li
               key={line}
-              className={`flex gap-2.5 text-body ${highlighted ? "text-white/85" : "text-[#3f4d3f]"}`}
+              className={`pricing-card-copy flex gap-2.5 ${highlighted ? "text-white/85" : "text-[#3f4d3f]"}`}
             >
               <Check
                 size={17}
