@@ -4,6 +4,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { platformLayers } from "../data/platform";
+import "./platform-capabilities.css";
 
 const PlatformPage = () => {
   const { id } = useParams();
@@ -79,18 +80,18 @@ const PlatformPage = () => {
             </h2>
             <p className="mt-6 text-body text-[#526058]">{layer.overview}</p>
           </div>
-          <div data-scroll-reveal className="border-t border-[#dde6dc]">
+          <div data-scroll-reveal className="platform-capabilities">
             {layer.capabilities.map((capability) => (
-              <details key={capability.title} className="group border-b border-[#dde6dc] py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-card-title font-medium [&::-webkit-details-marker]:hidden">
-                  {capability.title}
-                  <Plus
-                    size={20}
-                    className="shrink-0 text-accent transition-transform group-open:rotate-45"
-                    aria-hidden="true"
-                  />
+              <details key={capability.title} className="platform-capability">
+                <summary className="platform-capability-trigger text-card-title font-medium">
+                  <span className="platform-capability-title">{capability.title}</span>
+                  <span className="platform-capability-icon" aria-hidden="true">
+                    <Plus size={20} />
+                  </span>
                 </summary>
-                <p className="pt-4 text-body text-[#526058]">{capability.description}</p>
+                <p className="platform-capability-description text-body">
+                  {capability.description}
+                </p>
               </details>
             ))}
           </div>

@@ -1,0 +1,102 @@
+.platform-capabilities {
+  border-top: 1px solid #cbd6c9;
+}
+
+.platform-capability {
+  --capability-inset: clamp(1rem, 1.5vw, 1.5rem);
+  border-bottom: 1px solid #cbd6c9;
+  color: #002d0e;
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    color 260ms ease;
+}
+
+.platform-capability-trigger {
+  display: flex;
+  min-height: 4.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1rem var(--capability-inset);
+  list-style: none;
+}
+
+.platform-capability-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.platform-capability-trigger:focus-visible {
+  outline: 2px solid var(--ink-accent);
+  outline-offset: -4px;
+}
+
+.platform-capability-title {
+  min-width: 0;
+  transition: translate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.platform-capability-icon {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #002d0e24;
+  color: var(--ink-accent);
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    color 260ms ease;
+}
+
+.platform-capability-icon svg {
+  transition: rotate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.platform-capability-description {
+  padding: 0 var(--capability-inset) 1.5rem;
+  color: #526058;
+}
+
+@media (hover: hover) {
+  .platform-capability:not([open]):hover {
+    background-color: #dcebcf;
+  }
+
+  .platform-capability-trigger:hover .platform-capability-title {
+    translate: 4px 0;
+  }
+
+  .platform-capability:not([open]) .platform-capability-trigger:hover .platform-capability-icon {
+    border-color: #002d0e;
+    background-color: #002d0e;
+    color: #fff;
+  }
+}
+
+.platform-capability[open] {
+  background-color: #dcebcf;
+}
+
+.platform-capability[open] .platform-capability-icon {
+  border-color: #002d0e;
+  background-color: #002d0e;
+  color: #fff;
+}
+
+.platform-capability[open] .platform-capability-icon svg {
+  rotate: 45deg;
+}
+
+html[data-motion="paused"] .platform-capability,
+html[data-motion="paused"] .platform-capability * {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-capability,
+  .platform-capability * {
+    transition: none;
+  }
+}
