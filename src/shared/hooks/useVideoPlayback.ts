@@ -40,7 +40,7 @@ export const useVideoPlayback = () => {
       if (!video) return;
       const shouldPlay =
         !document.hidden &&
-        inView &&
+        (inView || fullscreen) &&
         (choice.current === "play" || (choice.current === null && autoplayAllowed));
       if (shouldPlay) video.play().catch(() => setPlaying(false));
       else video.pause();
@@ -48,26 +48,32 @@ export const useVideoPlayback = () => {
     syncPlayback();
     document.addEventListener("visibilitychange", syncPlayback);
     return () => document.removeEventListener("visibilitychange", syncPlayback);
-  }, [inView, autoplayAllowed]);
+  }, [inView, autoplayAllowed, fullscreen]);
 
   const togglePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
     choice.current = video.paused ? "play" : "pause";
-    if (video.paused) video.play().catch(() => setPlaying(false));
-    else video.pause();
+    video.playbackRate = 1;
+    setBuffering(false);
+    if (video.paused) {
+      if (video.ended || video.duration - video.currentTime < 0.05) video.currentTime = 0;
+      video.play().catch(() => setPlaying(false));
+    } else video.pause();
   }, []);
 
   const toggleSound = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
+    choice.current = "play";
+    video.playbackRate = 1;
+    setBuffering(false);
     if (!heardSound) {
       video.currentTime = 0;
       setHeardSound(true);
     }
     video.muted = !video.muted;
     setMuted(video.muted);
-    choice.current = "play";
     video.play().catch(() => setPlaying(false));
   }, [heardSound]);
 
@@ -80,9 +86,18 @@ export const useVideoPlayback = () => {
   }, []);
 
   useEffect(() => {
+    const video = videoRef.current;
     const syncFullscreen = () => setFullscreen(document.fullscreenElement === frameRef.current);
+    const beginNativeFullscreen = () => setFullscreen(true);
+    const endNativeFullscreen = () => setFullscreen(false);
     document.addEventListener("fullscreenchange", syncFullscreen);
-    return () => document.removeEventListener("fullscreenchange", syncFullscreen);
+    video?.addEventListener("webkitbeginfullscreen", beginNativeFullscreen);
+    video?.addEventListener("webkitendfullscreen", endNativeFullscreen);
+    return () => {
+      document.removeEventListener("fullscreenchange", syncFullscreen);
+      video?.removeEventListener("webkitbeginfullscreen", beginNativeFullscreen);
+      video?.removeEventListener("webkitendfullscreen", endNativeFullscreen);
+    };
   }, []);
 
   const syncCaptions = useCallback(() => {

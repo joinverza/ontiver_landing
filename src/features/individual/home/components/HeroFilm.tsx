@@ -7,12 +7,13 @@ const sources = [
     type: 'video/mp4; codecs="avc1.640028, mp4a.40.2"',
     media: "(max-width: 767px)",
   },
-  { src: `${FILM}-1080-av1.mp4`, type: 'video/mp4; codecs="av01.0.08M.08, mp4a.40.2"' },
+  // Prefer the existing H.264 encode for smooth playback across desktop devices.
   { src: `${FILM}-1080.mp4`, type: 'video/mp4; codecs="avc1.640029, mp4a.40.2"' },
 ];
 
 const HeroFilm = () => (
   <FilmPlayer
+    showProgress
     sources={sources}
     poster={`${FILM}-poster.webp`}
     captions={`${FILM}.en.vtt`}

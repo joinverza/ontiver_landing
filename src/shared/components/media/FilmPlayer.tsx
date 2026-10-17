@@ -1,6 +1,7 @@
 import { Play } from "lucide-react";
 import { useVideoPlayback } from "../../hooks/useVideoPlayback";
 import FilmControls from "./FilmControls";
+import FilmProgress from "./FilmProgress";
 
 type FilmSource = { src: string; type: string; media?: string };
 type FilmPlayerProps = {
@@ -12,6 +13,7 @@ type FilmPlayerProps = {
   width?: number;
   height?: number;
   className?: string;
+  showProgress?: boolean;
 };
 
 const FilmPlayer = ({
@@ -23,6 +25,7 @@ const FilmPlayer = ({
   width = 1920,
   height = 1080,
   className = "",
+  showProgress = false,
 }: FilmPlayerProps) => {
   const playback = useVideoPlayback();
   const {
@@ -59,6 +62,7 @@ const FilmPlayer = ({
           onWaiting={() => setBuffering(true)}
           onPlaying={() => setBuffering(false)}
           onCanPlay={() => setBuffering(false)}
+          onError={() => setBuffering(false)}
           onLoadedMetadata={syncCaptions}
           onClick={togglePlay}
         >
@@ -90,6 +94,7 @@ const FilmPlayer = ({
           <span className="hero-film__spinner" role="status" aria-label="Loading film" />
         ) : null}
         <FilmControls {...playback} />
+        {showProgress && <FilmProgress videoRef={videoRef} />}
       </div>
       {description ? <figcaption className="sr-only">{description}</figcaption> : null}
     </figure>
