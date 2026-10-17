@@ -101,16 +101,17 @@ const ArticleSidebar = ({
           )}
         </div>
       </form>
-      <div className="mt-8 border-t border-[#dde6dc] pt-7">
+      <nav
+        className="article-follow mt-8 border-t border-[#002d0e]/20 pt-7"
+        aria-label="Follow Ontiver"
+      >
         <h2 className="text-card-title font-semibold text-[#002d0e]">Follow Us</h2>
-        <div className="mt-5 flex gap-3">
-          {contactSocialIcons.map(({ icon, ...platform }) => (
-            <PlatformIcon key={platform.label} {...platform}>
-              <img src={icon} alt="" className="h-5 w-5" />
-            </PlatformIcon>
+        <div className="article-follow-links mt-5">
+          {contactSocialIcons.map(({ icon, label, href }) => (
+            <PlatformIcon key={label} icon={icon} label={label} href={href} showLabel />
           ))}
         </div>
-      </div>
+      </nav>
     </aside>
   );
 };

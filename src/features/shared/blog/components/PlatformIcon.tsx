@@ -1,25 +1,28 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
+import "./article-social.css";
 
 type PlatformIconProps = {
   label: string;
-  color: string;
   href: string;
-  children: ReactNode;
+  icon: string;
+  showLabel?: boolean;
 };
 
-const PlatformIcon = ({ label, color, href, children }: PlatformIconProps) => {
+const PlatformIcon = ({ label, href, icon, showLabel = false }: PlatformIconProps) => {
   return (
     <a
-      className="group inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[#dde6dc] text-[#002d0e]/60 transition-colors hover:bg-[#edf5eb]"
+      className={`article-social-link${showLabel ? " article-social-link--labelled" : ""}`}
       aria-label={label}
       href={href}
       rel="noreferrer"
       target="_blank"
-      style={{ "--platform-color": color } as CSSProperties}
     >
-      <span className="transition-transform duration-150 group-hover:scale-[1.15] group-hover:text-[var(--platform-color)]">
-        {children}
-      </span>
+      <span
+        className="article-social-mark"
+        style={{ "--platform-icon": `url("${icon}")` } as CSSProperties}
+        aria-hidden="true"
+      />
+      {showLabel && <span className="article-social-label">{label}</span>}
     </a>
   );
 };

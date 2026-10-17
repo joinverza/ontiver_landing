@@ -16,25 +16,19 @@ const ArticleSocialRail = () => {
         <div className="space-y-5 border-t border-[#dde6dc] pt-7">
           <PlatformIcon
             label="Share on Facebook"
-            color="#1877F2"
+            icon="/assets/facebook-post.svg"
             href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
-          >
-            <img src="/assets/facebook-post.svg" alt="" className="h-5 w-5" />
-          </PlatformIcon>
+          />
           <PlatformIcon
-            label="Share on Twitter"
-            color="#1DA1F2"
+            label="Share on X"
+            icon="/assets/twitter.svg"
             href={`https://x.com/intent/tweet?url=${shareUrl}`}
-          >
-            <img src="/assets/twitter-post.svg" alt="" className="h-5 w-5" />
-          </PlatformIcon>
+          />
           <PlatformIcon
             label="Share on Pinterest"
-            color="#E60023"
+            icon="/assets/pinterest.svg"
             href={`https://www.pinterest.com/pin/create/button/?url=${shareUrl}`}
-          >
-            <img src="/assets/pinterest.svg" alt="" className="h-5 w-5" />
-          </PlatformIcon>
+          />
         </div>
       </div>
     </aside>
