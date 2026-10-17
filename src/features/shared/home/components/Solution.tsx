@@ -32,12 +32,16 @@ const Solution = ({ audience }: { audience: Audience }) => {
   }, [playing, steps.length]);
 
   return (
-    <section ref={sectionRef} id="solution" className="section-space bg-surface-muted">
+    <section
+      ref={sectionRef}
+      id="solution"
+      className="section-space solution-showcase bg-surface-muted py-32!"
+    >
       <div className="site-container story-split">
         <div className="story-split-media">
           <SolutionMedia key={audience} steps={steps} selectedStep={selectedStep} />
         </div>
-        <div data-scroll-reveal className="story-split-content">
+        <div data-scroll-reveal className="story-split-content py-10!">
           <div className="mb-5 flex items-center justify-between gap-3 text-meta text-[#526058]">
             <span>{enterprise ? "Enterprise + user journey" : "Planned user app"}</span>
             <span>
@@ -71,7 +75,7 @@ const Solution = ({ audience }: { audience: Audience }) => {
             {steps.map((step, index) => (
               <div
                 key={step.title}
-                className="relative border-t border-l border-[#002d0e]/15 py-5 pl-5 last:border-b"
+                className="solution-step relative border-t border-l border-[#002d0e]/15 py-5 pl-5 last:border-b"
               >
                 {selectedStep === index && (
                   <span

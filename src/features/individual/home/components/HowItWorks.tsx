@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ImageTimeline } from "../../../../shared/components/media/ImageTimeline";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import "../../../../shared/components/ui/promise-cards.css";
+import "./individual-home-sections.css";
 
 const steps = [
   {
@@ -50,7 +51,7 @@ const controls = [
 export const HowItWorks = () => (
   <section
     id="how-it-works"
-    className="section-space bg-surface"
+    className="section-space individual-steps-section bg-surface"
     aria-labelledby="how-it-works-heading"
   >
     <div className="site-container">
@@ -73,7 +74,11 @@ export const HowItWorks = () => (
 );
 
 export const InYourControl = () => (
-  <section id="security" className="section-space bg-surface" aria-labelledby="control-heading">
+  <section
+    id="security"
+    className="section-space individual-control-section bg-surface"
+    aria-labelledby="control-heading"
+  >
     <div className="site-container">
       <div className="promise-grid">
         <div data-scroll-reveal className="promise-card promise-card-introduction">

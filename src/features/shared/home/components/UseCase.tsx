@@ -8,6 +8,7 @@ import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { imagery } from "../../../../shared/data/imagery";
 import { industryImages } from "../../../../shared/components/media/businessImages";
 import { useMotionSettings } from "../../../../shared/components/motion/MotionSettings";
+import "./use-case-showcase.css";
 
 const individualIndustry: Record<string, string> = {
   banking: "fintechs",
@@ -48,17 +49,17 @@ const UseCase = ({ audience }: { audience: Audience }) => {
     });
   };
   return (
-    <section id="cases" className="section-space bg-surface-muted">
+    <section id="cases" className="section-space use-case-showcase bg-surface-muted border-t border-[#002d0e]/10 py-32!">
       <div className="site-container">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-7">
-          <div className="max-w-[790px]">
+        <div className="use-case-showcase-heading mb-20! flex flex-wrap items-end justify-between gap-7">
+          <div className="use-case-showcase-intro max-w-[790px]">
             <p className="eyebrow">{enterprise ? "Industry workflows" : "Where it helps"}</p>
             <h2 className="section-heading mt-4">
               {enterprise
                 ? "Different operations. One verification platform."
                 : "A job. An account. Your next application."}
             </h2>
-            <p className="mt-5 max-w-[680px] text-subtitle text-[#526058]">
+            <p className="use-case-showcase-description mt-5 max-w-[680px] text-subtitle text-[#526058]">
               {enterprise
                 ? "Borrowers, candidates, riders, contractors and sellers need different evidence. Configure the checks and review steps around the decision your team makes."
                 : "See the identity, credentials and documents each request may need. You decide what to share; the receiving organization reviews your application."}
