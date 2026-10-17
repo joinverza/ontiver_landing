@@ -8,6 +8,7 @@ import {
 } from "../data/calculator";
 import type { BillingCycle, PricingCatalog } from "../data/pricing";
 import { calculateKycBaseline, formatCurrency, parseAmount } from "../lib/calculator";
+import "./calculator-layout.css";
 
 const Calculator = ({
   standalone = false,
@@ -81,10 +82,13 @@ const Calculator = ({
   return (
     <section
       id="savings-calculator"
-      className={`${standalone ? "page-intro" : "section-space"} bg-surface text-[#002d0e]`}
+      className={`${standalone ? "page-intro" : "section-space calculator-section"} bg-surface text-[#002d0e]`}
     >
       <div className="site-container">
-        <div data-scroll-reveal className={standalone ? "page-hero-content" : "mb-8 max-w-[900px]"}>
+        <div
+          data-scroll-reveal
+          className={standalone ? "page-hero-content" : "calculator-intro mb-8 max-w-[900px]"}
+        >
           <p className="eyebrow">KYC savings calculator</p>
           <Heading
             className={`font-normal ${standalone ? "page-hero-heading text-page-hero" : "mt-5 text-section"}`}

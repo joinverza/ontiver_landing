@@ -32,7 +32,7 @@ const CalculatorFormPanel = ({
       }}
     >
       <h3 className="text-card-title font-semibold">Your current verification figures</h3>
-      <div className="mt-8 space-y-6">
+      <div className="calculator-inputs mt-8 space-y-6">
         {calculatorFields.map((field) => (
           <CalculatorInputField
             key={field.key}

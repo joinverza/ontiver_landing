@@ -105,7 +105,7 @@ const CalculatorResultsPanel = ({
         </>
       ) : (
         <div className="py-6">
-          <div className="mb-5 aspect-[16/9] overflow-hidden">
+          <div className="calculator-preview mb-5 aspect-[16/9] overflow-hidden">
             <BusinessPhoto image={editorialPhotos.pricingCalculator} />
           </div>
           <h3 className="text-card-title font-medium">Start with your current costs.</h3>

@@ -1,0 +1,31 @@
+@media (min-width: 1280px) and (max-height: 1100px) and (min-aspect-ratio: 8/5) {
+  .calculator-section {
+    padding-block: clamp(3rem, 4vw, 4.5rem);
+  }
+
+  .calculator-section .calculator-intro {
+    max-width: none;
+  }
+
+  .calculator-section .calculator-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .calculator-section .calculator-inputs > * {
+    margin-block: 0;
+  }
+
+  .calculator-section .calculator-inputs > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .calculator-section .calculator-inputs > :not(:last-child) > label {
+    min-block-size: 2lh;
+  }
+
+  .calculator-section .calculator-preview {
+    aspect-ratio: 21 / 9;
+  }
+}
