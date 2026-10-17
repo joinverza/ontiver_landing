@@ -15,6 +15,7 @@
   --surface-raised: #f3f4ef;
   --surface-muted: #e0e4dc;
   --ink-accent: #006b1d;
+  --section-divider: rgb(114 148 117 / 24%);
 }
 
 @theme inline {
