@@ -22,7 +22,7 @@ export const SupportRequestForm = ({
   onChange,
   onSubmit,
 }: SupportRequestFormProps) => (
-  <form onSubmit={onSubmit} aria-busy={busy}>
+  <form id="support-request-form" onSubmit={onSubmit} aria-busy={busy}>
     <h2 className="text-card-title font-medium">Tell us what you need</h2>
 
     <div className="mt-7 grid gap-x-6 gap-y-6 sm:grid-cols-2">

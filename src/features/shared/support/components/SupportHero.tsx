@@ -2,6 +2,7 @@ import type { Audience } from "../../../../shared/lib/audience";
 import { shortcutsByAudience } from "../support.config";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
+import { scrollPageTo } from "../../../../shared/lib/scrollNavigation";
 
 type SupportHeroProps = {
   audience: Audience;
@@ -65,7 +66,8 @@ export const SupportHero = ({ audience, hasSession, onTopicSelect }: SupportHero
                 type="button"
                 onClick={() => {
                   onTopicSelect(topic);
-                  document.getElementById("support-topic")?.focus();
+                  document.getElementById("support-topic")?.focus({ preventScroll: true });
+                  scrollPageTo(document.getElementById("support-request-form"));
                 }}
                 className="flex items-center gap-3 rounded-2xl border border-transparent bg-surface-muted p-4 text-left transition-colors hover:border-[#007d21]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#007d21]"
               >
