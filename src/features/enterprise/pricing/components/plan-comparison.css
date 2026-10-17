@@ -2,6 +2,26 @@
   isolation: isolate;
 }
 
+.plan-comparison-table {
+  font-size: clamp(0.9375rem, 0.833vw, 1rem);
+  line-height: 1.5;
+}
+
+.plan-comparison-head {
+  font-size: clamp(1rem, 0.9375vw, 1.125rem);
+}
+
+.plan-comparison-price,
+.plan-comparison-hint {
+  font-size: clamp(0.8125rem, 0.729vw, 0.875rem);
+  line-height: 1.45;
+}
+
+.plan-comparison-group {
+  font-size: clamp(0.75rem, 0.677vw, 0.8125rem);
+  line-height: 1.5;
+}
+
 /* Keep one semantic table: translate its real headers inside the horizontal
    scroll container, which otherwise prevents viewport-based native sticky. */
 .plan-comparison-head {

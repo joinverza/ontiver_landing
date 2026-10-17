@@ -54,7 +54,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
         >
           <table
             ref={tableRef}
-            className="w-full min-w-[960px] border-collapse text-body"
+            className="plan-comparison-table w-full min-w-[960px] border-collapse"
           >
             <caption className="sr-only">
               Ontiver plans compared by usage, features and service
@@ -76,7 +76,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                       className={`px-4 py-6 text-center align-bottom ${index === highlightIndex ? "text-accent" : ""}`}
                     >
                       <span className="block font-semibold">{plan.name}</span>
-                      <span className="mt-1 block text-meta font-normal text-[#526058]">
+                      <span className="plan-comparison-price mt-1 block font-normal text-[#526058]">
                         {price === null
                           ? "Custom"
                           : price === 0
@@ -94,7 +94,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                   <th
                     scope="rowgroup"
                     colSpan={catalog.plans.length + 1}
-                    className="px-6 py-3 text-left text-meta font-semibold uppercase tracking-[0.12em] text-accent"
+                    className="px-6 py-3 text-left font-semibold uppercase tracking-[0.12em] text-accent"
                   >
                     <span className="plan-comparison-group-label">{group.title}</span>
                   </th>
@@ -107,7 +107,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                     >
                       {row.label}
                       {row.hint ? (
-                        <span className="mt-1 block text-sm font-normal text-[#526058]">
+                        <span className="plan-comparison-hint mt-1 block font-normal text-[#526058]">
                           {row.hint}
                         </span>
                       ) : null}
