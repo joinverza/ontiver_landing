@@ -1,0 +1,45 @@
+.plan-comparison-scroll {
+  isolation: isolate;
+}
+
+/* Keep one semantic table: translate its real headers inside the horizontal
+   scroll container, which otherwise prevents viewport-based native sticky. */
+.plan-comparison-head {
+  position: relative;
+  z-index: 30;
+  background: #edf5eb;
+  transform: translate3d(0, var(--comparison-header-y, 0px), 0);
+}
+
+.plan-comparison-head[data-pinned="true"] {
+  box-shadow: 0 1px 0 #cbd6c9;
+}
+
+/* Cover rows passing behind the reserved navbar/CTA space while docked. */
+.plan-comparison-head[data-pinned="true"]::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 100%;
+  height: var(--comparison-navbar-inset, 0px);
+  background: var(--surface-page);
+  pointer-events: none;
+}
+
+.plan-comparison-group {
+  position: relative;
+  z-index: 20;
+  transform: translate3d(0, var(--comparison-group-y, 0px), 0);
+}
+
+.plan-comparison-group > th {
+  background: var(--surface-muted);
+  box-shadow: 0 1px 0 #cbd6c9;
+}
+
+.plan-comparison-group-label {
+  position: sticky;
+  left: 1.5rem;
+  display: block;
+  width: max-content;
+}

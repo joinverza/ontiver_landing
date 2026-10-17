@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import {
   comparisonGroups,
   formatPrice,
@@ -7,10 +6,13 @@ import {
   type PricingCatalog,
 } from "../data/pricing";
 import FeatureValue from "./FeatureValue";
+import { useComparisonSticky } from "../hooks/useComparisonSticky";
+import "./plan-comparison.css";
 
 type Props = { catalog: PricingCatalog; billingCycle: BillingCycle };
 
 const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
+  const tableRef = useComparisonSticky();
   const groups = comparisonGroups(catalog);
   const highlightIndex = catalog.plans.findIndex((plan) => plan.recommended);
 
@@ -33,7 +35,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
           </p>
         </div>
         <div
-          className="overflow-x-auto rounded-2xl border border-[#dde6dc]"
+          className="plan-comparison-scroll overflow-x-auto rounded-2xl border border-[#dde6dc]"
           role="region"
           aria-labelledby="plan-comparison-title"
           tabIndex={0}
@@ -50,11 +52,14 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
             }
           }}
         >
-          <table className="w-full min-w-[960px] border-collapse text-body">
+          <table
+            ref={tableRef}
+            className="w-full min-w-[960px] border-collapse text-body"
+          >
             <caption className="sr-only">
               Ontiver plans compared by usage, features and service
             </caption>
-            <thead>
+            <thead className="plan-comparison-head">
               <tr className="bg-[#edf5eb] text-left">
                 <th
                   scope="col"
@@ -83,44 +88,42 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                 })}
               </tr>
             </thead>
-            <tbody>
-              {groups.map((group) => (
-                <Fragment key={group.title}>
-                  <tr className="border-t border-[#dde6dc] bg-surface-muted">
+            {groups.map((group) => (
+              <tbody key={group.title}>
+                <tr className="plan-comparison-group border-t border-[#dde6dc] bg-surface-muted">
+                  <th
+                    scope="rowgroup"
+                    colSpan={catalog.plans.length + 1}
+                    className="px-6 py-3 text-left text-meta font-semibold uppercase tracking-[0.12em] text-accent"
+                  >
+                    <span className="plan-comparison-group-label">{group.title}</span>
+                  </th>
+                </tr>
+                {group.rows.map((row) => (
+                  <tr key={row.label} className="border-t border-[#e8eee4]">
                     <th
-                      scope="colgroup"
-                      colSpan={catalog.plans.length + 1}
-                      className="sticky left-0 px-6 py-3 text-left text-meta font-semibold uppercase tracking-[0.12em] text-accent"
+                      scope="row"
+                      className="sticky left-0 z-10 bg-surface px-6 py-4 text-left font-medium"
                     >
-                      {group.title}
+                      {row.label}
+                      {row.hint ? (
+                        <span className="mt-1 block text-sm font-normal text-[#526058]">
+                          {row.hint}
+                        </span>
+                      ) : null}
                     </th>
-                  </tr>
-                  {group.rows.map((row) => (
-                    <tr key={row.label} className="border-t border-[#e8eee4]">
-                      <th
-                        scope="row"
-                        className="sticky left-0 z-10 bg-surface px-6 py-4 text-left font-medium"
+                    {row.values.map((value, index) => (
+                      <td
+                        key={`${row.label}-${catalog.plans[index].id}`}
+                        className={`px-4 py-4 text-center text-[#526052] ${index === highlightIndex ? "bg-[#f6faf3]" : ""}`}
                       >
-                        {row.label}
-                        {row.hint ? (
-                          <span className="mt-1 block text-sm font-normal text-[#526058]">
-                            {row.hint}
-                          </span>
-                        ) : null}
-                      </th>
-                      {row.values.map((value, index) => (
-                        <td
-                          key={`${row.label}-${catalog.plans[index].id}`}
-                          className={`px-4 py-4 text-center text-[#526052] ${index === highlightIndex ? "bg-[#f6faf3]" : ""}`}
-                        >
-                          <FeatureValue value={value} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </Fragment>
-              ))}
-            </tbody>
+                        <FeatureValue value={value} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            ))}
           </table>
         </div>
       </div>
