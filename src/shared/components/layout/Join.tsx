@@ -6,7 +6,7 @@ import "../ui/cta-band.css";
 const Join = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
   return (
-    <section id="join" className="section-space section-compact cta-band">
+    <section id="join" className="section-space section-compact cta-band py-24!">
       <div className="site-container cta-band-layout" data-scroll-reveal>
         <div className="cta-band-primary">
           <h2 className="section-heading">

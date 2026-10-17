@@ -130,7 +130,7 @@ const SecurityPage = ({ audience = "individual" }: { audience?: Audience }) => {
               />
             </div>
           </div>
-          <div className="story-split-content">
+          <div className="story-split-content py-10!">
             <div data-scroll-reveal>
               <p className="eyebrow">Designed controls</p>
               <h2 className="section-heading mt-4">Purpose. Permission. A clear record.</h2>

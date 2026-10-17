@@ -14,7 +14,7 @@ const PlatformPage = () => {
 
   return (
     <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
-      <section className="page-intro">
+      <section className="page-intro pt-32!">
         <div
           className={`site-container split-hero-grid ${platformLayers.indexOf(layer) % 2 ? "split-hero-grid--image-left" : ""}`}
         >
@@ -61,7 +61,7 @@ const PlatformPage = () => {
               key={item.id}
               to={`/enterprise/platform/${item.id}`}
               aria-current={item.id === layer.id ? "page" : undefined}
-              className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${item.id === layer.id ? "bg-[#edf5eb] text-accent" : "text-[#526058] hover:bg-surface-muted hover:text-accent"}`}
+              className={`rounded-full px-5 py-2 text-lg font-medium transition-colors ${item.id === layer.id ? "bg-[#a9fb94] text-accent" : "text-[#526058] hover:bg-surface-muted hover:text-accent"}`}
             >
               {item.title}
             </Link>
@@ -123,11 +123,11 @@ const PlatformPage = () => {
         </div>
       </section>
 
-      <section className="section-space section-compact">
+      <section className="section-space section-compact bg-[#002d0e] py-24!">
         <div className="site-container">
           <div
             data-scroll-reveal
-            className="equal-columns grid gap-8 bg-[#002d0e] p-6 text-white sm:p-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-12"
+            className="equal-columns grid gap-8 text-white sm:p-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-12"
           >
             <div>
               <p className="text-meta font-semibold uppercase text-[#c7e6b5]">Before your pilot</p>
@@ -171,13 +171,13 @@ const PlatformPage = () => {
           </div>
           <nav
             aria-label="Related platform layers"
-            className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-4"
+            className="mt-7 mx-10 flex flex-wrap items-center gap-x-7 gap-y-4"
           >
             {relatedLayers.map((item) => (
               <Link
                 key={item.id}
                 to={`/enterprise/platform/${item.id}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white"
               >
                 {item.title}
                 <ActionIcon size={17} aria-hidden="true" />
@@ -185,7 +185,7 @@ const PlatformPage = () => {
             ))}
             <Link
               to="/enterprise/security"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-accent"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white"
             >
               Security and trust
               <ActionIcon size={17} aria-hidden="true" />

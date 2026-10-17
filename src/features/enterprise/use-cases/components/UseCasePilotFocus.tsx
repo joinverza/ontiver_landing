@@ -10,7 +10,7 @@ const UseCasePilotFocus = ({
   measures: UseCasePageDetail["evaluationMeasures"];
 }) => {
   return (
-    <section className="section-space section-compact cta-band">
+    <section className="section-space section-compact cta-band py-24!">
       <div className="site-container cta-band-layout" data-scroll-reveal>
         <div className="cta-band-primary">
           <p className="eyebrow !text-[#c7e6b5]">Proposed pilot</p>

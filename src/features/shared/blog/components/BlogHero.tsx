@@ -4,7 +4,7 @@ import { imagery } from "../../../../shared/data/imagery";
 
 const BlogHero = () => {
   return (
-    <header className="page-intro blog-intro">
+    <header className="page-intro blog-intro pt-32!">
       <div className="site-container split-hero-grid">
         <div className="page-hero-content">
           <p className="eyebrow">The Ontiver journal</p>

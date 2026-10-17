@@ -18,7 +18,7 @@ const SupportPage = ({ audience = "individual" }: { audience?: Audience }) => {
           hasSession={Boolean(support.session)}
           onTopicSelect={(topic) => support.updateForm("topic", topic)}
         />
-        <section id="support-request" className="section-space site-container scroll-mt-28">
+        <section id="support-request" className="section-space -mt-20! site-container scroll-mt-28">
           <div className="equal-columns grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-8">
             <section className="min-w-0 border border-[#dde6dc] bg-surface-raised p-6 sm:p-9">
               {support.session && support.conversation ? (

@@ -6,7 +6,7 @@ import { getIndustryImage } from "../../../../shared/components/media/businessIm
 
 const UseCaseHero = ({ detail }: { detail: UseCasePageDetail }) => {
   return (
-    <section className="page-intro">
+    <section className="page-intro pt-32!">
       <div
         className={`site-container split-hero-grid ${(detail.section ?? 0) % 2 ? "split-hero-grid--image-left" : ""}`}
       >
@@ -34,6 +34,7 @@ const UseCaseHero = ({ detail }: { detail: UseCasePageDetail }) => {
         <div data-scroll-reveal className="page-hero-media">
           <ContextPhoto
             image={getIndustryImage(detail.id)}
+            className="rounded-2xl!"
             priority
             sizes="(min-width: 1024px) 47vw, 100vw"
           />

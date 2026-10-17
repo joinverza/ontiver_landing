@@ -50,7 +50,7 @@ const WorkflowVisual = ({
 
   return (
     <DirectionAwareFrame
-      className={`editorial-workflow ${compact ? "editorial-workflow--compact" : ""} ${className}`}
+      className={`editorial-workflow rounded-2xl! ${compact ? "editorial-workflow--compact" : ""} ${className}`}
       caption={
         <div className="editorial-workflow-copy">
           <div className="editorial-workflow-heading">

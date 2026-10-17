@@ -34,7 +34,7 @@ const UseCasePage = () => {
       <section className="section-space section-compact bg-[#002d0e] text-white">
         <div
           data-scroll-reveal
-          className="site-container grid gap-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-14"
+          className="site-container grid gap-9 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 py-10!"
         >
           <div>
             <p className="text-meta font-semibold uppercase text-[#c7e6b5]">Focused pilot</p>

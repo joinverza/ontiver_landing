@@ -16,7 +16,7 @@ const PhotoCTA = ({
   visual?: ReactNode;
 }) => {
   return (
-    <section className="section-space section-compact cta-band">
+    <section className="section-space section-compact cta-band py-24!">
       <div className="site-container cta-band-layout" data-scroll-reveal>
         <div className="cta-band-primary">
           <p className="text-meta font-semibold uppercase tracking-wider text-[#c7e6b5]">

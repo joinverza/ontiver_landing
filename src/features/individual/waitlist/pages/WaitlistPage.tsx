@@ -10,7 +10,7 @@ const WaitlistPage = () => {
     <main id="main-content" tabIndex={-1}>
       <section className="page-intro">
         <div className="site-container split-hero-grid split-hero-grid--image-left">
-          <div className="page-hero-content">
+          <div className="page-hero-content pt-10!">
             <p className="eyebrow">Early access</p>
             <h1 className="mt-5 text-page-hero font-medium">
               Stop uploading the same documents <span className="text-accent">everywhere.</span>

@@ -24,7 +24,7 @@ const UseCaseChallenge = ({ detail }: { detail: UseCasePageDetail }) => {
         ) : (
           <div data-scroll-reveal>{heading}</div>
         )}
-        <div data-scroll-reveal className={contextImage ? "story-split-content" : undefined}>
+        <div data-scroll-reveal className={contextImage ? "story-split-content py-10!" : undefined}>
           {contextImage && heading}
           <p className={`${contextImage ? "mt-6 " : ""}text-subtitle text-[#526058]`}>
             {detail.purpose}
