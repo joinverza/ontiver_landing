@@ -1,9 +1,11 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
+import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { imagery } from "../../../../shared/data/imagery";
+import "./identity-details.css";
 
 const requestChoices = [
   {
@@ -92,16 +94,16 @@ const IndividualProductPage = () => {
             ].map((group) => (
               <div key={group.title} data-scroll-reveal>
                 <h2 className="text-section font-medium">{group.title}</h2>
-                <div className="mt-5 divide-y divide-[#002d0e]/15 border-y border-[#002d0e]/15">
+                <div className="identity-details mt-5">
                   {group.items.map((item) => (
-                    <details key={item.title} className="group py-4">
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-card-title font-medium [&::-webkit-details-marker]:hidden">
-                        {item.title}
-                        <span aria-hidden="true" className="text-accent group-open:rotate-45">
-                          +
+                    <details key={item.title} className="identity-detail">
+                      <summary className="identity-detail-trigger text-card-title font-medium">
+                        <span className="identity-detail-title">{item.title}</span>
+                        <span aria-hidden="true" className="identity-detail-icon">
+                          <Plus size={20} />
                         </span>
                       </summary>
-                      <p className="mt-3 text-body text-[#526058]">{item.description}</p>
+                      <p className="identity-detail-description text-body">{item.description}</p>
                     </details>
                   ))}
                 </div>

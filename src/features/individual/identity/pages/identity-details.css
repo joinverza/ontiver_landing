@@ -1,0 +1,100 @@
+.identity-details {
+  border-top: 1px solid #cbd6c9;
+}
+
+.identity-detail {
+  --detail-inset: clamp(1rem, 1.5vw, 1.5rem);
+  border-bottom: 1px solid #cbd6c9;
+  color: #002d0e;
+  transition: background-color 260ms ease;
+}
+
+.identity-detail-trigger {
+  display: flex;
+  min-height: 4.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1rem var(--detail-inset);
+  cursor: pointer;
+  list-style: none;
+}
+
+.identity-detail-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.identity-detail-trigger:focus-visible {
+  outline: 2px solid var(--ink-accent);
+  outline-offset: -4px;
+}
+
+.identity-detail-title {
+  min-width: 0;
+  transition: translate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.identity-detail-icon {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #002d0e24;
+  color: var(--ink-accent);
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    color 260ms ease;
+}
+
+.identity-detail-icon svg {
+  transition: rotate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.identity-detail-description {
+  padding: 0 var(--detail-inset) 1.5rem;
+  color: #526058;
+}
+
+@media (hover: hover) {
+  .identity-detail:not([open]):hover {
+    background-color: #dcebcf;
+  }
+
+  .identity-detail-trigger:hover .identity-detail-title {
+    translate: 4px 0;
+  }
+
+  .identity-detail:not([open]) .identity-detail-trigger:hover .identity-detail-icon {
+    border-color: #002d0e;
+    background-color: #002d0e;
+    color: #fff;
+  }
+}
+
+.identity-detail[open] {
+  background-color: #dcebcf;
+}
+
+.identity-detail[open] .identity-detail-icon {
+  border-color: #002d0e;
+  background-color: #002d0e;
+  color: #fff;
+}
+
+.identity-detail[open] .identity-detail-icon svg {
+  rotate: 45deg;
+}
+
+html[data-motion="paused"] .identity-detail,
+html[data-motion="paused"] .identity-detail * {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .identity-detail,
+  .identity-detail * {
+    transition: none;
+  }
+}
