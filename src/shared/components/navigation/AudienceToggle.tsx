@@ -1,5 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { getAudienceFromPath, getAudienceSwitchPath, type Audience } from "../../lib/audience";
+import {
+  getAudienceFromPath,
+  getAudienceHome,
+  getAudienceSwitchPath,
+  type Audience,
+} from "../../lib/audience";
 import SlidingPill from "../ui/SlidingPill";
 
 type AudienceToggleProps = {
@@ -25,6 +30,7 @@ const AudienceToggle = ({ className = "", compact = false }: AudienceToggleProps
       label="Choose website audience"
       value={activeAudience}
       onChange={selectAudience}
+      onReselect={(audience) => navigate(getAudienceHome(audience))}
       options={audiences.map((audience) => ({
         value: audience,
         label: audience === "individual" ? "Individuals" : "Enterprise",

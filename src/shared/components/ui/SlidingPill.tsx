@@ -8,6 +8,7 @@ type SlidingPillProps<T extends PillValue> = {
   value: T;
   options: ReadonlyArray<{ value: T; label: string }>;
   onChange: (value: T) => void;
+  onReselect?: (value: T) => void;
   tone?: "dark" | "soft";
   size?: "regular" | "compact";
   layout?: "single" | "wrap" | "scroll";
@@ -22,6 +23,7 @@ const SlidingPill = <T extends PillValue>({
   value,
   options,
   onChange,
+  onReselect,
   tone = "dark",
   size = "regular",
   layout = "single",
@@ -93,6 +95,7 @@ const SlidingPill = <T extends PillValue>({
             aria-pressed={option.value === value}
             onClick={() => {
               if (option.value !== value) onChange(option.value);
+              else onReselect?.(option.value);
             }}
             onKeyDown={(event) => moveSelection(event, index)}
           >
