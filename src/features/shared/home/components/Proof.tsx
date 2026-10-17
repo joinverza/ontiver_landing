@@ -141,14 +141,14 @@ export const PilotResults = () => {
           Agree the baseline before starting, then follow completion, verification time and
           user-approved reuse in your dashboard from the first request.
         </p>
-        <dl className="spotlight-grid mt-8">
+        <dl className="spotlight-grid mt-8 rounded-2xl!">
           {pilotMetrics.map((metric) => {
             const result = isPublishedMetricResult(metric.result) ? metric.result : null;
             return (
               <div
                 data-scroll-reveal
                 key={metric.id}
-                className="spotlight-cell"
+                className="spotlight-cell rounded-2xl!"
                 tabIndex={0}
                 aria-labelledby={`pilot-metric-${metric.id}`}
               >
@@ -204,7 +204,7 @@ export const RegulatoryCredentials = ({ tone = "white" }: { tone?: "white" | "mu
           <article
             key={credential.id}
             data-scroll-reveal
-            className="flex flex-col rounded-[20px] border border-[#002d0e]/12 bg-surface p-6 sm:p-7"
+            className="flex flex-col rounded-[20px] border border-[#002d0e]/12 bg-surface-muted p-6 sm:p-7"
           >
             <div className="flex h-16 items-center">
               <img

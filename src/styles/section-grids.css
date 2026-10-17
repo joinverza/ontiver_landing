@@ -52,7 +52,7 @@ a.editorial-link:is(:hover, :focus-visible) .editorial-link-arrow {
   min-width: 0;
   flex-direction: column;
   padding: clamp(1.75rem, 2.5vw, 3rem);
-  background: var(--surface-page);
+  background: var(--surface-muted);
   color: #fff;
   outline-offset: -5px;
 }
@@ -63,8 +63,8 @@ a.editorial-link:is(:hover, :focus-visible) .editorial-link-arrow {
   z-index: -1;
   inset: 8px;
   border-radius: 16px;
-  background: #002d0e;
-  mask-image: radial-gradient(circle 22px at calc(100% + 12px) 50%, transparent 98%, #000 100%);
+  background: #004917;
+  mask-image: radial-gradient(circle 32px at calc(100% + 12px) 50%, transparent 98%, #000 100%);
 }
 
 .spotlight-cell:focus-visible {
