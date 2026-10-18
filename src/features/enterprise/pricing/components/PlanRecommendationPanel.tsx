@@ -23,7 +23,7 @@ const PlanRecommendationPanel = ({
 }: Props) => {
   return (
     <div
-      className="plan-guidance-panel flex min-w-0 flex-col rounded-2xl bg-[#edf5e7] p-6 sm:p-9"
+      className="plan-guidance-panel flex min-w-0 flex-col rounded-2xl bg-[#edf5e7] p-6 sm:p-9!"
       aria-live="polite"
       aria-atomic="true"
     >

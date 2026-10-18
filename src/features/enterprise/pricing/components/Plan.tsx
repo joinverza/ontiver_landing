@@ -43,7 +43,7 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
 
   return (
     <section className="plan-guidance section-space bg-surface-muted text-[#002d0e]">
-      <div className="site-container">
+      <div className="site-container py-20!">
         <div data-scroll-reveal className="plan-guidance-intro mb-16! max-w-[780px]">
           <p className="eyebrow">Explore your plan options</p>
           <h2 className="mt-5 text-section font-normal">Find the plan that costs you least.</h2>
@@ -54,7 +54,7 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
         </div>
         <div className="equal-columns grid gap-6 lg:grid-cols-2">
           <form
-            className="plan-guidance-panel flex min-w-0 flex-col rounded-2xl border border-[#dde6dc] bg-surface p-6 sm:p-9"
+            className="plan-guidance-panel flex min-w-0 flex-col rounded-2xl border border-[#dde6dc] bg-surface p-6 sm:p-9!"
             onSubmit={(event) => {
               event.preventDefault();
               checkBestPlan();
