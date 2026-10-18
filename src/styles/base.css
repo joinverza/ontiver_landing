@@ -23,7 +23,9 @@ body {
 }
 
 /* One quiet rule between page sections, without bordering nested content. */
-:where(#main-content > :is(section, header) ~ section, #main-content + section, .site-footer) {
+:where(#main-content > :is(section, header) ~ section, #main-content + section, .site-footer):where(
+  :not([data-section-divider="none"])
+) {
   border-block-start: 1px solid var(--section-divider);
 }
 

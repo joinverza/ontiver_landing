@@ -34,6 +34,7 @@ const BlogPage = () => {
       <BlogHero />
       <section
         id="blog-library"
+        data-section-divider="none"
         className="blog-library scroll-mt-24"
         aria-labelledby="blog-library-heading"
       >
