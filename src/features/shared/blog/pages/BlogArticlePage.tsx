@@ -129,7 +129,7 @@ const ArticleView = ({
         </Helmet>
       ) : null}
       <ReadingProgress key={article.slug} targetRef={bodyRef} />
-      <section className="page-intro">
+      <section className="page-intro pt-32!">
         <div className="site-container split-hero-grid split-hero-grid--image-left">
           <Link
             to="/blogs"
