@@ -84,7 +84,7 @@ const Calculator = ({
       id="savings-calculator"
       className={`${standalone ? "page-intro" : "section-space calculator-section"} bg-surface text-[#002d0e]`}
     >
-      <div className="site-container">
+      <div className="site-container py-10!">
         <div
           data-scroll-reveal
           className={standalone ? "page-hero-content" : "calculator-intro mb-8 max-w-[900px]"}
