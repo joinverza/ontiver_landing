@@ -59,13 +59,13 @@ export const individualSolutionSteps: SolutionStep[] = [
     icon: "/assets/reuse.svg",
     title: "Keep approved proofs",
     para: "Once verified, your proof stays with you for future use.",
-    image: editorialPhotos.individualUseCases,
+    image: editorialPhotos.proof,
   },
   {
     icon: "/assets/consent.svg",
     title: "Approve the next share",
     para: "Reuse your proof with a new request instead of starting over.",
-    image: editorialPhotos.blogIdentity,
+    image: imagery.everydayPhone,
   },
   {
     icon: "/assets/reuse.svg",

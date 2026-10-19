@@ -40,7 +40,7 @@ export const workflowVisualContent: Record<WorkflowVisualVariant, VisualContent>
     title: "Evidence for a human decision.",
     label: "Authorized review",
     description: "Connect the relevant evidence, consent, and context for your reviewer.",
-    image: imagery.candidateReview,
+    image: imagery.work,
     items: ["Source results", "Consent scope", "Decision record"],
   },
   proof: {

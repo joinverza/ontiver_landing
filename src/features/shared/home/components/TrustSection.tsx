@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import type { Audience } from "../../../../shared/lib/audience";
 import WordReveal from "../../../../shared/components/ui/WordReveal";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
-import { imagery } from "../../../../shared/data/imagery";
+import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 
 const TrustSection = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
@@ -13,7 +13,11 @@ const TrustSection = ({ audience }: { audience: Audience }) => {
       <div className="site-container story-split">
         <div className="story-split-media">
           <div data-media-reveal>
-            <ContextPhoto image={enterprise ? imagery.developer : imagery.mobileDetail} />
+            <ContextPhoto
+              image={
+                enterprise ? editorialPhotos.enterpriseSecurityControls : editorialPhotos.consent
+              }
+            />
           </div>
         </div>
         <div data-scroll-reveal className="story-split-content">

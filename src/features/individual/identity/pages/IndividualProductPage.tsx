@@ -2,7 +2,7 @@ import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Plus } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
-import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
+import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { imagery } from "../../../../shared/data/imagery";
 import "./identity-details.css";
@@ -60,7 +60,15 @@ const IndividualProductPage = () => {
         </>
       }
       description="A reusable proof of who you are — created once, shared only when you approve it."
-      visual={<WorkflowVisual variant="mobile" photo={editorialPhotos.identity} compact priority />}
+      visual={
+        <ContextPhoto
+          image={editorialPhotos.identity}
+          size="wide"
+          priority
+          sizes="(min-width: 1024px) 47vw, 100vw"
+          className="rounded-2xl"
+        />
+      }
       primaryAction={{ label: "Join the Waitlist", to: "/waitlist" }}
       secondaryAction={{ label: "See how it works", to: "/how-it-works" }}
       finalTitle="Stay in control of your next request."

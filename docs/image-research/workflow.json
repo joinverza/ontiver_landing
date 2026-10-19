@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "collection": "editorialPhotos",
+      "key": "renewalPlanning",
+      "new": true,
+      "decision": "replace",
+      "contexts": [
+        "Enterprise workflow capabilities: expiry and renewal",
+        "Identity proof capabilities: checking expiry before reuse"
+      ],
+      "reason": "A person marking a desk calendar depicts the timing and follow-up involved in renewal. It replaces unrelated developer and pricing images; the photo illustrates scheduling, not an Ontiver proof status screen.",
+      "sourcePage": "https://www.pexels.com/photo/a-person-writing-on-calendar-6172482/",
+      "downloadUrl": "https://images.pexels.com/photos/6172482/pexels-photo-6172482.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "A person writing a reminder on a desk calendar beside documents",
+      "objectPosition": "50% 55%"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "researchedOn": "2026-10-19",
+  "scope": "Dedicated photographs for the Phone and Licenses and institutions cards in the enterprise home Identity sources module. These depict the source objects; they do not claim a live provider connection, verified ownership or a completed Ontiver check.",
+  "entries": [
+    {
+      "collection": "editorialPhotos",
+      "key": "sourcePhone",
+      "new": true,
+      "decision": "replace",
+      "contexts": [
+        "src/features/shared/home/components/Modules.tsx: enterprise Identity sources tab, layerPhotos[0][1], Phone card",
+        "src/features/enterprise/platform/data/platform.ts: Connect the phone information required by the request"
+      ],
+      "reason": "The capability concerns phone information as a verification source, so the physical SIM is more specific than a portrait of someone browsing a phone. The selected photograph clearly shows SIM chips and their adapters without depicting an unrelated application. Its original Pexels page identifies the objects and provides camera metadata. Desktop 650x384 and mobile 356x288 crops were visually checked; the upper SIM and central chip remain visible. A handset-and-SIM alternative was rejected because the SIM sat too low behind the card's text area. This image is different from the existing telecom use-case photo and is not used elsewhere in the module.",
+      "sourcePage": "https://www.pexels.com/photo/sim-card-and-ejector-tool-flat-lay-on-white-surface-33277478/",
+      "downloadUrl": "https://images.pexels.com/photos/33277478/pexels-photo-33277478.jpeg",
+      "creator": "Pascal 📷",
+      "license": "https://www.pexels.com/license/",
+      "alt": "SIM cards, blue size adapters and a metal ejector tool on a light surface",
+      "objectPosition": "50% 25%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "sourceCredentials",
+      "new": true,
+      "decision": "replace",
+      "contexts": [
+        "src/features/shared/home/components/Modules.tsx: enterprise Identity sources tab, layerPhotos[0][3], Licenses and institutions card",
+        "src/features/enterprise/platform/data/platform.ts: Connect license and credential claims with the relevant issuing institution"
+      ],
+      "reason": "This card concerns a credential and its issuer, not graduation celebrations. The original photograph shows an actual university degree document, including a red seal and Chancellor/Vice-Chancellor signatures, making the institution-issued evidence visible. The source labels it a university degree certificate and credits Lewis Keegan under the free Unsplash License. Desktop 650x384 and mobile 356x288 crops were visually checked to retain the institutional signatures and seal. The photograph illustrates the credential category; it does not imply that this institution is integrated with Ontiver or that this particular credential has been checked.",
+      "sourcePage": "https://unsplash.com/photos/university-degree-certificate-with-signatures-XQaqV5qYcXg",
+      "downloadUrl": "https://images.unsplash.com/photo-1589330694653-ded6df03f754",
+      "creator": "Lewis Keegan",
+      "license": "https://unsplash.com/license",
+      "alt": "A university degree certificate with institutional signatures and a red seal",
+      "objectPosition": "75% 65%"
+    }
+  ]
+}

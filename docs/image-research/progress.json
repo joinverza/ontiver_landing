@@ -1,0 +1,22 @@
+{
+  "researchedOn": "2026-10-18",
+  "scope": "A dedicated landscape image for the individual journey's Follow the review step. This illustrative photograph does not show the Ontiver interface or an actual request status.",
+  "entries": [
+    {
+      "collection": "editorialPhotos",
+      "key": "requestProgress",
+      "new": true,
+      "decision": "replace",
+      "contexts": [
+        "src/features/individual/journey/pages/HowItWorksPage.tsx: Follow the review / Track progress as the request is checked"
+      ],
+      "reason": "The journey step is about checking a request's progress from a personal device. A person reclining at home and looking at a smartphone illustrates that everyday action. Unlike the earlier portrait-format photograph, this landscape composition keeps the face and raised phone at a similar height, so both remain visible in the timeline's 1824:500 panorama and its 4:3 mobile view. Both crops were generated and visually checked at object-position 100% 62%. The pictured screen is not described as Ontiver or a literal status display.",
+      "sourcePage": "https://www.pexels.com/photo/a-man-lying-on-sofa-while-using-a-smartphone-8933550/",
+      "downloadUrl": "https://images.pexels.com/photos/8933550/pexels-photo-8933550.jpeg",
+      "creator": "SHVETS production",
+      "license": "https://www.pexels.com/license/",
+      "alt": "A man reclining on a sofa and checking a smartphone held in front of him",
+      "objectPosition": "100% 62%"
+    }
+  ]
+}

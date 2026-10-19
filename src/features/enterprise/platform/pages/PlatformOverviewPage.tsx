@@ -2,7 +2,6 @@ import { Code2, LayoutDashboard, Smartphone } from "../../../../shared/component
 import ImageHoverPanels from "../../../../shared/components/media/ImageHoverPanels";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";
-import { imagery } from "../../../../shared/data/imagery";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import { platformLayers } from "../data/platform";
 import "./platform-overview.css";
@@ -43,7 +42,7 @@ const PlatformOverviewPage = () => {
       }
       secondaryAction={{ label: "Explore Use Cases", to: "/enterprise/use-cases" }}
       finalTitle="Build your first workflow with us."
-      finalImage={imagery.enterpriseHero}
+      finalImage={editorialPhotos.enterpriseContact}
     >
       <section
         className="section-space platform-layers-section"

@@ -1,0 +1,43 @@
+{
+  "entries": [
+    {
+      "collection": "editorialPhotos",
+      "key": "sourceNationalIdentity",
+      "new": true,
+      "decision": "illustration",
+      "contexts": [
+        "Enterprise home, Identity sources: NIN/BVN capability card.",
+        "National identity and bank-verification source records used for requested identity checks."
+      ],
+      "reason": "The subject is specifically Nigeria's NIN and BVN records. Reusable stock results showed office paperwork, door-access fingerprint readers, phone unlocking, or foreign registration programs; those do not identify the requested sources. Use an original source-record illustration with two clearly labeled records and masked 11-digit fields. NIMC defines NIN as an 11-digit identifier tied to demographic and biometric enrollment data; NIBSS defines BVN as an 11-digit identifier across Nigerian bank accounts. The drawing is an explanatory record view, not a government-issued card, enrollment screen, actual personal record, or claim of agency endorsement.",
+      "sourcePage": "https://nimc.gov.ng/nin",
+      "supportingSources": [
+        "https://nibss-plc.com.ng/glossary/bvn-bank-verification-number/",
+        "https://ninauth.nimc.gov.ng/get-started",
+        "src/features/enterprise/platform/data/platform.ts"
+      ],
+      "creator": "Ontiver original diagram",
+      "assetPath": "/assets/photos/contextual/source-identity-records.svg",
+      "width": 1600,
+      "height": 1100,
+      "alt": "Illustration of separate NIN and BVN source records with masked 11-digit identifiers",
+      "objectPosition": "50% 25%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "sourceEmployment",
+      "new": true,
+      "decision": "replace",
+      "contexts": [
+        "Enterprise home, Identity sources: Employers and referees capability card.",
+        "Employment records that an employer or referee can use when confirming requested claims."
+      ],
+      "reason": "The document explicitly concerns an employment relationship and includes employee and employer-authorized-representative signature fields. This identifies a concrete employment source record instead of depicting a candidate interview or generic meeting. Standard 16:9 and 4:3 crops retain the contract heading and signature area; the last card's unusually wide desktop crop uses a 25% vertical focal point to preserve the complete CONTRACT heading and employment wording. It is a photographed sample employment document, not an actual completed reference, a Nigerian legal template, or proof that Ontiver verifies the photographed record.",
+      "sourcePage": "https://www.pexels.com/photo/photo-of-employment-contract-7841410/",
+      "downloadUrl": "https://images.pexels.com/photos/7841410/pexels-photo-7841410.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "RDNE Stock project",
+      "alt": "An employment contract with employee and employer signature fields beside two pens",
+      "objectPosition": "50% 25%"
+    }
+  ]
+}

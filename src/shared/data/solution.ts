@@ -37,7 +37,7 @@ export const solutionSteps: SolutionStep[] = [
     icon: "./assets/reuse.svg",
     title: "Review and decide",
     para: "Your reviewer inspects results, evidence, and the audit trail, then approves, rejects, or escalates.",
-    image: imagery.candidateReview,
+    image: imagery.work,
   },
   {
     icon: "/assets/proof.svg",

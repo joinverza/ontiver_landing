@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" fill="none">
+  <defs>
+    <linearGradient id="background" x1="120" y1="0" x2="1400" y2="1100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e4ecd9"/>
+      <stop offset="1" stop-color="#a5baa2"/>
+    </linearGradient>
+    <linearGradient id="bank" x1="660" y1="330" x2="1360" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#235b3c"/>
+      <stop offset="1" stop-color="#123d29"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="170%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#143422" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#background)"/>
+  <circle cx="1460" cy="140" r="430" stroke="#f4f7ed" stroke-width="2" opacity=".5"/>
+  <circle cx="1460" cy="140" r="345" stroke="#f4f7ed" stroke-width="2" opacity=".5"/>
+  <circle cx="140" cy="1090" r="395" fill="#d3dfc6" opacity=".55"/>
+  <g filter="url(#shadow)">
+    <rect x="180" y="155" width="830" height="470" rx="30" fill="#f7f8f0"/>
+    <rect x="180" y="155" width="15" height="470" rx="7" fill="#188248"/>
+    <text x="235" y="260" fill="#153d25" font-family="Arial, sans-serif" font-size="76" font-weight="700">NIN</text>
+    <text x="239" y="310" fill="#526756" font-family="Arial, sans-serif" font-size="27">National Identification Number</text>
+    <rect x="239" y="365" width="138" height="164" rx="15" fill="#e2ebd9"/>
+    <circle cx="308" cy="416" r="25" stroke="#497754" stroke-width="6"/>
+    <path d="M266 494v-12c0-25 19-42 42-42s42 17 42 42v12" stroke="#497754" stroke-width="6" stroke-linecap="round"/>
+    <g fill="#46694e">
+      <circle cx="425" cy="402" r="8"/><circle cx="453" cy="402" r="8"/><circle cx="481" cy="402" r="8"/><circle cx="509" cy="402" r="8"/><circle cx="537" cy="402" r="8"/><circle cx="565" cy="402" r="8"/><circle cx="593" cy="402" r="8"/><circle cx="621" cy="402" r="8"/><circle cx="649" cy="402" r="8"/><circle cx="677" cy="402" r="8"/><circle cx="705" cy="402" r="8"/>
+    </g>
+    <path d="M418 453h320M418 495h200" stroke="#c2d1ba" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="690" y="465" width="720" height="390" rx="30" fill="url(#bank)"/>
+    <text x="750" y="571" fill="#eef6e4" font-family="Arial, sans-serif" font-size="76" font-weight="700">BVN</text>
+    <text x="754" y="621" fill="#c7dcbc" font-family="Arial, sans-serif" font-size="27">Bank Verification Number</text>
+    <g fill="#d9e9cc">
+      <circle cx="763" cy="697" r="8"/><circle cx="795" cy="697" r="8"/><circle cx="827" cy="697" r="8"/><circle cx="859" cy="697" r="8"/><circle cx="891" cy="697" r="8"/><circle cx="923" cy="697" r="8"/><circle cx="955" cy="697" r="8"/><circle cx="987" cy="697" r="8"/><circle cx="1019" cy="697" r="8"/><circle cx="1051" cy="697" r="8"/><circle cx="1083" cy="697" r="8"/>
+    </g>
+    <path d="M756 756h275" stroke="#668a6d" stroke-width="13" stroke-linecap="round"/>
+    <g stroke="#c7dfb5" stroke-width="6" stroke-linecap="round">
+      <path d="M1201 607c0-41 28-68 66-68s66 27 66 68v23"/>
+      <path d="M1219 639v-32c0-31 18-50 48-50s48 19 48 50v47c0 28-7 50-18 69"/>
+      <path d="M1238 666v-59c0-19 11-30 29-30s29 11 29 30v50c0 25-7 43-18 59"/>
+      <path d="M1257 684c8-12 10-25 10-43v-34M1219 663c0 19-5 34-13 48M1333 650c0 32-8 60-20 81"/>
+    </g>
+  </g>
+</svg>

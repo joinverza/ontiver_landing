@@ -2,7 +2,7 @@ import { ShieldCheck } from "../../../../shared/components/ui/icons";
 import { useLocation } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
-import { imagery, type EditorialImage } from "../../../../shared/data/imagery";
+import type { EditorialImage } from "../../../../shared/data/imagery";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { LEGAL_LAST_UPDATED, legalDocuments } from "../data/legalDocuments";
 import LegalNavigation from "../components/LegalNavigation";
@@ -12,10 +12,10 @@ import AccountDeletionContent from "../components/AccountDeletionContent";
 
 const legalHeroImages: Record<string, EditorialImage> = {
   "/legal": editorialPhotos.legal,
-  "/privacy": imagery.work,
-  "/terms": imagery.cityPortrait,
-  "/cookies": imagery.everydayPhone,
-  "/account-deletion": imagery.individualHero,
+  "/privacy": editorialPhotos.legalPrivacy,
+  "/terms": editorialPhotos.legalTerms,
+  "/cookies": editorialPhotos.legalCookies,
+  "/account-deletion": editorialPhotos.legalAccountDeletion,
 };
 
 const LegalPage = () => {

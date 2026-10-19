@@ -1,0 +1,388 @@
+{
+  "entries": [
+    {
+      "collection": "editorialPhotos",
+      "key": "fintech",
+      "decision": "replace",
+      "contexts": [
+        "Banking and fintech: customer onboarding, account creation, repeat verification."
+      ],
+      "reason": "Shows the customer-facing mobile financial activity that requires identity checks, replacing an unrelated outdoor phone-and-folder scene. This is illustrative payment use, not an Ontiver account screen.",
+      "sourcePage": "https://www.pexels.com/photo/man-in-black-long-sleeve-shirt-holding-black-mobile-phone-7534379/",
+      "downloadUrl": "https://images.pexels.com/photos/7534379/pexels-photo-7534379.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Mikhail Nilov",
+      "alt": "Hands holding a smartphone and a payment card",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "bank",
+      "decision": "replace",
+      "contexts": [
+        "Digital lenders: supporting context image beside borrower evidence and lender review."
+      ],
+      "reason": "The visible application and adviser/customer hands show the evidence-gathering step used in a credit decision. It does not imply Ontiver approves credit.",
+      "sourcePage": "https://www.pexels.com/photo/person-writing-on-white-paper-7821495/",
+      "downloadUrl": "https://images.pexels.com/photos/7821495/pexels-photo-7821495.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "RDNE Stock project",
+      "alt": "Two people reviewing and filling in a credit card application at a table",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "lending",
+      "decision": "replace",
+      "contexts": [
+        "Digital lenders hero and priority industry card: borrower onboarding and loan application support."
+      ],
+      "reason": "The visible loan application directly supports the borrowing journey rather than a general finance meeting.",
+      "sourcePage": "https://www.pexels.com/photo/person-writing-on-white-paper-7821513/",
+      "downloadUrl": "https://images.pexels.com/photos/7821513/pexels-photo-7821513.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "RDNE Stock project",
+      "alt": "A person filling in a consumer loan application on a wooden table",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "insurance",
+      "decision": "replace",
+      "contexts": ["Insurance: policyholder onboarding and supporting policy evidence."],
+      "reason": "A clearly identified policy document grounds the context in policy evidence and human review rather than a generic client consultation.",
+      "sourcePage": "https://www.pexels.com/photo/an-insurance-agent-discussing-a-home-insurance-policy-7731333/",
+      "downloadUrl": "https://images.pexels.com/photos/7731333/pexels-photo-7731333.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Mikhail Nilov",
+      "alt": "Hands reviewing a home insurance policy beside a laptop",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "hospitality",
+      "decision": "replace",
+      "contexts": ["Travel and hospitality: guest identity and booking confirmation."],
+      "reason": "The hotel check-in interaction represents the exact service moment where guest identity and booking details are requested.",
+      "sourcePage": "https://www.pexels.com/photo/woman-in-gray-t-shirt-checking-in-and-smiling-4907441/",
+      "downloadUrl": "https://images.pexels.com/photos/4907441/pexels-photo-4907441.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Ketut Subiyanto",
+      "alt": "Travelers speaking with a receptionist at a hotel front desk",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "realEstate",
+      "decision": "replace",
+      "contexts": [
+        "Real estate: verifying tenants, landlords, buyers and sellers through documents."
+      ],
+      "reason": "Document consultation depicts the evidence-review phase, more appropriate than keys being handed over after the transaction.",
+      "sourcePage": "https://www.pexels.com/photo/a-realtor-showing-a-document-to-a-client-7642020/",
+      "downloadUrl": "https://images.pexels.com/photos/7642020/pexels-photo-7642020.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Alena Darmel",
+      "alt": "A real estate agent reviewing paperwork with a client in a living room",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "logistics",
+      "decision": "replace",
+      "contexts": [
+        "Logistics and delivery hero and priority industry card: driver/rider onboarding, vehicle checks."
+      ],
+      "reason": "The courier and vehicle identify the worker and operational setting discussed by the section; the previous warehouse image did not depict drivers.",
+      "sourcePage": "https://www.pexels.com/photo/delivery-driver-checking-the-packages-6169047/",
+      "downloadUrl": "https://images.pexels.com/photos/6169047/pexels-photo-6169047.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Tima Miroshnichenko",
+      "alt": "A courier checking parcels beside an open delivery van",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "ngo",
+      "decision": "replace",
+      "contexts": ["NGOs and humanitarian aid: volunteer checks and distribution accountability."],
+      "reason": "Shows the volunteer team and supplies whose distribution the workflow supports. It makes no claim about the photographed people being verified beneficiaries.",
+      "sourcePage": "https://www.pexels.com/photo/people-sorting-donations-6994963/",
+      "downloadUrl": "https://images.pexels.com/photos/6994963/pexels-photo-6994963.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Julia M Cameron",
+      "alt": "Volunteers sorting donated clothing and food around a table",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "energy",
+      "decision": "replace",
+      "contexts": [
+        "Energy and utilities: verifying field technicians and contractors for site access."
+      ],
+      "reason": "A technician actively maintaining an energy installation supports the workforce/site-access use case, not a decorative landscape of panels.",
+      "sourcePage": "https://www.pexels.com/photo/a-male-solar-technician-installing-a-solar-panel-14613940/",
+      "downloadUrl": "https://images.pexels.com/photos/14613940/pexels-photo-14613940.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Trinh Trần",
+      "alt": "A technician working on rooftop solar panels",
+      "objectPosition": "65% 60%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "healthcare",
+      "decision": "replace",
+      "contexts": [
+        "Healthcare workforce: clinician credentials, evidence review and role authorization."
+      ],
+      "reason": "Centers the healthcare professional and paperwork; avoids surgery or patient-treatment imagery when the section concerns workforce evidence. The papers are not labeled as credentials in the alt text.",
+      "sourcePage": "https://www.pexels.com/photo/black-physician-reading-document-on-clipboard-at-work-6097763/",
+      "downloadUrl": "https://images.pexels.com/photos/6097763/pexels-photo-6097763.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Laura James",
+      "alt": "A healthcare professional in teal scrubs reviewing a clipboard",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "education",
+      "decision": "replace",
+      "contexts": [
+        "Education and EdTech: certificate verification, academic claims and alumni proofs."
+      ],
+      "reason": "The diploma makes the academic credential explicit, matching certificate verification more closely than students simply walking through a corridor.",
+      "sourcePage": "https://www.pexels.com/photo/young-graduate-posing-with-diploma-in-cap-and-gown-33090076/",
+      "downloadUrl": "https://images.pexels.com/photos/33090076/pexels-photo-33090076.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Aliyu Ahmad musa",
+      "alt": "A graduate holding a diploma while wearing a cap and gown",
+      "objectPosition": "50% 10%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "hr",
+      "decision": "replace",
+      "contexts": [
+        "Recruitment and HR hero and priority industry card: candidate screening and employment evidence."
+      ],
+      "reason": "An actual interview and candidate paperwork match the hiring workflow; replaces a broad conference-room presentation.",
+      "sourcePage": "https://www.pexels.com/photo/professional-man-interviewing-an-applicant-5668863/",
+      "downloadUrl": "https://images.pexels.com/photos/5668863/pexels-photo-5668863.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Sora Shimazaki",
+      "alt": "An interviewer speaking with a candidate holding a clipboard",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "construction",
+      "decision": "replace",
+      "contexts": [
+        "Construction and contractors hero and priority industry card: contractor evidence and site access."
+      ],
+      "reason": "Combines worksite safety clothing with document review, matching contractor verification rather than just showing a building site.",
+      "sourcePage": "https://www.pexels.com/photo/person-pointing-on-documents-8487392/",
+      "downloadUrl": "https://images.pexels.com/photos/8487392/pexels-photo-8487392.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Kindel Media",
+      "alt": "Construction workers in safety clothing pointing to printed documents",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "marketplace",
+      "decision": "replace",
+      "contexts": [
+        "Marketplaces and sellers hero and priority industry card: merchant onboarding and business verification."
+      ],
+      "reason": "Shows a seller actively preparing a shoe order beside a desktop product catalogue and stacked shipping boxes. This materially changes the previous clothing-workspace meeting into a clear merchant-fulfillment scene, connecting seller verification with the person operating the business. The landscape original preserves the complete head, hands and product in tested 16:9 and 4:3 crops. The product catalogue is illustrative commerce context, not Ontiver software or proof of product quality.",
+      "sourcePage": "https://www.pexels.com/photo/man-in-gray-dress-shirt-holding-black-a-shoes-7289716/",
+      "downloadUrl": "https://images.pexels.com/photos/7289716/pexels-photo-7289716.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Kampus Production",
+      "alt": "A seller packing shoes into a cardboard box beside a computer displaying products and stacked parcels",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "telecom",
+      "decision": "replace",
+      "contexts": [
+        "Telecoms and digital services: phone ownership, customer onboarding and activation."
+      ],
+      "reason": "SIM and handset are the concrete account-access objects involved in telecom customer activation. This replaces network-maintenance imagery that focused on a different activity.",
+      "sourcePage": "https://www.pexels.com/photo/flatlay-of-smartphone-with-sim-and-memory-cards-28920287/",
+      "downloadUrl": "https://images.pexels.com/photos/28920287/pexels-photo-28920287.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Andrey Matveev",
+      "alt": "A yellow smartphone with its SIM tray and cards on a gray surface",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "crypto",
+      "decision": "replace",
+      "contexts": ["Crypto and Web3: user onboarding, wallet access and compliance."],
+      "reason": "Places the section in the customer-facing digital-finance context rather than generic coding. The market display is illustrative and is not presented as Ontiver's interface or an investment result.",
+      "sourcePage": "https://www.pexels.com/photo/hand-holding-android-smartphone-displaying-data-7567441/",
+      "downloadUrl": "https://images.pexels.com/photos/7567441/pexels-photo-7567441.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Tima Miroshnichenko",
+      "alt": "A hand holding a phone displaying a market chart",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "government",
+      "decision": "replace",
+      "contexts": [
+        "Government and public programs: staff and contractor checks, authorized officials reviewing evidence."
+      ],
+      "reason": "Visible staff badges and document discussion support the administrative-review role; alt text does not invent a government affiliation or beneficiary status.",
+      "sourcePage": "https://www.pexels.com/photo/formal-businesswomen-with-document-discussing-city-management-5668430/",
+      "downloadUrl": "https://images.pexels.com/photos/5668430/pexels-photo-5668430.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Sora Shimazaki",
+      "alt": "Two professionals wearing identity badges discussing documents on outdoor steps",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "vendors",
+      "decision": "replace",
+      "contexts": ["B2B vendors and suppliers: supplier onboarding and operational evidence."],
+      "reason": "The checklist, inventory setting and staff collaboration connect the supplier to an operational business and its records, instead of repeating small-order packing imagery.",
+      "sourcePage": "https://www.pexels.com/photo/employees-looking-at-the-clipboard-while-standing-near-metal-shelves-13804490/",
+      "downloadUrl": "https://images.pexels.com/photos/13804490/pexels-photo-13804490.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Centre for Ageing Better",
+      "alt": "Two warehouse colleagues reviewing a checklist beside storage shelves",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "securityServices",
+      "decision": "replace",
+      "contexts": ["Security services: guard credentials, site assignment and renewal checks."],
+      "reason": "The uniformed guard and visible identification badge directly identify the workforce role whose identity, credentials and site assignment require review. Replaces an unavailable first candidate.",
+      "sourcePage": "https://www.pexels.com/photo/uniformed-security-guard-standing-outdoors-31282369/",
+      "downloadUrl": "https://images.pexels.com/photos/31282369/pexels-photo-31282369.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Murat IŞIK",
+      "alt": "A security guard wearing a uniform and identification badge outdoors",
+      "objectPosition": "50% 25%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "creators",
+      "decision": "replace",
+      "contexts": [
+        "Creators and talent: verifying creator identity, professional engagements and payout ownership."
+      ],
+      "reason": "An active creator recording content identifies the person behind the professional account, rather than treating the section as a generic technology scene.",
+      "sourcePage": "https://www.pexels.com/photo/positive-woman-telling-story-while-recording-podcast-microphone-6953680/",
+      "downloadUrl": "https://images.pexels.com/photos/6953680/pexels-photo-6953680.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "George Milton",
+      "alt": "A woman speaking into a studio microphone and pop filter",
+      "objectPosition": "50% 30%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "compliance",
+      "decision": "replace",
+      "contexts": ["Compliance teams: auditable identity review, evidence and reviewer decisions."],
+      "reason": "Shows a reviewer working across paper records and a computer, matching the decision-making role without claiming the visible paperwork is an actual compliance case.",
+      "sourcePage": "https://www.pexels.com/photo/businesswoman-with-documents-and-a-laptop-on-desk-5934200/",
+      "downloadUrl": "https://images.pexels.com/photos/5934200/pexels-photo-5934200.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Gustavo Fring",
+      "alt": "A businesswoman checking documents beside an open laptop",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "agriculture",
+      "decision": "replace",
+      "contexts": [
+        "Agriculture and agribusiness: farmer, cooperative, supplier and field-agent onboarding."
+      ],
+      "reason": "Shows actual agricultural workers and crop-handling activity whose farmer, supplier and field-agent relationships the section discusses. Rejected an earlier publisher-labeled farmer image after inspection showed children posing in a field; no claim that these workers use Ontiver or hold verified land rights.",
+      "sourcePage": "https://www.pexels.com/photo/hardworking-farmer-harvesting-crops-outdoors-35246300/",
+      "downloadUrl": "https://images.pexels.com/photos/35246300/pexels-photo-35246300.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Safari Consoler",
+      "alt": "Two farm workers gathering cut crops beside palm trees",
+      "objectPosition": "50% 40%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "identitySources",
+      "decision": "replace",
+      "contexts": [
+        "Identity sources platform hero and navigation: reviewing source records required for identity checks. The specific NIN/BVN capability card uses its own dedicated source-record illustration."
+      ],
+      "reason": "Shows the person and document-review action together, replacing the cropped hands-and-binder image. The landscape composition keeps the head, hands and source folder visible in tested 16:9, 4:3 and 4:5 crops. This illustrates reviewing documentary evidence; the documents are not represented as a NIN/BVN card or database, and no foreign-government ID is shown.",
+      "sourcePage": "https://www.pexels.com/photo/a-man-sitting-on-green-couch-while-looking-documents-8124201/",
+      "downloadUrl": "https://images.pexels.com/photos/8124201/pexels-photo-8124201.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "RDNE Stock project",
+      "alt": "A man seated on a green sofa reviewing papers in an open blue document folder",
+      "objectPosition": "50% 20%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "verification",
+      "decision": "replace",
+      "contexts": [
+        "Verification engine platform card and module; solution step Verify the evidence."
+      ],
+      "reason": "The visible act of checking paper against digital information supports evidence comparison and review. The image does not assert biometric processing or a particular verification result.",
+      "sourcePage": "https://www.pexels.com/photo/black-woman-working-with-documents-in-office-5668879/",
+      "downloadUrl": "https://images.pexels.com/photos/5668879/pexels-photo-5668879.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Sora Shimazaki",
+      "alt": "A woman comparing printed documents beside a laptop",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "workflow",
+      "decision": "replace",
+      "contexts": [
+        "Workflow engine platform hero, navigation and module: configuring ordered checks and review steps.",
+        "Enterprise journey Create the request: choosing a person or business, the workflow and required evidence."
+      ],
+      "reason": "Shows colleagues coordinating inputs around a laptop and paperwork, connecting workflow configuration to the people who set up requests. Replaces the isolated sticky-note board. The landscape source preserves all three faces and their working hands in tested 16:9, 4:3 and 4:5 crops. It illustrates collaborative planning and does not claim the hidden screen is Ontiver software.",
+      "sourcePage": "https://www.pexels.com/photo/coworkers-busy-looking-at-the-screen-of-a-laptop-5439399/",
+      "downloadUrl": "https://images.pexels.com/photos/5439399/pexels-photo-5439399.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Tima Miroshnichenko",
+      "alt": "Three colleagues reviewing a laptop and paperwork together at a meeting table",
+      "objectPosition": "60% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "intelligence",
+      "decision": "replace",
+      "contexts": ["Intelligence platform card and module; solution step Explain the signals."],
+      "reason": "Juxtaposed charts and reports support the idea of examining data with context. Described as analysis rather than falsely labeling the screen as fraud detection or an Ontiver risk score.",
+      "sourcePage": "https://www.pexels.com/photo/business-analysis-on-computer-screen-in-office-33175656/",
+      "downloadUrl": "https://images.pexels.com/photos/33175656/pexels-photo-33175656.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Bia Limova",
+      "alt": "A person reviewing charts on a computer beside printed reports",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "platformOverview",
+      "decision": "replace",
+      "contexts": [
+        "Enterprise platform overview hero and navigation: connect identity, evidence, consent and reviewer decisions."
+      ],
+      "reason": "The coordinated use of records, laptop and tablet shows the multi-person evidence-review activity connecting the platform's layers. No claim that this is the Ontiver team or software.",
+      "sourcePage": "https://www.pexels.com/photo/diverse-businesspeople-discussing-documents-at-table-in-office-5673481/",
+      "downloadUrl": "https://images.pexels.com/photos/5673481/pexels-photo-5673481.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Sora Shimazaki",
+      "alt": "Colleagues comparing documents with a laptop and tablet at a table",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "industryOverview",
+      "decision": "replace",
+      "contexts": [
+        "Enterprise use-case directory hero: start with one operational journey and scope a pilot."
+      ],
+      "reason": "A working session around records and a laptop supports workflow scoping across industries; avoids presenting any one industry as the entire directory.",
+      "sourcePage": "https://www.pexels.com/photo/a-group-of-people-having-a-meeting-in-the-office-7651836/",
+      "downloadUrl": "https://images.pexels.com/photos/7651836/pexels-photo-7651836.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "creator": "Kindel Media",
+      "alt": "A team discussing papers and a laptop at an office table",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "enterpriseHome",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active src consumer references this registry key; do not download an unused replacement."
+    }
+  ]
+}

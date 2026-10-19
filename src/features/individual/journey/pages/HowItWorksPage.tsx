@@ -13,7 +13,7 @@ const steps = [
   {
     title: "Add the evidence",
     description: "Submit only what's asked for.",
-    image: imagery.candidateReview,
+    image: editorialPhotos.howItWorks,
   },
   {
     title: "Invite someone to confirm",
@@ -24,7 +24,7 @@ const steps = [
   {
     title: "Follow the review",
     description: "Track progress as the request is checked.",
-    image: editorialPhotos.sharingHistory,
+    image: editorialPhotos.requestProgress,
   },
   {
     title: "Keep approved proof",
@@ -52,7 +52,7 @@ const HowItWorksPage = () => {
       description="From an organization's invitation to approved proof, the mobile app is designed to keep your evidence, choices and request status together."
       visual={
         <ContextPhoto
-          image={editorialPhotos.howItWorks}
+          image={imagery.individualHero}
           priority
           sizes="(min-width: 1024px) 47vw, 100vw"
         />

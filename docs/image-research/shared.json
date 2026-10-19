@@ -1,0 +1,359 @@
+{
+  "researchedOn": "2026-10-18",
+  "scope": "Shared pages, editorial article fallbacks, commercial helpers, and dedicated legal heroes. Stock subjects are illustrative; no image claims to show Ontiver customers, staff or product interfaces.",
+  "entries": [
+    {
+      "collection": "editorialPhotos",
+      "key": "legalCookies",
+      "new": true,
+      "decision": "illustration",
+      "contexts": ["LegalPage /cookies hero: Cookie Policy"],
+      "reason": "The actual policy covers necessary sign-in cookies, device trust and browser storage, with no advertising or cross-site profiling. Searches returned food-cookie photos, premium illustrations and unrelated branded consent screens; none faithfully represents this policy. Use an original browser-and-storage illustration distinguishing session data and saved preferences, informed by MDN and the existing legalDocuments.ts, rather than another generic phone portrait.",
+      "sourcePage": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies",
+      "supportingSources": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API",
+        "src/features/shared/legal/data/legalDocuments.ts"
+      ],
+      "creator": "Ontiver original diagram",
+      "alt": "Illustration of a browser connected to necessary session storage and saved preferences",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "resources",
+      "decision": "replace",
+      "contexts": [
+        "/resources hero: Understand your identity, your way",
+        "Shared resource navigation preview"
+      ],
+      "reason": "Reading reference material alongside a laptop is the actual action this learning hub invites: studying guides before responding to identity requests.",
+      "sourcePage": "https://www.pexels.com/photo/person-in-blue-sweater-using-a-laptop-8199246/",
+      "downloadUrl": "https://images.pexels.com/photos/8199246/pexels-photo-8199246.jpeg",
+      "creator": "Yan Krukau",
+      "alt": "Hands using a laptop beside open reference books and study notes",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "enterpriseResources",
+      "decision": "replace",
+      "contexts": [
+        "/enterprise/resources hero: Understand identity infrastructure, your way",
+        "Enterprise resource navigation preview"
+      ],
+      "reason": "A team learning together supports the enterprise hub's explanations of source checks, reviewer decisions and operational handoffs; selected for the visible learning setting.",
+      "sourcePage": "https://www.pexels.com/photo/man-standing-in-front-of-a-white-board-8123824/",
+      "downloadUrl": "https://images.pexels.com/photos/8123824/pexels-photo-8123824.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "Colleagues listening to a presentation beside a whiteboard",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "support",
+      "decision": "replace",
+      "contexts": [
+        "/support hero: account access, privacy, verification and integration help",
+        "Individual navigation support preview"
+      ],
+      "reason": "A visible service headset and working posture identify the help function directly; this is an illustrative support worker, not an Ontiver employee.",
+      "sourcePage": "https://www.pexels.com/photo/woman-in-brown-blazer-wearing-black-headset-5467576/",
+      "downloadUrl": "https://images.pexels.com/photos/5467576/pexels-photo-5467576.jpeg",
+      "creator": "Antoni Shkraba",
+      "alt": "A woman in a blazer wearing a telephone headset in an office",
+      "objectPosition": "50% 40%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "enterpriseSupport",
+      "decision": "replace",
+      "contexts": [
+        "/enterprise/support hero: verification requests, dashboard reviews and workflow support",
+        "Enterprise navigation support preview"
+      ],
+      "reason": "Combines a support headset with document review, matching enterprise help that needs to inspect evidence and workflow context rather than a generic call-centre portrait.",
+      "sourcePage": "https://www.pexels.com/photo/focused-black-woman-with-laptop-examining-documents-7690151/",
+      "downloadUrl": "https://images.pexels.com/photos/7690151/pexels-photo-7690151.jpeg",
+      "creator": "Jep Gambardella",
+      "alt": "A woman with a headset checking a document beside her laptop",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "contact",
+      "decision": "replace",
+      "contexts": [
+        "/contact hero: Send the team a message",
+        "Individual contact navigation preview"
+      ],
+      "reason": "The section asks users to write a specific inquiry about a request or proof wallet. Writing notes at a laptop is closer to that form-based task than the previous phone-call portrait.",
+      "sourcePage": "https://www.pexels.com/photo/black-woman-typing-on-laptop-and-writing-5905849/",
+      "downloadUrl": "https://images.pexels.com/photos/5905849/pexels-photo-5905849.jpeg",
+      "creator": "Katerina Holmes",
+      "alt": "Hands typing on a laptop and writing in a notebook at a desk",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "security",
+      "decision": "replace",
+      "contexts": [
+        "/security hero: Security and privacy by design",
+        "Individual security navigation preview"
+      ],
+      "reason": "Shows a person controlling access to their device. The photograph illustrates personal access protection; it is not presented as the Ontiver interface or a supported authentication mechanism.",
+      "sourcePage": "https://www.pexels.com/photo/a-person-looking-at-a-tablet-screen-with-password-9578527/",
+      "downloadUrl": "https://images.pexels.com/photos/9578527/pexels-photo-9578527.jpeg",
+      "creator": "Felipe Balduino",
+      "alt": "A person looking at a tablet displaying a passcode entry screen",
+      "objectPosition": "50% 70%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "enterpriseSecurity",
+      "decision": "replace",
+      "contexts": [
+        "/enterprise/security hero: Built for sensitive identity workflows",
+        "Enterprise security navigation preview"
+      ],
+      "reason": "The physical access-control object communicates protection of sensitive systems, fitting the page's secure access and auditability subject more precisely than an arbitrary network-cable shot. It does not claim Ontiver hardware-key support.",
+      "sourcePage": "https://www.pexels.com/photo/close-up-shot-of-a-laptop-5474301/",
+      "downloadUrl": "https://images.pexels.com/photos/5474301/pexels-photo-5474301.jpeg",
+      "creator": "cottonbro studio",
+      "alt": "A physical security key beside the port of a laptop",
+      "objectPosition": "50% 85%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "securityControls",
+      "decision": "replace",
+      "contexts": ["/security #your-controls: Know the request, choose the claims, review access"],
+      "reason": "The section asks individuals to understand a request and review the information before allowing access. A person actively reading and pointing to a document makes that deliberate review visible, replacing the rejected anonymous phone-and-laptop crop. The original source describes document review at home; the image is illustrative, not an Ontiver permission screen. The 4:3 crop was checked with the reader's face, finger and document retained.",
+      "sourcePage": "https://www.pexels.com/photo/woman-working-with-documents-on-laptop-12911671/",
+      "downloadUrl": "https://images.pexels.com/photos/12911671/pexels-photo-12911671.jpeg",
+      "creator": "Mizuno K",
+      "alt": "A woman carefully reading a document and pointing to a line with her finger",
+      "objectPosition": "50% 30%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "enterpriseSecurityControls",
+      "decision": "replace",
+      "contexts": [
+        "/enterprise/security #your-controls: Purpose, relevant evidence and controlled access"
+      ],
+      "reason": "A reviewer works with a specific file beside a computer, aligning with scoped review of relevant evidence rather than a general coding team.",
+      "sourcePage": "https://www.pexels.com/photo/woman-checking-files-in-her-office-5387263/",
+      "downloadUrl": "https://images.pexels.com/photos/5387263/pexels-photo-5387263.jpeg",
+      "creator": "Kaboompics",
+      "alt": "A woman reviewing paper files at a desk beside a laptop",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "enterpriseContact",
+      "decision": "replace",
+      "contexts": [
+        "/enterprise/contact hero: scope a verification pilot",
+        "Enterprise contact navigation preview"
+      ],
+      "reason": "Planning at a whiteboard supports the copy about agreeing checks, responsibilities, integration and measurable pilot outcomes; both people actively contribute to the plan.",
+      "sourcePage": "https://www.pexels.com/photo/two-women-writing-on-the-white-board-1181531/",
+      "downloadUrl": "https://images.pexels.com/photos/1181531/pexels-photo-1181531.jpeg",
+      "creator": "Christina Morillo",
+      "alt": "Two colleagues mapping ideas together on an office whiteboard",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "pricing",
+      "decision": "replace",
+      "contexts": ["/enterprise/pricing hero: choose checks, controls and volume"],
+      "reason": "The visible calculation and figures support budgeting for verification volume, replacing a general team meeting that did not communicate pricing.",
+      "sourcePage": "https://www.pexels.com/photo/financial-analysis-with-calculator-and-documents-33175651/",
+      "downloadUrl": "https://images.pexels.com/photos/33175651/pexels-photo-33175651.jpeg",
+      "creator": "Bia Limova",
+      "alt": "Hands checking figures on documents with a calculator and pen",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "legal",
+      "decision": "replace",
+      "contexts": ["/legal hero: Legal Centre", "Privacy/legal resource navigation preview"],
+      "reason": "The legal centre directs users to written policies and rights information; visible review of legal documentation provides a direct subject match without implying a courtroom or litigation.",
+      "sourcePage": "https://www.pexels.com/photo/a-contract-over-a-book-in-a-desk-7875949/",
+      "downloadUrl": "https://images.pexels.com/photos/7875949/pexels-photo-7875949.jpeg",
+      "creator": "Kaboompics",
+      "alt": "A person reviewing a contract at a desk with reference documents",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogIdentity",
+      "decision": "replace",
+      "contexts": [
+        "Fallback article: Why Identity Verification Should Be Reusable",
+        "Article cards, related articles and individual blog navigation"
+      ],
+      "reason": "The article opens with repeated document uploads and duplicated checks. The paper-heavy administrative scene illustrates that repeated-work problem, rather than suggesting a generic phone use is proof reuse. Models are not depicted as Ontiver users.",
+      "sourcePage": "https://www.pexels.com/photo/women-in-the-office-6538861/",
+      "downloadUrl": "https://images.pexels.com/photos/6538861/pexels-photo-6538861.jpeg",
+      "creator": "cottonbro studio",
+      "alt": "Three colleagues working through stacks of paper files in an office",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogKyc",
+      "decision": "replace",
+      "contexts": ["Fallback article: Cutting KYC Costs Without Cutting Assurance"],
+      "reason": "Calculation plus careful examination conveys both halves of the article's point: evaluate cost while retaining evidence standards. No identifiable person is associated with fraud or suspicion.",
+      "sourcePage": "https://www.pexels.com/photo/pen-calculator-and-magnifying-glass-on-documents-13156204/",
+      "downloadUrl": "https://images.pexels.com/photos/13156204/pexels-photo-13156204.jpeg",
+      "creator": "Towfiqu barbhuiya",
+      "alt": "A calculator, pen and magnifying glass arranged on printed charts",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogAml",
+      "decision": "replace",
+      "contexts": ["Fallback article: AML Screening for Product Teams"],
+      "reason": "The article's Give reviewers context section calls for a reviewer to compare source information before dismissing or escalating a possible match. A focused professional sorting and checking several records beside her laptop depicts that active review work, replacing the rejected magnifying-glass still life. The source verifies office document review; the person is an illustrative reviewer, never presented as an AML suspect or an Ontiver employee. The wide article crop retains her face, hands, records and laptop.",
+      "sourcePage": "https://www.pexels.com/photo/a-businesswoman-working-with-papers-in-the-office-6694547/",
+      "downloadUrl": "https://images.pexels.com/photos/6694547/pexels-photo-6694547.jpeg",
+      "creator": "Tima Miroshnichenko",
+      "alt": "A professional reviewing several documents at a desk beside an open laptop",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogConsent",
+      "decision": "replace",
+      "contexts": ["Fallback article: Building Consent Into Identity Flows"],
+      "reason": "The visible act is inspecting information before deciding, matching clear purpose, scope and meaningful choices. A generic signature-only or checkbox image would misrepresent ongoing request-level consent.",
+      "sourcePage": "https://www.pexels.com/photo/woman-with-long-nails-checking-documents-8052583/",
+      "downloadUrl": "https://images.pexels.com/photos/8052583/pexels-photo-8052583.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "Hands carefully reading through a document in a folder",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogWebhooks",
+      "decision": "replace",
+      "contexts": [
+        "Fallback article: A Developer Guide to Verification Webhooks",
+        "External developer documentation navigation preview"
+      ],
+      "reason": "Actual source code and debugging tools match the article's event processing, duplicate prevention and failure-path debugging. The code is illustrative and is not claimed to implement Ontiver webhooks.",
+      "sourcePage": "https://www.pexels.com/photo/close-up-of-computer-screen-with-code-displayed-34803966/",
+      "downloadUrl": "https://images.pexels.com/photos/34803966/pexels-photo-34803966.jpeg",
+      "creator": "Daniil Komov",
+      "alt": "A laptop screen showing source code alongside debugging tools",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogRisk",
+      "decision": "replace",
+      "contexts": ["Fallback article: Risk Signals That Matter in Onboarding"],
+      "reason": "The article asks reviewers to connect a signal to evidence, reconcile discrepancies between records and select a justified next action. Two colleagues looking across several documents gives that comparison and human judgement a visible subject, replacing the rejected bank-statement magnifier. The source describes professionals reviewing documents; neither person is depicted as a risky applicant. This collaborative review scene is distinct from the solo reviewer selected for the AML article, and its wide crop preserves both reviewers and the records.",
+      "sourcePage": "https://www.pexels.com/photo/colleagues-looking-at-documents-8847134/",
+      "downloadUrl": "https://images.pexels.com/photos/8847134/pexels-photo-8847134.jpeg",
+      "creator": "Mikhail Nilov",
+      "alt": "Two colleagues comparing documents together at a conference table",
+      "objectPosition": "50% 30%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogAudit",
+      "decision": "replace",
+      "contexts": ["Fallback article: What Audit-Ready Identity Logs Need"],
+      "reason": "A reviewable record is the subject of the article: reconstruct a request and retrieve the evidence. This is an editorial record-review metaphor, not a claim that the financial report shown is an identity audit log.",
+      "sourcePage": "https://www.pexels.com/photo/a-person-holding-a-document-7735769/",
+      "downloadUrl": "https://images.pexels.com/photos/7735769/pexels-photo-7735769.jpeg",
+      "creator": "Mikhail Nilov",
+      "alt": "Hands holding a report with tables and charts for review",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "blogMarketplace",
+      "decision": "replace",
+      "contexts": ["Fallback article: Reusable Identity for Marketplaces"],
+      "reason": "Shows the seller-side digital workflow and fulfilment setting together, fitting the article's seller onboarding, business details and ongoing review rather than packaging alone.",
+      "sourcePage": "https://www.pexels.com/photo/person-looking-at-charts-displayed-on-a-laptop-and-sitting-at-the-table-with-cardboard-boxes-7857526/",
+      "downloadUrl": "https://images.pexels.com/photos/7857526/pexels-photo-7857526.jpeg",
+      "creator": "Kampus Production",
+      "alt": "A seller reviewing information on a laptop beside parcel boxes",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "planGuidance",
+      "decision": "replace",
+      "contexts": ["/enterprise/pricing PlanRecommendationPanel empty state: Find your fit"],
+      "reason": "A monthly budget worksheet supports the panel's purpose of choosing the lowest-cost plan from expected monthly usage, replacing a generic developer collaboration photograph.",
+      "sourcePage": "https://www.pexels.com/photo/monthly-budget-planning-7054399/",
+      "downloadUrl": "https://images.pexels.com/photos/7054399/pexels-photo-7054399.jpeg",
+      "creator": "Kindel Media",
+      "alt": "A calculator and monthly budget worksheet with coloured pens on a desk",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "pricingCalculator",
+      "decision": "replace",
+      "contexts": [
+        "/enterprise/pricing CalculatorResultsPanel empty state: Start with your current costs"
+      ],
+      "reason": "A calculator over recorded figures directly supports comparing current per-check cost and monthly volume with published plan prices; avoids foreign-currency cash imagery.",
+      "sourcePage": "https://www.pexels.com/photo/a-black-calculator-on-the-table-8068819/",
+      "downloadUrl": "https://images.pexels.com/photos/8068819/pexels-photo-8068819.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "A calculator and pen on a desk covered with printed data charts",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "legalTerms",
+      "decision": "replace",
+      "new": true,
+      "contexts": ["LegalPage /terms hero: Terms of Service"],
+      "reason": "The actual subject is terms and conditions being read, directly matching the policy; replaces an unrelated urban portrait.",
+      "sourcePage": "https://www.pexels.com/photo/person-holding-a-magnifying-glass-above-a-document-7821573/",
+      "downloadUrl": "https://images.pexels.com/photos/7821573/pexels-photo-7821573.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "A magnifying glass enlarging the words Terms and Conditions on a document",
+      "objectPosition": "50% 25%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "legalPrivacy",
+      "decision": "replace",
+      "new": true,
+      "contexts": ["LegalPage /privacy hero: Privacy Policy"],
+      "reason": "A closed combination lock on a computer keyboard clearly illustrates restricted access to personal information. This symbolic still life fits the policy's data protection topic without showing a branded application or claiming to show Ontiver infrastructure. The first candidate was rejected after visual inspection because it actually showed a branded phone and a chained novel, suggesting censorship rather than personal-data protection.",
+      "sourcePage": "https://unsplash.com/photos/a-padlock-rests-on-a-computer-keyboard-QP7RBa5r8HM",
+      "downloadUrl": "https://images.unsplash.com/photo-1774898989484-0b9becf69efb",
+      "creator": "Sasun Bughdaryan",
+      "alt": "A closed combination padlock resting on a computer keyboard",
+      "objectPosition": "72% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "legalAccountDeletion",
+      "decision": "replace",
+      "new": true,
+      "contexts": ["LegalPage /account-deletion hero: Account Deletion"],
+      "reason": "The clear deletion word directly identifies the requested account-rights action. It avoids a customer portrait that gives no indication of deletion, and does not imply that all retained records disappear instantly.",
+      "sourcePage": "https://www.pexels.com/photo/close-up-shot-of-keyboard-buttons-2882553/",
+      "downloadUrl": "https://images.pexels.com/photos/2882553/pexels-photo-2882553.jpeg",
+      "creator": "Miguel Á. Padriñán",
+      "alt": "White keyboard letters spelling DELETE on a coral background",
+      "objectPosition": "50% 50%"
+    }
+  ]
+}

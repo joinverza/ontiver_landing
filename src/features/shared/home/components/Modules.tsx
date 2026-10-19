@@ -61,43 +61,53 @@ const individualCards = [
 ];
 
 const layerPhotos = [
+  // Match each capability's action, rather than rotating general office scenes.
   [
-    editorialPhotos.identitySources,
+    editorialPhotos.sourceNationalIdentity,
+    editorialPhotos.sourcePhone,
     editorialPhotos.identity,
-    editorialPhotos.personalPhone,
-    editorialPhotos.graduate,
-    editorialPhotos.blogIdentity,
+    editorialPhotos.sourceCredentials,
+    editorialPhotos.sourceEmployment,
   ],
   [
     editorialPhotos.verification,
-    editorialPhotos.blogKyc,
-    imagery.candidateReview,
-    editorialPhotos.securityControls,
+    editorialPhotos.identity,
+    editorialPhotos.compliance,
+    editorialPhotos.intelligence,
   ],
   [
     editorialPhotos.workflow,
-    editorialPhotos.enterpriseContact,
-    editorialPhotos.enterpriseSupport,
-    editorialPhotos.blogWebhooks,
+    editorialPhotos.platformOverview,
+    imagery.work,
+    editorialPhotos.renewalPlanning,
   ],
   [
-    editorialPhotos.intelligence,
+    editorialPhotos.howItWorks,
+    editorialPhotos.verification,
     editorialPhotos.blogRisk,
     editorialPhotos.blogAudit,
-    editorialPhotos.pricingCalculator,
   ],
   [
     editorialPhotos.blogConsent,
     editorialPhotos.consent,
     editorialPhotos.sharingHistory,
-    editorialPhotos.contact,
+    editorialPhotos.securityControls,
   ],
   [
-    editorialPhotos.legal,
-    editorialPhotos.platformOverview,
     editorialPhotos.proof,
-    editorialPhotos.planGuidance,
+    editorialPhotos.blogWebhooks,
+    editorialPhotos.renewalPlanning,
+    editorialPhotos.consent,
   ],
+];
+
+const individualPhotos = [
+  editorialPhotos.personalPhone,
+  editorialPhotos.howItWorks,
+  editorialPhotos.consent,
+  editorialPhotos.personalLaptop,
+  editorialPhotos.proof,
+  editorialPhotos.sharingHistory,
 ];
 
 const useModuleLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
@@ -159,7 +169,7 @@ const Modules = ({ audience }: { audience: Audience }) => {
         to: `/enterprise/platform/${layer.id}`,
         image: layerPhotos[selected][index],
       }))
-    : individualCards.map((card, index) => ({ ...card, image: layerPhotos[index][0] }));
+    : individualCards.map((card, index) => ({ ...card, image: individualPhotos[index] }));
   const moveTab = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const direction = ["ArrowDown", "ArrowRight"].includes(event.key)
       ? 1

@@ -1,5 +1,7 @@
 # Editorial photography
 
+The current context-led refresh is documented in [Image research: 18 October 2026](image-research/README.md), with section-specific decisions, source links and current asset guidance. The entries below are a historical provenance log and may describe images that have since been replaced.
+
 Selected and downloaded on 24 September 2026. These photographs illustrate everyday identity, work, education, and business contexts. The models are not represented as Ontiver customers, partners, employees, or endorsers. No competitor imagery, watermarked previews, paid assets, or generated people are included.
 
 ## Discovery and permission
@@ -193,8 +195,8 @@ Source IDs and file hashes were checked for duplicates across all 63 additions. 
 
 ## Addition (4 October 2026)
 
-| Key / file | Photographer and original page | Delivered | Focal point |
-| --- | --- | --- | --- |
-| `sharingHistory` / `editorial/sharingHistory.webp` — "Every share has a record" workflow card | [Ketut Subiyanto — serious woman using smartphone](https://www.pexels.com/photo/serious-woman-using-smartphone-4353614/) | 1600 x 2400 → 1200 x 1800, WebP q83, metadata removed | 50% 30% |
+| Key / file                                                                                    | Photographer and original page                                                                                           | Delivered                                             | Focal point |
+| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- | ----------- |
+| `sharingHistory` / `editorial/sharingHistory.webp` — "Every share has a record" workflow card | [Ketut Subiyanto — serious woman using smartphone](https://www.pexels.com/photo/serious-woman-using-smartphone-4353614/) | 1600 x 2400 → 1200 x 1800, WebP q83, metadata removed | 50% 30%     |
 
 Replaces the reuse of `education.webp` (a woman studying at a laptop) on the sharing-history card, where the subject did not match the content. Downloaded from the original Pexels image URL under the [Pexels license](https://www.pexels.com/license/).

@@ -18,21 +18,21 @@ const steps = [
     icon: ScanFace,
     title: "Verify once",
     description: "Confirm who you are in the Ontiver app with your NIN or BVN and a quick selfie.",
-    image: editorialPhotos.identity,
+    image: { ...editorialPhotos.identity, objectPosition: "35% 15%" },
   },
   {
     icon: UserCheck,
     title: "Get a request",
     description:
       "When a bank, employer or app needs proof, you see who is asking, what they need and why.",
-    image: editorialPhotos.consent,
+    image: editorialPhotos.personalPhone,
   },
   {
     icon: ShieldCheck,
     title: "Approve what's shared",
     description:
       "Share only the details they need. They get a verified answer, not copies of your documents.",
-    image: editorialPhotos.proof,
+    image: editorialPhotos.consent,
   },
 ];
 

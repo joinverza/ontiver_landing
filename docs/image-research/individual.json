@@ -1,0 +1,533 @@
+{
+  "researchedAt": "2026-10-18",
+  "scope": "All imagery.ts keys and assigned individual editorial photographs. Current registry and all TS/TSX consumers were inspected.",
+  "verification": "Candidates were found through contextual web searches, publisher descriptions and creator attribution were inspected, and publisher-hosted image URLs were visually inspected through browser contact sheets. No Pinterest thumbnails, paid previews, generated photographs or unrelated vaccine-passport screens are included.",
+  "contactSheets": [
+    "C:/tmp/ontiver-photo-sourcing/individual-candidates-a.png",
+    "C:/tmp/ontiver-photo-sourcing/individual-candidates-b.png",
+    "C:/tmp/ontiver-photo-sourcing/individual-candidates-c.png"
+  ],
+  "entries": [
+    {
+      "collection": "imagery",
+      "key": "individualHero",
+      "decision": "replace",
+      "contexts": [
+        "IndividualProductPage: Stay in control of your next request CTA",
+        "HowItWorksPage hero: A request arrives"
+      ],
+      "reason": "Replaces a portrait with the action of reading a mobile request. The source does not show an Ontiver screen or prove a verification result. Remove this assignment from Account Deletion; that legal page needs a dedicated image.",
+      "sourcePage": "https://www.pexels.com/photo/positive-black-woman-reading-text-message-on-smartphone-6000094/",
+      "downloadUrl": "https://images.pexels.com/photos/6000094/pexels-photo-6000094.jpeg",
+      "creator": "Ono Kosuki",
+      "alt": "A woman seated on a city bench reading her smartphone.",
+      "objectPosition": "47% 45%"
+    },
+    {
+      "collection": "imagery",
+      "key": "enterpriseHero",
+      "decision": "replace",
+      "contexts": ["Retained registry entry; PlatformOverviewPage CTA now uses enterpriseContact"],
+      "reason": "The desk-level joint review depicts the people and evidence involved in planning a pilot workflow, replacing unrelated server maintenance. The live platform CTA instead uses enterpriseContact (colleagues planning at a whiteboard), so this retained registry entry does not repeat the platform hero on that page.",
+      "sourcePage": "https://www.pexels.com/photo/diverse-businesspeople-discussing-documents-at-table-in-office-5673481/",
+      "downloadUrl": "https://images.pexels.com/photos/5673481/pexels-photo-5673481.jpeg",
+      "creator": "Sora Shimazaki",
+      "alt": "Three professionals discussing papers, a laptop, and a tablet around a desk.",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "imagery",
+      "key": "marketplace",
+      "decision": "replace",
+      "contexts": ["IndividualUseCasesPage: Opening a seller account"],
+      "reason": "A seller operating an online business at a laptop connects the account-opening use case with an actual commerce workspace, replacing florists browsing a tablet. It is an illustration of seller activity, not a verified seller endorsement.",
+      "sourcePage": "https://www.pexels.com/photo/a-woman-typing-while-looking-at-boxes-7552726/",
+      "downloadUrl": "https://images.pexels.com/photos/7552726/pexels-photo-7552726.jpeg",
+      "creator": "Hanna Pad",
+      "alt": "A woman working on a laptop beside parcels on her desk.",
+      "objectPosition": "55% 50%"
+    },
+    {
+      "collection": "imagery",
+      "key": "work",
+      "decision": "replace",
+      "contexts": ["HowItWorksPage: Invite someone to confirm", "ContextPhoto fallback"],
+      "reason": "The referee step is about checking records. A reviewer examining documents is a closer action than colleagues merely sharing a laptop. Legal privacy hero should be reassigned separately.",
+      "sourcePage": "https://www.pexels.com/photo/experienced-black-businesswoman-working-with-papers-at-table-with-laptop-6457511/",
+      "downloadUrl": "https://images.pexels.com/photos/6457511/pexels-photo-6457511.jpeg",
+      "creator": "Alexander Suhorucov",
+      "alt": "A woman reviewing paper documents beside an open laptop.",
+      "objectPosition": "50% 42%"
+    },
+    {
+      "collection": "imagery",
+      "key": "education",
+      "decision": "replace",
+      "contexts": ["BlogHero: Insights and guides"],
+      "reason": "Reading reference material is the activity promised by the journal and guides section; this is a direct learning context rather than a generic smiling laptop portrait.",
+      "sourcePage": "https://www.pexels.com/photo/photo-of-a-woman-at-the-library-reading-a-book-8199766/",
+      "downloadUrl": "https://images.pexels.com/photos/8199766/pexels-photo-8199766.jpeg",
+      "creator": "Yan Krukau",
+      "alt": "A woman reading a book beside library shelves.",
+      "objectPosition": "58% 45%"
+    },
+    {
+      "collection": "imagery",
+      "key": "finance",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage: Applying for a loan",
+        "individualUseCaseCards: Loans and credit"
+      ],
+      "reason": "The visible consumer-loan application directly matches the requested lending evidence. Replaces a meeting about business charts, which did not depict applying for credit.",
+      "sourcePage": "https://www.pexels.com/photo/person-writing-on-white-paper-7821513/",
+      "downloadUrl": "https://images.pexels.com/photos/7821513/pexels-photo-7821513.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "Hands filling in a consumer loan application form on a wooden table.",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "imagery",
+      "key": "developer",
+      "decision": "replace",
+      "contexts": [
+        "workflowVisualContent: Connect your onboarding flow",
+        "TrustSection enterprise: integration context"
+      ],
+      "reason": "Actual code on multiple displays supports sandbox and integration copy. No claim that the code shown is Ontiver code.",
+      "sourcePage": "https://www.pexels.com/photo/a-man-sitting-in-front-of-the-computer-while-working-7988087/",
+      "downloadUrl": "https://images.pexels.com/photos/7988087/pexels-photo-7988087.jpeg",
+      "creator": "Mikhail Nilov",
+      "alt": "A developer working at a laptop and an external monitor displaying code.",
+      "objectPosition": "59% 48%"
+    },
+    {
+      "collection": "imagery",
+      "key": "cityPortrait",
+      "decision": "replace",
+      "contexts": ["HowItWorksPage: Take the first step CTA"],
+      "reason": "Moves the final CTA from an unrelated architectural portrait to an application milestone involving evidence and a laptop. Source context explicitly describes university application papers. Terms hero must be split out.",
+      "sourcePage": "https://www.pexels.com/photo/student-with-documents-and-laptop-happy-about-getting-into-university-4560083/",
+      "downloadUrl": "https://images.pexels.com/photos/4560083/pexels-photo-4560083.jpeg",
+      "creator": "Ketut Subiyanto",
+      "alt": "A smiling student holding application papers with an open laptop outdoors.",
+      "objectPosition": "48% 50%"
+    },
+    {
+      "collection": "imagery",
+      "key": "everydayPhone",
+      "decision": "replace",
+      "contexts": [
+        "workflowVisualContent mobile: Understand the request before choosing what to share"
+      ],
+      "reason": "Reading and interacting with a phone matches a mobile request; the previous subject was talking on a phone. Cookie-policy hero must use its own researched assignment.",
+      "sourcePage": "https://www.pexels.com/photo/a-woman-using-a-cellphone-9051678/",
+      "downloadUrl": "https://images.pexels.com/photos/9051678/pexels-photo-9051678.jpeg",
+      "creator": "Mike Jones",
+      "alt": "A woman looking down at her smartphone while leaning on an indoor counter.",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "imagery",
+      "key": "smallBusiness",
+      "decision": "replace",
+      "contexts": ["EnterpriseUseCasesPage: Start with one workflow CTA"],
+      "reason": "A concrete order-processing workflow ties the business pilot CTA to an operational need; replaces a flower-shop portrait.",
+      "sourcePage": "https://www.pexels.com/photo/man-preparing-packages-7289725/",
+      "downloadUrl": "https://images.pexels.com/photos/7289725/pexels-photo-7289725.jpeg",
+      "creator": "Kampus Production",
+      "alt": "A small-business owner preparing an order beside a laptop and stacked boxes.",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "imagery",
+      "key": "mobileDetail",
+      "decision": "replace",
+      "contexts": ["individualUseCaseCards: Banking and fintech"],
+      "reason": "A real personal-finance interaction is more contextual than a blank phone screen. This depicts phone and card use, not NIN/BVN checks. TrustSection individual should use editorialPhotos.identity instead: its privacy copy is not about payment cards.",
+      "sourcePage": "https://www.pexels.com/photo/braided-woman-holding-her-smartphone-and-a-credit-card-6969614/",
+      "downloadUrl": "https://images.pexels.com/photos/6969614/pexels-photo-6969614.jpeg",
+      "creator": "Mikhail Nilov",
+      "alt": "A woman seated by a window using a smartphone while holding a payment card.",
+      "objectPosition": "50% 48%"
+    },
+    {
+      "collection": "imagery",
+      "key": "candidateReview",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage: Starting a new job",
+        "individualUseCaseCards: Work and hiring",
+        "Modules verification photo pool"
+      ],
+      "reason": "The visible interview and document review directly support credentials and hiring. Generic solution/review consumers should use a dedicated record-review source instead; see recommended reassignments.",
+      "sourcePage": "https://www.pexels.com/photo/businessman-looking-at-papers-5439376/",
+      "downloadUrl": "https://images.pexels.com/photos/5439376/pexels-photo-5439376.jpeg",
+      "creator": "Tima Miroshnichenko",
+      "alt": "An interviewer reviewing a document across a desk from a candidate.",
+      "objectPosition": "52% 45%"
+    },
+    {
+      "collection": "imagery",
+      "key": "courierOnboarding",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage: Joining a delivery team",
+        "individualUseCaseCards: Driving and delivery"
+      ],
+      "reason": "Combines a driver, vehicle, parcel, and paperwork in the same frame, matching the operational evidence required before delivery activation. It does not imply the paper is a driving licence.",
+      "sourcePage": "https://www.pexels.com/photo/a-man-writing-on-a-paper-5025654/",
+      "downloadUrl": "https://images.pexels.com/photos/5025654/pexels-photo-5025654.jpeg",
+      "creator": "Artem Podrez",
+      "alt": "A delivery driver writing on a clipboard inside a van with a parcel beside him.",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "imagery",
+      "key": "studentAdmissions",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage: Applying to a school",
+        "individualUseCaseCards: Education",
+        "SEO images for educational journey"
+      ],
+      "reason": "Visible students and records in an academic setting support document submission and school applications more clearly than a one-to-one tutoring lesson. The photo is illustrative rather than a claim of actual admissions review.",
+      "sourcePage": "https://www.pexels.com/photo/people-holding-a-document-sitting-near-the-concrete-building-7973208/",
+      "downloadUrl": "https://images.pexels.com/photos/7973208/pexels-photo-7973208.jpeg",
+      "creator": "George Pak",
+      "alt": "Students comparing paper documents outside a university building.",
+      "objectPosition": "50% 48%"
+    },
+    {
+      "collection": "imagery",
+      "key": "merchantOrders",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage: Becoming an approved vendor",
+        "individualUseCaseCards: Marketplaces"
+      ],
+      "reason": "The merchant is checking business records against an order at a shipping workspace, so the evidence and operational context are visible. Replaces the previous packing photo with a more explicit record-checking action.",
+      "sourcePage": "https://www.pexels.com/photo/woman-writing-down-on-a-carton-box-while-looking-at-a-clipboard-6169033/",
+      "downloadUrl": "https://images.pexels.com/photos/6169033/pexels-photo-6169033.jpeg",
+      "creator": "Tima Miroshnichenko",
+      "alt": "A woman comparing a parcel with a clipboard beside a desktop computer.",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "imagery",
+      "key": "teamwork",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active TS/TSX consumer or direct asset reference found outside the registry and responsive variant index. Do not download a replacement for an unused photograph.",
+      "sourcePage": null,
+      "downloadUrl": null,
+      "creator": null,
+      "alt": null,
+      "objectPosition": null
+    },
+    {
+      "collection": "imagery",
+      "key": "studentLife",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active TS/TSX consumer or direct asset reference found outside the registry and responsive variant index. Do not download a replacement for an unused photograph.",
+      "sourcePage": null,
+      "downloadUrl": null,
+      "creator": null,
+      "alt": null,
+      "objectPosition": null
+    },
+    {
+      "collection": "imagery",
+      "key": "cityArchitecture",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active TS/TSX consumer or direct asset reference found outside the registry and responsive variant index. Do not download a replacement for an unused photograph.",
+      "sourcePage": null,
+      "downloadUrl": null,
+      "creator": null,
+      "alt": null,
+      "objectPosition": null
+    },
+    {
+      "collection": "imagery",
+      "key": "healthcareCredentials",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active TS/TSX consumer or direct asset reference found outside the registry and responsive variant index. Do not download a replacement for an unused photograph.",
+      "sourcePage": null,
+      "downloadUrl": null,
+      "creator": null,
+      "alt": null,
+      "objectPosition": null
+    },
+    {
+      "collection": "imagery",
+      "key": "farmSupplier",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active TS/TSX consumer or direct asset reference found outside the registry and responsive variant index. Do not download a replacement for an unused photograph.",
+      "sourcePage": null,
+      "downloadUrl": null,
+      "creator": null,
+      "alt": null,
+      "objectPosition": null
+    },
+    {
+      "collection": "imagery",
+      "key": "siteWorkers",
+      "decision": "unused",
+      "contexts": [],
+      "reason": "No active TS/TSX consumer or direct asset reference found outside the registry and responsive variant index. Do not download a replacement for an unused photograph.",
+      "sourcePage": null,
+      "downloadUrl": null,
+      "creator": null,
+      "alt": null,
+      "objectPosition": null
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "personalPhone",
+      "decision": "replace",
+      "contexts": [
+        "individualSolutionSteps: Review the request",
+        "HowItWorksPage: Approve its next use",
+        "Modules identity sources photo pool"
+      ],
+      "reason": "A person attentively reading a phone screen shows the action underlying request review and repeat approval. Replaces a music-and-earphones scene. Screen contents and approval state are not claimed.",
+      "sourcePage": "https://www.pexels.com/photo/a-woman-sitting-on-the-couch-8279495/",
+      "downloadUrl": "https://images.pexels.com/photos/8279495/pexels-photo-8279495.jpeg",
+      "creator": "RDNE Stock project",
+      "alt": "A woman seated on a sofa reading her smartphone with a mug in her other hand.",
+      "objectPosition": "40% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "personalLaptop",
+      "decision": "replace",
+      "contexts": ["individualSolutionSteps: Follow the review"],
+      "reason": "The focused document-and-computer workflow is closer to checking a request than the previous outdoor telephone call. Actual application status is not visible and is not asserted.",
+      "sourcePage": "https://www.pexels.com/photo/black-woman-working-with-documents-in-office-5668879/",
+      "downloadUrl": "https://images.pexels.com/photos/5668879/pexels-photo-5668879.jpeg",
+      "creator": "Sora Shimazaki",
+      "alt": "A woman checking a folder of documents next to her laptop.",
+      "objectPosition": "50% 44%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "graduate",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage: Make room for what comes next CTA",
+        "Modules: education credentials"
+      ],
+      "reason": "The diploma makes the credential and next-stage opportunity visible; replaces a wide audience at a ceremony in which the actual credential was not visible.",
+      "sourcePage": "https://www.pexels.com/photo/smiling-graduate-with-diploma-in-hand-20240506/",
+      "downloadUrl": "https://images.pexels.com/photos/20240506/pexels-photo-20240506.jpeg",
+      "creator": "Safari Consoler",
+      "alt": "A smiling graduate in a cap and gown holding a rolled diploma outdoors.",
+      "objectPosition": "48% 42%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "careTeam",
+      "decision": "replace",
+      "contexts": ["Healthcare workforce: supporting journey/context photo"],
+      "reason": "Clinical role plus written records is relevant to professional credential review, unlike the previous remote patient consultation. Do not call the visible notes a professional licence or credential.",
+      "sourcePage": "https://www.pexels.com/photo/crop-black-physician-with-clipboard-at-work-6097750/",
+      "downloadUrl": "https://images.pexels.com/photos/6097750/pexels-photo-6097750.jpeg",
+      "creator": "Laura James",
+      "alt": "A clinician in blue scrubs writing on a clipboard, with a stethoscope around her neck.",
+      "objectPosition": "48% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "hospitalityTeam",
+      "decision": "replace",
+      "contexts": ["Travel and hospitality: supporting journey/context photo"],
+      "reason": "The receptionist role is directly involved in guest check-in and access workflows; replaces bed-linen maintenance, which was unrelated to identity checks.",
+      "sourcePage": "https://www.pexels.com/photo/hotel-receptionist-in-a-face-mask-standing-behind-the-counter-7820324/",
+      "downloadUrl": "https://images.pexels.com/photos/7820324/pexels-photo-7820324.jpeg",
+      "creator": "Mikhail Nilov",
+      "alt": "A receptionist standing behind a hotel reception desk.",
+      "objectPosition": "47% 48%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "manufacturing",
+      "decision": "replace",
+      "contexts": [
+        "Manufacturing, FMCG, and industrial: hero, navigation thumbnail, industry cards"
+      ],
+      "reason": "Shows a person, safety role, and digital operational task together, matching workforce and site-access verification rather than an anonymous wide machinery shot. The tablet is not presented as an Ontiver screen.",
+      "sourcePage": "https://www.pexels.com/photo/industrial-worker-using-tablet-in-factory-32845692/",
+      "downloadUrl": "https://images.pexels.com/photos/32845692/pexels-photo-32845692.jpeg",
+      "creator": "Sergey Sergeev",
+      "alt": "A factory worker wearing a hard hat and safety glasses holding a tablet on the production floor.",
+      "objectPosition": "43% 44%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "identity",
+      "decision": "replace",
+      "contexts": [
+        "IndividualProductPage hero: Your identity. Your control.",
+        "Individual home Verify once step: quick selfie",
+        "Enterprise Modules: Documents and biometrics source card and Face and liveness verification card",
+        "Navigation /identity preview"
+      ],
+      "reason": "The person visibly holds her own phone upright in front of her face to take a selfie, with her complete head, face, hand, and phone together in the original photograph. The natural expression and home setting support the individual selfie step without glamour posing, another person's phone preview, or an illustrated device. Publisher metadata explicitly identifies the action as taking a selfie. Landscape, mobile-hero, and square crops were inspected; 35% horizontal positioning keeps the phone and face together in narrow frames. This illustrates self-capture only, with no claim of a successful identity check or endorsement.",
+      "sourcePage": "https://www.pexels.com/photo/woman-holding-cellphone-while-sitting-on-sofa-chair-8748733/",
+      "downloadUrl": "https://images.pexels.com/photos/8748733/pexels-photo-8748733.jpeg",
+      "creator": "Anastasia Shuraeva",
+      "licensePage": "https://www.pexels.com/license/",
+      "alt": "A woman seated at home holding her phone in front of her face to take a selfie.",
+      "objectPosition": "35% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "howItWorks",
+      "decision": "replace",
+      "contexts": [
+        "HowItWorksPage: Add the evidence",
+        "individualSolutionSteps: Submit your evidence",
+        "Navigation /how-it-works preview"
+      ],
+      "reason": "Document capture is visibly occurring and directly matches the guided evidence-submission step. This replaces a casual selfie that was being reused for document upload.",
+      "sourcePage": "https://www.pexels.com/photo/a-person-holding-a-smartphone-6282081/",
+      "downloadUrl": "https://images.pexels.com/photos/6282081/pexels-photo-6282081.jpeg",
+      "creator": "Yaroslav Shuraev",
+      "alt": "A person using a smartphone camera to capture a paper document.",
+      "objectPosition": "50% 55%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "individualUseCases",
+      "decision": "replace",
+      "contexts": [
+        "IndividualUseCasesPage hero: different requests, one place to respond",
+        "Navigation /use-cases preview"
+      ],
+      "reason": "The subject is visibly checking her phone while carrying several document folders, connecting the hero's different requests and evidence with an action. Replaces the rejected seated student portrait (5940840). The landscape composition keeps the person, phone, and documents visible in the actual square hero and wider navigation crops; it does not assert that a particular application or verification result is on screen.",
+      "sourcePage": "https://www.pexels.com/photo/woman-using-her-smartphone-while-carrying-documents-6567810/",
+      "downloadUrl": "https://images.pexels.com/photos/6567810/pexels-photo-6567810.jpeg",
+      "creator": "cottonbro studio",
+      "alt": "A woman checking her smartphone while carrying folders and paper documents indoors.",
+      "objectPosition": "50% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "waitlist",
+      "decision": "replace",
+      "contexts": ["WaitlistPage: sign up for the planned mobile app"],
+      "reason": "The subject is interacting with the device rather than taking a call, matching mobile sign-up. Meaningful reuse with the mobile workflow illustration; no claim that a real Ontiver form is on screen.",
+      "sourcePage": "https://www.pexels.com/photo/a-woman-using-a-cellphone-9051678/",
+      "downloadUrl": "https://images.pexels.com/photos/9051678/pexels-photo-9051678.jpeg",
+      "creator": "Mike Jones",
+      "alt": "A woman looking down at her smartphone while leaning on an indoor counter.",
+      "objectPosition": "50% 45%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "consent",
+      "decision": "replace",
+      "contexts": [
+        "Individual home: Approve what's shared",
+        "HowItWorksPage: Review and consent",
+        "individualSolutionSteps: Make your choice",
+        "Enterprise solution: Get the user’s consent",
+        "WorkflowVisual consent",
+        "Platform consent and privacy hero and cards",
+        "Navigation /enterprise/platform/consent-and-privacy"
+      ],
+      "reason": "Reading the terms of a digital document is a direct precursor to informed approval; the image preserves user deliberation instead of showing a phone being handed to a boss. No claim that a signature has been given or this is an Ontiver UI.",
+      "sourcePage": "https://www.pexels.com/photo/businesswoman-reviewing-document-on-tablet-indoors-29377236/",
+      "downloadUrl": "https://images.pexels.com/photos/29377236/pexels-photo-29377236.jpeg",
+      "creator": "Wolf Art",
+      "alt": "A woman reading a text document on a tablet while holding a stylus.",
+      "objectPosition": "48% 50%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "sharingHistory",
+      "decision": "replace",
+      "contexts": [
+        "WorkflowVisual: Every share has a record",
+        "HowItWorksPage: Follow the review",
+        "Individual solution: Manage your history",
+        "Enterprise solution: Let the user control reuse",
+        "Modules consent photo pool"
+      ],
+      "reason": "The action combines consulting digital information and a written record, making the record-review context explicit. The source does not show an actual sharing log, so alt text does not invent one.",
+      "sourcePage": "https://www.pexels.com/photo/a-woman-taking-notes-while-reading-on-her-smartphone-7005415/",
+      "downloadUrl": "https://images.pexels.com/photos/7005415/pexels-photo-7005415.jpeg",
+      "creator": "Arina Krasnikova",
+      "alt": "A woman reading her smartphone and making notes in an open notebook.",
+      "objectPosition": "50% 85%"
+    },
+    {
+      "collection": "editorialPhotos",
+      "key": "proof",
+      "decision": "replace",
+      "contexts": [
+        "WorkflowVisual proof: Carry your approved claims",
+        "Individual solution: Keep approved proofs",
+        "HowItWorksPage: Keep approved proof",
+        "Enterprise solution: Create an approved proof",
+        "Platform identity-proofs hero and cards",
+        "Modules reusable-proof photo pool",
+        "Navigation /enterprise/platform/identity-proofs"
+      ],
+      "reason": "A visible issued credential provides a concrete example of a claim someone can retain and present, replacing a generic group discussing a clipboard. This photograph illustrates credential ownership only; it is not an Ontiver digital proof, and does not imply every identity proof is an education credential.",
+      "sourcePage": "https://www.pexels.com/photo/a-black-student-looking-at-certificate-of-graduation-9829305/",
+      "downloadUrl": "https://images.pexels.com/photos/9829305/pexels-photo-9829305.jpeg",
+      "creator": "Ron Lach",
+      "alt": "A graduate in a cap and gown examining her certificate.",
+      "objectPosition": "50% 45%"
+    }
+  ],
+  "recommendedReassignments": [
+    {
+      "file": "src/features/shared/legal/pages/LegalPage.tsx",
+      "change": "Replace imagery.work, imagery.cityPortrait, imagery.everydayPhone and imagery.individualHero with dedicated privacy/terms/cookies/account-deletion entries researched by the shared-page agent."
+    },
+    {
+      "file": "src/features/individual/journey/pages/HowItWorksPage.tsx",
+      "change": "Add the evidence: imagery.candidateReview -> editorialPhotos.howItWorks (actual smartphone document capture)."
+    },
+    {
+      "file": "src/shared/data/audienceContent.tsx",
+      "change": "individualSolutionSteps Keep approved proofs: editorialPhotos.individualUseCases -> editorialPhotos.proof (visible credential, instead of unrelated phone/student scene)."
+    },
+    {
+      "file": "src/shared/components/ui/workflowVisualContent.ts",
+      "change": "review variant: imagery.candidateReview -> imagery.work (general evidence reviewer, not a specifically employment interview)."
+    },
+    {
+      "file": "src/shared/data/solution.ts",
+      "change": "Review and decide: imagery.candidateReview -> imagery.work (general evidence reviewer)."
+    },
+    {
+      "file": "src/features/shared/home/components/TrustSection.tsx",
+      "change": "Individual photo: imagery.mobileDetail -> editorialPhotos.consent (reviewing digital terms rather than holding a payment card). Enterprise photo: imagery.developer -> editorialPhotos.enterpriseSecurityControls (reviewing documents and access responsibilities)."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourcePage": "https://www.pexels.com/photo/woman-holding-a-smart-phone-with-qr-code-8830498/",
+      "reason": "Displays a vaccine passport; misleading for NIN/BVN and reusable identity proofs."
+    },
+    {
+      "sourcePage": "https://www.pexels.com/photo/close-up-of-a-person-holding-a-passport-and-a-smartphone-20805602/",
+      "reason": "Travel and eSIM screen; does not depict identity verification."
+    },
+    {
+      "sourcePage": "https://www.pexels.com/photo/portuguese-passport-and-citizen-card-close-up-32081457/",
+      "reason": "Foreign government document still life would be a poor match for Nigerian NIN/BVN context."
+    },
+    {
+      "sourcePage": "https://www.pexels.com/photo/black-woman-choosing-cosmetics-at-table-with-smartphone-6954100/",
+      "reason": "Cosmetics production context unrelated to identity request review."
+    }
+  ]
+}
