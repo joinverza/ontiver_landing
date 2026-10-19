@@ -103,29 +103,25 @@ const ResourcesPage = ({ audience = "individual" }: { audience?: Audience }) => 
         className="section-space site-container scroll-mt-28"
         aria-label="Explore Ontiver resources"
       >
-        <div className="resource-links">
+        <div className="resource-tiles">
           {resourceLinks.map(({ icon: Icon, title, description, action, to }) => (
             <Link
               key={to}
               to={enterprise && ["/security", "/support"].includes(to) ? `/enterprise${to}` : to}
-              className="surface-card resource-link-card"
+              className="surface-card resource-tile"
               aria-labelledby={`resource-${to.slice(1)}-title`}
               aria-describedby={`resource-${to.slice(1)}-description`}
             >
-              <span className="resource-link-icon" aria-hidden="true">
-                <Icon size={25} strokeWidth={1.7} />
-              </span>
-              <h2 id={`resource-${to.slice(1)}-title`} className="resource-link-title">
+              <Icon className="resource-tile-icon" size={32} aria-hidden="true" />
+              <h2 id={`resource-${to.slice(1)}-title`} className="resource-tile-title">
                 {title}
               </h2>
-              <p id={`resource-${to.slice(1)}-description`} className="resource-link-description">
+              <p id={`resource-${to.slice(1)}-description`} className="resource-tile-description">
                 {description}
               </p>
-              <span className="resource-link-action" aria-hidden="true">
+              <span className="resource-tile-action" aria-hidden="true">
                 <span>{action}</span>
-                <span className="resource-link-arrow">
-                  <ActionIcon size={22} />
-                </span>
+                <ActionIcon size={24} />
               </span>
             </Link>
           ))}
