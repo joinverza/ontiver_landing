@@ -64,13 +64,19 @@ export const ImageTimeline = ({ steps, labelledBy, className = "" }: ImageTimeli
               key={image.src}
               className="image-timeline-image"
               data-active={displayed === index || undefined}
+              style={
+                {
+                  "--timeline-photo": `url("${image.src}")`,
+                  "--timeline-focus": image.objectPosition,
+                  "--timeline-photo-position": `${(index / Math.max(steps.length - 1, 1)) * 100}%`,
+                } as CSSProperties
+              }
             >
               <SiteImage
                 src={image.src}
                 alt={image.alt}
                 width={image.width}
                 height={image.height}
-                style={{ objectPosition: image.objectPosition }}
                 reveal={false}
                 onLoad={() => {
                   loaded.current.add(index);
