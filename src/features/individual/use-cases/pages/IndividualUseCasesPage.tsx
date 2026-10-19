@@ -1,4 +1,5 @@
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
+import { Plus } from "../../../../shared/components/ui/icons";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { imagery } from "../../../../shared/data/imagery";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
@@ -100,9 +101,7 @@ const IndividualUseCasesPage = () => {
                 <details className="group py-4">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-body font-medium text-accent [&::-webkit-details-marker]:hidden">
                     View request details
-                    <span aria-hidden="true" className="group-open:rotate-45">
-                      +
-                    </span>
+                    <Plus size={20} aria-hidden="true" className="shrink-0 group-open:rotate-45" />
                   </summary>
                   <dl className="mt-4 space-y-4 text-body">
                     <div>

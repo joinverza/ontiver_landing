@@ -14,8 +14,8 @@ import {
   ShieldCheck,
   ShoppingBag,
   WalletCards,
-  type LucideIcon,
-} from "lucide-react";
+  type OntiverIcon,
+} from "../components/ui/icons";
 import { platformLayers } from "../../features/enterprise/platform/data/platform";
 import { editorialPhotos } from "./editorialPhotos";
 import type { EditorialImage } from "./imagery";
@@ -24,7 +24,7 @@ export type NavLink = {
   name: string;
   to: string;
   description: string;
-  icon?: LucideIcon;
+  icon?: OntiverIcon;
   external?: boolean;
 };
 

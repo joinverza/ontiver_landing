@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Check } from "lucide-react";
+import { Check } from "../../../../shared/components/ui/icons";
 import { type RefObject } from "react";
 import { contactSocialIcons } from "../../contact/data/contact";
 import PlatformIcon from "./PlatformIcon";

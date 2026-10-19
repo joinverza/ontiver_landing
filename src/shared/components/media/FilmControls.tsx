@@ -1,4 +1,4 @@
-import { Maximize2, Minimize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
+import { Maximize2, Minimize2, Pause, Play, Volume2, VolumeX } from "../ui/icons";
 
 type FilmControlsProps = {
   playing: boolean;

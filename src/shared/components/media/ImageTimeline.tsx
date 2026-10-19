@@ -1,5 +1,5 @@
 import { useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
-import type { LucideIcon } from "lucide-react";
+import type { OntiverIcon } from "../ui/icons";
 import type { EditorialImage } from "../../data/imagery";
 import { SiteImage } from "./SiteImage";
 import "./image-timeline.css";
@@ -8,7 +8,7 @@ export type ImageTimelineStep = {
   title: string;
   description: string;
   image: EditorialImage;
-  icon?: LucideIcon;
+  icon?: OntiverIcon;
 };
 
 type ImageTimelineProps = {

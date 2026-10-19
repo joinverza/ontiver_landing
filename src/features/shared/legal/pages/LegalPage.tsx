@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "../../../../shared/components/ui/icons";
 import { useLocation } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";

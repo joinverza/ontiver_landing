@@ -8,18 +8,18 @@ export const ContactSidebar = () => (
       <div>
         <h2 className="text-card-title font-medium">Before you send</h2>
         <div className="mt-4 divide-y divide-[#002d0e]/10">
-          {contactRows.map((row) => (
-            <div key={row.label} className="flex items-start gap-4 py-4">
-              <img src={row.icon} alt="" className="mt-1 size-5 shrink-0 brightness-0" />
-              {row.label.includes("@") ? (
+          {contactRows.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-start gap-4 py-4">
+              <Icon size={20} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
+              {label.includes("@") ? (
                 <a
                   className="break-all text-body text-[#002d0e] underline-offset-4 hover:underline"
-                  href={`mailto:${row.label}`}
+                  href={`mailto:${label}`}
                 >
-                  {row.label}
+                  {label}
                 </a>
               ) : (
-                <p className="text-body text-[#526058]">{row.label}</p>
+                <p className="text-body text-[#526058]">{label}</p>
               )}
             </div>
           ))}

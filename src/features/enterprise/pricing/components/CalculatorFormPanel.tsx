@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw } from "../../../../shared/components/ui/icons";
 import { calculatorFields, type CalculatorFieldKey } from "../data/calculator";
 import CalculatorInputField from "./CalculatorInputField";
 import DropOffSlider from "./DropOffSlider";

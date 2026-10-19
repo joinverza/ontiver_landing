@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Layers3 } from "lucide-react";
+import { Layers3 } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import type { PlanRecommendation } from "../data/plan";
 import { DEVELOPER_SIGNUP_URL, type BillingCycle } from "../data/pricing";

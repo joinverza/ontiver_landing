@@ -1,6 +1,6 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import ImageHoverPanels from "../../../../shared/components/media/ImageHoverPanels";

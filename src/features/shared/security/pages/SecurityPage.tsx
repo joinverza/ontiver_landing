@@ -1,5 +1,10 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { History, KeyRound, LockKeyhole, SlidersHorizontal } from "lucide-react";
+import {
+  History,
+  KeyRound,
+  LockKeyhole,
+  SlidersHorizontal,
+} from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";

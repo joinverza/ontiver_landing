@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Check } from "lucide-react";
+import { Check } from "../../../../shared/components/ui/icons";
 import { useEnterpriseInquiry } from "../hooks/useEnterpriseInquiry";
 import { useHydratedSearch } from "../hooks/useHydratedSearch";
 import { EnterpriseInquiryFields } from "./EnterpriseInquiryFields";

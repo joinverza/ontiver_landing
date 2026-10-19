@@ -1,4 +1,4 @@
-import { Code2, LayoutDashboard, Smartphone } from "lucide-react";
+import { Code2, LayoutDashboard, Smartphone } from "../../../../shared/components/ui/icons";
 import ImageHoverPanels from "../../../../shared/components/media/ImageHoverPanels";
 import StandalonePage from "../../../../shared/components/ui/StandalonePage";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";

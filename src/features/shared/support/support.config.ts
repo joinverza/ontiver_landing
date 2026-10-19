@@ -1,4 +1,10 @@
-import { CheckCircle2, Code2, LifeBuoy, MessageCircle, ShieldCheck } from "lucide-react";
+import {
+  CheckCircle2,
+  Code2,
+  LifeBuoy,
+  MessageCircle,
+  ShieldCheck,
+} from "../../../shared/components/ui/icons";
 
 export const shortcutsByAudience = {
   individual: [

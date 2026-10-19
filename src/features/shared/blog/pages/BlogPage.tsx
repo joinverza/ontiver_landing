@@ -1,6 +1,6 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search } from "../../../../shared/components/ui/icons";
 import BlogHero from "../components/BlogHero";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { useBlogLibrary } from "../hooks/useBlogContent";

@@ -1,4 +1,11 @@
-import { Fingerprint, KeyRound, ShieldCheck, WalletCards, ListChecks, Send } from "lucide-react";
+import {
+  Fingerprint,
+  KeyRound,
+  ShieldCheck,
+  WalletCards,
+  ListChecks,
+  Send,
+} from "../../../../shared/components/ui/icons";
 import { MotionToggle } from "../../../../shared/components/motion/MotionSettings";
 import type { Audience } from "../../../../shared/lib/audience";
 

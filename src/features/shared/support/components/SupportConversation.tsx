@@ -1,5 +1,5 @@
 import type { FormEvent } from "react";
-import { CheckCircle2, Plus, RefreshCw, Send } from "lucide-react";
+import { CheckCircle2, Plus, RefreshCw, Send } from "../../../../shared/components/ui/icons";
 import type { PublicSupportConversation } from "../../../../shared/lib/landingApi";
 import { controlClassName } from "../support.config";
 import { SupportField } from "./SupportField";

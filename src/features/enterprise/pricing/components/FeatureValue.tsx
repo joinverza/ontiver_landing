@@ -1,4 +1,4 @@
-import { Check, Minus } from "lucide-react";
+import { Check, Minus } from "../../../../shared/components/ui/icons";
 import type { ComparisonCell } from "../data/pricing";
 
 const FeatureValue = ({ value }: { value: ComparisonCell }) => {

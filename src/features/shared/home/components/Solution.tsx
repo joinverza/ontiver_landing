@@ -1,6 +1,6 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useEffect, useState } from "react";
-import { Pause, Play } from "lucide-react";
+import { Pause, Play } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import { solutionSteps } from "../../../../shared/data/solution";
 import { individualSolutionSteps } from "../../../../shared/data/audienceContent";

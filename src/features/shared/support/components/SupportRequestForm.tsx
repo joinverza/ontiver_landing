@@ -1,5 +1,5 @@
 import type { FormEvent } from "react";
-import { Send } from "lucide-react";
+import { Send } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import { controlClassName, type SupportFormValues } from "../support.config";
 import { SupportField } from "./SupportField";

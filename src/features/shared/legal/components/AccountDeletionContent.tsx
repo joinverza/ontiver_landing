@@ -1,4 +1,4 @@
-import { Mail } from "lucide-react";
+import { Mail } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import DeletionPanel from "./DeletionPanel";
 

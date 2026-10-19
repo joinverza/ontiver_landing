@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import { Play } from "../ui/icons";
 import { useVideoPlayback } from "../../hooks/useVideoPlayback";
 import FilmControls from "./FilmControls";
 import FilmProgress from "./FilmProgress";

@@ -1,5 +1,10 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { BookOpen, LifeBuoy, LockKeyhole, ShieldCheck } from "lucide-react";
+import {
+  BookOpen,
+  LifeBuoy,
+  LockKeyhole,
+  ShieldCheck,
+} from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import { useBlogLibrary } from "../../blog/hooks/useBlogContent";

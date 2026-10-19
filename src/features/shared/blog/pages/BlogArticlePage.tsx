@@ -2,7 +2,7 @@ import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Clock3, Quote } from "lucide-react";
+import { Clock3, Quote } from "../../../../shared/components/ui/icons";
 import ArticleSidebar from "../components/ArticleSidebar";
 import ArticleSocialRail from "../components/ArticleSocialRail";
 import ReadingProgress from "../components/ReadingProgress";

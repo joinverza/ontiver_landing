@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Plus } from "lucide-react";
+import { Plus } from "../../../../shared/components/ui/icons";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../../../../shared/components/layout/Footer";
 import WorkflowVisual from "../../../../shared/components/ui/WorkflowVisual";

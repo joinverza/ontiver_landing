@@ -1,5 +1,12 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Eye, ScanFace, ShieldCheck, SlidersHorizontal, Undo2, UserCheck } from "lucide-react";
+import {
+  Eye,
+  ScanFace,
+  ShieldCheck,
+  SlidersHorizontal,
+  Undo2,
+  UserCheck,
+} from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import { ImageTimeline } from "../../../../shared/components/media/ImageTimeline";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";

@@ -1,4 +1,4 @@
-import { Share2 } from "lucide-react";
+import { Share2 } from "../../../../shared/components/ui/icons";
 import { useLocation } from "react-router-dom";
 import PlatformIcon from "./PlatformIcon";
 

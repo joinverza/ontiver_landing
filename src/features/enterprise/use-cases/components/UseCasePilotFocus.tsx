@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { Plus } from "../../../../shared/components/ui/icons";
 import type { UseCasePageDetail } from "../data/useCases";
 import "../../../../shared/components/ui/cta-band.css";
 

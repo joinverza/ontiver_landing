@@ -1,6 +1,6 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useId, useRef, useState, type FormEvent } from "react";
-import { Check, LoaderCircle } from "lucide-react";
+import { Check, LoaderCircle } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import { joinWaitlist, sendContactRequest } from "../../../../shared/lib/landingApi";
 import { FormSelect } from "../../../../shared/components/forms/FormSelect";

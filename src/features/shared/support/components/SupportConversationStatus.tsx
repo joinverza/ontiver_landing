@@ -1,4 +1,4 @@
-import { MessageCircle, Plus, RefreshCw } from "lucide-react";
+import { MessageCircle, Plus, RefreshCw } from "../../../../shared/components/ui/icons";
 
 type SupportConversationStatusProps = {
   loadingConversation: boolean;

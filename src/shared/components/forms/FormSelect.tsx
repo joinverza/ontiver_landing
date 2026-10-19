@@ -1,7 +1,7 @@
 import ActionIcon from "../ui/ActionIcon";
 import { useCallback, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { Check } from "lucide-react";
+import { Check } from "../ui/icons";
 import { cancelScrollMomentum } from "../../lib/scrollNavigation";
 import { useSelectPopover } from "./useSelectPopover";
 import "./form-select.css";

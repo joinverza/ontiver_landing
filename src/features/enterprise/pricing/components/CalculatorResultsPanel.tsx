@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { ChartNoAxesCombined, Share2 } from "lucide-react";
+import { ChartNoAxesCombined, Share2 } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import type { SavingsResult } from "../data/calculator";
 import type { BillingCycle } from "../data/pricing";

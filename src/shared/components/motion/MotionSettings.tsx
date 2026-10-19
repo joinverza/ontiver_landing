@@ -8,7 +8,7 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
-import { Pause, Play } from "lucide-react";
+import { Pause, Play } from "../ui/icons";
 
 const MotionContext = createContext({ paused: false, reduced: false, toggle: () => {} });
 const mediaQuery = "(prefers-reduced-motion: reduce)";

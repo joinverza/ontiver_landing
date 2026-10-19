@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Check, ShieldCheck } from "lucide-react";
+import { Check, ShieldCheck } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 
 export const EnterpriseContactSidebar = () => (

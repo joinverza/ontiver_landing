@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import type { Audience } from "../../../../shared/lib/audience";
 import WordReveal from "../../../../shared/components/ui/WordReveal";

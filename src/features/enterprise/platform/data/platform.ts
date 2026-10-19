@@ -5,8 +5,8 @@ import {
   ScanSearch,
   ShieldCheck,
   Sparkles,
-  type LucideIcon,
-} from "lucide-react";
+  type OntiverIcon,
+} from "../../../../shared/components/ui/icons";
 
 export type PlatformCapability = {
   title: string;
@@ -17,7 +17,7 @@ export type PlatformLayer = {
   id: string;
   title: string;
   description: string;
-  icon: LucideIcon;
+  icon: OntiverIcon;
   headline: string;
   overview: string;
   visualVariant: "sources" | "checks" | "workflow" | "intelligence" | "consent" | "proof";

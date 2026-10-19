@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ShieldCheck } from "lucide-react";
+import { CheckCircle2, ShieldCheck } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import {
   confirmAccountDeletion,

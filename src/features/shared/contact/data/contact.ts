@@ -1,3 +1,5 @@
+import { ShieldCheck } from "../../../../shared/components/ui/icons";
+
 export type ContactFormField = "firstName" | "email" | "subject" | "message";
 
 export type ContactFieldConfig = {
@@ -42,7 +44,7 @@ export const contactInitialValues: Record<ContactFormField, string> = {
 // Publish a support email and response timeframe once the team confirms them.
 export const contactRows = [
   {
-    icon: "/assets/consent.svg",
+    icon: ShieldCheck,
     label:
       "Please don't include sensitive documents or identification numbers in this form. If we need evidence from you, we'll request it securely through the app.",
   },

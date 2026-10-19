@@ -1,5 +1,5 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
-import { Check } from "lucide-react";
+import { Check } from "../../../../shared/components/ui/icons";
 import { contactFields } from "../data/contact";
 import { useContactRequest } from "../hooks/useContactRequest";
 import { ContactField } from "./ContactField";

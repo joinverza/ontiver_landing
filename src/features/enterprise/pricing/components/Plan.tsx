@@ -1,6 +1,6 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { useId, useState } from "react";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw } from "../../../../shared/components/ui/icons";
 import {
   planInitialToggles,
   planInitialValues,
