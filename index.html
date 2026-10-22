@@ -12,6 +12,23 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reusable Identity Verification Infrastructure | Ontiver</title>
+    <script>
+      // Show the prerendered loader before the app bundle arrives, with a
+      // fallback that leaves static pages accessible if that bundle fails.
+      document.documentElement.dataset.initialLoading = "true";
+      const startupTimeout = setTimeout(() => {
+        delete document.documentElement.dataset.initialLoading;
+        document.dispatchEvent(new Event("ontiver-startup-expired"));
+      }, 8000);
+      document.addEventListener(
+        "ontiver-startup-complete",
+        () => {
+          clearTimeout(startupTimeout);
+          delete document.documentElement.dataset.initialLoading;
+        },
+        { once: true },
+      );
+    </script>
   </head>
   <body>
     <div id="root"></div>

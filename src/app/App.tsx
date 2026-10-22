@@ -6,6 +6,7 @@ import SEO from "./SEO";
 import PageLayout from "../shared/components/layout/PageLayout";
 import RouteLoading from "./routes/RouteLoading";
 import RouteErrorBoundary from "./routes/RouteErrorBoundary";
+import { InitialRouteReady } from "../shared/components/loaders/InitialLoader";
 import {
   IndividualProductPage,
   HowItWorksPage,
@@ -44,6 +45,7 @@ const App = () => {
     <PageLayout>
       <RouteErrorBoundary resetKey={pathname}>
         <Suspense fallback={<RouteLoading />}>
+          <InitialRouteReady />
           <PageReveal />
           <SEO />
           <RouteScroll />

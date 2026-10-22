@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useInitialLoading } from "../../shared/components/loaders/InitialLoader";
 import {
   cancelScrollMomentum,
   getHashTarget,
@@ -9,6 +10,7 @@ import {
 const RouteScroll = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const initialLoading = useInitialLoading();
   const previousPage = useRef<{ page: string; key: string } | null>(null);
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const RouteScroll = () => {
   }, []);
 
   useEffect(() => {
+    if (initialLoading) return;
     const page = location.pathname + location.search;
     const samePage =
       previousPage.current?.page === page && previousPage.current.key !== location.key;
@@ -33,7 +36,7 @@ const RouteScroll = () => {
       else if (!location.hash || !samePage) scrollPageTo(0, { immediate: true });
     });
     return () => cancelAnimationFrame(frame);
-  }, [location.pathname, location.search, location.hash, location.key]);
+  }, [location.pathname, location.search, location.hash, location.key, initialLoading]);
 
   useEffect(() => {
     let anchorFrame = 0;

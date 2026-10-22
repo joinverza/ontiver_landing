@@ -99,7 +99,7 @@ export const useLenis = () => {
       });
       lockObserver.observe(document.documentElement, {
         attributes: true,
-        attributeFilter: ["style"],
+        attributeFilter: ["style", "data-initial-loading"],
       });
       updateLock();
 
