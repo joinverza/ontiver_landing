@@ -1,5 +1,5 @@
 import {
-  DEVELOPER_SIGNUP_URL,
+  PORTAL_SIGNUP_URL,
   monthlyPrice,
   type BillingCycle,
   type PricingCatalog,
@@ -30,11 +30,11 @@ export function getPricingInquiryUrl(
 }
 
 /**
- * Where a plan's call to action leads: Sandbox is a free developer account; every paid plan
- * starts with our sales team, who quote for the customer's volume.
+ * Where a plan's call to action leads: Sandbox is a free workspace the business creates itself;
+ * every paid plan starts with our sales team, who quote for the customer's volume.
  */
 export const planCtaHref = (plan: PricingPlan, billingCycle: BillingCycle = "monthly") =>
-  plan.id === "sandbox" ? DEVELOPER_SIGNUP_URL : getPricingInquiryUrl(plan.id, billingCycle);
+  plan.id === "sandbox" ? PORTAL_SIGNUP_URL : getPricingInquiryUrl(plan.id, billingCycle);
 
 export type CostEstimate = {
   plan: PricingPlan;

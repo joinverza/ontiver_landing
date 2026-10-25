@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DEVELOPER_SIGNUP_URL } from "../data/pricing";
+import { DEVELOPER_SIGNUP_URL, PORTAL_SIGNUP_URL } from "../data/pricing";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
@@ -19,7 +19,7 @@ const PricingHero = () => {
             dashboard, API and SDKs.
           </p>
           <div className="page-hero-actions items-center">
-            <a href={DEVELOPER_SIGNUP_URL} rel="noopener" className="button-primary">
+            <a href={PORTAL_SIGNUP_URL} rel="noopener" className="button-primary">
               Start free in Sandbox
               <ActionIcon size={18} aria-hidden="true" />
             </a>
@@ -27,6 +27,16 @@ const PricingHero = () => {
               Contact sales
             </Link>
           </div>
+          <p className="mt-4 text-body text-[#526058]">
+            Building on your own?{" "}
+            <a
+              href={DEVELOPER_SIGNUP_URL}
+              rel="noopener"
+              className="font-medium text-accent underline underline-offset-4"
+            >
+              Create a developer account
+            </a>
+          </p>
           <div className="mt-8 border-t border-[#cbd5c7] pt-6">
             <h2 className="text-card-title font-medium">Your dashboard matches your plan.</h2>
             <p className="mt-2 text-body text-[#526058]">

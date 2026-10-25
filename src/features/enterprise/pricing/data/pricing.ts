@@ -14,6 +14,7 @@ export type { PricingCatalog, PricingCurrency, PricingPlan };
  */
 export const bundledCatalog = catalogSnapshot as PricingCatalog;
 
+/** Businesses start in a free Sandbox workspace they create themselves; paid plans are set up with sales. */
 export const PORTAL_SIGNUP_URL = `${(import.meta.env.VITE_ONTIVER_PORTAL_URL || "https://portal.ontiver.com").replace(/\/+$/, "")}/portal/signup`;
 
 export const CURRENCY_NAMES: Record<PricingCurrency, string> = { USD: "US dollars", NGN: "naira" };

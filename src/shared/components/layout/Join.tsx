@@ -2,6 +2,7 @@ import ActionIcon from "../ui/ActionIcon";
 import type { Audience } from "../../lib/audience";
 import { Link } from "react-router-dom";
 import "../ui/cta-band.css";
+import { PORTAL_SIGNUP_URL } from "../../../features/enterprise/pricing/data/pricing";
 
 const Join = ({ audience }: { audience: Audience }) => {
   const enterprise = audience === "enterprise";
@@ -25,12 +26,13 @@ const Join = ({ audience }: { audience: Audience }) => {
                 Request Enterprise Demo
                 <ActionIcon size={17} aria-hidden="true" />
               </Link>
-              <Link
-                to="/enterprise/contact?request=sandbox"
+              <a
+                href={PORTAL_SIGNUP_URL}
+                rel="noopener"
                 className="button-secondary button-quiet-on-dark"
               >
                 Start Sandbox
-              </Link>
+              </a>
             </div>
           ) : (
             <Link to="/waitlist" className="button-primary button-on-dark mt-8">

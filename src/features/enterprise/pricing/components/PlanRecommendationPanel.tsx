@@ -2,7 +2,7 @@ import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Layers3 } from "../../../../shared/components/ui/icons";
 import { Link } from "react-router-dom";
 import type { PlanRecommendation } from "../data/plan";
-import { DEVELOPER_SIGNUP_URL, type BillingCycle } from "../data/pricing";
+import { PORTAL_SIGNUP_URL, type BillingCycle } from "../data/pricing";
 import { getPricingInquiryUrl } from "../lib/pricing";
 import { BusinessPhoto } from "../../../../shared/components/media/BusinessPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
@@ -38,7 +38,7 @@ const PlanRecommendationPanel = ({
           </h3>
           <p className="mt-4 text-body text-[#526052]">{recommendation.reason}</p>
           {recommendation.plan === "Sandbox" ? (
-            <a href={DEVELOPER_SIGNUP_URL} className="button-primary mt-6">
+            <a href={PORTAL_SIGNUP_URL} className="button-primary mt-6">
               Start free in Sandbox
               <ActionIcon size={17} />
             </a>

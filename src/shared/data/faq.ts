@@ -1,4 +1,4 @@
-const SANDBOX_SIGNUP_URL = `${(import.meta.env.VITE_ONTIVER_DEVELOPER_URL || "https://dev.ontiver.com").replace(/\/+$/, "")}/signup`;
+const SANDBOX_SIGNUP_URL = `${(import.meta.env.VITE_ONTIVER_PORTAL_URL || "https://portal.ontiver.com").replace(/\/+$/, "")}/portal/signup`;
 
 export type FAQItem = {
   question: string;
