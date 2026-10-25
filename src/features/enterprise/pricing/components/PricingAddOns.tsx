@@ -1,4 +1,4 @@
-import { formatPrice, type PricingCatalog } from "../data/pricing";
+import type { PricingCatalog } from "../data/pricing";
 
 const planNames = (catalog: PricingCatalog, ids: string[]) =>
   ids.map((id) => catalog.plans.find((plan) => plan.id === id)?.name ?? id).join(", ");
@@ -26,9 +26,7 @@ const PricingAddOns = ({ catalog }: { catalog: PricingCatalog }) => (
           >
             <h3 className="text-card-title font-medium">{addon.name}</h3>
             <p className="mt-2 text-[1.5rem] font-medium tracking-[-0.02em]">
-              {addon.monthly === null
-                ? "Priced in contract"
-                : `${formatPrice(addon.monthly, catalog.currency)}/month`}
+              {addon.monthly === null ? "Priced in contract" : "Contact sales"}
             </p>
             <p className="mt-4 text-body text-[#526052]">{addon.summary}</p>
             <dl className="mt-5 space-y-2 border-t border-[#e4eae0] pt-4 text-meta text-[#526058]">
@@ -40,27 +38,11 @@ const PricingAddOns = ({ catalog }: { catalog: PricingCatalog }) => (
                   </dd>
                 </div>
               ) : null}
-              {addon.screenOverage ? (
-                <div className="flex justify-between gap-4">
-                  <dt>Each additional screen</dt>
-                  <dd className="font-medium text-[#002d0e]">
-                    {formatPrice(addon.screenOverage, catalog.currency, true)}
-                  </dd>
-                </div>
-              ) : null}
               {addon.includedProfiles ? (
                 <div className="flex justify-between gap-4">
                   <dt>Monitored profiles included</dt>
                   <dd className="font-medium text-[#002d0e]">
                     {addon.includedProfiles.toLocaleString("en-US")}
-                  </dd>
-                </div>
-              ) : null}
-              {addon.profileOverage ? (
-                <div className="flex justify-between gap-4">
-                  <dt>Each additional profile</dt>
-                  <dd className="font-medium text-[#002d0e]">
-                    {formatPrice(addon.profileOverage, catalog.currency, true)}/month
                   </dd>
                 </div>
               ) : null}

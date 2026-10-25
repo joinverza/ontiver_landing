@@ -1,7 +1,5 @@
 import {
   DEVELOPER_SIGNUP_URL,
-  PORTAL_SIGNUP_URL,
-  type PricingCurrency,
   monthlyPrice,
   type BillingCycle,
   type PricingCatalog,
@@ -18,7 +16,8 @@ export function getPricingInquiryUrl(
 ) {
   const plan = planName?.toLowerCase();
   const params = new URLSearchParams({
-    plan: plan && ["launch", "growth", "compliance", "enterprise"].includes(plan) ? plan : "enterprise",
+    plan:
+      plan && ["launch", "growth", "compliance", "enterprise"].includes(plan) ? plan : "enterprise",
     billing: billingCycle,
   });
   if (
@@ -31,15 +30,11 @@ export function getPricingInquiryUrl(
 }
 
 /**
- * Where a plan's call to action leads: Sandbox is a developer account, published plans start a
- * workspace (the plan is chosen and paid for in Billing), and Enterprise starts with our team.
+ * Where a plan's call to action leads: Sandbox is a free developer account; every paid plan
+ * starts with our sales team, who quote for the customer's volume.
  */
-export const planCtaHref = (plan: PricingPlan, billingCycle: BillingCycle, currency: PricingCurrency = "USD") => {
-  if (plan.id === "sandbox") return DEVELOPER_SIGNUP_URL;
-  if (plan.requiresContact) return getPricingInquiryUrl(plan.id, billingCycle);
-  const params = new URLSearchParams({ plan: plan.id, billing: billingCycle, currency });
-  return `${PORTAL_SIGNUP_URL}?${params.toString()}`;
-};
+export const planCtaHref = (plan: PricingPlan, billingCycle: BillingCycle = "monthly") =>
+  plan.id === "sandbox" ? DEVELOPER_SIGNUP_URL : getPricingInquiryUrl(plan.id, billingCycle);
 
 export type CostEstimate = {
   plan: PricingPlan;
@@ -69,7 +64,9 @@ export function estimatePlanCost(
       amlCost = Math.max(0, screens - plan.amlScreens) * (plan.amlScreenOverage ?? 0);
     } else if (plan.addons.includes("aml_screening")) {
       const addon = catalog?.addons.find((item) => item.id === "aml_screening");
-      amlCost = (addon?.monthly ?? 0) + Math.max(0, screens - (addon?.includedScreens ?? 0)) * (addon?.screenOverage ?? 0);
+      amlCost =
+        (addon?.monthly ?? 0) +
+        Math.max(0, screens - (addon?.includedScreens ?? 0)) * (addon?.screenOverage ?? 0);
     } else {
       return null;
     }
@@ -91,14 +88,17 @@ export function cheapestPlan(
   requiredFeatures: string[] = [],
   billingCycle: BillingCycle = "monthly",
 ): CostEstimate | null {
-  return catalog.plans
-    .filter((plan) => requiredFeatures.every((feature) => plan.features.includes(feature)))
-    .map((plan) => estimatePlanCost(plan, usage, billingCycle, catalog))
-    .filter((estimate): estimate is CostEstimate => estimate !== null)
-    .sort((a, b) => a.total - b.total)[0] ?? null;
+  return (
+    catalog.plans
+      .filter((plan) => requiredFeatures.every((feature) => plan.features.includes(feature)))
+      .map((plan) => estimatePlanCost(plan, usage, billingCycle, catalog))
+      .filter((estimate): estimate is CostEstimate => estimate !== null)
+      .sort((a, b) => a.total - b.total)[0] ?? null
+  );
 }
 
-const planByName = (catalog: PricingCatalog, id: string) => catalog.plans.find((plan) => plan.id === id)?.name ?? null;
+const planByName = (catalog: PricingCatalog, id: string) =>
+  catalog.plans.find((plan) => plan.id === id)?.name ?? null;
 
 export function getPlanRecommendation(
   values: Record<PlanFieldKey, string>,
@@ -111,7 +111,8 @@ export function getPlanRecommendation(
   if (toggles.testingOnly)
     return {
       plan: planByName(catalog, "sandbox"),
-      reason: "Build and test your integration free in Sandbox with 100 test verifications a month. Move to a paid plan when you go live.",
+      reason:
+        "Build and test your integration free in Sandbox with 100 test verifications a month. Move to a paid plan when you go live.",
     };
   if (toggles.sla || verifications > SELF_SERVE_LIMIT)
     return {
@@ -129,15 +130,18 @@ export function getPlanRecommendation(
   if (!best)
     return {
       plan: planByName(catalog, "enterprise"),
-      reason: "Your mix of needs is best priced as a contract. Tell us about your volume and we'll send a quote.",
+      reason:
+        "Your mix of needs is best priced as a contract. Tell us about your volume and we'll send a quote.",
     };
   const extras = [
-    best.extraVerifications ? `${best.extraVerifications.toLocaleString("en-US")} verifications above the allowance` : "",
+    best.extraVerifications
+      ? `${best.extraVerifications.toLocaleString("en-US")} verifications above the allowance`
+      : "",
     best.amlCost ? "AML screening" : "",
   ].filter(Boolean);
   return {
     plan: best.plan.name,
     estimate: best.total,
-    reason: `${best.plan.name} is the lowest-cost plan for this usage: about $${Math.round(best.total).toLocaleString("en-US")} a month${extras.length ? `, including ${extras.join(" and ")}` : ""}.`,
+    reason: `${best.plan.name} fits this usage and the controls you need${extras.length ? `, with ${extras.join(" and ")}` : ""}. Contact sales for a quote.`,
   };
 }

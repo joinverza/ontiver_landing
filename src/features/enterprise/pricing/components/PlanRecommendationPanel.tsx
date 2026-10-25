@@ -37,12 +37,6 @@ const PlanRecommendationPanel = ({
             {recommendation.plan ? `We recommend ${recommendation.plan}` : "Let's talk"}
           </h3>
           <p className="mt-4 text-body text-[#526052]">{recommendation.reason}</p>
-          {recommendation.estimate !== undefined ? (
-            <p className="mt-5 text-sm text-[#526052]">
-              Estimate on {billingCycle === "annual" ? "annual" : "monthly"} billing, before taxes.
-              Your dashboard shows actual usage as it happens.
-            </p>
-          ) : null}
           {recommendation.plan === "Sandbox" ? (
             <a href={DEVELOPER_SIGNUP_URL} className="button-primary mt-6">
               Start free in Sandbox
@@ -54,7 +48,7 @@ const PlanRecommendationPanel = ({
               className="button-primary mt-6"
             >
               {recommendation.plan && recommendation.plan !== "Enterprise"
-                ? `Get started with ${recommendation.plan}`
+                ? `Ask about ${recommendation.plan}`
                 : "Talk to sales"}
               <ActionIcon size={17} />
             </Link>

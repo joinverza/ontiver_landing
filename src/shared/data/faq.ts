@@ -15,8 +15,8 @@ export const faqGroups: FAQGroup[] = [
       {
         question: "How is pricing calculated?",
         answer:
-          "Each paid plan has a monthly fee that includes a set number of verifications and API requests. Verifications above the allowance are billed at your plan's rate: $0.50 on Launch, $0.45 on Growth and $0.40 on Compliance. Enterprise is priced on volume in an annual contract.",
-        link: { label: "Compare plans", to: "/enterprise/pricing#plan-comparison" },
+          "Each paid plan has a monthly fee that includes a set number of verifications and API requests, and verifications above the allowance are billed at your plan's rate. Our team quotes the fee and rate for your volume, so contact sales for pricing. Enterprise is priced on volume in an annual contract.",
+        link: { label: "Contact sales", to: "/enterprise/contact?plan=growth" },
       },
       {
         question: "Is Sandbox really free?",
@@ -27,7 +27,7 @@ export const faqGroups: FAQGroup[] = [
       {
         question: "Does annual billing cost less?",
         answer:
-          "Annual billing saves 20%: Launch is $159, Growth $399 and Compliance $799 a month, billed yearly.",
+          "Yes. Paying yearly saves about 20% on every paid plan. Ask sales for an annual quote.",
       },
       {
         question: "Can I change plans later?",

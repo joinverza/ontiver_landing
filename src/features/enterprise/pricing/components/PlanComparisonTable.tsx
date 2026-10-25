@@ -1,17 +1,11 @@
-import {
-  comparisonGroups,
-  formatPrice,
-  monthlyPrice,
-  type BillingCycle,
-  type PricingCatalog,
-} from "../data/pricing";
+import { comparisonGroups, type PricingCatalog } from "../data/pricing";
 import FeatureValue from "./FeatureValue";
 import { useComparisonSticky } from "../hooks/useComparisonSticky";
 import "./plan-comparison.css";
 
-type Props = { catalog: PricingCatalog; billingCycle: BillingCycle };
+type Props = { catalog: PricingCatalog };
 
-const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
+const PlanComparisonTable = ({ catalog }: Props) => {
   const tableRef = useComparisonSticky();
   const groups = comparisonGroups(catalog);
   const highlightIndex = catalog.plans.findIndex((plan) => plan.recommended);
@@ -30,8 +24,8 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
             </h2>
           </div>
           <p className="max-w-[380px] text-body text-[#526058]">
-            Every plan includes the full dashboard, audit log, SDKs and API documentation. Prices
-            are in US dollars and exclude applicable taxes.
+            Every plan includes the full dashboard, audit log, SDKs and API documentation. Contact
+            sales for pricing on any paid plan.
           </p>
         </div>
         <div
@@ -68,7 +62,6 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                   Plan
                 </th>
                 {catalog.plans.map((plan, index) => {
-                  const price = monthlyPrice(plan, billingCycle);
                   return (
                     <th
                       key={plan.id}
@@ -77,11 +70,7 @@ const PlanComparisonTable = ({ catalog, billingCycle }: Props) => {
                     >
                       <span className="block font-semibold">{plan.name}</span>
                       <span className="plan-comparison-price mt-1 block font-normal text-[#526058]">
-                        {price === null
-                          ? "Custom"
-                          : price === 0
-                            ? "Free"
-                            : `${formatPrice(price, catalog.currency)}/mo`}
+                        {plan.id === "sandbox" ? "Free" : "Contact sales"}
                       </span>
                     </th>
                   );

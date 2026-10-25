@@ -1,70 +1,31 @@
-import {
-  annualSavingPercent,
-  type BillingCycle,
-  type PricingCatalog,
-  type PricingCurrency,
-} from "../data/pricing";
+import { Link } from "react-router-dom";
+import { DEVELOPER_SIGNUP_URL } from "../data/pricing";
 import ContextPhoto from "../../../../shared/components/ui/ContextPhoto";
 import { editorialPhotos } from "../../../../shared/data/editorialPhotos";
-import SlidingPill from "../../../../shared/components/ui/SlidingPill";
+import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 
-type PricingHeroProps = {
-  billingCycle: BillingCycle;
-  onBillingChange: (cycle: BillingCycle) => void;
-  currency: PricingCurrency;
-  onCurrencyChange: (currency: PricingCurrency) => void;
-  catalog: PricingCatalog;
-};
-
-const PricingHero = ({
-  billingCycle,
-  onBillingChange,
-  currency,
-  onCurrencyChange,
-  catalog,
-}: PricingHeroProps) => {
-  const currencies = catalog.currencies ?? [];
-  const saving = Math.max(0, ...catalog.plans.map(annualSavingPercent));
+const PricingHero = () => {
   return (
     <section className="page-intro">
       <div className="site-container split-hero-grid">
         <div data-scroll-reveal className="page-hero-content">
           <p className="eyebrow">Pricing</p>
           <h1 className="page-hero-heading text-page-hero font-normal">
-            Start free. Pay for verification as you grow.
+            Start free. Talk to us when you go live.
           </h1>
           <p className="page-hero-description text-subtitle text-[#526052]">
-            Build in Sandbox at no cost, then choose a plan with the checks, controls and volume you
-            need. Every plan comes with the full dashboard, API and SDKs.
+            Build in Sandbox at no cost. When you're ready for real checks, our team quotes a plan
+            for your volume, priced to stay affordable as you grow. Every plan comes with the full
+            dashboard, API and SDKs.
           </p>
           <div className="page-hero-actions items-center">
-            <SlidingPill
-              label="Billing cycle"
-              value={billingCycle}
-              onChange={onBillingChange}
-              options={[
-                { value: "monthly", label: "Monthly" },
-                { value: "annual", label: "Annual" },
-              ]}
-            />
-            {currencies.length > 1 ? (
-              <SlidingPill
-                label="Currency"
-                value={currency}
-                onChange={onCurrencyChange}
-                options={currencies.map((value) => ({
-                  value,
-                  label: value === "NGN" ? "₦ NGN" : "$ USD",
-                }))}
-              />
-            ) : null}
-            {saving ? (
-              <span aria-live="polite" className="text-meta font-medium text-accent">
-                {billingCycle === "annual"
-                  ? `You're saving ${saving}%`
-                  : `Save ${saving}% with annual billing`}
-              </span>
-            ) : null}
+            <a href={DEVELOPER_SIGNUP_URL} rel="noopener" className="button-primary">
+              Start free in Sandbox
+              <ActionIcon size={18} aria-hidden="true" />
+            </a>
+            <Link to="/enterprise/contact?plan=growth" className="button-secondary">
+              Contact sales
+            </Link>
           </div>
           <div className="mt-8 border-t border-[#cbd5c7] pt-6">
             <h2 className="text-card-title font-medium">Your dashboard matches your plan.</h2>

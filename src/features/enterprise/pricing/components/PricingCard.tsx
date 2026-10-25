@@ -1,34 +1,18 @@
 import ActionIcon from "../../../../shared/components/ui/ActionIcon";
 import { Check } from "../../../../shared/components/ui/icons";
-import {
-  annualSavingPercent,
-  formatPrice,
-  monthlyPrice,
-  type BillingCycle,
-  type PricingCurrency,
-  type PricingPlan,
-} from "../data/pricing";
+import { isPriceLine, type PricingPlan } from "../data/pricing";
 import "./pricing-card.css";
 
 type PricingCardProps = {
   plan: PricingPlan;
-  billingCycle: BillingCycle;
-  currency: PricingCurrency;
   ctaHref: string;
   external?: boolean;
 };
 
-const PricingCard = ({
-  plan,
-  billingCycle,
-  currency,
-  ctaHref,
-  external = false,
-}: PricingCardProps) => {
-  const formatUsd = (value: number, cents = false) => formatPrice(value, currency, cents);
+/** A plan and what it includes. Only Sandbox shows a price (free); paid plans are quoted by sales. */
+const PricingCard = ({ plan, ctaHref, external = false }: PricingCardProps) => {
   const highlighted = plan.recommended;
-  const price = monthlyPrice(plan, billingCycle);
-  const saving = annualSavingPercent(plan);
+  const free = plan.id === "sandbox";
   const muted = highlighted ? "text-white/70" : "text-[#526058]";
 
   return (
@@ -55,26 +39,15 @@ const PricingCard = ({
       <p className={`pricing-card-copy xl:min-h-24 ${muted}`}>{plan.tagline}</p>
 
       <div className="my-5">
-        {price === null ? (
-          <p className="pricing-card-price font-medium leading-none tracking-[-0.04em]">Custom</p>
-        ) : (
-          <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
-            <span className="pricing-card-price font-medium leading-none tracking-[-0.04em]">
-              {formatUsd(price)}
-            </span>
-            <span className={`whitespace-nowrap text-[0.8125rem] leading-snug ${muted}`}>
-              / month
-            </span>
-          </p>
-        )}
+        <p className="pricing-card-price font-medium leading-none tracking-[-0.04em]">
+          {free ? "Free" : "Contact sales"}
+        </p>
         <p className={`mt-3 min-h-10 text-[0.8125rem] leading-relaxed ${muted}`}>
-          {price === null
-            ? "Annual contract with volume pricing"
-            : price === 0
-              ? "No card required. Test data only."
-              : billingCycle === "annual"
-                ? `Billed ${formatUsd(price * 12)} yearly · save ${saving}%`
-                : `Billed monthly · ${formatUsd(plan.overagePerVerification ?? 0, true)} per extra verification`}
+          {free
+            ? "No card required. Test data only."
+            : plan.requiresContact
+              ? "Annual contract with volume pricing"
+              : "Pricing for your volume, monthly or yearly"}
         </p>
       </div>
 
@@ -83,7 +56,7 @@ const PricingCard = ({
         {...(external ? { rel: "noopener" } : {})}
         className={`button-primary mb-6 ${highlighted ? "button-on-dark" : ""}`}
       >
-        {plan.cta}
+        {free ? plan.cta : "Contact sales"}
         <ActionIcon size={18} aria-hidden="true" />
       </a>
 
@@ -94,19 +67,21 @@ const PricingCard = ({
           {plan.audience}
         </p>
         <ul className="space-y-2.5">
-          {plan.highlights.map((line) => (
-            <li
-              key={line}
-              className={`pricing-card-copy flex gap-2.5 ${highlighted ? "text-white/85" : "text-[#3f4d3f]"}`}
-            >
-              <Check
-                size={17}
-                aria-hidden="true"
-                className={`mt-[3px] shrink-0 ${highlighted ? "text-[#b8e5a7]" : "text-[#009311]"}`}
-              />
-              {line}
-            </li>
-          ))}
+          {plan.highlights
+            .filter((line) => !isPriceLine(line))
+            .map((line) => (
+              <li
+                key={line}
+                className={`pricing-card-copy flex gap-2.5 ${highlighted ? "text-white/85" : "text-[#3f4d3f]"}`}
+              >
+                <Check
+                  size={17}
+                  aria-hidden="true"
+                  className={`mt-[3px] shrink-0 ${highlighted ? "text-[#b8e5a7]" : "text-[#009311]"}`}
+                />
+                {line}
+              </li>
+            ))}
         </ul>
       </div>
     </article>

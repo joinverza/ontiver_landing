@@ -46,10 +46,10 @@ const Plan = ({ catalog, billingCycle = "monthly", onViewPlan, onComparePlans }:
       <div className="site-container py-20!">
         <div data-scroll-reveal className="plan-guidance-intro mb-16! max-w-[780px]">
           <p className="eyebrow">Explore your plan options</p>
-          <h2 className="mt-5 text-section font-normal">Find the plan that costs you least.</h2>
+          <h2 className="mt-5 text-section font-normal">Find the plan that fits.</h2>
           <p className="mt-5 text-body text-[#526052]">
-            Enter your expected monthly usage and the controls you need. We compare every published
-            plan, including extra-verification and screening charges.
+            Enter your expected monthly usage and the controls you need, and we'll point you to the
+            plan that covers them. Our team then quotes for your volume.
           </p>
         </div>
         <div className="equal-columns grid gap-6 lg:grid-cols-2">

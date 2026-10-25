@@ -1,22 +1,17 @@
-import { useState } from "react";
 import PricingFAQ from "../../../../shared/components/FAQ";
 import PlanComparisonTable from "../components/PlanComparisonTable";
 import PricingCard from "../components/PricingCard";
 import PricingHero from "../components/PricingHero";
 import PricingAddOns from "../components/PricingAddOns";
-import Calculator from "../components/Calculator";
 import PageFooter from "../../../../shared/components/layout/PageFooter";
 import PlanSection from "../components/Plan";
-import { CURRENCY_NAMES, localizeCatalog, type BillingCycle } from "../data/pricing";
 import { usePricingCatalog } from "../hooks/usePricingCatalog";
-import { usePricingCurrency } from "../hooks/usePricingCurrency";
 import { scrollPageTo } from "../../../../shared/lib/scrollNavigation";
 import { planCtaHref } from "../lib/pricing";
 
+/** Plans and what they include. Only Sandbox shows a price (free); paid plans are quoted by sales. */
 const PricingPage = () => {
-  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
-  const [currency, setCurrency] = usePricingCurrency();
-  const catalog = localizeCatalog(usePricingCatalog(), currency);
+  const catalog = usePricingCatalog();
 
   const scrollTo = (id: string) => {
     scrollPageTo(document.getElementById(id));
@@ -24,13 +19,7 @@ const PricingPage = () => {
 
   return (
     <main id="main-content" tabIndex={-1} className="bg-surface text-[#002d0e]">
-      <PricingHero
-        billingCycle={billingCycle}
-        onBillingChange={setBillingCycle}
-        currency={currency}
-        onCurrencyChange={setCurrency}
-        catalog={catalog}
-      />
+      <PricingHero />
       <section
         id="pricing-plans"
         aria-label="Pricing plans"
@@ -41,28 +30,23 @@ const PricingPage = () => {
             <PricingCard
               key={plan.id}
               plan={plan}
-              billingCycle={billingCycle}
-              currency={currency}
-              ctaHref={planCtaHref(plan, billingCycle, currency)}
+              ctaHref={planCtaHref(plan)}
               external={plan.id === "sandbox"}
             />
           ))}
         </div>
         <p className="site-container mt-6 text-sm text-[#526058]">
-          Prices in {CURRENCY_NAMES[currency]}, excluding applicable taxes. Paid plans include
-          production API keys and bill extra verifications at the rate shown after each month;
-          unused allowance does not roll over.
+          Paid plans include production API keys, live checks and a monthly verification allowance.
+          Contact sales for pricing in naira or US dollars, on monthly or annual billing.
         </p>
       </section>
-      <PlanComparisonTable catalog={catalog} billingCycle={billingCycle} />
+      <PlanComparisonTable catalog={catalog} />
       <PricingAddOns catalog={catalog} />
       <PlanSection
         catalog={catalog}
-        billingCycle={billingCycle}
         onViewPlan={() => scrollTo("pricing-plans")}
         onComparePlans={() => scrollTo("plan-comparison")}
       />
-      <Calculator billingCycle={billingCycle} catalog={catalog} />
       <PricingFAQ />
       <PageFooter audience="enterprise" />
     </main>

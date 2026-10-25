@@ -46,12 +46,12 @@
       "name": "Launch",
       "tagline": "Go live with real identity checks at pilot volume.",
       "audience": "Early production pilots and small compliance teams",
-      "monthly": 199,
-      "annualMonthly": 159,
+      "monthly": 149,
+      "annualMonthly": 119,
       "requiresContact": false,
       "recommended": false,
-      "includedVerifications": 500,
-      "overagePerVerification": 0.5,
+      "includedVerifications": 400,
+      "overagePerVerification": 0.35,
       "apiRequests": 5000,
       "amlScreens": 0,
       "amlScreenOverage": null,
@@ -76,8 +76,8 @@
       ],
       "cta": "Start with Launch",
       "highlights": [
-        "500 verifications included each month",
-        "$0.50 per additional verification",
+        "400 verifications included each month",
+        "$0.35 per additional verification",
         "Production API keys and live checks",
         "Workflows, webhooks and request logs",
         "Optional AML add-ons"
@@ -88,12 +88,12 @@
       "name": "Growth",
       "tagline": "Scale onboarding with reusable proofs, risk rules and AML screening.",
       "audience": "Fintechs, lenders and marketplaces scaling onboarding",
-      "monthly": 499,
-      "annualMonthly": 399,
+      "monthly": 399,
+      "annualMonthly": 319,
       "requiresContact": false,
       "recommended": true,
       "includedVerifications": 1000,
-      "overagePerVerification": 0.45,
+      "overagePerVerification": 0.32,
       "apiRequests": 50000,
       "amlScreens": 250,
       "amlScreenOverage": 0.35,
@@ -119,7 +119,7 @@
       "cta": "Choose Growth",
       "highlights": [
         "1,000 verifications included each month",
-        "$0.45 per additional verification",
+        "$0.32 per additional verification",
         "250 AML screens included",
         "Risk policies and duplicate-identity signals",
         "Reusable proofs and customer registry"
@@ -130,12 +130,12 @@
       "name": "Compliance",
       "tagline": "Audit-ready verification with monitoring, reports and dual control.",
       "audience": "Regulated teams that answer to auditors and regulators",
-      "monthly": 999,
-      "annualMonthly": 799,
+      "monthly": 899,
+      "annualMonthly": 719,
       "requiresContact": false,
       "recommended": false,
-      "includedVerifications": 3000,
-      "overagePerVerification": 0.4,
+      "includedVerifications": 2500,
+      "overagePerVerification": 0.3,
       "apiRequests": 100000,
       "amlScreens": 500,
       "amlScreenOverage": 0.35,
@@ -163,8 +163,8 @@
       "addons": [],
       "cta": "Choose Compliance",
       "highlights": [
-        "3,000 verifications included each month",
-        "$0.40 per additional verification",
+        "2,500 verifications included each month",
+        "$0.30 per additional verification",
         "500 AML screens and 1,000 monitored profiles",
         "Compliance reports and signed audit exports",
         "Dual control for keys, webhooks and data access"
@@ -362,6 +362,7 @@
         "overage": null,
         "amlScreenOverage": null,
         "monitoringOverage": null,
+        "request": null,
         "highlights": [
           "100 test verifications every month",
           "Simulated NIN, BVN, document and face-match results",
@@ -371,42 +372,45 @@
         ]
       },
       "launch": {
-        "monthly": 199,
-        "annualMonthly": 159,
-        "overage": 0.5,
+        "monthly": 149,
+        "annualMonthly": 119,
+        "overage": 0.35,
         "amlScreenOverage": null,
         "monitoringOverage": null,
+        "request": 0.3,
         "highlights": [
-          "500 verifications included each month",
-          "$0.50 per additional verification",
+          "400 verifications included each month",
+          "$0.35 per additional verification",
           "Production API keys and live checks",
           "Workflows, webhooks and request logs",
           "Optional AML add-ons"
         ]
       },
       "growth": {
-        "monthly": 499,
-        "annualMonthly": 399,
-        "overage": 0.45,
+        "monthly": 399,
+        "annualMonthly": 319,
+        "overage": 0.32,
         "amlScreenOverage": 0.35,
         "monitoringOverage": null,
+        "request": 0.25,
         "highlights": [
           "1,000 verifications included each month",
-          "$0.45 per additional verification",
+          "$0.32 per additional verification",
           "250 AML screens included",
           "Risk policies and duplicate-identity signals",
           "Reusable proofs and customer registry"
         ]
       },
       "compliance": {
-        "monthly": 999,
-        "annualMonthly": 799,
-        "overage": 0.4,
+        "monthly": 899,
+        "annualMonthly": 719,
+        "overage": 0.3,
         "amlScreenOverage": 0.35,
         "monitoringOverage": 0.05,
+        "request": 0.2,
         "highlights": [
-          "3,000 verifications included each month",
-          "$0.40 per additional verification",
+          "2,500 verifications included each month",
+          "$0.30 per additional verification",
           "500 AML screens and 1,000 monitored profiles",
           "Compliance reports and signed audit exports",
           "Dual control for keys, webhooks and data access"
@@ -418,6 +422,7 @@
         "overage": null,
         "amlScreenOverage": null,
         "monitoringOverage": null,
+        "request": null,
         "highlights": [
           "Volume pricing and annual contracts",
           "Everything in Compliance",
@@ -434,6 +439,7 @@
         "overage": null,
         "amlScreenOverage": null,
         "monitoringOverage": null,
+        "request": null,
         "highlights": [
           "100 test verifications every month",
           "Simulated NIN, BVN, document and face-match results",
@@ -443,42 +449,45 @@
         ]
       },
       "launch": {
-        "monthly": 265000,
-        "annualMonthly": 211000,
-        "overage": 665,
+        "monthly": 198000,
+        "annualMonthly": 158000,
+        "overage": 465,
         "amlScreenOverage": null,
         "monitoringOverage": null,
+        "request": 399,
         "highlights": [
-          "500 verifications included each month",
-          "₦665 per additional verification",
+          "400 verifications included each month",
+          "₦465 per additional verification",
           "Production API keys and live checks",
           "Workflows, webhooks and request logs",
           "Optional AML add-ons"
         ]
       },
       "growth": {
-        "monthly": 663000,
-        "annualMonthly": 530000,
-        "overage": 598,
+        "monthly": 530000,
+        "annualMonthly": 424000,
+        "overage": 425,
         "amlScreenOverage": 465,
         "monitoringOverage": null,
+        "request": 332,
         "highlights": [
           "1,000 verifications included each month",
-          "₦598 per additional verification",
+          "₦425 per additional verification",
           "250 AML screens included",
           "Risk policies and duplicate-identity signals",
           "Reusable proofs and customer registry"
         ]
       },
       "compliance": {
-        "monthly": 1328000,
-        "annualMonthly": 1062000,
-        "overage": 532,
+        "monthly": 1195000,
+        "annualMonthly": 956000,
+        "overage": 399,
         "amlScreenOverage": 465,
         "monitoringOverage": 66,
+        "request": 266,
         "highlights": [
-          "3,000 verifications included each month",
-          "₦532 per additional verification",
+          "2,500 verifications included each month",
+          "₦399 per additional verification",
           "500 AML screens and 1,000 monitored profiles",
           "Compliance reports and signed audit exports",
           "Dual control for keys, webhooks and data access"
@@ -490,6 +499,7 @@
         "overage": null,
         "amlScreenOverage": null,
         "monitoringOverage": null,
+        "request": null,
         "highlights": [
           "Volume pricing and annual contracts",
           "Everything in Compliance",
