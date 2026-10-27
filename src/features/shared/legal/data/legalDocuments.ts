@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "12 October 2026";
+export const LEGAL_LAST_UPDATED = "27 October 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -37,7 +37,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "We are registered with the Nigeria Data Protection Commission as a data controller and processor of major importance (Registration ID NDPC/DCP/14404).",
           "We are the data controller for personal data we collect to run ontiver.com, the Ontiver app and vault, and the accounts of businesses and developers that use our dashboards and API.",
           "When a business (our customer) uses Ontiver to verify its own customers, that business decides why and how the verification happens. For that data we act as its data processor and follow its instructions; the business's own privacy notice also applies, and we help it respond to your requests.",
-          `For any privacy question or request, email ${legalEntity.privacyEmail} or write to us at the address above.`,
+          `Our Data Protection Officer oversees how we handle personal data and is your point of contact for any privacy question or request: email ${legalEntity.privacyEmail} or write to us at the address above.`,
         ],
       },
       {
@@ -47,7 +47,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Account details: name, email address, phone number, password (stored only as a one-way hash), multi-factor authentication settings, and your role in an organisation.",
           "Identity verification data: government identification numbers such as NIN and BVN, identity document images and the details read from them, a selfie or short liveness video, and face-comparison data derived from them.",
           "Contact proofs: confirmation that you control a phone number or email address. One-time codes are never stored in readable form.",
-          "Address data: the address you declare, its postcode, the matching result from the NIPOST postcode register, and, when you verify your address in the app, the precise location of your phone at the moment you confirm the address and at each check-in from home, with its accuracy and whether the device reported a simulated location. We never track your location in the background.",
+          "Address data: the address you declare, its postcode, the matching result from the NIPOST postcode register, and, when you verify your address in the app, the precise location of your phone at the moment you confirm the address and at each check-in from home, with its accuracy and whether the device reported a simulated location. Each check-in keeps only how far you were from that spot, never the coordinates. Your address code is worked out from the location when it is shown and is not stored separately. We never track your location in the background.",
           "Share links: when you share a proof by link or QR code, the details you chose, when the link expires, and how often it was opened. We store only a fingerprint of the link itself.",
           "Screening results: whether a name matches sanctions, politically exposed person or adverse media lists, where a business requests screening.",
           "Bank account data: only where you connect a bank account and agree to share it, for example to confirm account ownership.",
@@ -82,7 +82,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         ],
         bullets: [
           "To provide the service you or a business asked for, such as creating your account, running verification checks, issuing proofs and sharing them when you approve (performance of a contract).",
-          "To verify identity using biometric data, to share your proofs with others, and to send marketing emails (your consent, which you can withdraw at any time).",
+          "To verify identity using biometric data, to share your proofs with others, and to send marketing emails and newsletters (your consent, which you can withdraw at any time: every marketing email and newsletter has a one-click unsubscribe link, and you can switch marketing off in the app's notification settings).",
           "To keep records required by anti-money laundering, counter-terrorist financing and tax law, and to respond to lawful requests from authorities (legal obligation).",
           "To secure our services, prevent fraud and misuse, fix errors and improve Ontiver, in ways you would reasonably expect and that do not override your rights (legitimate interests).",
         ],
@@ -116,6 +116,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Infrastructure providers: Render (application hosting and databases), Cloudflare (encrypted file storage), Google Cloud (encryption key management) and Sentry (error monitoring, configured not to collect personal data).",
           "OpenAI, only for AI features a business has switched on, and only with personal identifiers replaced by tokens.",
           "Google and Apple, if you use them to sign in.",
+          "Expo, Apple and Google, to deliver notifications to the Ontiver app. A notification can say which business asked for your details, but never contains identity numbers or documents.",
           "Professional advisers, auditors, insurers, and regulators or law enforcement where the law requires it, and a buyer or successor if our business is reorganised or sold, under equivalent protections.",
         ],
       },
@@ -135,6 +136,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Raw responses from verification providers: up to 7 days.",
           "Normalised verification evidence: up to 30 days.",
           "Issued proofs: up to 1 year, or until they expire or you revoke them, whichever is sooner.",
+          "Address checks: the precise location and the address you declared are erased 30 days after a check ends without a proof, is replaced by a newer one, or its proof is revoked.",
+          "Email preferences: if you unsubscribe, we keep only a one-way fingerprint of your email address so we never email you marketing again, not the address itself.",
           "Audit records of verifications, approvals and sharing: 7 years, to meet anti-money laundering and dispute-resolution requirements.",
           "Account details: while your account is open. After a deletion request is processed, we delete or anonymise them, except records we must keep for the periods above.",
           "Support messages: for as long as needed to resolve your request and keep a record of how it was handled.",
@@ -144,14 +147,12 @@ export const legalDocuments: Record<string, LegalDocument> = {
         heading: "How we protect information",
         paragraphs: [
           "We encrypt data in transit with TLS and at rest. Identity data is encrypted with keys managed in Google Cloud Key Management Service, and raw personal data is minimised once a check is complete. Each organisation's data is isolated at the database level. Staff and business accounts use multi-factor authentication, sensitive actions require recent re-authentication, and access is logged.",
-          "No system is perfectly secure. If a breach is likely to put your rights at risk, we will notify the Nigeria Data Protection Commission and, where required, you, within the time the law sets.",
+          "No system is perfectly secure. If a breach is likely to put your rights at risk, we will notify the Nigeria Data Protection Commission within 72 hours of becoming aware of it, and tell you without undue delay where it is likely to put you at high risk, with what happened and what you can do.",
         ],
       },
       {
         heading: "Your rights",
-        paragraphs: [
-          "Under the Nigeria Data Protection Act 2023 you can ask us to:",
-        ],
+        paragraphs: ["Under the Nigeria Data Protection Act 2023 you can ask us to:"],
         bullets: [
           "Give you a copy of your personal data, including in a portable format.",
           "Correct personal data that is inaccurate or incomplete.",
@@ -193,7 +194,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         heading: "About these terms",
         paragraphs: [
           `These terms are an agreement between you and ${ENTITY}, the company that operates Ontiver, with its registered office at ${legalEntity.address}. By creating an account or using ontiver.com, the Ontiver app, our dashboards or our API, you accept these terms.`,
-          "If you use Ontiver on behalf of a business, you confirm that you are authorised to accept these terms for it, and \"you\" includes that business. A signed order form or enterprise agreement with us takes priority over these terms where they conflict.",
+          'If you use Ontiver on behalf of a business, you confirm that you are authorised to accept these terms for it, and "you" includes that business. A signed order form or enterprise agreement with us takes priority over these terms where they conflict.',
         ],
       },
       {
@@ -283,7 +284,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
       {
         heading: "Disclaimers",
         paragraphs: [
-          "Apart from the commitments in these terms, Ontiver is provided \"as is\" and \"as available\". To the extent the law allows, we disclaim implied warranties, including fitness for a particular purpose and that the service will be uninterrupted or error-free. Nothing in these terms excludes rights you have as a consumer that cannot be excluded by law.",
+          'Apart from the commitments in these terms, Ontiver is provided "as is" and "as available". To the extent the law allows, we disclaim implied warranties, including fitness for a particular purpose and that the service will be uninterrupted or error-free. Nothing in these terms excludes rights you have as a consumer that cannot be excluded by law.',
         ],
       },
       {
