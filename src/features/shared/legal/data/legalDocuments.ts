@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "27 October 2026";
+export const LEGAL_LAST_UPDATED = "2 November 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -90,8 +90,10 @@ export const legalDocuments: Record<string, LegalDocument> = {
       {
         heading: "Biometric and other sensitive data",
         paragraphs: [
-          "Face images, liveness video and face-comparison data are sensitive personal data. We process them only with your explicit consent and only to confirm that you are the person on the identity record or document.",
-          "Liveness media is deleted within 6 hours, identity document images within 24 hours, and face-comparison templates within 24 hours of the check. We keep the result of the check, not the biometric data itself.",
+          "Face images, liveness video and face-comparison data are sensitive personal data. We process them only with your explicit consent and only to confirm that you are the person on the identity record or document or, if you agree to re-verification, that you are still that person.",
+          "Liveness media is deleted within 6 hours and identity document images within 24 hours of the check. Unless you agree to re-verification, we keep the result of the check, not the biometric data itself.",
+          "If you agree to re-verification, we keep your 3D face template and its audit images on our private face-check server, so organisations you connect to can ask you to confirm it's still you. We keep them until you withdraw consent or delete your account. Organisations never receive them; they receive only the result. If you don't agree, face-comparison templates are deleted within 24 hours of the check.",
+          "If you agree to re-verification, we also keep protected hashes of the details you verified, so an ID scan can be compared with them. The photo of your ID and the details read from it are deleted after the comparison.",
         ],
       },
       {
@@ -133,6 +135,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         ],
         bullets: [
           "Liveness media: up to 6 hours. Identity document images and face-comparison templates: up to 24 hours.",
+          "If you agree to re-verification, your 3D face template, its audit images and protected hashes of your verified details: until you withdraw consent or delete your account.",
           "Raw responses from verification providers: up to 7 days.",
           "Normalised verification evidence: up to 30 days.",
           "Issued proofs: up to 1 year, or until they expire or you revoke them, whichever is sooner.",
