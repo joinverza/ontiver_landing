@@ -136,6 +136,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
         bullets: [
           "Liveness media: up to 6 hours. Identity document images and face-comparison templates: up to 24 hours.",
           "If you agree to re-verification, your 3D face template, its audit images and protected hashes of your verified details: until you withdraw consent or delete your account.",
+          "Details you type for a request from an organisation: encrypted, and deleted from Ontiver up to 30 days after you share them. The organisation keeps its copy under its own privacy policy.",
+          "Details you choose to save for later requests: encrypted, until you remove them in Settings or delete your account.",
           "Raw responses from verification providers: up to 7 days.",
           "Normalised verification evidence: up to 30 days.",
           "Issued proofs: up to 1 year, or until they expire or you revoke them, whichever is sooner.",
