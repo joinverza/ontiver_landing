@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "2 November 2026";
+export const LEGAL_LAST_UPDATED = "14 November 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -55,6 +55,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Payment details for paid plans: billing contact, plan and invoice history, and the card brand and last four digits returned by our payment processor. We never receive or store full card numbers.",
           "Support and communications: messages you send us, support tickets, waitlist and newsletter sign-ups.",
           "Technical data: IP address, device and browser type, request logs, security events, and error reports.",
+          "Sign-in approvals: when you sign in to a website by scanning its code with the Ontiver app or approving on your phone, the website's name and address, the browser's type, and the browser's approximate location (city and country, worked out from its IP address), so your phone can show you who is asking before you approve. We never use your phone's location for this.",
           "Sign-in with Google or Apple: the account identifier, name and email those providers share with your permission.",
         ],
       },
@@ -73,6 +74,15 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "We share Google user data only with the service providers that host and secure Ontiver (listed below), and only to run your account, or where the law requires it. We do not transfer it to anyone else.",
           "We keep this information while your Google sign-in is linked. You can unlink Google in the app under Settings, Account & sign-in, Linked sign-in methods, or delete your Ontiver account; we then delete the Google account ID and revoke the token, subject to the records the law requires us to keep. You can also remove Ontiver's access at any time at myaccount.google.com/permissions.",
           "Ontiver's use and transfer of information received from Google APIs to any other app will adhere to the Google API Services User Data Policy (developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements.",
+        ],
+      },
+      {
+        heading: "Signing in to other websites and apps with Ontiver",
+        paragraphs: [
+          "Some websites and apps let you sign in with Ontiver. Before anything is shared, we show you who is asking, what they want and why, and you choose. Each website receives only what you approve, from this list: your name and profile photo, your email address and whether it is verified, whether your phone number is verified, and whether your identity is verified. We confirm that a detail was verified; we never give a website your phone number, identity numbers, documents or face images through sign-in.",
+          "A website can say some details are required. If one of them isn't verified on your account yet, we tell you what is missing and the sign-in waits until you verify it, so a website never receives an unverified detail in place of a verified one.",
+          "Each website gets a different identifier for you, so websites cannot use Ontiver to link your accounts with each other.",
+          `We keep a record of what you approved for each website, when, and the wording you saw, so you and the website can see what was agreed. You can withdraw a website's access at any time by emailing ${legalEntity.privacyEmail}; it then can't sign you in or receive anything new until you approve it again. What it already received stays under that website's own privacy policy.`,
         ],
       },
       {
@@ -144,6 +154,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Address checks: the precise location and the address you declared are erased 30 days after a check ends without a proof, is replaced by a newer one, or its proof is revoked.",
           "Email preferences: if you unsubscribe, we keep only a one-way fingerprint of your email address so we never email you marketing again, not the address itself.",
           "Audit records of verifications, approvals and sharing: 7 years, to meet anti-money laundering and dispute-resolution requirements.",
+          "Sign-in approval records (the website, the browser's type and its approximate location): 90 days, so we can look into a sign-in you report. The audit record that a sign-in happened is kept with the audit records above.",
           "Account details: while your account is open. After a deletion request is processed, we delete or anonymise them, except records we must keep for the periods above.",
           "Support messages: for as long as needed to resolve your request and keep a record of how it was handled.",
         ],
