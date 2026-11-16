@@ -58,7 +58,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Sign-in approvals: when you sign in to a website by scanning its code with the Ontiver app or approving on your phone, the website's name and address, the browser's type, and the browser's approximate location (city and country, worked out from its IP address), so your phone can show you who is asking before you approve. We never use your phone's location for this.",
           "Sign-in with Google or Apple: the account identifier, name and email those providers share with your permission.",
           "Progress in the app: your setup steps, badges, privacy check-ups, and your answers to the scam-awareness lessons, including which red flags you found. These are private to you.",
-          "Invites: if you join with someone's invite code, the fact that they invited you and whether your NIN or BVN check is done. If you switch on your own invite code, the people who joined with it, your points and rank, any trophies, and how you chose to appear on the leaderboard (first name and initial, a nickname, or hidden, with or without your profile photo). So that one person can only count once, we keep a keyed fingerprint of the NIN or BVN that completed an invite, never the number itself.",
+          "Invites: the invite programme runs for limited periods that we announce in the app, and invites only count while one is running. If you join with someone's invite code, the fact that they invited you and whether your NIN or BVN check is done. If you switch on your own invite code, the people who joined with it, your points and rank, any trophies, and how you chose to appear on the leaderboard (first name and initial, a nickname, or hidden, with or without your profile photo). So that one person can only count once in a programme, we keep a keyed fingerprint of the NIN or BVN of people who verify while it runs, never the number itself.",
         ],
       },
       {
@@ -96,7 +96,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "To provide the service you or a business asked for, such as creating your account, running verification checks, issuing proofs and sharing them when you approve, and running the invite programme and leaderboard if you take part (performance of a contract).",
           "To verify identity using biometric data, to share your proofs with others, and to send marketing emails and newsletters (your consent, which you can withdraw at any time: every marketing email and newsletter has a one-click unsubscribe link, and you can switch marketing off in the app's notification settings).",
           "To keep records required by anti-money laundering, counter-terrorist financing and tax law, and to respond to lawful requests from authorities (legal obligation).",
-          "To secure our services, prevent fraud and misuse, fix errors and improve Ontiver, in ways you would reasonably expect and that do not override your rights (legitimate interests).",
+          "To secure our services, prevent fraud and misuse, fix errors and improve Ontiver, in ways you would reasonably expect and that do not override your rights (legitimate interests). This includes keeping the invite fingerprint described below after an account is deleted during an invite programme, so the same person can't be counted twice; you can object by emailing us.",
         ],
       },
       {
@@ -158,7 +158,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Email preferences: if you unsubscribe, we keep only a one-way fingerprint of your email address so we never email you marketing again, not the address itself.",
           "Audit records of verifications, approvals and sharing: 7 years, to meet anti-money laundering and dispute-resolution requirements.",
           "Sign-in approval records (the website, the browser's type and its approximate location): 90 days, so we can look into a sign-in you report. The audit record that a sign-in happened is kept with the audit records above.",
-          "Badges, lesson answers, invite records, points and the identity fingerprint used for invites: while your account is open. When you delete your account they are deleted; if you invited someone or were invited, the other person keeps their points, and your name is removed from their list.",
+          "Badges, lesson answers, invite records and points: while your account is open. When you delete your account they are deleted; if you invited someone or were invited, the other person keeps their points, and your name is removed from their list.",
+          "Invite fingerprints (a keyed fingerprint of a NIN or BVN, never the number): deleted 30 days after each invite programme ends. If you delete your account while a programme is running, we keep your fingerprint until then with nothing that links it to you or your account, so it can only stop the same identity being counted twice in that programme. It is never kept for more than 24 months, and after it is deleted you can rejoin and take part in a later programme.",
           "Account details: while your account is open. After a deletion request is processed, we delete or anonymise them, except records we must keep for the periods above.",
           "Support messages: for as long as needed to resolve your request and keep a record of how it was handled.",
         ],
@@ -292,6 +293,15 @@ export const legalDocuments: Record<string, LegalDocument> = {
         heading: "Privacy",
         paragraphs: [
           "Our Privacy Policy explains how we handle personal data. Where we process personal data on behalf of a business, the data processing terms in that business's agreement with us apply.",
+        ],
+      },
+      {
+        heading: "Invite programme",
+        paragraphs: [
+          "From time to time we run an invite programme in the Ontiver app. Each programme runs for a limited period shown in the app, and we may start, extend, shorten or end it at any time. Points start at zero for each programme.",
+          "An invite counts only when the person you invite joins with your code during the programme and passes a NIN or BVN check that has not counted before. Invites made before a programme ends still count if that check finishes within 7 days after the end; nothing else counts after the end.",
+          "Points, ranks, badges and trophies are for recognition only. They have no cash value and cannot be exchanged, sold or transferred. Any prize is at our discretion, announced separately, and given outside the app.",
+          "Use one account and invite people you know. We may void invites and remove points, and pause or close a code, if we see fake or duplicate accounts, paid or bulk invitations, spam, or any other misuse.",
         ],
       },
       {

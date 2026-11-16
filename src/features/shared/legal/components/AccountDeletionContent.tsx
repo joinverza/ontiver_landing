@@ -19,6 +19,15 @@ const AccountDeletionContent = () => (
           You are asking to permanently delete your account. Contact support if you need to clarify
           the scope of deletion, data retention, or the status of an existing request.
         </p>
+        <p className="mt-4 text-body text-[#002d0e]/65">
+          If an invite programme is running, we keep a fingerprint of your NIN or BVN, with nothing that
+          links it to you, until 30 days after the programme ends, so the same identity can't be counted
+          twice. It is then deleted, and you can rejoin later. See our{" "}
+          <Link className="font-semibold text-accent underline underline-offset-4" to="/privacy">
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </section>
       <section className="border-t border-[#dde6dc] pt-8">
         <h2 className="text-card-title font-semibold tracking-[-0.02em]">What happens next</h2>
