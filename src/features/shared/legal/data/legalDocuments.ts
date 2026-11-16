@@ -11,7 +11,7 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
-export const LEGAL_LAST_UPDATED = "14 November 2026";
+export const LEGAL_LAST_UPDATED = "16 November 2026";
 
 export const legalEntity = {
   name: "Qynara Technologies Limited",
@@ -57,6 +57,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Technical data: IP address, device and browser type, request logs, security events, and error reports.",
           "Sign-in approvals: when you sign in to a website by scanning its code with the Ontiver app or approving on your phone, the website's name and address, the browser's type, and the browser's approximate location (city and country, worked out from its IP address), so your phone can show you who is asking before you approve. We never use your phone's location for this.",
           "Sign-in with Google or Apple: the account identifier, name and email those providers share with your permission.",
+          "Progress in the app: your setup steps, badges, privacy check-ups, and your answers to the scam-awareness lessons, including which red flags you found. These are private to you.",
+          "Invites: if you join with someone's invite code, the fact that they invited you and whether your NIN or BVN check is done. If you switch on your own invite code, the people who joined with it, your points and rank, any trophies, and how you chose to appear on the leaderboard (first name and initial, a nickname, or hidden, with or without your profile photo). So that one person can only count once, we keep a keyed fingerprint of the NIN or BVN that completed an invite, never the number itself.",
         ],
       },
       {
@@ -91,7 +93,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "We process personal data only where the Nigeria Data Protection Act 2023 allows it:",
         ],
         bullets: [
-          "To provide the service you or a business asked for, such as creating your account, running verification checks, issuing proofs and sharing them when you approve (performance of a contract).",
+          "To provide the service you or a business asked for, such as creating your account, running verification checks, issuing proofs and sharing them when you approve, and running the invite programme and leaderboard if you take part (performance of a contract).",
           "To verify identity using biometric data, to share your proofs with others, and to send marketing emails and newsletters (your consent, which you can withdraw at any time: every marketing email and newsletter has a one-click unsubscribe link, and you can switch marketing off in the app's notification settings).",
           "To keep records required by anti-money laundering, counter-terrorist financing and tax law, and to respond to lawful requests from authorities (legal obligation).",
           "To secure our services, prevent fraud and misuse, fix errors and improve Ontiver, in ways you would reasonably expect and that do not override your rights (legitimate interests).",
@@ -120,6 +122,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         ],
         bullets: [
           "Businesses you choose to share a proof with, and only the fields you approve, for the purpose and period shown when you approve.",
+          "Other Ontiver users, only for invites: if you switch on your invite code and choose to appear, the leaderboard shows your chosen name, your profile photo if you allow it, your points and rank. The person who invited you sees your first name and initial and whether you have finished verifying, never your identity numbers or documents. Nobody sees who you invited.",
           "The business that asked you to verify, which receives the results of the checks it requested.",
           "Identity and screening providers: Smile ID, and authorised sources of government and bank identity records such as NIN and BVN records.",
           "Communication providers: Resend for email and Sendexa for SMS and WhatsApp verification codes.",
@@ -155,6 +158,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "Email preferences: if you unsubscribe, we keep only a one-way fingerprint of your email address so we never email you marketing again, not the address itself.",
           "Audit records of verifications, approvals and sharing: 7 years, to meet anti-money laundering and dispute-resolution requirements.",
           "Sign-in approval records (the website, the browser's type and its approximate location): 90 days, so we can look into a sign-in you report. The audit record that a sign-in happened is kept with the audit records above.",
+          "Badges, lesson answers, invite records, points and the identity fingerprint used for invites: while your account is open. When you delete your account they are deleted; if you invited someone or were invited, the other person keeps their points, and your name is removed from their list.",
           "Account details: while your account is open. After a deletion request is processed, we delete or anonymise them, except records we must keep for the periods above.",
           "Support messages: for as long as needed to resolve your request and keep a record of how it was handled.",
         ],
